@@ -1,0 +1,4749 @@
+
++---------------------------------------------------------------------------+
+|                                                                           |
+|                             FINAL FANTASY III                             |
+|                                                                           |
++---------------------------------------------------------------------------+
+| file: ff3u-text.txt                                                       |
+|                                                                           |
+| description: string table for english fan translation                     |
+|                                                                           |
+| created: 4/16/2021                                                        |
+|                                                                           |
+| author: everything8215@gmail.com                                          |
++---------------------------------------------------------------------------+
+
+0x0000:  The Gurgan quietly spoke…
+         This earthquake is but an
+        omen. The tremors that pulled
+        the Crystals into the earth
+         and brought forth monsters
+        are nothing compared to the
+         Darkness which is to come…
+        
+          But,hope is not yet lost.
+         Four souls will take up the
+             quest of the Light.
+        
+              And so it begins…
+0x0001: 
+           Four orphans have been
+        raised by the priest Topapa
+        in the remote village of Ur.
+        
+        A Crystal has sunk into the
+        earth due to the earthquake,
+        and the four boys have come
+          in an adventurous mood.
+        
+         They had only intended to
+            test their courage…
+0x0002: Sara:Oh,yes.
+         To talk to me,press B.
+         Don't forget!
+0x0003: Can't move!
+        ‘Now,get them!!’
+0x0004: Ahh,thanks to you my hip
+        pains have gotten better.
+        Please,take this.
+        
+        Received EchoHerb!
+        
+0x0005: “Princess Sara…”
+        Sara:Be sure to come back.
+         I'll be waiting!
+0x0006: “Ouch…!”
+        “We've fallen into a pit!”
+        “Shucks…”
+0x0007: “Are We gonna be all right?
+         In a place like this?”
+        “Hey! It was your idea to
+         come here!”
+        “Hey,if you've got time to
+         fight,you've got time to
+         look for a Way out!”
+        
+0x0008: “Wh…what were those!?”
+        “Oh man…”
+        “What're we gonna do now?”
+0x0009: “Wh…what is this!?”
+        Something evil attacked!
+0x000A: “It's Jinn!”
+        Sara:I'll seal him With
+         this ring!
+0x000B: Jinn:Fuhahaha… That thing
+         Won't Work on me now.
+         I've allied With the
+         great power of Darkness!
+0x000C: “Now,Sara!
+         Seal Jinn With the ring
+         While he's Weak!”
+        Sara raised the ring…
+0x000D: Sara:Thank you.
+         Because of you,we were
+         able to seal Jinn again.
+        
+         Now if we put this ring
+         in Sasoon's holy spring
+         We can release Jinn's
+         curse.
+         Let's use the ring's
+         power to warp back to
+         Sasoon castle!
+        
+0x000E: Sara:Thanks for your help.
+         I guess this is goodbye…
+         I mustn't leave my
+         father's side.
+         I'd like to go with
+         you,but I'm sure I'd
+         just get in the Way.
+        “Sara…”
+        Sara:Please come back and
+         visit When your journey
+         is over. I'll be waiting…
+        
+0x000F: I knew you could do it!
+        I'm sure you can make
+        better use of the airship
+        than I could.
+        Anyway,take me to the town
+        of Canaan Where Granny's
+        waiting. Please!
+        
+        Cid joined the party!
+        
+0x0010: Just tell me if there's
+        anything I can do for you…
+        Ah! Maybe you could use
+        another airship.
+        Go see King Argass!
+        The king knows the secret
+        of airships.
+        Come back again anytime!
+0x0011: Welcome to the
+        Tower of Owen.
+        It will be your grave…
+0x0012: Just keep Wandering
+        forever…
+0x0013: Heeheehee…
+0x0014: Ouch!
+        An invisible Wall!
+0x0015: Wait!
+        I'll dissolve the magic.
+0x0016: Now you can pass.
+        Place the horn on the
+        altar!
+0x0017: Hahaha!
+        I've been following you
+        in your shadows!
+        Now I've got both horns!
+0x0018: You ignorant fools!
+        This Horn of Ice will
+        open the path to the
+        Crystal of Fire!
+        Now the power of Fire
+        will belong to me!
+        
+0x0019: Clank! Bang! Clack!
+        ‘Alright,take them away.
+         They'll make fine slaves
+         at Sir Hyne's castle!’
+0x001A: “Alright! We're all tiny!”
+        “Let's go!”
+        Entered the hole Where the
+        dragon's eye used to be!
+0x001B: Fuhahaha!
+        I've taken the power
+        of the Crystal of Fire
+        and become even stronger!
+        But until I destroy you
+        who have been blessed by
+        the Light,I Won't possess
+        the true power of Fire…
+        Sorry,but I guess you'll
+        just have to die!
+        
+0x001C: The voice of Bahamut:
+        ‘Wonderful!
+         See if you can beat me!’
+0x001D: The Crystal began to
+        sparkle…
+        ‘You have been chosen…’
+        “Hey,the Crystal talked!”
+        ‘Take the last of the
+         light… last of the hope…
+         remaining in me.
+        
+         At this rate,this light
+         Will soon vanish as well…
+         The balance of everything
+         is crumbling.
+         When you take the Light
+         you Will be able to
+         receive great strength
+         from the Crystals.
+         You are the ones chosen
+         to keep the hope.
+         You must not let this
+         World disappear…’
+        Light surrounded the four…
+        
+0x001E: You can go outside through
+        that magic circle.
+        Your quest begins here…
+        Light Warriors!
+0x001F: Light Warriors…
+        I shall offer you the
+        spirit of Light that
+        sleeps within the Flame!
+        Received Jobs from the
+        Crystal of Fire!
+        
+0x0020: ‘This door Was built to
+         guard the Altar of Water.
+         Only a Maiden of Water
+         can open it.’
+        Elia falls to her knees,
+        praying…
+        
+0x0021: Sealed.
+0x0022: Elia:Crystal of Water!
+         Take back the Light!
+        Elia returned the shard's
+        light to the Crystal…
+0x0023: Elia:Noooo!!
+0x0024: Elia:Uunh…
+        “Elia!”
+        Elia:\xchar……
+        “Elia…!!”
+0x0025: You Were lucky my Cursed
+        Arrow didn't get you,
+        Light Warriors.
+        It's a quick killer.
+        Sent by Sir Zande to
+        shatter the Crystal of
+        Water, I am Kraken!
+        Perish!!
+0x0026: “Elia…!”
+        
+        
+        
+        Elia:The Light has returned
+         to the Crystal… I couldn't
+         have done it Without you…
+        “Elia! Don't speak!”
+        Elia:Please,take these…
+         These are the Jobs that
+         carry the power of Water…
+        
+        Received the Jobs of Water
+        from Elia!
+        
+0x0027: “An earthquake! Run!”
+        “No! We can't leave Elia…”
+        “Look out!”
+        “UWAAAAH……!!”
+0x0028: ‘You're awake? You've been
+         asleep for three days!’
+        “Where are We?”
+        
+        ‘This is Amur,the town of
+         Water. Grandpa found you
+         lying unconscious in the
+         Temple of Water.’
+0x0029: “Three whole days…”
+0x002A: “Elia! Get up!”
+        Elia:No… I’m done for…
+         Please go and restore
+         peace… for my sake too…
+        “Elia…!”
+        Elia:Goodbye……
+        “ELIAAAA……!!”
+        
+0x002B: Old man:Aiee!! Help us!!
+        “Hey,it's those old guys
+         We just saw!”
+        “Let's help them!”
+0x002C: ‘We're sorry.
+         Thanks for helping us
+         out of that predicament.
+        
+         Did you really think We
+         Were the four legendary
+         heroes!? No way!
+         Fuhahaha!’
+0x002D: Hyahyahya!
+        You kids,the four
+        legendary heroes…
+        Unbelieveable…
+        Well,here are the
+        Floating Shoes!
+        Catch!!
+        
+0x002E: Old men:Stand back!!
+0x002F: ‘Those Shoes are fakes!’
+        “How do you know?”
+        
+        
+        ‘Why,it's my sixth sense!
+         …Just kidding.
+         I've seen the shoes
+         before.’
+0x0030: Old man:Hey De\0xD3\0xD4a,these
+         kids are the real heroes!
+        De\0xD3\0xD4a:Oh! I had no idea.
+         I’m terribly sorry.
+        Old man:De\0xD3\0xD4a,won't you
+         lend them the shoes?
+        De\0xD3\0xD4a:Well,since you asked…
+         Here,take these.
+0x0031: Received Floating Shoes!
+        “Yeah! Now We can cross the
+         Bottomless Swamp.”
+        
+        “Thanks,old guys! You guys
+         make great heroes.”
+        Old man:Hohoho!
+         We're not that great!
+         Well,let's get out of
+         here. Hold on to me,kids.
+         I'll use \whiteExit to take
+         us out!
+0x0032: ‘Well Well,this kid seems
+         to think he's the Prince.
+         Heh,what a laugh!’
+0x0033: ‘Oh,what's the matter,
+         Your Highness? Come on!’
+        “Hey,stop that!”
+0x0034: ‘Who the hell are you!?’
+        ‘Get ’em,guys!’
+0x0035: ‘Ow… Don't hurt us!’
+        ‘Please forgive us!’
+0x0036: ‘I am Prince Allus,son
+         of King Gorn of Salonia.
+         Thank you for saving me!’
+        “What the heck's going on?”
+        Allus:My father suddenly
+         started a civil War.
+         I tried to stop him,
+         but he didn't listen…
+         I've been banished from
+         the castle. I beg you,
+         travelers,won't you
+         help me?
+         I Want to go back to the
+         castle and ask my father
+         Why he's doing this…
+        
+        “We understand.”
+        Allus:Thank you!
+        
+        
+        Allus joined the party!
+        
+0x0037: ‘Who is it?’
+0x0038: ‘Don't you know this is
+         the Wizard Dorga's home?
+         Attack them!!’
+        ‘Nyaah!!’
+0x0039: Mmhmm,and you are…?
+0x003A: Hmm! You're the four
+        Light Warriors,aren't you.
+        So,the Crystals have given
+        their power to humans…
+        Then there's something I
+        must speak to you about…
+        
+0x003B: Dorga:Come this Way…
+         Unne and I have prepared
+         something for you!
+0x003C: Dorga:Go south of Salonia…
+         To the Temple of Time on
+         the bottom of the sea at
+         the two-pronged cape…
+         Noah's Lute should
+         be there…
+        “Noah's Lute?”
+        
+        Dorga:A lute whose sound
+         echoes across this World
+         and the world of dreams.
+        
+         Use it to bring Unne back
+         from the Dream World.
+         I shall go and get the
+         key to Eureka.
+         You awaken Unne and get
+         the Great Ship!
+        
+0x003D: The Magic Circle Cave Will
+        soon disappear. I'll Warp
+        you outside.
+        Farewell,Light Warriors!
+0x003E: Who dares Wake me from
+        my peaceful slumber…
+0x003F: I am Leviathan. I shall
+        only lend my power to
+        those with the Light!
+        Are you Worthy?
+0x0040: The phantom Lute,
+        sealed in time…
+        Noah's Lute began
+        playing a song…
+0x0041: Unne:Leave it to me!
+         If I strike it With the
+         rock of the Dream World,
+        
+         even Adamantite should
+         vanish into the cleft
+         of dimensions.
+        
+         It's dangerous,so watch
+         from over there…
+        
+0x0042: It's the Earth Crystal…
+        ‘Under order of Sir Zande,
+         I shall bury you in the
+         Darkness!!’
+0x0043: Light Warriors,one called
+        Zande is abusing my power
+        to plunge the world into
+        darkness.
+        Take the power Which lies
+        within me,and rid this
+        world of the Dark Cloud!’
+        
+        Received Jobs from the
+        Crystal of Earth!
+        
+0x0044: Hahaha… you're trapped!
+        Anyone reflected in that
+        mirror is trapped by the
+        Demon Dragons’ curse!
+        Now you can be the Five
+        Demon Dragons’ prey!
+        
+0x0045: It's your long-awaited
+        deliciously fresh feast!
+        Take your time!
+        
+        “Shit!!”
+        “I can't move!!”
+        
+0x0046: ‘Pull yourselves together!’
+        “Dorga!?”
+        
+        
+        Dorga:The only thing that
+         can break the curse of
+         the Demon Dragons is
+         five hearts of Light…
+         You must endure until I
+         can find five hearts
+         of Light!
+         Don't give up!
+        Dorga's soul searched for
+        five of the Light…
+        
+0x0047: Dorga:Princess! \xchar
+         and the others are
+         in danger!
+        
+         What can lift the Demon
+         Dragons’ curse is a heart
+         filled With Light…
+         We need your strength!
+        Sara:What! \xchar
+         is in danger!?
+         I'll go!
+         Please,take me With you!
+0x0048: Dorga:Cid,won't you lend
+         us your strength?
+        
+        
+        Cid:Anything to help them!
+         I’m going with you!
+        
+0x0049: Dorga:Desh…
+         So you've died…
+        
+        
+        Desh:Urrgh!!
+        
+0x004A: Dorga:Desh,you're alive!
+        
+        
+        
+        Desh:What are you talking
+         about,old man?
+         There's no way I'd die!
+        
+         I've finally finished
+         fixing the Tower of Owen.
+         That Wasn't safe…
+        
+         Just a little longer and
+         the Floating Continent
+         Would've collapsed!
+        
+        Dorga:\xchar and the
+         others are in danger…
+        Desh:One problem after
+         another! What can I do?
+0x004B: Dorga:Prince Allus,please
+         give me your strength!
+        
+        
+        Allus:\xchar is in danger?
+         I'll go too!
+        
+0x004C: Dorga:Please,won't one of
+         you come to help \xchar?
+        
+        
+        Old man:It's finally our
+         turn to be the heroes!
+        
+0x004D: ‘Light Warriors!’
+        ‘Hurry,while we hold off
+         the Demon Dragons!’
+        
+        ‘Don't let this World be
+         plunged into darkness!’
+        
+0x004E: “Thank you everyone!”
+        “Let's go!!”
+0x004F: The Sylx Tower Was built
+        by concentrating the power
+        of Light.
+        
+        Zande is trying to summon
+        the Dark Cloud there
+        using our power.
+        
+        Light Warriors,go to the
+        Sylx Tower and stop the
+        Demon King Zande!
+        
+0x0050: The flood of Darkness
+        cannot be stopped!
+        You fools shall die here!
+0x0051: I am one of the four
+        Dark Warriors…
+        
+        
+        Light and Dark…
+        Two worlds that pull at
+        each other.
+        
+        And when those two worlds
+        mix into one, a World of
+        Void will be born.
+        
+        The Light is losing its
+        power and the Dark is
+        pushing it aside.
+        
+        This is the flood of
+        Darkness. The only ones
+        who can prevent this are
+        you,the Light Warriors…
+        Now,I shall lend you
+        my power!
+        The world must not
+        return to the Void!
+0x0052: We'll make the Darkness
+        overflow and erase this
+        world completely!
+        Die,Light Warriors!
+0x0053: I am one of the four
+        Dark Warriors…
+        
+        
+        The world began in Void
+        and shall end in Void.
+        But there is a force
+        which can prevent this.
+        A force which you call…
+        Hope…
+        
+        
+        Perhaps the world Will once
+        again return to the void…
+        
+        
+        But still in the Worlds
+        of Light and Dark there
+        is hope and love left to
+        fight this.
+        Go,destroy those who would
+        return the World to Void!
+        With the hope of Light
+        and Dark!
+0x0054: You've done well to make it
+        so far. But now it's over.
+        The flood of Darkness will
+        return the World to Void!
+0x0055: I am one of the four
+        Dark Warriors…
+        
+        
+        When the power of Dark or
+        Light becomes too great,
+        a Dark Cloud will be born,
+        and plunge all into Void…
+        The thing which can defeat
+        the Dark Cloud is the hope
+        of both Light and Dark.
+        Let us fight together!
+0x0056: Soon,the Darkness will
+        overflow completely!
+        Nobody can stop it now!
+        You shall perish here!
+0x0057: I am one of the four Dark
+        Warriors…
+        
+        
+        The flood of Darkness will
+        destroy not only your
+        world,but ours as Well.
+        Both Will return to Void…
+        But if we join our forces,
+        we may still have time!
+        Quickly,let us go and
+        defeat the Dark Cloud!
+0x0058: I am the Dark Cloud!
+        I Will turn both this World
+        and your World of Light
+        back into utter Void…!
+0x0059: “We won't let you
+         do that!”
+        
+        
+        Dark Cloud:Hahaha…
+         This is the Dark World.
+         I cannot be defeated here
+         With the power of Light!
+0x005A: Dark Warriors:It's not
+         just the Light Warriors!
+         We'll hold off your
+         dark power!
+        Dark Cloud:What!? If you
+         do that, you'll perish!
+        
+        
+        Dark Warriors:We will not
+         allow you to return this
+         World to the Void!
+        
+0x005B: Dark Cloud:The power of
+         the Dark Crystals is
+         lost,but I don't need it
+         anymore!
+         I'll defeat you,and then
+         turn this World into Void
+         With your power of Light!
+         Perish,Light Warriors!
+0x005C: Dark Cloud:It's futile…
+         You cannot defeat me!
+         Hahahahahahahaha……
+0x005D: Dorga:You made it!
+         Now,to make the Eureka
+         Key complete…
+        
+         You must battle and
+         defeat Unne and me!
+        “What!?”
+        
+0x005E: Dorga:Listen. Long ago…
+         Weapons too powerful for
+         people to handle Were
+         sealed in Eureka.
+         But now those weapons are
+         necessary!
+        
+        
+         And to make the key to
+         enter Eureka,the energy
+         of our battle is needed.
+        
+        “No matter What you say,
+         Dorga,Unne…
+         There's no way We could
+         fight you!”
+        Dorga:You stubborn fools!
+         Then how about this?
+         Defeat me,or die!
+        
+0x005F: “Dorga! Don't die!”
+        Unne:Next is my turn!
+        “No,Unne!”
+        “We don't Want to fight!”
+        Unne:Oh,don't Whine.
+         Even if my body dies,my
+         soul Will not perish…
+         Now,let's go!
+0x0060: “Dorga! Unne!”
+0x0061: Dorga:Alright,now the
+         Eureka Key is complete.
+         Take this With you…
+        
+        Received Eureka Key.
+        
+        
+        
+        “Dorga!!”
+        Dorga:Don't Worry. Though
+         our bodies may die,our
+         souls will not be lost…
+         Now,go to the tower
+         protected by the four
+         statues,the Sylx Tower.
+        
+         You must stop the one Who
+         is trying to summon the
+         Darkness,Zande.
+        
+         I feel safe knowing the
+         duty is in your hands.
+         The entrance to Eureka is
+         in the Sylx Tower…
+0x0062: Unne:Take this…
+         It's the Sylx Key. The
+         key that opens the sealed
+         door in the Sylx Tower.
+         I'll always be watching
+         over you.
+         I’m counting on you……
+        “Unne!!”
+        Received Sylx Key.
+        
+0x0063: If you can Withstand my
+        power I shall give you the
+        Jobs of Ninja and Sage!
+0x0064: Obtained \staffEldest!
+        And…
+        
+        
+        Gained the Jobs of Ninja,
+        who can use every Weapon,
+        and Sage,who can use
+        every magic!
+0x0065: “OK,do we dive in?”
+        “No way!”
+        “Only a frog could make
+         it in there…”
+0x0066: “If we go in this hole…”
+        “Impossible!”
+        “We'd have to be tiny to
+         fit in there…”
+0x0067: Unlocked!
+0x0068: Teeheehee!
+        I'm a dancer!
+0x0069: I am the ultimate sword,
+        Ragnarok!
+        It's still too early
+        for you to use me!
+0x006A: I'll lend my help to
+        your Light.
+        Take me in your hands!
+        
+        Obtained \swordRagnarok!
+        
+0x006B: I'm Cid.
+        I invented the airship!
+        I'm famous!!
+0x006C: I must get back to
+        Canaan. We've gotta do
+        something about that
+        rock blocking the valley…
+0x006D: My dear Wife is
+        waiting for me in Canaan!
+0x006E: If we mounted a Mithril
+        bow on the airship,we
+        could smash the boulder
+        by ramming it.
+        Maybe if we asked Taca,
+        the blacksmith of Kazus…
+        
+0x006F: The airship's been
+        fitted With a Mithril bow!
+        Let's ram it into the
+        big rock!
+0x0070: Unne:We can rest in the
+        bed in the back.
+0x0071: Unne:Hang in there!
+         Let's meet again at
+         Dorga's house!
+0x0072: Unne:Remember this Well.
+         If you go down that
+         stairway, you can return
+         to the ground.
+         To get back aboard the
+         airship,stand in the
+         ship's shadow on the
+         ground and press A.
+         Also,press A to put the
+         engine in high gear and
+         fly over mountains.
+         The B button stops flight.
+         Take the wheel,and you
+         can fly away.
+         Got it?
+        
+0x0073: Unne:Follow me!
+0x0074: Unne:These things are like
+         vending machines. You can
+         buy items from them.
+0x0075: Unne:I've also put a Fat
+         Chocobo on board here.
+         Come on out!
+        
+        
+0x0076: Unne:Dorga is calling…
+        “Huh? Are you leaving?”
+        Unne:Yes. The rest is up
+         to you.
+         First,obtain the Earth
+         Fang which lies in the
+         Cave of Darkness to the
+         north of Amur.
+         Then,come to Dorga's
+         house.
+         We'll have something
+         to give you.
+0x0077: Nothing happens.
+0x0078: Presenting…
+        The Fat Chocobo!
+        
+0x0079: Sara:I'm Sara.
+         Who might you be?
+        “I'm \xchar.”
+        Sara:Nice to meet you!
+0x007A: I came here alone and
+        got stuck! I’m so lucky
+        you came. Thanks a ton!!
+0x007B: I have to seal Jinn
+        with this ring and save
+        everyone!
+        Take me to Jinn!
+0x007C: Jinn is a flame devil.
+        He must be weak against
+        the cold…
+0x007D: 
+0x007E: Obtained Earth Fang!
+        
+        
+        
+        “Alright! Now,back to
+         Dorga's house. Dorga and
+         Unne are Waiting!”
+        
+0x007F: Splendid!
+        Well then,take this blade.
+        
+        
+        Received \darkswordKiku!
+        
+0x0080: When you're tiny,your
+        defense power is only 1…
+        You'd better all fall back
+        to the rear row!
+        And you ought to use the
+        power of the Crystals.
+        It'll be tough Without
+        about three Black Wizards…
+0x0081: “Ouch…”
+0x0082: 
+0x0083: “Let's sleep in the
+         Princess’ bed!”
+0x0084: Die!!
+0x0085: Put Nepto's Eye in the
+        socket.
+0x0086: I am the sea dragon Nepto.
+        I thank you for returning
+        the gem to me.
+        
+        This gem is my mind.
+        Without it,I am merely an
+        animal… and I begin to go
+        wild.
+        Here,take this.
+        The Water Fang… it Will
+        smash What blocks your Way
+        with the power of Water…
+        Received Water Fang!
+        
+0x0087: The water has lost its
+        Light. Someone has caused
+        an earthquake and sealed
+        the Light underground.
+        Please.
+        Bring back the Light…
+        
+        
+        The sea dragon Nepto
+        fell into a deep sleep…
+        
+0x0088: Wow!!
+        Thanks to you I’m
+        feeling much better!
+        Thank you so much!
+0x0089: I'm saved!
+        It must have been
+        something I ate.
+        But I'm fine now!
+0x008A: Why don't you try
+        going down the stairs?
+        They lead to a hidden
+        road to Myraluka.
+        Heard about the
+        Hidden Road!
+        
+0x008B: With this Time Gear,I can
+        rebuild the Enterprise into
+        an airship!
+        Just lend me that box!
+0x008C: It's finished!!
+        Press A to transform into
+        an airship!
+        
+        But it can still only land
+        in the sea…
+        Maybe I'm losing my touch!?
+        
+0x008D: ‘Shards of the Crystal
+         of Water cannot be
+         touched by anyone but the
+         maiden of water,Elia…’
+        “Elia…?”
+        
+0x008E: The seal vanished.
+        Elia:Alright,let's go.
+0x008F: De\0xD3\0xD4a:What do you Want?
+        “We were just wondering if
+         you could lend us the
+         Floating Shoes…”
+0x0090: Can't carry anymore.
+0x0091: Odin:Light Warriors…
+         You are Worthy!
+        
+        
+        Obtained \summonOdin!
+        
+0x0092: Leviathan:I shall give my
+         power to aid you Who have
+         the Light!
+        
+        Obtained \summonLevia!
+        
+0x0093: Obtained Noah's Lute.
+0x0094: Gasp… pant… My age is
+        catching up to me…
+        Go on,hurry ahead.
+0x0095: ‘Well,go on!’
+        ‘Don't give up!’
+        ‘We're counting on you!’
+0x0096: Please rest here tonight.
+        The king will meet with
+        you tomorrow.
+        Good night.
+0x0097: Allus:Are you asleep yet?
+        “No…”
+        
+        
+        Allus:What could have
+         happened to Father?
+         Why Would he banish his
+         child from his castle?
+         Doesn't he love me?
+        
+        
+        
+        “Of course your father
+         loves you,Prince Allus.
+         What kind of parents
+         don't love their children?”
+        Allus:I…
+         I guess you're right…
+        
+        
+        “It'll all be made clear
+         When We meet with the
+         king tomorrow.”
+        
+        Allus:But I still feel
+         somehow frightened…
+        
+0x0098: The king attacked the
+        prince with a knife!
+        King:You shall die,Prince!
+        
+        Allus:Father!!
+        
+0x0099: Gigames:What are you
+         Waiting for?
+         Kill the prince!
+        
+        
+        -STAB!-
+        
+        
+        King:Urgh…!
+        Allus:Father!
+        
+        
+        King:Unh… I shall be
+         controlled no longer!
+        
+0x009A: Gigames:Crap! How could
+         you have broken my spell!?
+        
+        
+        King:I'd rather take my own
+         life than kill my son!
+        
+        
+        Gigames:Damn you!
+         I'll send you both to the
+         afterlife together!
+         
+0x009B: “Wait! Fight us instead!”
+        Gigames:What! You!
+         I'll take care of you!
+0x009C: Allus:Father!
+        
+        
+        
+        King:Allus,my son!
+         Gigames had me under his
+         control for so long…
+        Allus:…………
+        King:I thought you'd never
+         forgive me. But you've
+         come back. Thanks to you,
+         my soul is free again.
+         Please,Allus.
+         Take my place and bring
+         peace back to Salonia…
+         Uhh…
+        Allus:Father!!
+        King:I love you,Allus…
+        
+0x009D: “Prince Allus…”
+        
+        
+        
+        Allus:Thank you.
+         It was only for a moment,
+         but I distrusted Father…
+        
+        “That's not right.
+         You loved your father.”
+        
+        
+        Allus:I Will take Father's
+         place as King of Salonia.
+         That Was his final Wish.
+        
+         Truly,thank you. Because
+         of you We were able to
+         defeat Gigames.
+        
+        “Prince Allus. Take care!”
+        Allus:Yes! Thank you,
+         Light Warriors!
+        
+0x009E: Huh?
+        Where is everybody…?
+0x009F: It's Dorga's voice:
+        ‘Leave this cave and
+         come to Unne and me!’
+0x00A0: Hey!
+0x00A1: You can't just come in
+        here Whenever you like!
+        Grumble…
+0x00A2: Tree:Thank you…
+         I’m finally back.
+        Faeries:Thanks to you,this
+         forest has been saved!
+        Tree:The power of Darkness
+         is smothering the world…
+         You four are the ones
+         chosen by the Light…
+         Please,take this. Soon,
+         the power of Darkness will
+         attempt to block your
+         path. This Will be of use!
+        Received Wind Fang!
+        
+0x00A3: Tree:I must sleep until
+         my body returns to its
+         original form…
+        
+         No one may enter this
+         forest for 1000 years.
+         Warriors,I am truly in
+         your debt.
+         Now,go.
+         Crush the Darkness!
+        
+0x00A4: Jiru:Alright,I'll open
+         the lock.
+         The sewers lie ahead.
+0x00A5: Be careful!
+0x00A6: ‘Phew! That Was close.
+         Come on,let's get out
+         of here!’
+        “Yeah!”
+0x00A7: Desh:Here,take this!
+         I can't do anything
+         With this magic.
+         It's \whiteMini.
+        Received \whiteMini.
+        
+        
+        
+        Desh:Hey,why don't I
+         come With you?
+        “Uh,we wouldn't mind,but…”
+        
+        Desh:Then it's decided.
+         We're partners!
+         Nice meetin’ you!
+        
+        Desh joined the party!
+        
+0x00A8: Desh:Let's go!
+        “Ready? Jump!”
+0x00A9: A voice from the Walls:
+        ‘Thank you… Warriors…’
+        “What was that!?”
+        
+        ‘I am the eldest tree of
+         the Living Forest.
+         I Was put under a curse
+         by Hyne…
+         But thanks to you,the
+         curse has been lifted.
+         Thank you,Light Warriors.
+        
+         Now let us take Hyne's
+         captives back to their
+         town and return to the
+         Living Forest…’
+0x00AA: ‘Thanks!’
+        ‘Thank you!’
+0x00AB: Tree:Alright…
+         Let's go home…
+         It's a bit shaky, but
+         please be patient…
+0x00AC: Tree:We've arrived…
+         Everyone get off now…
+        “Okay,let's go!”
+0x00AD: You must return the Eye
+        to the sea dragon Nepto…
+0x00AE: “Huh?”
+        “What's the matter?”
+        “That rock's a bit odd…”
+        “Now that you mention it…”
+0x00AF: Played Noah's Lute…
+        The tone said to reach
+        even the World of dreams
+        echoes through the room…
+0x00B0: Unne:Mumble,mumble…
+         -yawn-
+        
+        
+        Parrot:Terrific!
+         Unne has awakened!
+        
+0x00B1: Unne:Ahh,I slept well!
+         Come on,Parrot,ride on
+         my shoulder!
+        Parrot:Aye aye sir!
+        Unne:Now it's time for
+         Wake-up exercises!
+        
+0x00B2: Unne:Presenting…
+         Unne of the Dream World!
+         Hahahahaha!!
+0x00B3: 
+                  ?
+0x00B4: The journey'll be safe
+        if I'm With you guys.
+        Let's go!
+0x00B5: There's a forest of
+        midgets around here,but
+        you'd have to be tiny
+        yourself to find it!
+0x00B6: Aah! We're so tiny…
+        Now We can't use swords…
+        We can't fight with
+        anything but magic!
+0x00B7: It's crazy to fight
+        without magic as midgets.
+        Kill’em With black magic!
+0x00B8: Aren't We supposed to
+        put Nepto's Eye back in
+        the dragon statue?
+        Let's return it!
+0x00B9: Yeah! We got a ship!
+        Now We can search for
+        beautiful Women all over
+        the world…
+        Hey,hey!
+        I'm kidding!
+        
+0x00BA: If I remember right…
+        The king of Argass knows
+        the secret of airships…
+        I heard it in Canaan.
+0x00BB: I've heard a tribe of bald
+        old men Who can't see live
+        in some valley…
+        They're called the Gurgans.
+        I've even heard that they
+        can tell the future!
+        Can it be true!?
+        
+0x00BC: 
+0x00BD: We've got to go to the
+        Tower of Owen! I guess
+        what that old man said
+        was right…
+        Destiny awaits!
+        
+0x00BE: Hmm…
+        I feel like I've seen
+        this place before!
+0x00BF: I… I remember now!
+        I'm an Ancient…
+0x00C0: If I remember right,
+        there's a switch in the
+        wall on the fifth floor,
+        8 steps from the left!
+0x00C1: We have to check on
+        the power reactor!
+0x00C2: Goldor:Damn you!
+         I'd rather do this than
+         let you get your filthy
+         hands on my Crystal!
+0x00C3: “Aaah!!”
+        “You broke the Crystal!!”
+        
+        
+        Goldor:I'll never give
+         you the Crystal!
+         Heheheh……
+        
+0x00C4: Please take me to
+        the Temple of Water.
+        There should be a shard
+        of the Crystal there…
+0x00C5: There is a sealed door
+        in the Cave of Water.
+        We should be able to get
+        in if we have the shard…
+0x00C6: I can release the seal
+        in the Cave of Water.
+        If we give the Crystal
+        the Light in this shard…
+0x00C7: If we return the Light
+        to the Crystal,we may be
+        able to bring the world
+        back from the sea.
+0x00C8: So the Crystal
+        has chosen you…
+        I sense a very Warm
+        Light from you.
+0x00C9: 
+0x00CA: ‘Light Warriors…
+         Help…’
+        “Are you alright?”
+        
+        ‘The village of Tokkle…
+         Now that they're through
+         pillaging it, they're
+         going to burn it…
+         Please!
+         Save Tokkle!’
+        
+0x00CB: ‘Hyne can change his
+         Weak point…
+         But the Scholar can
+         see through that…’
+0x00CC: You've come far.
+        But the Darkness is three
+        steps ahead of you.
+        You're too late! Perish!!
+0x00CD: Urgh…
+        It doesn't matter…
+        if you destroy me…
+        
+        The Dark Cloud is…
+        already surrounding
+        everything in Darkness……
+        
+0x00CE: I,the Dark Cloud,have come
+        to return all to the Void…
+        To turn both Light and
+        Dark into nothingness…
+        And first I Will erase you
+        with the power of Light
+        from this World!
+        Die!!
+0x00CF: Cid:\xchar!
+        Old man:Don't die!
+        Desh:You can't give in yet!
+        Allus:Please get up!
+        Sara:Don't die!
+        “………………”
+        ‘\char1[0x02],\char2[0x02],\char3[0x02],
+         \char4[0x02]!!’
+0x00D0: ‘We will give you our
+         spirits. Now stand up!
+         Return to life,
+         heroes of the Light!
+        The party revived!
+        
+0x00D1: Desh:I'm getting off too!
+        “Desh? Why are you going
+         to Canaan?”
+        
+        Desh:…………
+        “???”
+        Desh:………… Sarina…!
+        
+        “Ooh,so you're going to
+         see that girl!”
+        Desh:Cut it out…
+         You're embarrassing me!
+0x00D2: “We have to go to the
+         Dark World.”
+        “Alright!”
+        “Come on,let's go!”
+0x00D3: “It's a spring…”
+        “What an odd color.”
+        “Let's try drinking it!”
+0x00D4: “Thank you! Dorga,Unne!”
+        Dorga:Don't thank us!
+        Unne:There's still something
+         you must do!
+        Dorga:Due to Zande's folly,
+         the light has weakened,and
+         the power of Darkness has
+         created something awful.
+        Unne:Zande was controlled
+         by that dark power…
+        Dorga:It is a terribly
+         strong force…
+        Unne:Our souls will soon
+         join all the other souls.
+         There's nothing more we
+         can do to help you…
+        Dorga:Only you can return
+         the Dark and Light to
+         their original balance!
+        
+         Now go!
+         To the Dark World!
+        
+0x00D5: Please take me to the
+        Magic Circle Cave
+        ahead of here. You must
+        be a midget to enter it…
+        The candle in my room is
+        the switch for the door
+        to the cave.
+        
+0x00D6: I'm suffering from an
+        illness…
+        I do not have the
+        strength to stop Zande.
+0x00D7: 
+0x00D8: The Magic Circle is
+        connected to another
+        dimension. That is Where
+        the Eureka Key lies.
+0x00D9: Eureka is the land where
+        weapons with power too
+        great for humans were
+        sealed long ago.
+0x00DA: Father just suddenly
+        became like an entirely
+        different person…
+        What could have happened?
+0x00DB: I've been banished
+        from the castle.
+        Father told me never
+        to come back…
+0x00DC: Cannot warp Without the
+        Crystal's power.
+0x00DD: The Great Ship can
+        cross mountains.
+        We need it if we are to
+        obtain the Earth Fang.
+        Come on,let's go to the
+        Ancient Ruins!
+        
+0x00DE: The Great Ship's name
+        is Invincible. It was
+        built by the Ancients.
+0x00DF: Noah's gift to Zande,life
+        as a human,was the best
+        one of all…
+        Zande didn't understand…
+0x00E0: The Cave of Darkness
+        is north of Amur in a
+        mountainous area With
+        many valleys.
+0x00E1: The four Fangs can
+        destroy the Statues of
+        the Ancients that Zande
+        is using!
+        Zande should be in the
+        Sylx Tower,beyond the
+        statues.
+        
+0x00E2: Dorga:The one trying to
+         bring Darkness upon this
+         World is Zande.
+        
+         Zande and I once studied
+         under the same teacher.
+         That teacher Was the
+         Archmage Noah.
+         When Noah died,he left
+         me his magic,Unne the
+         Dream World,and Zande
+         life as a human.
+         Zande was dissatisfied
+         With that,and left this
+         World.
+        
+         And now he has caused
+         that earthquake using
+         the power of the
+         Earth Crystal.
+        “But Goldor shattered
+         the Crystal…”
+        
+        
+        Dorga:Goldor?
+         Ah,that Was the Crystal
+         I created that gives
+         birth to gold.
+         The Earth Crystal still
+         sleeps somewhere…
+        
+        
+         Zande has sealed off the
+         power of Light,and is
+         trying to summon Darkness
+         to make it his power.
+         It is a sad affair…
+         We have to stop him no
+         matter What!
+         I'll lend you my help.’
+        Dorga joined the party!
+        
+0x00E3: “Ahh,slept well…”
+        HP/MP restored!
+0x00E4: Annihilated…
+0x00E5: Annihilated…
+0x00E6: We're here…
+        We must do this quickly.
+        It seems I do not have
+        much longer to live.
+0x00E7: Dorga:First I Will enchant
+        your ship Nautilus so that
+        it can go under the sea…
+        Zehapid muh kaine!
+0x00E8: Obtained \boomerangFullMoon!
+0x00E9: Obtained \darkswordMasamune!
+0x00EA: Obtained \swordExcalibur!
+0x00EB: ‘The door Will only open
+         for those with the Light
+         of the four Crystals…’
+        
+        “We need the power of
+         the Earth Crystal…”
+        
+0x00EC: “Hey everybody!”
+        
+        
+        
+        Sara:\char1[0x02],\char2[0x02],\char3[0x02],
+         \char4[0x02]!
+        Cid:You did it!
+        Allus:You really did it!
+        Old man:I knew you Were
+         the real thing!
+        Desh:Aren't they amazing!
+        
+        “Come on everyone,let's
+         go home!”
+        
+0x00ED: Elia:You are…
+         This place is…?
+         Huh!?
+         The Light in your hearts!
+         The Crystals have given
+         their power to you!
+         The Crystals have chosen
+         Warriors! I’m so glad…
+0x00EE: Elia:My name is Elia.
+         I am the maiden of the
+         Temple of Water.
+        “What's happened here?”
+        Elia:The power of Earth
+         caused an earthquake.
+         And the Water Crystal has
+         sunken into the ground.
+         The people protected by
+         the power of Water Were
+         turned to stone and the
+         land sank into the sea.
+         If we offer the Crystal
+         shard in the Temple
+         to the Crystal of Water,
+         the curse might be lifted…
+0x00EF: “But in your condition…”
+        Elia:I'll be fine.
+         We must save the World…
+         Cough… I beg you!
+         Please take me to the
+         Temple of Water!
+        “All right.”
+        Elia:Thank you!!
+        Elia joined the party!
+        
+0x00F0: “Thanks,old man!”
+        ‘Ah,it Was nothing.
+         Well,I guess it's time
+         to go back to Amur.’
+0x00F1: ‘Hello,everyone!’
+        ‘Thank God you're safe!’
+        ‘What're you talking about?
+         It was a cinch!’
+0x00F2: “Thanks to you,the world
+         has been saved.”
+        ‘Ha! Whenever you run into
+         trouble,count on us!’
+        ‘Come see us anytime.
+         You can train With us!
+         Ho ho ho!
+         Farewell!’
+0x00F3: “It's Salonia!”
+        Allus:I'm home…
+0x00F4: “Thank you,Prince Allus!
+         Err,I mean,King Allus!”
+        
+        
+        Allus:Your hearts of Light
+         saved the world.
+         It is We who should
+         say thanks to you.
+         I'll never forget the
+         courage you've taught me!
+         Truly,thank you so much!
+         
+0x00F5: “We're approaching Canaan.”
+        Cid:We're almost there?
+         I’m sure Granny's Waiting.
+0x00F6: Cid:Granny!
+        Cid's Wife:Don't do that!
+         I’m shy of hugging in
+         front of people!
+0x00F7: Desh:Sarina!
+        Sarina:Desh!
+         Don't leave me
+         ever again!
+        Desh:Never!
+         We'll be together
+         forever!
+        
+0x00F8: Cid:……Granny!
+        Cid's Wife:What are you
+         doing! You're hugging me!
+         Oh,I give up…
+0x00F9: “Ahem… people…”
+        Desh:Oh,sorry,sorry!
+        Cid:Did I show off
+         too much!?
+        Desh:Call me when you go
+         on your next adventure!
+        Sarina:Oh no you don't!!
+        
+        “Desh,don't let her get
+         you under her thumb!”
+        Desh:Shaddup!
+        
+        Cid:Come visit us anytime.
+         Granny'll cook you up
+         a special meal!
+        
+        “Thanks. Later,Cid,Desh!”
+        
+0x00FA: “Princess Sara,let's go
+         back to Sasoon Castle.”
+        
+        
+        Sara:No,I don't Want to!
+         I Wanna have fun With
+         you a bit more!
+         Don't go back just yet.
+        “Huh? But,Princess…”
+        Sara:Don't be so dull!
+         I Want to be with you
+         a little While longer!
+        “…………”
+        Sara:Why are you blushing?
+         Come on,let's go back
+         to Ur!
+0x00FB: “It's Ur…”
+        “We're finally home.”
+        Sara:Let's go!
+0x00FC: Topapa:Welcome home!
+        Nina:\char1[0x02],\char2[0x02],
+         \char3[0x02],\char4[0x02]!
+         Welcome home!
+        “Hi Dad,Mom.”
+        “We did it!”
+        
+        
+        Topapa:Well done!
+         Truly Well done!!
+        Nina:You Worked so hard…!
+        
+0x00FD: ‘Ooh… The light…’
+        ‘The Crystal has returned
+         to its place…’
+        
+        Sara:Beautiful…
+        
+        
+        
+        Topapa:The darkness parts,
+         and light shines upon the
+         World…
+         It's a new dawn…
+0x00FE: ‘Welcome back!’
+        ‘You saved the world!’
+        ‘You really Were the
+         Light Warriors!’
+        Dancer:I'll give you
+         this as thanks!
+         -kiss!-
+        
+        Sara:Hey!!
+        “…………”
+        
+        
+        The world has been freed
+        from Darkness,thanks to
+        your hearts of Light!
+        Thank you,Light Warriors!
+0x00FF: 
+0x0100: 
+0x0101: Found \spell Gil!
+0x0102: Found \item!
+        
+        A monster appeared!
+0x0103: Locked.
+0x0104: Welcome!
+        It'll cost \gil Gil
+        to rest for the night.
+        Will you be staying?
+0x0105: \partygil         Gil
+0x0106: \choice[0x01]Yes
+        \choice[0x01]No
+0x0107: Weapon
+0x0108: Armor
+0x0109:  Item
+0x010A: Magic
+0x010B: \choice[0x01]Buy\choice[0x05]Sell\choice[0x09]\0x64\0x65\0x66
+        
+0x010C: Revived
+0x010D: Cured
+0x010E: Cured
+0x010F: Woke up
+0x0110: Cured
+0x0111: Cured
+0x0112: Cured
+0x0113: Enlarged
+0x0114: Cured
+0x0115: Cured
+0x0116: Dead
+0x0117: Petr 
+0x0118: Para
+0x0119: Aslp
+0x011A: Conf
+0x011B: Frog
+0x011C: Mute
+0x011D: Mini
+0x011E: Blind
+0x011F: Pois
+0x0120: \0x16
+        \0x19
+0x0121: \x17[0x01]A\x17[0x03]B\x17[0x05]C\x17[0x07]D\x17[0x09]E\x17[0x0C]a\x17[0x0E]b\x17[0x10]c\x17[0x12]d\x17[0x14]e
+        \x17[0x01]F\x17[0x03]G\x17[0x05]H\x17[0x07]I\x17[0x09]J\x17[0x0C]f\x17[0x0E]g\x17[0x10]h\x17[0x12]i\x17[0x14]j
+        \x17[0x01]K\x17[0x03]L\x17[0x05]M\x17[0x07]N\x17[0x09]O\x17[0x0C]k\x17[0x0E]l\x17[0x10]m\x17[0x12]n\x17[0x14]o
+        \x17[0x01]P\x17[0x03]Q\x17[0x05]R\x17[0x07]S\x17[0x09]T\x17[0x0C]p\x17[0x0E]q\x17[0x10]r\x17[0x12]s\x17[0x14]t
+        \x17[0x01]U\x17[0x03]V\x17[0x05]W\x17[0x07]X\x17[0x09]Y\x17[0x0C]u\x17[0x0E]v\x17[0x10]w\x17[0x12]x\x17[0x14]y
+        \x17[0x01]Z\x17[0x03]-\x17[0x05]’\x17[0x07]!\x17[0x09]?\x17[0x0C]z\x17[0x0E]il\x17[0x10]li\x17[0x12]ll\x17[0x14] 
+        \x17[0x01]0\x17[0x03]1\x17[0x05]2\x17[0x07]3\x17[0x09]4\x17[0x0C]5\x17[0x0E]6\x17[0x10]7\x17[0x12]8\x17[0x14]9
+        
+0x0122: \choice[0x01]New Game
+0x0123: Msg.Speed \0x06
+0x0124: \choice[0x01]Give\choice[0x06]Take\choice[0x0B]Exit
+0x0125: \0x0D   \char1[0x02] LV\char1[0x3E]                 \char2[0x02] LV\char2[0x3E]
+           HP     \char1[0x30]/\char1[0x31]                 HP                   \char2[0x30]/\char2[0x31]\0x09   \char3[0x02] LV\char3[0x3E]                 \char4[0x02] LV\char4[0x3E]
+           HP     \char3[0x30]/\char3[0x31]                 HP                   \char4[0x30]/\char4[0x31]\0x0A
+0x0126: Welcome!
+0x0127: Purchase which?
+0x0128: Thank you!
+0x0129: Thank you!
+0x012A: Sell Which?
+0x012B: \gil Gil,ok?
+0x012C: Can't carry anymore.
+0x012D:  Qty?\choice[0x06]1\choice[0x08]4\choice[0x0A]10
+0x012E:  Qty?\choice[0x06]1\choice[0x09]All
+0x012F: \x17[0x01]\0x20
+0x0130: \char1[0x02]       \char1[0x01]                \char1[0x00]
+              HP           \char1[0x30]/\char1[0x31]
+              MP         \char1[0x80]/            \char1[0x81]/               \char1[0x82]/                  \char1[0x83]\0x09         \char1[0x84]/            \char1[0x85]/               \char1[0x86]/                  \char1[0x87]\0x09\char2[0x02]       \char2[0x01]                \char2[0x00]
+              HP           \char2[0x30]/\char2[0x31]
+              MP         \char2[0x80]/            \char2[0x81]/               \char2[0x82]/                  \char2[0x83]\0x09         \char2[0x84]/            \char2[0x85]/               \char2[0x86]/                  \char2[0x87]\0x09\char3[0x02]       \char3[0x01]                \char3[0x00]
+              HP           \char3[0x30]/\char3[0x31]
+              MP         \char3[0x80]/            \char3[0x81]/               \char3[0x82]/                  \char3[0x83]\0x09         \char3[0x84]/            \char3[0x85]/               \char3[0x86]/                  \char3[0x87]\0x09\char4[0x02]       \char4[0x01]                \char4[0x00]
+              HP           \char4[0x30]/\char4[0x31]
+              MP         \char4[0x80]/            \char4[0x81]/               \char4[0x82]/                  \char4[0x83]\0x09         \char4[0x84]/            \char4[0x85]/               \char4[0x86]/                  \char4[0x87]\0x0A
+0x0131: \choice[0x01]Item
+        \choice[0x01]Magic
+        \choice[0x01]Equip
+        \choice[0x01]S\0x60\0x61\0x62\0x63
+        \choice[0x01]Row
+        \choice[0x01]Job
+        \choice[0x01]Save
+0x0132: 
+        
+        \0x07
+0x0133:  \cp\0x0A
+0x0134:  \partygilG\0x0A
+0x0135:  Item
+0x0136:  \char1[0x02]\choice[0x09]Use\choice[0x0F]Swap\choice[0x16]Item
+0x0137:  S\0x60\0x61\0x62\0x63
+0x0138:  Save
+0x0139: \x17[0x01]\0x1A
+0x013A:  Not enough experience
+         for this Job.
+0x013B: \0x16
+          \char1[0x02] \char1[0x00]\0x16\trash  \char2[0x02] \char2[0x00]
+           HP     \char1[0x30]/\char1[0x31]                 HP                   \char2[0x30]/\char2[0x31]\0x09\0x16
+          \char3[0x02] \char3[0x00]\0x16\trash  \char4[0x02] \char4[0x00]
+           HP     \char3[0x30]/\char3[0x31]                 HP                   \char4[0x30]/\char4[0x31]\0x0A
+0x013C: 1 \char1[0x80]/\char1[0x88]\0x16\cp\char1[0x08]\0x16\trash\char1[0x09]\0x16\0x16\char1[0x0A]
+        2 \char1[0x81]/\char1[0x89]\0x16\cp\char1[0x0B]\0x16\trash\char1[0x0C]\0x16\0x16\char1[0x0D]
+        3 \char1[0x82]/\char1[0x8A]\0x16\cp\char1[0x0E]\0x16\trash\char1[0x0F]\0x16\0x16\char1[0x10]
+        4 \char1[0x83]/\char1[0x8B]\0x16\cp\char1[0x11]\0x16\trash\char1[0x12]\0x16\0x16\char1[0x13]
+        5 \char1[0x84]/\char1[0x8C]\0x16\cp\char1[0x14]\0x16\trash\char1[0x15]\0x16\0x16\char1[0x16]
+        6 \char1[0x85]/\char1[0x8D]\0x16\cp\char1[0x17]\0x16\trash\char1[0x18]\0x16\0x16\char1[0x19]
+        7 \char1[0x86]/\char1[0x8E]\0x16\cp\char1[0x1A]\0x16\trash\char1[0x1B]\0x16\0x16\char1[0x1C]
+        8 \char1[0x87]/\char1[0x8F]\0x16\cp\char1[0x1D]\0x16\trash\char1[0x1E]\0x16\0x16\char1[0x1F]
+0x013D: \x17[0x01]\0x1A
+0x013E:  \char1[0x02]           Att;\char1[0x33]                    Def;\char1[0x34]
+        \choice[0x01]\char1[0x06]\char1[0x43]\choice[0x12]\char1[0x03]
+        \choice[0x01]\char1[0x07]\char1[0x44]\choice[0x12]\char1[0x04]
+        \choice[0x01]Remove\choice[0x12]\char1[0x05]
+0x013F: Strength 5 up!
+0x0140: Agility 5 up!
+0x0141: Vitality 5 up!
+0x0142: Intellect 5 up!
+0x0143: Spirit 5 up!
+0x0144: \blackFire power up!
+0x0145: \blackIce power up!
+0x0146: \blackBolt power up!
+0x0147:             \char1[0x02]                    \char1[0x01]
+                            Skill \char1[0x3D]
+         Level \char1[0x3E]              Exp \char1[0x32]
+                 Next Lvl  \char1[0xFF]
+         HP \char1[0x30]/\char1[0x31]
+         MP \char1[0x80]/\char1[0x81]/\char1[0x82]/\char1[0x83]/\char1[0x84]/\char1[0x85]/\char1[0x86]/\char1[0x87]
+        
+         Strength;\char1[0x38]              Att.\char1[0x46]x ;\char1[0x33]
+         Agility  ;\char1[0x39]              Hit %                ; \char1[0x42]
+         Vitality ;\char1[0x3A]              Def.\char1[0x47]x ;\char1[0x34]
+         Intellect;\char1[0x3B]              Evade                ; \char1[0x41]
+         Spirit  ;\char1[0x3C]              M.Def.                ;\char1[0x36]
+                      M.Evade ; \char1[0x40]
+0x0148:  \char1[0x02]        \char1[0x01]
+0x0149: \cpC
+0x014A: \choice[0x01]\0x1E
+0x014B: Save Which file?
+0x014C: Replace data?\choice[0x0F]Yes\choice[0x13]No
+0x014D: Save complete!
+0x014E: Play again soon!
+0x014F: Thank you. Rest well…
+0x0150: Can't carry anymore.
+0x0151: Hey…! Whatcha Want?
+0x0152: Whatcha got for me?
+0x0153: Whatcha Want back?
+0x0154: Thanks! -swallow-
+0x0155: Ugh… I’m stuffed…
+0x0156: But ya can't carry it!
+0x0157: Here ya go…
+0x0158: Here ya go…
+0x0159: Found \item!
+0x015A: Cannot use
+0x015B: Recover Whose HP?
+0x015C: Recover Whose HP?
+0x015D: Restore Whom?
+0x015E: Revive Whom?
+0x015F: Cures “Stone”
+0x0160: Cures “Frog”
+0x0161: Cures “Mute”
+0x0162: Changes size
+0x0163: Cures “Blind”
+0x0164: Cures “Poison”
+0x0165: Warp to the outside
+0x0166: Heals status
+0x0167: Go back how many?
+0x0168: Warp to the outside
+0x0169: Turn to/from “Frog” 1/All
+0x016A: Turn to/from “Mini” 1/All
+0x016B: No room to remove
+0x016C: Not enough money.
+0x016D: \t[0x01]\char1[0x02]
+0x016E: Removed
+0x016F: Can't equip
+0x0170:        Change Job?
+              A;Yes    B;No
+0x0171:  Must remove equipment
+         to change Jobs.
+0x0172:  Not enough “Capacity”!
+0x0173: Give to whom?
+0x0174: Can't carry anymore.
+0x0175: Already has that!
+0x0176: Found \item!
+0x0177: Can't change size.
+0x0178: Can't Warp.
+0x0179: Can't use magic.
+0x017A: Unlocked by the
+        Thief's ability!
+0x017B: 
+0x017C:             Ur
+0x017D:           Kazus
+0x017E:           Canaan
+0x017F:           Tozas
+0x0180:           Tokkle
+0x0181:      Ancients’ Village
+0x0182:           Gisahl
+0x0183:            Amur
+0x0184:           Dastar
+0x0185:           Leprit
+0x0186:          Salonia
+0x0187: 
+0x0188:         Fargabaad
+0x0189:       Sasoon Castle
+0x018A:       Argass Castle
+0x018B:       Salonia Castle
+0x018C:         Dwarf Cave
+0x018D:        Viking Base
+0x018E:        Gurgan Valley
+0x018F:         Left Tower
+0x0190:        Right Tower
+0x0191:         Left Tower
+0x0192:        Right Tower
+0x0193:        Round Table
+0x0194:     Road to the Summit
+0x0195:       Chocobo Forest
+0x0196:       Living Forest
+0x0197:       Bahamut's Nest
+0x0198:        Cid's Airship
+0x0199:        Nepto Shrine
+0x019A:        Mithril Mine
+0x019B: 
+0x019C:      Cave of the Seal
+0x019D:         Flame Cave
+0x019E:         Altar Cave
+0x019F:          Salonia
+0x01A0:          Salonia
+0x01A1:          Salonia
+0x01A2:        Battlefield
+0x01A3:      Underground Lake
+0x01A4:        Hidden Road
+0x01A5:       Tower of Owen
+0x01A6:        Castle Hyne
+0x01A7:       Fargabaad Cave
+0x01A8:        Wind Crystal
+0x01A9:        Fire Crystal
+0x01AA:          Lake Dol
+0x01AB:      Cave of Bahamut
+0x01AC:        Dorga's House
+0x01AD:        Unne's Shrine
+0x01AE:         Shipwreck
+0x01AF:      Temple of Water
+0x01B0:         Water Cave
+0x01B1:           Sewer
+0x01B2:      Goldor's Mansion
+0x01B3:     Magic Circle Cave
+0x01B4:        Dorga's Cave
+0x01B5:       Temple of Time
+0x01B6:       Undersea Cave
+0x01B7: 
+0x01B8:      Cave of Darkness
+0x01B9:       Ancient Ruins
+0x01BA:         Invincible
+0x01BB:    Ancients’ Labyrinth
+0x01BC:         Sylx Tower
+0x01BD: 
+0x01BE:         Dark World
+0x01BF:            B1F
+0x01C0:       Water Crystal
+0x01C1:       Earth Crystal
+0x01C2:     Wind Dark Crystal
+0x01C3:     Fire Dark Crystal
+0x01C4:     Water Dark Crystal
+0x01C5:     Earth Dark Crystal
+0x01C6:     Salonia Catacombs
+0x01C7:   Forbidden Land Eureka
+0x01C8:            B2F
+0x01C9:            B3F
+0x01CA:            B4F
+0x01CB:            B5F
+0x01CC:            B6F
+0x01CD:            B7F
+0x01CE:            B8F
+0x01CF:             2F
+0x01D0:             3F
+0x01D1:             4F
+0x01D2:             5F
+0x01D3:             6F
+0x01D4:             7F
+0x01D5:             8F
+0x01D6:             9F
+0x01D7:            10F
+0x01D8:             1F
+0x01D9:          Library
+0x01DA:       Dorga's Village
+0x01DB:      Forest of Healing
+0x01DC:        Throne Room
+0x01DD:  Head
+0x01DE:  Body
+0x01DF:  Arms
+0x01E0:  RHand
+0x01E1:  LHand
+0x01E2: OnionKid
+0x01E3: Fighter 
+0x01E4: Monk    
+0x01E5: Wh\0xD5\0xD6Wiz.
+0x01E6: B\0xD7\0xD8\0xD9Wiz.
+0x01E7: Red Wiz.
+0x01E8: Hunter  
+0x01E9: Knight  
+0x01EA: Thief   
+0x01EB: Scholar 
+0x01EC: Ge\0xDA\0xDB\0xDC\0xDD\0xDE\0xDF
+0x01ED: Dragoon 
+0x01EE: Viking  
+0x01EF: Karateka
+0x01F0: M.Knight
+0x01F1: Conjurer
+0x01F2: Bard    
+0x01F3: Warlock 
+0x01F4: Shaman  
+0x01F5: Summoner
+0x01F6: Sage    
+0x01F7: Ninja   
+0x01F8:  Sara
+0x01F9:  Cid
+0x01FA:  Desh
+0x01FB: 
+0x01FC:  Elia
+0x01FD:  Allus
+0x01FE: Dorga
+0x01FF:  Unne
+0x0200: 
+0x0201: The four drank…
+0x0202: 
+0x0203: 
+0x0204: If only you had the
+        Time Gear…
+0x0205: Smells like chocobos…
+0x0206: Press B to use an item.
+        For example,try using a
+        Potion on me!
+0x0207: Hey,where are you four
+        brats off to now?
+        
+        
+        What…? You're going to
+        go save the World…?
+        Did you get hit on the
+        head or something!?
+0x0208: 
+0x0209: The Elder awaits inside.
+0x020A: Oh my!
+        How did you get here?
+        There are some Potions in
+        this Well!
+0x020B: You'd better take \whiteCure
+        from the storehouse ahead.
+        Monsters appear along the
+        path,so be careful!
+0x020C: I'm picking flowers!
+0x020D: The candle farthest to the
+        right is the switch for a
+        hidden door.
+        
+        The switch on the other
+        side is on the north Wall!
+        
+0x020E: Those blessed by the
+        Crystals can be healed by
+        holy Water from shrines.
+0x020F: The town of Kazus lies
+        to the south. But no one
+        dares leave this village
+        because of the monsters.
+0x0210: This area surrounded by
+        the Palmeni mountains is
+        ruled by King Sasoon of
+        the castle to the west.
+0x0211: The Crystal altar sank
+        underground in that quake.
+        We're doomed…
+0x0212: I sensed that something
+        had happened to you.
+        Now listen to what the
+        Elder has to say.
+0x0213: The four boys’ adoptive
+        mother,Nina:
+        ‘Please…
+         Take care of yourselves.’
+0x0214: One of the Elders,Homac:
+        ‘Spiritual “Capacity” is
+         needed to use the Jobs
+         granted by the Crystals.’
+0x0215: The man Who raised the
+        orphans,Topapa the Elder.
+        “Dad! We…”
+0x0216: Topapa:I know. I had no
+         idea you Would be chosen.
+         \char1[0x02],\char2[0x02],
+         \char3[0x02],\char4[0x02]…
+         First you must know that
+         this Was no accident.
+         The Crystals have chosen
+         you by their Will.
+         Don't let their power…
+         don't let your hearts of
+         Light go to Waste!
+        
+         Begin your journey!
+         Seal off the power of
+         Darkness!
+        
+0x0217: Topapa:Go now!
+         Begin your journey!
+0x0218: You're going on a journey?
+        I Won't take your money.
+        Please rest Well.
+0x0219: How do you like it?
+0x021A: I'll guess your strength!
+        Hmm…
+        …………
+        
+        \char1[0x01]
+        \char2[0x01]
+        \char3[0x01]
+        \char4[0x01]
+        There. I bet I'm right!
+        
+0x021B: Zzz… zzz…
+0x021C: 
+0x021D: Princess Sara, you're safe!
+0x021E: You'll need Antidotes and
+        Eyedrops if you're going
+        on a journey.
+0x021F: 
+0x0220: With the valley blocked
+        by that rock,I haven't
+        been able to get back to
+        Canaan.
+        All there is to do is
+        sit here and drink… 
+        Hic!
+        
+0x0221: Hey,try playing the piano!
+0x0222: Aieee!!
+0x0223: Sorry. I thought you Were
+        ghosts,too…
+        This town is cursed.
+        There're ghosts in the Inn!
+0x0224: King:Sara! You're safe!
+        
+        
+        
+        Sara:Just wait. I'll seal
+         Jinn With this ring!
+        
+        
+        King:I'll Worry for you…
+        Sara:I'll be fine!
+         See,I've got \xchar
+         With me!
+0x0225: If you had an airship,you
+        could cross the lake and
+        reach the Cave of the Seal
+        where Jinn is.
+0x0226: Thank you. Because of you,
+        we're back to ourselves!
+0x0227: The Nelb Valley Was blocked
+        by a large rock after the
+        earthquake.
+0x0228: Kazus has grown around the
+        Mithril mines. Mithril
+        weapons and armor are all
+        produced here.
+0x0229: This is the Mithril mine.
+0x022A: Taca is the best smith
+        in town. He lives alone
+        in this house.
+0x022B: I've been turned into
+        this dreadful form by
+        Jinn's curse…
+0x022C: Thank you. Because of you,
+        we're back to ourselves!
+0x022D: Jinn Who was contained in
+        the Cave of the Seal Was
+        freed in the earthquake.
+0x022E: Hey!
+        You can't come in here.
+0x022F: There was a Mithril Ring
+        made for the Princess Sara
+        of Sasoon Castle.
+        If only you had that ring…
+0x0230: There is a secret entrance
+        at the end of the mine.
+        Try the Wall three steps
+        from the left.
+0x0231: The only thing which can
+        reseal Jinn is the Mithril
+        Ring made in this town.
+0x0232: I'm Cid,from Canaan.
+        The Nelb valley got blocked
+        by a boulder and I Wasn't
+        able to go back to Canaan.
+        So I decided to stay the
+        night at the Inn here,
+        and then this happened!
+        Hohoho!
+        Will you help me if I
+        lend you my Airship?
+        It's hidden in the
+        desert to the West.
+        Heard about the Airship
+        in the Western desert!!
+        
+0x0233: I Want my pretty
+        face back…
+0x0234: Thanks to you I got my
+        pretty face back!
+        Teehee!
+0x0235: Cid:We have to crush that
+         boulder,but…
+         Maybe if you put a Mithril
+         bow on the airship?
+        Taca:Just a minute!
+         I'll do it right away!
+        
+0x0236: Taca:It's finished!
+         No need to thank me.
+         You kids saved the
+         Whole village!
+        Cid:Now We have to smash
+         the boulder With the
+         Airship!
+        
+0x0237: Good luck!
+0x0238: Everyone's been turned
+        into ghosts by Jinn.
+        Since I Was away on a
+        mission I Was spared…
+        If I had a Mithril Ring
+        I could reseal Jinn,
+        but the village of Kazus,
+        where the ring is made,
+        is in the same condition…
+        What should I do…
+        
+0x0239: Thank you!
+        Please go see the King.
+        He says he has something
+        to give you.
+0x023A: There is a “Wight Slayer”
+        in the left tower.
+        It's a holy sword with
+        power against undead.
+        But only a Red Wizard
+        can Wield it.
+        
+0x023B: The monsters in the Cave
+        of the Seal are all undead.
+        You might defeat them by
+        casting \whiteCure on them…
+0x023C: There is a secret route
+        to the treasure room in
+        this castle.
+0x023D: I've been turned into
+        this dreadful form by
+        Jinn's curse…
+0x023E: Thank you,warriors!
+0x023F: ‘I am the king of Sasoon.
+         We have all been turned
+         into ghosts by Jinn's
+         curse.
+         We cannot return to our
+         original form until
+         Jinn is defeated.’
+        
+        “Where is Jinn?”
+        
+        
+        
+        ‘In the Cave of the Seal
+         north of this castle.
+         But without a Mithril Ring
+         Jinn cannot be resealed.’
+        “I heard that Princess
+         Sara has one…”
+        
+        
+        ‘Oh,yes! A While ago a
+         Mithril Ring was sent
+         to Sara from Kazus.
+        
+         But no one can find
+         that irresponsible girl
+         anywhere. Could she have
+         been kidnapped by Jinn?!
+         Oh,Princess Sara…’
+        
+        
+        
+        “We'll go look for her in
+         the Cave of the Seal.”
+        ‘Ah,thank you.
+        
+         If I remember correctly,
+         there is a hidden door in
+         the cave. The skeletons
+         should be the key…
+         Please!
+         Defeat Jinn and save us!’
+        
+0x0240: I thank you sincerely
+        for resealing Jinn and
+        rescuing Princess Sara.
+        
+        Please take this.
+        It may be of use to you.
+        
+        
+        Received Canoe!
+        
+0x0241: Sara:The truth is,I
+         Want to go with you…
+         But I'm sure I'd just
+         get in the Way…
+        “Princess Sara…”
+        
+        
+        
+        Sara:Come see me When
+         your journey is over.
+         I'll be waiting!
+        
+0x0242: Princess Sara talks
+        about you every day!
+0x0243: Princess Sara Wanted
+        to see you!
+        Her room is at the top
+        of the right tower.
+0x0244: Thank you,warriors!
+0x0245: ‘I'm Sara,the daughter
+         of King Sasoon.’
+        
+        
+        “Princess Sara,why did you
+         come to such a place?”
+        
+        
+        Sara:Since I Was Wearing
+         the Mithril Ring,I Wasn't
+         put under Jinn's curse.
+        
+         I came here to help
+         everyone,but I can't make
+         it any further because of
+         the monsters…
+        “This place is dangerous.
+         Princess Sara,please
+         Wait at the castle.”
+        
+        Sara:No! I’m going!
+         I'll keep going alone if
+         I have to!
+        
+0x0246: Sara:Take me With you!
+         You can't seal Jinn
+         Without this Mithril Ring!
+        
+        “Seems we have no choice…”
+        
+        
+        
+        Sara joined the party!
+        
+0x0247: Cid:Oh no,Granny got
+         Worse while I Was away…
+         If only We had the
+         magical medicine,Elixir…
+0x0248: Cid:Now I've been
+         helped by you twice.
+         …………
+         Oh,right!
+         Try pushing the candle
+         on that wall there.
+         It opens the way to
+         my old storage area.
+         Maybe you'll find
+         something of use.
+        
+0x0249: The Crystal is shedding
+        its light silently…
+        ‘Light Warriors,bring
+         hope back to this World…’
+0x024A: Cough,cough!
+0x024B: If you go all the Way
+        around the continent on
+        a chocobo,I'll give you
+        a prize!
+0x024C: You've done me and my
+        husband a huge favor.
+        Thank you so much.
+0x024D: “Put the Dwarf Horn here?”
+        Dwarf:Yes,please do!
+0x024E: I heard that a traveling
+        wizard hid a magic potion
+        somewhere in this town…
+0x024F: It's said that there's a
+        town of midgets in a
+        forest south of here.
+0x0250: You can become tiny With
+        the magic \whiteMini,but
+        I've sold the last one to
+        a guy called Desh.
+0x0251: What…? Desh…?
+        That jerk swindled our
+        daughter Sarina.
+        I don't know What to do…
+        He went off on a trip,
+        saying there was something
+        he had to search for.
+        Sarina Won't stop crying…
+0x0252: Sarina:Oh… Desh…
+         Even though I feel so
+         much for you…
+         Sob,sob…
+         You Went to the southern
+         mountain Where they say
+         a dragon lives…
+        
+0x0253: The magic \whiteAero uses
+        the wind to cause damage.
+        It really Works well on
+        monsters that fly!
+0x0254: A traveler called Desh
+        came through this town.
+        But he soon Went off
+        somewhere again.
+0x0255: What is it?
+0x0256: Wark!!
+0x0257: -rustle-
+0x0258: ‘Whoa,what a surprise to
+         run into someone here!
+         Did you get caught by
+         that dragon too?’
+        “And you are…?”
+        
+        
+        
+        ‘Oh yeah,heh.
+         I’m Desh.’
+        “I'm \xchar.”
+        
+        Desh:I can't remember
+         anything besides my name.
+         I know there's something
+         I've gotta do…
+         But I have no idea What
+         it could be…
+        
+0x0259: Desh:Uh oh!!
+         The dragon's back!
+         Hide!!
+0x025A: Desh:There's no way We'll
+         ever Win fighting it!
+         Run away! Run away!!
+0x025B: ‘Hey!
+         You're Desh!’
+        
+        
+        Desh:Uh,no… You must be
+         mistaking me for someone…
+        
+0x025C: Sarina:Desh!!
+        
+        
+        
+        Desh:I'm sorry. There's
+         something I must do.
+        Sarina:I'll be waiting…
+        
+0x025D: You're new around here,
+        aren't you.
+0x025E: There is a tunnel Which
+        pierces through the
+        Myranos mountains.
+        
+        If you pass through it,
+        you'll come into the
+        Myraluka valley Where
+        the Vikings live.
+0x025F: Please stay around awhile.
+        Sara really Wanted to
+        see you.
+0x0260: We're the midgets.
+        We're a content people!
+0x0261: I've heard there's a
+        Living Forest somewhere.
+        I Wonder if the faeries
+        there are cute!
+0x0262: Dr.Shelco's stomach is
+        hurting terribly! No one
+        can help him. He's the
+        only doctor in the village!
+0x0263: 
+0x0264: Strange smell…
+0x0265: Uhh… ooh…
+        Antidote…
+        Please……
+0x0266: “I feel a power Welling
+         up inside me!”
+        
+0x0267: 
+0x0268: Thank you for helping me.
+        Be careful!
+0x0269: Dr.Shelco knows a secret
+        route to Myraluka valley.
+0x026A: Midget Bread possesses
+        magical power.
+        It's the same power as
+        the magic \whiteSight!
+0x026B: You can see the world
+        using Midget Bread!
+0x026C: It's a Wall of flame.
+0x026D: Congratulations on
+        circling the continent
+        on a chocobo!
+        Here's your prize!
+        Received Midget Bread!
+        
+0x026E: We're the Vikings!
+        Lords of the sea!
+        …………
+        ……Well……
+        Actually,we have a problem.
+        After the quake,the sea
+        dragon Went berserk and
+        destroyed our ships.
+        Only the Enterprise was
+        spared,but everyone's
+        afraid to set sail.
+        
+0x026F: 
+0x0270: Even the boss doesn't know
+        what to do.
+        We're no match for the
+        sea dragon…
+0x0271: You've got guts!
+        Thanks!!
+0x0272: A Viking that can't sail…!
+        What can I do but drink!?
+0x0273: 
+0x0274: Hmph,I'll just stay in bed…
+0x0275: Now I can sleep peacefully…
+0x0276: The building on the cape
+        is the Nepto Shrine.
+        The old man should know
+        a lot about it!
+0x0277: 
+0x0278: The Enterprise is intact.
+        But no one dares to sail!
+        You'd just be killed by
+        the sea dragon.
+0x0279: 
+0x027A: I… I’m not hiding…!
+        I'm just waiting for the
+        old man to come up.
+0x027B: 
+0x027C: You shouldn't be sailing!
+        If you go past the cape,
+        the sea dragon Will attack.
+        
+        That has to be the sea
+        dragon Nepto enshrined
+        at the Nepto Shrine…
+        
+0x027D: Oh my God!
+        You guys are SO GREAT!
+0x027E: That there's the boss.
+0x027F: 
+0x0280: It's hopeless…
+        We'll never beat the sea
+        dragon…
+        
+        If you get rid of the
+        sea dragon for us you can
+        have the Enterprise!
+        How's that sound?
+0x0281: Awesome!
+        You guys are real heroes!
+        As I promised,the
+        Enterprise is now yours!
+0x0282: I'm the very oldest of
+        the Vikings. The Nepto
+        Shrine is Where the dragon
+        Nepto used to sleep.
+        But something happened
+        since the earthquake,and
+        the dragon Went mad…
+        
+0x0283: Thank you,youngsters!
+        The sea dragon Nepto has
+        finally calmed down.
+0x0284: Make good use of the
+        Dwarves’ treasure,lali!
+0x0285: 
+0x0286: It's a statue of Nepto.
+        One of the eyes is missing
+        and there is a small hole
+        leading beyond…
+        “I Wonder if we could get
+         in if we became tiny?”
+        
+0x0287: A Dwarf Horn Was stolen!
+        Lali laliho!
+0x0288: Both of the horns have
+        been stolen!
+        Lali laliho,lali!!
+0x0289: We give you the treasure
+        of the Dwarves as thanks!
+        Moonwalk Will be your
+        guide,lali!
+0x028A: The sea dragon Nepto
+        rests in a deep sleep.
+0x028B: Squeek! I Won't give this
+        gem to anyone! Squeeek!
+0x028C: Obtained Nepto's Eye!
+0x028D: Aaah!
+        There's nothing left for
+        you to take!
+0x028E: You've saved us.
+        Thank you!
+0x028F: Eeek!
+        Please don't kill me!
+0x0290: 
+0x0291: There are demons in
+        the western desert…
+        They're moving a huge
+        tree around!
+0x0292: The people taken by Hyne
+        have come back to us.
+        Thank you so much.
+0x0293: You saved us all.
+        Truly,thank you so much.
+0x0294: The guys who killed Hyne!
+        You kick ass!
+0x0295: ‘This is the emblem that
+         the soldiers who attacked
+         the village dropped.’
+        
+        “It couldn't be…
+         King Argass!?”
+        
+0x0296: 
+0x0297: People Who call themselves
+        the descendants of the
+        Ancients live to the west,
+        across the desert.
+0x0298: 
+0x0299: Please,spare the children!
+0x029A: Hmm? Oh,you're different.
+        I'm sorry. I thought the
+        soldiers who attacked the
+        village had come again…
+        Sob… They took my husband…
+        They took him into the
+        desert. The men Wearing
+        the crest of Argass…
+0x029B: I Wonder if he's alright…
+        Oh,please be alive!
+0x029C: My husband is safe!
+        Thank you so much!
+0x029D: Sarina:What!!
+         Into the flame of the
+         Tower of Owen!?
+        
+        “I'm sure he's alive.”
+        Sarina:Oh,Desh!
+         Please be alright!
+        
+0x029E: Thanks guys!
+0x029F: Thanks to you I've
+        returned safely home
+        from Hyne's castle.
+0x02A0: This is the elder's house.
+        Please hear What the elder
+        has to say.
+0x02A1: 
+0x02A2: I am the elder.
+        Ever since the earthquake,
+        soldiers have been coming
+        from the desert and
+        taking away the village's
+        young people and food…
+        It's because of them the
+        village is in this state.
+0x02A3: 
+0x02A4: There is a secret passage
+        in the fireplace. There
+        are weapons hidden there
+        but we cannot use them.
+        I beg you.
+        Please save the village.
+        
+0x02A5: 
+0x02A6: We are the faeries of
+        this forest.
+0x02A7: The wizard who abducted
+        the Eldest Tree can change
+        his Weakness.
+0x02A8: This forest is alive.
+0x02A9: The forest is crying…
+        The Eldest Tree has been
+        cursed by a Wizard and
+        taken away somewhere.
+0x02AA: Unless the Eldest Tree
+        returns,this forest will
+        soon die…
+0x02AB: The Eldest Tree was carved
+        into the shape of a castle
+        and wanders the desert…
+        Please,help him!
+0x02AC: A Wizard of Argass Castle,
+        Hyne,is the one Who cursed
+        the Eldest Tree.
+0x02AD: Hyne uses “WallChange”.
+        He can change his own
+        weak point.
+0x02AE: This is the valley of
+        the Gurgans.
+0x02AF: You must go to the
+        Crystals of Fire,Water
+        and Earth. Then you Will
+        gain even greater power…
+0x02B0: The power of Earth has
+        sealed the Light of the
+        other three Crystals…
+        And its own as well…?
+0x02B1: That earthquake was but
+        an omen. The tremors that
+        pulled the Crystals into
+        the earth and brought
+        forth monsters were minor
+        compared to the Darkness
+        which is to come…
+        
+0x02B2: The power of Fire is in
+        the island of the Dwarves…
+0x02B3: Use this to enter the
+        Tower of Owen to the
+        north.
+        Desh… Your destiny awaits.
+        Received \whiteToad!
+        
+0x02B4: The Tower of Owen is a
+        mechanical device…
+        Desh's destiny awaits.
+0x02B5: When the tower emits a red
+        flame,it is about to fall…
+        At that time a man Who is
+        to alter fate shall awaken.
+0x02B6: If people knew the future,
+        it Would only bring them
+        sadness.
+0x02B7: I can see neither light
+        nor dark in the future…
+        It is all unclear…
+0x02B8: The Living Forest is
+        calling you…
+0x02B9: We are descendants of the
+        Ancients who built an
+        advanced civilization.
+0x02BA: The Flood of Light…
+        The Ancients used the
+        Crystals and manipulated
+        the power of Light.
+        But the Light began to
+        destroy the World.
+        It was too great a power
+        for humans to Wield.
+        Then four Warriors came
+        from the Dark World and
+        forced back the Flood
+        of Light.
+        But the Ancients had
+        already mostly perished.
+        The few survivors moved
+        to this land.
+0x02BB: This continent is
+        floating in the sky.
+        It was conceived by the
+        Ancients’ civilization.
+        And it still floats today…
+        The Tower of Owen is What
+        gives it power.
+        
+0x02BC: Our law…
+        It is to entrust ourselves
+        to the greater Will. We
+        mustn't rely on machines.
+0x02BD: When something occurs,
+        Light or Dark select four
+        people and entrust them
+        with their power…
+        It is said there were four
+        Dark Warriors who saved
+        the world from the Flood
+        of Light.
+        And now you have been
+        chosen by the Light…
+        Do not abuse its power!
+        
+0x02BE: To the east is a forest
+        where birds known as
+        “chocobos” live.
+0x02BF: Under Sir Zande's orders,
+        I,Medusa,shall destroy
+        this tower and drop this
+        continent out of the sky!
+        Heeheehee…
+        You can't stop me!
+        Perish!!
+        
+0x02C0: The flame is blowing
+        violently.
+        It could explode any time…
+0x02C1: Desh:Wait! It's dangerous!
+         My memory's come back.
+         I’m the surviving Ancient
+         guardian of this tower.
+         I Was asleep for ages…
+         But when something
+         happened to the tower,
+         I Was awakened.
+         I must have lost it
+         from sleeping so long…
+        
+0x02C2: Desh:This is bad…
+         But we may have a chance.
+         I've gotta go in here and
+         fix the reactor…
+         Otherwise the Floating
+         Continent will lose its
+         power and fall.
+        
+         I guess this is it,guys…
+         Thanks for everything.
+        
+0x02C3: “Desh!! You'll be killed!!”
+0x02C4: Desh:This is my mission…
+        
+        
+        
+         Once I stop the eddy in
+         the strait,you go to the
+         island of Dwarves.
+         Got it?
+         That's Where the power
+         of Fire should be.
+        
+        
+         Once I'm down below,I'll
+         Warp you outta here.
+         Well,see ya!
+         This is it!!
+0x02C5: “Desh…!!”
+0x02C6: “Desh!”
+        
+        
+        
+        “I guess he's died…”
+        
+0x02C7: Lali ho!
+0x02C8: Two horns of Ice.
+        The Dwarves’ treasure!
+        But a bad guy stole ’em…
+        We can't forgive him!
+0x02C9: Thank you!
+        Take this in thanks!
+        You can get more of
+        them in Gisahl!
+        Received Magic Key!
+        
+0x02CA: Guzco stole the Dwarves’
+        treasure,the two horns!
+        He dove into the lake!
+0x02CB: I can't believe it!
+        Guzco's gotten both
+        of the horns…
+        Terrible,terrible!
+0x02CC: Thank you!
+        The Dwarves’ treasure,
+        the two horns,has been
+        returned!
+0x02CD: Lali ho!
+        The horns have returned!
+        Woohoo! Lali ho!!
+0x02CE: We've put a spell around
+        the remaining horn so
+        no one can get near it!
+0x02CF: Thank you!
+        You got our horns back!
+        Please return them to
+        their original place!
+0x02D0: That guy headed for the
+        mountain to the north!
+        Please!
+        Bring back the two horns!
+0x02D1: A beautiful crystal tower
+        used to stand on the north
+        mountain. But now there's
+        just a cave there!
+0x02D2: Takeoff!
+0x02D3: Ouch!
+0x02D4: Aagh! Stay back!
+        I Won't give you the horn!
+        Die!
+0x02D5: Obtained Dwarf Horn.
+0x02D6: I came from the forest of
+        midgets to the south. The
+        town in the forest can
+        only be found by midgets!
+0x02D7: Far to the east across
+        the Outer Sea is a village
+        called Gisahl!
+0x02D8: Oh my,how long has it been
+        since anybody's come to
+        this town in the middle
+        of nowhere!?
+0x02D9: 
+0x02DA: I'm raising sheep…
+0x02DB: Hey! Don't go over there!
+0x02DC: These Carrots are the
+        Chocobo's favourite food.
+        Want to know the secret
+        of the Chocobo forests?
+        Try using a Carrot on the
+        trees in the middle of the
+        forest. Maybe you'll meet
+        the Fat Chocobo!
+0x02DD: I'm Writing letters!
+        You all send me your
+        letters too!
+        Square development section
+0x02DE: 
+0x02DF: The Fat Chocobo can store
+        things in his stomach!
+0x02E0: Was the Elixir helpful?
+0x02E1: ‘I am king Argass of the
+         castle north of the
+         desert. But I suppose
+         no one is there now…
+         The soldiers are being
+         controlled by Hyne.
+        
+        
+         Hyne used to be my
+         trusted assistant…
+         Cough,cough…’
+        
+        “Are you alright?”
+        ‘I'm fine.
+         Please,defeat Hyne!’
+0x02E2: Hyne is Argass’ minister.
+        After the great earthquake
+        he Was possessed by an
+        evil power.
+0x02E3: This castle Was made by
+        uprooting the Eldest Tree
+        of the Living Forest.
+0x02E4: I'm already done for…
+        Use this to become tiny.
+        Escape through the hole
+        in the Wall in the corner…
+        Received LuckMallet.
+        
+0x02E5: Hyne gained some kind of
+        power,and has given in to
+        the desires born of that
+        power…
+0x02E6: Hyne is hiding the King's
+        sword somewhere.
+0x02E7: What?
+        Defeat Sir Hyne?
+        I'm a servant of Sir Hyne!
+        Die!!
+0x02E8: Hyne:Magnificent…
+         How lovely this power
+         of Darkness is…
+        
+         You cannot comprehend its
+         splendor! With this power
+         I have mobilized a living
+         tree,controlled an army,
+         and now I shall become
+         the ruler of this World!
+         You cannot stop me!
+         Perish!!
+0x02E9: Come on,over here!
+        Grr… I've had enough!
+        What am I going to do
+        with you!?
+0x02EA: Gisahl's a village on the
+        edge of the world!
+        They've got a smith Who
+        makes magic keys!
+0x02EB: Guzco stole the Dwarves’
+        treasure,the two horns!
+        He dove into the lake!
+0x02EC: Guzco ran away to the
+        cave to the north!
+        He took both horns!
+        This is awful!
+0x02ED: Status restored!
+0x02EE: Revivification!
+0x02EF: HP/MP restored!
+0x02F0: Heroes,by your bravery
+        peace has been restored.
+        Truly,thank you.
+        
+        Please,have this.
+        This is the “Time Gear”.
+        It has been in the royal
+        family for generations.
+        They say it Was created
+        by the Ancients.
+        Take this to a man named
+        Cid who lives in Canaan.
+        Oh,you know Cid?
+        Then I need say no more.
+        Go,warriors!
+        
+        Received Time Gear!
+        
+0x02F1: Go to Canaan!
+        Give the Time Gear to Cid!
+0x02F2: So Cid built an airship!
+        The world is boundless.
+        Fly off of this Floating
+        Continent!
+0x02F3: This land we stand on is
+        a Floating Continent!
+0x02F4: The Time Gear…
+        It was once also called
+        the “Perpetual Engine”…
+0x02F5: Thieves can open locked
+        doors without a key!
+0x02F6: The rightmost of the four
+        flames is the switch for
+        a secret door.
+0x02F7: Thank you,warriors!
+0x02F8: I'm researching Elixirs.
+        Please,take these two
+        Elixirs I made by accident!
+        
+        Received 2 Elixirs!
+        
+0x02F9: It's a campfire.
+0x02FA: It's a Dwarf Horn.
+0x02FB: A rock blocks the path.
+0x02FC: It's a chocobo!
+0x02FD: I used to work for King
+        Argass. I'd build airships
+        with the Time Gear!
+        I'm famous! Hahaha!
+0x02FE: Knights guard those who
+        are low on HP.
+0x02FF: Found a chocobo!
+0x0300: 
+0x0301: After the earthquake,the
+        world sank into the sea…
+        Luckily,I happened to be
+        aboard a boat.
+        The only survivors were
+        myself and that girl
+        sleeping in back.
+        
+0x0302: Old man:Are you alright?
+        Elia:Thank you,sir!
+        Old man:Don't mention it.
+         Take care of yourself!
+0x0303: Elia:Uunh…
+0x0304: 
+0x0305: Elia:There is still some
+         Light left in this shard.
+         Come on,let's go to the
+         cave north of here!
+0x0306: Something is Written:
+        ‘The seal shall open
+         With the Sylx Key.’
+0x0307: The Crystal is shedding
+        its light silently…
+        ‘Light Warriors,bring
+         hope back to this World…’
+0x0308: 
+0x0309: “You've helped a lot.
+         Thank you.”
+        ‘You're welcome!’
+0x030A: You seem to be alright.
+        That's good.
+0x030B: 
+0x030C: I feel like I've been
+        dreaming for a long time…
+0x030D: A guy called Goldor put
+        a chain on your ship.
+0x030E: Come back again!
+0x030F: Goldor's mansion is south
+        of Amur. But you have to
+        cross a bottomless swamp.
+        If you fall in,you'll die!
+0x0310: Whoa!
+        Your ship can fly!?
+0x0311: Four Warriors came from
+        the Dark World and stopped
+        the Flood of Light from
+        the Crystals…
+        Goldor,thinking you Were
+        those four Warriors,put
+        a chain on your ship so
+        you Won't get his Crystal.
+0x0312: The old man Who saved Elia:
+        ‘What? Elia…
+         I see…
+         …………
+         How tragic… Please,for
+         Elia's sake too, bring the
+         Light back to this World.
+         We're counting on you!’
+0x0313: There's a huge city
+        called Salonia somewhere.
+        I've heard that they have
+        a really fast Airship…
+0x0314: The Crystal?
+        A guy named Goldor Who
+        lives to the south has
+        one.
+0x0315: Go see Salonia.
+        It's a very large walled
+        city.
+0x0316: Everything in Goldor's
+        mansion is made of gold!
+        He's put locks everywhere
+        so no one can steal it!
+0x0317: Wearing Floating Shoes you
+        can cross the Bottomless
+        Swamp.
+        
+        Didn't that old lady De\0xD3\0xD4a
+        who lives in the sewers
+        have them?
+        
+0x0318: Goldor is terribly strong
+        against magic!
+        He has perfect magic
+        defense!
+0x0319: Been to the Amur Pub?
+        It's full of news!
+0x031A: The sewers are locked up
+        because of the monsters
+        that have been coming out.
+        Old Jiru has the key…
+0x031B: 
+0x031C: Jiru:What do you Want?
+        
+        
+        
+        “We want to go into the
+         sewers so we can get the
+         Floating Shoes…”
+        
+        Jiru:Into the sewers!
+         They're closed because
+         of all the monsters.
+         It's dangerous!
+        “But we have to find the
+         last of the Crystals.”
+        Jiru:What!? You're the
+         legendary four Warriors!
+0x031D: ‘What? The four Warriors?’
+        ‘That's Who we are!’
+        ‘Seems like they're going
+         into the sewers…’
+        ‘Well then,we'll get
+         there first!’
+        
+0x031E: Jiru:Come along now,
+         follow me!
+0x031F: Jiru:Hang in there!
+0x0320: 
+0x0321: Locked.
+0x0322: There's a legend…
+        That four Warriors will
+        crush the overflowing of
+        Light and Dark.
+0x0323: Old men:
+0x0324: “Who are those old guys!?”
+        ‘Those old men…
+         They think that they're
+         the legendary heroes!’
+0x0325: No,what I just used Wasn't
+        actually \whiteExit,it Was
+        an OtterHead!
+0x0326: We're heroes too!
+0x0327: Something in your eyes…
+        Maybe you really can do it.
+0x0328: You may be stronger,but
+        we're better With the
+        women!
+0x0329: I'm not a match for you
+        youngsters after all,huh?
+        I'll just stay here.
+0x032A: You're really the four
+        legendary heroes?
+        But I thought that Was us!
+0x032B: Thanks!
+0x032C: We still need to train
+        some more!
+0x032D: How are the four old men
+        doing?
+0x032E: I Won't let you have my
+        Crystal!
+        Die!!
+0x032F: 
+0x0330: 
+0x0331: 
+0x0332: It's the lock to Goldor's
+        chain.
+        When touched,it vanished
+        into thin air.
+0x0333: “The chain is released,
+         but the Crystal's in
+         pieces…
+         What will We do?”
+0x0334: 
+0x0335: There is an undersea cave
+        at a small triangular
+        island. It's full of
+        treasure!
+0x0336: Go away!
+        This library is closed!
+0x0337: There once was a passage
+        from the castle cellar
+        to the seafloor…
+        But now it's blocked up.
+        Maybe one could enter from
+        the bottom of the sea!
+        
+0x0338: We're excavating the
+        Ancient Ruins.
+0x0339: The cave Was filled With
+        Adamantite so we can't
+        proceed ahead.
+0x033A: The cave Walls collapsed
+        in the earthquake.
+        Our advance party should
+        be beyond,but…
+0x033B: I have a feeling something
+        extraordinary lies in
+        these ruins…
+0x033C: A band of merchants snuck
+        weapons and armor out of
+        the Ancient Ruins and are
+        selling them.
+0x033D: Bahamut,Leviathan,Odin…
+        If you have these three
+        as allies,they Will grant
+        you Summon magic.
+0x033E: Every painting found in
+        the ruins has what looks
+        like a gigantic ship on it.
+0x033F: I came from Fargabaad to
+        improve my skills.
+        
+        
+        The monsters here can't be
+        killed With normal swords.
+        Instead,they'll just split
+        in two.
+0x0340: ‘…………’
+        “You alright?”
+        
+        
+        ‘Seems I Was not yet
+         experienced enough…
+         Please,take this……’
+        
+        Received \darkswordKotetsu!
+        
+0x0341: Cannot proceed ahead.
+0x0342: 
+0x0343: 
+0x0344: Zzz… zzz…
+0x0345: Controlling terrain is a
+        difficult thing to do.
+        Sometimes,the damage will
+        backfire on oneself.
+0x0346: Geomancers can use the
+        terrain as a Weapon.
+0x0347: I heard that there is an
+        amazingly fast airship
+        in Salonia.
+0x0348: Southeast of this island
+        is the continent Dalug.
+        The wind there blows back
+        everything.
+0x0349: I heard there are swords
+        born of darkness called
+        “dark swords”. I have
+        been searching for those…
+0x034A: The shadow of the lake…
+        Leviathan. He awaits the
+        time he can be freed from
+        the bonds of Darkness…
+0x034B: The Dragon King Bahamut.
+        When one Who can defeat
+        him appears,his heart will
+        grant the ultimate power…
+0x034C: Odin feared the use of
+        his own power.
+        And so he sealed himself…
+0x034D: Long ago…
+        Humans took the power of
+        Light into their hands.
+        
+        And the power of Light
+        that overflowed Was about
+        to destroy the World…
+        
+        At that time,four Warriors
+        came from the Dark World
+        to return the Light to its
+        original place…
+0x034E: This is When you get
+        an item!
+0x034F: Chocobo Chocobo Cho-Co-Bo!
+        Chocobo Chocobo
+        Chocobo Chocobo
+        Yeah!
+0x0350: I can never summon
+        anything good…
+        Grr!!
+0x0351: Darn it!
+        Another Chocobo.
+        I'm hopeless…
+0x0352: Sealed.
+0x0353: 
+0x0354: It is said that Noah could
+        summon Leviathan and the
+        Dragon King Bahamut…
+0x0355: It is said that Leviathan
+        and Bahamut were sealed
+        on the Floating Continent
+        by Noah…
+0x0356: Monsters summoned by
+        Summoners are stronger
+        than those summoned by
+        Conjurers.
+0x0357: Summoned monsters are not
+        affected by an enemy's
+        Barrier. They still inflict
+        the same damage!
+0x0358: In the past there was
+        an Archmage named Noah.
+        They say he used
+        terrific magic…
+0x0359: I am one of the Gurgans…
+0x035A: Just as long ago Light
+        flooded the World,now the
+        power of Darkness is about
+        to flood the world…
+        Someone is summoning the
+        Darkness…
+        
+        
+        That person does not know
+        that even though at first
+        the Dark World may spread…
+        
+        Eventually both the Light
+        and Dark Worlds which have
+        lost their balance will
+        become Void…
+0x035B: The continent of Dalug is
+        where the Archmage Noah
+        is said to have lived.
+0x035C: I've heard that one of
+        Noah's pupils sleeps in
+        a fjord to the south.
+0x035D: I'm researching Chocobos.
+        I can even summon a
+        Fat Chocobo.
+        Alright now…
+        Presenting…
+        The Fat Chocobo!
+        
+0x035E: 
+0x035F: Please listen to my song…
+0x0360: 
+0x0361: The side that loses
+        will be executed.
+0x0362: For some reason We have
+        to fight our allies!
+0x0363: Charge!!
+0x0364: By order of the King all
+        shops have been closed.
+        I hear there's one Weapon
+        shop defying the order.
+0x0365: Thanks to you peace has
+        returned to Salonia!
+0x0366: The King has split Salonia's
+        army in two and is making
+        them fight!
+0x0367: 
+0x0368: Salonia is divided into
+        four blocks.
+0x0369: Salonia's library has
+        all sorts of books.
+0x036A: 
+0x036B: This is Salonia's library,
+        but it's closed for now…
+0x036C: Go check out the library.
+        It should have information
+        you need.
+0x036D: If the war continues,
+        Salonia Will become a
+        burnt ruin.
+0x036E: 
+0x036F: There's a rumor that
+        Prince Allus Was banished
+        from the castle…
+0x0370: 
+0x0371: I saw a child who looked
+        like the Prince go into
+        the Pub.
+0x0372: The retainer's shadow Was
+        in the shape of a giant
+        bird. Could it be the
+        legendary bird Garuda…?
+0x0373: Thank you,warriors!
+0x0374: The King won't hear anyone.
+        If you question him you'll
+        be killed on the spot.
+0x0375: 
+0x0376: 
+0x0377: 
+0x0378: Please forgive me!
+0x0379: 
+0x037A: By order of the King,
+        Salonia Castle is closed.
+0x037B: Guard:No one can enter
+         the castle!
+         Go away!
+0x037C: Guard:Oh,it's Prince Allus.
+        Allus:Let me in.
+        Guard:You've been banished.
+         I cannot let you inside.
+0x037D: Guard:What? The King said
+         to let you pass?
+        Allus:Yes.
+        
+        Guard:I apologize,Prince.
+         Please,enter.
+        
+0x037E: This is it!
+        He went inside this Pub!
+0x037F: Old man:Oh! Prince Allus!
+        Allus:Shh! I’m banished
+         from the castle.
+         Don't speak so loudly!
+        Old man:I'm sorry.
+        
+0x0380: Light Warriors who
+        saved Salonia!
+        Thank you!!
+0x0381: 
+0x0382: 
+0x0383: 
+0x0384: 
+0x0385: 
+0x0386: The BEST!!
+0x0387: I must not grieve forever…
+        
+        
+        
+        As my father Wished,I Will
+        restore peace to Salonia.
+        No,not only Salonia,but
+        the entire World!
+        Maybe there's something
+        here in Salonia that could
+        be of use to you. Please,
+        use anything you'd like!
+0x0388: It is said that the
+        Archmage Noah divided his
+        power among three people:
+        Zande,Dorga,and Unne.
+0x0389: The only ones who could
+        cause such a catastrophe
+        are the three wizards of
+        the continent of Dalug.
+        With the Nautilus’ engine,
+        you should be able to fly
+        through the Winds that
+        blow out at the peninsula.
+        Light Warriors,head for
+        the continent of Dalug!
+        
+0x038A: Noah's Lute…
+        The tone that reaches even
+        the Dream World now rests
+        in the Temple of Time…
+0x038B: The temple that sunk
+        into the sea…
+        It rests south of Salonia
+        below the “two horns”…
+0x038C: There is a hidden passage
+        to the treasure room on
+        the first floor of this
+        tower.
+0x038D: You cannot go past here.
+        Although I hear that in
+        the past the path lead to
+        the catacombs.
+0x038E: We're Salonia's engineers!
+        
+        
+        
+        Please use the Airship
+        Nautilus that we discovered
+        in the Ancient Ruins.
+        Here,we'll bring it!
+0x038F: We left the Nautilus
+        outside the castle.
+        Now you can stand up to
+        the winds of Dalug!
+        Got the Airship Nautilus!
+        
+0x0390: How's the Nautilus doing?
+        Isn't it great!
+0x0391: 
+0x0392: There is a hidden room
+        in Salonia. Check the Wall
+        in the Wizards’ room,two
+        steps from the right.
+0x0393: You're going to climb
+        the Dragon Tower!?
+        It's swarming with
+        monsters!
+0x0394: The tower in this sector
+        is called the Dragon Tower.
+        The treasure of a family of
+        Dragoons is there.
+0x0395: I've heard that the only
+        ones Who could defeat the
+        legendary bird Garuda Were
+        called Dragoons.
+0x0396: On an island south of
+        Salonia is the town of
+        Dastar. Many Geomancers
+        and Bards live there.
+0x0397: 
+0x0398: 
+0x0399: 
+        Book of Owen I
+        
+        
+        My attempt to float the
+        continent in the sky Was
+        successful…
+        
+        I think I Will name the
+        tower Where the reactor is
+        the Tower of Owen, after
+        myself…
+0x039A: 
+        Book of Owen II
+        
+        
+        I can't believe the Light
+        is going to flood. I’m
+        going to cryogenically
+        freeze my son Desh.
+        If anything happens to the
+        Tower,he Will awaken and
+        fix the problem.
+        Desh… I’m counting on you…
+0x039B: 
+        Ancient Book I
+        
+        
+        The four Statues. They
+        annihilate any Who try
+        to pass them. They Will
+        protect the Crystal.
+        The key to them is the
+        Four Fangs.
+        Only We can pass through
+        freely…
+0x039C: 
+        Ancient Book II
+        
+        
+        The Floating Continent has
+        been completed. It will be
+        placed due west of Dalug's
+        cross-shaped promontory…
+0x039D: 
+        Ancient Book III
+        
+        
+        We've overused the Light.
+        The power has grown out of
+        control,and not even We
+        can stop it…
+0x039E: 
+        Ancient Book IV
+        
+        
+        Four Warriors came from
+        the Dark World and stopped
+        the Flood of Light.
+        The world has been saved…
+0x039F: 
+        Book of the Dark Swords
+        
+        
+        If you Would master the
+        dark swords,then head for
+        Fargabaad,hidden in the
+        mountains west of Salonia…
+0x03A0: 
+        Difficult Book
+        
+        
+        The principle of the
+        Time Gear…
+        The perpetual engine…
+        
+0x03A1: 
+        Book of Airships
+        
+        
+        BEST AIRSHIP OF THE YEAR
+        1;Submarine Nautilus
+        2;Great Ship Invincible
+        3;Airship Enterprise
+0x03A2: You can call a Fat Chocobo
+        in the room on the right.
+        Use a Carrot on the candle
+        whose flame has gone out.
+0x03A3: 
+0x03A4: Unne sleeps in the shrine
+        south of Salonia in order
+        to guard the Dream World.
+0x03A5: Zande too was once a good
+        person…
+        
+        
+        But he felt the human life
+        he Was given by Noah Was
+        insignificant,and left
+        this place.
+0x03A6: We heard from Dorga that
+        the great earthquake was
+        caused by Zande…
+0x03A7: There is magical Water
+        in this pot which can
+        restore your strength.
+0x03A8: Sir Dorga,you're going
+        to the Magic Circle Cave?
+        Please stop!
+        That place is dangerous!
+0x03A9: The Magic Circle Cave
+        leads to the Dark World.
+        Monsters swarm in there.
+        Sir Dorga,please be safe!
+0x03AA: Unne is the guardian of
+        the Dream World.
+        She's been sleeping here
+        for so long!
+0x03AB: Would that happen to be
+        Noah's Lute?
+        It might be able to
+        awaken Unne…
+0x03AC: So Sir Dorga Went to
+        another dimension to
+        get the Eureka Key.
+        Please be safe…
+0x03AD: Servant:Lady Unne!?
+         Sir Dorga Went to
+         another dimension…
+        Unne:I hope he's alright…
+0x03AE: How could Sir Dorga
+        and Lady Unne die…
+        Sob…
+0x03AF: I'm Unne!
+        I haven't seen this
+        world for a While.
+        Ah! This place is good!
+        Oh,I heard about you in
+        my dreams from Dorga.
+        I can't believe Zande
+        would do such a thing…
+        Anyway,first We've got to
+        to get the Great Ship.
+        It can cross mountains!
+        
+        It must be in the Ancient
+        Ruins to the north.
+        Shall We be off?
+        
+        “Huh?”
+        
+        
+        
+        Unne:What! You don't Want
+         to go with this old lady,
+         is that it?
+        
+        “N…no,that's not it!”
+        Unne:Then let's go!
+        
+        
+        Unne joined the party!
+        
+0x03B0: Unne:Oh,before I forget,I
+         should give this to you.
+        “What's this…?”
+        
+        Unne:The two Fangs you
+         have and this one are the
+         only things which can
+         destroy the Statues.
+         There's still one more
+         Fang,the Earth Fang.
+         We need the Great Ship to
+         get it. Now,let's go!
+        Received Fire Fang.
+        
+0x03B1: Not only Sir Dorga,but
+        Lady Unne has gone off to
+        another dimension to
+        obtain the Eureka Key.
+0x03B2: 
+0x03B3: It's Adamantite.
+0x03B4: Time to depart.
+        Now take the wheel and
+        get going!
+        Hohoo!!
+0x03B5: 
+0x03B6: 
+0x03B7: 
+0x03B8: 
+0x03B9: Takeoff!
+0x03BA: This is Fargabaad,a town
+        of people Who are trying
+        to master the dark swords.
+0x03BB: The Dark Sword can only be
+        handled by those who have
+        overcome their fear of
+        Darkness.
+        None but the Mystic Knight
+        can use it.
+        
+0x03BC: The phantom blade Masamune
+        is said to rest somewhere…
+        I'd love to hold it in my
+        hands just once.
+0x03BD: Long ago there were those
+        who mastered both the dark
+        swords and the holy swords
+        and could use all Weapons…
+        If I remember correctly,
+        those people Were called
+        “Ninja”…
+        
+0x03BE: The monsters of this cave
+        can only be defeated by
+        dark swords!
+0x03BF: I am searching for someone
+        worthy of this “Kiku”…
+        I Wonder if you can
+        defeat this monster?
+0x03C0: 
+0x03C1: Abandon your fear,and the
+        darkness will also lend
+        you strength.
+0x03C2: It's said only dark swords
+        work effectively on the
+        monsters in the Cave of
+        Darkness north of Amur.
+        Many have gone there to
+        test their skill but no
+        one has ever come back.
+        
+0x03C3: Some monsters split in
+        two when they are hit by
+        any Weapon other than a
+        dark sword.
+0x03C4: It's the Earth Fang…
+        ‘Who dares break this
+         seal Which has lasted
+         so long!’
+0x03C5: 
+0x03C6: This is Dorga's Village.
+        All the magic sold here
+        was called from ancient
+        times by Sir Dorga.
+0x03C7: 
+0x03C8: ‘I am the door to the
+         Forbidden Land Eureka,
+         Where the forbidden
+         Weapons are sealed…’
+        An invisible Wall blocks
+        the path.
+        
+0x03C9: The FullMoon chakram With
+        the power of darkness.
+        ‘Let's see if you can
+         defeat me!’
+0x03CA: The dark sword Masamune.
+        ‘If you can defeat me,
+         I shall become yours!’
+0x03CB: The holy sword Excalibur.
+        ‘Can you Withstand
+         my light?’
+0x03CC: Where in the World could
+        Prince Allus be…?
+0x03CD: Why,it's Prince Allus!
+        Take this please!
+        
+          
+        Received \armorDragon!
+        
+0x03CE: Prince Allus! You're alive!
+        I Wanted to give this to
+        you so I snuck out of the
+        castle!
+        Received \spearWind!
+        
+0x03CF: The King has gone mad.
+        Please,Prince. Convince
+        the King to stop and
+        see the light!
+0x03D0: Be sure to come back!
+0x03D1: What a great song!
+        Let's dance!!
+0x03D2: Man,we've both been dealt
+        tough lots,eh?
+        Well,do your best!
+0x03D3: I'm With ya!
+        Hang in there!
+0x03D4: Please,come back safe!
+0x03D5: It's all up to you.
+        We're counting on you!
+0x03D6: 
+0x03D7: 
+0x03D8: 
+0x03D9: 
+0x03DA: 
+0x03DB: 
+0x03DC: 
+0x03DD: 
+0x03DE: 
+0x03DF: Found a chocobo!
+0x03E0: 
+0x03E1: 
+0x03E2: Revivification!
+0x03E3: HP/MP restored!
+0x03E4: Status restored!
+0x03E5: 
+0x03E6: 
+0x03E7: Ouch!
+0x03E8: 
+0x03E9: How do you like it?
+0x03EA: 
+0x03EB: 
+0x03EC: Smells like chocobos…
+0x03ED:  The Gurgan quietly spoke…
+         This earthquake is but an
+        omen. The tremors that pulled
+        the Crystals into the earth
+         and brought forth monsters
+        are nothing compared to the
+         Darkness which is to come…
+        
+          But,hope is not yet lost.
+         Four souls will take up the
+             quest of the Light.
+        
+              And so it begins…
+0x03EE:  The Gurgan quietly spoke…
+         This earthquake is but an
+        omen. The tremors that pulled
+        the Crystals into the earth
+         and brought forth monsters
+        are nothing compared to the
+         Darkness which is to come…
+        
+          But,hope is not yet lost.
+         Four souls will take up the
+             quest of the Light.
+        
+              And so it begins…
+0x03EF:  The Gurgan quietly spoke…
+         This earthquake is but an
+        omen. The tremors that pulled
+        the Crystals into the earth
+         and brought forth monsters
+        are nothing compared to the
+         Darkness which is to come…
+        
+          But,hope is not yet lost.
+         Four souls will take up the
+             quest of the Light.
+        
+              And so it begins…
+0x03F0:  The Gurgan quietly spoke…
+         This earthquake is but an
+        omen. The tremors that pulled
+        the Crystals into the earth
+         and brought forth monsters
+        are nothing compared to the
+         Darkness which is to come…
+        
+          But,hope is not yet lost.
+         Four souls will take up the
+             quest of the Light.
+        
+              And so it begins…
+0x03F1:  The Gurgan quietly spoke…
+         This earthquake is but an
+        omen. The tremors that pulled
+        the Crystals into the earth
+         and brought forth monsters
+        are nothing compared to the
+         Darkness which is to come…
+        
+          But,hope is not yet lost.
+         Four souls will take up the
+             quest of the Light.
+        
+              And so it begins…
+0x03F2:  The Gurgan quietly spoke…
+         This earthquake is but an
+        omen. The tremors that pulled
+        the Crystals into the earth
+         and brought forth monsters
+        are nothing compared to the
+         Darkness which is to come…
+        
+          But,hope is not yet lost.
+         Four souls will take up the
+             quest of the Light.
+        
+              And so it begins…
+0x03F3:  The Gurgan quietly spoke…
+         This earthquake is but an
+        omen. The tremors that pulled
+        the Crystals into the earth
+         and brought forth monsters
+        are nothing compared to the
+         Darkness which is to come…
+        
+          But,hope is not yet lost.
+         Four souls will take up the
+             quest of the Light.
+        
+              And so it begins…
+0x03F4:  The Gurgan quietly spoke…
+         This earthquake is but an
+        omen. The tremors that pulled
+        the Crystals into the earth
+         and brought forth monsters
+        are nothing compared to the
+         Darkness which is to come…
+        
+          But,hope is not yet lost.
+         Four souls will take up the
+             quest of the Light.
+        
+              And so it begins…
+0x03F5:  The Gurgan quietly spoke…
+         This earthquake is but an
+        omen. The tremors that pulled
+        the Crystals into the earth
+         and brought forth monsters
+        are nothing compared to the
+         Darkness which is to come…
+        
+          But,hope is not yet lost.
+         Four souls will take up the
+             quest of the Light.
+        
+              And so it begins…
+0x03F6:  The Gurgan quietly spoke…
+         This earthquake is but an
+        omen. The tremors that pulled
+        the Crystals into the earth
+         and brought forth monsters
+        are nothing compared to the
+         Darkness which is to come…
+        
+          But,hope is not yet lost.
+         Four souls will take up the
+             quest of the Light.
+        
+              And so it begins…
+0x03F7:  The Gurgan quietly spoke…
+         This earthquake is but an
+        omen. The tremors that pulled
+        the Crystals into the earth
+         and brought forth monsters
+        are nothing compared to the
+         Darkness which is to come…
+        
+          But,hope is not yet lost.
+         Four souls will take up the
+             quest of the Light.
+        
+              And so it begins…
+0x03F8:  The Gurgan quietly spoke…
+         This earthquake is but an
+        omen. The tremors that pulled
+        the Crystals into the earth
+         and brought forth monsters
+        are nothing compared to the
+         Darkness which is to come…
+        
+          But,hope is not yet lost.
+         Four souls will take up the
+             quest of the Light.
+        
+              And so it begins…
+0x03F9:  The Gurgan quietly spoke…
+         This earthquake is but an
+        omen. The tremors that pulled
+        the Crystals into the earth
+         and brought forth monsters
+        are nothing compared to the
+         Darkness which is to come…
+        
+          But,hope is not yet lost.
+         Four souls will take up the
+             quest of the Light.
+        
+              And so it begins…
+0x03FA:  The Gurgan quietly spoke…
+         This earthquake is but an
+        omen. The tremors that pulled
+        the Crystals into the earth
+         and brought forth monsters
+        are nothing compared to the
+         Darkness which is to come…
+        
+          But,hope is not yet lost.
+         Four souls will take up the
+             quest of the Light.
+        
+              And so it begins…
+0x03FB:  The Gurgan quietly spoke…
+         This earthquake is but an
+        omen. The tremors that pulled
+        the Crystals into the earth
+         and brought forth monsters
+        are nothing compared to the
+         Darkness which is to come…
+        
+          But,hope is not yet lost.
+         Four souls will take up the
+             quest of the Light.
+        
+              And so it begins…
+0x03FC:  The Gurgan quietly spoke…
+         This earthquake is but an
+        omen. The tremors that pulled
+        the Crystals into the earth
+         and brought forth monsters
+        are nothing compared to the
+         Darkness which is to come…
+        
+          But,hope is not yet lost.
+         Four souls will take up the
+             quest of the Light.
+        
+              And so it begins…
+0x03FD:  The Gurgan quietly spoke…
+         This earthquake is but an
+        omen. The tremors that pulled
+        the Crystals into the earth
+         and brought forth monsters
+        are nothing compared to the
+         Darkness which is to come…
+        
+          But,hope is not yet lost.
+         Four souls will take up the
+             quest of the Light.
+        
+              And so it begins…
+0x03FE:  The Gurgan quietly spoke…
+         This earthquake is but an
+        omen. The tremors that pulled
+        the Crystals into the earth
+         and brought forth monsters
+        are nothing compared to the
+         Darkness which is to come…
+        
+          But,hope is not yet lost.
+         Four souls will take up the
+             quest of the Light.
+        
+              And so it begins…
+0x03FF:  The Gurgan quietly spoke…
+         This earthquake is but an
+        omen. The tremors that pulled
+        the Crystals into the earth
+         and brought forth monsters
+        are nothing compared to the
+         Darkness which is to come…
+        
+          But,hope is not yet lost.
+         Four souls will take up the
+             quest of the Light.
+        
+              And so it begins…
+0x0400:  Empty
+0x0401: \clawKaiser
+0x0402: \clawCatClaw
+0x0403: \claw
+0x0404: \clawElven
+0x0405: \clawHellClaw
+0x0406: \nunchuckNunchuck
+0x0407: \nunchuckTonfa
+0x0408: \nunchuck3-Part
+0x0409: \rodMithril
+0x040A: \rod
+0x040B: \rodIce
+0x040C: \rodLight
+0x040D: \rodUltimate
+0x040E: \staffStaff
+0x040F: \staffBurning
+0x0410: \staffFreezing
+0x0411: \staffShining
+0x0412: \staffGolem
+0x0413: \staffRune
+0x0414: \staffEldest
+0x0415: \hammerHammer
+0x0416: \hammer
+0x0417: \axeBattle
+0x0418: \axeGreatAxe
+0x0419: \axeM.Star
+0x041A: \spear
+0x041B: \spearWind
+0x041C: \spearBlood
+0x041D: \spearHoly
+0x041E: \knifeKnife
+0x041F: \knifeDagger
+0x0420: \knifeMithril
+0x0421: \knifeM.Gauche
+0x0422: \knifeOrialcon
+0x0423: \knifeAirKnife
+0x0424: \swordLong
+0x0425: \swordW.Slayer
+0x0426: \swordShiny
+0x0427: \swordMithril
+0x0428: \swordSerpent
+0x0429: \swordIceBlade
+0x042A: \swordTyrving
+0x042B: \swordSalamand
+0x042C: \swordKing
+0x042D: \axeTomahawk
+0x042E: \swordAncient
+0x042F: \darkswordAshura
+0x0430: \swordBlood
+0x0431: \swordDefender
+0x0432: \hammerTriton
+0x0433: \darkswordKotetsu
+0x0434: \darkswordKiku
+0x0435: \swordBreak
+0x0436: \swordExcalibur
+0x0437: \darkswordMasamune
+0x0438: \swordRagnarok
+0x0439: \swordOnion
+0x043A: \bookFlame
+0x043B: \bookIce
+0x043C: \bookInferno
+0x043D: \bookLight
+0x043E: \bookIllumina
+0x043F: \boomerangBoomerng
+0x0440: \boomerangFullMoon
+0x0441: \shurikenShuriken
+0x0442: \book
+0x0443: \bellGiyaman
+0x0444: \bellEarth
+0x0445: \bellRune
+0x0446: \harpMadora
+0x0447: \harpDream
+0x0448: \harp
+0x0449: \harpLoki
+0x044A: \bowBow
+0x044B: \bowGreatBow
+0x044C: \bowKiller
+0x044D: \bowRune
+0x044E: \bowYoichi
+0x044F: \arrowWooden
+0x0450: \arrowHoly
+0x0451: \arrowIron
+0x0452: \arrowBolt
+0x0453: \arrowFire
+0x0454: \arrowIce
+0x0455: \arrow
+0x0456: \arrowYoichi
+0x0457: 
+0x0458: \shieldLeather
+0x0459: \shieldOnion
+0x045A: \shieldMithril
+0x045B: \shieldIce
+0x045C: \shieldHero
+0x045D: \shieldDemon
+0x045E: \shieldDiamond
+0x045F: \shieldAegis
+0x0460: \shieldGenji
+0x0461: \shieldCrystal
+0x0462: \helmLeather
+0x0463: \helmOnion
+0x0464: \helmMithril
+0x0465: \helmCarapace
+0x0466: \helmIce
+0x0467: \helmHeadband
+0x0468: \helmScholar
+0x0469: \helmDarkHood
+0x046A: \helmChakra
+0x046B: \helmViking
+0x046C: \helmDragon
+0x046D: \helmFeather
+0x046E: \helmDiamond
+0x046F: \helmGenji
+0x0470: \helmCrystal
+0x0471: \helmRibbon
+0x0472: \robeCloth
+0x0473: \robeLeather
+0x0474: \armorOnion
+0x0475: \armorMithril
+0x0476: \armorCarapace
+0x0477: \armorIce
+0x0478: \armorFlameMail
+0x0479: \robeKenpo
+0x047A: \robeDarkSuit
+0x047B: \robeWizard
+0x047C: \armorViking
+0x047D: \robeB\0xD7\0xD8\0xD9Belt
+0x047E: \armorKnight
+0x047F: \armorDragon
+0x0480: \robeBard
+0x0481: \robeScholar
+0x0482: \robeGaia
+0x0483: \armorDemon
+0x0484: \armorDiamond
+0x0485: \armorReflect
+0x0486: \robeWh\0xD5\0xD6Robe
+0x0487: \robeB\0xD7\0xD8\0xD9Robe
+0x0488: \armorGenji
+0x0489: \armorCrystal
+0x048A: \armorRusted
+0x048B: \ringCopper
+0x048C: \gloveOnion
+0x048D: \gloveMithril
+0x048E: \ringMithril
+0x048F: \gloveThief
+0x0490: \gloveGauntlet
+0x0491: \ringPower
+0x0492: \ringRune
+0x0493: \ringDiamond
+0x0494: \gloveDiamond
+0x0495: \ringProtect
+0x0496: \gloveGenji
+0x0497: \gloveCrystal
+0x0498: Magic Key
+0x0499: Carrot
+0x049A: Horn
+0x049B: Eye
+0x049C: Time Gear
+0x049D: EurekaKey
+0x049E: Wind Fang
+0x049F: Fire Fang
+0x04A0: WaterFang
+0x04A1: EarthFang
+0x04A2: Lute
+0x04A3: Sylx Key
+0x04A4: MidgBread
+0x04A5: ?
+0x04A6: Potion
+0x04A7: Hi
+0x04A8: Elixir
+0x04A9: FenixDown
+0x04AA: Soft
+0x04AB: MaidKiss
+0x04AC: EchoHerb
+0x04AD: LuckMallet
+0x04AE: Eyedrop
+0x04AF: Antidote
+0x04B0: OtterHead
+0x04B1: BombShard
+0x04B2: SouthWind
+0x04B3: Zeus’Rage
+0x04B4: BombR.Arm
+0x04B5: NorthWind
+0x04B6: Gods’Rage
+0x04B7: EarthDrum
+0x04B8: LamiaScl.
+0x04B9: Gods’Wine
+0x04BA: TurtlShell
+0x04BB: Devil'sSigh
+0x04BC: B\0xD7\0xD8\0xD9Hole
+0x04BD: DarkScent
+0x04BE: LilithKiss
+0x04BF: Imp'sYawn
+0x04C0: SplitShell
+0x04C1: Paralyzer
+0x04C2: MuteCharm
+0x04C3: Pillow
+0x04C4: BombHead
+0x04C5: Barrier
+0x04C6: ChocoRage
+0x04C7: Wh\0xD5\0xD6Scent
+0x04C8: \blackFlare
+0x04C9: \blackDeath
+0x04CA: \blackMeteo
+0x04CB: \whiteWWind
+0x04CC: \whiteLife2
+0x04CD: \whiteHoly
+0x04CE: \summonBaham
+0x04CF: \black
+0x04D0: \blackBrak2
+0x04D1: \blackDrain
+0x04D2: \whiteCure4
+0x04D3: \whiteHeal
+0x04D4: \whiteWall
+0x04D5: \summonLevia
+0x04D6: \blackFire3
+0x04D7: \blackBio
+0x04D8: \blackWarp
+0x04D9: \whiteAero2
+0x04DA: \white
+0x04DB: \whiteHaste
+0x04DC: \summon
+0x04DD: \blackBolt3
+0x04DE: \blackKill
+0x04DF: \blackErase
+0x04E0: \whiteCure3
+0x04E1: \whiteLife
+0x04E2: \whiteSafe
+0x04E3: \summon
+0x04E4: \blackBreak
+0x04E5: \blackIce 3
+0x04E6: \blackShade
+0x04E7: \whiteLibra
+0x04E8: \whiteConfu
+0x04E9: \whiteMute
+0x04EA: \summon
+0x04EB: \blackFire2
+0x04EC: \blackIce 2
+0x04ED: \blackBolt2
+0x04EE: \whiteCure2
+0x04EF: \whiteExit
+0x04F0: \whiteWash
+0x04F1: \summon
+0x04F2: \blackBolt
+0x04F3: \blackVenom
+0x04F4: \blackBlind
+0x04F5: \whiteAero
+0x04F6: \whiteToad
+0x04F7: \whiteMini
+0x04F8: \summon
+0x04F9: \blackFire
+0x04FA: \blackIce
+0x04FB: \blackSleep
+0x04FC: \whiteCure
+0x04FD: \whitePure
+0x04FE: \whiteSight
+0x04FF: \summonChocb
+0x0500: Atom Edge
+0x0501: Flame
+0x0502: Blizzard
+0x0503: Thunder
+0x0504: Poison
+0x0505: Quake
+0x0506: Glare
+0x0507: Recovery
+0x0508: Elixir
+0x0509: Tsunami
+0x050A: FlareWave
+0x050B: Explode
+0x050C: Glare
+0x050D: Glare
+0x050E: Breath
+0x050F: MindBlast
+0x0510: Summon
+0x0511: Split
+0x0512: MegaFlare
+0x0513: Defense
+0x0514: Bite
+0x0515: WallChange
+0x0516: Split
+0x0517: Split
+0x0518: Terrain
+0x0519: Terrain
+0x051A: Terrain
+0x051B: Terrain
+0x051C: Terrain
+0x051D: Terrain
+0x051E: Terrain
+0x051F: Terrain
+0x0520: Goblin
+0x0521: Carbuncle
+0x0522: EyeFang
+0x0523: BlueWisp
+0x0524: KillerBee
+0x0525: Werewolf
+0x0526: Berserker
+0x0527: RedWisp
+0x0528: Dark
+0x0529: Zombie
+0x052A: Mummy
+0x052B: Skeleton
+0x052C: CurseCoin
+0x052D: Laruwai
+0x052E: Shadow
+0x052F: Revenant
+0x0530: Firefry
+0x0531: DiveEagle
+0x0532: RustBird
+0x0533: Rukh
+0x0534: Basilisk
+0x0535: Bugbear
+0x0536: Mandrake
+0x0537: Unne Cln.
+0x0538: Leprecaun
+0x0539: DarkFace
+0x053A: Puti
+0x053B: PoisonBat
+0x053C: Liliput
+0x053D: Were-Rat
+0x053E: BloodWorm
+0x053F: KillerFish
+0x0540: Hermit
+0x0541: SeaElmntl
+0x0542: Tangi
+0x0543: Sahuagin
+0x0544: Paralyma
+0x0545: Griffon
+0x0546: Lynx
+0x0547: Hornet
+0x0548: Knocker
+0x0549: Flyer
+0x054A: LizardMan
+0x054B: Gorgone
+0x054C: RedCap
+0x054D: Barometz
+0x054E: Slime
+0x054F: Tarantula
+0x0550: Cafjel
+0x0551: Pygman
+0x0552: Farjalug
+0x0553: BloodBat
+0x0554: PutiMage
+0x0555: FuryEye
+0x0556: Ohishuki
+0x0557: Bomb
+0x0558: Manticore
+0x0559: Boulder
+0x055A: SeaDevil
+0x055B: Merman
+0x055C: RuinWave
+0x055D: Balloon
+0x055E: Milmecoreo
+0x055F: Crocotta
+0x0560: Adamantai
+0x0561: RedMallow
+0x0562: Pharaoh
+0x0563: Lemwraith
+0x0564: Lamia
+0x0565: Daemon
+0x0566: Dullahan
+0x0567: Anetto
+0x0568: Mermaid
+0x0569: Seahorse
+0x056A: SeaSerpnt
+0x056B: Cocktrice
+0x056C: VenomToad
+0x056D: TwinHead
+0x056E: Roper
+0x056F: Agaria
+0x0570: DarkFoot
+0x0571: GiganToad
+0x0572: Twin
+0x0573: Storoper
+0x0574: Pudding
+0x0575: Helcan
+0x0576: Vulcan
+0x0577: Leucrotta
+0x0578: Magician
+0x0579: GoldCoin
+0x057A: GoldEagle
+0x057B: GoldWarr.
+0x057C: GoldBear
+0x057D: GoldKngt.
+0x057E: Nightmare
+0x057F: M.
+0x0580: Needler
+0x0581: Catoblpas
+0x0582: Sorcerer
+0x0583: Captain
+0x0584: SandWorm
+0x0585: Icefry
+0x0586: Phoenix
+0x0587: Simurgh
+0x0588: Harpy
+0x0589: Gargoyle
+0x058A: Chimera
+0x058B: DevilHorse
+0x058C: Margoyle
+0x058D: BullMan
+0x058E: DarkKngt.
+0x058F: Mage
+0x0590: Neegle
+0x0591: Abuto
+0x0592: Nepto
+0x0593: Khargra
+0x0594: Charybdis
+0x0595: Dirai
+0x0596: M.
+0x0597: K.Lizard
+0x0598: Pteragon
+0x0599: Wyvern
+0x059A: Behemoth
+0x059B: SeaKing
+0x059C: Dragon
+0x059D: Kyklops
+0x059E: BossTroll
+0x059F: Fahan
+0x05A0: Kenkos
+0x05A1: Valar
+0x05A2: Dosmea
+0x05A3: SeaWitch
+0x05A4: KillerSnail
+0x05A5: Olog-Hai
+0x05A6: Kelpie
+0x05A7: Aegil
+0x05A8: Pyralis
+0x05A9: Sirenos
+0x05AA: Garb
+0x05AB: Azrael
+0x05AC: Eater
+0x05AD: Hobgoblin
+0x05AE: D.
+0x05AF: DeathClaw
+0x05B0: HellHorse
+0x05B1: Cronos
+0x05B2: Balfrey
+0x05B3: Haniel
+0x05B4: Vassago
+0x05B5: Peryton
+0x05B6: Ogre
+0x05B7: Cyclops
+0x05B8: Nemesis
+0x05B9: Humbaba
+0x05BA: DthNeedle
+0x05BB: Liger
+0x05BC: ZandeCln.
+0x05BD: Ion
+0x05BE: Minotaur
+0x05BF: Ouroboros
+0x05C0: Planktae
+0x05C1: SeaLion
+0x05C2: Remora
+0x05C3: Grenade
+0x05C4: Pterosaur
+0x05C5: Gt.Boros
+0x05C6: Liger S.
+0x05C7: Q.Lamia
+0x05C8: IronClaw
+0x05C9: Gt.
+0x05CA: Thanatos
+0x05CB: Bone D.
+0x05CC: K
+0x05CD: DorgaCln.
+0x05CE: Green D.
+0x05CF: Abai
+0x05D0: Sleipnir
+0x05D1: Haokah
+0x05D2: Acheron
+0x05D3: Oceanos
+0x05D4: Amon
+0x05D5: Gomoree
+0x05D6: Bluk
+0x05D7: FlameDevil
+0x05D8: Platinal
+0x05D9: Qumqum
+0x05DA: Shinobi
+0x05DB: Leader
+0x05DC: Kage
+0x05DD: D.
+0x05DE: Spriggan
+0x05DF: Terror D.
+0x05E0: Grashara
+0x05E1: Jormungnd
+0x05E2: Thor
+0x05E3: Hekaton
+0x05E4: Hydra
+0x05E5: Q.
+0x05E6: Garm
+0x05E7: Double D.
+0x05E8: Yellow D.
+0x05E9: Bahamut
+0x05EA: Odin
+0x05EB: Leviathan
+0x05EC: LandTurtl
+0x05ED: Jinn
+0x05EE: Big Rat
+0x05EF: Medusa
+0x05F0: Guzco
+0x05F1: Salamandr
+0x05F2: Hyne
+0x05F3: Kraken
+0x05F4: Goldor
+0x05F5: Garuda
+0x05F6: Bahamut
+0x05F7: Dorga
+0x05F8: Unne
+0x05F9: Titan
+0x05FA: Ninja
+0x05FB: Kunoichi
+0x05FC: General
+0x05FD: Scylla
+0x05FE: Guardian
+0x05FF: Red D.
+0x0600: Zande
+0x0601: Cerberus
+0x0602: 2-Head D.
+0x0603: Echidna
+0x0604: Ahriman
+0x0605: DarkCloud
+0x0606: DarkCloud
+0x0607: Chocobo
+0x0608: Chocobo
+0x0609: Chocobo
+0x060A: Shiva
+0x060B: Shiva
+0x060C: Shiva
+0x060D: Ramuh
+0x060E: Ramuh
+0x060F: Ramuh
+0x0610: Ifrit
+0x0611: Ifrit
+0x0612: Ifrit
+0x0613: Titan
+0x0614: Titan
+0x0615: Titan
+0x0616: Odin
+0x0617: Odin
+0x0618: Odin
+0x0619: Leviathan
+0x061A: Leviathan
+0x061B: Leviathan
+0x061C: Bahamut
+0x061D: Bahamut
+0x061E: Bahamut
+0x061F: 
+0x0620: 
+0x0621: Absorbed!
+0x0622: Advance
+0x0623: Fall back
+0x0624: Fight
+0x0625: Defend
+0x0626: Run
+0x0627: Escape
+0x0628: Jump
+0x0629: Miss!
+0x062A: Sure kill
+0x062B: Terrain
+0x062C: Peep
+0x062D: Scan
+0x062E: Steal
+0x062F: BuildUp
+0x0630: Sing
+0x0631: Scare
+0x0632: Cheer
+0x0633: x hit
+0x0634: Item
+0x0635: Magic
+0x0636: All
+0x0637: Strike first!
+0x0638: Ambushed!
+0x0639: Back attack!
+0x063A: Slain
+0x063B: Defeated
+0x063C: Annihilated…
+0x063D: Victory!
+0x063E: Ran away…
+0x063F: Can't run
+0x0640: Level up!
+0x0641: Stopped breath
+0x0642: Skill up!
+0x0643: Near death
+0x0644: Fully restored!
+0x0645: Absorbed HP!
+0x0646: HP drained!
+0x0647: HP drained!
+0x0648: Shattered
+0x0649: Found 
+0x064A: HP up!
+0x064B: Status restored
+0x064C: Barrier
+0x064D:  Gil
+0x064E:  Capacity
+0x064F: Overloaded!
+0x0650: Sent to another plane
+0x0651: Roused the party!
+0x0652: Scared the monsters
+0x0653: Attack up!
+0x0654: Critical hit!
+0x0655: Can't steal
+0x0656: Obliterated
+0x0657: Barrier dispelled
+0x0658: HP up!
+0x0659: Revived!
+0x065A: Defense up!
+0x065B: Ineffective
+0x065C: Petrifying…
+0x065D: Cannon blast!
+0x065E: Shadow bound
+0x065F: 
+0x0660:  EXP
+0x0661: Damaged by poison
+0x0662: Needs a harp!
+0x0663: No weak point found
+0x0664: Searching…
+0x0665: Damages undead
+0x0666: HP up!
+0x0667: Sent to another plane
+0x0668: Weak vs.holy power
+0x0669: Weak vs.earthquakes
+0x066A: Weak vs.wind
+0x066B: Weak vs.fire
+0x066C: Weak vs.cold
+0x066D: Weak vs.thunder
+0x066E: Weak vs.dark swords
+0x066F: Backfired!
+0x0670: Silenced
+0x0671: Nothing happens
+0x0672: Knight guards ally
+0x0673: Can't use magic
+0x0674: HP up!
+0x0675: Defenceless
+0x0676: Nothing happens
+0x0677: 
+0x0678: 
+0x0679: 
+0x067A: 
+0x067B: 
+0x067C: 
+0x067D: 
+0x067E: 
+0x067F: HP up!
+0x0680: HP/MP restored!
+0x0681: 
+0x0682: 
+0x0683: Self-destruct!
+0x0684: 
+0x0685: 
+0x0686: 
+0x0687: 
+0x0688: Summoned a monster
+0x0689: Divided
+0x068A: 
+0x068B: Hiding in shell
+0x068C: Stuck neck out
+0x068D: Changed weak point
+0x068E: Called a friend
+0x068F: Divided
+0x0690: Earthquake
+0x0691: Quicksand
+0x0692: Air Blade
+0x0693: Sinkhole
+0x0694: Rapids
+0x0695: Waterspout
+0x0696: Tornado
+0x0697: Cave In
+0x0698: Escape
+0x0699: Stumbled…
+0x069A: Chocobo 
+0x069B: HypnoBeam
+0x069C: Icy Glare
+0x069D: Diamond Dust
+0x069E: MindBlast
+0x069F: God's Thunder
+0x06A0: Heaven's Rage
+0x06A1: Recovery
+0x06A2: Flames of Fury
+0x06A3: Hellfire
+0x06A4: Punch
+0x06A5: Kick
+0x06A6: Earthquake
+0x06A7: Barrier
+0x06A8: Sword Cut
+0x06A9: Atom Edge
+0x06AA: Stony Glare
+0x06AB: Tempest
+0x06AC: Tsunami
+0x06AD: Aura
+0x06AE: Rend
+0x06AF: Megaflare
