@@ -119,8 +119,8 @@
 +-------------+-------------------------------------------------------------+
 |   address   |                         description                         |
 +-------------+-------------------------------------------------------------+
-| $6000-$7300 | map data (see field-ram.txt)                                |
-| $7300-$737F | generic buffer                                              |
+| $6000-$727F | map data (see field-ram.txt)                                |
+| $7280-$737F | generic buffer                                              |
 | $7380-$73FF | animation sprite data buffer                                |
 | $7400-$747F | generic buffer (battle main)                                |
 | $7480-$754F | saved field dp $00-$CF                                      |

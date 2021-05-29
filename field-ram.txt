@@ -63,22 +63,54 @@
 |             |     $24 A button pressed                                    |
 |             |     $25 B button pressed                                    |
 |             |                                                             |
-|             |     $29 vertical offset for map sprites ???                 |
+|             |     $27 map horizontal scroll position                      |
+|             |     $28 map vertical scroll position                        |
+|             |     $29 player x position                                   |
+|             |     $2A player y position                                   |
 |             |                                                             |
-|             |     $44 tttt???? tile properties byte 1                     |
-|             |           t: trigger type ?                                 |
-|             |              $0D = infinite treasure ?                      |
-|             |              $0E = treasure                                 |
+|             |     $30                                                     |
+|             |     $31                                                     |
+|             |     $32 map background needs update (see 3E/CA79)           |
+|             |     $33 player facing direction                             |
+|             |     $34 player movement speed                               |
+|             |     $35 player horizontal subtile position                  |
+|             |     $36 player vertical subtile position                    |
+|             |                                                             |
+|             |     $40 player sprite frame for vertical movement ???       |
+|             |     $41 player sprite frame for horizontal movement ???     |
+|             |     $42 vehicle id ???                                      |
+|             |     $43                                                     |
+|             |     $44 aatt???? tile properties byte 1                     |
+|             |           a: 1 = battle, 2 = entrance, 3 = ???              |
+|             |           t: trigger type ???                               |
+|             |         ???a?srp tile properties byte 1 (world map)         |
+|             |           a: passable in airship                            |
+|             |           s: passable in ship                               |
+|             |           r: passable in canoe/chocobo (river)              |
+|             |           p: passable with no vehicle                       |
 |             |     $45 ????xxxx tile properties byte 2                     |
 |             |           x: treasure/trigger id                            |
-|             |                                                             |
+|             |         ???????? tile properties byte 2 (world map)         |
+|             |     $46 current vehicle id                                  |
+|             |           0: none                                           |
+|             |           1: chocobo                                        |
+|             |           2: canoe                                          |
+|             |           3: ship                                           |
+|             |           4: cid's airship ???                              |
+|             |           5: enterprise ???                                 |
+|             |           6: nautilus ???                                   |
+|             |           7: invincible                                     |
+|             |     $47 current vehicle id ???                              |
 |             |     $48 map id                                              |
 |             |                                                             |
 |             |     $4B map title (map properties byte 2)                   |
 |             |     $4C fill tile (map properties byte 3)                   |
 |             |     $4D map song                                            |
 |             |                                                             |
-|             |    +$6A battle index                                        |
+|             |     $6A battle id                                           |
+|             |     $6B battle bg                                           |
+|             |                                                             |
+|             |     $6D                                                     |
 |             |                                                             |
 |             |     $70 event command                                       |
 |             |     $71 event parameter                                     |
@@ -86,12 +118,25 @@
 |             |                                                             |
 |             |     $78 world id                                            |
 |             |                                                             |
-|             |     $A9 temp prg-bank is active                             |
+|             |     $A9 temp prg-bank is active / ignore trigger ???        |
 |             |                                                             |
-|             |     $AB temp prg-bank index                                 |
+|             |     $AB temp prg-bank index / triggered event type ???      |
 |             |                                                             |
 |             |     $D0 current sound channel id                            |
 |             |     $D1 current sound channel type                          |
+|             |           0: dmc                                            |
+|             |           1: noise                                          |
+|             |           2: triangle                                       |
+|             |           3: pulse 2                                        |
+|             |           4: pulse 1                                        |
+|             |     $D2 music/sound effect (0/1)                            |
+|             |    +$D3 song script pointer                                 |
+|             |     $D5 scratch                                             |
+|             |    +$D6 generic data pointer                                |
+|             |    +$D8 generic data pointer                                |
+|             | $DA-$DF unused                                              |
+|             |                                                             |
+|             |    +$F0 frame counter                                       |
 |             |                                                             |
 |             | $FA-$FF saved interrupt jump code                           |
 |     ++$0100 | nmi jump code                                               |
@@ -110,6 +155,10 @@
 | $0740-$077F | buffer                                                      |
 | $0780-$079F | text buffer (dakuten), also map properties buffer           |
 | $07A0-$07BF | text buffer                                                 |
+|             |                                                             |
+| $07D0-$07DF | ppu address (hi) for dialogue window attributes             |
+| $07E0-$07EF | ppu address (lo) for dialogue window attributes             |
+| $07F0-$07FF | dialogue window attribute data                              |
 +-------------+-------------------------------------------------------------+
 
 =============================================================================
@@ -119,13 +168,17 @@
 +-------------+-------------------------------------------------------------+
 |   address   |                         description                         |
 +-------------+-------------------------------------------------------------+
-|       $6000 | airship visible                                             |
-|       $6001 | airship x position                                          |
-|       $6002 | airship y position                                          |
-|             |                                                             |
-|       $6008 | map id                                                      |
-|       $6009 | x position                                                  |
-|       $600A | y position                                                  |
+|       $6000 | vehicle visible                                             |
+|       $6001 | vehicle x position                                          |
+|       $6002 | vehicle y position                                          |
+|       $6003 | vehicle world                                               |
+|       $6004 | invincible visible                                          |
+|       $6005 | invincible x position                                       |
+|       $6006 | invincible y position                                       |
+|       $6007 | invincible world                                            |
+|       $6008 | world id                                                    |
+|       $6009 | world map x position                                        |
+|       $600A | world map y position                                        |
 |       $600B | guest npc                                                   |
 |             |   0: none                                                   |
 |             |   1: sara                                                   |
@@ -148,8 +201,11 @@
 |       $601B | cp (change points)                                          |
 |     ++$601C | gil                                                         |
 |       $601F |                                                             |
-|       $6020 |                                                             |
+|       $6020 | ???????? vehicles available ???                             |
 |       $6021 | crystal level                                               |
+|             |                                                             |
+|       $602E | ???????c                                                    |
+|             |   c: obtained canoe                                         |
 |             |                                                             |
 | $6040-$607F | treasure switches (512 * 1 bit)                             |
 | $6080-$60BF | npc switches (512 * 1 bit)                                  |
@@ -206,7 +262,7 @@
 |             |         $611A mod. intelligence                             |
 |             |         $611B mod. spirit                                   |
 |             |         $611C                                               |
-|             |         $611D                                               |
+|             |         $611D determines mp ???                             |
 |             |         $611E magic evade                                   |
 |             |         $611F magic defense                                 |
 |             |         $6120                                               |
@@ -264,11 +320,30 @@
 |             |         $7001                                               |
 |             |         $7002 x position ???                                |
 |             |         $7003 y position ???                                |
+|             |         $7004                                               |
+|             |         $7005                                               |
+|             |         $7006                                               |
+|             |         $7007                                               |
+|             |         $7008                                               |
 |             |                                                             |
 |             |         $700A npc id                                        |
 |             |                                                             |
-|             |         $700F                                               |
+|             |         $700D                                               |
+|             |        +$700E pointer to animation data                     |
 | $7100-$71FF | object properties, part 2 (16 * 16 bytes)                   |
+|             |         $7100 copied from tile properties byte 1 ($0400)    |
+|             |         $7101 ??tb?p??                                      |
+|             |                 t: top sprites are high priority            |
+|             |                 b: bottom sprites are high priority         |
+|             |                 p: all sprites are high priority            |
+|             |         $7102                                               |
+|             |                                                             |
+|             |         $7105 palette for top/bottom sprites                |
+|             |                 $00: 2/2                                    |
+|             |                 $40: 2/3                                    |
+|             |                 $80: 3/2                                    |
+|             |                 $C0: 3/3                                    |
+|             |         $7106                                               |
 |             |                                                             |
 | $7200-$72FF | map tileset (bottom right)                                  |
 |             |                                                             |
@@ -276,16 +351,29 @@
 | $7C00-$7CFF | map tileset (top left)                                      |
 | $7D00-$7DFF | map tileset (top right)                                     |
 | $7E00-$7EFF | map tileset (bottom left)                                   |
+| $7F00-      | graphics buffer for water animation                         |
 |             |                                                             |
-|       $7F40 |                                                             |
-|       $7F42 |                                                             |
+|       $7F40 | current song id                                             |
+|       $7F41 | paused song id                                              |
+|       $7F42 | eoi-vsrp music flags                                        |
+|             |   e: enable music                                           |
+|             |   o: fade out music                                         |
+|             |   i: fade in music                                          |
+|             |   v: enable fade in/out when stopping or starting music     |
+|             |   s: stop music                                             |
+|             |   r: resume paused music ???                                |
+|             |   p: play new song                                          |
 |       $7F43 | song id                                                     |
-|       $7F44 |                                                             |
+|       $7F44 | song volume                                                 |
 |       $7F45 | tempo                                                       |
 |       $7F46 | tempo counter (lo byte)                                     |
 |       $7F47 | tempo counter (hi byte)                                     |
-|             |                                                             |
+|       $7F48 | fade in/out counter                                         |
 |       $7F49 | sound effect id                                             |
+|             |   if $00, do nothing                                        |
+|             |   if $FF, stop sound effect                                 |
+|             |   if msb set, play sound effect in lower bits               |
+|             |   if bit 6 set, sound effect is playing                     |
 | $7F4A-$7FFF | sound channel data (7 channels)                             |
 |             |   sound channels:                                           |
 |             |     0: pulse 1                                              |
@@ -293,9 +381,12 @@
 |             |     2: triangle                                             |
 |             |     3: noise                                                |
 |             |     4: dmc                                                  |
-|             |     5: pulse 1 (sound effect)                               |
-|             |     6: pulse 2 (sound effect)                               |
-|             |   $7F4A msb: channel enabled                                |
+|             |     5: pulse 2 (sound effect)                               |
+|             |     6: noise (sound effect)                                 |
+|             |   $7F4A e-----ab channel flags                              |
+|             |           e: channel enabled                                |
+|             |           a: key off (rest or sound effect)                 |
+|             |           b: key on (needs register update)                 |
 |             |   $7F51 low byte of script pointer                          |
 |             |   $7F58 high byte of script pointer                         |
 |             |   $7F5F tick counter                                        |
@@ -303,26 +394,26 @@
 |             |   $7F6D frequency (lo byte)                                 |
 |             |   $7F74 frequency (hi byte)                                 |
 |             |   $7F7B volume                                              |
-|             |   $7F82                                                     |
+|             |   $7F82 sweep -> $4001/$4005                                |
 |             |   $7F89 duty cycle (hi nybble of 1st hardware reg.)         |
-|             |   $7F90 envelope                                            |
-|             |   $7F97 ??? (lo byte)                                       |
-|             |   $7F9E ??? (hi byte)                                       |
-|             |   $7FA5                                                     |
-|             |   $7FAC                                                     |
-|             |   $7FB3                                                     |
-|             |   $7FBA envelope state                                      |
-|             |           0:                                                |
-|             |           1:                                                |
-|             |           2:                                                |
+|             |   $7F90 channel volume                                      |
+|             |   $7F97 decay counter (lo byte)                             |
+|             |   $7F9E decay counter (hi byte)                             |
+|             |   $7FA5 repeat depth                                        |
+|             |   $7FAC repeat counter 1                                    |
+|             |   $7FB3 repeat counter 2                                    |
+|             |   $7FBA volume envelope state                               |
+|             |           0: attack                                         |
+|             |           1: decay                                          |
+|             |           2: release                                        |
 |             |           3: off                                            |
-|             |   $7FC1                                                     |
-|             |   $7FC8 envelope state counter ???                          |
-|             |   $7FCF                                                     |
-|             |   $7FD6                                                     |
-|             |   $7FDD                                                     |
-|             |   $7FE4                                                     |
-|             |   $7FEB                                                     |
-|             |   $7FF2                                                     |
-|             |   $7FF9                                                     |
+|             |   $7FC1 volume envelope id                                  |
+|             |   $7FC8 volume envelope data offset                         |
+|             |   $7FCF volume envelope counter                             |
+|             |   $7FD6 decay/release rate                                  |
+|             |   $7FDD decay/release counter                               |
+|             |   $7FE4 volume envelope value                               |
+|             |   $7FEB pitch envelope id                                   |
+|             |   $7FF2 pitch envelope data offset                          |
+|             |   $7FF9 pitch envelope counter                              |
 +-------------+-------------------------------------------------------------+

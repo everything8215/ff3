@@ -26,13 +26,16 @@
 | 008400-00843F | 000410-00044F | overworld name table                      |
 | 008440-0084FF | 000450-00050F | (3 * 64 bytes)                            |
 | 008500-0087FF | 000510-00080F | (3 * 256 bytes)                           |
+| 008800-00883F | 000810-00084F | destination maps for world 0 entrances    |
+| 008840-00887F | 000850-00088F | destination maps for world 1 entrances    |
 |               |               |                                           |
 | 008900-0089FF | 000910-000A0F | job equipment types (64 * 3 bytes)        |
 | 008A00-008BFF | 000A10-000C0F | background tilemap id for each map        |
 | 008C00-008DFF | 000C10-000E0F | map graphics subset for each map          |
 | 008E00-0090FF | 000E10-00110F | map graphics subsets (48 * 16 bytes)      |
 | 009100-0093FF | 001110-00140F | general use palettes (3*256 * 1 byte)     |
-| 009400-00963F | 001410-00164F |                                           |
+| 009400-0095FF | 001410-00160F |                                           |
+| 009600-00963F | 001610-00164F | initial npc switches                      |
 | 009640-00966F | 001650-00167F | map base palettes (3 * 16 bytes)          |
 | 009670-00968F | 001680-00169F | map sprite palettes (2 * 16 bytes)        |
 | 009690-009707 | 0016A0-001717 | map character palettes (30 * 4 bytes)     |
@@ -139,10 +142,10 @@
 | 368C8F-3692C4 | 06CC9F-06D2D4 | songs $2B-36                              |
 | 3692C5-369386 | 06D2D4-06D296 | pointers to 2-channel sound effects       |
 | 369387-369A7B | 06D296-06DA8B | 2-channel sound effects                   |
-| 369A7C-369ACD | 06DA8C-06DADD | pointers to 3-channel sound effects       |
-| 369ACE-369EAA | 06DADE-06DEBA | 3-channel sound effects                   |
-| 369EAB-369ECA | 06DEBB-06DEDA | pointers to 1-channel sound effects       |
-| 369ECB-369FFF | 06DEDB-06E00F | 1-channel sound effects                   |
+| 369A7C-369ACD | 06DA8C-06DADD | pointers to volume envelope data          |
+| 369ACE-369EAA | 06DADE-06DEBA | volume envelope data (41 items)           |
+| 369EAB-369ECA | 06DEBB-06DEDA | pointers to pitch envelope data           |
+| 369ECB-369FFF | 06DEDB-06E00F | pitch envelope data (16 items)            |
 | 37A000-37A031 | 06E010-06E041 | pointers to songs $00-$18                 |
 | 37A032-37BFFF | 06E042-07000F | songs $00-$18                             |
 | 388000-388023 | 070010-070033 | pointers to songs $19-$2A                 |
@@ -159,6 +162,9 @@
 | 39BBD8-       | 073BE8-       | character starting hp                     |
 |               |               |                                           |
 | 39BBF0-39BBF5 | 073C00-073C05 | character starting equipment              |
+|               |               |                                           |
+| 39BC00-39BCFF | 073C10-073D0F | battle bg for world 1 maps                |
+| 39BD00-39BDFF | 073D10-073E0F | battle bg for world 0 maps                |
 |               |               |                                           |
 | 3A8200-3A84FF | 074210-07450F | ff3 cutscene graphics ???                 |
 | 3A8500-3A9FFF | 074510-07600F | map code                                  |
