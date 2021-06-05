@@ -68,6 +68,7 @@
 |             |     $29 player x position                                   |
 |             |     $2A player y position                                   |
 |             |                                                             |
+|             |     $2F vertical scroll position ???                        |
 |             |     $30                                                     |
 |             |     $31                                                     |
 |             |     $32 map background needs update (see 3E/CA79)           |
@@ -106,6 +107,7 @@
 |             |     $4B map title (map properties byte 2)                   |
 |             |     $4C fill tile (map properties byte 3)                   |
 |             |     $4D map song                                            |
+|             |     $4E determines if nautilus is flying or floating ???    |
 |             |                                                             |
 |             |     $6A battle id                                           |
 |             |     $6B battle bg                                           |
@@ -116,7 +118,21 @@
 |             |     $71 event parameter                                     |
 |             |    +$72 event script pointer                                |
 |             |                                                             |
+|             |     $76 pending dialogue id                                 |
+|             |                                                             |
 |             |     $78 world id                                            |
+|             |                                                             |
+|             |     $7D event dialogue bank ???                             |
+|             |                                                             |
+|             |     $92 text id                                             |
+|             |                                                             |
+|             |    +$94 text pointer offset                                 |
+|             |     $96 text window size (see 3F/EDB2)                      |
+|             |           0: dialogue - 28x10 at (2,2)                      |
+|             |           1: yes/no - 8x10 at (2,18)                        |
+|             |           2: item select - 28x10 at (2,18)                  |
+|             |           3: gil - 12x4 at (18,14)                          |
+|             |           4: map title - 28x4 at (2,2)                      |
 |             |                                                             |
 |             |     $A9 temp prg-bank is active / ignore trigger ???        |
 |             |                                                             |
@@ -193,7 +209,8 @@
 |       $600E | showing character properties offset                         |
 |       $600F | vehicle id                                                  |
 |       $6010 | message speed                                               |
-|       $6011 |                                                             |
+|       $6011 | s-------                                                    |
+|             |   s: surface world is emerging                              |
 |             |                                                             |
 |       $6014 | save count                                                  |
 |             |                                                             |
@@ -244,7 +261,7 @@
 |             |                 e: mini                                     |
 |             |                 f: blind                                    |
 |             |                 g: poison                                   |
-|             |                 h: jumping ???                              |
+|             |                 h: jumping / can equip ???                  |
 |             |       ++$6103 experience                                    |
 |             |   $6106-$610B name                                          |
 |             |        +$610C current hp                                    |
@@ -283,13 +300,14 @@
 |             |         $6205 left hand                                     |
 |             |         $6206 left hand arrow qty                           |
 |             |                                                             |
-|             |         $620F ???eeeww?                                     |
+|             |         $620F ???eeewwr                                     |
 |             |                 e: equipment elements                       |
 |             |                 w: weapon type                              |
 |             |                      0: none                                |
 |             |                      1: normal                              |
 |             |                      2: harp                                |
 |             |                      3: bow and arrow                       |
+|             |                 r: battle row (back row if set)             |
 |             |                                                             |
 |             |         $621E weak elements                                 |
 |             |         $621F m.evade multiplier                            |
