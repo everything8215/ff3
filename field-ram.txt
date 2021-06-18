@@ -62,13 +62,13 @@
 |             |     $23 start button pressed                                |
 |             |     $24 A button pressed                                    |
 |             |     $25 B button pressed                                    |
-|             |                                                             |
+|             |     $26                                                     |
 |             |     $27 map horizontal scroll position                      |
 |             |     $28 map vertical scroll position                        |
-|             |     $29 player x position                                   |
+|             |     $29 horizontal scroll position                          |
 |             |     $2A player y position                                   |
 |             |                                                             |
-|             |     $2F vertical scroll position ???                        |
+|             |     $2F vertical scroll position                            |
 |             |     $30                                                     |
 |             |     $31                                                     |
 |             |     $32 map background needs update (see 3E/CA79)           |
@@ -76,14 +76,22 @@
 |             |     $34 player movement speed                               |
 |             |     $35 player horizontal subtile position                  |
 |             |     $36 player vertical subtile position                    |
+|             |     $37                                                     |
 |             |                                                             |
 |             |     $40 player sprite frame for vertical movement ???       |
 |             |     $41 player sprite frame for horizontal movement ???     |
 |             |     $42 vehicle id ???                                      |
-|             |     $43                                                     |
-|             |     $44 aatt???? tile properties byte 1                     |
-|             |           a: 1 = battle, 2 = entrance, 3 = ???              |
-|             |           t: trigger type ???                               |
+|             |     $43 --ul-b-- current tile properties                    |
+|             |     $44 aaul?bzz tile properties byte 1                     |
+|             |           a: tile type                                      |
+|             |                0: passable                                  |
+|             |                1: battle                                    |
+|             |                2: entrance                                  |
+|             |                3: impassable                                |
+|             |           u: upper sprite priority                          |
+|             |           l: lower sprite priority                          |
+|             |           b: bridge tile ???                                |
+|             |           z: z-level passability -> $A5                     |
 |             |         ???a?srp tile properties byte 1 (world map)         |
 |             |           a: passable in airship                            |
 |             |           s: passable in ship                               |
@@ -103,15 +111,18 @@
 |             |           7: invincible                                     |
 |             |     $47 current vehicle id ???                              |
 |             |     $48 map id                                              |
-|             |                                                             |
+|             |     $49 treasures 16-31 contain gil                         |
+|             |     $4A pointer to current npc (for random movement)        |
 |             |     $4B map title (map properties byte 2)                   |
 |             |     $4C fill tile (map properties byte 3)                   |
 |             |     $4D map song                                            |
 |             |     $4E determines if nautilus is flying or floating ???    |
 |             |                                                             |
+|             |     $67 tile id for npc                                     |
+|             |                                                             |
 |             |     $6A battle id                                           |
 |             |     $6B battle bg                                           |
-|             |                                                             |
+|             |     $6C event id ???                                        |
 |             |     $6D                                                     |
 |             |                                                             |
 |             |     $70 event command                                       |
@@ -124,6 +135,9 @@
 |             |                                                             |
 |             |     $7D event dialogue bank ???                             |
 |             |                                                             |
+|             | $80-   scratchpad                                           |
+|             |                                                             |
+|             |     $91                                                     |
 |             |     $92 text id                                             |
 |             |                                                             |
 |             |    +$94 text pointer offset                                 |
@@ -133,10 +147,24 @@
 |             |           2: item select - 28x10 at (2,18)                  |
 |             |           3: gil - 12x4 at (18,14)                          |
 |             |           4: map title - 28x4 at (2,2)                      |
+|             |     $97 text x position ???                                 |
+|             |     $98 text y position ???                                 |
+|             |                                                             |
+|             |     $A5 ------ab z-level passability                        |
+|             |           a: impassable on upper z-level                    |
+|             |           b: impassable on lower z-level                    |
 |             |                                                             |
 |             |     $A9 temp prg-bank is active / ignore trigger ???        |
-|             |                                                             |
+|             |     $AA s------r                                            |
+|             |           s: load submap                                    |
+|             |           r: not coming from a world map                    |
 |             |     $AB temp prg-bank index / triggered event type ???      |
+|             |           $20: battle                                       |
+|             |                                                             |
+|             |     $B5 text window top position                            |
+|             |     $B6 text window left position                           |
+|             |     $B7 text window bottom position                         |
+|             |     $B8 text window right position                          |
 |             |                                                             |
 |             |     $D0 current sound channel id                            |
 |             |     $D1 current sound channel type                          |
@@ -154,6 +182,8 @@
 |             |                                                             |
 |             |    +$F0 frame counter                                       |
 |             |                                                             |
+|             |     $F4 random number counter for npc movement              |
+|             |                                                             |
 |             | $FA-$FF saved interrupt jump code                           |
 |     ++$0100 | nmi jump code                                               |
 |     ++$0103 | irq jump code                                               |
@@ -167,14 +197,14 @@
 | $0700-$070F | map entrances                                               |
 | $0710-$071F | map treasures                                               |
 | $0720-$072F | map triggers                                                |
-|       $0730 | map properties byte 11                                      |
+|       $0730 | map exit                                                    |
 | $0740-$077F | buffer                                                      |
 | $0780-$079F | text buffer (dakuten), also map properties buffer           |
 | $07A0-$07BF | text buffer                                                 |
-|             |                                                             |
-| $07D0-$07DF | ppu address (hi) for dialogue window attributes             |
-| $07E0-$07EF | ppu address (lo) for dialogue window attributes             |
-| $07F0-$07FF | dialogue window attribute data                              |
+| $07C0-$07CF | text window attribute buffer ???                            |
+| $07D0-$07DF | ppu address (hi) for text window attributes                 |
+| $07E0-$07EF | ppu address (lo) for text window attributes                 |
+| $07F0-$07FF | text window attribute data                                  |
 +-------------+-------------------------------------------------------------+
 
 =============================================================================
@@ -335,33 +365,33 @@
 | $6C00-$6FFF | save slot 3                                                 |
 | $7000-$70FF | object properties, part 1 (16 * 16 bytes)                   |
 |             |         $7000 visible                                       |
-|             |         $7001                                               |
+|             |         $7001 r???????                                      |
+|             |                 r: npc moves randomly                       |
 |             |         $7002 x position ???                                |
 |             |         $7003 y position ???                                |
-|             |         $7004                                               |
-|             |         $7005                                               |
+|             |         $7004 x position ???                                |
+|             |         $7005 y position ???                                |
 |             |         $7006                                               |
 |             |         $7007                                               |
 |             |         $7008                                               |
-|             |                                                             |
+|             |         $7009                                               |
 |             |         $700A npc id                                        |
-|             |                                                             |
+|             |         $700B frame counter ???                             |
+|             |         $700C movement direction                            |
 |             |         $700D                                               |
 |             |        +$700E pointer to animation data                     |
 | $7100-$71FF | object properties, part 2 (16 * 16 bytes)                   |
-|             |         $7100 copied from tile properties byte 1 ($0400)    |
-|             |         $7101 ??tb?p??                                      |
-|             |                 t: top sprites are high priority            |
-|             |                 b: bottom sprites are high priority         |
-|             |                 p: all sprites are high priority            |
+|             |         $7100 current tile properties ??? ($0400)           |
+|             |         $7101 destination tile properties ??? ($0400)       |
 |             |         $7102                                               |
+|             |         $7103                                               |
 |             |                                                             |
 |             |         $7105 palette for top/bottom sprites                |
 |             |                 $00: 2/2                                    |
 |             |                 $40: 2/3                                    |
 |             |                 $80: 3/2                                    |
 |             |                 $C0: 3/3                                    |
-|             |         $7106                                               |
+|             |         $7106 z-level ???                                   |
 |             |                                                             |
 | $7200-$72FF | map tileset (bottom right)                                  |
 |             |                                                             |

@@ -28,7 +28,8 @@
 | 008500-0087FF | 000510-00080F | world tile properties (3 * 256 bytes)     |
 | 008800-00883F | 000810-00084F | destination maps for world 0 entrances    |
 | 008840-00887F | 000850-00088F | destination maps for world 1 entrances    |
-|               |               |                                           |
+| 008880-0088BF | 000890-0008CF | map exit x positions (64 * 1 bytes)       |
+| 0088C0-0088FF | 0008D0-00090F | map exit y positions (64 * 1 bytes)       |
 | 008900-0089FF | 000910-000A0F | job equipment types (64 * 3 bytes)        |
 | 008A00-008BFF | 000A10-000C0F | background tilemap id for each map        |
 | 008C00-008DFF | 000C10-000E0F | map graphics subset for each map          |
@@ -49,7 +50,7 @@
 | 01B180-01B4FF | 003190-00350F | map tileset name tables (7 * 128 bytes)   |
 | 01B500-01BBFF | 003510-003C0F | map tile properties (7 * 256 bytes)       |
 | 01BC00-01BDFF | 003C10-003E0F | treasure properties                       |
-| 01BE00-01BFFF | 003E10-00400F |                                           |
+| 01BE00-01BFFF | 003E10-00400F | movement/animation speeds for each npc id |
 | 028000-029FFF | 004010-00600F | map properties (512 * 16 bytes)           |
 | 03A000-068BFF | 006010-00CC0F | map background graphics                   |
 | 068C00-068CB5 | 00CC10-00CCC5 | pointers to ???                           |
@@ -59,7 +60,7 @@
 | 069800-09B3FF | 00D810-01340F | world map tilemaps (4 * 256 items)        |
 | 09B400-09B40B | 013410-01341B | pointers to songs $3B-$40                 |
 | 09B40C-09BFFF | 01341C-01400F | songs $3B-$40                             |
-| 0A8000-0A8BFF | 014010-014C0F | two frame sprite graphics                 |
+| 0A8000-0A8BFF | 014010-014C0F | two-frame sprite graphics                 |
 | 0A8C00-0A93FF | 014C10-01540F | world map bg graphics (common)            |
 | 0A9400-0B87FF | 014010-01680F | world map bg graphics (3 * 1024ish bytes) |
 | 0B8800-0BBFFF | 014010-01800F | world map sprite graphics                 |
