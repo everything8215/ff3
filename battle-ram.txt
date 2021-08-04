@@ -355,6 +355,9 @@
 |      +$7DBD | ram address for battle bg graphics loader                   |
 |       $7DBF | frame counter for battle bg graphics counter                |
 |             |                                                             |
+|      +$7DC5 |                                                             |
+|      +$7DC7 |                                                             |
+|             |                                                             |
 | $7DCE-$7DD1 | number of monsters of each type remaining                   |
 |       $7DD2 | total number of monsters remaining                          |
 |             |                                                             |
@@ -394,7 +397,7 @@
 |             |   a: attacker is a monster                                  |
 |             |   t: target is a monster                                    |
 |       $7E9B | targets hit (mask) ???                                      |
-|             |                                                             |
+|       $7E9C |                                                             |
 |       $7E9D | magic animation id                                          |
 |             |   00: normal                                                |
 |             |   01: kill                                                  |

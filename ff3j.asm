@@ -1190,8 +1190,8 @@
 1F/A4BB: 04 07 04 02 1C 6C 50 08
 
 ; pointers to crystal tile ids and attributes
-1F/A4C3:           .DW $A4CF,$A4D7,$A4DF
-1F/A4C9:           .DW $A4FB,$A4FB,$A503
+1F/A4C3: A4CF A4D7 A4DF
+1F/A4C9: A4FB A4FB A503
 
 ; 0: bottom left part of crystal
 1F/A4CF: 43 FF
@@ -3048,7 +3048,7 @@
 1F/BDEA: A2 03     LDX #$03
 1F/BDEC: 20 EA F8  JSR $F8EA          ; multiply
 1F/BDEF: 18        CLC 
-1F/BDF0: 69 98     ADC #$98           ; source = 2E/9890
+1F/BDF0: 69 98     ADC #$98           ; source = 2E/9098 (weapon animation properties)
 1F/BDF2: 85 7E     STA $7E
 1F/BDF4: 8A        TXA 
 1F/BDF5: 69 90     ADC #$90
@@ -3240,7 +3240,7 @@
 
 1F/BF83: 00 00 08 08 10 10
 
-1F/BF89:           .DW $BF9D,$BF8D
+1F/BF89: BF9D BF8D
 
 1F/BF8D: 00 80 03 F0
 1F/BF91: 00 81 03 F8
@@ -5066,10 +5066,10 @@
 2F/AA67: 60        RTS 
 
 ; ppu addresses for character graphics
-2F/AA68:           .DW $1010,$10F0,$11D0,$12B0
+2F/AA68: 1010 10F0 11D0 12B0
 
 ; character graphics type jump table
-2F/AA70:           .DW $AAC1,$AAD6,$AAAB,$AA95
+2F/AA70: AAC1 AAD6 AAAB AA95
 
 ; [ reload character graphics ]
 
@@ -5737,11 +5737,11 @@
 
 2F/AF71: 6C 93 00  JMP ($0093)
 
-2F/AF74:           .DW $B469,$B3C7,$B3CD,$B42A,$B443,$B3F6,$B3D9,$B3D3
-2F/AF84:           .DW $B38B,$B38E,$B33E,$B343,$B348,$B34D,$B304,$B2EB
-2F/AF94:           .DW $B2FA,$B260,$B24F,$B24C,$B201,$B246,$B1D8,$B1E0
-2F/AFA4:           .DW $B1CF,$B1C1,$B1B5,$B1AF,$B1AC,$B15E,$B050,$B024
-2F/AFB4:           .DW $B005,$AF24,$AFFF,$AFE7,$AF44,$AFD8
+2F/AF74: B469 B3C7 B3CD B42A B443 B3F6 B3D9 B3D3
+2F/AF84: B38B B38E B33E B343 B348 B34D B304 B2EB
+2F/AF94: B2FA B260 B24F B24C B201 B246 B1D8 B1E0
+2F/AFA4: B1CF B1C1 B1B5 B1AF B1AC B15E B050 B024
+2F/AFB4: B005 AF24 AFFF AFE7 AF44 AFD8
 
 ; sound effect for each summon attack
 2F/AFC0: 33 0A 0A 1D 37 02 48 43 43 09 41 41 0A 0A 42 19
@@ -6744,6 +6744,8 @@
 
 ; [  ]
 
+; X: character id
+
 2F/B72B: 8A        TXA 
 2F/B72C: 48        PHA 
 2F/B72D: A5 99     LDA $99
@@ -6762,26 +6764,26 @@
 2F/B742: F0 0C     BEQ $B750
 2F/B744: 98        TYA 
 2F/B745: 18        CLC 
-2F/B746: 69 ED     ADC #$ED
+2F/B746: 69 ED     ADC #$ED           ; 2F/B7ED
 2F/B748: A8        TAY 
 2F/B749: A9 B7     LDA #$B7
 2F/B74B: 69 00     ADC #$00
 2F/B74D: 4C 6C B7  JMP $B76C
 2F/B750: 98        TYA 
 2F/B751: 18        CLC 
-2F/B752: 69 0D     ADC #$0D
+2F/B752: 69 0D     ADC #$0D           ; 2F/B80D
 2F/B754: A8        TAY 
 2F/B755: A9 B8     LDA #$B8
 2F/B757: 69 00     ADC #$00
 2F/B759: 4C 6C B7  JMP $B76C
 2F/B75C: 98        TYA 
 2F/B75D: 18        CLC 
-2F/B75E: 69 CD     ADC #$CD
+2F/B75E: 69 CD     ADC #$CD           ; 2F/B7CD
 2F/B760: A8        TAY 
 2F/B761: A9 B7     LDA #$B7
 2F/B763: 69 00     ADC #$00
 2F/B765: 4C 6C B7  JMP $B76C
-2F/B768: A0 2D     LDY #$2D
+2F/B768: A0 2D     LDY #$2D           ; 2F/B82D
 2F/B76A: A9 B8     LDA #$B8
 2F/B76C: 8C C7 7D  STY $7DC7
 2F/B76F: 8D C8 7D  STA $7DC8
@@ -6804,7 +6806,7 @@
 2F/B793: BD 8F 7D  LDA $7D8F,X
 2F/B796: 29 01     AND #$01
 2F/B798: 85 80     STA $80
-2F/B79A: 20 48 AF  JSR $AF48
+2F/B79A: 20 48 AF  JSR $AF48          ; check for back attack
 2F/B79D: D0 07     BNE $B7A6
 2F/B79F: A5 80     LDA $80
 2F/B7A1: 18        CLC 
@@ -6822,101 +6824,30 @@
 2F/B7B9: AA        TAX 
 2F/B7BA: 60        RTS 
 
-2F/B7BB: 04        --- 
-2F/B7BC: 03        --- 
-2F/B7BD: 04        --- 
-2F/B7BE: 03        --- 
-2F/B7BF: A0 20     LDY #$20
-2F/B7C1: 20 21 80  JSR $8021
-2F/B7C4: 21 00     AND ($00,X)
-2F/B7C6: 22        --- 
-2F/B7C7: 1A        --- 
-2F/B7C8: 1C        --- 
-2F/B7C9: 16 04     ASL $04,X
-2F/B7CB: 02        --- 
-2F/B7CC: 08        PHP 
-2F/B7CD: 44        --- 
-2F/B7CE: 45 46     EOR $46
-2F/B7D0: 47        --- 
-2F/B7D1: 48        PHA 
-2F/B7D2: 49 4A     EOR #$4A
-2F/B7D4: 4B        --- 
-2F/B7D5: 4C 4D 4E  JMP $4E4D
-2F/B7D8: 4F        --- 
-2F/B7D9: 50 51     BVC $B82C
-2F/B7DB: 00        BRK 
-2F/B7DC: 00        BRK 
-2F/B7DD: 52        --- 
-2F/B7DE: 53        --- 
-2F/B7DF: 54        --- 
-2F/B7E0: 55 56     EOR $56,X
-2F/B7E2: 57        --- 
-2F/B7E3: 58        CLI 
-2F/B7E4: 59 5A 5B  EOR $5B5A,Y
-2F/B7E7: 5C        --- 
-2F/B7E8: 5D 5E 5F  EOR $5F5E,X
-2F/B7EB: 00        BRK 
-2F/B7EC: 00        BRK 
-2F/B7ED: 00        BRK 
-2F/B7EE: 00        BRK 
-2F/B7EF: 00        BRK 
-2F/B7F0: 00        BRK 
-2F/B7F1: 3A        --- 
-2F/B7F2: 38        SEC 
-2F/B7F3: 3B        --- 
-2F/B7F4: 39 00 00  AND $0000,Y
-2F/B7F7: 00        BRK 
-2F/B7F8: 00        BRK 
-2F/B7F9: 3D 3C 00  AND $003C,X
-2F/B7FC: 00        BRK 
-2F/B7FD: 00        BRK 
-2F/B7FE: 00        BRK 
-2F/B7FF: 00        BRK 
-2F/B800: 00        BRK 
-2F/B801: 3A        --- 
-2F/B802: 38        SEC 
-2F/B803: 3B        --- 
-2F/B804: 39 00 00  AND $0000,Y
-2F/B807: 00        BRK 
-2F/B808: 00        BRK 
-2F/B809: 3D 3C 00  AND $003C,X
-2F/B80C: 00        BRK 
-2F/B80D: 00        BRK 
-2F/B80E: 00        BRK 
-2F/B80F: 00        BRK 
-2F/B810: 00        BRK 
-2F/B811: 40        RTI 
-2F/B812: 3E 41 3F  ROL $3F41,X
-2F/B815: 00        BRK 
-2F/B816: 00        BRK 
-2F/B817: 00        BRK 
-2F/B818: 00        BRK 
-2F/B819: 43        --- 
-2F/B81A: 42        --- 
-2F/B81B: 00        BRK 
-2F/B81C: 00        BRK 
-2F/B81D: 00        BRK 
-2F/B81E: 00        BRK 
-2F/B81F: 00        BRK 
-2F/B820: 00        BRK 
-2F/B821: 40        RTI 
-2F/B822: 3E 41 3F  ROL $3F41,X
-2F/B825: 00        BRK 
-2F/B826: 00        BRK 
-2F/B827: 00        BRK 
-2F/B828: 00        BRK 
-2F/B829: 43        --- 
-2F/B82A: 42        --- 
-2F/B82B: 00        BRK 
-2F/B82C: 00        BRK 
-2F/B82D: 00        BRK 
-2F/B82E: 00        BRK 
-2F/B82F: 00        BRK 
-2F/B830: 00        BRK 
-2F/B831: 00        BRK 
-2F/B832: 00        BRK 
-2F/B833: 00        BRK 
-2F/B834: 00        BRK 
+; ??? 1 per character
+2F/B7BB: 04 03 04 03
+
+2F/B7BF: 20A0 2120 2180 2200
+
+2F/B7C7: 1A 1C 16
+2F/B7CA: 04 02 08
+
+2F/B7CD: 44 45 46 47 48 49 4A 4B
+2F/B7D5: 4C 4D 4E 4F 50 51 00 00
+2F/B7DD: 52 53 54 55 56 57 58 59
+2F/B7E5: 5A 5B 5C 5D 5E 5F 00 00
+
+2F/B7ED: 00 00 00 00 3A 38 3B 39
+2F/B7F5: 00 00 00 00 3D 3C 00 00
+2F/B7FD: 00 00 00 00 3A 38 3B 39
+2F/B805: 00 00 00 00 3D 3C 00 00
+
+2F/B80D: 00 00 00 00 40 3E 41 3F
+2F/B815: 00 00 00 00 43 42 00 00
+2F/B81D: 00 00 00 00 40 3E 41 3F
+2F/B825: 00 00 00 00 43 42 00 00
+
+2F/B82D: 00 00 00 00 00 00 00 00
 
 2F/B835: 20 48 AF  JSR $AF48
 2F/B838: D0 11     BNE $B84B
@@ -7476,6 +7407,9 @@
 2F/BCD8: 3E 01 73  ROL $7301,X
 2F/BCDB: 3E 00 73  ROL $7300,X
 2F/BCDE: 60        RTS 
+
+; [  ]
+
 2F/BCDF: B9 42 73  LDA $7342,Y
 2F/BCE2: 18        CLC 
 2F/BCE3: 6D CB 7D  ADC $7DCB
@@ -7506,6 +7440,9 @@
 2F/BD23: 6D CB 7D  ADC $7DCB
 2F/BD26: 99 B4 73  STA $73B4,Y
 2F/BD29: 60        RTS 
+
+; [  ]
+
 2F/BD2A: A9 F0     LDA #$F0
 2F/BD2C: A2 00     LDX #$00
 2F/BD2E: 9D 64 02  STA $0264,X
@@ -7583,6 +7520,9 @@
 2F/BDB5: E0 4E     CPX #$4E
 2F/BDB7: D0 8B     BNE $BD44
 2F/BDB9: 60        RTS 
+
+; [  ]
+
 2F/BDBA: A9 FF     LDA #$FF
 2F/BDBC: A2 10     LDX #$10
 2F/BDBE: 9D E6 7D  STA $7DE6,X
@@ -7898,8 +7838,8 @@
 30/9E73: 6C 4C 00  JMP ($004C)
 
 ; battle algorithm jump table
-30/9E76:           .DW $AF77,$A400,$A732,$9E8A,$A65E,$AA16,$A2E9,$BE9D
-30/9E86:           .DW $BEBF,$BF17
+30/9E76: AF77 A400 A732 9E8A A65E AA16 A2E9 BE9D
+30/9E86: BEBF BF17
 
 ; [ battle algorithm $03: do fight effect ]
 
@@ -11667,14 +11607,14 @@
 31/BA9B: 60        RTS 
 
 ; attack effect jump table
-31/BA9C:           .DW $B17C,$B233,$B276,$B2B5,$B30C,$B37A,$B3CA,$B3F1
-31/BAAC:           .DW $B474,$B480,$B48C,$B49B,$B4C8,$B4B9,$B4C9,$B4D4
-31/BABC:           .DW $B4F4,$B4D4,$B51F,$B56C,$B5AA,$B5E7,$B62C,$B654
-31/BACC:           .DW $B233,$B658,$B657,$B679,$B67F,$B679,$B679,$B67F
-31/BADC:           .DW $B679,$B679,$B67C,$B679,$B679,$B679,$B679,$B679
-31/BAEC:           .DW $B685,$B679,$B688,$B67F,$B679,$B679,$B682,$B6B0
-31/BAFC:           .DW $B679,$B679,$B67F,$B679,$B67F,$B67F,$B679,$B679
-31/BB0C:           .DW $B679
+31/BA9C: B17C B233 B276 B2B5 B30C B37A B3CA B3F1
+31/BAAC: B474 B480 B48C B49B B4C8 B4B9 B4C9 B4D4
+31/BABC: B4F4 B4D4 B51F B56C B5AA B5E7 B62C B654
+31/BACC: B233 B658 B657 B679 B67F B679 B679 B67F
+31/BADC: B679 B679 B67C B679 B679 B679 B679 B679
+31/BAEC: B685 B679 B688 B67F B679 B679 B682 B6B0
+31/BAFC: B679 B679 B67F B679 B67F B67F B679 B679
+31/BB0C: B679
 
 ; ??? (1 bit per magic attack)
 31/BB0E: 84 03 44 0C 1C 34 60 78 00 20 00 00 00 00
@@ -12364,6 +12304,8 @@
 31/BFF6: 9D DA 78  STA $78DA,X
 31/BFF9: 60        RTS 
 
+31/BFFA: 00 00 00 00 00 00
+
 ; --------------------------------------------------------------------------
 
 ; [ execute animation function ]
@@ -12376,10 +12318,10 @@
 32/800A: 85 97     STA $97
 32/800C: 6C 96 00  JMP ($0096)
 
-32/800F:           .DW $9111,$9A1C,$90D8,$9F11,$A0C0,$A8B8,$ABF7,$AB27
-32/801F:           .DW $AAB8,$AA15,$A988,$A92B,$AD2B,$BAFD,$8CEF,$8CA4
-32/802F:           .DW $AFB0,$BC89,$BE89,$BE74,$BE9A,$8EFB,$A899,$89B7
-32/803F:           .DW $BE01,$84C9
+32/800F: 9111 9A1C 90D8 9F11 A0C0 A8B8 ABF7 AB27
+32/801F: AAB8 AA15 A988 A92B AD2B BAFD 8CEF 8CA4
+32/802F: AFB0 BC89 BE89 BE74 BE9A 8EFB A899 89B7
+32/803F: BE01 84C9
 
 ; ??? for each summon
 32/8043: E7 E8 EA EC EF F4 F5 F8
@@ -12453,9 +12395,9 @@
 32/80D9: 60        RTS 
 
 ; summon animation jump table (3 pointers per summon)
-32/80DA:           .DW $8AB5,$8AC6,$8AEB,$8061,$8A05,$813B,$89D2,$8977
-32/80EA:           .DW $8977,$8972,$88B7,$87EC,$82FE,$82F2,$8C8D,$877D
-32/80FA:           .DW $89FE,$874C,$89E8,$8272,$8635,$861B,$8376,$841A
+32/80DA: 8AB5 8AC6 8AEB 8061 8A05 813B 89D2 8977
+32/80EA: 8977 8972 88B7 87EC 82FE 82F2 8C8D 877D
+32/80FA: 89FE 874C 89E8 8272 8635 861B 8376 841A
 
 32/810A: A5 0C     LDA $0C
 32/810C: 8D 05 20  STA $2005
@@ -14400,7 +14342,7 @@
 32/8F8A: 60        RTS 
 
 ; pointers to sprite data
-32/8F8B:           .DW $8FA8,$8FE1,$901A,$902B,$902B,$906C
+32/8F8B: 8FA8 8FE1 901A 902B 902B 906C
 
 32/8F96: 00 01 03 00
 32/8F9B: 00 02 03 08
@@ -14627,7 +14569,7 @@
 32/91C9: AA        TAX 
 32/91CA: 60        RTS 
 
-32/91CB:           .DW $91D7,$91EF,$9207,$921F,$9237,$924F
+32/91CB: 91D7 91EF 9207 921F 9237 924F
 
 32/91D7: FF 00 00 00
 32/91DB: FF 00 00 08
@@ -15207,7 +15149,7 @@
 32/97DA: 85 7F     STA $7F
 32/97DC: 6C 7E 00  JMP ($007E)
 
-32/97DF:           .DW $991F,$98E0,$98D1,$981C,$9815,$97EB
+32/97DF: 991F 98E0 98D1 981C 9815 97EB
 
 32/97EB: A5 B8     LDA $B8
 32/97ED: 29 07     AND #$07
@@ -15398,10 +15340,9 @@
 32/9963: D0 F4     BNE $9959
 32/9965: 86 C8     STX $C8
 32/9967: 60        RTS 
-32/9968: 3F        --- 
-32/9969: CF        --- 
-32/996A: F3        --- 
-32/996B: FC        --- 
+
+32/9968: 3F CF F3 FC
+
 32/996C: A2 00     LDX #$00
 32/996E: A0 00     LDY #$00
 32/9970: BD D2 99  LDA $99D2,X
@@ -15454,29 +15395,10 @@
 32/99CE: D0 CA     BNE $999A
 32/99D0: 60        RTS 
 
-32/99D1: 08        PHP 
-32/99D2: E8        INX 
-32/99D3: 10 E8     BPL $99BD
-32/99D5: 00        BRK 
-32/99D6: F0 08     BEQ $99E0
-32/99D8: F0 F8     BEQ $99D2
-32/99DA: F8        SED 
-32/99DB: 00        BRK 
-32/99DC: F8        SED 
-32/99DD: F0 00     BEQ $99DF
-32/99DF: F8        SED 
-32/99E0: 00        BRK 
-32/99E1: E8        INX 
-32/99E2: 08        PHP 
-32/99E3: F0 08     BEQ $99ED
-32/99E5: E0 10     CPX #$10
-32/99E7: E8        INX 
-32/99E8: 10 4D     BPL $9A37
-32/99EA: 4E 4D 4F  LSR $4F4D
-32/99ED: 4D 4F 4D  EOR $4D4F
-32/99F0: 4F        --- 
-32/99F1: 4D 4F 00  EOR $004F
-32/99F4: 50 
+32/99D1: 08 E8 10 E8 00 F0 08 F0 F8 F8 00 F8 F0 00 F8 00
+32/99E1: E8 08 F0 08 E0 10 E8 10
+
+32/99E9: 4D 4E 4D 4F 4D 4F 4D 4F 4D 4F 00 50
 
 32/99F5: A2 00     LDX #$00
 32/99F7: 18        CLC 
@@ -15492,7 +15414,7 @@
 32/9A06: 0A        ASL 
 32/9A07: 0A        ASL 
 32/9A08: 18        CLC 
-32/9A09: 69 AD     ADC #$AD
+32/9A09: 69 AD     ADC #$AD           ; 39/9EAD
 32/9A0B: 85 8C     STA $8C
 32/9A0D: 85 8E     STA $8E
 32/9A0F: A9 00     LDA #$00
@@ -16083,88 +16005,21 @@
 32/9EAA: D0 EB     BNE $9E97
 32/9EAC: 60        RTS 
 
-32/9EAD: 00        BRK 
-32/9EAE: 02        --- 
-32/9EAF: 04        --- 
-32/9EB0: 06 01     ASL $01
-32/9EB2: 03        --- 
-32/9EB3: 05 07     ORA $07
-32/9EB5: 00        BRK 
-32/9EB6: 02        --- 
-32/9EB7: 04        --- 
-32/9EB8: 06 01     ASL $01
-32/9EBA: 03        --- 
-32/9EBB: 05 07     ORA $07
-32/9EBD: 00        BRK 
-32/9EBE: 01 03     ORA ($03,X)
-32/9EC0: 05 FF     ORA $FF
-32/9EC2: 02        --- 
-32/9EC3: 04        --- 
-32/9EC4: 06 00     ASL $00
-32/9EC6: 02        --- 
-32/9EC7: 04        --- 
-32/9EC8: FF        --- 
-32/9EC9: 01 03     ORA ($03,X)
-32/9ECB: 05 FF     ORA $FF
-32/9ECD: 00        BRK 
-32/9ECE: 01 03     ORA ($03,X)
-32/9ED0: FF        --- 
-32/9ED1: FF        --- 
-32/9ED2: 02        --- 
-32/9ED3: 04        --- 
-32/9ED4: FF        --- 
-32/9ED5: 00        BRK 
-32/9ED6: 01 02     ORA ($02,X)
-32/9ED8: FF        --- 
-32/9ED9: FF        --- 
-32/9EDA: FF        --- 
-32/9EDB: 03        --- 
-32/9EDC: FF        --- 
-32/9EDD: 00        BRK 
-32/9EDE: 01 02     ORA ($02,X)
-32/9EE0: FF        --- 
-32/9EE1: FF        --- 
-32/9EE2: FF        --- 
-32/9EE3: FF        --- 
-32/9EE4: FF        --- 
-32/9EE5: 00        BRK 
-32/9EE6: 02        --- 
-32/9EE7: FF        --- 
-32/9EE8: FF        --- 
-32/9EE9: 01 03     ORA ($03,X)
-32/9EEB: FF        --- 
-32/9EEC: FF        --- 
-32/9EED: 00        BRK 
-32/9EEE: 01 FF     ORA ($FF,X)
-32/9EF0: FF        --- 
-32/9EF1: FF        --- 
-32/9EF2: 02        --- 
-32/9EF3: FF        --- 
-32/9EF4: FF        --- 
-32/9EF5: 00        BRK 
-32/9EF6: FF        --- 
-32/9EF7: FF        --- 
-32/9EF8: FF        --- 
-32/9EF9: FF        --- 
-32/9EFA: FF        --- 
-32/9EFB: FF        --- 
-32/9EFC: FF        --- 
-32/9EFD: 00        BRK 
-32/9EFE: 00        BRK 
-32/9EFF: 03        --- 
-32/9F00: 00        BRK 
-32/9F01: 00        BRK 
-32/9F02: 00        BRK 
-32/9F03: 03        --- 
-32/9F04: 08        PHP 
-32/9F05: 00        BRK 
-32/9F06: 00        BRK 
-32/9F07: 43        --- 
-32/9F08: 08        PHP 
-32/9F09: 00        BRK 
-32/9F0A: 00        BRK 
-32/9F0B: 43        --- 
-32/9F0C: 00        BRK 
+32/9EAD: 00 02 04 06 01 03 05 07
+32/9EB5: 00 02 04 06 01 03 05 07
+32/9EBD: 00 01 03 05 FF 02 04 06
+32/9EC5: 00 02 04 FF 01 03 05 FF
+32/9ECD: 00 01 03 FF FF 02 04 FF
+32/9ED5: 00 01 02 FF FF FF 03 FF
+32/9EDD: 00 01 02 FF FF FF FF FF
+32/9EE5: 00 02 FF FF 01 03 FF FF
+32/9EED: 00 01 FF FF FF 02 FF FF
+32/9EF5: 00 FF FF FF FF FF FF FF
+
+32/9EFD: 00 00 03 00
+32/9F01: 00 00 03 08
+32/9F05: 00 00 43 08
+32/9F09: 00 00 43 00
 
 32/9F0D: 49 4D 51 55
 
@@ -16190,7 +16045,7 @@
 32/9F32: 4C 37 9F  JMP $9F37
 32/9F35: A9 00     LDA #$00
 32/9F37: 18        CLC 
-32/9F38: 69 FD     ADC #$FD
+32/9F38: 69 FD     ADC #$FD           ; 39/9EFD
 32/9F3A: 85 A1     STA $A1
 32/9F3C: A9 00     LDA #$00
 32/9F3E: 69 9E     ADC #$9E
@@ -16386,16 +16241,10 @@
 33/A073: 68        PLA 
 33/A074: 4C EB A3  JMP $A3EB
 
-33/A077: 07        --- 
-33/A078: 05 05     ORA $05
-33/A07A: 07        --- 
-33/A07B: 05 07     ORA $07
-33/A07D: 07        --- 
-33/A07E: 07        --- 
-33/A07F: 07        --- 
+33/A077: 07 05 05 07 05 07 07 07 07
 
-33/A080:           .DW $A2F2,$A365,$A36F,$A251,$A1A5,$A12C,$A125,$A1EF
-33/A090:           .DW $A2F2,$A2FB
+33/A080: A2F2 A365 A36F A251 A1A5 A12C A125 A1EF
+33/A090: A2F2 A2FB
 
 33/A094: 85 7E     STA $7E
 33/A096: A9 00     LDA #$00
@@ -17673,6 +17522,7 @@
 33/AA9E: DD A6 AA  CMP $AAA6,X
 33/AAA1: D0 DF     BNE $AA82
 33/AAA3: 4C 3A AC  JMP $AC3A
+
 33/AAA6: 2C 48 64  BIT $6448
 33/AAA9: 80        --- 
 33/AAAA: C6 95     DEC $95
@@ -18922,10 +18772,10 @@
 33/B40D: 20 17 B4  JSR $B417
 33/B410: 4C 35 AC  JMP $AC35
 
-33/B413: 73        --- 
-33/B414: 7B        --- 
+33/B413: 73 7B 84 8B
 
-33/B415: 84 8B     STY $8B
+; [  ]
+
 33/B417: 20 59 A0  JSR $A059          ; reset animation frame counter
 33/B41A: 8D 2E 7E  STA $7E2E
 33/B41D: 8D 38 7E  STA $7E38
@@ -19206,6 +19056,9 @@
 33/B64A: D0 D2     BNE $B61E
 33/B64C: 86 C8     STX $C8
 33/B64E: 60        RTS 
+
+; [  ]
+
 33/B64F: 0E B8 7E  ASL $7EB8
 33/B652: B0 03     BCS $B657
 33/B654: 4C F3 B6  JMP $B6F3
@@ -19282,6 +19135,9 @@
 33/B6EE: C9 08     CMP #$08
 33/B6F0: D0 EB     BNE $B6DD
 33/B6F2: 60        RTS 
+
+; [  ]
+
 33/B6F3: E6 C9     INC $C9
 33/B6F5: A9 01     LDA #$01
 33/B6F7: 8D 9C 7E  STA $7E9C
@@ -19294,6 +19150,9 @@
 33/B709: D0 EF     BNE $B6FA
 33/B70B: 20 5E A0  JSR $A05E          ; reset animation sprites
 33/B70E: 4C B0 F8  JMP $F8B0          ; wait for vblank (update oam and color)
+
+; [  ]
+
 33/B711: 20 5E A0  JSR $A05E          ; reset animation sprites
 33/B714: 20 CF B7  JSR $B7CF
 33/B717: AD 9A 7E  LDA $7E9A
@@ -19386,9 +19245,9 @@
 33/B7C8: D0 ED     BNE $B7B7
 33/B7CA: 60        RTS 
 
-33/B7CB: 01 00     ORA ($00,X)
-33/B7CD: 03        --- 
-33/B7CE: 02        --- 
+33/B7CB: 01 00 03 02
+
+; [  ]
 
 33/B7CF: A9 00     LDA #$00
 33/B7D1: 85 87     STA $87
@@ -19431,7 +19290,7 @@
 33/B820: 85 7E     STA $7E
 33/B822: AD 01 79  LDA $7901
 33/B825: 85 7F     STA $7F
-33/B827: A9 24     LDA #$24
+33/B827: A9 24     LDA #$24           ; size = 36 bytes
 33/B829: 85 82     STA $82
 33/B82B: 20 2F F9  JSR $F92F          ; load rom data
 33/B82E: AD 9A 7E  LDA $7E9A
@@ -19460,6 +19319,9 @@
 33/B861: C0 90     CPY #$90
 33/B863: D0 E0     BNE $B845
 33/B865: 60        RTS 
+
+; [  ]
+
 33/B866: A5 7E     LDA $7E
 33/B868: 0A        ASL 
 33/B869: 29 C0     AND #$C0
@@ -19489,26 +19351,12 @@
 33/B899: C8        INY 
 33/B89A: 60        RTS 
 
-33/B89B: 00        BRK 
-33/B89C: 08        PHP 
-33/B89D: 00        BRK 
-33/B89E: 08        PHP 
-33/B89F: 28        PLP 
-33/B8A0: F8        SED 
-33/B8A1: 00        BRK 
-33/B8A2: 08        PHP 
-33/B8A3: 00        BRK 
-33/B8A4: 08        PHP 
-33/B8A5: 28        PLP 
-33/B8A6: F8        SED 
-33/B8A7: 28        PLP 
-33/B8A8: F8        SED 
-33/B8A9: 28        PLP 
-33/B8AA: F8        SED 
-33/B8AB: 00        BRK 
-33/B8AC: 40        RTI 
-33/B8AD: 80        --- 
-33/B8AE: C0 
+33/B89B: 00 08 00 08
+33/B89F: 28 F8 00 08
+33/B8A3: 00 08 28 F8
+33/B8A7: 28 F8 28 F8
+
+33/B8AB: 00 40 80 C0
 
 33/B8AF: 48        PHA 
 33/B8B0: 0A        ASL 
@@ -19994,9 +19842,9 @@
 33/BC2A: 60        RTS 
 
 ; magic animation jump table
-33/BC2B:           .DW $B91A,$B385,$B954,$B9E6,$B48D,$B922,$BB18,$B91A
-33/BC3B:           .DW $B91A,$BB45,$AED2,$BB23,$BB38,$B91A,$B9C2,$BA94
-33/BC4B:           .DW $BB5C,$BB61,$BB66
+33/BC2B: B91A B385 B954 B9E6 B48D B922 BB18 B91A
+33/BC3B: B91A BB45 AED2 BB23 BB38 B91A B9C2 BA94
+33/BC4B: BB5C BB61 BB66
 
 33/BC51: A9 00     LDA #$00
 33/BC53: 85 7E     STA $7E
@@ -20202,27 +20050,11 @@
 33/BDE6: 95 C0     STA $C0,X
 33/BDE8: 60        RTS 
 
-33/BDE9: FF        --- 
-33/BDEA: FD FD FF  SBC $FFFD,X
-33/BDED: 00        BRK 
-33/BDEE: 02        --- 
-33/BDEF: 02        --- 
-33/BDF0: 04        --- 
-33/BDF1: 0A        ASL 
-33/BDF2: 0A        ASL 
-33/BDF3: 0A        ASL 
-33/BDF4: 0A        ASL 
-33/BDF5: 0A        ASL 
-33/BDF6: 0A        ASL 
-33/BDF7: 0B        --- 
-33/BDF8: 0B        --- 
-33/BDF9: 4A        LSR 
-33/BDFA: 4A        LSR 
-33/BDFB: 4A        LSR 
-33/BDFC: 4A        LSR 
-33/BDFD: 4A        LSR 
-33/BDFE: 4A        LSR 
-33/BDFF: 49 49     EOR #$49
+33/BDE9: FF FD FD FF 00 02 02 04
+
+33/BDF1: 0A 0A 0A 0A 0A 0A 0B 0B
+
+33/BDF9: 4A 4A 4A 4A 4A 4A 49 49
 
 ; [ animation function $18:  ]
 
@@ -21004,9 +20836,9 @@
 34/843B: 6C 18 00  JMP ($0018)
 
 ; attack animation jump table
-34/843E:           .DW $8613,$8577,$85ED,$8576,$853B,$8540,$8528,$852D
-34/844E:           .DW $8516,$850A,$8505,$84FB,$84F6,$84D7,$8470,$8460
-34/845E:           .DW $8555
+34/843E: 8613 8577 85ED 8576 853B 8540 8528 852D
+34/844E: 8516 850A 8505 84FB 84F6 84D7 8470 8460
+34/845E: 8555
 
 ; [ attack animation $0F: damage numerals ]
 
@@ -21358,6 +21190,9 @@
 34/86E6: CA        DEX 
 34/86E7: 10 F5     BPL $86DE
 34/86E9: 60        RTS 
+
+; [  ]
+
 34/86EA: A2 07     LDX #$07
 34/86EC: 20 05 87  JSR $8705
 34/86EF: 90 08     BCC $86F9
@@ -21369,10 +21204,16 @@
 34/86F9: CA        DEX 
 34/86FA: 10 F0     BPL $86EC
 34/86FC: 60        RTS 
+
+; [  ]
+
 34/86FD: BD 24 FD  LDA $FD24,X
 34/8700: 05 18     ORA $18
 34/8702: 85 18     STA $18
 34/8704: 60        RTS 
+
+; [  ]
+
 34/8705: 86 7F     STX $7F
 34/8707: BD A7 7D  LDA $7DA7,X
 34/870A: C9 FF     CMP #$FF
@@ -21402,20 +21243,16 @@
 34/8737: 18        CLC 
 34/8738: 60        RTS 
 
-34/8739: 05 AF     ORA $AF
-34/873B: 05 AF     ORA $AF
-34/873D: 16 BC     ASL $BC,X
-34/873F: 05 A0     ORA $A0
-34/8741: 16 80     ASL $80,X
-34/8743: 1A        --- 
-34/8744: 00        BRK 
-34/8745: 18        CLC 
-34/8746: 00        BRK 
-34/8747: 05 00     ORA $00
-34/8749: 14        --- 
-34/874A: 00        BRK 
-34/874B: 00        BRK 
-34/874C: 00        BRK 
+34/8739: 05 AF
+34/873B: 05 AF
+34/873D: 16 BC
+34/873F: 05 A0
+34/8741: 16 80
+34/8743: 1A 00
+34/8745: 18 00
+34/8747: 05 00
+34/8749: 14 00
+34/874B: 00 00
 
 ; [  ]
 
@@ -21905,7 +21742,7 @@
 34/8ACC: 4C 2E 89  JMP $892E
 
 ; jump table for joypad buttons (battle menu)
-34/8ACF:           .DW $89E6,$89DE,$8ABE,$8ABE,$89EE,$8A35,$8A82,$8A9F
+34/8ACF: 89E6 89DE 8ABE 8ABE 89EE 8A35 8A82 8A9F
 
 34/8ADF: A9 20     LDA #$20           ; $0220 (oam data)
 34/8AE1: 85 4A     STA $4A
@@ -22431,6 +22268,9 @@
 34/8F07: 88        DEY 
 34/8F08: D0 B8     BNE $8EC2
 34/8F0A: 60        RTS 
+
+; [  ]
+
 34/8F0B: A9 80     LDA #$80
 34/8F0D: 85 18     STA $18
 34/8F0F: A9 23     LDA #$23
@@ -22459,24 +22299,11 @@
 34/8F40: D0 D3     BNE $8F15
 34/8F42: 60        RTS 
 
-34/8F43: FC        --- 
-34/8F44: FD FA 00  SBC $00FA,X
-34/8F47: FA        --- 
-34/8F48: 00        BRK 
-34/8F49: FA        --- 
-34/8F4A: 00        BRK 
-34/8F4B: FA        --- 
-34/8F4C: 00        BRK 
-34/8F4D: FA        --- 
-34/8F4E: 00        BRK 
-34/8F4F: FA        --- 
-34/8F50: 00        BRK 
-34/8F51: FA        --- 
-34/8F52: 00        BRK 
-34/8F53: FA        --- 
-34/8F54: 00        BRK 
-34/8F55: F7        --- 
-34/8F56: F8        SED 
+; unused ???
+34/8F43: FC FD FA 00 FA 00 FA 00 FA 00 FA 00 FA 00 FA 00
+34/8F53: FA 00 F7 F8
+
+; [  ]
 
 34/8F57: A5 22     LDA $22
 34/8F59: 48        PHA 
@@ -22669,7 +22496,7 @@
 
 34/90A0: A5 72     LDA $72
 34/90A2: F0 2C     BEQ $90D0
-34/90A4: A9 00     LDA #$00           ; string offset $0400 (item names)
+34/90A4: A9 00     LDA #$00           ; string offset: $0400 (item names)
 34/90A6: 85 18     STA $18
 34/90A8: A9 88     LDA #$88
 34/90AA: 85 19     STA $19
@@ -23305,11 +23132,11 @@
 ; 0D: death animation
 ; 0E: airship cannon animation ???
 
-34/954D:           .DW $94D6,$94D6,$94D6,$94E7,$94D6,$905B,$90A0,$9177
-34/955D:           .DW $91D4,$91FE,$9450,$934E,$9354,$935F,$93C4
+34/954D: 94D6 94D6 94D6 94E7 94D6 905B 90A0 9177
+34/955D: 91D4 91FE 9450 934E 9354 935F 93C4
 
 ; variable type jump table
-34/956B:           .DW $923C,$925F,$9275,$92DB,$932B
+34/956B: 923C 925F 9275 92DB 932B
 
 ; variables for each battle message (144 items, 4 nybbles each)
 
@@ -23911,9 +23738,9 @@
 34/9A13: 4C 6F 98  JMP $986F          ; next character
 
 ; battle command jump table
-34/9A16:           .DW $9A68,$9A68,$A71C,$A750,$A843,$A877,$A8AB,$A8B5
-34/9A26:           .DW $A9AB,$9A68,$9A68,$AA22,$AB6E,$AB07,$AB9F,$AC65
-34/9A36:           .DW $ACD0,$AD0C,$AD6B,$9A68,$ADAF,$B646
+34/9A16: 9A68 9A68 A71C A750 A843 A877 A8AB A8B5
+34/9A26: A9AB 9A68 9A68 AA22 AB6E AB07 AB9F AC65
+34/9A36: ACD0 AD0C AD6B 9A68 ADAF B646
 
 ; [  ]
 
@@ -24034,28 +23861,28 @@
 34/9B20: 60        RTS 
 
 ; battle commands for each class
-34/9B21:           .DB $04,$05,$06,$14
-34/9B25:           .DB $04,$05,$06,$14
-34/9B29:           .DB $04,$05,$06,$14
-34/9B2D:           .DB $04,$15,$06,$14
-34/9B31:           .DB $04,$15,$06,$14
-34/9B35:           .DB $04,$15,$06,$14
-34/9B39:           .DB $04,$05,$15,$14
-34/9B3D:           .DB $04,$05,$06,$14
-34/9B41:           .DB $04,$0E,$07,$14
-34/9B45:           .DB $04,$0C,$0D,$14
-34/9B49:           .DB $04,$0B,$05,$14
-34/9B4D:           .DB $04,$08,$05,$14
-34/9B51:           .DB $04,$05,$06,$14
-34/9B55:           .DB $04,$0F,$05,$14
-34/9B59:           .DB $04,$05,$15,$14
-34/9B5D:           .DB $04,$15,$06,$14
-34/9B61:           .DB $10,$11,$12,$14
-34/9B65:           .DB $04,$15,$06,$14
-34/9B69:           .DB $04,$15,$06,$14
-34/9B6D:           .DB $04,$15,$06,$14
-34/9B71:           .DB $04,$15,$06,$14
-34/9B75:           .DB $04,$05,$06,$14
+34/9B21: 04 05 06 14
+34/9B25: 04 05 06 14
+34/9B29: 04 05 06 14
+34/9B2D: 04 15 06 14
+34/9B31: 04 15 06 14
+34/9B35: 04 15 06 14
+34/9B39: 04 05 15 14
+34/9B3D: 04 05 06 14
+34/9B41: 04 0E 07 14
+34/9B45: 04 0C 0D 14
+34/9B49: 04 0B 05 14
+34/9B4D: 04 08 05 14
+34/9B51: 04 05 06 14
+34/9B55: 04 0F 05 14
+34/9B59: 04 05 15 14
+34/9B5D: 04 15 06 14
+34/9B61: 10 11 12 14
+34/9B65: 04 15 06 14
+34/9B69: 04 15 06 14
+34/9B6D: 04 15 06 14
+34/9B71: 04 15 06 14
+34/9B75: 04 05 06 14
 
 ; [ play cursor sound effect ]
 
@@ -24629,9 +24456,9 @@
 34/9FAB: 60        RTS 
 
 ; action jump table
-34/9FAC:           .DW $9FA8,$A68A,$A7DF,$A7EA,$A104,$A881,$A8BF,$A93B
-34/9FBC:           .DW $A9D8,$AA11,$9FA8,$AA5D,$AB73,$AB0C,$ABA4,$AC6F
-34/9FCC:           .DW $ACD5,$AD16,$AD75,$A3BB,$A367
+34/9FAC: 9FA8 A68A A7DF A7EA A104 A881 A8BF A93B
+34/9FBC: A9D8 AA11 9FA8 AA5D AB73 AB0C ABA4 AC6F
+34/9FCC: ACD5 AD16 AD75 A3BB A367
 
 ; [ calculate summon properties ]
 
@@ -25776,27 +25603,22 @@
 35/A820: 05 18     ORA $18
 35/A822: 60        RTS 
 
-35/A823: 34        --- 
-35/A824: B4 34     LDY $34,X
-35/A826: D4        --- 
-35/A827: 50 B4     BVC $A7DD
-35/A829: 50 D4     BVC $A7FF
-35/A82B: 6C B4 6C  JMP ($6CB4)
-35/A82E: D4        --- 
-35/A82F: 88        DEY 
-35/A830: B4 88     LDY $88,X
-35/A832: D4        --- 
-35/A833: 34        --- 
-35/A834: 44        --- 
-35/A835: 34        --- 
-35/A836: 24 50     BIT $50
-35/A838: 44        --- 
-35/A839: 50 24     BVC $A85F
-35/A83B: 6C 44 6C  JMP ($6C44)
-35/A83E: 24 88     BIT $88
-35/A840: 44        --- 
-35/A841: 88        DEY 
-35/A842: 24 
+35/A823: 34 B4
+35/A835: 34 D4
+35/A827: 50 B4
+35/A829: 50 D4
+35/A82B: 6C B4
+35/A82D: 6C D4
+35/A82F: 88 B4
+35/A831: 88 D4
+35/A833: 34 44
+35/A835: 34 24
+35/A837: 50 44
+35/A839: 50 24
+35/A83B: 6C 44
+35/A83D: 6C 24
+35/A83F: 88 44
+35/A841: 88 24
 
 ; [ battle command $04: attack ]
 
@@ -26185,10 +26007,10 @@
 35/AAED: AD D8 7E  LDA $7ED8
 35/AAF0: 29 08     AND #$08
 35/AAF2: D0 08     BNE $AAFC
-35/AAF4: AD 00 74  LDA $7400
+35/AAF4: AD 00 74  LDA $7400          ; lo nybble for floating continent
 35/AAF7: 29 0F     AND #$0F
 35/AAF9: 4C 02 AB  JMP $AB02
-35/AAFC: AD 00 74  LDA $7400
+35/AAFC: AD 00 74  LDA $7400          ; hi nybble for surface world
 35/AAFF: 20 45 FD  JSR $FD45          ; lsr4
 35/AB02: 18        CLC 
 35/AB03: 69 50     ADC #$50
@@ -28010,6 +27832,8 @@
 
 ; [ check if character can equip item/spell ]
 
+; $1C: 0 = can't equip, 1 = can equip
+
 35/B8FD: A9 08     LDA #$08
 35/B8FF: 85 1A     STA $1A
 35/B901: A2 78     LDX #$78
@@ -28164,7 +27988,7 @@
 35/BA27: A9 00     LDA #$00
 35/BA29: 60        RTS 
 
-35/BA2A:           .DW $B877,$B8EE,$B874,$B874,$B7F9,$B82A,$B863,$B86C
+35/BA2A: B877 B8EE B874 B874 B7F9 B82A B863 B86C
 
 ; [ load array item (bank 30) ]
 
@@ -29142,10 +28966,10 @@
 36/822C: 6C D8 00  JMP ($00D8)
 
 ; sound commands $E0-$FF
-36/822F:           .DW $8353,$835C,$8366,$8370,$837A,$8384,$838E,$8398 ; $E0
-36/823F:           .DW $83A2,$83AC,$83B6,$83C0,$83CA,$83D4,$83DE,$83E8
-36/824F:           .DW $83F2,$83FC,$8406,$8410,$841A,$8424,$843A,$8450 ; $F0
-36/825F:           .DW $8466,$8471,$8485,$8499,$84AF,$84D0,$84F0,$84FF
+36/822F: 8353 835C 8366 8370 837A 8384 838E 8398 ; $E0
+36/823F: 83A2 83AC 83B6 83C0 83CA 83D4 83DE 83E8
+36/824F: 83F2 83FC 8406 8410 841A 8424 843A 8450 ; $F0
+36/825F: 8466 8471 8485 8499 84AF 84D0 84F0 84FF
 
 ; [ sound command $00-$DF: play note ]
 
@@ -29678,7 +29502,7 @@
 36/85F3: 60        RTS 
 
 ; envelope state jump table
-36/85F4:           .DW $85FA,$8635,$8635
+36/85F4: 85FA 8635 8635
 
 ; [ envelope state 0: attack ]
 
@@ -29860,22 +29684,22 @@
 36/87F9: 0B 0B 0B 0B 0B 0B 0B 0B 0B 0B 0B 0B
 
 ; note durations
-36/8805:           .DB $60            ; 00: whole note
-36/8806:           .DB $48            ; 01: dotted half note
-36/8807:           .DB $30            ; 02: half note
-36/8808:           .DB $24            ; 03: dotted quarter note
-36/8809:           .DB $20            ; 04: quarter note triplet
-36/880A:           .DB $18            ; 05: quarter note
-36/880B:           .DB $12            ; 06: dotted eighth note
-36/880C:           .DB $10            ; 07: eighth note triplet
-36/880D:           .DB $0C            ; 08: eighth note
-36/880E:           .DB $09            ; 09: dotted 16th note
-36/880F:           .DB $08            ; 0A: 16th note triplet
-36/8810:           .DB $06            ; 0B: 16th note
-36/8811:           .DB $04            ; 0C: 32nd note triplet
-36/8812:           .DB $03            ; 0D: 32nd note
-36/8813:           .DB $02            ; 0E: 64th note triplet
-36/8814:           .DB $01            ; 0F: 128th note triplet
+36/8805: 60  ; 00: whole note
+36/8806: 48  ; 01: dotted half note
+36/8807: 30  ; 02: half note
+36/8808: 24  ; 03: dotted quarter note
+36/8809: 20  ; 04: quarter note triplet
+36/880A: 18  ; 05: quarter note
+36/880B: 12  ; 06: dotted eighth note
+36/880C: 10  ; 07: eighth note triplet
+36/880D: 0C  ; 08: eighth note
+36/880E: 09  ; 09: dotted 16th note
+36/880F: 08  ; 0A: 16th note triplet
+36/8810: 06  ; 0B: 16th note
+36/8811: 04  ; 0C: 32nd note triplet
+36/8812: 03  ; 0D: 32nd note
+36/8813: 02  ; 0E: 64th note triplet
+36/8814: 01  ; 0F: 128th note triplet
 
 ; decay durations
 36/8815: 48 36 24 1B 18 12 0D 0C 09 07 06 04 03 02 01 00
@@ -29972,10 +29796,10 @@
 36/89BE: 60        RTS 
 
 ; song banks
-36/89BF:           .DB $37            ; songs $00-$18
-36/89C0:           .DB $38            ; songs $19-$2A
-36/89C1:           .DB $39            ; songs $37-$3A ($2B-$36 use bank $36)
-36/89C2:           .DB $09            ; songs $3B-$40
+36/89BF: 37  ; songs $00-$18
+36/89C0: 38  ; songs $19-$2A
+36/89C1: 39  ; songs $37-$3A ($2B-$36 use bank $36)
+36/89C2: 09  ; songs $3B-$40
 
 ; [ init song ]
 
@@ -30332,12 +30156,12 @@
 36/8C76: 60        RTS 
 
 ; pointers to songs $2B-36
-36/8C77:           .DW $8C8F,$8CD2,$8D1A,$8DA2,$8F76,$9128,$9148,$919C
-36/8C87:           .DW $91C3,$9201,$9220,$924A
+36/8C77: 8C8F 8CD2 8D1A 8DA2 8F76 9128 9148 919C
+36/8C87: 91C3 9201 9220 924A
 
 ; song $2B
 
-36/8C8F:           .DW $8C99,$8CB5,$8CC9,$FFFF,$FFFF
+36/8C8F: 8C99 8CB5 8CC9 FFFF FFFF
 
 ; pulse 1
 
@@ -30399,1096 +30223,9 @@
 
 ; song $2C
 
-36/8CD2:           .DW $8CDC,$8CF6,$8D13,$FFFF,$FFFF
+36/8CD2: 8CDC 8CF6 8D13 FFFF FFFF
 
-36/8CDC: E0 89     CPX #$89
-36/8CDE: F7        --- 
-36/8CDF: 0A        ASL 
-36/8CE0: 01 EC     ORA ($EC,X)
-36/8CE2: F1 B5     SBC ($B5),Y
-36/8CE4: 2A        ROL 
-36/8CE5: 7A        --- 
-36/8CE6: BA        TSX 
-36/8CE7: F2        --- 
-36/8CE8: 25 F1     AND $F1
-36/8CEA: B5 E0     LDA $E0,X
-36/8CEC: 83        --- 
-36/8CED: F2        --- 
-36/8CEE: 75 E0     ADC $E0,X
-36/8CF0: 71 5A     ADC ($5A),Y
-36/8CF2: 3A        --- 
-36/8CF3: 0A        ASL 
-36/8CF4: 22        --- 
-36/8CF5: FF        --- 
-36/8CF6: F6 0B     INC $0B,X
-36/8CF8: 07        --- 
-36/8CF9: E7        --- 
-36/8CFA: F1 7A     SBC ($7A),Y
-36/8CFC: 2A        ROL 
-36/8CFD: 0A        ASL 
-36/8CFE: F0 B5     BEQ $8CB5
-36/8D00: F1 5A     SBC ($5A),Y
-36/8D02: 2A        ROL 
-36/8D03: 5A        --- 
-36/8D04: 7A        --- 
-36/8D05: 2A        ROL 
-36/8D06: F0 BA     BEQ $8CC2
-36/8D08: F1 0A     SBC ($0A),Y
-36/8D0A: 3A        --- 
-36/8D0B: 7A        --- 
-36/8D0C: 8A        TXA 
-36/8D0D: AA        TAX 
-36/8D0E: F2        --- 
-36/8D0F: 0A        ASL 
-36/8D10: F1 B2     SBC ($B2),Y
-36/8D12: FF        --- 
-36/8D13: F1 72     SBC ($72),Y
-36/8D15: 52        --- 
-36/8D16: 85 55     STA $55
-36/8D18: 72        --- 
-36/8D19: FF        --- 
-
-; song $2D
-
-36/8D1A: 8D24 8D57 8D84 FFFF FFFF
-36/8D24: E0 BE     CPX #$BE
-36/8D26: EB        --- 
-36/8D27: F7        --- 
-36/8D28: 12        --- 
-36/8D29: 07        --- 
-36/8D2A: F0 AB     BEQ $8CD7
-36/8D2C: BB        --- 
-36/8D2D: AB        --- 
-36/8D2E: BB        --- 
-36/8D2F: A1 D2     LDA ($D2,X)
-36/8D31: F2        --- 
-36/8D32: 4B        --- 
-36/8D33: 5B        --- 
-36/8D34: 4B        --- 
-36/8D35: 5B        --- 
-36/8D36: 45 FB     EOR $FB
-36/8D38: 04        --- 
-36/8D39: F6 12     INC $12,X
-36/8D3B: 07        --- 
-36/8D3C: F2        --- 
-36/8D3D: A8        TAY 
-36/8D3E: 78        SEI 
-36/8D3F: 48        PHA 
-36/8D40: 18        CLC 
-36/8D41: F1 A8     SBC ($A8),Y
-36/8D43: 78        SEI 
-36/8D44: 48        PHA 
-36/8D45: 18        CLC 
-36/8D46: F3        --- 
-36/8D47: 08        PHP 
-36/8D48: F2        --- 
-36/8D49: 98        TYA 
-36/8D4A: 68        PLA 
-36/8D4B: 38        SEC 
-36/8D4C: 08        PHP 
-36/8D4D: F1 98     SBC ($98),Y
-36/8D4F: 68        PLA 
-36/8D50: 38        SEC 
-36/8D51: FC        --- 
-36/8D52: 39 8D FE  AND $FE8D,Y
-36/8D55: 27        --- 
-36/8D56: 8D EB F7  STA $F7EB
-36/8D59: 12        --- 
-36/8D5A: 07        --- 
-36/8D5B: C2        --- 
-36/8D5C: F1 4B     SBC ($4B),Y
-36/8D5E: 5B        --- 
-36/8D5F: 4B        --- 
-36/8D60: 5B        --- 
-36/8D61: 45 D0     EOR $D0
-36/8D63: FB        --- 
-36/8D64: 04        --- 
-36/8D65: F6 12     INC $12,X
-36/8D67: 07        --- 
-36/8D68: F2        --- 
-36/8D69: 48        PHA 
-36/8D6A: 18        CLC 
-36/8D6B: F1 A8     SBC ($A8),Y
-36/8D6D: 78        SEI 
-36/8D6E: 48        PHA 
-36/8D6F: 18        CLC 
-36/8D70: F0 A8     BEQ $8D1A
-36/8D72: 78        SEI 
-36/8D73: F2        --- 
-36/8D74: 68        PLA 
-36/8D75: 38        SEC 
-36/8D76: 08        PHP 
-36/8D77: F1 98     SBC ($98),Y
-36/8D79: 68        PLA 
-36/8D7A: 38        SEC 
-36/8D7B: 08        PHP 
-36/8D7C: F0 98     BEQ $8D16
-36/8D7E: FC        --- 
-36/8D7F: 65 8D     ADC $8D
-36/8D81: FE 58 8D  INC $8D58,X
-36/8D84: C0 F2     CPY #$F2
-36/8D86: AB        --- 
-36/8D87: BB        --- 
-36/8D88: AB        --- 
-36/8D89: BB        --- 
-36/8D8A: A1 FB     LDA ($FB,X)
-36/8D8C: 04        --- 
-36/8D8D: F1 18     SBC ($18),Y
-36/8D8F: C5 18     CMP $18
-36/8D91: C8        INY 
-36/8D92: 18        CLC 
-36/8D93: C8        INY 
-36/8D94: 18        CLC 
-36/8D95: 08        PHP 
-36/8D96: C5 08     CMP $08
-36/8D98: C8        INY 
-36/8D99: 08        PHP 
-36/8D9A: C8        INY 
-36/8D9B: 08        PHP 
-36/8D9C: FC        --- 
-36/8D9D: 8D 8D FE  STA $FE8D
-36/8DA0: 84 8D     STY $8D
-
-36/8DA2: AC 8D 21  LDY $218D
-36/8DA5: 8E D4 8E  STX $8ED4
-36/8DA8: FF        --- 
-36/8DA9: FF        --- 
-36/8DAA: FF        --- 
-36/8DAB: FF        --- 
-36/8DAC: E0 87     CPX #$87
-36/8DAE: F6 12     INC $12,X
-36/8DB0: 07        --- 
-36/8DB1: EB        --- 
-36/8DB2: FB        --- 
-36/8DB3: 02        --- 
-36/8DB4: F1 71     SBC ($71),Y
-36/8DB6: 95 A1     STA $A1,X
-36/8DB8: F2        --- 
-36/8DB9: 05 15     ORA $15
-36/8DBB: F1 95     SBC ($95),Y
-36/8DBD: B5 F2     LDA $F2,X
-36/8DBF: 35 15     AND $15,X
-36/8DC1: F1 95     SBC ($95),Y
-36/8DC3: F2        --- 
-36/8DC4: 35 F1     AND $F1,X
-36/8DC6: B5 FC     LDA $FC,X
-36/8DC8: B4 8D     LDY $8D,X
-36/8DCA: F2        --- 
-36/8DCB: 10 C0     BPL $8D8D
-36/8DCD: F1 61     SBC ($61),Y
-36/8DCF: 85 91     STA $91
-36/8DD1: F2        --- 
-36/8DD2: 05 F1     ORA $F1
-36/8DD4: B5 85     LDA $85,X
-36/8DD6: 95 F2     STA $F2,X
-36/8DD8: 05 F1     ORA $F1
-36/8DDA: B5 85     LDA $85,X
-36/8DDC: 95 F2     STA $F2,X
-36/8DDE: 05 F1     ORA $F1
-36/8DE0: B1 F2     LDA ($F2),Y
-36/8DE2: 05 21     ORA $21
-36/8DE4: 45 55     EOR $55
-36/8DE6: 25 45     AND $45
-36/8DE8: 75 55     ADC $55,X
-36/8DEA: 45 25     EOR $25
-36/8DEC: 05 FB     ORA $FB
-36/8DEE: 02        --- 
-36/8DEF: 22        --- 
-36/8DF0: F1 75     SBC ($75),Y
-36/8DF2: BA        TSX 
-36/8DF3: F2        --- 
-36/8DF4: 2A        ROL 
-36/8DF5: 5A        --- 
-36/8DF6: FD 00 8E  SBC $8E00,X
-36/8DF9: 4A        LSR 
-36/8DFA: CA        DEX 
-36/8DFB: 0A        ASL 
-36/8DFC: 01 FC     ORA ($FC,X)
-36/8DFE: EF        --- 
-36/8DFF: 8D 4A CA  STA $CA4A
-36/8E02: 0A        ASL 
-36/8E03: 02        --- 
-36/8E04: 0A        ASL 
-36/8E05: 4A        LSR 
-36/8E06: 7A        --- 
-36/8E07: 6A        ROR 
-36/8E08: CA        DEX 
-36/8E09: 2A        ROL 
-36/8E0A: 22        --- 
-36/8E0B: F1 BA     SBC ($BA),Y
-36/8E0D: F2        --- 
-36/8E0E: 2A        ROL 
-36/8E0F: 6A        ROR 
-36/8E10: 4A        LSR 
-36/8E11: CA        DEX 
-36/8E12: 0A        ASL 
-36/8E13: 02        --- 
-36/8E14: F1 9A     SBC ($9A),Y
-36/8E16: F2        --- 
-36/8E17: 0A        ASL 
-36/8E18: 4A        LSR 
-36/8E19: 32        --- 
-36/8E1A: 02        --- 
-36/8E1B: F1 B2     SBC ($B2),Y
-36/8E1D: 92        --- 
-36/8E1E: FE B2 8D  INC $8DB2,X
-36/8E21: F6 02     INC $02,X
-36/8E23: FF        --- 
-36/8E24: E7        --- 
-36/8E25: FB        --- 
-36/8E26: 02        --- 
-36/8E27: F1 45     SBC ($45),Y
-36/8E29: F0 9A     BEQ $8DC5
-36/8E2B: AA        TAX 
-36/8E2C: BA        TSX 
-36/8E2D: 7A        --- 
-36/8E2E: CA        DEX 
-36/8E2F: 7A        --- 
-36/8E30: F1 45     SBC ($45),Y
-36/8E32: 65 F0     ADC $F0
-36/8E34: 8A        TXA 
-36/8E35: 9A        TXS 
-36/8E36: AA        TAX 
-36/8E37: 6A        ROR 
-36/8E38: CA        DEX 
-36/8E39: 6A        ROR 
-36/8E3A: F1 65     SBC ($65),Y
-36/8E3C: 45 4A     EOR $4A
-36/8E3E: 4A        LSR 
-36/8E3F: 4A        LSR 
-36/8E40: 35 65     AND $65,X
-36/8E42: 45 4A     EOR $4A
-36/8E44: 4A        LSR 
-36/8E45: 4A        LSR 
-36/8E46: 65 35     ADC $35
-36/8E48: FC        --- 
-36/8E49: 27        --- 
-36/8E4A: 8E F5 09  STX $09F5
-36/8E4D: FF        --- 
-36/8E4E: FB        --- 
-36/8E4F: 02        --- 
-36/8E50: 5A        --- 
-36/8E51: 3A        --- 
-36/8E52: 1A        --- 
-36/8E53: 0A        ASL 
-36/8E54: 1A        --- 
-36/8E55: 3A        --- 
-36/8E56: F0 AA     BEQ $8E02
-36/8E58: F1 0A     SBC ($0A),Y
-36/8E5A: 1A        --- 
-36/8E5B: F0 8A     BEQ $8DE7
-36/8E5D: F1 1A     SBC ($1A),Y
-36/8E5F: 3A        --- 
-36/8E60: FC        --- 
-36/8E61: 50 8E     BVC $8DF1
-36/8E63: F6 02     INC $02,X
-36/8E65: FF        --- 
-36/8E66: F0 9A     BEQ $8E02
-36/8E68: BA        TSX 
-36/8E69: F1 1A     SBC ($1A),Y
-36/8E6B: 3A        --- 
-36/8E6C: 1A        --- 
-36/8E6D: F0 BA     BEQ $8E29
-36/8E6F: 9A        TXS 
-36/8E70: BA        TSX 
-36/8E71: F1 1A     SBC ($1A),Y
-36/8E73: 3A        --- 
-36/8E74: 1A        --- 
-36/8E75: F0 BA     BEQ $8E31
-36/8E77: F1 0A     SBC ($0A),Y
-36/8E79: 2A        ROL 
-36/8E7A: 4A        LSR 
-36/8E7B: 5A        --- 
-36/8E7C: 4A        LSR 
-36/8E7D: 2A        ROL 
-36/8E7E: 0A        ASL 
-36/8E7F: 2A        ROL 
-36/8E80: 4A        LSR 
-36/8E81: 5A        --- 
-36/8E82: 4A        LSR 
-36/8E83: 2A        ROL 
-36/8E84: 8A        TXA 
-36/8E85: 6A        ROR 
-36/8E86: 4A        LSR 
-36/8E87: 25 6A     AND $6A
-36/8E89: 4A        LSR 
-36/8E8A: 2A        ROL 
-36/8E8B: 05 8A     ORA $8A
-36/8E8D: 6A        ROR 
-36/8E8E: 4A        LSR 
-36/8E8F: 25 5A     AND $5A
-36/8E91: 4A        LSR 
-36/8E92: 2A        ROL 
-36/8E93: 05 75     ORA $75
-36/8E95: F0 BA     BEQ $8E51
-36/8E97: F1 0A     SBC ($0A),Y
-36/8E99: 2A        ROL 
-36/8E9A: 75 45     ADC $45,X
-36/8E9C: 65 F0     ADC $F0
-36/8E9E: BA        TSX 
-36/8E9F: F1 1A     SBC ($1A),Y
-36/8EA1: 2A        ROL 
-36/8EA2: 65 25     ADC $25
-36/8EA4: F2        --- 
-36/8EA5: 25 F1     AND $F1
-36/8EA7: 95 75     STA $75,X
-36/8EA9: 4A        LSR 
-36/8EAA: 7A        --- 
-36/8EAB: AA        TAX 
-36/8EAC: 95 75     STA $75,X
-36/8EAE: 55 45     EOR $45,X
-36/8EB0: FB        --- 
-36/8EB1: 02        --- 
-36/8EB2: F0 B5     BEQ $8E69
-36/8EB4: F1 05     SBC ($05),Y
-36/8EB6: 25 55     AND $55
-36/8EB8: 05 25     ORA $25
-36/8EBA: 45 75     EOR $75
-36/8EBC: FC        --- 
-36/8EBD: B2        --- 
-36/8EBE: 8E 25 45  STX $4525
-36/8EC1: 55 65     EOR $65,X
-36/8EC3: 75 45     ADC $45,X
-36/8EC5: 05 F0     ORA $F0
-36/8EC7: B5 93     LDA $93,X
-36/8EC9: B8        CLV 
-36/8ECA: F1 03     SBC ($03),Y
-36/8ECC: 28        PLP 
-36/8ECD: 33        --- 
-36/8ECE: 48        PHA 
-36/8ECF: 65 35     ADC $35
-36/8ED1: FE 25 8E  INC $8E25,X
-36/8ED4: FB        --- 
-36/8ED5: 02        --- 
-36/8ED6: F1 48     SBC ($48),Y
-36/8ED8: C8        INY 
-36/8ED9: F0 B5     BEQ $8E90
-36/8EDB: F1 48     SBC ($48),Y
-36/8EDD: C8        INY 
-36/8EDE: F0 B5     BEQ $8E95
-36/8EE0: F1 38     SBC ($38),Y
-36/8EE2: C8        INY 
-36/8EE3: F0 A5     BEQ $8E8A
-36/8EE5: F1 38     SBC ($38),Y
-36/8EE7: C8        INY 
-36/8EE8: F0 A5     BEQ $8E8F
-36/8EEA: 95 F1     STA $F1,X
-36/8EEC: 9A        TXS 
-36/8EED: 4A        LSR 
-36/8EEE: 1A        --- 
-36/8EEF: F0 BA     BEQ $8EAB
-36/8EF1: CA        DEX 
-36/8EF2: BA        TSX 
-36/8EF3: CA        DEX 
-36/8EF4: F1 B7     SBC ($B7),Y
-36/8EF6: F0 95     BEQ $8E8D
-36/8EF8: F1 9A     SBC ($9A),Y
-36/8EFA: 4A        LSR 
-36/8EFB: 1A        --- 
-36/8EFC: F0 BA     BEQ $8EB8
-36/8EFE: CA        DEX 
-36/8EFF: BA        TSX 
-36/8F00: CA        DEX 
-36/8F01: F1 B7     SBC ($B7),Y
-36/8F03: FC        --- 
-36/8F04: D6 8E     DEC $8E,X
-36/8F06: FB        --- 
-36/8F07: 02        --- 
-36/8F08: 17        --- 
-36/8F09: CA        DEX 
-36/8F0A: 17        --- 
-36/8F0B: CA        DEX 
-36/8F0C: 1A        --- 
-36/8F0D: CA        DEX 
-36/8F0E: 1A        --- 
-36/8F0F: CA        DEX 
-36/8F10: 1A        --- 
-36/8F11: CA        DEX 
-36/8F12: FC        --- 
-36/8F13: 08        PHP 
-36/8F14: 8F        --- 
-36/8F15: 68        PLA 
-36/8F16: C8        INY 
-36/8F17: 15 68     ORA $68,X
-36/8F19: C8        INY 
-36/8F1A: 15 58     ORA $58,X
-36/8F1C: C8        INY 
-36/8F1D: 05 58     ORA $58
-36/8F1F: C8        INY 
-36/8F20: 05 47     ORA $47
-36/8F22: CA        DEX 
-36/8F23: 47        --- 
-36/8F24: CA        DEX 
-36/8F25: 2A        ROL 
-36/8F26: CA        DEX 
-36/8F27: 2A        ROL 
-36/8F28: CA        DEX 
-36/8F29: 27        --- 
-36/8F2A: 47        --- 
-36/8F2B: CA        DEX 
-36/8F2C: 47        --- 
-36/8F2D: CA        DEX 
-36/8F2E: 5A        --- 
-36/8F2F: CA        DEX 
-36/8F30: 5A        --- 
-36/8F31: CA        DEX 
-36/8F32: 57        --- 
-36/8F33: 78        SEI 
-36/8F34: C8        INY 
-36/8F35: 25 78     AND $78
-36/8F37: C8        INY 
-36/8F38: F0 B5     BEQ $8EEF
-36/8F3A: F1 68     SBC ($68),Y
-36/8F3C: C8        INY 
-36/8F3D: 25 68     AND $68
-36/8F3F: C8        INY 
-36/8F40: F0 B5     BEQ $8EF7
-36/8F42: F1 58     SBC ($58),Y
-36/8F44: C8        INY 
-36/8F45: F0 B5     BEQ $8EFC
-36/8F47: F1 18     SBC ($18),Y
-36/8F49: C8        INY 
-36/8F4A: 95 25     STA $25,X
-36/8F4C: 45 55     EOR $55
-36/8F4E: 65 FB     ADC $FB
-36/8F50: 04        --- 
-36/8F51: 75 DA     ADC $DA,X
-36/8F53: CA        DEX 
-36/8F54: 7C        --- 
-36/8F55: CC 75 D7  CPY $D775
-36/8F58: CA        DEX 
-36/8F59: FC        --- 
-36/8F5A: 51 8F     EOR ($8F),Y
-36/8F5C: 27        --- 
-36/8F5D: CA        DEX 
-36/8F5E: 27        --- 
-36/8F5F: CA        DEX 
-36/8F60: 27        --- 
-36/8F61: CA        DEX 
-36/8F62: 27        --- 
-36/8F63: CA        DEX 
-36/8F64: 07        --- 
-36/8F65: CA        DEX 
-36/8F66: 07        --- 
-36/8F67: CA        DEX 
-36/8F68: 07        --- 
-36/8F69: CA        DEX 
-36/8F6A: 07        --- 
-36/8F6B: CA        DEX 
-36/8F6C: F0 B1     BEQ $8F1F
-36/8F6E: F1 35     SBC ($35),Y
-36/8F70: 62        --- 
-36/8F71: F0 B2     BEQ $8F25
-36/8F73: FE D4 8E  INC $8ED4,X
-
-36/8F76: 80        --- 
-36/8F77: 8F        --- 
-36/8F78: E6 8F     INC $8F
-36/8F7A: 43        --- 
-36/8F7B: 90 FF     BCC $8F7C
-36/8F7D: FF        --- 
-36/8F7E: FF        --- 
-36/8F7F: FF        --- 
-36/8F80: E0 6E     CPX #$6E
-36/8F82: F7        --- 
-36/8F83: 0E 01 EB  ASL $EB01
-36/8F86: F1 BD     SBC ($BD),Y
-36/8F88: F2        --- 
-36/8F89: 1D 3D 4D  ORA $4D3D,X
-36/8F8C: 6C 7C 9C  JMP ($9C7C)
-36/8F8F: FB        --- 
-36/8F90: 02        --- 
-36/8F91: B0 D2     BCS $8F65
-36/8F93: 98        TYA 
-36/8F94: 78        SEI 
-36/8F95: 68        PLA 
-36/8F96: B8        CLV 
-36/8F97: 40        RTI 
-36/8F98: D2        --- 
-36/8F99: 68        PLA 
-36/8F9A: 78        SEI 
-36/8F9B: 68        PLA 
-36/8F9C: 28        PLP 
-36/8F9D: F1 B2     SBC ($B2),Y
-36/8F9F: F2        --- 
-36/8FA0: B5 95     LDA $95,X
-36/8FA2: F3        --- 
-36/8FA3: 22        --- 
-36/8FA4: F2        --- 
-36/8FA5: B5 95     LDA $95,X
-36/8FA7: FD B8 8F  SBC $8FB8,X
-36/8FAA: B0 C1     BCS $8F6D
-36/8FAC: F1 BD     SBC ($BD),Y
-36/8FAE: F2        --- 
-36/8FAF: 1D 3D 4D  ORA $4D3D,X
-36/8FB2: 6C 7C 9C  JMP ($9C7C)
-36/8FB5: FC        --- 
-36/8FB6: 91 8F     STA ($8F),Y
-36/8FB8: 72        --- 
-36/8FB9: 95 75     STA $75,X
-36/8FBB: 61 F1     ADC ($F1,X)
-36/8FBD: B5 F2     LDA $F2,X
-36/8FBF: 72        --- 
-36/8FC0: 55 45     EOR $45,X
-36/8FC2: 32        --- 
-36/8FC3: F1 B2     SBC ($B2),Y
-36/8FC5: F2        --- 
-36/8FC6: 52        --- 
-36/8FC7: 45 25     EOR $25
-36/8FC9: 11 F1     ORA ($F1),Y
-36/8FCB: 95 F2     STA $F2,X
-36/8FCD: 42        --- 
-36/8FCE: 35 15     AND $15,X
-36/8FD0: 05 F1     ORA $F1
-36/8FD2: 85 F2     STA $F2
-36/8FD4: 05 15     ORA $15
-36/8FD6: 30 F1     BMI $8FC9
-36/8FD8: B2        --- 
-36/8FD9: D8        CLD 
-36/8FDA: C8        INY 
-36/8FDB: BD F2 1D  LDA $1DF2,X
-36/8FDE: 3D 4D 6C  AND $6C4D,X
-36/8FE1: 7C        --- 
-36/8FE2: 9C        --- 
-36/8FE3: FE 8F 8F  INC $8F8F,X
-36/8FE6: F7        --- 
-36/8FE7: 0E 02 E5  ASL $E502
-36/8FEA: CB        --- 
-36/8FEB: F1 BD     SBC ($BD),Y
-36/8FED: F2        --- 
-36/8FEE: 1D 3D 4D  ORA $4D3D,X
-36/8FF1: 6C 7C 9C  JMP ($9C7C)
-36/8FF4: FB        --- 
-36/8FF5: 02        --- 
-36/8FF6: B0 D2     BCS $8FCA
-36/8FF8: 98        TYA 
-36/8FF9: 78        SEI 
-36/8FFA: 68        PLA 
-36/8FFB: B8        CLV 
-36/8FFC: 40        RTI 
-36/8FFD: D2        --- 
-36/8FFE: 68        PLA 
-36/8FFF: 78        SEI 
-36/9000: 68        PLA 
-36/9001: 28        PLP 
-36/9002: F1 B2     SBC ($B2),Y
-36/9004: F2        --- 
-36/9005: B5 95     LDA $95,X
-36/9007: F3        --- 
-36/9008: 22        --- 
-36/9009: F2        --- 
-36/900A: B5 95     LDA $95,X
-36/900C: FD 1D 90  SBC $901D,X
-36/900F: B0 C1     BCS $8FD2
-36/9011: F1 BD     SBC ($BD),Y
-36/9013: F2        --- 
-36/9014: 1D 3D 4D  ORA $4D3D,X
-36/9017: 6C 7C 9C  JMP ($9C7C)
-36/901A: FC        --- 
-36/901B: F6 8F     INC $8F,X
-36/901D: 72        --- 
-36/901E: 95 75     STA $75,X
-36/9020: 61 C6     ADC ($C6,X)
-36/9022: E6 F1     INC $F1
-36/9024: A2 95     LDX #$95
-36/9026: 75 60     ADC $60,X
-36/9028: 92        --- 
-36/9029: 75 55     ADC $55,X
-36/902B: 40        RTI 
-36/902C: 82        --- 
-36/902D: 65 45     ADC $45
-36/902F: 35 05     AND $05,X
-36/9031: 35 45     AND $45,X
-36/9033: 60        RTS 
-36/9034: 31 CB     AND ($CB),Y
-36/9036: E5 F1     SBC $F1
-36/9038: BD F2 1D  LDA $1DF2,X
-36/903B: 3D 4D 6C  AND $6C4D,X
-36/903E: 7C        --- 
-36/903F: 9C        --- 
-36/9040: FE F4 8F  INC $8FF4,X
-36/9043: C5 FB     CMP $FB
-36/9045: 02        --- 
-36/9046: F1 48     SBC ($48),Y
-36/9048: B8        CLV 
-36/9049: F2        --- 
-36/904A: 48        PHA 
-36/904B: 68        PLA 
-36/904C: 78        SEI 
-36/904D: B8        CLV 
-36/904E: F3        --- 
-36/904F: 48        PHA 
-36/9050: 78        SEI 
-36/9051: F1 28     SBC ($28),Y
-36/9053: 98        TYA 
-36/9054: F2        --- 
-36/9055: 28        PLP 
-36/9056: 48        PHA 
-36/9057: 68        PLA 
-36/9058: 98        TYA 
-36/9059: F3        --- 
-36/905A: 28        PLP 
-36/905B: 68        PLA 
-36/905C: F1 08     SBC ($08),Y
-36/905E: 78        SEI 
-36/905F: F2        --- 
-36/9060: 08        PHP 
-36/9061: 28        PLP 
-36/9062: 48        PHA 
-36/9063: 78        SEI 
-36/9064: F3        --- 
-36/9065: 08        PHP 
-36/9066: 48        PHA 
-36/9067: F1 28     SBC ($28),Y
-36/9069: 98        TYA 
-36/906A: F2        --- 
-36/906B: 28        PLP 
-36/906C: 48        PHA 
-36/906D: 68        PLA 
-36/906E: 98        TYA 
-36/906F: F3        --- 
-36/9070: 28        PLP 
-36/9071: 68        PLA 
-36/9072: F1 08     SBC ($08),Y
-36/9074: 78        SEI 
-36/9075: F2        --- 
-36/9076: 08        PHP 
-36/9077: 28        PLP 
-36/9078: 48        PHA 
-36/9079: 78        SEI 
-36/907A: F3        --- 
-36/907B: 08        PHP 
-36/907C: 48        PHA 
-36/907D: FD A7 90  SBC $90A7,X
-36/9080: F0 B8     BEQ $903A
-36/9082: F1 68     SBC ($68),Y
-36/9084: B8        CLV 
-36/9085: F2        --- 
-36/9086: 18        CLC 
-36/9087: 28        PLP 
-36/9088: 68        PLA 
-36/9089: B8        CLV 
-36/908A: F3        --- 
-36/908B: 28        PLP 
-36/908C: F0 98     BEQ $9026
-36/908E: F1 48     SBC ($48),Y
-36/9090: 98        TYA 
-36/9091: B8        CLV 
-36/9092: F2        --- 
-36/9093: 08        PHP 
-36/9094: 48        PHA 
-36/9095: 98        TYA 
-36/9096: F3        --- 
-36/9097: 08        PHP 
-36/9098: F0 B8     BEQ $9052
-36/909A: F1 68     SBC ($68),Y
-36/909C: B8        CLV 
-36/909D: F2        --- 
-36/909E: 18        CLC 
-36/909F: 38        SEC 
-36/90A0: 68        PLA 
-36/90A1: B8        CLV 
-36/90A2: F3        --- 
-36/90A3: 38        SEC 
-36/90A4: FC        --- 
-36/90A5: 46 90     LSR $90
-36/90A7: F1 58     SBC ($58),Y
-36/90A9: 98        TYA 
-36/90AA: F2        --- 
-36/90AB: 08        PHP 
-36/90AC: 58        CLI 
-36/90AD: 78        SEI 
-36/90AE: 98        TYA 
-36/90AF: F3        --- 
-36/90B0: 08        PHP 
-36/90B1: 58        CLI 
-36/90B2: F0 A8     BEQ $905C
-36/90B4: F1 58     SBC ($58),Y
-36/90B6: A8        TAY 
-36/90B7: F2        --- 
-36/90B8: 08        PHP 
-36/90B9: 28        PLP 
-36/90BA: 58        CLI 
-36/90BB: A8        TAY 
-36/90BC: F3        --- 
-36/90BD: 28        PLP 
-36/90BE: F0 B8     BEQ $9078
-36/90C0: F1 68     SBC ($68),Y
-36/90C2: B8        CLV 
-36/90C3: F2        --- 
-36/90C4: 18        CLC 
-36/90C5: 38        SEC 
-36/90C6: 68        PLA 
-36/90C7: B8        CLV 
-36/90C8: F3        --- 
-36/90C9: 38        SEC 
-36/90CA: F0 A8     BEQ $9074
-36/90CC: F1 58     SBC ($58),Y
-36/90CE: A8        TAY 
-36/90CF: F2        --- 
-36/90D0: 28        PLP 
-36/90D1: 58        CLI 
-36/90D2: 28        PLP 
-36/90D3: F1 A8     SBC ($A8),Y
-36/90D5: 58        CLI 
-36/90D6: F0 B8     BEQ $9090
-36/90D8: F1 68     SBC ($68),Y
-36/90DA: B8        CLV 
-36/90DB: F2        --- 
-36/90DC: 38        SEC 
-36/90DD: 68        PLA 
-36/90DE: 38        SEC 
-36/90DF: F1 B8     SBC ($B8),Y
-36/90E1: 68        PLA 
-36/90E2: 28        PLP 
-36/90E3: 98        TYA 
-36/90E4: F2        --- 
-36/90E5: 28        PLP 
-36/90E6: 58        CLI 
-36/90E7: 98        TYA 
-36/90E8: 58        CLI 
-36/90E9: 28        PLP 
-36/90EA: F1 98     SBC ($98),Y
-36/90EC: F0 98     BEQ $9086
-36/90EE: F1 48     SBC ($48),Y
-36/90F0: 98        TYA 
-36/90F1: F2        --- 
-36/90F2: 18        CLC 
-36/90F3: 48        PHA 
-36/90F4: 18        CLC 
-36/90F5: F1 98     SBC ($98),Y
-36/90F7: 48        PHA 
-36/90F8: 18        CLC 
-36/90F9: 88        DEY 
-36/90FA: F2        --- 
-36/90FB: 18        CLC 
-36/90FC: 48        PHA 
-36/90FD: 88        DEY 
-36/90FE: 48        PHA 
-36/90FF: 18        CLC 
-36/9100: F1 88     SBC ($88),Y
-36/9102: F0 88     BEQ $908C
-36/9104: F1 38     SBC ($38),Y
-36/9106: 88        DEY 
-36/9107: F2        --- 
-36/9108: 08        PHP 
-36/9109: 38        SEC 
-36/910A: 08        PHP 
-36/910B: F1 88     SBC ($88),Y
-36/910D: 38        SEC 
-36/910E: F0 B8     BEQ $90C8
-36/9110: F1 68     SBC ($68),Y
-36/9112: B8        CLV 
-36/9113: F2        --- 
-36/9114: 38        SEC 
-36/9115: 68        PLA 
-36/9116: 38        SEC 
-36/9117: F1 B8     SBC ($B8),Y
-36/9119: 68        PLA 
-36/911A: F2        --- 
-36/911B: B8        CLV 
-36/911C: 68        PLA 
-36/911D: 38        SEC 
-36/911E: F1 B8     SBC ($B8),Y
-36/9120: 98        TYA 
-36/9121: 68        PLA 
-36/9122: 38        SEC 
-36/9123: F0 B8     BEQ $90DD
-36/9125: FE 44 90  INC $9044,X
-
-36/9128: 32        --- 
-36/9129: 91 3B     STA ($3B),Y
-36/912B: 91 FF     STA ($FF),Y
-36/912D: FF        --- 
-36/912E: 40        RTI 
-36/912F: 91 FF     STA ($FF),Y
-36/9131: FF        --- 
-36/9132: F6 1A     INC $1A,X
-36/9134: FF        --- 
-36/9135: F8        SED 
-36/9136: C4 F4     CPY $F4
-36/9138: 90 D5     BCC $910F
-36/913A: FF        --- 
-36/913B: E7        --- 
-36/913C: C6 FE     DEC $FE
-36/913E: 32        --- 
-36/913F: 91 F5     STA ($F5),Y
-36/9141: 1B        --- 
-36/9142: FF        --- 
-36/9143: F0 C0     BEQ $9105
-36/9145: C2        --- 
-36/9146: 09 FF     ORA #$FF
-
-36/9148: 52        --- 
-36/9149: 91 6B     STA ($6B),Y
-36/914B: 91 82     STA ($82),Y
-36/914D: 91 8C     STA ($8C),Y
-36/914F: 91 FF     STA ($FF),Y
-36/9151: FF        --- 
-36/9152: F5 19     SBC $19,X
-36/9154: FF        --- 
-36/9155: F8        SED 
-36/9156: 8F        --- 
-36/9157: F2        --- 
-36/9158: E6 04     INC $04
-36/915A: E7        --- 
-36/915B: 04        --- 
-36/915C: E8        INX 
-36/915D: 04        --- 
-36/915E: E9 04     SBC #$04
-36/9160: EA        NOP 
-36/9161: 04        --- 
-36/9162: EB        --- 
-36/9163: 04        --- 
-36/9164: EC 04 ED  CPX $ED04
-36/9167: 04        --- 
-36/9168: EE 04 FF  INC $FF04
-36/916B: F5 19     SBC $19,X
-36/916D: FF        --- 
-36/916E: F8        SED 
-36/916F: 8F        --- 
-36/9170: F2        --- 
-36/9171: E7        --- 
-36/9172: 14        --- 
-36/9173: E8        INX 
-36/9174: 14        --- 
-36/9175: E9 14     SBC #$14
-36/9177: EA        NOP 
-36/9178: 14        --- 
-36/9179: EB        --- 
-36/917A: 14        --- 
-36/917B: EC 14 ED  CPX $ED14
-36/917E: 14        --- 
-36/917F: EE 14 FF  INC $FF14
-36/9182: F4        --- 
-36/9183: C2        --- 
-36/9184: 04        --- 
-36/9185: C2        --- 
-36/9186: 0B        --- 
-36/9187: C7        --- 
-36/9188: 02        --- 
-36/9189: C2        --- 
-36/918A: 04        --- 
-36/918B: FF        --- 
-36/918C: F5 16     SBC $16,X
-36/918E: FF        --- 
-36/918F: F0 20     BEQ $91B1
-36/9191: 10 00     BPL $9193
-36/9193: EF        --- 
-36/9194: 55 92     EOR $92,X
-36/9196: F5 0B     SBC $0B,X
-36/9198: FF        --- 
-36/9199: 90 D0     BCC $916B
-36/919B: FF        --- 
-36/919C: A6 91     LDX $91
-36/919E: B4 91     LDY $91,X
-36/91A0: FF        --- 
-36/91A1: FF        --- 
-36/91A2: B9 91 FF  LDA $FF91,Y
-36/91A5: FF        --- 
-36/91A6: F7        --- 
-36/91A7: 1D 0B F4  ORA $F40B,X
-36/91AA: 48        PHA 
-36/91AB: AB        --- 
-36/91AC: 06 48     ASL $48
-36/91AE: AB        --- 
-36/91AF: 06 48     ASL $48
-36/91B1: AB        --- 
-36/91B2: 06 FF     ASL $FF
-36/91B4: CC E7 FE  CPY $FEE7
-36/91B7: A6 91     LDX $91
-36/91B9: F5 15     SBC $15,X
-36/91BB: FF        --- 
-36/91BC: EF        --- 
-36/91BD: B5 95     LDA $95,X
-36/91BF: 75 A5     ADC $A5,X
-36/91C1: 85 FF     STA $FF
-36/91C3: CD 91 DA  CMP $DA91
-36/91C6: 91 E5     STA ($E5),Y
-36/91C8: 91 F0     STA ($F0),Y
-36/91CA: 91 FF     STA ($FF),Y
-36/91CC: FF        --- 
-36/91CD: F6 1E     INC $1E,X
-36/91CF: 0C        --- 
-36/91D0: F4 CE 58 C9 53 CE 58 C9 53 FF F6 1E
-36/91DC: 0C        --- 
-36/91DD: F3        --- 
-36/91DE: EB        --- 
-36/91DF: 13        --- 
-36/91E0: DB        --- 
-36/91E1: C5 13     CMP $13
-36/91E3: DB        --- 
-36/91E4: FF        --- 
-36/91E5: F5 FF     SBC $FF,X
-36/91E7: 0C        --- 
-36/91E8: F4        --- 
-36/91E9: CC 25 24  CPY $2425
-36/91EC: CC 25 24  CPY $2425
-36/91EF: FF        --- 
-36/91F0: F5 14     SBC $14,X
-36/91F2: FF        --- 
-36/91F3: EF        --- 
-36/91F4: FB        --- 
-36/91F5: 02        --- 
-36/91F6: 89        --- 
-36/91F7: 89        --- 
-36/91F8: 69 69     ADC #$69
-36/91FA: 49 A9     EOR #$A9
-36/91FC: 99 FC F6  STA $F6FC,Y
-36/91FF: 91 FF     STA ($FF),Y
-36/9201: 0B        --- 
-36/9202: 92        --- 
-36/9203: 15 92     ORA $92,X
-36/9205: FF        --- 
-36/9206: FF        --- 
-36/9207: FF        --- 
-36/9208: FF        --- 
-36/9209: FF        --- 
-36/920A: FF        --- 
-36/920B: F7        --- 
-36/920C: 1C        --- 
-36/920D: FF        --- 
-36/920E: F8        SED 
-36/920F: B5 F2     LDA $F2,X
-36/9211: 54        --- 
-36/9212: 43        --- 
-36/9213: 32        --- 
-36/9214: FF        --- 
-36/9215: F7        --- 
-36/9216: 1C        --- 
-36/9217: FF        --- 
-36/9218: F8        SED 
-36/9219: B5 F1     LDA $F1,X
-36/921B: 14        --- 
-36/921C: 03        --- 
-36/921D: F0 B2     BEQ $91D1
-36/921F: FF        --- 
-36/9220: 2A        ROL 
-36/9221: 92        --- 
-36/9222: 2C 92 FF  BIT $FF92
-36/9225: FF        --- 
-36/9226: 3D 92 FF  AND $FF92,X
-36/9229: FF        --- 
-36/922A: EB        --- 
-36/922B: C9 F5     CMP #$F5
-36/922D: 24 FF     BIT $FF
-36/922F: F8        SED 
-36/9230: B5 F1     LDA $F1,X
-36/9232: 2A        ROL 
-36/9233: F2        --- 
-36/9234: 25 F1     AND $F1
-36/9236: 2A        ROL 
-36/9237: F2        --- 
-36/9238: 25 C1     AND $C1
-36/923A: FE 31 92  INC $9231,X
-36/923D: EA        NOP 
-36/923E: F5 1A     SBC $1A,X
-36/9240: FF        --- 
-36/9241: F0 0B     BEQ $924E
-36/9243: EF        --- 
-36/9244: 6D 2A C8  ADC $C82A
-36/9247: FE 41 92  INC $9241,X
-
-36/924A:           .DW $9254,$92BD,$FFFF,$FFFF,$FFFF
-
-36/9254: E0 5F     CPX #$5F
-36/9256: EB        --- 
-36/9257: F6 02     INC $02,X
-36/9259: FF        --- 
-36/925A: FB        --- 
-36/925B: 02        --- 
-36/925C: F0 5B     BEQ $92B9
-36/925E: 8B        --- 
-36/925F: BB        --- 
-36/9260: F1 3B     SBC ($3B),Y
-36/9262: 5B        --- 
-36/9263: 8B        --- 
-36/9264: BB        --- 
-36/9265: F2        --- 
-36/9266: 3B        --- 
-36/9267: 5B        --- 
-36/9268: 8B        --- 
-36/9269: BB        --- 
-36/926A: F3        --- 
-36/926B: 3B        --- 
-36/926C: F3        --- 
-36/926D: 5B        --- 
-36/926E: 8B        --- 
-36/926F: BB        --- 
-36/9270: F4        --- 
-36/9271: 3B        --- 
-36/9272: F0 2B     BEQ $929F
-36/9274: 6B        --- 
-36/9275: 8B        --- 
-36/9276: F1 1B     SBC ($1B),Y
-36/9278: 2B        --- 
-36/9279: 6B        --- 
-36/927A: 8B        --- 
-36/927B: BB        --- 
-36/927C: F2        --- 
-36/927D: 2B        --- 
-36/927E: 6B        --- 
-36/927F: 8B        --- 
-36/9280: F3        --- 
-36/9281: 1B        --- 
-36/9282: 2B        --- 
-36/9283: 6B        --- 
-36/9284: 8B        --- 
-36/9285: BB        --- 
-36/9286: FC        --- 
-36/9287: 5C        --- 
-36/9288: 92        --- 
-36/9289: FB        --- 
-36/928A: 02        --- 
-36/928B: F0 9B     BEQ $9228
-36/928D: F1 0B     SBC ($0B),Y
-36/928F: 4B        --- 
-36/9290: 6B        --- 
-36/9291: 9B        --- 
-36/9292: F2        --- 
-36/9293: 0B        --- 
-36/9294: 4B        --- 
-36/9295: 6B        --- 
-36/9296: 9B        --- 
-36/9297: F3        --- 
-36/9298: 0B        --- 
-36/9299: 4B        --- 
-36/929A: 6B        --- 
-36/929B: F3        --- 
-36/929C: 9B        --- 
-36/929D: F4        --- 
-36/929E: 0B        --- 
-36/929F: 4B        --- 
-36/92A0: 6B        --- 
-36/92A1: F0 8B     BEQ $922E
-36/92A3: BB        --- 
-36/92A4: F1 2B     SBC ($2B),Y
-36/92A6: 6B        --- 
-36/92A7: 8B        --- 
-36/92A8: BB        --- 
-36/92A9: F2        --- 
-36/92AA: 2B        --- 
-36/92AB: 6B        --- 
-36/92AC: 8B        --- 
-36/92AD: BB        --- 
-36/92AE: F3        --- 
-36/92AF: 2B        --- 
-36/92B0: 6B        --- 
-36/92B1: F3        --- 
-36/92B2: 8B        --- 
-36/92B3: BB        --- 
-36/92B4: F4        --- 
-36/92B5: 2B        --- 
-36/92B6: 6B        --- 
-36/92B7: FC        --- 
-36/92B8: 928B        --- 
-36/92B9:         --- 
-36/92BA: FE 5A 92  INC $925A,X
-36/92BD: F6 02     INC $02,X
-36/92BF: 00        BRK 
-36/92C0: E5 C8     SBC $C8
-36/92C2: FE 
-36/92C3: 925A
+...
 
 ; pointers to sound effects
 36/92C5: 9387 939A 93A8 93C2 93CC 93DF 93EC 93FF
@@ -31566,1178 +30303,24 @@
 36/93CA: 12
 36/93CB: FF
 
-; sound effect 4
-
-36/93CC: FF        --- 
-36/93CD: FF        --- 
-36/93CE: D0 93     BNE $9363
-36/93D0: F5 18     SBC $18,X
-36/93D2: FF        --- 
-36/93D3: EF        --- 
-36/93D4: 82        --- 
-36/93D5: D8        CLD 
-36/93D6: F5 15     SBC $15,X
-36/93D8: FF        --- 
-36/93D9: 82        --- 
-36/93DA: D8        CLD 
-36/93DB: C2        --- 
-36/93DC: FE D0 93  INC $93D0,X
-36/93DF: E3        --- 
-36/93E0: 93        --- 
-36/93E1: FF        --- 
-36/93E2: FF        --- 
-36/93E3: EB        --- 
-36/93E4: F6 10     INC $10,X
-36/93E6: FF        --- 
-36/93E7: F8        SED 
-36/93E8: 9A        TXS 
-36/93E9: F2        --- 
-36/93EA: 95 FF     STA $FF,X
-36/93EC: F0 93     BEQ $9381
-36/93EE: FF        --- 
-36/93EF: FF        --- 
-36/93F0: F2        --- 
-36/93F1: FB        --- 
-36/93F2: 06 F7     ASL $F7
-36/93F4: 16 FF     ASL $FF,X
-36/93F6: 9F        --- 
-36/93F7: F6 16     INC $16,X
-36/93F9: FF        --- 
-36/93FA: 9F        --- 
-36/93FB: FC        --- 
-36/93FC: F3        --- 
-36/93FD: 93        --- 
-36/93FE: FF        --- 
-36/93FF: 03        --- 
-36/9400: 94 0B     STY $0B,X
-36/9402: 94 F6     STY $F6,X
-36/9404: 1C        --- 
-36/9405: FF        --- 
-36/9406: F8        SED 
-36/9407: 8C EF 01  STY $01EF
-36/940A: FF        --- 
-36/940B: F5 18     SBC $18,X
-36/940D: FF        --- 
-36/940E: EF        --- 
-36/940F: 51 FF     EOR ($FF),Y
-36/9411: 15 94     ORA $94,X
-36/9413: FF        --- 
-36/9414: FF        --- 
-36/9415: F6 22     INC $22,X
-36/9417: FF        --- 
-36/9418: F8        SED 
-36/9419: F9 F2 B8  SBC $B8F2,Y
-36/941C: A8        TAY 
-36/941D: 98        TYA 
-36/941E: 87        --- 
-36/941F: FF        --- 
-36/9420: 24 94     BIT $94
-36/9422: FF        --- 
-36/9423: FF        --- 
-36/9424: F7        --- 
-36/9425: 1D 0B F4  ORA $F40B,X
-36/9428: 0B        --- 
-36/9429: 6B        --- 
-36/942A: B5 FF     LDA $FF,X
-36/942C: FF        --- 
-36/942D: FF        --- 
-36/942E: 30 94     BMI $93C4
-36/9430: F5 15     SBC $15,X
-36/9432: FF        --- 
-36/9433: FB        --- 
-36/9434: 03        --- 
-36/9435: EF        --- 
-36/9436: BF        --- 
-36/9437: 3F        --- 
-36/9438: BE F0 1E  LDX $1EF0,Y
-36/943B: 09 FC     ORA #$FC
-36/943D: 35 94     AND $94,X
-36/943F: FF        --- 
-36/9440: 44        --- 
-36/9441: 94 FF     STY $FF,X
-36/9443: FF        --- 
-36/9444: F7        --- 
-36/9445: 1D 0B F3  ORA $F30B,X
-36/9448: 0C        --- 
-36/9449: 2C 4C 6C  BIT $6C4C
-36/944C: 8C A5 FF  STY $FFA5
-36/944F: 53        --- 
-36/9450: 94 5B     STY $5B,X
-36/9452: 94 F7     STY $F7,X
-36/9454: 1C        --- 
-36/9455: FF        --- 
-36/9456: F8        SED 
-36/9457: B5 F3     LDA $F3,X
-36/9459: 04        --- 
-36/945A: FF        --- 
-36/945B: F5 15     SBC $15,X
-36/945D: FF        --- 
-36/945E: C4 EF     CPY $EF
-36/9460: 3C        --- 
-36/9461: 16 FF     ASL $FF,X
-36/9463: 67        --- 
-36/9464: 94 76     STY $76,X
-36/9466: 94 F7     STY $F7,X
-36/9468: 1F        --- 
-36/9469: FF        --- 
-36/946A: F8        SED 
-36/946B: BD F2 01  LDA $01F2,X
-36/946E: F7        --- 
-36/946F: 21 FF     AND ($FF,X)
-36/9471: F8        SED 
-36/9472: B5 32     LDA $32,X
-36/9474: D8        CLD 
-36/9475: FF        --- 
-36/9476: EA        NOP 
-36/9477: F5 20     SBC $20,X
-36/9479: FF        --- 
-36/947A: EF        --- 
-36/947B: C1 52     CMP ($52,X)
-36/947D: D8        CLD 
-36/947E: FF        --- 
-36/947F: 83        --- 
-36/9480: 94 9A     STY $9A,X
-36/9482: 94 F5     STY $F5,X
-36/9484: 24 FF     BIT $FF
-36/9486: EF        --- 
-36/9487: E7        --- 
-36/9488: 61 E8     ADC ($E8,X)
-36/948A: 61 E9     ADC ($E9,X)
-36/948C: 61 EA     ADC ($EA,X)
-36/948E: 61 EB     ADC ($EB,X)
-36/9490: 61 EC     ADC ($EC,X)
-36/9492: 61 ED     ADC ($ED,X)
-36/9494: 61 EE     ADC ($EE,X)
-36/9496: 61 61     ADC ($61,X)
-36/9498: 61 FF     ADC ($FF,X)
-36/949A: F5 16     SBC $16,X
-36/949C: FF        --- 
-36/949D: F0 E7     BEQ $9486
-36/949F: 60        RTS 
-36/94A0: E8        INX 
-36/94A1: 60        RTS 
-36/94A2: E9 60     SBC #$60
-36/94A4: EA        NOP 
-36/94A5: 60        RTS 
-36/94A6: EB        --- 
-36/94A7: 60        RTS 
-36/94A8: EC 60 ED  CPX $ED60
-36/94AB: 60        RTS 
-36/94AC: EE 60 F5  INC $F560
-36/94AF: 0B        --- 
-36/94B0: FF        --- 
-36/94B1: 20 FF B7  JSR $B7FF
-36/94B4: 94 BE     STY $BE,X
-36/94B6: 94 F6     STY $F6,X
-36/94B8: 1E 0C F3  ASL $F30C,X
-36/94BB: 53        --- 
-36/94BC: DE FF EC  DEC $ECFF,X
-36/94BF: F5 1E     SBC $1E,X
-36/94C1: FF        --- 
-36/94C2: F1 83     SBC ($83),Y
-36/94C4: DE FF CA  DEC $CAFF,X
-36/94C7: 94 D3     STY $D3,X
-36/94C9: 94 F7     STY $F7,X
-36/94CB: 1C        --- 
-36/94CC: FF        --- 
-36/94CD: F8        SED 
-36/94CE: B5 F4     LDA $F4,X
-36/94D0: C3        --- 
-36/94D1: 82        --- 
-36/94D2: FF        --- 
-36/94D3: F5 1B     SBC $1B,X
-36/94D5: FF        --- 
-36/94D6: F0 2B     BEQ $9503
-36/94D8: 1B        --- 
-36/94D9: 01 48     ORA ($48,X)
-36/94DB: 11 FF     ORA ($FF),Y
-36/94DD: FF        --- 
-36/94DE: FF        --- 
-36/94DF: E1 94     SBC ($94,X)
-36/94E1: F5 1B     SBC $1B,X
-36/94E3: FF        --- 
-36/94E4: F2        --- 
-36/94E5: 02        --- 
-36/94E6: FF        --- 
-36/94E7: FF        --- 
-36/94E8: FF        --- 
-36/94E9: EB        --- 
-36/94EA: 94 F5     STY $F5,X
-36/94EC: 14        --- 
-36/94ED: FF        --- 
-36/94EE: EF        --- 
-36/94EF: 6B        --- 
-36/94F0: 7C        --- 
-36/94F1: FF        --- 
-36/94F2: F6 94     INC $94,X
-36/94F4: FF        --- 
-36/94F5: FF        --- 
-36/94F6: F5 25     SBC $25,X
-36/94F8: FF        --- 
-36/94F9: F8        SED 
-36/94FA: E4 F2     CPX $F2
-36/94FC: 02        --- 
-36/94FD: FF        --- 
-36/94FE: 02        --- 
-36/94FF: 95 FF     STA $FF,X
-36/9501: FF        --- 
-36/9502: F5 25     SBC $25,X
-36/9504: FF        --- 
-36/9505: F8        SED 
-36/9506: 9C        --- 
-36/9507: F1 02     SBC ($02),Y
-36/9509: FF        --- 
-36/950A: 0E 95 17  ASL $1795
-36/950D: 95 F5     STA $F5,X
-36/950F: 25 FF     AND $FF
-36/9511: F8        SED 
-36/9512: 9C        --- 
-36/9513: F3        --- 
-36/9514: 15 22     ORA $22,X
-36/9516: FF        --- 
-36/9517: F5 1B     SBC $1B,X
-36/9519: FF        --- 
-36/951A: EF        --- 
-36/951B: BD B5 BC  LDA $BCB5,X
-36/951E: B0 FF     BCS $951F
-36/9520: FF        --- 
-36/9521: FF        --- 
-36/9522: 24 95     BIT $95
-36/9524: F5 15     SBC $15,X
-36/9526: FF        --- 
-36/9527: E9 F1     SBC #$F1
-36/9529: AC 5E FF  LDY $FF5E
-36/952C: 30 95     BMI $94C3
-36/952E: FF        --- 
-36/952F: FF        --- 
-36/9530: F6 14     INC $14,X
-36/9532: FF        --- 
-36/9533: F2        --- 
-36/9534: 3C        --- 
-36/9535: 5C        --- 
-36/9536: 3C        --- 
-36/9537: 5C        --- 
-36/9538: AC FF 3E  LDY $3EFF
-36/953B: 95 FF     STA $FF,X
-36/953D: FF        --- 
-36/953E: F5 10     SBC $10,X
-36/9540: FF        --- 
-36/9541: F8        SED 
-36/9542: 9A        TXS 
-36/9543: F3        --- 
-36/9544: 95 FF     STA $FF,X
-36/9546: 4A        LSR 
-36/9547: 95 FF     STA $FF,X
-36/9549: FF        --- 
-36/954A: F5 19     SBC $19,X
-36/954C: FF        --- 
-36/954D: F0 12     BEQ $9561
-36/954F: FF        --- 
-36/9550: 54        --- 
-36/9551: 95 5A     STA $5A,X
-36/9553: 95 F6     STA $F6,X
-36/9555: 1B        --- 
-36/9556: FF        --- 
-36/9557: F3        --- 
-36/9558: B3        --- 
-36/9559: FF        --- 
-36/955A: F5 1B     SBC $1B,X
-36/955C: FF        --- 
-36/955D: F1 53     SBC ($53),Y
-36/955F: FF        --- 
-36/9560: FF        --- 
-36/9561: FF        --- 
-36/9562: 64        --- 
-36/9563: 95 F5     STA $F5,X
-36/9565: 1B        --- 
-36/9566: FF        --- 
-36/9567: F0 17     BEQ $9580
-36/9569: 12        --- 
-36/956A: FF        --- 
-36/956B: 6F        --- 
-36/956C: 95 79     STA $79,X
-36/956E: 95 F6     STA $F6,X
-36/9570: 1B        --- 
-36/9571: FF        --- 
-36/9572: F8        SED 
-36/9573: 9A        TXS 
-36/9574: F1 1B     SBC ($1B),Y
-36/9576: 2B        --- 
-36/9577: 30 FF     BMI $9578
-36/9579: F5 25     SBC $25,X
-36/957B: FF        --- 
-36/957C: EF        --- 
-36/957D: 36 FF     ROL $FF,X
-36/957F: 83        --- 
-36/9580: 95 FF     STA $FF,X
-36/9582: FF        --- 
-36/9583: F7        --- 
-36/9584: 19 0D F3  ORA $F30D,Y
-36/9587: 9B        --- 
-36/9588: 8C 73 9B  STY $9B73
-36/958B: 8C 70 FF  STY $FF70
-36/958E: 92        --- 
-36/958F: 95 FF     STA $FF,X
-36/9591: FF        --- 
-36/9592: F7        --- 
-36/9593: 15 FF     ORA $FF,X
-36/9595: F4        --- 
-36/9596: BC 51 FF  LDY $FF51,X
-36/9599: 9D 95 A8  STA $A895,X
-36/959C: 95 F7     STA $F7,X
-36/959E: 19 0D F0  ORA $F00D,Y
-36/95A1: 53        --- 
-36/95A2: F6 1B     INC $1B,X
-36/95A4: FF        --- 
-36/95A5: F4        --- 
-36/95A6: 60        RTS 
-36/95A7: FF        --- 
-36/95A8: EF        --- 
-36/95A9: C0 F5     CPY #$F5
-36/95AB: 25 FF     AND $FF
-36/95AD: 15 C6     ORA $C6,X
-36/95AF: F5 23     SBC $23,X
-36/95B1: FF        --- 
-36/95B2: B8        CLV 
-36/95B3: FF        --- 
-36/95B4: B8        CLV 
-36/95B5: 95 FF     STA $FF,X
-36/95B7: FF        --- 
-36/95B8: F7        --- 
-36/95B9: 15 FF     ORA $FF,X
-36/95BB: F4        --- 
-36/95BC: 0C        --- 
-36/95BD: 1C        --- 
-36/95BE: 2C 3C 4C  BIT $4C3C
-36/95C1: 71 FF     ADC ($FF),Y
-36/95C3: C7        --- 
-36/95C4: 95 CD     STA $CD,X
-36/95C6: 95 F7     STA $F7,X
-36/95C8: 19 0D F0  ORA $F00D,Y
-36/95CB: B0 FF     BCS $95CC
-36/95CD: F5 19     SBC $19,X
-36/95CF: FF        --- 
-36/95D0: F0 13     BEQ $95E5
-36/95D2: F5 1A     SBC $1A,X
-36/95D4: FF        --- 
-36/95D5: BB        --- 
-36/95D6: FF        --- 
-36/95D7: FF        --- 
-36/95D8: FF        --- 
-36/95D9: DB        --- 
-36/95DA: 95 F5     STA $F5,X
-36/95DC: 1B        --- 
-36/95DD: FF        --- 
-36/95DE: EF        --- 
-36/95DF: BA        TSX 
-36/95E0: A9 BA     LDA #$BA
-36/95E2: A9 BA     LDA #$BA
-36/95E4: A9 FF     LDA #$FF
-36/95E6: FF        --- 
-36/95E7: FF        --- 
-36/95E8: EA        NOP 
-36/95E9: 95 F5     STA $F5,X
-36/95EB: 18        CLC 
-36/95EC: FF        --- 
-36/95ED: F0 02     BEQ $95F1
-36/95EF: F5 16     SBC $16,X
-36/95F1: FF        --- 
-36/95F2: 00        BRK 
-36/95F3: F5 15     SBC $15,X
-36/95F5: FF        --- 
-36/95F6: 00        BRK 
-36/95F7: FF        --- 
-36/95F8: FC        --- 
-36/95F9: 95 FF     STA $FF,X
-36/95FB: FF        --- 
-36/95FC: F5 25     SBC $25,X
-36/95FE: FF        --- 
-36/95FF: F8        SED 
-36/9600: E4 F0     CPX $F0
-36/9602: 03        --- 
-36/9603: FF        --- 
-36/9604: FF        --- 
-36/9605: FF        --- 
-36/9606: 08        PHP 
-36/9607: 96 F5     STX $F5,Y
-36/9609: 24 FF     BIT $FF
-36/960B: EF        --- 
-36/960C: AB        --- 
-36/960D: CF        --- 
-36/960E: FE 0C 96  INC $960C,X
-36/9611: FF        --- 
-36/9612: FF        --- 
-36/9613: FF        --- 
-36/9614: 16 96     ASL $96,X
-36/9616: F5 23     SBC $23,X
-36/9618: FF        --- 
-36/9619: EF        --- 
-36/961A: AB        --- 
-36/961B: CF        --- 
-36/961C: FE 1A 96  INC $961A,X
-36/961F: FF        --- 
-36/9620: FF        --- 
-36/9621: FF        --- 
-36/9622: 24 96     BIT $96
-36/9624: F5 19     SBC $19,X
-36/9626: FF        --- 
-36/9627: F1 9D     SBC ($9D),Y
-36/9629: 6D CF FE  ADC $FECF
-36/962C: 28        PLP 
-36/962D: 96 FF     STX $FF,Y
-36/962F: FF        --- 
-36/9630: FF        --- 
-36/9631: 33        --- 
-36/9632: 96 EB     STX $EB,Y
-36/9634: F5 25     SBC $25,X
-36/9636: FF        --- 
-36/9637: F0 B8     BEQ $95F1
-36/9639: CF        --- 
-36/963A: FE 38 96  INC $9638,X
-36/963D: FF        --- 
-36/963E: 42        --- 
-36/963F: 96 4B     STX $4B,Y
-36/9641: 96 E9     STX $E9,Y
-36/9643: F5 25     SBC $25,X
-36/9645: FF        --- 
-36/9646: F8        SED 
-36/9647: E4 F2     CPX $F2
-36/9649: B5 FF     LDA $FF,X
-36/964B: F5 1B     SBC $1B,X
-36/964D: FF        --- 
-36/964E: E9 EF     SBC #$EF
-36/9650: C5 60     CMP $60
-36/9652: FF        --- 
-36/9653: 57        --- 
-36/9654: 96 62     STX $62,Y
-36/9656: 96 F5     STX $F5,Y
-36/9658: 25 FF     AND $FF
-36/965A: F8        SED 
-36/965B: E4 F1     CPX $F1
-36/965D: B5 B5     LDA $B5,X
-36/965F: B5 B5     LDA $B5,X
-36/9661: FF        --- 
-36/9662: F5 24     SBC $24,X
-36/9664: FF        --- 
-36/9665: F1 85     SBC ($85),Y
-36/9667: 85 85     STA $85
-36/9669: 85 B0     STA $B0
-36/966B: FF        --- 
-36/966C: FF        --- 
-36/966D: FF        --- 
-36/966E: 70 96     BVS $9606
-36/9670: F5 1B     SBC $1B,X
-36/9672: FF        --- 
-36/9673: F1 EB     SBC ($EB),Y
-36/9675: 33        --- 
-36/9676: DE E8 30  DEC $30E8,X
-36/9679: CB        --- 
-36/967A: FE 74 96  INC $9674,X
-36/967D: 81 96     STA ($96,X)
-36/967F: 8E 96 F5  STX $F596
-36/9682: 25 FF     AND $FF
-36/9684: F8        SED 
-36/9685: 9C        --- 
-36/9686: EF        --- 
-36/9687: 02        --- 
-36/9688: C5 F8     CMP $F8
-36/968A: E4 F2     CPX $F2
-36/968C: 00        BRK 
-36/968D: FF        --- 
-36/968E: F5 18     SBC $18,X
-36/9690: FF        --- 
-36/9691: F0 02     BEQ $9695
-36/9693: F5 25     SBC $25,X
-36/9695: FF        --- 
-36/9696: 05 F5     ORA $F5
-36/9698: 15 FF     ORA $FF,X
-36/969A: 00        BRK 
-36/969B: FF        --- 
-36/969C: A0 96     LDY #$96
-36/969E: FF        --- 
-36/969F: FF        --- 
-36/96A0: F5 25     SBC $25,X
-36/96A2: FF        --- 
-36/96A3: F8        SED 
-36/96A4: 9C        --- 
-36/96A5: EF        --- 
-36/96A6: 03        --- 
-36/96A7: FF        --- 
-36/96A8: AC 96 B4  LDY $B496
-36/96AB: 96 F6     STX $F6,Y
-36/96AD: 14        --- 
-36/96AE: FF        --- 
-36/96AF: F8        SED 
-36/96B0: 8B        --- 
-36/96B1: F1 86     SBC ($86),Y
-36/96B3: FF        --- 
-36/96B4: F5 14     SBC $14,X
-36/96B6: FF        --- 
-36/96B7: EF        --- 
-36/96B8: 67        --- 
-36/96B9: FF        --- 
-36/96BA: FF        --- 
-36/96BB: FF        --- 
-36/96BC: BE 96 F5  LDX $F596,Y
-36/96BF: 14        --- 
-36/96C0: FF        --- 
-36/96C1: EF        --- 
-36/96C2: 9D 0D FF  STA $FF0D,X
-36/96C5: FF        --- 
-36/96C6: FF        --- 
-36/96C7: C9 96     CMP #$96
-36/96C9: F5 10     SBC $10,X
-36/96CB: FF        --- 
-36/96CC: F0 0C     BEQ $96DA
-36/96CE: EF        --- 
-36/96CF: 4C F2 AC  JMP $ACF2
-36/96D2: 19 FF D8  ORA $D8FF,Y
-36/96D5: 96 EB     STX $EB,Y
-36/96D7: 96 F6     STX $F6,Y
-36/96D9: 14        --- 
-36/96DA: FF        --- 
-36/96DB: F8        SED 
-36/96DC: 8B        --- 
-36/96DD: F1 C7     SBC ($C7),Y
-36/96DF: 1A        --- 
-36/96E0: EC 1A E9  CPX $E91A
-36/96E3: 1A        --- 
-36/96E4: E7        --- 
-36/96E5: 1A        --- 
-36/96E6: E5 1A     SBC $1A
-36/96E8: E3        --- 
-36/96E9: 1A        --- 
-36/96EA: FF        --- 
-36/96EB: F5 14     SBC $14,X
-36/96ED: FF        --- 
-36/96EE: F2        --- 
-36/96EF: C7        --- 
-36/96F0: 1A        --- 
-36/96F1: EC 1A E9  CPX $E91A
-36/96F4: 1A        --- 
-36/96F5: E7        --- 
-36/96F6: 1A        --- 
-36/96F7: E5 1A     SBC $1A
-36/96F9: E3        --- 
-36/96FA: 1A        --- 
-36/96FB: FF        --- 
-36/96FC: FF        --- 
-36/96FD: FF        --- 
-36/96FE: 00        BRK 
-36/96FF: 97        --- 
-36/9700: F5 1B     SBC $1B,X
-36/9702: FF        --- 
-36/9703: EF        --- 
-36/9704: 1A        --- 
-36/9705: 59 59 59  EOR $5959,Y
-36/9708: 59 F5 23  EOR $23F5,Y
-36/970B: FF        --- 
-36/970C: 72        --- 
-36/970D: FF        --- 
-36/970E: FF        --- 
-36/970F: FF        --- 
-36/9710: 12        --- 
-36/9711: 97        --- 
-36/9712: F5 14     SBC $14,X
-36/9714: FF        --- 
-36/9715: EF        --- 
-36/9716: BA        TSX 
-36/9717: EB        --- 
-36/9718: BA        TSX 
-36/9719: E8        INX 
-36/971A: BA        TSX 
-36/971B: E5 BA     SBC $BA
-36/971D: FF        --- 
-36/971E: 22        --- 
-36/971F: 97        --- 
-36/9720: FF        --- 
-36/9721: FF        --- 
-36/9722: F6 26     INC $26,X
-36/9724: FF        --- 
-36/9725: F8        SED 
-36/9726: C4 F3     CPY $F3
-36/9728: BC BC CC  LDY $CCBC,X
-36/972B: BC BC FF  LDY $FFBC,X
-36/972E: 32        --- 
-36/972F: 97        --- 
-36/9730: 3C        --- 
-36/9731: 97        --- 
-36/9732: F6 1B     INC $1B,X
-36/9734: FF        --- 
-36/9735: F8        SED 
-36/9736: 8B        --- 
-36/9737: E9 C8     SBC #$C8
-36/9739: EF        --- 
-36/973A: 08        PHP 
-36/973B: FF        --- 
-36/973C: F5 26     SBC $26,X
-36/973E: FF        --- 
-36/973F: EF        --- 
-36/9740: 9C        --- 
-36/9741: CA        DEX 
-36/9742: F5 1B     SBC $1B,X
-36/9744: FF        --- 
-36/9745: 38        SEC 
-36/9746: C9 F1     CMP #$F1
-36/9748: 12        --- 
-36/9749: FF        --- 
-36/974A: 4E 97 57  LSR $5797
-36/974D: 97        --- 
-36/974E: F6 1B     INC $1B,X
-36/9750: FF        --- 
-36/9751: F8        SED 
-36/9752: 8B        --- 
-36/9753: EF        --- 
-36/9754: EC 08 FF  CPX $FF08
-36/9757: F5 1B     SBC $1B,X
-36/9759: FF        --- 
-36/975A: EF        --- 
-36/975B: BD 39 FF  LDA $FF39,X
-36/975E: 62        --- 
-36/975F: 97        --- 
-36/9760: 6A        ROR 
-36/9761: 97        --- 
-36/9762: F5 23     SBC $23,X
-36/9764: FF        --- 
-36/9765: F8        SED 
-36/9766: 8D F3 65  STA $65F3
-36/9769: FF        --- 
-36/976A: F5 23     SBC $23,X
-36/976C: FF        --- 
-36/976D: EF        --- 
-36/976E: 33        --- 
-36/976F: F5 14     SBC $14,X
-36/9771: FF        --- 
-36/9772: F1 2C     SBC ($2C),Y
-36/9774: F5 1B     SBC $1B,X
-36/9776: FF        --- 
-36/9777: 10 FF     BPL $9778
-36/9779: 7D 97 8A  ADC $8A97,X
-36/977C: 97        --- 
-36/977D: F6 26     INC $26,X
-36/977F: FF        --- 
-36/9780: F8        SED 
-36/9781: 8A        TXA 
-36/9782: F0 08     BEQ $978C
-36/9784: 19 2A 3B  ORA $3B2A,Y
-36/9787: 5C        --- 
-36/9788: 6D FF F5  ADC $F5FF
-36/978B: 23        --- 
-36/978C: FF        --- 
-36/978D: EF        --- 
-36/978E: 08        PHP 
-36/978F: 19 2A 8B  ORA $8B2A,Y
-36/9792: 8C BD FF  STY $FFBD
-36/9795: FF        --- 
-36/9796: FF        --- 
-36/9797: 99 97 F5  STA $F597,Y
-36/979A: 10 FF     BPL $979B
-36/979C: F2        --- 
-36/979D: 18        CLC 
-36/979E: 18        CLC 
-36/979F: 18        CLC 
-36/97A0: FF        --- 
-36/97A1: FF        --- 
-36/97A2: FF        --- 
-36/97A3: A5 97     LDA $97
-36/97A5: F5 26     SBC $26,X
-36/97A7: FF        --- 
-36/97A8: EF        --- 
-36/97A9: 39 39 39  AND $3939,Y
-36/97AC: FF        --- 
-36/97AD: B1 97     LDA ($97),Y
-36/97AF: B9 97 F6  LDA $F697,Y
-36/97B2: 26 FF     ROL $FF
-36/97B4: F8        SED 
-36/97B5: 8A        TXA 
-36/97B6: F0 1A     BEQ $97D2
-36/97B8: FF        --- 
-36/97B9: F5 26     SBC $26,X
-36/97BB: FF        --- 
-36/97BC: EF        --- 
-36/97BD: BA        TSX 
-36/97BE: FF        --- 
-36/97BF: C3        --- 
-36/97C0: 97        --- 
-36/97C1: D1 97     CMP ($97),Y
-36/97C3: F6 14     INC $14,X
-36/97C5: FF        --- 
-36/97C6: F8        SED 
-36/97C7: 82        --- 
-36/97C8: F1 69     SBC ($69),Y
-36/97CA: 69 69     ADC #$69
-36/97CC: 69 69     ADC #$69
-36/97CE: E6 69     INC $69
-36/97D0: FF        --- 
-36/97D1: F5 26     SBC $26,X
-36/97D3: FF        --- 
-36/97D4: EF        --- 
-36/97D5: A9 A9     LDA #$A9
-36/97D7: A9 A9     LDA #$A9
-36/97D9: A9 A9     LDA #$A9
-36/97DB: E6 A9     INC $A9
-36/97DD: FF        --- 
-36/97DE: F8        SED 
-36/97DF: 97        --- 
-36/97E0: E2        --- 
-36/97E1: 97        --- 
-36/97E2: F5 16     SBC $16,X
-36/97E4: FF        --- 
-36/97E5: F0 B1     BEQ $9798
-36/97E7: E8        INX 
-36/97E8: 75 E3     ADC $E3,X
-36/97EA: 25 EE     AND $EE
-36/97EC: F5 23     SBC $23,X
-36/97EE: FF        --- 
-36/97EF: 7D 04 7D  ADC $7D04,X
-36/97F2: 04        --- 
-36/97F3: 7D 04 7D  ADC $7D04,X
-36/97F6: 04        --- 
-36/97F7: FF        --- 
-36/97F8: C0 C5     CPY #$C5
-36/97FA: F5 23     SBC $23,X
-36/97FC: FF        --- 
-36/97FD: F8        SED 
-36/97FE: 8D F4 E5  STA $E5F4
-36/9801: 93        --- 
-36/9802: 93        --- 
-36/9803: 93        --- 
-36/9804: 93        --- 
-36/9805: FF        --- 
-36/9806: 0A        ASL 
-36/9807: 98        TYA 
-36/9808: 16 98     ASL $98,X
-36/980A: F7        --- 
-36/980B: 17        --- 
-36/980C: FF        --- 
-36/980D: F8        SED 
-36/980E: A4 F1     LDY $F1
-36/9810: B9 E9 F4  LDA $F4E9,Y
-36/9813: 82        --- 
-36/9814: DB        --- 
-36/9815: FF        --- 
-36/9816: F5 17     SBC $17,X
-36/9818: FF        --- 
-36/9819: EF        --- 
-36/981A: 98        TYA 
-36/981B: 32        --- 
-36/981C: FF        --- 
-36/981D: 21 98     AND ($98,X)
-36/981F: FF        --- 
-36/9820: FF        --- 
-36/9821: F7        --- 
-36/9822: 15 FF     ORA $FF,X
-36/9824: F8        SED 
-36/9825: AB        --- 
-36/9826: F3        --- 
-36/9827: 07        --- 
-36/9828: FF        --- 
-36/9829: FF        --- 
-36/982A: FF        --- 
-36/982B: 2D 98 F5  AND $F598
-36/982E: 15 FF     ORA $FF,X
-36/9830: E7        --- 
-36/9831: EF        --- 
-36/9832: 7A        --- 
-36/9833: F0 BC     BEQ $97F1
-36/9835: FF        --- 
-36/9836: FF        --- 
-36/9837: FF        --- 
-36/9838: 3A        --- 
-36/9839: 98        TYA 
-36/983A: F5 18     SBC $18,X
-36/983C: FF        --- 
-36/983D: EF        --- 
-36/983E: A8        TAY 
-36/983F: F5 16     SBC $16,X
-36/9841: FF        --- 
-36/9842: F0 14     BEQ $9858
-36/9844: FF        --- 
-36/9845: FF        --- 
-36/9846: FF        --- 
-36/9847: 49 98     EOR #$98
-36/9849: F5 1B     SBC $1B,X
-36/984B: FF        --- 
-36/984C: EF        --- 
-36/984D: 99 F5 16  STA $16F5,Y
-36/9850: FF        --- 
-36/9851: F2        --- 
-36/9852: 19 5A 19  ORA $195A,Y
-36/9855: 5A        --- 
-36/9856: 19 5A 19  ORA $195A,Y
-36/9859: 5A        --- 
-36/985A: 19 5A FF  ORA $FF5A,Y
-36/985D: FF        --- 
-36/985E: FF        --- 
-36/985F: 61 98     ADC ($98,X)
-36/9861: F5 15     SBC $15,X
-36/9863: FF        --- 
-36/9864: EF        --- 
-36/9865: 58        CLI 
-36/9866: B5 F5     LDA $F5,X
-36/9868: 10 FF     BPL $9869
-36/986A: F0 58     BEQ $98C4
-36/986C: 58        CLI 
-36/986D: FF        --- 
-36/986E: 72        --- 
-36/986F: 98        TYA 
-36/9870: 7B        --- 
-36/9871: 98        TYA 
-36/9872: F7        --- 
-36/9873: 15 FF     ORA $FF,X
-36/9875: F8        SED 
-36/9876: 9D F3 CC  STA $CCF3,X
-36/9879: 02        --- 
-36/987A: FF        --- 
-36/987B: F5 14     SBC $14,X
-36/987D: FF        --- 
-36/987E: EF        --- 
-36/987F: BD FF FF  LDA $FFFF,X
-36/9882: FF        --- 
-36/9883: 85 98     STA $98
-36/9885: F5 1B     SBC $1B,X
-36/9887: FF        --- 
-36/9888: EF        --- 
-36/9889: 5D 5D 99  EOR $995D,X
-36/988C: 99 99 FF  STA $FF99,Y
-36/988F: FF        --- 
-36/9890: FF        --- 
-36/9891: 93        --- 
-36/9892: 98        TYA 
-36/9893: F5 15     SBC $15,X
-36/9895: FF        --- 
-36/9896: F0 19     BEQ $98B1
-36/9898: 0B        --- 
-36/9899: FF        --- 
-36/989A: 9E        --- 
-36/989B: 98        TYA 
-36/989C: A5 98     LDA $98
-36/989E: F7        --- 
-36/989F: 18        CLC 
-36/98A0: FF        --- 
-36/98A1: F4        --- 
-36/98A2: E6 71     INC $71
-36/98A4: FF        --- 
-36/98A5: F5 1B     SBC $1B,X
-36/98A7: FF        --- 
-36/98A8: F2        --- 
-36/98A9: 00        BRK 
-36/98AA: FF        --- 
-36/98AB: AF        --- 
-36/98AC: 98        TYA 
-36/98AD: B6 98     LDX $98,Y
-36/98AF: F6 1B     INC $1B,X
-36/98B1: FF        --- 
-36/98B2: F4        --- 
-36/98B3: E9 BB     SBC #$BB
-36/98B5: FF        --- 
-36/98B6: F5 1B     SBC $1B,X
-36/98B8: FF        --- 
-36/98B9: EF        --- 
-36/98BA: 88        DEY 
-36/98BB: 0B        --- 
-36/98BC: FF        --- 
-36/98BD: C1 98     CMP ($98,X)
-36/98BF: C7        --- 
-36/98C0: 98        TYA 
-36/98C1: F5 23     SBC $23,X
-36/98C3: FF        --- 
-36/98C4: EF        --- 
-36/98C5: B1 FF     LDA ($FF),Y
-36/98C7: F5 1B     SBC $1B,X
-36/98C9: FF        --- 
-36/98CA: EF        --- 
-36/98CB: 3B        --- 
-36/98CC: 68        PLA 
-36/98CD: 4B        --- 
-36/98CE: 78        SEI 
-36/98CF: B6 FF     LDX $FF,Y
-36/98D1: D5 98     CMP $98,X
-36/98D3: E0 98     CPX #$98
-36/98D5: F5 19     SBC $19,X
-36/98D7: FF        --- 
-36/98D8: F8        SED 
-36/98D9: 8F        --- 
-36/98DA: F0 05     BEQ $98E1
-36/98DC: 25 45     AND $45
-36/98DE: 65 FF     ADC $FF
-36/98E0: F5 16     SBC $16,X
-36/98E2: FF        --- 
-36/98E3: C0 F0     CPY #$F0
-36/98E5: 1C        --- 
-36/98E6: 0B        --- 
-36/98E7: 74        --- 
-36/98E8: FF        --- 
-36/98E9: ED 98 FF  SBC $FF98
-36/98EC: FF        --- 
-36/98ED: F7        --- 
-36/98EE: 1D 0B F4  ORA $F40B,X
-36/98F1: 06 08     ASL $08
-36/98F3: 0B        --- 
-36/98F4: 06 FF     ASL $FF
-36/98F6: FF        --- 
-36/98F7: FF        --- 
-36/98F8: FA        --- 
-36/98F9: 98        TYA 
-36/98FA: F5 1B     SBC $1B,X
-36/98FC: FF        --- 
-36/98FD: F0 12     BEQ $9911
-36/98FF: E5 EF     SBC $EF
-36/9901: 92        --- 
-36/9902: FF        --- 
-36/9903: FF        --- 
-36/9904: FF        --- 
-36/9905: 07        --- 
-36/9906: 99 F5 1B  STA $1BF5,Y
-36/9909: FF        --- 
-36/990A: F0 11     BEQ $991D
-36/990C: 11 11     ORA ($11),Y
-36/990E: FF        --- 
-36/990F: FF        --- 
-36/9910: FF        --- 
-36/9911: 13        --- 
-36/9912: 99 F5 1B  STA $1BF5,Y
-36/9915: FF        --- 
-36/9916: F0 FB     BEQ $9913
-36/9918: 04        --- 
-36/9919: 48        PHA 
-36/991A: 38        SEC 
-36/991B: 28        PLP 
-36/991C: 18        CLC 
-36/991D: 00        BRK 
-36/991E: FC        --- 
-36/991F: 19 99 FF  ORA $FF99,Y
-36/9922: 26 99     ROL $99
-36/9924: 30 99     BMI $98BF
-36/9926: F7        --- 
-36/9927: 1C        --- 
-36/9928: FF        --- 
-36/9929: F8        SED 
-36/992A: B5 F4     LDA $F4,X
-36/992C: 83        --- 
-36/992D: DB        --- 
-36/992E: 62        --- 
-36/992F: FF        --- 
-36/9930: F5 17     SBC $17,X
-36/9932: FF        --- 
-36/9933: EF        --- 
-36/9934: 43        --- 
-36/9935: DB        --- 
-36/9936: 62        --- 
-36/9937: FF        --- 
-36/9938: 3C        --- 
-36/9939: 99 47 99  STA $9947,Y
-36/993C: F7        --- 
-36/993D: 1F        --- 
-36/993E: FF        --- 
-36/993F: F8        SED 
-36/9940: BD F2 80  LDA $80F2,X
-36/9943: 80        --- 
-36/9944: 82        --- 
-36/9945: 81 FF     STA ($FF,X)
-36/9947: F5 1B     SBC $1B,X
-36/9949: FF        --- 
-36/994A: C0 C0     CPY #$C0
-36/994C: C2        --- 
-36/994D: C1 F0     CMP ($F0,X)
-36/994F: 10 FF     BPL $9950
-36/9951: 55 99     EOR $99,X
-36/9953: 6B        --- 
-36/9954: 99 F6 FF  STA $FFF6,Y
-36/9957: FF        --- 
-36/9958: F8        SED 
-36/9959: 8C F1 08  STY $08F1
-36/995C: F7        --- 
-36/995D: 1D 0B F8  ORA $F80B,X
-36/9960: 08        PHP 
-36/9961: F2        --- 
-36/9962: B5 F7     LDA $F7,X
-36/9964: 21 FF     AND ($FF,X)
-36/9966: F8        SED 
-36/9967: CA        DEX 
-36/9968: F1 12     SBC ($12),Y
-36/996A: FF        --- 
-36/996B: F5 15     SBC $15,X
-36/996D: FF        --- 
-36/996E: E9 F2     SBC #$F2
-36/9970: C8        INY 
-36/9971: 0B        --- 
-36/9972: 1B        --- 
-36/9973: 29 FF     AND #$FF
-36/9975: 79 99 82  ADC $99,Y
-36/9978: 99 E7 F5  STA $F5E7,Y
-36/997B: 16 FF     ASL $FF,X
-36/997D: F8        SED 
-36/997E: CE F2 00  DEC $00F2
-36/9981: FF        --- 
-36/9982: F5 1B     SBC $1B,X
-36/9984: FF        --- 
-36/9985: EF        --- 
-36/9986: C0 40     CPY #$40
-36/9988: FF        --- 
-36/9989: 8D 99 99  STA $9999
-36/998C: 99 F5 25  STA $25F5,Y
-36/998F: FF        --- 
-36/9990: F8        SED 
-36/9991: 9C        --- 
-36/9992: F1 C2     SBC ($C2),Y
-36/9994: B5 B5     LDA $B5,X
-36/9996: B5 B5     LDA $B5,X
-36/9998: FF        --- 
-36/9999: F5 24     SBC $24,X
-36/999B: FF        --- 
-36/999C: F1 B2     SBC ($B2),Y
-36/999E: 85 85     STA $85
-36/99A0: 85 85     STA $85
-36/99A2: FF        --- 
-36/99A3: A7        --- 
-36/99A4: 99 FF FF  STA $FFFF,Y
-36/99A7: F5 25     SBC $25,X
-36/99A9: FF        --- 
-36/99AA: F8        SED 
-36/99AB: E4 F0     CPX $F0
-36/99AD: 38        SEC 
-36/99AE: 48        PHA 
-36/99AF: 58        CLI 
-36/99B0: 68        PLA 
-36/99B1: FF        --- 
-36/99B2: FF        --- 
-36/99B3: FF        --- 
-36/99B4: B6 99     LDX $99,Y
-36/99B6: F5 1A     SBC $1A,X
-36/99B8: FF        --- 
-36/99B9: F0 B9     BEQ $9974
-36/99BB: B9 B9 B9  LDA $B9B9,Y
-36/99BE: F5 10     SBC $10,X
-36/99C0: FF        --- 
-36/99C1: 00        BRK 
-36/99C2: FF        --- 
-36/99C3: FF        --- 
-36/99C4: FF        --- 
-36/99C5: C7        --- 
-36/99C6: 99 F5 24  STA $24F5,Y
-36/99C9: FF        --- 
-36/99CA: EF        --- 
-36/99CB: 50 FF     BVC $99CC
-36/99CD: D1 99     CMP ($99),Y
-36/99CF: D9 99 F6  CMP $F699,Y
-36/99D2: 1A        --- 
-36/99D3: FF        --- 
-36/99D4: F8        SED 
-36/99D5: C4 F4     CPY $F4
-36/99D7: 04        --- 
-36/99D8: FF        --- 
-36/99D9: F5 1B     SBC $1B,X
-36/99DB: FF        --- 
-36/99DC: EA        NOP 
-36/99DD: EF        --- 
-36/99DE: C4 B4     CPY $B4
-36/99E0: B4 B4     LDY $B4,X
-36/99E2: B4 FF     LDY $FF,X
-36/99E4: FF        --- 
-36/99E5: FF        --- 
-36/99E6: E8        INX 
-36/99E7: 99 F5 1A  STA $1AF5,Y
-36/99EA: FF        --- 
-36/99EB: F0 B9     BEQ $99A6
-36/99ED: B9 B9 B9  LDA $B9B9,Y
-36/99F0: B9 FF FF  LDA $FFFF,Y
-36/99F3: FF        --- 
-36/99F4: F6 99     INC $99,X
-36/99F6: F5 15     SBC $15,X
-36/99F8: FF        --- 
-36/99F9: EF        --- 
-36/99FA: 4A        LSR 
-36/99FB: B9 8A B5  LDA $B58A,Y
-36/99FE: FF        --- 
-36/99FF: 03        --- 
-36/9A00: 9A        TXS 
-36/9A01: 1D 9A F5  ORA $F59A,X
-36/9A04: 1A        --- 
-36/9A05: FF        --- 
-36/9A06: F8        SED 
-36/9A07: CB        --- 
-36/9A08: EF        --- 
-36/9A09: 04        --- 
-36/9A0A: F6 1A     INC $1A,X
-36/9A0C: FF        --- 
-36/9A0D: EB        --- 
-36/9A0E: F0 04     BEQ $9A14
-36/9A10: F5 1A     SBC $1A,X
-36/9A12: FF        --- 
-36/9A13: E8        INX 
-36/9A14: F1 04     SBC ($04),Y
-36/9A16: F6 1A     INC $1A,X
-36/9A18: FF        --- 
-36/9A19: E5 F2     SBC $F2
-36/9A1B: 04        --- 
-36/9A1C: FF        --- 
-36/9A1D: F5 1B     SBC $1B,X
-36/9A1F: FF        --- 
-36/9A20: C4 E3     CPY $E3
-36/9A22: F1 BA     SBC ($BA),Y
-36/9A24: E4 AA     CPX $AA
-36/9A26: E5 9A     SBC $9A
-36/9A28: E6 8A     INC $8A
-36/9A2A: E7        --- 
-36/9A2B: 7A        --- 
-36/9A2C: E8        INX 
-36/9A2D: 6A        ROR 
-36/9A2E: E9 5A     SBC #$5A
-36/9A30: EA        NOP 
-36/9A31: 4A        LSR 
-36/9A32: EB        --- 
-36/9A33: 3A        --- 
-36/9A34: EC 2A ED  CPX $ED2A
-36/9A37: 1A        --- 
-36/9A38: EE 0A FF  INC $FF0A
-36/9A3B: 3F        --- 
-36/9A3C: 9A        TXS 
-36/9A3D: FF        --- 
-36/9A3E: FF        --- 
-36/9A3F: F7        --- 
-36/9A40: 02        --- 
-36/9A41: FF        --- 
-36/9A42: F1 0C     SBC ($0C),Y
-36/9A44: 4C 6C 9C  JMP $9C6C
-36/9A47: F2        --- 
-36/9A48: 0C        --- 
-36/9A49: 6C 9C F3  JMP ($F39C)
-36/9A4C: 0C        --- 
-36/9A4D: FF        --- 
-36/9A4E: 52        --- 
-36/9A4F: 9A        TXS 
-36/9A50: FF        --- 
-36/9A51: FF        --- 
-36/9A52: F5 22     SBC $22,X
-36/9A54: FF        --- 
-36/9A55: F8        SED 
-36/9A56: BF        --- 
-36/9A57: F1 86     SBC ($86),Y
-36/9A59: 85 FF     STA $FF
-36/9A5B: 5F        --- 
-36/9A5C: 9A        TXS 
-36/9A5D: FF        --- 
-36/9A5E: FF        --- 
-36/9A5F: F5 28     SBC $28,X
-36/9A61: 0F        --- 
-36/9A62: F2        --- 
-36/9A63: 02        --- 
-36/9A64: 02        --- 
-36/9A65: FF        --- 
+...
 
 36/9A66: 9A6A FFFF
-36/9A6A: F7        --- 
-36/9A6B: 15 FF     ORA $FF,X
-36/9A6D: F8        SED 
-36/9A6E: 8C F1 05  STY $05F1
-36/9A71: EB        --- 
-36/9A72: 05 E9     ORA $E9
-36/9A74: 05 E7     ORA $E7
-36/9A76: 05 E5     ORA $E5
-36/9A78: 05 E3     ORA $E3
-36/9A7A: 04        --- 
-36/9A7B: FF        --- 
+36/9A6A: F7 15 FF
+36/9A6D: F8 8C
+36/9A6F: F1
+36/9A70: 05
+36/9A71: EB
+36/9A72: 05
+36/9A73: E9
+36/9A74: 05
+36/9A75: E7
+36/9A76: 05
+36/9A77: E5
+36/9A78: 05
+36/9A79: E3
+36/9A7A: 04
+36/9A7B: FF
 
 ; pointers to volume envelope data
 36/9A7C: 9ACE 9ADB 9AED 9B0E 9B55 9B83 9BA0 9BAA ; $00
@@ -32868,290 +30451,7 @@
 36/9CA1: 0F FF
 36/9CA3: 00 00
 
-36/9CA5: AB        --- 
-36/9CA6: 9C        --- 
-36/9CA7: BB        --- 
-36/9CA8: 9C        --- 
-36/9CA9: BD 9C 01  LDA $019C,X
-36/9CAC: 02        --- 
-36/9CAD: 03        --- 
-36/9CAE: 04        --- 
-36/9CAF: 05 06     ORA $06
-36/9CB1: 07        --- 
-36/9CB2: 08        PHP 
-36/9CB3: 09 0A     ORA #$0A
-36/9CB5: 0B        --- 
-36/9CB6: 0C        --- 
-36/9CB7: 0D 0E 0F  ORA $0F0E
-36/9CBA: FF        --- 
-36/9CBB: 00        BRK 
-36/9CBC: 00        BRK 
-36/9CBD: 64        --- 
-36/9CBE: 00        BRK 
-36/9CBF: C5 9C     CMP $9C
-36/9CC1: D5 9C     CMP $9C,X
-36/9CC3: D5 9C     CMP $9C,X
-36/9CC5: 08        PHP 
-36/9CC6: 00        BRK 
-36/9CC7: 09 00     ORA #$00
-36/9CC9: 0A        ASL 
-36/9CCA: 00        BRK 
-36/9CCB: 0B        --- 
-36/9CCC: 00        BRK 
-36/9CCD: 0C        --- 
-36/9CCE: 00        BRK 
-36/9CCF: 0D 00 0E  ORA $0E00
-36/9CD2: 00        BRK 
-36/9CD3: 0F        --- 
-36/9CD4: FF        --- 
-36/9CD5: 64        --- 
-36/9CD6: 00        BRK 
-36/9CD7: AB        --- 
-36/9CD8: 9C        --- 
-36/9CD9: DD 9C BD  CMP $BD9C,X
-36/9CDC: 9C        --- 
-36/9CDD: 00        BRK 
-36/9CDE: 01 FD     ORA ($FD,X)
-36/9CE0: 01 FA     ORA ($FA,X)
-36/9CE2: 01 F7     ORA ($F7,X)
-36/9CE4: 01 FA     ORA ($FA,X)
-36/9CE6: 01 FD     ORA ($FD,X)
-36/9CE8: 01 00     ORA ($00,X)
-36/9CEA: F4        --- 
-36/9CEB: AB        --- 
-36/9CEC: 9C        --- 
-36/9CED: F1 9C     SBC ($9C),Y
-36/9CEF: F1 9C     SBC ($9C),Y
-36/9CF1: 64        --- 
-36/9CF2: 00        BRK 
-36/9CF3: F9 9C 0A  SBC $0A9C,Y
-36/9CF6: 9D 10 9D  STA $9D10,X
-36/9CF9: 00        BRK 
-36/9CFA: 02        --- 
-36/9CFB: 00        BRK 
-36/9CFC: 04        --- 
-36/9CFD: 00        BRK 
-36/9CFE: 06 00     ASL $00
-36/9D00: 08        PHP 
-36/9D01: 00        BRK 
-36/9D02: 0A        ASL 
-36/9D03: 00        BRK 
-36/9D04: 0C        --- 
-36/9D05: 00        BRK 
-36/9D06: 0E 00 0F  ASL $0F00
-36/9D09: FF        --- 
-36/9D0A: 00        BRK 
-36/9D0B: 01 F1     ORA ($F1,X)
-36/9D0D: 01 00     ORA ($00,X)
-36/9D0F: FC        --- 
-36/9D10: 64        --- 
-36/9D11: 01 F1     ORA ($F1,X)
-36/9D13: 01 00     ORA ($00,X)
-36/9D15: FC        --- 
-36/9D16: 1C        --- 
-36/9D17: 9D 2C 9D  STA $9D2C,X
-36/9D1A: 34        --- 
-36/9D1B: 9D 01 00  STA $0001,X
-36/9D1E: 03        --- 
-36/9D1F: 00        BRK 
-36/9D20: 05 00     ORA $00
-36/9D22: 07        --- 
-36/9D23: 00        BRK 
-36/9D24: 09 00     ORA #$00
-36/9D26: 0B        --- 
-36/9D27: 00        BRK 
-36/9D28: 0D 00 0F  ORA $0F00
-36/9D2B: FF        --- 
-36/9D2C: 00        BRK 
-36/9D2D: 01 F1     ORA ($F1,X)
-36/9D2F: 01 F1     ORA ($F1,X)
-36/9D31: 01 00     ORA ($00,X)
-36/9D33: FC        --- 
-36/9D34: 64        --- 
-36/9D35: 01 F1     ORA ($F1,X)
-36/9D37: 01 00     ORA ($00,X)
-36/9D39: FC        --- 
-36/9D3A: 40        RTI 
-36/9D3B: 9D 7E 9D  STA $9D7E,X
-36/9D3E: 7E 9D 01  ROR $019D,X
-36/9D41: 01 01     ORA ($01,X)
-36/9D43: 01 02     ORA ($02,X)
-36/9D45: 02        --- 
-36/9D46: 02        --- 
-36/9D47: 02        --- 
-36/9D48: 03        --- 
-36/9D49: 03        --- 
-36/9D4A: 03        --- 
-36/9D4B: 03        --- 
-36/9D4C: 04        --- 
-36/9D4D: 04        --- 
-36/9D4E: 04        --- 
-36/9D4F: 04        --- 
-36/9D50: 05 05     ORA $05
-36/9D52: 05 05     ORA $05
-36/9D54: 06 06     ASL $06
-36/9D56: 06 06     ASL $06
-36/9D58: 07        --- 
-36/9D59: 07        --- 
-36/9D5A: 07        --- 
-36/9D5B: 07        --- 
-36/9D5C: 08        PHP 
-36/9D5D: 08        PHP 
-36/9D5E: 08        PHP 
-36/9D5F: 08        PHP 
-36/9D60: 09 09     ORA #$09
-36/9D62: 09 09     ORA #$09
-36/9D64: 0A        ASL 
-36/9D65: 0A        ASL 
-36/9D66: 0A        ASL 
-36/9D67: 0A        ASL 
-36/9D68: 0B        --- 
-36/9D69: 0B        --- 
-36/9D6A: 0B        --- 
-36/9D6B: 0B        --- 
-36/9D6C: 0C        --- 
-36/9D6D: 0C        --- 
-36/9D6E: 0C        --- 
-36/9D6F: 0C        --- 
-36/9D70: 0D 0D 0D  ORA $0D0D
-36/9D73: 0D 0E 0E  ORA $0E0E
-36/9D76: 0E 0E 0F  ASL $0F0E
-36/9D79: 0F        --- 
-36/9D7A: 0F        --- 
-36/9D7B: 0F        --- 
-36/9D7C: 00        BRK 
-36/9D7D: FF        --- 
-36/9D7E: 00        BRK 
-36/9D7F: 00        BRK 
-36/9D80: 86 9D     STX $9D
-36/9D82: C3        --- 
-36/9D83: 9D C3 9D  STA $9DC3,X
-36/9D86: 01 00     ORA ($00,X)
-36/9D88: 01 00     ORA ($00,X)
-36/9D8A: 02        --- 
-36/9D8B: 00        BRK 
-36/9D8C: 02        --- 
-36/9D8D: 00        BRK 
-36/9D8E: 03        --- 
-36/9D8F: 00        BRK 
-36/9D90: 03        --- 
-36/9D91: 00        BRK 
-36/9D92: 04        --- 
-36/9D93: 00        BRK 
-36/9D94: 04        --- 
-36/9D95: 00        BRK 
-36/9D96: 05 00     ORA $00
-36/9D98: 05 00     ORA $00
-36/9D9A: 06 00     ASL $00
-36/9D9C: 06 00     ASL $00
-36/9D9E: 07        --- 
-36/9D9F: 00        BRK 
-36/9DA0: 07        --- 
-36/9DA1: 00        BRK 
-36/9DA2: 08        PHP 
-36/9DA3: 00        BRK 
-36/9DA4: 08        PHP 
-36/9DA5: 00        BRK 
-36/9DA6: 09 00     ORA #$00
-36/9DA8: 09 00     ORA #$00
-36/9DAA: 0A        ASL 
-36/9DAB: 00        BRK 
-36/9DAC: 0A        ASL 
-36/9DAD: 00        BRK 
-36/9DAE: 0B        --- 
-36/9DAF: 00        BRK 
-36/9DB0: 0B        --- 
-36/9DB1: 00        BRK 
-36/9DB2: 0C        --- 
-36/9DB3: 00        BRK 
-36/9DB4: 0C        --- 
-36/9DB5: 00        BRK 
-36/9DB6: 0D 00 0D  ORA $0D00
-36/9DB9: 00        BRK 
-36/9DBA: 0E 00 0E  ASL $0E00
-36/9DBD: 00        BRK 
-36/9DBE: 0F        --- 
-36/9DBF: 00        BRK 
-36/9DC0: 0F        --- 
-36/9DC1: 00        BRK 
-36/9DC2: FF        --- 
-36/9DC3: 00        BRK 
-36/9DC4: 00        BRK 
-36/9DC5: CB        --- 
-36/9DC6: 9D F2 9D  STA $9DF2,X
-36/9DC9: F2        --- 
-36/9DCA: 9D 01 03  STA $0301,X
-36/9DCD: 05 07     ORA $07
-36/9DCF: 07        --- 
-36/9DD0: 07        --- 
-36/9DD1: 07        --- 
-36/9DD2: 07        --- 
-36/9DD3: 07        --- 
-36/9DD4: 07        --- 
-36/9DD5: 07        --- 
-36/9DD6: 09 0B     ORA #$0B
-36/9DD8: 0D 0F 0F  ORA $0F0F
-36/9DDB: 0F        --- 
-36/9DDC: 0F        --- 
-36/9DDD: 0F        --- 
-36/9DDE: 0F        --- 
-36/9DDF: 0F        --- 
-36/9DE0: 0F        --- 
-36/9DE1: 0F        --- 
-36/9DE2: 0D 0B 09  ORA $090B
-36/9DE5: 07        --- 
-36/9DE6: 07        --- 
-36/9DE7: 07        --- 
-36/9DE8: 07        --- 
-36/9DE9: 07        --- 
-36/9DEA: 07        --- 
-36/9DEB: 07        --- 
-36/9DEC: 07        --- 
-36/9DED: 05 03     ORA $03
-36/9DEF: 01 00     ORA ($00,X)
-36/9DF1: FF        --- 
-36/9DF2: 00        BRK 
-36/9DF3: 00        BRK 
-36/9DF4: FA        --- 
-36/9DF5: 9D 21 9E  STA $9E21,X
-36/9DF8: 21 9E     AND ($9E,X)
-36/9DFA: 01 00     ORA ($00,X)
-36/9DFC: 05 00     ORA $00
-36/9DFE: 07        --- 
-36/9DFF: 00        BRK 
-36/9E00: 07        --- 
-36/9E01: 00        BRK 
-36/9E02: 07        --- 
-36/9E03: 00        BRK 
-36/9E04: 07        --- 
-36/9E05: 00        BRK 
-36/9E06: 0B        --- 
-36/9E07: 00        BRK 
-36/9E08: 0F        --- 
-36/9E09: 00        BRK 
-36/9E0A: 0F        --- 
-36/9E0B: 00        BRK 
-36/9E0C: 0F        --- 
-36/9E0D: 00        BRK 
-36/9E0E: 0F        --- 
-36/9E0F: 00        BRK 
-36/9E10: 0F        --- 
-36/9E11: 00        BRK 
-36/9E12: 0B        --- 
-36/9E13: 00        BRK 
-36/9E14: 07        --- 
-36/9E15: 00        BRK 
-36/9E16: 07        --- 
-36/9E17: 00        BRK 
-36/9E18: 07        --- 
-36/9E19: 00        BRK 
-36/9E1A: 07        --- 
-36/9E1B: 00        BRK 
-36/9E1C: 05 00     ORA $00
-36/9E1E: 01 00     ORA ($00,X)
-36/9E20: FF        --- 
-36/9E21: 00        BRK 
-36/9E22: 00        BRK 
+...
 
 36/9E23: 9E29 9E2F 9E2F
 36/9E29: 03 06 09 0C 0F FF
@@ -33409,19 +30709,19 @@
 
 ; --------------------------------------------------------------------------
 
-3A/8500: 4C A3 88  JMP $88A3
+3A/8500: 4C A3 88  JMP $88A3          ; show minimap
 3A/8503: 4C 5E 91  JMP $915E          ; init map
 3A/8506: 4C 43 8F  JMP $8F43          ; init world map
 3A/8509: 4C 91 90  JMP $9091          ; load map palette
 3A/850C: 4C 76 8E  JMP $8E76          ; init sram
-3A/850F: 4C 42 94  JMP $9442
+3A/850F: 4C 42 94  JMP $9442          ; update underwater bubbles
 3A/8512: 4C 41 94  JMP $9441          ; no effect
 3A/8515: 4C 8F 85  JMP $858F          ; update water animation
 3A/8518: 4C 6E 86  JMP $866E
 3A/851B: 4C 0F 98  JMP $980F
 3A/851E: 4C B8 9A  JMP $9AB8
 3A/8521: 4C 48 9B  JMP $9B48
-3A/8524: 4C 9C 99  JMP $999C
+3A/8524: 4C 9C 99  JMP $999C          ; update statue explosion animation
 3A/8527: 4C 7B 9A  JMP $9A7B
 3A/852A: 4C A4 9D  JMP $9DA4
 3A/852D: 4C 26 87  JMP $8726          ; prophecy
@@ -33714,7 +31014,7 @@
 3A/87C7: 20 00 FF  JSR $FF00          ; wait for vblank
 3A/87CA: 20 00 FF  JSR $FF00          ; wait for vblank
 3A/87CD: A9 02     LDA #$02
-3A/87CF: 8D 14 40  STA $4014
+3A/87CF: 8D 14 40  STA $4014          ; dma oam data to ppu
 3A/87D2: 60        RTS 
 
 ; [  ]
@@ -33819,7 +31119,7 @@
 3A/889B: 0F 0F 0F 0F
 3A/889F: 0F 0F 0F 0F
 
-; [  ]
+; [ show minimap ]
 
 3A/88A3: A9 88     LDA #$88
 3A/88A5: 85 FF     STA $FF
@@ -33864,12 +31164,14 @@
 3A/88FE: 90 E2     BCC $88E2
 3A/8900: A9 30     LDA #$30
 3A/8902: 8D 0C 40  STA $400C
-3A/8905: 20 3F 8C  JSR $8C3F
-3A/8908: 20 47 89  JSR $8947
-3A/890B: 20 1D 89  JSR $891D
-3A/890E: A5 25     LDA $25
+3A/8905: 20 3F 8C  JSR $8C3F          ; init ppu registers
+3A/8908: 20 47 89  JSR $8947          ; update frame
+3A/890B: 20 1D 89  JSR $891D          ; update minimap sprite palettes
+3A/890E: A5 25     LDA $25            ; wait for B button
 3A/8910: F0 F6     BEQ $8908
 3A/8912: 60        RTS 
+
+; [ clear minimap graphics buffer ]
 
 3A/8913: A9 00     LDA #$00
 3A/8915: AA        TAX 
@@ -33878,10 +31180,12 @@
 3A/891A: D0 FA     BNE $8916
 3A/891C: 60        RTS 
 
+; [ update minimap sprite palettes ]
+
 3A/891D: A2 00     LDX #$00
 3A/891F: A5 20     LDA $20
 3A/8921: 29 8F     AND #$8F
-3A/8923: D0 11     BNE $8936
+3A/8923: D0 11     BNE $8936          ; branch if A or direction button pressed
 3A/8925: BD 02 02  LDA $0202,X
 3A/8928: 29 DF     AND #$DF
 3A/892A: 9D 02 02  STA $0202,X
@@ -33903,9 +31207,11 @@
 3A/8944: D0 F0     BNE $8936
 3A/8946: 60        RTS 
 
+; [ update frame ]
+
 3A/8947: 20 00 FF  JSR $FF00          ; wait for vblank
 3A/894A: A9 02     LDA #$02
-3A/894C: 8D 14 40  STA $4014
+3A/894C: 8D 14 40  STA $4014          ; dma oam data to ppu
 3A/894F: 20 0F C0  JSR $C00F          ; copy color palettes to vram
 3A/8952: A9 1E     LDA #$1E
 3A/8954: 8D 01 20  STA $2001
@@ -33914,7 +31220,7 @@
 3A/895C: A9 00     LDA #$00
 3A/895E: 8D 05 20  STA $2005
 3A/8961: 8D 05 20  STA $2005
-3A/8964: A2 39     LDX #$39
+3A/8964: A2 39     LDX #$39           ; wait ~6500 cycles (~0.3ms)
 3A/8966: A0 16     LDY #$16
 3A/8968: 88        DEY 
 3A/8969: D0 FD     BNE $8968
@@ -33932,18 +31238,21 @@
 3A/8981: 20 0C C0  JSR $C00C          ; update joypad input
 3A/8984: E6 F0     INC $F0
 3A/8986: A5 F0     LDA $F0
-3A/8988: 29 08     AND #$08
+3A/8988: 29 08     AND #$08           ; color $0F (black)
 3A/898A: D0 02     BNE $898E
-3A/898C: A9 30     LDA #$30
+3A/898C: A9 30     LDA #$30           ; color $37 (light orange)
 3A/898E: 49 07     EOR #$07
-3A/8990: 8D D1 03  STA $03D1
+3A/8990: 8D D1 03  STA $03D1          ; flash sprite palette 0 color 1
 3A/8993: A5 F0     LDA $F0
 3A/8995: 29 30     AND #$30
-3A/8997: C9 30     CMP #$30
+3A/8997: C9 30     CMP #$30           ; color $30 (white)
 3A/8999: D0 02     BNE $899D
-3A/899B: A9 0F     LDA #$0F
-3A/899D: 8D D2 03  STA $03D2
+3A/899B: A9 0F     LDA #$0F           ; color $0F (black)
+3A/899D: 8D D2 03  STA $03D2          ; flash sprite palette 0 color 2
 3A/89A0: 60        RTS 
+
+; [  ]
+
 3A/89A1: A5 39     LDA $39
 3A/89A3: 4A        LSR 
 3A/89A4: 4A        LSR 
@@ -34019,13 +31328,13 @@
 3A/8A50: 18        CLC 
 3A/8A51: 65 3B     ADC $3B
 3A/8A53: 85 2C     STA $2C            ; row
-3A/8A55: 20 18 C0  JSR $C018          ; decompress world tilemap (minimap ???)
+3A/8A55: 20 18 C0  JSR $C018          ; decompress world tilemap (minimap)
 3A/8A58: A5 38     LDA $38
 3A/8A5A: 85 3A     STA $3A
 3A/8A5C: E6 3A     INC $3A
 3A/8A5E: A5 39     LDA $39
 3A/8A60: 18        CLC 
-3A/8A61: 69 4B     ADC #$4B
+3A/8A61: 69 4B     ADC #$4B           ; top left corner is at (60,75)
 3A/8A63: 85 41     STA $41
 3A/8A65: A9 3C     LDA #$3C
 3A/8A67: 85 40     STA $40
@@ -34039,17 +31348,17 @@
 3A/8A76: A6 3A     LDX $3A
 3A/8A78: BD 00 06  LDA $0600,X        ; tile index from decompression buffer
 3A/8A7B: AA        TAX 
-3A/8A7C: BD 00 7E  LDA $7E00,X        ; bottom left tile
+3A/8A7C: BD 00 7E  LDA $7E00,X        ; bottom left tile determines pixel color
 3A/8A7F: A6 66     LDX $66
 3A/8A81: 4A        LSR 
-3A/8A82: 3E 00 05  ROL $0500,X
+3A/8A82: 3E 00 05  ROL $0500,X        ; rotate into tile graphics
 3A/8A85: 4A        LSR 
 3A/8A86: 3E 08 05  ROL $0508,X
 3A/8A89: 4A        LSR 
 3A/8A8A: 4A        LSR 
 3A/8A8B: 4A        LSR 
 3A/8A8C: 90 03     BCC $8A91
-3A/8A8E: 20 D2 8A  JSR $8AD2
+3A/8A8E: 20 D2 8A  JSR $8AD2          ; draw minimap town sprite
 3A/8A91: E6 40     INC $40
 3A/8A93: E6 3A     INC $3A
 3A/8A95: 88        DEY 
@@ -34067,7 +31376,7 @@
 3A/8AAA: 3E 08 05  ROL $0508,X
 3A/8AAD: 4A        LSR 
 3A/8AAE: 90 03     BCC $8AB3
-3A/8AB0: 20 D2 8A  JSR $8AD2
+3A/8AB0: 20 D2 8A  JSR $8AD2          ; draw minimap town sprite
 3A/8AB3: E6 40     INC $40
 3A/8AB5: E6 3A     INC $3A
 3A/8AB7: 88        DEY 
@@ -34087,7 +31396,7 @@
 3A/8ACF: 90 C7     BCC $8A98
 3A/8AD1: 60        RTS 
 
-; [  ]
+; [ draw minimap town sprite ]
 
 3A/8AD2: A5 26     LDA $26
 3A/8AD4: 18        CLC 
@@ -34107,6 +31416,9 @@
 3A/8AF1: A9 FC     LDA #$FC
 3A/8AF3: 85 26     STA $26
 3A/8AF5: 60        RTS 
+
+; [  ]
+
 3A/8AF6: 2C 02 20  BIT $2002
 3A/8AF9: 8D 06 20  STA $2006
 3A/8AFC: A9 00     LDA #$00
@@ -34120,9 +31432,12 @@
 3A/8B0D: CA        DEX 
 3A/8B0E: D0 F3     BNE $8B03
 3A/8B10: 60        RTS 
-3A/8B11: 2C 02 20  BIT $2002
+
+; [  ]
+
+3A/8B11: 2C 02 20  BIT $2002          ; latch ppu
 3A/8B14: A9 02     LDA #$02
-3A/8B16: 8D 06 20  STA $2006
+3A/8B16: 8D 06 20  STA $2006          ; ppu $0200
 3A/8B19: A9 00     LDA #$00
 3A/8B1B: 8D 06 20  STA $2006
 3A/8B1E: A2 0E     LDX #$0E
@@ -34139,7 +31454,7 @@
 3A/8B32: A9 00     LDA #$00
 3A/8B34: A2 02     LDX #$02
 3A/8B36: 20 F6 8A  JSR $8AF6
-3A/8B39: A9 81     LDA #$81
+3A/8B39: A9 81     LDA #$81           ; 3A/8180 (minimap graphics)
 3A/8B3B: 85 81     STA $81
 3A/8B3D: A9 80     LDA #$80
 3A/8B3F: 85 80     STA $80
@@ -34148,28 +31463,28 @@
 3A/8B45: 20 F6 8A  JSR $8AF6
 3A/8B48: A2 00     LDX #$00
 3A/8B4A: 2C 02 20  BIT $2002
-3A/8B4D: A9 20     LDA #$20
+3A/8B4D: A9 20     LDA #$20           ; ppu $2000
 3A/8B4F: 8D 06 20  STA $2006
 3A/8B52: A9 00     LDA #$00
 3A/8B54: 8D 06 20  STA $2006
 3A/8B57: A2 00     LDX #$00
 3A/8B59: A0 03     LDY #$03
 3A/8B5B: A9 01     LDA #$01
-3A/8B5D: 8D 07 20  STA $2007
+3A/8B5D: 8D 07 20  STA $2007          ; set $2000-$22FF to 1
 3A/8B60: E8        INX 
 3A/8B61: D0 FA     BNE $8B5D
 3A/8B63: 88        DEY 
 3A/8B64: D0 F7     BNE $8B5D
 3A/8B66: A2 C0     LDX #$C0
-3A/8B68: 8D 07 20  STA $2007
+3A/8B68: 8D 07 20  STA $2007          ; set $2300-$23BF to 1
 3A/8B6B: CA        DEX 
 3A/8B6C: D0 FA     BNE $8B68
-3A/8B6E: BD 00 80  LDA $8000,X
+3A/8B6E: BD 00 80  LDA $8000,X        ; 3A/8000 (minimap attribute table)
 3A/8B71: 8D 07 20  STA $2007
 3A/8B74: E8        INX 
 3A/8B75: E0 40     CPX #$40
 3A/8B77: 90 F5     BCC $8B6E
-3A/8B79: A9 21     LDA #$21
+3A/8B79: A9 21     LDA #$21           ; ppu $2148
 3A/8B7B: 85 81     STA $81
 3A/8B7D: A9 48     LDA #$48
 3A/8B7F: 85 80     STA $80
@@ -34191,7 +31506,7 @@
 3A/8BA1: D0 E0     BNE $8B83
 3A/8BA3: 20 A9 8C  JSR $8CA9
 3A/8BA6: A2 0F     LDX #$0F
-3A/8BA8: BD 50 80  LDA $8050,X
+3A/8BA8: BD 50 80  LDA $8050,X        ; 3A/8050
 3A/8BAB: 9D C0 03  STA $03C0,X
 3A/8BAE: A9 0F     LDA #$0F
 3A/8BB0: 9D D0 03  STA $03D0,X
@@ -34238,7 +31553,7 @@
 3A/8C05: 90 F4     BCC $8BFB
 3A/8C07: 20 00 FF  JSR $FF00          ; wait for vblank
 3A/8C0A: A9 02     LDA #$02
-3A/8C0C: 8D 14 40  STA $4014
+3A/8C0C: 8D 14 40  STA $4014          ; dma oam data to ppu
 3A/8C0F: 20 0F C0  JSR $C00F          ; copy color palettes to vram
 3A/8C12: A5 FF     LDA $FF
 3A/8C14: 8D 00 20  STA $2000
@@ -34248,6 +31563,9 @@
 3A/8C1E: 8D 05 20  STA $2005
 3A/8C21: 8D 05 20  STA $2005
 3A/8C24: 60        RTS 
+
+; [  ]
+
 3A/8C25: A2 00     LDX #$00
 3A/8C27: A9 0C     LDA #$0C
 3A/8C29: 85 26     STA $26
@@ -34256,11 +31574,14 @@
 3A/8C30: E8        INX 
 3A/8C31: D0 FA     BNE $8C2D
 3A/8C33: A2 0F     LDX #$0F
-3A/8C35: BD 40 80  LDA $8040,X
+3A/8C35: BD 40 80  LDA $8040,X        ; 3A/8040 (minimap sprite data)
 3A/8C38: 9D 00 02  STA $0200,X
 3A/8C3B: CA        DEX 
 3A/8C3C: 10 F7     BPL $8C35
 3A/8C3E: 60        RTS 
+
+; [ init ppu registers (minimap) ]
+
 3A/8C3F: 20 00 FF  JSR $FF00          ; wait for vblank
 3A/8C42: A9 00     LDA #$00
 3A/8C44: 8D 01 20  STA $2001
@@ -34426,6 +31747,9 @@
 3A/8DA5: CA        DEX 
 3A/8DA6: D0 D6     BNE $8D7E
 3A/8DA8: 60        RTS 
+
+; [  ]
+
 3A/8DA9: 8D 07 20  STA $2007
 3A/8DAC: CA        DEX 
 3A/8DAD: D0 FA     BNE $8DA9
@@ -34487,15 +31811,15 @@
 3A/8E82: 9D 00 63  STA $6300,X
 3A/8E85: E8        INX 
 3A/8E86: D0 F1     BNE $8E79
-3A/8E88: A9 29     LDA #$29           ; initial x position
+3A/8E88: A9 29     LDA #$29           ; initial world map position (41,47)
 3A/8E8A: 8D 09 60  STA $6009
-3A/8E8D: A9 2F     LDA #$2F           ; initial y position
+3A/8E8D: A9 2F     LDA #$2F
 3A/8E8F: 8D 0A 60  STA $600A
 3A/8E92: A9 00     LDA #$00           ; airship position
 3A/8E94: 8D 01 60  STA $6001
 3A/8E97: A9 00     LDA #$00
 3A/8E99: 8D 02 60  STA $6002
-3A/8E9C: A9 00     LDA #$00           ; big airship position
+3A/8E9C: A9 00     LDA #$00           ; invincible position
 3A/8E9E: 8D 05 60  STA $6005
 3A/8EA1: A9 00     LDA #$00
 3A/8EA3: 8D 06 60  STA $6006
@@ -34514,19 +31838,19 @@
 3A/8EC0: A9 39     LDA #$39
 3A/8EC2: 20 09 FF  JSR $FF09          ; switch prg bank 1
 3A/8EC5: A2 02     LDX #$02
-3A/8EC7: BD 00 A0  LDA $A000,X
+3A/8EC7: BD 00 A0  LDA $A000,X        ; 39/A000 (job base stats)
 3A/8ECA: 9D 10 61  STA $6110,X        ; base stats
 3A/8ECD: 9D 15 61  STA $6115,X        ; modified stats
 3A/8ED0: E8        INX 
 3A/8ED1: E0 07     CPX #$07
 3A/8ED3: 90 F2     BCC $8EC7
-3A/8ED5: AD 1D 61  LDA $611D
+3A/8ED5: AD 1D 61  LDA $611D          ; this will be zero
 3A/8ED8: 0A        ASL 
 3A/8ED9: 0A        ASL 
 3A/8EDA: 0A        ASL 
 3A/8EDB: AA        TAX 
 3A/8EDC: A0 00     LDY #$00
-3A/8EDE: BD 88 BB  LDA $BB88,X        ; character initial mp
+3A/8EDE: BD 88 BB  LDA $BB88,X        ; 39/BB88 (character initial mp)
 3A/8EE1: 99 30 61  STA $6130,Y
 3A/8EE4: 99 31 61  STA $6131,Y
 3A/8EE7: C8        INY 
@@ -34534,19 +31858,19 @@
 3A/8EE9: E8        INX 
 3A/8EEA: C0 10     CPY #$10
 3A/8EEC: 90 F0     BCC $8EDE
-3A/8EEE: AD D8 BB  LDA $BBD8          ; character initial hp (16-bit)
+3A/8EEE: AD D8 BB  LDA $BBD8          ; 39/BBD8 (character initial hp)
 3A/8EF1: 8D 0E 61  STA $610E
 3A/8EF4: 8D 0C 61  STA $610C
 3A/8EF7: AD D9 BB  LDA $BBD9
 3A/8EFA: 8D 0F 61  STA $610F
 3A/8EFD: 8D 0D 61  STA $610D
 3A/8F00: A2 13     LDX #$13
-3A/8F02: BD DA BB  LDA $BBDA,X        ; 
+3A/8F02: BD DA BB  LDA $BBDA,X        ; 39/BBDA (character initial stats)
 3A/8F05: 9D 1C 61  STA $611C,X
 3A/8F08: CA        DEX 
 3A/8F09: 10 F7     BPL $8F02
 3A/8F0B: A2 0F     LDX #$0F
-3A/8F0D: BD F0 BB  LDA $BBF0,X        ; 3B/BBF0 (character initial equipment)
+3A/8F0D: BD F0 BB  LDA $BBF0,X        ; 39/BBF0 (character initial equipment)
 3A/8F10: 9D 00 62  STA $6200,X
 3A/8F13: CA        DEX 
 3A/8F14: 10 F7     BPL $8F0D
@@ -34650,36 +31974,36 @@
 3A/8FD8: AD 2E 60  LDA $602E
 3A/8FDB: 29 02     AND #$02
 3A/8FDD: F0 07     BEQ $8FE6
-3A/8FDF: A2 40     LDX #$40
+3A/8FDF: A2 40     LDX #$40           ; copy tile 0 to tile 64 (statue 1)
 3A/8FE1: A0 00     LDY #$00
 3A/8FE3: 20 1F 90  JSR $901F
 3A/8FE6: AD 2E 60  LDA $602E
 3A/8FE9: 29 04     AND #$04
 3A/8FEB: F0 07     BEQ $8FF4
-3A/8FED: A2 41     LDX #$41
+3A/8FED: A2 41     LDX #$41           ; copy tile 0 to tile 65 (statue 2)
 3A/8FEF: A0 00     LDY #$00
 3A/8FF1: 20 1F 90  JSR $901F
 3A/8FF4: AD 2E 60  LDA $602E
 3A/8FF7: 29 08     AND #$08
 3A/8FF9: F0 07     BEQ $9002
-3A/8FFB: A2 42     LDX #$42
+3A/8FFB: A2 42     LDX #$42           ; copy tile 0 to tile 66 (statue 3)
 3A/8FFD: A0 00     LDY #$00
 3A/8FFF: 20 1F 90  JSR $901F
 3A/9002: AD 2E 60  LDA $602E
 3A/9005: 29 10     AND #$10
 3A/9007: F0 07     BEQ $9010
-3A/9009: A2 43     LDX #$43
+3A/9009: A2 43     LDX #$43           ; copy tile 0 to tile 67 (statue 4)
 3A/900B: A0 00     LDY #$00
 3A/900D: 20 1F 90  JSR $901F
 3A/9010: AD 2E 60  LDA $602E
 3A/9013: 29 20     AND #$20
 3A/9015: F0 07     BEQ $901E
-3A/9017: A2 4A     LDX #$4A
+3A/9017: A2 4A     LDX #$4A           ; copy tile 0 to tile 74 (saronia gate)
 3A/9019: A0 03     LDY #$03
 3A/901B: 20 1F 90  JSR $901F
 3A/901E: 60        RTS 
 
-; [  ]
+; [ copy tile properties from tile Y to tile X ]
 
 3A/901F: B9 00 05  LDA $0500,Y
 3A/9022: 9D 00 05  STA $0500,X
@@ -34775,14 +32099,14 @@
 3A/90C1: 20 50 90  JSR $9050          ; load map character palette
 3A/90C4: A5 7C     LDA $7C
 3A/90C6: D0 1D     BNE $90E5
-3A/90C8: AD 0B 60  LDA $600B
+3A/90C8: AD 0B 60  LDA $600B          ; guest npc
 3A/90CB: F0 18     BEQ $90E5
 3A/90CD: 38        SEC 
 3A/90CE: E9 01     SBC #$01
 3A/90D0: 29 0F     AND #$0F
 3A/90D2: 0A        ASL 
 3A/90D3: AA        TAX 
-3A/90D4: BD F8 B6  LDA $B6F8,X
+3A/90D4: BD F8 B6  LDA $B6F8,X        ; 00/96F8 (guest npc palettes)
 3A/90D7: 8D DA 03  STA $03DA
 3A/90DA: BD F9 B6  LDA $B6F9,X
 3A/90DD: 8D DB 03  STA $03DB
@@ -34923,14 +32247,12 @@
 3A/91E8: A8        TAY 
 3A/91E9: E0 1C     CPX #$1C
 3A/91EB: F0 0A     BEQ $91F7
-
 ; trigger
 3A/91ED: B9 00 05  LDA $0500,Y        ; tile properties
 3A/91F0: 05 89     ORA $89
 3A/91F2: 99 00 05  STA $0500,Y        ; store trigger id
 3A/91F5: 98        TYA 
 3A/91F6: 60        RTS 
-
 ; treasure chest
 3A/91F7: 98        TYA 
 3A/91F8: 48        PHA 
@@ -35154,7 +32476,7 @@
 
 3A/9441: 60        RTS 
 
-; [  ]
+; [ update underwater bubbles ]
 
 3A/9442: A5 F0     LDA $F0
 3A/9444: 4A        LSR 
@@ -35165,10 +32487,13 @@
 3A/9450: 20 5A 94  JSR $945A
 3A/9453: 20 8D 96  JSR $968D
 3A/9456: 4C 36 97  JMP $9736
-3A/9459: 60        RTS 
 
 ; [  ]
 
+; starts at 3A/945A
+
+3A/9459: 60        RTS 
+; subroutine starts here
 3A/945A: AD 20 01  LDA $0120
 3A/945D: F0 1F     BEQ $947E
 3A/945F: A2 00     LDX #$00
@@ -35747,17 +33072,21 @@
 3A/998C: F8 30 00 CC CC FC 30 C4
 3A/9994: 00 00 00 00 00 00 00 00
 
-; [  ]
+; [ update statue explosion animation ]
+
+; A: frame (clamped to mod 5)
+; X: x position
+; Y: y position
 
 3A/999C: 86 40     STX $40
 3A/999E: 84 41     STY $41
-3A/99A0: C9 05     CMP #$05
+3A/99A0: C9 05     CMP #$05           ; clamp frame to mod 5
 3A/99A2: 90 04     BCC $99A8
 3A/99A4: E9 05     SBC #$05
 3A/99A6: D0 F8     BNE $99A0
 3A/99A8: 0A        ASL 
 3A/99A9: AA        TAX 
-3A/99AA: BD DA 99  LDA $99DA,X
+3A/99AA: BD DA 99  LDA $99DA,X        ; pointers to statue explosion frame data
 3A/99AD: 85 66     STA $66
 3A/99AF: BD DB 99  LDA $99DB,X
 3A/99B2: 85 67     STA $67
@@ -35765,26 +33094,28 @@
 3A/99B6: 85 65     STA $65
 3A/99B8: A4 65     LDY $65
 3A/99BA: B1 66     LDA ($66),Y
-3A/99BC: C9 FF     CMP #$FF
+3A/99BC: C9 FF     CMP #$FF           ; terminator
 3A/99BE: D0 01     BNE $99C1
 3A/99C0: 60        RTS 
 3A/99C1: 18        CLC 
 3A/99C2: 65 40     ADC $40
-3A/99C4: 85 40     STA $40
+3A/99C4: 85 40     STA $40            ; x position
 3A/99C6: C8        INY 
 3A/99C7: B1 66     LDA ($66),Y
 3A/99C9: 18        CLC 
 3A/99CA: 65 41     ADC $41
-3A/99CC: 85 41     STA $41
+3A/99CC: 85 41     STA $41            ; y position
 3A/99CE: C8        INY 
-3A/99CF: B1 66     LDA ($66),Y
+3A/99CF: B1 66     LDA ($66),Y        ; frame
 3A/99D1: C8        INY 
 3A/99D2: 84 65     STY $65
-3A/99D4: 20 34 9A  JSR $9A34
-3A/99D7: 4C B8 99  JMP $99B8
+3A/99D4: 20 34 9A  JSR $9A34          ; draw statue explosion sprites
+3A/99D7: 4C B8 99  JMP $99B8          ; next explosion
 
+; pointers to statue explosion frame data
 3A/99DA: 99E4 99F4 9A04 9A14 9A24
 
+; x, y, frame
 3A/99E4: 18 00 00
 3A/99E7: F0 0E 03
 3A/99EA: 10 12 04
@@ -35820,7 +33151,9 @@
 3A/9A30: 1C 0C 00
 3A/9A33: FF
 
-; [  ]
+; [ draw statue explosion sprites ]
+
+; A: frame
 
 3A/9A34: 0A        ASL 
 3A/9A35: 0A        ASL 
@@ -35834,6 +33167,7 @@
 3A/9A43: 85 82     STA $82
 3A/9A45: 4C 1E C0  JMP $C01E          ; draw object sprite
 
+; statue explosion sprite data (5 frames, 4 sprites each)
 ; 0: tile id
 ; 1: palette / flip
 3A/9A48: 84 02 84 82 85 02 85 82
@@ -35851,7 +33185,7 @@
 3A/9A78: D0 FA     BNE $9A74
 3A/9A7A: 60        RTS 
 
-; [  ]
+; [ special animation 4:  ]
 
 3A/9A7B: A9 00     LDA #$00
 3A/9A7D: 85 BC     STA $BC
@@ -35882,7 +33216,7 @@
 3A/9AB4: 8D 03 60  STA $6003
 3A/9AB7: 60        RTS 
 
-; [  ]
+; [ special animation 1:  ]
 
 3A/9AB8: 20 F2 9A  JSR $9AF2
 3A/9ABB: 20 5D 9B  JSR $9B5D
@@ -35974,7 +33308,7 @@
 3A/9B5F: 85 57     STA $57
 3A/9B61: 20 00 FF  JSR $FF00          ; wait for vblank
 3A/9B64: A9 02     LDA #$02
-3A/9B66: 8D 14 40  STA $4014
+3A/9B66: 8D 14 40  STA $4014          ; dma oam data to ppu
 3A/9B69: A2 C8     LDX #$C8
 3A/9B6B: CA        DEX 
 3A/9B6C: D0 FD     BNE $9B6B
@@ -36254,7 +33588,7 @@
 
 ; [ execute event command ]
 
-3B/A067: A9 00     LDA #$00
+3B/A067: A9 00     LDA #$00           ; clear buttons pressed
 3B/A069: 85 24     STA $24
 3B/A06B: 85 25     STA $25
 3B/A06D: 85 23     STA $23
@@ -36280,8 +33614,8 @@
 3B/A084: 6C 80 00  JMP ($0080)
 
 ; object command jump table
-3B/A087:           .DW $A4AF,$A1CE,$A4A4,$A09B,$A0B1,$A076,$AEEB,$B2FD
-3B/A097:           .DW $AF7F,$A076
+3B/A087: A4AF A1CE A4A4 A09B A0B1 A076 AEEB B2FD
+3B/A097: AF7F A076
 
 ; [ object command 3:  ]
 
@@ -36375,15 +33709,17 @@
 3B/A136: 90 03     BCC $A13B
 3B/A138: 4C 3F B5  JMP $B53F          ; jump if $D0-$FF
 
-; event commands $C0-$CF
+; event commands $C0-$CF (player commands)
 3B/A13B: A5 70     LDA $70
 3B/A13D: 29 0F     AND #$0F
 3B/A13F: C9 04     CMP #$04
+; $C0-$C3: move player
 3B/A141: B0 07     BCS $A14A
 3B/A143: AA        TAX 
 3B/A144: BD CA A1  LDA $A1CA,X
 3B/A147: 85 20     STA $20
 3B/A149: 60        RTS 
+; $C4-$C7: change facing direction
 3B/A14A: C9 08     CMP #$08
 3B/A14C: B0 09     BCS $A157
 3B/A14E: 29 03     AND #$03
@@ -36391,42 +33727,49 @@
 3B/A151: BD CA A1  LDA $A1CA,X
 3B/A154: 85 33     STA $33
 3B/A156: 60        RTS 
+; $C8: show player
 3B/A157: C9 08     CMP #$08
 3B/A159: D0 07     BNE $A162
 3B/A15B: A5 7E     LDA $7E
 3B/A15D: 29 7F     AND #$7F
 3B/A15F: 85 7E     STA $7E
 3B/A161: 60        RTS 
+; $C9: hide player
 3B/A162: C9 09     CMP #$09
 3B/A164: D0 07     BNE $A16D
 3B/A166: A5 7E     LDA $7E
 3B/A168: 09 80     ORA #$80
 3B/A16A: 85 7E     STA $7E
 3B/A16C: 60        RTS 
+; $CA: set vehicle to nautilus
 3B/A16D: C9 0A     CMP #$0A
 3B/A16F: D0 07     BNE $A178
 3B/A171: A9 06     LDA #$06           ; nautilus ???
 3B/A173: 85 42     STA $42
 3B/A175: 85 46     STA $46
 3B/A177: 60        RTS 
+; $CB: set vehicle to invincible
 3B/A178: C9 0B     CMP #$0B
 3B/A17A: D0 07     BNE $A183
 3B/A17C: A9 07     LDA #$07           ; invincible
 3B/A17E: 85 42     STA $42
 3B/A180: 85 46     STA $46
 3B/A182: 60        RTS 
+; $CC: show guest npc
 3B/A183: C9 0C     CMP #$0C
 3B/A185: D0 07     BNE $A18E
 3B/A187: A5 7E     LDA $7E
 3B/A189: 29 BF     AND #$BF
 3B/A18B: 85 7E     STA $7E
 3B/A18D: 60        RTS 
+; $CD: hide guest npc
 3B/A18E: C9 0D     CMP #$0D
 3B/A190: D0 07     BNE $A199
 3B/A192: A5 7E     LDA $7E
 3B/A194: 09 40     ORA #$40
 3B/A196: 85 7E     STA $7E
 3B/A198: 60        RTS 
+; $CE: get off vehicle
 3B/A199: C9 0E     CMP #$0E
 3B/A19B: D0 21     BNE $A1BE
 3B/A19D: A9 00     LDA #$00           ; no vehicle
@@ -36445,6 +33788,7 @@
 3B/A1B8: A9 01     LDA #$01
 3B/A1BA: 8D 04 60  STA $6004
 3B/A1BD: 60        RTS 
+; $CF: set vehicle to chocobo
 3B/A1BE: C9 0F     CMP #$0F
 3B/A1C0: D0 07     BNE $A1C9
 3B/A1C2: A9 01     LDA #$01           ; chocobo
@@ -36453,6 +33797,7 @@
 3B/A1C8: 60        RTS 
 3B/A1C9: 60        RTS 
 
+; movement flags (right, left, down, up)
 3B/A1CA: 01 02 04 08
 
 ; [ object command 1:  ]
@@ -36480,6 +33825,9 @@
 3B/A1F3: 85 41     STA $41
 3B/A1F5: 18        CLC 
 3B/A1F6: 60        RTS 
+
+; [ special animation D: circling stars ]
+
 3B/A1F7: A9 00     LDA #$00
 3B/A1F9: 8D 01 71  STA $7101
 3B/A1FC: A9 00     LDA #$00
@@ -36487,11 +33835,11 @@
 3B/A200: 85 63     STA $63
 3B/A202: A9 EA     LDA #$EA
 3B/A204: 85 65     STA $65
-3B/A206: 20 42 A8  JSR $A842
-3B/A209: 20 5A A8  JSR $A85A
-3B/A20C: 20 42 A8  JSR $A842
+3B/A206: 20 42 A8  JSR $A842          ; reset sprite data
+3B/A209: 20 5A A8  JSR $A85A          ; wait for end of vblank
+3B/A20C: 20 42 A8  JSR $A842          ; reset sprite data
 3B/A20F: A0 00     LDY #$00
-3B/A211: 20 1B C0  JSR $C01B
+3B/A211: 20 1B C0  JSR $C01B          ; update player sprites
 3B/A214: 20 30 A2  JSR $A230
 3B/A217: A5 62     LDA $62
 3B/A219: 18        CLC 
@@ -36507,6 +33855,9 @@
 3B/A22B: C9 0C     CMP #$0C
 3B/A22D: B0 DA     BCS $A209
 3B/A22F: 60        RTS 
+
+; [  ]
+
 3B/A230: A9 08     LDA #$08
 3B/A232: 85 8E     STA $8E
 3B/A234: A5 62     LDA $62
@@ -36534,6 +33885,9 @@
 3B/A25F: C6 8E     DEC $8E
 3B/A261: D0 D9     BNE $A23C
 3B/A263: 60        RTS 
+
+; [ special animation C: bahamut attacks ]
+
 3B/A264: A9 00     LDA #$00
 3B/A266: 85 64     STA $64
 3B/A268: 85 65     STA $65
@@ -36559,10 +33913,10 @@
 3B/A28C: 85 63     STA $63
 3B/A28E: A9 00     LDA #$00
 3B/A290: 85 61     STA $61
-3B/A292: 20 5A A8  JSR $A85A
-3B/A295: 20 42 A8  JSR $A842
+3B/A292: 20 5A A8  JSR $A85A          ; wait for end of vblank
+3B/A295: 20 42 A8  JSR $A842          ; reset sprite data
 3B/A298: A4 42     LDY $42
-3B/A29A: 20 1B C0  JSR $C01B
+3B/A29A: 20 1B C0  JSR $C01B          ; update player sprites
 3B/A29D: 20 C0 A2  JSR $A2C0
 3B/A2A0: A5 E6     LDA $E6
 3B/A2A2: 85 40     STA $40
@@ -36579,6 +33933,9 @@
 3B/A2BA: 09 40     ORA #$40
 3B/A2BC: 8D 2F 60  STA $602F
 3B/A2BF: 60        RTS 
+
+; [  ]
+
 3B/A2C0: A5 62     LDA $62
 3B/A2C2: C5 63     CMP $63
 3B/A2C4: B0 16     BCS $A2DC
@@ -36602,6 +33959,9 @@
 3B/A2E8: E5 62     SBC $62
 3B/A2EA: 85 61     STA $61
 3B/A2EC: 4C 07 A3  JMP $A307
+
+; [  ]
+
 3B/A2EF: A5 E6     LDA $E6
 3B/A2F1: 29 FE     AND #$FE
 3B/A2F3: C9 70     CMP #$70
@@ -36616,6 +33976,9 @@
 3B/A302: E9 02     SBC #$02
 3B/A304: 85 E6     STA $E6
 3B/A306: 60        RTS 
+
+; [  ]
+
 3B/A307: A5 E7     LDA $E7
 3B/A309: 29 FE     AND #$FE
 3B/A30B: C9 70     CMP #$70
@@ -36630,16 +33993,19 @@
 3B/A31A: E9 02     SBC #$02
 3B/A31C: 85 E7     STA $E7
 3B/A31E: 60        RTS 
+
+; [ special animation A:  ]
+
 3B/A31F: A9 B0     LDA #$B0
 3B/A321: 85 66     STA $66
 3B/A323: A9 01     LDA #$01
 3B/A325: 85 67     STA $67
 3B/A327: A9 FF     LDA #$FF
 3B/A329: 85 65     STA $65
-3B/A32B: 20 5A A8  JSR $A85A
-3B/A32E: 20 42 A8  JSR $A842
+3B/A32B: 20 5A A8  JSR $A85A          ; wait for end of vblank
+3B/A32E: 20 42 A8  JSR $A842          ; reset sprite data
 3B/A331: A4 42     LDY $42
-3B/A333: 20 1B C0  JSR $C01B
+3B/A333: 20 1B C0  JSR $C01B          ; update player sprites
 3B/A336: 20 D6 A3  JSR $A3D6
 3B/A339: A5 66     LDA $66
 3B/A33B: 18        CLC 
@@ -36654,10 +34020,10 @@
 3B/A34B: 85 65     STA $65
 3B/A34D: C9 60     CMP #$60
 3B/A34F: B0 DA     BCS $A32B
-3B/A351: 20 5A A8  JSR $A85A
-3B/A354: 20 42 A8  JSR $A842
+3B/A351: 20 5A A8  JSR $A85A          ; wait for end of vblank
+3B/A354: 20 42 A8  JSR $A842          ; reset sprite data
 3B/A357: A4 42     LDY $42
-3B/A359: 20 1B C0  JSR $C01B
+3B/A359: 20 1B C0  JSR $C01B          ; update player sprites
 3B/A35C: 20 D6 A3  JSR $A3D6
 3B/A35F: A5 66     LDA $66
 3B/A361: 18        CLC 
@@ -36672,16 +34038,19 @@
 3B/A372: A5 66     LDA $66
 3B/A374: D0 DB     BNE $A351
 3B/A376: 60        RTS 
+
+; [ special animation B:  ]
+
 3B/A377: A9 50     LDA #$50
 3B/A379: 85 66     STA $66
 3B/A37B: A9 01     LDA #$01
 3B/A37D: 85 67     STA $67
 3B/A37F: A9 FF     LDA #$FF
 3B/A381: 85 65     STA $65
-3B/A383: 20 5A A8  JSR $A85A
-3B/A386: 20 42 A8  JSR $A842
+3B/A383: 20 5A A8  JSR $A85A          ; wait for end of vblank
+3B/A386: 20 42 A8  JSR $A842          ; reset sprite data
 3B/A389: A0 00     LDY #$00
-3B/A38B: 20 1B C0  JSR $C01B
+3B/A38B: 20 1B C0  JSR $C01B          ; update player sprites
 3B/A38E: 20 D6 A3  JSR $A3D6
 3B/A391: A5 66     LDA $66
 3B/A393: 18        CLC 
@@ -36696,8 +34065,8 @@
 3B/A3A3: 85 65     STA $65
 3B/A3A5: C9 30     CMP #$30
 3B/A3A7: B0 DA     BCS $A383
-3B/A3A9: 20 5A A8  JSR $A85A
-3B/A3AC: 20 42 A8  JSR $A842
+3B/A3A9: 20 5A A8  JSR $A85A          ; wait for end of vblank
+3B/A3AC: 20 42 A8  JSR $A842          ; reset sprite data
 3B/A3AF: A9 20     LDA #$20
 3B/A3B1: 85 26     STA $26
 3B/A3B3: 20 D6 A3  JSR $A3D6
@@ -36718,6 +34087,9 @@
 3B/A3D1: C9 F8     CMP #$F8
 3B/A3D3: 90 D4     BCC $A3A9
 3B/A3D5: 60        RTS 
+
+; [  ]
+
 3B/A3D6: 20 69 AB  JSR $AB69
 3B/A3D9: A5 40     LDA $40
 3B/A3DB: 38        SEC 
@@ -36728,6 +34100,9 @@
 3B/A3E3: E9 0C     SBC #$0C
 3B/A3E5: 85 41     STA $41
 3B/A3E7: 4C DA A7  JMP $A7DA
+
+; [  ]
+
 3B/A3EA: A9 00     LDA #$00
 3B/A3EC: 85 66     STA $66
 3B/A3EE: A9 01     LDA #$01
@@ -36765,10 +34140,10 @@
 3B/A431: 85 62     STA $62
 3B/A433: A9 00     LDA #$00
 3B/A435: 85 BC     STA $BC
-3B/A437: 20 5A A8  JSR $A85A
-3B/A43A: 20 42 A8  JSR $A842
+3B/A437: 20 5A A8  JSR $A85A          ; wait for end of vblank
+3B/A43A: 20 42 A8  JSR $A842          ; reset sprite data
 3B/A43D: A4 42     LDY $42
-3B/A43F: 20 1B C0  JSR $C01B
+3B/A43F: 20 1B C0  JSR $C01B          ; update player sprites
 3B/A442: 20 84 A4  JSR $A484
 3B/A445: E6 BC     INC $BC
 3B/A447: A5 62     LDA $62
@@ -36802,6 +34177,9 @@
 3B/A47F: A9 00     LDA #$00
 3B/A481: 85 19     STA $19
 3B/A483: 60        RTS 
+
+; [  ]
+
 3B/A484: 20 69 AB  JSR $AB69
 3B/A487: A6 26     LDX $26
 3B/A489: A5 41     LDA $41
@@ -36874,103 +34252,128 @@
 3B/A4F6: 4A        LSR 
 3B/A4F7: 85 83     STA $83
 3B/A4F9: 60        RTS 
+
+; [ special animation ]
+
+; 0: 
 3B/A4FA: D0 03     BNE $A4FF
 3B/A4FC: 4C A9 A8  JMP $A8A9
+; 1: 
 3B/A4FF: C9 01     CMP #$01
 3B/A501: D0 0B     BNE $A50E
 3B/A503: 20 15 BA  JSR $BA15
 3B/A506: A9 3A     LDA #$3A
 3B/A508: 20 06 FF  JSR $FF06          ; switch prg bank 0
 3B/A50B: 4C 1E 85  JMP $851E
+; 2: 
 3B/A50E: C9 02     CMP #$02
 3B/A510: D0 03     BNE $A515
 3B/A512: 4C 09 A6  JMP $A609
+; 3: 
 3B/A515: C9 03     CMP #$03
 3B/A517: D0 03     BNE $A51C
 3B/A519: 4C 31 A6  JMP $A631
+; 4: 
 3B/A51C: C9 04     CMP #$04
 3B/A51E: D0 0B     BNE $A52B
 3B/A520: 20 EA A3  JSR $A3EA
 3B/A523: A9 3A     LDA #$3A
 3B/A525: 20 06 FF  JSR $FF06          ; switch prg bank 0
 3B/A528: 4C 27 85  JMP $8527
+; 5: destroy statue 1 (fire fang)
 3B/A52B: C9 05     CMP #$05
 3B/A52D: D0 12     BNE $A541
-3B/A52F: 20 06 A8  JSR $A806
-3B/A532: AD 2E 60  LDA $602E
+3B/A52F: 20 06 A8  JSR $A806          ; destroy statue animation
+3B/A532: AD 2E 60  LDA $602E          ; statue 1 destroyed
 3B/A535: 09 02     ORA #$02
 3B/A537: 8D 2E 60  STA $602E
 3B/A53A: A2 40     LDX #$40
 3B/A53C: A0 00     LDY #$00
 3B/A53E: 4C BA A9  JMP $A9BA
+; 6: destroy statue 2 (water fang)
 3B/A541: C9 06     CMP #$06
 3B/A543: D0 12     BNE $A557
-3B/A545: 20 06 A8  JSR $A806
-3B/A548: AD 2E 60  LDA $602E
+3B/A545: 20 06 A8  JSR $A806          ; destroy statue animation
+3B/A548: AD 2E 60  LDA $602E          ; statue 2 destroyed
 3B/A54B: 09 04     ORA #$04
 3B/A54D: 8D 2E 60  STA $602E
 3B/A550: A2 41     LDX #$41
 3B/A552: A0 00     LDY #$00
 3B/A554: 4C BA A9  JMP $A9BA
+; 7: destroy statue 3 (wind fang)
 3B/A557: C9 07     CMP #$07
 3B/A559: D0 12     BNE $A56D
-3B/A55B: 20 06 A8  JSR $A806
-3B/A55E: AD 2E 60  LDA $602E
+3B/A55B: 20 06 A8  JSR $A806          ; destroy statue animation
+3B/A55E: AD 2E 60  LDA $602E          ; statue 3 destroyed
 3B/A561: 09 08     ORA #$08
 3B/A563: 8D 2E 60  STA $602E
 3B/A566: A2 42     LDX #$42
 3B/A568: A0 00     LDY #$00
 3B/A56A: 4C BA A9  JMP $A9BA
+; 8: destroy statue 4 (earth fang)
 3B/A56D: C9 08     CMP #$08
 3B/A56F: D0 12     BNE $A583
-3B/A571: 20 06 A8  JSR $A806
-3B/A574: AD 2E 60  LDA $602E
+3B/A571: 20 06 A8  JSR $A806          ; destroy statue animation
+3B/A574: AD 2E 60  LDA $602E          ; statue 4 destroyed
 3B/A577: 09 10     ORA #$10
 3B/A579: 8D 2E 60  STA $602E
 3B/A57C: A2 43     LDX #$43
 3B/A57E: A0 00     LDY #$00
 3B/A580: 4C BA A9  JMP $A9BA
+; 9: invincible rises from the ocean
 3B/A583: C9 09     CMP #$09
 3B/A585: D0 03     BNE $A58A
 3B/A587: 4C 6A A6  JMP $A66A
+; A: 
 3B/A58A: C9 0A     CMP #$0A
 3B/A58C: D0 03     BNE $A591
 3B/A58E: 4C 1F A3  JMP $A31F
+; B: 
 3B/A591: C9 0B     CMP #$0B
 3B/A593: D0 03     BNE $A598
 3B/A595: 4C 77 A3  JMP $A377
+; C: bahamut attacks
 3B/A598: C9 0C     CMP #$0C
 3B/A59A: D0 03     BNE $A59F
 3B/A59C: 4C 64 A2  JMP $A264
+; D: circling of stars
 3B/A59F: C9 0D     CMP #$0D
 3B/A5A1: D0 03     BNE $A5A6
 3B/A5A3: 4C F7 A1  JMP $A1F7
+; E: open saronia gate
 3B/A5A6: C9 0E     CMP #$0E
 3B/A5A8: D0 0F     BNE $A5B9
-3B/A5AA: AD 2E 60  LDA $602E
+3B/A5AA: AD 2E 60  LDA $602E          ; saronia gate opened
 3B/A5AD: 09 20     ORA #$20
 3B/A5AF: 8D 2E 60  STA $602E
 3B/A5B2: A2 4A     LDX #$4A
 3B/A5B4: A0 03     LDY #$03
 3B/A5B6: 4C BA A9  JMP $A9BA
+; F: no effect
 3B/A5B9: C9 0F     CMP #$0F
 3B/A5BB: D0 00     BNE $A5BD
 3B/A5BD: 60        RTS 
+
+; [  ]
+
 3B/A5BE: A9 00     LDA #$00
 3B/A5C0: 85 BC     STA $BC
-3B/A5C2: 20 42 A8  JSR $A842
+3B/A5C2: 20 42 A8  JSR $A842          ; reset sprite data
 3B/A5C5: AD 2F 60  LDA $602F
 3B/A5C8: 09 40     ORA #$40
 3B/A5CA: 8D 2F 60  STA $602F
-3B/A5CD: 20 5A A8  JSR $A85A
-3B/A5D0: 20 42 A8  JSR $A842
+3B/A5CD: 20 5A A8  JSR $A85A          ; wait for end of vblank
+3B/A5D0: 20 42 A8  JSR $A842          ; reset sprite data
 3B/A5D3: 20 E3 A5  JSR $A5E3
 3B/A5D6: A4 42     LDY $42
-3B/A5D8: 20 1B C0  JSR $C01B
-3B/A5DB: 20 12 C0  JSR $C012
+3B/A5D8: 20 1B C0  JSR $C01B          ; update player sprites
+3B/A5DB: 20 12 C0  JSR $C012          ; draw inactive invincible
 3B/A5DE: E6 BC     INC $BC
 3B/A5E0: 10 EB     BPL $A5CD
 3B/A5E2: 60        RTS 
+
+; [  ]
+
 3B/A5E3: A5 BC     LDA $BC
 3B/A5E5: 29 08     AND #$08
 3B/A5E7: D0 0F     BNE $A5F8
@@ -36983,25 +34386,21 @@
 3B/A5F6: 85 26     STA $26
 3B/A5F8: 60        RTS 
 
-3B/A5F9: 6C 8E 02  JMP ($028E)
-3B/A5FC: 70 6C     BVS $A66A
-3B/A5FE: 8F        --- 
-3B/A5FF: 02        --- 
-3B/A600: 78        SEI 
-3B/A601: 74        --- 
-3B/A602: 8E 82 70  STX $7082
-3B/A605: 74        --- 
-3B/A606: 8F        --- 
-3B/A607: 42        --- 
-3B/A608: 78        SEI 
+3B/A5F9: 6C 8E 02 70
+3B/A5FD: 6C 8F 02 78
+3B/A601: 74 8E 82 70
+3B/A605: 74 8F 42 78
+
+; [ special animation 2:  ]
+
 3B/A609: A9 FF     LDA #$FF
 3B/A60B: 85 65     STA $65
-3B/A60D: 20 42 A8  JSR $A842
-3B/A610: 20 5A A8  JSR $A85A
-3B/A613: 20 42 A8  JSR $A842
+3B/A60D: 20 42 A8  JSR $A842          ; reset sprite data
+3B/A610: 20 5A A8  JSR $A85A          ; wait for end of vblank
+3B/A613: 20 42 A8  JSR $A842          ; reset sprite data
 3B/A616: A4 42     LDY $42
-3B/A618: 20 1B C0  JSR $C01B
-3B/A61B: 20 12 C0  JSR $C012
+3B/A618: 20 1B C0  JSR $C01B          ; update player sprites
+3B/A61B: 20 12 C0  JSR $C012          ; draw inactive invincible
 3B/A61E: 20 1B AB  JSR $AB1B
 3B/A621: E6 BC     INC $BC
 3B/A623: A5 65     LDA $65
@@ -37011,17 +34410,20 @@
 3B/A62A: C9 0C     CMP #$0C
 3B/A62C: B0 E2     BCS $A610
 3B/A62E: 4C BE A5  JMP $A5BE
+
+; [ special animation 3:  ]
+
 3B/A631: A9 00     LDA #$00
 3B/A633: 85 62     STA $62
 3B/A635: 85 63     STA $63
 3B/A637: A9 EA     LDA #$EA
 3B/A639: 85 65     STA $65
-3B/A63B: 20 42 A8  JSR $A842
-3B/A63E: 20 5A A8  JSR $A85A
-3B/A641: 20 42 A8  JSR $A842
+3B/A63B: 20 42 A8  JSR $A842          ; reset sprite data
+3B/A63E: 20 5A A8  JSR $A85A          ; wait for end of vblank
+3B/A641: 20 42 A8  JSR $A842          ; reset sprite data
 3B/A644: A4 42     LDY $42
-3B/A646: 20 1B C0  JSR $C01B
-3B/A649: 20 12 C0  JSR $C012
+3B/A646: 20 1B C0  JSR $C01B          ; update player sprites
+3B/A649: 20 12 C0  JSR $C012          ; draw inactive invincible
 3B/A64C: 20 DE AA  JSR $AADE
 3B/A64F: A5 62     LDA $62
 3B/A651: 18        CLC 
@@ -37037,9 +34439,12 @@
 3B/A663: C9 0C     CMP #$0C
 3B/A665: B0 D7     BCS $A63E
 3B/A667: 4C BE A5  JMP $A5BE
-3B/A66A: 20 42 A8  JSR $A842
+
+; [ special animation 9: invincible rises from the ocean ]
+
+3B/A66A: 20 42 A8  JSR $A842          ; reset sprite data
 3B/A66D: 20 70 A8  JSR $A870
-3B/A670: 20 42 A8  JSR $A842
+3B/A670: 20 42 A8  JSR $A842          ; reset sprite data
 3B/A673: 20 AF A6  JSR $A6AF
 3B/A676: 20 21 C0  JSR $C021
 3B/A679: E6 BC     INC $BC
@@ -37067,7 +34472,7 @@
 3B/A6A9: A9 01     LDA #$01
 3B/A6AB: 8D 04 60  STA $6004
 3B/A6AE: 60        RTS 
-3B/A6AF: 20 42 A8  JSR $A842
+3B/A6AF: 20 42 A8  JSR $A842          ; reset sprite data
 3B/A6B2: A5 BC     LDA $BC
 3B/A6B4: 4A        LSR 
 3B/A6B5: 4A        LSR 
@@ -37089,68 +34494,43 @@
 3B/A6CF: E0 0C     CPX #$0C
 3B/A6D1: 90 F4     BCC $A6C7
 3B/A6D3: 60        RTS 
-3B/A6D4: 76 BC     ROR $BC,X
-3B/A6D6: 03        --- 
-3B/A6D7: B0 76     BCS $A74F
-3B/A6D9: BC 43 B8  LDY $B843,X
-3B/A6DC: F8        SED 
-3B/A6DD: BF        --- 
-3B/A6DE: 03        --- 
-3B/A6DF: B4 76     LDY $76,X
-3B/A6E1: BD 03 B0  LDA $B003,X
-3B/A6E4: 76 BD     ROR $BD,X
-3B/A6E6: 43        --- 
-3B/A6E7: B8        CLV 
-3B/A6E8: F8        SED 
-3B/A6E9: BF        --- 
-3B/A6EA: 03        --- 
-3B/A6EB: B4 76     LDY $76,X
-3B/A6ED: BE 03 AF  LDX $AF03,Y
-3B/A6F0: 76 BE     ROR $BE,X
-3B/A6F2: 43        --- 
-3B/A6F3: B9 76 BF  LDA $BF76,Y
-3B/A6F6: 03        --- 
-3B/A6F7: B4 76     LDY $76,X
-3B/A6F9: BE 03 AE  LDX $AE03,Y
-3B/A6FC: 76 BE     ROR $BE,X
-3B/A6FE: 43        --- 
-3B/A6FF: BA        TSX 
-3B/A700: 76 BF     ROR $BF,X
-3B/A702: 03        --- 
-3B/A703: B4 76     LDY $76,X
-3B/A705: BE 03 AD  LDX $AD03,Y
-3B/A708: 76 BE     ROR $BE,X
-3B/A70A: 43        --- 
-3B/A70B: BB        --- 
-3B/A70C: 76 BF     ROR $BF,X
-3B/A70E: 03        --- 
-3B/A70F: B4 76     LDY $76,X
-3B/A711: BE 03 AC  LDX $AC03,Y
-3B/A714: 76 BE     ROR $BE,X
-3B/A716: 43        --- 
-3B/A717: BC 76 BF  LDY $BF76,X
-3B/A71A: 03        --- 
-3B/A71B: B4 76     LDY $76,X
-3B/A71D: BE 03 AC  LDX $AC03,Y
-3B/A720: 76 BE     ROR $BE,X
-3B/A722: 43        --- 
-3B/A723: BC 76 BF  LDY $BF76,X
-3B/A726: 03        --- 
-3B/A727: B4 76     LDY $76,X
-3B/A729: BE 03 AC  LDX $AC03,Y
-3B/A72C: 76 BE     ROR $BE,X
-3B/A72E: 43        --- 
-3B/A72F: BC 76 BF  LDY $BF76,X
-3B/A732: 03        --- 
-3B/A733: B4 A5     LDY $A5,X
-3B/A735: BC 49 3F  LDY $3F49,X
+
+3B/A6D4: 76 BC 03 B0
+3B/A6D8: 76 BC 43 B8
+3B/A6DC: F8 BF 03 B4
+3B/A6E0: 76 BD 03 B0
+3B/A6E4: 76 BD 43 B8
+3B/A6E8: F8 BF 03 B4
+3B/A6EC: 76 BE 03 AF
+3B/A6F0: 76 BE 43 B9
+3B/A6F4: 76 BF 03 B4
+3B/A6F8: 76 BE 03 AE
+3B/A6FC: 76 BE 43 BA
+3B/A700: 76 BF 03 B4
+3B/A704: 76 BE 03 AD
+3B/A708: 76 BE 43 BB
+3B/A70C: 76 BF 03 B4
+3B/A710: 76 BE 03 AC
+3B/A714: 76 BE 43 BC
+3B/A718: 76 BF 03 B4
+3B/A71C: 76 BE 03 AC
+3B/A720: 76 BE 43 BC
+3B/A724: 76 BF 03 B4
+3B/A728: 76 BE 03 AC
+3B/A72C: 76 BE 43 BC
+3B/A730: 76 BF 03 B4
+
+; [  ]
+
+3B/A734: A5 BC     LDA $BC
+3B/A736: 49 3F     EOR #$3F
 3B/A738: AA        TAX 
 3B/A739: 18        CLC 
 3B/A73A: 69 68     ADC #$68
 3B/A73C: 85 40     STA $40
 3B/A73E: A9 70     LDA #$70
 3B/A740: 85 41     STA $41
-3B/A742: 20 42 A8  JSR $A842
+3B/A742: 20 42 A8  JSR $A842          ; reset sprite data
 3B/A745: A2 10     LDX #$10
 3B/A747: A0 00     LDY #$00
 3B/A749: B9 7D A7  LDA $A77D,Y
@@ -37179,58 +34559,40 @@
 3B/A775: 90 D2     BCC $A749
 3B/A777: 86 26     STX $26
 3B/A779: 60        RTS 
-3B/A77A: 00        BRK 
-3B/A77B: B7        --- 
-3B/A77C: 20 00 00  JSR $0000
-3B/A77F: B8        CLV 
-3B/A780: 20 08 00  JSR $0008
-3B/A783: B9 20 08  LDA $0820,Y
-3B/A786: 00        BRK 
-3B/A787: BA        TSX 
-3B/A788: 20 08 08  JSR $0808
-3B/A78B: BB        --- 
-3B/A78C: 20 E8 00  JSR $00E8
-3B/A78F: BB        --- 
-3B/A790: 20 08 00  JSR $0008
-3B/A793: BB        --- 
-3B/A794: 20 08 00  JSR $0008
-3B/A797: BB        --- 
-3B/A798: 20 08 08  JSR $0808
-3B/A79B: BB        --- 
-3B/A79C: 20 E8 00  JSR $00E8
-3B/A79F: BB        --- 
-3B/A7A0: 20 08 00  JSR $0008
-3B/A7A3: BB        --- 
-3B/A7A4: 20 08 00  JSR $0008
-3B/A7A7: BB        --- 
-3B/A7A8: 20 08 08  JSR $0808
-3B/A7AB: BB        --- 
-3B/A7AC: 20 E8 00  JSR $00E8
-3B/A7AF: BB        --- 
-3B/A7B0: 20 08 00  JSR $0008
-3B/A7B3: BB        --- 
-3B/A7B4: 20 08 00  JSR $0008
-3B/A7B7: BB        --- 
-3B/A7B8: 20 08 08  JSR $0808
-3B/A7BB: BB        --- 
-3B/A7BC: 20 E8 00  JSR $00E8
-3B/A7BF: BB        --- 
-3B/A7C0: 20 08 00  JSR $0008
-3B/A7C3: BB        --- 
-3B/A7C4: 20 08 00  JSR $0008
-3B/A7C7: BB        --- 
-3B/A7C8: 20 08 08  JSR $0808
-3B/A7CB: BB        --- 
-3B/A7CC: 20 E8 00  JSR $00E8
-3B/A7CF: BB        --- 
-3B/A7D0: 20 08 00  JSR $0008
-3B/A7D3: BB        --- 
-3B/A7D4: 20 08 00  JSR $0008
-3B/A7D7: BB        --- 
-3B/A7D8: 20 08 A9  JSR $A908
-3B/A7DB: 3C        --- 
+
+3B/A77A: 00 B7 20 00
+3B/A77E: 00 B8 20 08
+3B/A782: 00 B9 20 08
+3B/A786: 00 BA 20 08
+3B/A78A: 08 BB 20 E8
+3B/A78E: 00 BB 20 08
+3B/A792: 00 BB 20 08
+3B/A796: 00 BB 20 08
+3B/A79A: 08 BB 20 E8
+3B/A79E: 00 BB 20 08
+3B/A7A2: 00 BB 20 08
+3B/A7A6: 00 BB 20 08
+3B/A7AA: 08 BB 20 E8
+3B/A7AE: 00 BB 20 08
+3B/A7B2: 00 BB 20 08
+3B/A7B6: 00 BB 20 08
+3B/A7BA: 08 BB 20 E8
+3B/A7BE: 00 BB 20 08
+3B/A7C2: 00 BB 20 08
+3B/A7C6: 00 BB 20 08
+3B/A7CA: 08 BB 20 E8
+3B/A7CE: 00 BB 20 08
+3B/A7D2: 00 BB 20 08
+3B/A7D6: 00 BB 20 08
+
+; [  ]
+
+3B/A7DA: A9 3C     LDA #$3C
 3B/A7DC: 20 06 FF  JSR $FF06          ; switch prg bank 0
 3B/A7DF: 4C DB 88  JMP $88DB
+
+; [  ]
+
 3B/A7E2: A5 BC     LDA $BC
 3B/A7E4: 49 3F     EOR #$3F
 3B/A7E6: AA        TAX 
@@ -37252,35 +34614,44 @@
 3B/A7FD: AA        TAX 
 3B/A7FE: A9 3C     LDA #$3C
 3B/A800: 20 06 FF  JSR $FF06          ; switch prg bank 0
-3B/A803: 4C 57 88  JMP $8857
-3B/A806: 20 42 A8  JSR $A842
-3B/A809: 20 5A A8  JSR $A85A
-3B/A80C: 20 42 A8  JSR $A842
-3B/A80F: 20 19 A8  JSR $A819
+3B/A803: 4C 57 88  JMP $8857          ; draw invincible sprite
+
+; [ destroy statue animation ]
+
+3B/A806: 20 42 A8  JSR $A842          ; reset sprite data
+3B/A809: 20 5A A8  JSR $A85A          ; wait for end of vblank
+3B/A80C: 20 42 A8  JSR $A842          ; reset sprite data
+3B/A80F: 20 19 A8  JSR $A819          ; update statue explosion animation
 3B/A812: E6 BC     INC $BC
 3B/A814: A5 BC     LDA $BC
 3B/A816: 10 F1     BPL $A809
 3B/A818: 60        RTS 
+
+; [ update statue explosion animation ]
+
 3B/A819: A9 3A     LDA #$3A
 3B/A81B: 20 06 FF  JSR $FF06          ; switch prg bank 0
 3B/A81E: A5 BC     LDA $BC
 3B/A820: 4A        LSR 
 3B/A821: 4A        LSR 
-3B/A822: A2 60     LDX #$60
+3B/A822: A2 60     LDX #$60           ; start at sprite 24 for player/invincible
 3B/A824: 86 26     STX $26
 3B/A826: 48        PHA 
-3B/A827: A2 40     LDX #$40
+3B/A827: A2 40     LDX #$40           ; left side (64,80)
 3B/A829: A0 50     LDY #$50
-3B/A82B: 20 24 85  JSR $8524
+3B/A82B: 20 24 85  JSR $8524          ; update statue explosion animation
 3B/A82E: 68        PLA 
-3B/A82F: A2 76     LDX #$76
+3B/A82F: A2 76     LDX #$76           ; left side (118,84)
 3B/A831: A0 54     LDY #$54
-3B/A833: 20 24 85  JSR $8524
+3B/A833: 20 24 85  JSR $8524          ; update statue explosion animation
 3B/A836: A9 00     LDA #$00
 3B/A838: 85 26     STA $26
 3B/A83A: A4 42     LDY $42
-3B/A83C: 20 1B C0  JSR $C01B
-3B/A83F: 4C 12 C0  JMP $C012
+3B/A83C: 20 1B C0  JSR $C01B          ; update player sprites
+3B/A83F: 4C 12 C0  JMP $C012          ; draw inactive invincible
+
+; [ reset sprite data ]
+
 3B/A842: A2 3F     LDX #$3F
 3B/A844: A9 F0     LDA #$F0
 3B/A846: 9D 00 02  STA $0200,X
@@ -37292,6 +34663,9 @@
 3B/A855: A9 00     LDA #$00
 3B/A857: 85 26     STA $26
 3B/A859: 60        RTS 
+
+; [ wait for end of vblank ]
+
 3B/A85A: A9 3A     LDA #$3A
 3B/A85C: 85 57     STA $57
 3B/A85E: 20 00 FF  JSR $FF00          ; wait for vblank
@@ -37302,6 +34676,9 @@
 3B/A869: D0 FD     BNE $A868
 3B/A86B: E6 F0     INC $F0
 3B/A86D: 4C 09 C0  JMP $C009          ; update sound
+
+; [  ]
+
 3B/A870: A9 3A     LDA #$3A
 3B/A872: 85 57     STA $57
 3B/A874: 20 00 FF  JSR $FF00          ; wait for vblank
@@ -37319,7 +34696,7 @@
 3B/A890: 85 57     STA $57
 3B/A892: 20 00 FF  JSR $FF00          ; wait for vblank
 3B/A895: A9 02     LDA #$02
-3B/A897: 8D 14 40  STA $4014
+3B/A897: 8D 14 40  STA $4014          ; dma oam data to ppu
 3B/A89A: A9 00     LDA #$00
 3B/A89C: 85 80     STA $80
 3B/A89E: 20 52 B9  JSR $B952
@@ -37328,11 +34705,14 @@
 3B/A8A4: D0 FD     BNE $A8A3
 3B/A8A6: E6 F0     INC $F0
 3B/A8A8: 60        RTS 
-3B/A8A9: 20 42 A8  JSR $A842
+
+; [ special animation 0:  ]
+
+3B/A8A9: 20 42 A8  JSR $A842          ; reset sprite data
 3B/A8AC: A9 6F     LDA #$6F
 3B/A8AE: 85 62     STA $62
-3B/A8B0: 20 5A A8  JSR $A85A
-3B/A8B3: 20 42 A8  JSR $A842
+3B/A8B0: 20 5A A8  JSR $A85A          ; wait for end of vblank
+3B/A8B3: 20 42 A8  JSR $A842          ; reset sprite data
 3B/A8B6: 20 EB A8  JSR $A8EB
 3B/A8B9: A5 62     LDA $62
 3B/A8BB: 85 41     STA $41
@@ -37372,74 +34752,43 @@
 3B/A901: 90 F4     BCC $A8F7
 3B/A903: 86 26     STX $26
 3B/A905: 60        RTS 
-3B/A906: 6F        --- 
-3B/A907: 94 03     STY $03,X
-3B/A909: 70 6F     BVS $A97A
-3B/A90B: 95 03     STA $03,X
-3B/A90D: 78        SEI 
-3B/A90E: 77        --- 
-3B/A90F: 94 03     STY $03,X
-3B/A911: 68        PLA 
-3B/A912: 77        --- 
-3B/A913: 96 03     STX $03,Y
-3B/A915: 70 77     BVS $A98E
-3B/A917: 97        --- 
-3B/A918: 03        --- 
-3B/A919: 78        SEI 
-3B/A91A: 77        --- 
-3B/A91B: 95 03     STA $03,X
-3B/A91D: 80        --- 
-3B/A91E: 7F        --- 
-3B/A91F: FE 03 68  INC $6803,X
-3B/A922: 7F        --- 
-3B/A923: 97        --- 
-3B/A924: 83        --- 
-3B/A925: 70 7F     BVS $A9A6
-3B/A927: 96 83     STX $83,Y
-3B/A929: 78        SEI 
-3B/A92A: 7F        --- 
-3B/A92B: FF        --- 
-3B/A92C: 03        --- 
-3B/A92D: 80        --- 
-3B/A92E: 6F        --- 
-3B/A92F: 95 43     STA $43,X
-3B/A931: 70 6F     BVS $A9A2
-3B/A933: 94 43     STY $43,X
-3B/A935: 78        SEI 
-3B/A936: 77        --- 
-3B/A937: 95 43     STA $43,X
-3B/A939: 68        PLA 
-3B/A93A: 77        --- 
-3B/A93B: 97        --- 
-3B/A93C: 43        --- 
-3B/A93D: 70 77     BVS $A9B6
-3B/A93F: 96 43     STX $43,Y
-3B/A941: 78        SEI 
-3B/A942: 77        --- 
-3B/A943: 94 43     STY $43,X
-3B/A945: 80        --- 
-3B/A946: 7F        --- 
-3B/A947: FF        --- 
-3B/A948: 43        --- 
-3B/A949: 68        PLA 
-3B/A94A: 7F        --- 
-3B/A94B: 96 C3     STX $C3,Y
-3B/A94D: 70 7F     BVS $A9CE
-3B/A94F: 97        --- 
-3B/A950: C3        --- 
-3B/A951: 78        SEI 
-3B/A952: 7F        --- 
-3B/A953: FE 43 80  INC $8043,X
+
+3B/A906: 6F 94 03 70
+3B/A90A: 6F 95 03 78
+3B/A90E: 77 94 03 68
+3B/A912: 77 96 03 70
+3B/A916: 77 97 03 78
+3B/A91A: 77 95 03 80
+3B/A91E: 7F FE 03 68
+3B/A922: 7F 97 83 70
+3B/A926: 7F 96 83 78
+3B/A92A: 7F FF 03 80
+3B/A92E: 6F 95 43 70
+3B/A932: 6F 94 43 78
+3B/A936: 77 95 43 68
+3B/A93A: 77 97 43 70
+3B/A93E: 77 96 43 78
+3B/A942: 77 94 43 80
+3B/A946: 7F FF 43 68
+3B/A94A: 7F 96 C3 70
+3B/A94E: 7F 97 C3 78
+3B/A952: 7F FE 43 80
+
+; [  ]
+
 3B/A956: 85 82     STA $82
 3B/A958: A5 F0     LDA $F0
 3B/A95A: 29 08     AND #$08
 3B/A95C: 18        CLC 
-3B/A95D: 69 9A     ADC #$9A
+3B/A95D: 69 9A     ADC #$9A           ; 3B/A99A
 3B/A95F: 85 80     STA $80
 3B/A961: A9 A9     LDA #$A9
 3B/A963: 69 00     ADC #$00
 3B/A965: 85 81     STA $81
 3B/A967: 4C 1E C0  JMP $C01E          ; draw object sprite
+
+; [  ]
+
 3B/A96A: A5 40     LDA $40
 3B/A96C: 38        SEC 
 3B/A96D: E9 04     SBC #$04
@@ -37460,38 +34809,21 @@
 3B/A988: A5 F0     LDA $F0
 3B/A98A: 29 08     AND #$08
 3B/A98C: 18        CLC 
-3B/A98D: 69 AA     ADC #$AA
+3B/A98D: 69 AA     ADC #$AA           ; 3B/A9AA
 3B/A98F: 85 80     STA $80
 3B/A991: A9 A9     LDA #$A9
 3B/A993: 69 00     ADC #$00
 3B/A995: 85 81     STA $81
 3B/A997: 4C 1E C0  JMP $C01E          ; draw object sprite
-3B/A99A: 10 03     BPL $A99F
-3B/A99C: 12        --- 
-3B/A99D: 03        --- 
-3B/A99E: 11 03     ORA ($03),Y
-3B/A9A0: 13        --- 
-3B/A9A1: 03        --- 
-3B/A9A2: 14        --- 
-3B/A9A3: 03        --- 
-3B/A9A4: 16 03     ASL $03,X
-3B/A9A6: 15 03     ORA $03,X
-3B/A9A8: 17        --- 
-3B/A9A9: 03        --- 
-3B/A9AA: 00        BRK 
-3B/A9AB: 00        BRK 
-3B/A9AC: 02        --- 
-3B/A9AD: 01 01     ORA ($01,X)
-3B/A9AF: 00        BRK 
-3B/A9B0: 03        --- 
-3B/A9B1: 01 00     ORA ($00,X)
-3B/A9B3: 00        BRK 
-3B/A9B4: 03        --- 
-3B/A9B5: 41 01     EOR ($01,X)
-3B/A9B7: 00        BRK 
-3B/A9B8: 02        --- 
-3B/A9B9: 41 86     EOR ($86,X)
-3B/A9BB: 64        --- 
+
+3B/A99A: 10 03 12 03 11 03 13 03
+3B/A9A2: 14 03 16 03 15 03 17 03
+3B/A9AA: 00 00 02 01 01 00 03 01
+3B/A9B2: 00 00 03 41 01 00 02 41
+
+; [  ]
+
+3B/A9BA: 86 64     STX $64
 3B/A9BC: 84 65     STY $65
 3B/A9BE: 20 69 AA  JSR $AA69
 3B/A9C1: 20 00 FF  JSR $FF00          ; wait for vblank
@@ -37501,6 +34833,9 @@
 3B/A9CB: 20 52 B9  JSR $B952
 3B/A9CE: 20 D2 A9  JSR $A9D2
 3B/A9D1: 60        RTS 
+
+; [  ]
+
 3B/A9D2: A6 64     LDX $64
 3B/A9D4: A4 65     LDY $65
 3B/A9D6: B9 00 05  LDA $0500,Y
@@ -37559,6 +34894,9 @@
 3B/AA62: B9 80 06  LDA $0680,Y
 3B/AA65: 8D 07 20  STA $2007
 3B/AA68: 60        RTS 
+
+; [  ]
+
 3B/AA69: A5 2F     LDA $2F
 3B/AA6B: 18        CLC 
 3B/AA6C: 69 07     ADC #$07
@@ -37605,28 +34943,12 @@
 3B/AABB: 09 04     ORA #$04
 3B/AABD: 85 67     STA $67
 3B/AABF: 60        RTS 
-3B/AAC0: 00        BRK 
-3B/AAC1: 40        RTI 
-3B/AAC2: 80        --- 
-3B/AAC3: C0 00     CPY #$00
-3B/AAC5: 40        RTI 
-3B/AAC6: 80        --- 
-3B/AAC7: C0 00     CPY #$00
-3B/AAC9: 40        RTI 
-3B/AACA: 80        --- 
-3B/AACB: C0 00     CPY #$00
-3B/AACD: 40        RTI 
-3B/AACE: 80        --- 
-3B/AACF: 20 20 20  JSR $2020
-3B/AAD2: 20 21 21  JSR $2121
-3B/AAD5: 21 21     AND ($21,X)
-3B/AAD7: 22        --- 
-3B/AAD8: 22        --- 
-3B/AAD9: 22        --- 
-3B/AADA: 22        --- 
-3B/AADB: 23        --- 
-3B/AADC: 23        --- 
-3B/AADD: 23        --- 
+
+3B/AAC0: 00 40 80 C0 00 40 80 C0 00 40 80 C0 00 40 80
+3B/AACF: 20 20 20 20 21 21 21 21 22 22 22 22 23 23 23
+
+; [  ]
+
 3B/AADE: A9 10     LDA #$10
 3B/AAE0: 85 8F     STA $8F
 3B/AAE2: A5 62     LDA $62
@@ -37658,6 +34980,9 @@
 3B/AB16: C6 8F     DEC $8F
 3B/AB18: D0 D0     BNE $AAEA
 3B/AB1A: 60        RTS 
+
+; [  ]
+
 3B/AB1B: A9 06     LDA #$06
 3B/AB1D: 85 8F     STA $8F
 3B/AB1F: A9 60     LDA #$60
@@ -37703,7 +35028,9 @@
 3B/AB6B: 20 06 FF  JSR $FF06          ; switch prg bank 0
 3B/AB6E: 4C 2A 85  JMP $852A
 
-; [  ]
+; [ init object jump ]
+
+; A: 0 = jump left, 1 = jump right
 
 3B/AB71: 85 75     STA $75
 3B/AB73: A9 3A     LDA #$3A
@@ -37733,11 +35060,17 @@
 3B/ABAA: BD 04 70  LDA $7004,X
 3B/ABAD: 9D 02 70  STA $7002,X
 3B/ABB0: 60        RTS 
+
+; [  ]
+
 3B/ABB1: 20 7F AF  JSR $AF7F
 3B/ABB4: 20 00 FF  JSR $FF00          ; wait for vblank
 3B/ABB7: A9 02     LDA #$02
-3B/ABB9: 8D 14 40  STA $4014
+3B/ABB9: 8D 14 40  STA $4014          ; dma oam data to ppu
 3B/ABBC: 4C 09 C0  JMP $C009          ; update sound
+
+; [  ]
+
 3B/ABBF: A6 67     LDX $67
 3B/ABC1: A4 74     LDY $74
 3B/ABC3: A5 75     LDA $75
@@ -37779,6 +35112,8 @@
 3B/AC0C: 00 02 04 05 06 07 08 08 09 09 0A 0B 0B 0C 0C 0D
 3B/AC1C: 0D 0E 0E 0F 0F 0F 0F 0F 0F
 
+; [ npc spin in a circle ]
+
 3B/AC25: A9 3A     LDA #$3A
 3B/AC27: 85 57     STA $57
 3B/AC29: A9 00     LDA #$00
@@ -37790,6 +35125,9 @@
 3B/AC36: 28        PLP 
 3B/AC37: 90 F6     BCC $AC2F
 3B/AC39: 60        RTS 
+
+; [  ]
+
 3B/AC3A: E6 F0     INC $F0
 3B/AC3C: A5 F0     LDA $F0
 3B/AC3E: 29 07     AND #$07
@@ -37812,9 +35150,9 @@
 3B/AC62: 18        CLC 
 3B/AC63: 60        RTS 
 
-3B/AC64: 02        --- 
-3B/AC65: 06 00     ASL $00
-3B/AC67: 04        --- 
+3B/AC64: 02 06 00 04
+
+; [ npc move in a circle ]
 
 3B/AC68: A9 3A     LDA #$3A
 3B/AC6A: 85 57     STA $57
@@ -37831,6 +35169,9 @@
 3B/AC80: 9D 06 70  STA $7006,X
 3B/AC83: 9D 07 70  STA $7007,X
 3B/AC86: 60        RTS 
+
+; [  ]
+
 3B/AC87: E6 F0     INC $F0
 3B/AC89: A5 F0     LDA $F0
 3B/AC8B: 4A        LSR 
@@ -37855,30 +35196,38 @@
 3B/ACB4: 9D 0F 70  STA $700F,X
 3B/ACB7: 18        CLC 
 3B/ACB8: 60        RTS 
+
+; [ npc dance ]
+
 3B/ACB9: A9 3A     LDA #$3A
 3B/ACBB: 85 57     STA $57
-3B/ACBD: A9 00     LDA #$00
+3B/ACBD: A9 00     LDA #$00           ; clear event wait counter
 3B/ACBF: 85 74     STA $74
 3B/ACC1: 85 75     STA $75
-3B/ACC3: 20 5D AD  JSR $AD5D
+3B/ACC3: 20 5D AD  JSR $AD5D          ; npc dance
 3B/ACC6: 08        PHP 
 3B/ACC7: 20 B1 AB  JSR $ABB1
 3B/ACCA: 28        PLP 
 3B/ACCB: 90 F6     BCC $ACC3
 3B/ACCD: 60        RTS 
+
+; [ event commands $00-$BF (object commands) ]
+
+; starts at 3B/ACD1
+
 3B/ACCE: E6 17     INC $17
 3B/ACD0: 60        RTS 
-
-; event commands $00-$BF
+; starts here
 3B/ACD1: A5 70     LDA $70
-3B/ACD3: 29 F0     AND #$F0
+3B/ACD3: 29 F0     AND #$F0           ; top 4 bits is object id
 3B/ACD5: AA        TAX 
 3B/ACD6: BD 0C 70  LDA $700C,X
-3B/ACD9: D0 F3     BNE $ACCE
+3B/ACD9: D0 F3     BNE $ACCE          ; return if moving
 3B/ACDB: A5 70     LDA $70
 3B/ACDD: 29 0F     AND #$0F
+; 0-3: move
 3B/ACDF: C9 04     CMP #$04
-3B/ACE1: B0 14     BCS $ACF7
+3B/ACE1: B0 14     BCS $ACF7          ; branch if not a movement command
 3B/ACE3: BD 02 70  LDA $7002,X
 3B/ACE6: 85 84     STA $84
 3B/ACE8: BD 03 70  LDA $7003,X
@@ -37887,6 +35236,7 @@
 3B/ACF0: 85 86     STA $86
 3B/ACF2: A5 70     LDA $70
 3B/ACF4: 4C DD AF  JMP $AFDD
+; 4-7: face direction
 3B/ACF7: C9 08     CMP #$08
 3B/ACF9: B0 11     BCS $AD0C
 3B/ACFB: 29 03     AND #$03
@@ -37897,44 +35247,52 @@
 3B/AD05: B9 56 AD  LDA $AD56,Y
 3B/AD08: 9D 0F 70  STA $700F,X
 3B/AD0B: 60        RTS 
+; 8: show object
 3B/AD0C: D0 07     BNE $AD15
 3B/AD0E: BD 0A 70  LDA $700A,X
 3B/AD11: 9D 00 70  STA $7000,X
 3B/AD14: 60        RTS 
+; 9: hide object
 3B/AD15: C9 09     CMP #$09
 3B/AD17: D0 06     BNE $AD1F
 3B/AD19: A9 00     LDA #$00
 3B/AD1B: 9D 00 70  STA $7000,X
 3B/AD1E: 60        RTS 
+; A: jump left
 3B/AD1F: C9 0A     CMP #$0A
 3B/AD21: D0 05     BNE $AD28
 3B/AD23: A9 01     LDA #$01
 3B/AD25: 4C 71 AB  JMP $AB71
+; B: jump right
 3B/AD28: C9 0B     CMP #$0B
 3B/AD2A: D0 05     BNE $AD31
 3B/AD2C: A9 00     LDA #$00
 3B/AD2E: 4C 71 AB  JMP $AB71
+; C:
 3B/AD31: C9 0C     CMP #$0C
 3B/AD33: D0 09     BNE $AD3E
 3B/AD35: BD 01 70  LDA $7001,X
 3B/AD38: 09 40     ORA #$40
 3B/AD3A: 9D 01 70  STA $7001,X
 3B/AD3D: 60        RTS 
+; D: 
 3B/AD3E: C9 0D     CMP #$0D
 3B/AD40: D0 09     BNE $AD4B
 3B/AD42: BD 01 70  LDA $7001,X
 3B/AD45: 29 B0     AND #$B0
 3B/AD47: 9D 01 70  STA $7001,X
 3B/AD4A: 60        RTS 
+; E: move in a circle
 3B/AD4B: C9 0E     CMP #$0E
 3B/AD4D: D0 03     BNE $AD52
 3B/AD4F: 4C 68 AC  JMP $AC68
+; F: spin in a circle
 3B/AD52: 4C 25 AC  JMP $AC25
 
 ; pointers to npc animation data
-3B/AD55:           .DW $B41A,$B42A,$B43A,$B44A
+3B/AD55: B41A B42A B43A B44A
 
-; [  ]
+; [ npc dance ]
 
 3B/AD5D: E6 F0     INC $F0
 3B/AD5F: A5 F0     LDA $F0
@@ -37951,10 +35309,10 @@
 3B/AD75: 18        CLC 
 3B/AD76: 69 01     ADC #$01
 3B/AD78: 85 75     STA $75
-3B/AD7A: C9 05     CMP #$05
+3B/AD7A: C9 05     CMP #$05           ; repeat dance 5 times
 3B/AD7C: A9 00     LDA #$00
 3B/AD7E: 90 02     BCC $AD82
-3B/AD80: 38        SEC 
+3B/AD80: 38        SEC                ; set carry and return when dance is over
 3B/AD81: 60        RTS 
 3B/AD82: A8        TAY 
 3B/AD83: A2 00     LDX #$00
@@ -37973,228 +35331,36 @@
 3B/ADA4: A4 80     LDY $80
 3B/ADA6: 8A        TXA 
 3B/ADA7: 18        CLC 
-3B/ADA8: 69 10     ADC #$10
+3B/ADA8: 69 10     ADC #$10           ; next npc
 3B/ADAA: AA        TAX 
 3B/ADAB: C9 A0     CMP #$A0
 3B/ADAD: 90 D6     BCC $AD85
 3B/ADAF: 18        CLC 
 3B/ADB0: 60        RTS 
 
-3B/ADB1: 00        BRK 
-3B/ADB2: 01 02     ORA ($02,X)
-3B/ADB4: 03        --- 
-3B/ADB5: 04        --- 
-3B/ADB6: 05 06     ORA $06
-3B/ADB8: 07        --- 
-3B/ADB9: 08        PHP 
-3B/ADBA: 09 0A     ORA #$0A
-3B/ADBC: 0B        --- 
-3B/ADBD: 0C        --- 
-3B/ADBE: 0D 0E 0E  ORA $0E0E
-3B/ADC1: 0F        --- 
-3B/ADC2: 0F        --- 
-3B/ADC3: 0F        --- 
-3B/ADC4: 0F        --- 
-3B/ADC5: 0F        --- 
-3B/ADC6: 0F        --- 
-3B/ADC7: 0F        --- 
-3B/ADC8: 0F        --- 
-3B/ADC9: 0E 0E 0D  ASL $0D0E
-3B/ADCC: 0C        --- 
-3B/ADCD: 0B        --- 
-3B/ADCE: 0A        ASL 
-3B/ADCF: 09 08     ORA #$08
-3B/ADD1: 07        --- 
-3B/ADD2: 06 05     ASL $05
-3B/ADD4: 04        --- 
-3B/ADD5: 03        --- 
-3B/ADD6: 02        --- 
-3B/ADD7: 01 01     ORA ($01,X)
-3B/ADD9: 00        BRK 
-3B/ADDA: 00        BRK 
-3B/ADDB: 00        BRK 
-3B/ADDC: 00        BRK 
-3B/ADDD: 00        BRK 
-3B/ADDE: 00        BRK 
-3B/ADDF: 00        BRK 
-3B/ADE0: 00        BRK 
-3B/ADE1: 01 01     ORA ($01,X)
-3B/ADE3: 02        --- 
-3B/ADE4: 03        --- 
-3B/ADE5: 04        --- 
-3B/ADE6: 05 06     ORA $06
-3B/ADE8: 07        --- 
-3B/ADE9: 08        PHP 
-3B/ADEA: 09 0A     ORA #$0A
-3B/ADEC: 0B        --- 
-3B/ADED: 0C        --- 
-3B/ADEE: 0D 0E 0F  ORA $0F0E
-3B/ADF1: 0F        --- 
-3B/ADF2: 0F        --- 
-3B/ADF3: 0F        --- 
-3B/ADF4: 0E 0D 0C  ASL $0C0D
-3B/ADF7: 0B        --- 
-3B/ADF8: 0A        ASL 
-3B/ADF9: 09 08     ORA #$08
-3B/ADFB: 07        --- 
-3B/ADFC: 06 05     ASL $05
-3B/ADFE: 04        --- 
-3B/ADFF: 03        --- 
-3B/AE00: 02        --- 
-3B/AE01: 01 00     ORA ($00,X)
-3B/AE03: 00        BRK 
-3B/AE04: 00        BRK 
-3B/AE05: 00        BRK 
-3B/AE06: 00        BRK 
-3B/AE07: 00        BRK 
-3B/AE08: 00        BRK 
-3B/AE09: 00        BRK 
-3B/AE0A: 00        BRK 
-3B/AE0B: 00        BRK 
-3B/AE0C: 00        BRK 
-3B/AE0D: 00        BRK 
-3B/AE0E: 00        BRK 
-3B/AE0F: 00        BRK 
-3B/AE10: 00        BRK 
-3B/AE11: 01 01     ORA ($01,X)
-3B/AE13: 02        --- 
-3B/AE14: 03        --- 
-3B/AE15: 04        --- 
-3B/AE16: 05 06     ORA $06
-3B/AE18: 07        --- 
-3B/AE19: 08        PHP 
-3B/AE1A: 09 0A     ORA #$0A
-3B/AE1C: 0B        --- 
-3B/AE1D: 0C        --- 
-3B/AE1E: 0D 0E 0E  ORA $0E0E
-3B/AE21: 0F        --- 
-3B/AE22: 0F        --- 
-3B/AE23: 0F        --- 
-3B/AE24: 0F        --- 
-3B/AE25: 0F        --- 
-3B/AE26: 0F        --- 
-3B/AE27: 0F        --- 
-3B/AE28: 0F        --- 
-3B/AE29: 0E 0E 0D  ASL $0D0E
-3B/AE2C: 0C        --- 
-3B/AE2D: 0B        --- 
-3B/AE2E: 0A        ASL 
-3B/AE2F: 09 08     ORA #$08
-3B/AE31: 07        --- 
-3B/AE32: 06 05     ASL $05
-3B/AE34: 04        --- 
-3B/AE35: 03        --- 
-3B/AE36: 02        --- 
-3B/AE37: 01 01     ORA ($01,X)
-3B/AE39: 00        BRK 
-3B/AE3A: 00        BRK 
-3B/AE3B: 00        BRK 
-3B/AE3C: 00        BRK 
-3B/AE3D: 00        BRK 
-3B/AE3E: 00        BRK 
-3B/AE3F: 00        BRK 
-3B/AE40: 00        BRK 
-3B/AE41: 00        BRK 
-3B/AE42: 00        BRK 
-3B/AE43: 00        BRK 
-3B/AE44: 00        BRK 
-3B/AE45: 00        BRK 
-3B/AE46: 01 02     ORA ($02,X)
-3B/AE48: 03        --- 
-3B/AE49: 04        --- 
-3B/AE4A: 05 06     ORA $06
-3B/AE4C: 07        --- 
-3B/AE4D: 07        --- 
-3B/AE4E: 07        --- 
-3B/AE4F: 07        --- 
-3B/AE50: 07        --- 
-3B/AE51: 07        --- 
-3B/AE52: 06 05     ASL $05
-3B/AE54: 04        --- 
-3B/AE55: 03        --- 
-3B/AE56: 02        --- 
-3B/AE57: 01 00     ORA ($00,X)
+; npc dance x-offsets
+3B/ADB1: 00 01 02 03 04 05 06 07 08 09 0A 0B 0C 0D 0E 0E
+3B/ADC1: 0F 0F 0F 0F 0F 0F 0F 0F 0E 0E 0D 0C 0B 0A 09 08
+3B/ADD1: 07 06 05 04 03 02 01 01 00 00 00 00 00 00 00 00
+3B/ADE1: 01 01 02 03 04 05 06 07 08 09 0A 0B 0C 0D 0E 0F
+3B/ADF1: 0F 0F 0F 0E 0D 0C 0B 0A 09 08 07 06 05 04 03 02
+3B/AE01: 01 00 00 00
 
-3B/AE59: 02        --- 
-3B/AE5A: 02        --- 
-3B/AE5B: 02        --- 
-3B/AE5C: 02        --- 
-3B/AE5D: 02        --- 
-3B/AE5E: 02        --- 
-3B/AE5F: 02        --- 
-3B/AE60: 02        --- 
-3B/AE61: 02        --- 
-3B/AE62: 02        --- 
-3B/AE63: 02        --- 
-3B/AE64: 02        --- 
-3B/AE65: 02        --- 
-3B/AE66: 02        --- 
-3B/AE67: 02        --- 
-3B/AE68: 02        --- 
-3B/AE69: 02        --- 
-3B/AE6A: 02        --- 
-3B/AE6B: 02        --- 
-3B/AE6C: 02        --- 
-3B/AE6D: 03        --- 
-3B/AE6E: 03        --- 
-3B/AE6F: 03        --- 
-3B/AE70: 03        --- 
-3B/AE71: 03        --- 
-3B/AE72: 03        --- 
-3B/AE73: 03        --- 
-3B/AE74: 03        --- 
-3B/AE75: 03        --- 
-3B/AE76: 03        --- 
-3B/AE77: 03        --- 
-3B/AE78: 03        --- 
-3B/AE79: 03        --- 
-3B/AE7A: 03        --- 
-3B/AE7B: 03        --- 
-3B/AE7C: 03        --- 
-3B/AE7D: 03        --- 
-3B/AE7E: 03        --- 
-3B/AE7F: 03        --- 
-3B/AE80: 03        --- 
-3B/AE81: 03        --- 
-3B/AE82: 03        --- 
-3B/AE83: 03        --- 
-3B/AE84: 03        --- 
-3B/AE85: 02        --- 
-3B/AE86: 02        --- 
-3B/AE87: 02        --- 
-3B/AE88: 02        --- 
-3B/AE89: 02        --- 
-3B/AE8A: 02        --- 
-3B/AE8B: 02        --- 
-3B/AE8C: 02        --- 
-3B/AE8D: 02        --- 
-3B/AE8E: 02        --- 
-3B/AE8F: 02        --- 
-3B/AE90: 02        --- 
-3B/AE91: 02        --- 
-3B/AE92: 02        --- 
-3B/AE93: 02        --- 
-3B/AE94: 02        --- 
-3B/AE95: 02        --- 
-3B/AE96: 02        --- 
-3B/AE97: 02        --- 
-3B/AE98: 02        --- 
+; npc dance y-offsets
+3B/AE05: 00 00 00 00 00 00 00 00 00 00 00 00 01 01 02 03
+3B/AE15: 04 05 06 07 08 09 0A 0B 0C 0D 0E 0E 0F 0F 0F 0F
+3B/AE25: 0F 0F 0F 0F 0E 0E 0D 0C 0B 0A 09 08 07 06 05 04
+3B/AE35: 03 02 01 01 00 00 00 00 00 00 00 00 00 00 00 00
+3B/AE45: 00 01 02 03 04 05 06 07 07 07 07 07 07 06 05 04
+3B/AE55: 03 02 01 00
 
-3B/AE99: 02        --- 
-3B/AE9A: 01 03     ORA ($03,X)
-3B/AE9C: 00        BRK 
-3B/AE9D: 02        --- 
-3B/AE9E: 01 03     ORA ($03,X)
-3B/AEA0: 00        BRK 
-3B/AEA1: 02        --- 
-3B/AEA2: 01 03     ORA ($03,X)
-3B/AEA4: 00        BRK 
-3B/AEA5: 02        --- 
-3B/AEA6: 01 03     ORA ($03,X)
-3B/AEA8: 00        BRK 
-3B/AEA9: 02        --- 
-3B/AEAA: 01 03     ORA ($03,X)
-3B/AEAC: 02        --- 
+; npc dance facing directions
+3B/AE59: 02 02 02 02 02 02 02 02 02 02 02 02 02 02 02 02
+3B/AE69: 02 02 02 02 03 03 03 03 03 03 03 03 03 03 03 03
+3B/AE79: 03 03 03 03 03 03 03 03 03 03 03 03 02 02 02 02
+3B/AE89: 02 02 02 02 02 02 02 02 02 02 02 02 02 02 02 02
+3B/AE99: 02 01 03 00 02 01 03 00 02 01 03 00 02 01 03 00
+3B/AEA9: 02 01 03 02
 
 ; [ draw npc sprite ]
 
@@ -38229,17 +35395,17 @@
 
 ; [ object command 6: update npcs ]
 
-3B/AEEB: 20 31 AF  JSR $AF31
+3B/AEEB: 20 31 AF  JSR $AF31          ; update player sprite priority
 3B/AEEE: A5 F0     LDA $F0
 3B/AEF0: 4A        LSR 
 3B/AEF1: B0 20     BCS $AF13
-; even frames (loop forward through npcs)
+; even frames (normal order)
 3B/AEF3: A2 00     LDX #$00
 3B/AEF5: BD 00 70  LDA $7000,X
 3B/AEF8: F0 0D     BEQ $AF07
-3B/AEFA: 20 7C B1  JSR $B17C
+3B/AEFA: 20 7C B1  JSR $B17C          ; update npc sprites
 3B/AEFD: A5 26     LDA $26
-3B/AEFF: C9 20     CMP #$20
+3B/AEFF: C9 20     CMP #$20           ; don't use sprites 8-15 ???
 3B/AF01: D0 04     BNE $AF07
 3B/AF03: A9 40     LDA #$40
 3B/AF05: 85 26     STA $26
@@ -38250,11 +35416,11 @@
 3B/AF0C: C9 C0     CMP #$C0
 3B/AF0E: 90 E5     BCC $AEF5
 3B/AF10: 4C 97 AF  JMP $AF97          ; update random npc movement
-; odd frames (loop backward through npcs)
+; odd frames (reverse order)
 3B/AF13: A2 B0     LDX #$B0
 3B/AF15: BD 00 70  LDA $7000,X
 3B/AF18: F0 0D     BEQ $AF27
-3B/AF1A: 20 7C B1  JSR $B17C
+3B/AF1A: 20 7C B1  JSR $B17C          ; update npc sprites
 3B/AF1D: A5 26     LDA $26
 3B/AF1F: C9 20     CMP #$20
 3B/AF21: D0 04     BNE $AF27
@@ -38267,19 +35433,22 @@
 3B/AF2C: B0 E7     BCS $AF15
 3B/AF2E: 4C 97 AF  JMP $AF97          ; update random npc movement
 
-; [  ]
+; [ update player sprite priority ]
+
+; maybe this moves the player sprites to the lowest sprite priority
+; if they are on the lower z-level so they will be shown beneath npcs ???
 
 3B/AF31: A5 A5     LDA $A5
 3B/AF33: C9 02     CMP #$02
-3B/AF35: D0 37     BNE $AF6E
+3B/AF35: D0 37     BNE $AF6E          ; return if upper z-level
 3B/AF37: A5 A8     LDA $A8
 3B/AF39: C9 70     CMP #$70
 3B/AF3B: D0 16     BNE $AF53
 3B/AF3D: A5 43     LDA $43
 3B/AF3F: C9 04     CMP #$04
-3B/AF41: D0 2C     BNE $AF6F
+3B/AF41: D0 2C     BNE $AF6F          ; branch if a on bridge tile
 3B/AF43: A0 1F     LDY #$1F
-3B/AF45: B9 00 02  LDA $0200,Y
+3B/AF45: B9 00 02  LDA $0200,Y        ; make sprites 0-7 low priority
 3B/AF48: 99 E0 02  STA $02E0,Y
 3B/AF4B: 88        DEY 
 3B/AF4C: 10 F7     BPL $AF45
@@ -38288,11 +35457,11 @@
 3B/AF52: 60        RTS 
 3B/AF53: A5 43     LDA $43
 3B/AF55: C9 04     CMP #$04
-3B/AF57: D0 15     BNE $AF6E
+3B/AF57: D0 15     BNE $AF6E          ; return if a on bridge tile
 3B/AF59: A0 0F     LDY #$0F
-3B/AF5B: B9 00 02  LDA $0200,Y
+3B/AF5B: B9 00 02  LDA $0200,Y        ; make sprites 0-3 low priority
 3B/AF5E: 99 F0 02  STA $02F0,Y
-3B/AF61: B9 10 02  LDA $0210,Y
+3B/AF61: B9 10 02  LDA $0210,Y        ; make sprites 4-7 high priority
 3B/AF64: 99 00 02  STA $0200,Y
 3B/AF67: 88        DEY 
 3B/AF68: 10 F1     BPL $AF5B
@@ -38300,7 +35469,7 @@
 3B/AF6C: 85 26     STA $26
 3B/AF6E: 60        RTS 
 3B/AF6F: A0 0F     LDY #$0F
-3B/AF71: B9 10 02  LDA $0210,Y
+3B/AF71: B9 10 02  LDA $0210,Y        ; make sprites 4-7 low priority
 3B/AF74: 99 F0 02  STA $02F0,Y
 3B/AF77: 88        DEY 
 3B/AF78: 10 F7     BPL $AF71
@@ -38464,7 +35633,7 @@
 3B/B0C1: 9D 0B 70  STA $700B,X
 3B/B0C4: 60        RTS 
 
-; [ check npc tile ]
+; [ check npc passability ]
 
 ; $84: x position
 ; $85: y position
@@ -38521,12 +35690,15 @@
 
 ; starts at 3B/B110
 
+; $84: destination x position
+; $85: destination y position
+
 3B/B10E: 38        SEC 
 3B/B10F: 60        RTS 
 ; subroutine starts here
 3B/B110: A5 6C     LDA $6C
 3B/B112: F0 06     BEQ $B11A
-3B/B114: 20 C5 B0  JSR $B0C5
+3B/B114: 20 C5 B0  JSR $B0C5          ; check npc passability
 3B/B117: 4C 6B B1  JMP $B16B
 3B/B11A: A5 86     LDA $86
 3B/B11C: F0 08     BEQ $B126
@@ -38540,7 +35712,7 @@
 3B/B12C: A5 85     LDA $85
 3B/B12E: C5 69     CMP $69
 3B/B130: F0 DC     BEQ $B10E
-3B/B132: 20 C5 B0  JSR $B0C5
+3B/B132: 20 C5 B0  JSR $B0C5          ; check npc passability
 3B/B135: B0 D7     BCS $B10E          ; branch if impassable
 3B/B137: A0 00     LDY #$00
 3B/B139: 84 80     STY $80
@@ -38571,13 +35743,13 @@
 3B/B16B: A4 67     LDY $67
 3B/B16D: B9 00 04  LDA $0400,Y
 3B/B170: 29 37     AND #$37
-3B/B172: 9D 00 71  STA $7100,X
+3B/B172: 9D 00 71  STA $7100,X        ; set current tile properties
 3B/B175: A5 86     LDA $86
 3B/B177: 9D 06 71  STA $7106,X
 3B/B17A: 18        CLC 
 3B/B17B: 60        RTS 
 
-; [ update npc animation ??? ]
+; [ update npc sprites ]
 
 3B/B17C: BD 0D 70  LDA $700D,X
 3B/B17F: D0 07     BNE $B188
@@ -38876,7 +36048,7 @@
 3B/B3AA: 29 C0     AND #$C0
 3B/B3AC: A0 05     LDY #$05
 3B/B3AE: 91 8A     STA ($8A),Y        ; $7105: palette
-3B/B3B0: 20 C5 B0  JSR $B0C5
+3B/B3B0: 20 C5 B0  JSR $B0C5          ; check npc passability
 3B/B3B3: B9 00 04  LDA $0400,Y
 3B/B3B6: 29 37     AND #$37
 3B/B3B8: A0 00     LDY #$00
@@ -38985,9 +36157,9 @@
 3B/B534: 25 81     AND $81
 3B/B536: 60        RTS 
 
-3B/B537:           .DB $01,$02,$04,$08,$10,$20,$40,$80
+3B/B537: 01 02 04 08 10 20 40 80
 
-; [  ]
+; [ event commands $E4-$FF ]
 
 3B/B53F: C9 E4     CMP #$E4
 3B/B541: 90 12     BCC $B555
@@ -39000,6 +36172,9 @@
 3B/B54D: BD 18 B6  LDA $B618,X
 3B/B550: 85 81     STA $81
 3B/B552: 6C 80 00  JMP ($0080)
+
+; [ event commands $D0-$E3 ]
+
 3B/B555: 38        SEC 
 3B/B556: E9 D0     SBC #$D0
 3B/B558: 0A        ASL 
@@ -39011,60 +36186,80 @@
 3B/B564: 6C 80 00  JMP ($0080)
 
 ; jump table for event commands $D0-$E3
-3B/B567:           .DW $B58F,$B597,$B59F,$B5A3,$B5A7,$B5AA,$B5AD,$B5B2
-3B/B577:           .DW $B5B7,$B5BA,$B5D7,$B5DA,$B5DF,$B5E4,$B5EF,$B5FC
-3B/B587:           .DW $B64F,$B668,$B66F,$B672
+3B/B567: B58F B597 B59F B5A3 B5A7 B5AA B5AD B5B2
+3B/B577: B5B7 B5BA B5D7 B5DA B5DF B5E4 B5EF B5FC
+3B/B587: B64F B668 B66F B672
 
-3B/B58F: A9 D8     LDA #$D8
+; [ event command $D0: shake screen ]
+
+3B/B58F: A9 D8     LDA #$D8           ; sound effect $38
 3B/B591: 8D 49 7F  STA $7F49
 3B/B594: 4C 38 B9  JMP $B938
 
-3B/B597: A9 D9     LDA #$D9
+; [ event command $D1: flash screen + sound effect ]
+
+3B/B597: A9 D9     LDA #$D9           ; sound effect $39
 3B/B599: 8D 49 7F  STA $7F49
 3B/B59C: 4C 13 B9  JMP $B913
+
+; [ event command $D2: darken bg palette to blue ]
 
 3B/B59F: 18        CLC 
 3B/B5A0: 4C 03 C0  JMP $C003
 
+; [ event command $D3: restore darkened bg palette ]
+
 3B/B5A3: 38        SEC 
 3B/B5A4: 4C 03 C0  JMP $C003
 
+; [ event command $D4: restore all characters to max hp ]
+
 3B/B5A7: 4C 81 B8  JMP $B881
 
+; [ event command $D5: restore all characters to max mp ]
+
 3B/B5AA: 4C 62 B8  JMP $B862
+
+; [ event command $D6: open passage tile (floor) ]
 
 3B/B5AD: A9 5B     LDA #$5B
 3B/B5AF: 4C A6 B8  JMP $B8A6
 
+; [ event command $D7: open passage tile (wall) ]
+
 3B/B5B2: A9 5C     LDA #$5C
 3B/B5B4: 4C A6 B8  JMP $B8A6
 
+; [ event command $D8: reset game ]
+
 3B/B5B7: 4C 00 C0  JMP $C000          ; program start
 
-3B/B5BA: A9 A9     LDA #$A9
+; [ event command $D9: make ship chained up ]
+
+3B/B5BA: A9 A9     LDA #$A9           ; (169,184)
 3B/B5BC: 8D 01 60  STA $6001
 3B/B5BF: A9 B8     LDA #$B8
 3B/B5C1: 8D 02 60  STA $6002
 3B/B5C4: A9 01     LDA #$01
 3B/B5C6: 8D 00 60  STA $6000
-3B/B5C9: A9 03     LDA #$03
+3B/B5C9: A9 03     LDA #$03           ; world 3
 3B/B5CB: 8D 03 60  STA $6003
 3B/B5CE: AD 20 60  LDA $6020
 3B/B5D1: 09 20     ORA #$20
 3B/B5D3: 8D 20 60  STA $6020
 3B/B5D6: 60        RTS 
 
-; [ event command $DA:  ]
+; [ event command $DA: npc dance ]
 
 3B/B5D7: 4C B9 AC  JMP $ACB9
 
-; [ event command $DB:  ]
+; [ event command $DB: prologue ]
 
 3B/B5DA: A9 80     LDA #$80
 3B/B5DC: 85 50     STA $50
 3B/B5DE: 60        RTS 
 
-; [ event command $DC:  ]
+; [ event command $DC: epilogue ]
 
 3B/B5DF: A9 81     LDA #$81
 3B/B5E1: 85 50     STA $50
@@ -39088,7 +36283,7 @@
 3B/B5F9: 85 78     STA $78            ; world id
 3B/B5FB: 60        RTS 
 
-; [ event command $DF:  ]
+; [ event command $DF: set all characters' hp to 1 ]
 
 3B/B5FC: A2 00     LDX #$00
 3B/B5FE: 20 09 B6  JSR $B609
@@ -39109,14 +36304,14 @@
 3B/B616: 60        RTS 
 
 ; jump table for event commands $E4-$FF
-3B/B617:           .DW                         $B672,$B672,$B672,$B673
-3B/B61F:           .DW $B68E,$B694,$B69A,$B69D,$B6A0,$B6A3,$B6A6,$B6B4
-3B/B62F:           .DW $B6BF,$B6D5,$B6E0,$B6E5,$B6EA,$B6EF,$B6F4,$B70F
-3B/B63F:           .DW $B71C,$B750,$B75E,$B76C,$B775,$B79D,$B7A2,$B7A3
+3B/B617:                     B672 B672 B672 B673
+3B/B61F: B68E B694 B69A B69D B6A0 B6A3 B6A6 B6B4
+3B/B62F: B6BF B6D5 B6E0 B6E5 B6EA B6EF B6F4 B70F
+3B/B63F: B71C B750 B75E B76C B775 B79D B7A2 B7A3
 
-; [ event command $E0:  ]
+; [ event command $E0: reload map palette (no guest npc) ]
 
-3B/B64F: A9 01     LDA #$01
+3B/B64F: A9 01     LDA #$01           ; don't load guest npc palette
 3B/B651: 85 7C     STA $7C
 3B/B653: A9 3A     LDA #$3A
 3B/B655: 20 06 FF  JSR $FF06          ; switch prg bank 0
@@ -39127,21 +36322,21 @@
 3B/B663: 85 80     STA $80
 3B/B665: 4C 52 B9  JMP $B952
 
-; [ event command $E1:  ]
+; [ event command $E1: reload map palette (w/ guest npc) ]
 
-3B/B668: A9 00     LDA #$00
+3B/B668: A9 00     LDA #$00           ; load guest npc palette
 3B/B66A: 85 7C     STA $7C
 3B/B66C: 4C 53 B6  JMP $B653
 
-; [ event command $E2:  ]
+; [ event command $E2: flash screen ]
 
 3B/B66F: 4C 13 B9  JMP $B913
 
-; [ event command $E3-$E6:  ]
+; [ event command $E3-$E6: no effect ]
 
 3B/B672: 60        RTS 
 
-; [ event command $E7:  ]
+; [ event command $E7: take item ]
 
 3B/B673: A5 71     LDA $71
 3B/B675: 85 80     STA $80
@@ -39156,19 +36351,33 @@
 3B/B68A: 9D C0 60  STA $60C0,X
 3B/B68D: 60        RTS 
 
-3B/B68E: 20 B0 B7  JSR $B7B0
+; [ event command $E8: clear status (all characters) ]
+
+3B/B68E: 20 B0 B7  JSR $B7B0          ; clear status (all characters)
 3B/B691: 4C 5D BA  JMP $BA5D
 
-3B/B694: 20 C2 B7  JSR $B7C2
+; [ event command $E9: set status (all characters) ]
+
+3B/B694: 20 C2 B7  JSR $B7C2          ; set status (all characters)
 3B/B697: 4C 5D BA  JMP $BA5D
+
+; [ event command $EA: give gil ]
 
 3B/B69A: 4C D4 B7  JMP $B7D4
 
+; [ event command $EB: take gil ]
+
 3B/B69D: 4C 0D B8  JMP $B80D
+
+; [ event command $EC: give cp ]
 
 3B/B6A0: 4C 40 B8  JMP $B840
 
+; [ event command $ED: take cp ]
+
 3B/B6A3: 4C 4E B8  JMP $B84E
+
+; [ event command $EE: set guest npc ]
 
 3B/B6A6: A5 71     LDA $71
 3B/B6A8: 8D 0B 60  STA $600B
@@ -39177,15 +36386,15 @@
 3B/B6AE: 20 15 BA  JSR $BA15
 3B/B6B1: 4C 5D BA  JMP $BA5D
 
-; [  ]
+; [ event command $EF: special animation ]
 
 3B/B6B4: A9 00     LDA #$00
 3B/B6B6: 85 BC     STA $BC
-3B/B6B8: 85 F0     STA $F0
+3B/B6B8: 85 F0     STA $F0            ; reset frame counter
 3B/B6BA: A5 71     LDA $71
-3B/B6BC: 4C FA A4  JMP $A4FA
+3B/B6BC: 4C FA A4  JMP $A4FA          ; special animation
 
-; [ event command $F0: npc dialogue ??? ]
+; [ event command $F0: npc dialogue ]
 
 3B/B6BF: A6 71     LDX $71
 3B/B6C1: BD 40 07  LDA $0740,X
@@ -39199,7 +36408,7 @@
 3B/B6D2: 85 94     STA $94
 3B/B6D4: 60        RTS 
 
-; [ event command $F1: show event dialogue ]
+; [ event command $F1: event dialogue ]
 
 3B/B6D5: A5 71     LDA $71
 3B/B6D7: 85 76     STA $76
@@ -39207,30 +36416,42 @@
 3B/B6DB: 85 7D     STA $7D
 3B/B6DD: 4C CE B6  JMP $B6CE
 
+; [ event command $F2: set event switch ]
+
 3B/B6E0: A4 71     LDY $71
 3B/B6E2: 4C 83 B9  JMP $B983
+
+; [ event command $F3: clear event switch ]
 
 3B/B6E5: A4 71     LDY $71
 3B/B6E7: 4C 99 B9  JMP $B999
 
+; [ event command $F4: set npc switch ]
+
 3B/B6EA: A4 71     LDY $71
 3B/B6EC: 4C B1 B9  JMP $B9B1
+
+; [ event command $F5: clear npc switch ]
 
 3B/B6EF: A4 71     LDY $71
 3B/B6F1: 4C E1 B9  JMP $B9E1
 
+; [ event command $F6: give item ]
+
 3B/B6F4: A5 71     LDA $71
 3B/B6F6: 85 80     STA $80
-3B/B6F8: 20 F0 B8  JSR $B8F0
+3B/B6F8: 20 F0 B8  JSR $B8F0          ; check if item can be given
 3B/B6FB: 90 08     BCC $B705
-3B/B6FD: 20 A3 B7  JSR $B7A3
-3B/B700: A9 90     LDA #$90
-3B/B702: 4C D7 B6  JMP $B6D7
+3B/B6FD: 20 A3 B7  JSR $B7A3          ; end of event
+3B/B700: A9 90     LDA #$90           ; "Can't carry anymore."
+3B/B702: 4C D7 B6  JMP $B6D7          ; show event dialogue
 3B/B705: A5 80     LDA $80
-3B/B707: 9D C0 60  STA $60C0,X
+3B/B707: 9D C0 60  STA $60C0,X        ; add item to inventory
 3B/B70A: FE E0 60  INC $60E0,X
 3B/B70D: 18        CLC 
 3B/B70E: 60        RTS 
+
+; [ event command $F7: battle ]
 
 3B/B70F: A5 71     LDA $71
 3B/B711: 85 6A     STA $6A
@@ -39273,7 +36494,7 @@
 3B/B74C: 8D 49 7F  STA $7F49          ; play sound effect
 3B/B74F: 60        RTS 
 
-; [ event command $F9:  ]
+; [ event command $F9: exit (explicit) ]
 
 3B/B750: A5 71     LDA $71
 3B/B752: 8D 30 07  STA $0730
@@ -39283,6 +36504,8 @@
 3B/B75B: 85 AB     STA $AB
 3B/B75D: 60        RTS 
 
+; [ event command $FA: entrance (explicit) ]
+
 3B/B75E: A5 71     LDA $71
 3B/B760: 8D 00 07  STA $0700
 3B/B763: A9 00     LDA #$00
@@ -39291,14 +36514,18 @@
 3B/B769: 85 AB     STA $AB
 3B/B76B: 60        RTS 
 
+; [ event command $FB: entrance (map) ]
+
 3B/B76C: A5 71     LDA $71
 3B/B76E: 85 45     STA $45
 3B/B770: A9 80     LDA #$80
 3B/B772: 85 44     STA $44
 3B/B774: 60        RTS 
 
+; [ event command $FC: wait ]
+
 3B/B775: A5 75     LDA $75
-3B/B777: 30 08     BMI $B781
+3B/B777: 30 08     BMI $B781          ; branch if not first repeat
 3B/B779: A9 80     LDA #$80
 3B/B77B: 85 75     STA $75
 3B/B77D: A5 71     LDA $71
@@ -39311,7 +36538,7 @@
 3B/B78A: A9 00     LDA #$00
 3B/B78C: 85 75     STA $75
 3B/B78E: 60        RTS 
-3B/B78F: A5 72     LDA $72
+3B/B78F: A5 72     LDA $72            ; subtract 2 from event pointer
 3B/B791: 38        SEC 
 3B/B792: E9 02     SBC #$02
 3B/B794: 85 72     STA $72
@@ -39320,9 +36547,16 @@
 3B/B79A: 85 73     STA $73
 3B/B79C: 60        RTS 
 
+; [ event command $FD: exit to previous map ]
+
 3B/B79D: A9 40     LDA #$40
 3B/B79F: 85 AB     STA $AB
 3B/B7A1: 60        RTS 
+
+; [ event command $FE: repeat ]
+
+; see 3E/D219
+
 3B/B7A2: 60        RTS 
 
 ; [ event command $FF: end of event ]
@@ -39335,7 +36569,7 @@
 3B/B7AD: 85 6C     STA $6C            ; 
 3B/B7AF: 60        RTS 
 
-; [  ]
+; [ clear status (all characters) ]
 
 3B/B7B0: A2 00     LDX #$00
 3B/B7B2: BD 02 61  LDA $6102,X
@@ -39347,6 +36581,9 @@
 3B/B7BE: AA        TAX 
 3B/B7BF: D0 F1     BNE $B7B2
 3B/B7C1: 60        RTS 
+
+; [ set status (all characters) ]
+
 3B/B7C2: A2 00     LDX #$00
 3B/B7C4: BD 02 61  LDA $6102,X
 3B/B7C7: 05 71     ORA $71
@@ -39357,6 +36594,9 @@
 3B/B7D0: AA        TAX 
 3B/B7D1: D0 F1     BNE $B7C4
 3B/B7D3: 60        RTS 
+
+; [ give gil ]
+
 3B/B7D4: AD 1D 60  LDA $601D
 3B/B7D7: 18        CLC 
 3B/B7D8: 65 71     ADC $71
@@ -39382,14 +36622,17 @@
 3B/B807: A9 98     LDA #$98
 3B/B809: 8D 1E 60  STA $601E
 3B/B80C: 60        RTS 
+
+; [ take gil ]
+
 3B/B80D: AD 1E 60  LDA $601E
 3B/B810: D0 0F     BNE $B821
 3B/B812: AD 1D 60  LDA $601D
 3B/B815: C5 71     CMP $71
 3B/B817: B0 08     BCS $B821
-3B/B819: 20 A3 B7  JSR $B7A3
+3B/B819: 20 A3 B7  JSR $B7A3          ; end of event
 3B/B81C: A9 02     LDA #$02
-3B/B81E: 4C D7 B6  JMP $B6D7
+3B/B81E: 4C D7 B6  JMP $B6D7          ; show event dialogue
 3B/B821: AD 1D 60  LDA $601D
 3B/B824: 38        SEC 
 3B/B825: E5 71     SBC $71
@@ -39403,6 +36646,9 @@
 3B/B839: 8D 1D 60  STA $601D
 3B/B83C: 8D 1E 60  STA $601E
 3B/B83F: 60        RTS 
+
+; [ give cp ]
+
 3B/B840: AD 1B 60  LDA $601B
 3B/B843: 18        CLC 
 3B/B844: 65 71     ADC $71
@@ -39410,6 +36656,9 @@
 3B/B848: A9 FF     LDA #$FF
 3B/B84A: 8D 1B 60  STA $601B
 3B/B84D: 60        RTS 
+
+; [ take cp ]
+
 3B/B84E: AD 1B 60  LDA $601B
 3B/B851: 38        SEC 
 3B/B852: E5 71     SBC $71
@@ -39419,6 +36668,9 @@
 3B/B85B: 4C D7 B6  JMP $B6D7
 3B/B85E: 8D 1B 60  STA $601B
 3B/B861: 60        RTS 
+
+; [ restore all characters to max mp ]
+
 3B/B862: A2 00     LDX #$00
 3B/B864: 20 73 B8  JSR $B873
 3B/B867: A2 40     LDX #$40
@@ -39434,6 +36686,9 @@
 3B/B87C: 29 0F     AND #$0F
 3B/B87E: D0 F3     BNE $B873
 3B/B880: 60        RTS 
+
+; [ restore all characters to max hp ]
+
 3B/B881: A2 00     LDX #$00
 3B/B883: 20 92 B8  JSR $B892
 3B/B886: A2 40     LDX #$40
@@ -39449,6 +36704,11 @@
 3B/B89F: BD 0F 61  LDA $610F,X
 3B/B8A2: 9D 0D 61  STA $610D,X
 3B/B8A5: 60        RTS 
+
+; [ open passage tile ]
+
+; A: tile id (change to tile id + 2)
+
 3B/B8A6: 85 82     STA $82
 3B/B8A8: A9 00     LDA #$00
 3B/B8AA: 85 80     STA $80
@@ -39491,25 +36751,31 @@
 3B/B8EB: E9 0F     SBC #$0F
 3B/B8ED: 85 0F     STA $0F
 3B/B8EF: 60        RTS 
+
+; [ check if item can be given ]
+
 3B/B8F0: A2 00     LDX #$00
 3B/B8F2: BD C0 60  LDA $60C0,X
 3B/B8F5: C5 80     CMP $80
-3B/B8F7: F0 14     BEQ $B90D
+3B/B8F7: F0 14     BEQ $B90D          ; branch if item in an inventory slot
 3B/B8F9: E8        INX 
 3B/B8FA: E0 20     CPX #$20
 3B/B8FC: 90 F4     BCC $B8F2
 3B/B8FE: A2 00     LDX #$00
 3B/B900: BD C0 60  LDA $60C0,X
-3B/B903: F0 06     BEQ $B90B
+3B/B903: F0 06     BEQ $B90B          ; find the first empty slot
 3B/B905: E8        INX 
 3B/B906: E0 20     CPX #$20
-3B/B908: 90 F6     BCC $B900
+3B/B908: 90 F6     BCC $B900          ; return carry set if no empty slots
 3B/B90A: 60        RTS 
-3B/B90B: 18        CLC 
+3B/B90B: 18        CLC                ; return carry clear if empty slot found
 3B/B90C: 60        RTS 
 3B/B90D: BD E0 60  LDA $60E0,X
-3B/B910: C9 63     CMP #$63
-3B/B912: 60        RTS 
+3B/B910: C9 63     CMP #$63           ; return carry set if qty is 99
+3B/B912: 60        RTS                ; return carry clear if less than 99
+
+; [ flash screen ]
+
 3B/B913: A9 00     LDA #$00
 3B/B915: 48        PHA 
 3B/B916: 20 22 B9  JSR $B922
@@ -39519,8 +36785,11 @@
 3B/B91D: C9 11     CMP #$11
 3B/B91F: 90 F4     BCC $B915
 3B/B921: 60        RTS 
+
+; [ flash screen (one frame) ]
+
 3B/B922: 4A        LSR 
-3B/B923: 29 01     AND #$01
+3B/B923: 29 01     AND #$01           ; toggle grayscale every 2 frames
 3B/B925: 85 80     STA $80
 3B/B927: 20 00 FF  JSR $FF00          ; wait for vblank
 3B/B92A: A5 80     LDA $80
@@ -39529,6 +36798,9 @@
 3B/B931: A9 00     LDA #$00
 3B/B933: 85 80     STA $80
 3B/B935: 4C 52 B9  JMP $B952
+
+; [ shake screen ]
+
 3B/B938: A9 00     LDA #$00
 3B/B93A: 48        PHA 
 3B/B93B: 20 47 B9  JSR $B947
@@ -39538,12 +36810,20 @@
 3B/B942: C9 11     CMP #$11
 3B/B944: 90 F4     BCC $B93A
 3B/B946: 60        RTS 
+
+; [ shake screen (one frame) ]
+
 3B/B947: 29 02     AND #$02
 3B/B949: 85 80     STA $80
 3B/B94B: 20 00 FF  JSR $FF00          ; wait for vblank
 3B/B94E: 4C 52 B9  JMP $B952
+
+; unused
 3B/B951: 60        RTS 
-3B/B952: 2C 02 20  BIT $2002
+
+; [ update ppu (flash/shake screen) ]
+
+3B/B952: 2C 02 20  BIT $2002          ; latch ppu
 3B/B955: A5 FD     LDA $FD
 3B/B957: 85 FF     STA $FF
 3B/B959: 8D 00 20  STA $2000
@@ -39559,7 +36839,7 @@
 3B/B969: 0A        ASL 
 3B/B96A: 05 35     ORA $35
 3B/B96C: 45 80     EOR $80
-3B/B96E: 8D 05 20  STA $2005
+3B/B96E: 8D 05 20  STA $2005          ; ppu scroll
 3B/B971: A5 2F     LDA $2F
 3B/B973: 0A        ASL 
 3B/B974: 0A        ASL 
@@ -39570,6 +36850,9 @@
 3B/B97C: A9 3A     LDA #$3A
 3B/B97E: 85 57     STA $57
 3B/B980: 4C 09 C0  JMP $C009          ; update sound
+
+; [ set event switch ]
+
 3B/B983: 84 80     STY $80
 3B/B985: B9 D2 BB  LDA $BBD2,Y
 3B/B988: 85 81     STA $81
@@ -39580,6 +36863,9 @@
 3B/B993: 99 20 60  STA $6020,Y
 3B/B996: A4 80     LDY $80
 3B/B998: 60        RTS 
+
+; [ clear event switch ]
+
 3B/B999: 84 80     STY $80
 3B/B99B: B9 D2 BB  LDA $BBD2,Y
 3B/B99E: 85 81     STA $81
@@ -39591,6 +36877,9 @@
 3B/B9AB: 99 20 60  STA $6020,Y
 3B/B9AE: A4 80     LDY $80
 3B/B9B0: 60        RTS 
+
+; [ set npc switch ]
+
 3B/B9B1: A5 78     LDA $78
 3B/B9B3: D0 16     BNE $B9CB
 3B/B9B5: 84 80     STY $80
@@ -39603,6 +36892,9 @@
 3B/B9C5: 99 80 60  STA $6080,Y
 3B/B9C8: A4 80     LDY $80
 3B/B9CA: 60        RTS 
+
+; [ clear npc switch ]
+
 3B/B9CB: 84 80     STY $80
 3B/B9CD: B9 D2 BB  LDA $BBD2,Y
 3B/B9D0: 85 81     STA $81
@@ -39637,6 +36929,9 @@
 3B/BA0F: 99 A0 60  STA $60A0,Y
 3B/BA12: A4 80     LDY $80
 3B/BA14: 60        RTS 
+
+; [  ]
+
 3B/BA15: A9 1F     LDA #$1F
 3B/BA17: 85 80     STA $80
 3B/BA19: A5 2D     LDA $2D
@@ -39675,6 +36970,8 @@
 3B/BA58: A5 43     LDA $43
 3B/BA5A: 85 A8     STA $A8
 3B/BA5C: 60        RTS 
+
+; [  ]
 
 3B/BA5D: AE 0E 60  LDX $600E
 3B/BA60: BD 02 61  LDA $6102,X
@@ -39786,7 +37083,7 @@
 3B/BB3B: A5 2D     LDA $2D
 3B/BB3D: 4A        LSR 
 3B/BB3E: B0 11     BCS $BB51
-3B/BB40: BD F8 96  LDA $96F8,X
+3B/BB40: BD F8 96  LDA $96F8,X        ; 00/96F8 (guest npc palettes)
 3B/BB43: 8D DA 03  STA $03DA
 3B/BB46: BD F9 96  LDA $96F9,X
 3B/BB49: 8D DB 03  STA $03DB
@@ -40103,7 +37400,13 @@
 
 ; --------------------------------------------------------------------------
 
-; [  ]
+; [ draw characters ]
+
+; A: character position
+;      0: main menu
+;      1: save slot 1
+;      2: save slot 2
+;      3: save slot 3 / character select
 
 3C/8000: D0 1C     BNE $801E
 3C/8002: A9 28     LDA #$28
@@ -40126,11 +37429,11 @@
 3C/8024: 0A        ASL 
 3C/8025: 85 61     STA $61
 3C/8027: A6 61     LDX $61
-3C/8029: BD 5D 80  LDA $805D,X
+3C/8029: BD 5D 80  LDA $805D,X        ; x
 3C/802C: 85 40     STA $40
-3C/802E: BD 5E 80  LDA $805E,X
+3C/802E: BD 5E 80  LDA $805E,X        ; y
 3C/8031: 85 41     STA $41
-3C/8033: BD 5C 80  LDA $805C,X
+3C/8033: BD 5C 80  LDA $805C,X        ; character properties pointer
 3C/8036: AA        TAX 
 3C/8037: 20 36 81  JSR $8136          ; load character sprite
 3C/803A: A5 61     LDA $61
@@ -40154,14 +37457,17 @@
 3C/8057: 85 40     STA $40
 3C/8059: 4C 36 81  JMP $8136          ; load character sprite
 
+; ??? one per character (offset, x, y, unused)
 3C/805C: 00 18 30 00
 3C/8060: 40 88 30 00
 3C/8064: 80 18 48 00
 3C/8068: C0 88 48 00
+
 3C/806C: 00 18 70 00
 3C/8070: 40 88 70 00
 3C/8074: 80 18 88 00
 3C/8078: C0 88 88 00
+
 3C/807C: 00 18 B0 00
 3C/8080: 40 88 B0 00
 3C/8084: 80 18 C8 00
@@ -40248,7 +37554,7 @@
 3C/8123: 20 05 82  JSR $8205          ; get pointer to character sprite data
 3C/8126: 4C 9B 81  JMP $819B          ; load sprite
 
-; [  ]
+; [ draw character sprite (status menu) ]
 
 3C/8129: A6 7F     LDX $7F
 3C/812B: A9 58     LDA #$58
@@ -40415,17 +37721,23 @@
 3C/823A: 20 E0 81  JSR $81E0
 3C/823D: 4C 9B 81  JMP $819B          ; load sprite
 
-; [  ]
+; [ draw character sprites (save/load menu) ??? ]
+
+; starts at 3C/8241
+
+; A: slot id
 
 3C/8240: 60        RTS 
-
+; subroutine starts here
 3C/8241: D0 0C     BNE $824F
+; slot 1
 3C/8243: A5 62     LDA $62
 3C/8245: 29 04     AND #$04
 3C/8247: F0 F7     BEQ $8240
 3C/8249: A9 00     LDA #$00
 3C/824B: 85 61     STA $61
 3C/824D: F0 1A     BEQ $8269
+; slot 2
 3C/824F: C9 01     CMP #$01
 3C/8251: D0 0C     BNE $825F
 3C/8253: A5 62     LDA $62
@@ -40434,6 +37746,7 @@
 3C/8259: A9 10     LDA #$10
 3C/825B: 85 61     STA $61
 3C/825D: D0 0A     BNE $8269
+; slot 3
 3C/825F: A5 62     LDA $62
 3C/8261: 29 01     AND #$01
 3C/8263: F0 DB     BEQ $8240
@@ -40464,7 +37777,7 @@
 3C/8294: A4 83     LDY $83
 3C/8296: 20 E6 81  JSR $81E6
 3C/8299: 20 9B 81  JSR $819B          ; load sprite
-3C/829C: A5 61     LDA $61
+3C/829C: A5 61     LDA $61            ; next character
 3C/829E: 18        CLC 
 3C/829F: 69 04     ADC #$04
 3C/82A1: 85 61     STA $61
@@ -40572,6 +37885,7 @@
 3C/83DB: 00 CB 03 08
 3C/83DF: FF
 
+; pointers to invincible sprite data
 3C/83E0: 8586 8586 8504 8586 8492 8586 8504 8586
 3C/83F0: 8420 8586 8504 8586 8492 8586 8504 8586
 3C/8400: 85C7 85C7 8545 85C7 84CB 85C7 8545 85C7
@@ -40626,580 +37940,201 @@
 3C/84CA: FF
 
 3C/84CB: F8 D0 03 F8
-3C/84CF: 00        BRK 
-3C/84D0: D1 03     CMP ($03),Y
-3C/84D2: 08        PHP 
-3C/84D3: 00        BRK 
-3C/84D4: D2        --- 
-3C/84D5: 03        --- 
-3C/84D6: 08        PHP 
-3C/84D7: 00        BRK 
-3C/84D8: D3        --- 
-3C/84D9: 03        --- 
-3C/84DA: 08        PHP 
-3C/84DB: 08        PHP 
-3C/84DC: C6 03     DEC $03
-3C/84DE: E8        INX 
-3C/84DF: 00        BRK 
-3C/84E0: C7        --- 
-3C/84E1: 03        --- 
-3C/84E2: 08        PHP 
-3C/84E3: 00        BRK 
-3C/84E4: C8        INY 
-3C/84E5: 03        --- 
-3C/84E6: 08        PHP 
-3C/84E7: 00        BRK 
-3C/84E8: C9 03     CMP #$03
-3C/84EA: 08        PHP 
-3C/84EB: 08        PHP 
-3C/84EC: CA        DEX 
-3C/84ED: 03        --- 
-3C/84EE: E8        INX 
-3C/84EF: 00        BRK 
-3C/84F0: CB        --- 
-3C/84F1: 03        --- 
-3C/84F2: 08        PHP 
-3C/84F3: 00        BRK 
-3C/84F4: CC 03 08  CPY $0803
-3C/84F7: 00        BRK 
-3C/84F8: CD 03 08  CMP $0803
-3C/84FB: 08        PHP 
-3C/84FC: D4        --- 
-3C/84FD: 03        --- 
-3C/84FE: F0 00     BEQ $8500
-3C/8500: D5 03     CMP $03,X
-3C/8502: 08        PHP 
-3C/8503: FF        --- 
-3C/8504: F8        SED 
-3C/8505: E2        --- 
-3C/8506: 03        --- 
-3C/8507: F8        SED 
-3C/8508: 00        BRK 
-3C/8509: E3        --- 
-3C/850A: 03        --- 
-3C/850B: 08        PHP 
-3C/850C: 00        BRK 
-3C/850D: E4 03     CPX $03
-3C/850F: 08        PHP 
-3C/8510: 00        BRK 
-3C/8511: E5 03     SBC $03
-3C/8513: 08        PHP 
-3C/8514: 08        PHP 
-3C/8515: E6 03     INC $03
-3C/8517: E8        INX 
-3C/8518: 00        BRK 
-3C/8519: E7        --- 
-3C/851A: 03        --- 
-3C/851B: 08        PHP 
-3C/851C: 00        BRK 
-3C/851D: E8        INX 
-3C/851E: 03        --- 
-3C/851F: 08        PHP 
-3C/8520: 00        BRK 
-3C/8521: E9 03     SBC #$03
-3C/8523: 08        PHP 
-3C/8524: 08        PHP 
-3C/8525: EA        NOP 
-3C/8526: 03        --- 
-3C/8527: E8        INX 
-3C/8528: 00        BRK 
-3C/8529: EB        --- 
-3C/852A: 03        --- 
-3C/852B: 08        PHP 
-3C/852C: 00        BRK 
-3C/852D: EC 03 08  CPX $0803
-3C/8530: 00        BRK 
-3C/8531: ED 03 08  SBC $0803
-3C/8534: 08        PHP 
-3C/8535: EE 03 E8  INC $E803
-3C/8538: 00        BRK 
-3C/8539: EF        --- 
-3C/853A: 03        --- 
-3C/853B: 08        PHP 
-3C/853C: 00        BRK 
-3C/853D: F0 03     BEQ $8542
-3C/853F: 08        PHP 
-3C/8540: 00        BRK 
-3C/8541: F1 03     SBC ($03),Y
-3C/8543: 08        PHP 
-3C/8544: FF        --- 
-3C/8545: F8        SED 
-3C/8546: F2        --- 
-3C/8547: 03        --- 
-3C/8548: F8        SED 
-3C/8549: 00        BRK 
-3C/854A: F3        --- 
-3C/854B: 03        --- 
-3C/854C: 08        PHP 
-3C/854D: 00        BRK 
-3C/854E: F4        --- 
-3C/854F: 03        --- 
-3C/8550: 08        PHP 
-3C/8551: 00        BRK 
-3C/8552: F5 03     SBC $03,X
-3C/8554: 08        PHP 
-3C/8555: 08        PHP 
-3C/8556: E6 03     INC $03
-3C/8558: E8        INX 
-3C/8559: 00        BRK 
-3C/855A: E7        --- 
-3C/855B: 03        --- 
-3C/855C: 08        PHP 
-3C/855D: 00        BRK 
-3C/855E: E8        INX 
-3C/855F: 03        --- 
-3C/8560: 08        PHP 
-3C/8561: 00        BRK 
-3C/8562: F6 03     INC $03,X
-3C/8564: 08        PHP 
-3C/8565: 08        PHP 
-3C/8566: EA        NOP 
-3C/8567: 03        --- 
-3C/8568: E8        INX 
-3C/8569: 00        BRK 
-3C/856A: EB        --- 
-3C/856B: 03        --- 
-3C/856C: 08        PHP 
-3C/856D: 00        BRK 
-3C/856E: EC 03 08  CPX $0803
-3C/8571: 00        BRK 
-3C/8572: F7        --- 
-3C/8573: 03        --- 
-3C/8574: 08        PHP 
-3C/8575: 08        PHP 
-3C/8576: F8        SED 
-3C/8577: 03        --- 
-3C/8578: E8        INX 
-3C/8579: 00        BRK 
-3C/857A: F9 03 08  SBC $0803,Y
-3C/857D: 00        BRK 
-3C/857E: FA        --- 
-3C/857F: 03        --- 
-3C/8580: 08        PHP 
-3C/8581: 00        BRK 
-3C/8582: FB        --- 
-3C/8583: 03        --- 
-3C/8584: 08        PHP 
-3C/8585: FF        --- 
-3C/8586: F8        SED 
-3C/8587: E5 43     SBC $43
-3C/8589: F8        SED 
-3C/858A: 00        BRK 
-3C/858B: E4 43     CPX $43
-3C/858D: 08        PHP 
-3C/858E: 00        BRK 
-3C/858F: E3        --- 
-3C/8590: 43        --- 
-3C/8591: 08        PHP 
-3C/8592: 00        BRK 
-3C/8593: E2        --- 
-3C/8594: 43        --- 
-3C/8595: 08        PHP 
-3C/8596: 08        PHP 
-3C/8597: E9 43     SBC #$43
-3C/8599: E8        INX 
-3C/859A: 00        BRK 
-3C/859B: E8        INX 
-3C/859C: 43        --- 
-3C/859D: 08        PHP 
-3C/859E: 00        BRK 
-3C/859F: E7        --- 
-3C/85A0: 43        --- 
-3C/85A1: 08        PHP 
-3C/85A2: 00        BRK 
-3C/85A3: E6 43     INC $43
-3C/85A5: 08        PHP 
-3C/85A6: 08        PHP 
-3C/85A7: ED 43 E8  SBC $E843
-3C/85AA: 00        BRK 
-3C/85AB: EC 43 08  CPX $0843
-3C/85AE: 00        BRK 
-3C/85AF: EB        --- 
-3C/85B0: 43        --- 
-3C/85B1: 08        PHP 
-3C/85B2: 00        BRK 
-3C/85B3: EA        NOP 
-3C/85B4: 43        --- 
-3C/85B5: 08        PHP 
-3C/85B6: 08        PHP 
-3C/85B7: F1 43     SBC ($43),Y
-3C/85B9: E8        INX 
-3C/85BA: 00        BRK 
-3C/85BB: F0 43     BEQ $8600
-3C/85BD: 08        PHP 
-3C/85BE: 00        BRK 
-3C/85BF: EF        --- 
-3C/85C0: 43        --- 
-3C/85C1: 08        PHP 
-3C/85C2: 00        BRK 
-3C/85C3: EE 43 08  INC $0843
-3C/85C6: FF        --- 
-3C/85C7: F8        SED 
-3C/85C8: F5 43     SBC $43,X
-3C/85CA: F8        SED 
-3C/85CB: 00        BRK 
-3C/85CC: F4        --- 
-3C/85CD: 43        --- 
-3C/85CE: 08        PHP 
-3C/85CF: 00        BRK 
-3C/85D0: F3        --- 
-3C/85D1: 43        --- 
-3C/85D2: 08        PHP 
-3C/85D3: 00        BRK 
-3C/85D4: F2        --- 
-3C/85D5: 43        --- 
-3C/85D6: 08        PHP 
-3C/85D7: 08        PHP 
-3C/85D8: F6 43     INC $43,X
-3C/85DA: E8        INX 
-3C/85DB: 00        BRK 
-3C/85DC: E8        INX 
-3C/85DD: 43        --- 
-3C/85DE: 08        PHP 
-3C/85DF: 00        BRK 
-3C/85E0: E7        --- 
-3C/85E1: 43        --- 
-3C/85E2: 08        PHP 
-3C/85E3: 00        BRK 
-3C/85E4: E6 43     INC $43
-3C/85E6: 08        PHP 
-3C/85E7: 08        PHP 
-3C/85E8: F7        --- 
-3C/85E9: 43        --- 
-3C/85EA: E8        INX 
-3C/85EB: 00        BRK 
-3C/85EC: EC 43 08  CPX $0843
-3C/85EF: 00        BRK 
-3C/85F0: EB        --- 
-3C/85F1: 43        --- 
-3C/85F2: 08        PHP 
-3C/85F3: 00        BRK 
-3C/85F4: EA        NOP 
-3C/85F5: 43        --- 
-3C/85F6: 08        PHP 
-3C/85F7: 08        PHP 
-3C/85F8: FB        --- 
-3C/85F9: 43        --- 
-3C/85FA: E8        INX 
-3C/85FB: 00        BRK 
-3C/85FC: FA        --- 
-3C/85FD: 43        --- 
-3C/85FE: 08        PHP 
-3C/85FF: 00        BRK 
-3C/8600: F9 43 08  SBC $0843,Y
-3C/8603: 00        BRK 
-3C/8604: F8        SED 
-3C/8605: 43        --- 
-3C/8606: 08        PHP 
-3C/8607: FF        --- 
-3C/8608: 00        BRK 
-3C/8609: C0 03     CPY #$03
-3C/860B: F8        SED 
-3C/860C: 00        BRK 
-3C/860D: C1 03     CMP ($03,X)
-3C/860F: 08        PHP 
-3C/8610: 00        BRK 
-3C/8611: C1 03     CMP ($03,X)
-3C/8613: 08        PHP 
-3C/8614: 00        BRK 
-3C/8615: C0 43     CPY #$43
-3C/8617: 08        PHP 
-3C/8618: FF        --- 
-3C/8619: F8        SED 
-3C/861A: B0 03     BCS $861F
-3C/861C: F8        SED 
-3C/861D: 00        BRK 
-3C/861E: B1 03     LDA ($03),Y
-3C/8620: 08        PHP 
-3C/8621: 00        BRK 
-3C/8622: B2        --- 
-3C/8623: 03        --- 
-3C/8624: 08        PHP 
-3C/8625: 00        BRK 
-3C/8626: B3        --- 
-3C/8627: 03        --- 
-3C/8628: 08        PHP 
-3C/8629: 08        PHP 
-3C/862A: B4 03     LDY $03,X
-3C/862C: E8        INX 
-3C/862D: 00        BRK 
-3C/862E: B5 03     LDA $03,X
-3C/8630: 08        PHP 
-3C/8631: 00        BRK 
-3C/8632: B6 03     LDX $03,Y
-3C/8634: 08        PHP 
-3C/8635: 00        BRK 
-3C/8636: B7        --- 
-3C/8637: 03        --- 
-3C/8638: 08        PHP 
-3C/8639: 08        PHP 
-3C/863A: B8        CLV 
-3C/863B: 03        --- 
-3C/863C: E8        INX 
-3C/863D: 00        BRK 
-3C/863E: B9 03 08  LDA $0803,Y
-3C/8641: 00        BRK 
-3C/8642: BA        TSX 
-3C/8643: 03        --- 
-3C/8644: 08        PHP 
-3C/8645: 00        BRK 
-3C/8646: BB        --- 
-3C/8647: 03        --- 
-3C/8648: 08        PHP 
-3C/8649: 08        PHP 
-3C/864A: BC 03 E8  LDY $E803,X
-3C/864D: 00        BRK 
-3C/864E: BD 03 08  LDA $0803,X
-3C/8651: 00        BRK 
-3C/8652: BE 03 08  LDX $0803,Y
-3C/8655: 00        BRK 
-3C/8656: BF        --- 
-3C/8657: 03        --- 
-3C/8658: 08        PHP 
-3C/8659: FF        --- 
-3C/865A: F8        SED 
-3C/865B: A0 03     LDY #$03
-3C/865D: F8        SED 
-3C/865E: 00        BRK 
-3C/865F: A1 03     LDA ($03,X)
-3C/8661: 08        PHP 
-3C/8662: 00        BRK 
-3C/8663: A2 03     LDX #$03
-3C/8665: 08        PHP 
-3C/8666: 00        BRK 
-3C/8667: A3        --- 
-3C/8668: 03        --- 
-3C/8669: 08        PHP 
-3C/866A: 08        PHP 
-3C/866B: A4 03     LDY $03
-3C/866D: E8        INX 
-3C/866E: 00        BRK 
-3C/866F: A5 03     LDA $03
-3C/8671: 08        PHP 
-3C/8672: 00        BRK 
-3C/8673: A6 03     LDX $03
-3C/8675: 08        PHP 
-3C/8676: 00        BRK 
-3C/8677: A7        --- 
-3C/8678: 03        --- 
-3C/8679: 08        PHP 
-3C/867A: 08        PHP 
-3C/867B: A8        TAY 
-3C/867C: 03        --- 
-3C/867D: E8        INX 
-3C/867E: 00        BRK 
-3C/867F: A9 03     LDA #$03
-3C/8681: 08        PHP 
-3C/8682: 00        BRK 
-3C/8683: AA        TAX 
-3C/8684: 03        --- 
-3C/8685: 08        PHP 
-3C/8686: 00        BRK 
-3C/8687: AB        --- 
-3C/8688: 03        --- 
-3C/8689: 08        PHP 
-3C/868A: 08        PHP 
-3C/868B: AC 03 E8  LDY $E803
-3C/868E: 00        BRK 
-3C/868F: AD 03 08  LDA $0803
-3C/8692: 00        BRK 
-3C/8693: AE 03 08  LDX $0803
-3C/8696: 00        BRK 
-3C/8697: AF        --- 
-3C/8698: 03        --- 
-3C/8699: 08        PHP 
-3C/869A: FF        --- 
-3C/869B: F8        SED 
-3C/869C: A0 03     LDY #$03
-3C/869E: F8        SED 
-3C/869F: 00        BRK 
-3C/86A0: A1 03     LDA ($03,X)
-3C/86A2: 08        PHP 
-3C/86A3: 00        BRK 
-3C/86A4: A2 03     LDX #$03
-3C/86A6: 08        PHP 
-3C/86A7: 00        BRK 
-3C/86A8: A3        --- 
-3C/86A9: 03        --- 
-3C/86AA: 08        PHP 
-3C/86AB: 08        PHP 
-3C/86AC: A4 03     LDY $03
-3C/86AE: E8        INX 
-3C/86AF: 00        BRK 
-3C/86B0: A5 03     LDA $03
-3C/86B2: 08        PHP 
-3C/86B3: 00        BRK 
-3C/86B4: A6 03     LDX $03
-3C/86B6: 08        PHP 
-3C/86B7: 00        BRK 
-3C/86B8: A7        --- 
-3C/86B9: 03        --- 
-3C/86BA: 08        PHP 
-3C/86BB: 08        PHP 
-3C/86BC: A8        TAY 
-3C/86BD: 03        --- 
-3C/86BE: E8        INX 
-3C/86BF: 00        BRK 
-3C/86C0: A9 03     LDA #$03
-3C/86C2: 08        PHP 
-3C/86C3: 00        BRK 
-3C/86C4: AA        TAX 
-3C/86C5: 03        --- 
-3C/86C6: 08        PHP 
-3C/86C7: 00        BRK 
-3C/86C8: AB        --- 
-3C/86C9: 03        --- 
-3C/86CA: 08        PHP 
-3C/86CB: 08        PHP 
-3C/86CC: AF        --- 
-3C/86CD: 43        --- 
-3C/86CE: E8        INX 
-3C/86CF: 00        BRK 
-3C/86D0: AE 43 08  LDX $0843
-3C/86D3: 00        BRK 
-3C/86D4: AD 43 08  LDA $0843
-3C/86D7: 00        BRK 
-3C/86D8: AC 43 08  LDY $0843
-3C/86DB: FF        --- 
-3C/86DC: F8        SED 
-3C/86DD: A0 03     LDY #$03
-3C/86DF: F8        SED 
-3C/86E0: 00        BRK 
-3C/86E1: A1 03     LDA ($03,X)
-3C/86E3: 08        PHP 
-3C/86E4: 00        BRK 
-3C/86E5: A2 03     LDX #$03
-3C/86E7: 08        PHP 
-3C/86E8: 00        BRK 
-3C/86E9: A3        --- 
-3C/86EA: 03        --- 
-3C/86EB: 08        PHP 
-3C/86EC: 08        PHP 
-3C/86ED: A4 03     LDY $03
-3C/86EF: E8        INX 
-3C/86F0: 00        BRK 
-3C/86F1: A5 03     LDA $03
-3C/86F3: 08        PHP 
-3C/86F4: 00        BRK 
-3C/86F5: A6 03     LDX $03
-3C/86F7: 08        PHP 
-3C/86F8: 00        BRK 
-3C/86F9: A7        --- 
-3C/86FA: 03        --- 
-3C/86FB: 08        PHP 
-3C/86FC: 08        PHP 
-3C/86FD: A8        TAY 
-3C/86FE: 03        --- 
-3C/86FF: E8        INX 
-3C/8700: 00        BRK 
-3C/8701: A9 03     LDA #$03
-3C/8703: 08        PHP 
-3C/8704: 00        BRK 
-3C/8705: AA        TAX 
-3C/8706: 03        --- 
-3C/8707: 08        PHP 
-3C/8708: 00        BRK 
-3C/8709: AB        --- 
-3C/870A: 03        --- 
-3C/870B: 08        PHP 
-3C/870C: 08        PHP 
-3C/870D: AC 03 E8  LDY $E803
-3C/8710: 00        BRK 
-3C/8711: AD 03 08  LDA $0803
-3C/8714: 00        BRK 
-3C/8715: AE 03 08  LDX $0803
-3C/8718: 00        BRK 
-3C/8719: AF        --- 
-3C/871A: 03        --- 
-3C/871B: 08        PHP 
-3C/871C: FF        --- 
-3C/871D: 00        BRK 
-3C/871E: 9F        --- 
-3C/871F: C3        --- 
-3C/8720: F8        SED 
-3C/8721: 00        BRK 
-3C/8722: 9E        --- 
-3C/8723: C3        --- 
-3C/8724: 08        PHP 
-3C/8725: 00        BRK 
-3C/8726: 9D C3 08  STA $08C3,X
-3C/8729: 00        BRK 
-3C/872A: 9C        --- 
-3C/872B: C3        --- 
-3C/872C: 08        PHP 
-3C/872D: 08        PHP 
-3C/872E: 9B        --- 
-3C/872F: C3        --- 
-3C/8730: E8        INX 
-3C/8731: 00        BRK 
-3C/8732: 9A        TXS 
-3C/8733: C3        --- 
-3C/8734: 08        PHP 
-3C/8735: 00        BRK 
-3C/8736: 99 C3 08  STA $08C3,Y
-3C/8739: 00        BRK 
-3C/873A: 98        TYA 
-3C/873B: C3        --- 
-3C/873C: 08        PHP 
-3C/873D: FF        --- 
-3C/873E: 00        BRK 
-3C/873F: 9B        --- 
-3C/8740: 43        --- 
-3C/8741: F8        SED 
-3C/8742: 00        BRK 
-3C/8743: 9A        TXS 
-3C/8744: 43        --- 
-3C/8745: 08        PHP 
-3C/8746: 00        BRK 
-3C/8747: 99 43 08  STA $0843,Y
-3C/874A: 00        BRK 
-3C/874B: 98        TYA 
-3C/874C: 43        --- 
-3C/874D: 08        PHP 
-3C/874E: 08        PHP 
-3C/874F: 9F        --- 
-3C/8750: 43        --- 
-3C/8751: E8        INX 
-3C/8752: 00        BRK 
-3C/8753: 9E        --- 
-3C/8754: 43        --- 
-3C/8755: 08        PHP 
-3C/8756: 00        BRK 
-3C/8757: 9D 43 08  STA $0843,X
-3C/875A: 00        BRK 
-3C/875B: 9C        --- 
-3C/875C: 43        --- 
-3C/875D: 08        PHP 
-3C/875E: FF        --- 
-3C/875F: 00        BRK 
-3C/8760: 98        TYA 
-3C/8761: 03        --- 
-3C/8762: F8        SED 
-3C/8763: 00        BRK 
-3C/8764: 99 03 08  STA $0803,Y
-3C/8767: 00        BRK 
-3C/8768: 9A        TXS 
-3C/8769: 03        --- 
-3C/876A: 08        PHP 
-3C/876B: 00        BRK 
-3C/876C: 9B        --- 
-3C/876D: 03        --- 
-3C/876E: 08        PHP 
-3C/876F: 08        PHP 
-3C/8770: 9C        --- 
-3C/8771: 03        --- 
-3C/8772: E8        INX 
-3C/8773: 00        BRK 
-3C/8774: 9D 03 08  STA $0803,X
-3C/8777: 00        BRK 
-3C/8778: 9E        --- 
-3C/8779: 03        --- 
-3C/877A: 08        PHP 
-3C/877B: 00        BRK 
-3C/877C: 9F        --- 
-3C/877D: 03        --- 
-3C/877E: 08        PHP 
-3C/877F: FF        --- 
+3C/84CF: 00 D1 03 08
+3C/84D3: 00 D2 03 08
+3C/84D7: 00 D3 03 08
+3C/84DB: 08 C6 03 E8
+3C/84DF: 00 C7 03 08
+3C/84E3: 00 C8 03 08
+3C/84E7: 00 C9 03 08
+3C/84EB: 08 CA 03 E8
+3C/84EF: 00 CB 03 08
+3C/84F3: 00 CC 03 08
+3C/84F7: 00 CD 03 08
+3C/84FB: 08 D4 03 F0
+3C/84FF: 00 D5 03 08
+3C/8503: FF
+
+3C/8504: F8 E2 03 F8
+3C/8508: 00 E3 03 08
+3C/850C: 00 E4 03 08
+3C/8510: 00 E5 03 08
+3C/8514: 08 E6 03 E8
+3C/8518: 00 E7 03 08
+3C/851C: 00 E8 03 08
+3C/8520: 00 E9 03 08
+3C/8524: 08 EA 03 E8
+3C/8528: 00 EB 03 08
+3C/852C: 00 EC 03 08
+3C/8530: 00 ED 03 08
+3C/8534: 08 EE 03 E8
+3C/8538: 00 EF 03 08
+3C/853C: 00 F0 03 08
+3C/8540: 00 F1 03 08
+3C/8544: FF
+
+3C/8545: F8 F2 03 F8
+3C/8549: 00 F3 03 08
+3C/854D: 00 F4 03 08
+3C/8551: 00 F5 03 08
+3C/8555: 08 E6 03 E8
+3C/8559: 00 E7 03 08
+3C/855D: 00 E8 03 08
+3C/8561: 00 F6 03 08
+3C/8565: 08 EA 03 E8
+3C/8569: 00 EB 03 08
+3C/856D: 00 EC 03 08
+3C/8571: 00 F7 03 08
+3C/8575: 08 F8 03 E8
+3C/8579: 00 F9 03 08
+3C/857D: 00 FA 03 08
+3C/8581: 00 FB 03 08
+3C/8585: FF
+
+3C/8586: F8 E5 43 F8
+3C/858A: 00 E4 43 08
+3C/858E: 00 E3 43 08
+3C/8592: 00 E2 43 08
+3C/8596: 08 E9 43 E8
+3C/859A: 00 E8 43 08
+3C/859E: 00 E7 43 08
+3C/85A2: 00 E6 43 08
+3C/85A6: 08 ED 43 E8
+3C/85AA: 00 EC 43 08
+3C/85AE: 00 EB 43 08
+3C/85B2: 00 EA 43 08
+3C/85B6: 08 F1 43 E8
+3C/85BA: 00 F0 43 08
+3C/85BE: 00 EF 43 08
+3C/85C2: 00 EE 43 08
+3C/85C6: FF
+
+3C/85C7: F8 F5 43 F8
+3C/85CB: 00 F4 43 08
+3C/85CF: 00 F3 43 08
+3C/85D3: 00 F2 43 08
+3C/85D7: 08 F6 43 E8
+3C/85DB: 00 E8 43 08
+3C/85DF: 00 E7 43 08
+3C/85E3: 00 E6 43 08
+3C/85E7: 08 F7 43 E8
+3C/85EB: 00 EC 43 08
+3C/85EF: 00 EB 43 08
+3C/85F3: 00 EA 43 08
+3C/85F7: 08 FB 43 E8
+3C/85FB: 00 FA 43 08
+3C/85FF: 00 F9 43 08
+3C/8603: 00 F8 43 08
+3C/8607: FF
+
+; invincible shadow
+3C/8608: 00 C0 03 F8
+3C/860C: 00 C1 03 08
+3C/8610: 00 C1 03 08
+3C/8614: 00 C0 43 08
+3C/8618: FF
+
+3C/8619: F8 B0 03 F8
+3C/861D: 00 B1 03 08
+3C/8621: 00 B2 03 08
+3C/8625: 00 B3 03 08
+3C/8629: 08 B4 03 E8
+3C/862D: 00 B5 03 08
+3C/8631: 00 B6 03 08
+3C/8635: 00 B7 03 08
+3C/8639: 08 B8 03 E8
+3C/863D: 00 B9 03 08
+3C/8641: 00 BA 03 08
+3C/8645: 00 BB 03 08
+3C/8649: 08 BC 03 E8
+3C/864D: 00 BD 03 08
+3C/8651: 00 BE 03 08
+3C/8655: 00 BF 03 08
+3C/8659: FF
+
+3C/865A: F8 A0 03 F8
+3C/865E: 00 A1 03 08
+3C/8662: 00 A2 03 08
+3C/8666: 00 A3 03 08
+3C/866A: 08 A4 03 E8
+3C/866E: 00 A5 03 08
+3C/8672: 00 A6 03 08
+3C/8676: 00 A7 03 08
+3C/867A: 08 A8 03 E8
+3C/867E: 00 A9 03 08
+3C/8682: 00 AA 03 08
+3C/8686: 00 AB 03 08
+3C/868A: 08 AC 03 E8
+3C/868E: 00 AD 03 08
+3C/8692: 00 AE 03 08
+3C/8696: 00 AF 03 08
+3C/869A: FF
+
+3C/869B: F8 A0 03 F8
+3C/869F: 00 A1 03 08
+3C/86A3: 00 A2 03 08
+3C/86A7: 00 A3 03 08
+3C/86AB: 08 A4 03 E8
+3C/86AF: 00 A5 03 08
+3C/86B3: 00 A6 03 08
+3C/86B7: 00 A7 03 08
+3C/86BB: 08 A8 03 E8
+3C/86BF: 00 A9 03 08
+3C/86C3: 00 AA 03 08
+3C/86C7: 00 AB 03 08
+3C/86CB: 08 AF 43 E8
+3C/86CF: 00 AE 43 08
+3C/86D3: 00 AD 43 08
+3C/86D7: 00 AC 43 08
+3C/86DB: FF
+
+3C/86DC: F8 A0 03 F8
+3C/86E0: 00 A1 03 08
+3C/86E4: 00 A2 03 08
+3C/86E8: 00 A3 03 08
+3C/86EC: 08 A4 03 E8
+3C/86F0: 00 A5 03 08
+3C/86F4: 00 A6 03 08
+3C/86F8: 00 A7 03 08
+3C/86FC: 08 A8 03 E8
+3C/8700: 00 A9 03 08
+3C/8704: 00 AA 03 08
+3C/8708: 00 AB 03 08
+3C/870C: 08 AC 03 E8
+3C/8710: 00 AD 03 08
+3C/8714: 00 AE 03 08
+3C/8718: 00 AF 03 08
+3C/871C: FF
+
+3C/871D: 00 9F C3 F8
+3C/8721: 00 9E C3 08
+3C/8725: 00 9D C3 08
+3C/8729: 00 9C C3 08
+3C/872D: 08 9B C3 E8
+3C/8731: 00 9A C3 08
+3C/8735: 00 99 C3 08
+3C/8739: 00 98 C3 08
+3C/873D: FF
+
+3C/873E: 00 9B 43 F8
+3C/8742: 00 9A 43 08
+3C/8746: 00 99 43 08
+3C/874A: 00 98 43 08
+3C/874E: 08 9F 43 E8
+3C/8752: 00 9E 43 08
+3C/8756: 00 9D 43 08
+3C/875A: 00 9C 43 08
+3C/875E: FF
+
+3C/875F: 00 98 03 F8
+3C/8763: 00 99 03 08
+3C/8767: 00 9A 03 08
+3C/876B: 00 9B 03 08
+3C/876F: 08 9C 03 E8
+3C/8773: 00 9D 03 08
+3C/8777: 00 9E 03 08
+3C/877B: 00 9F 03 08
+3C/877F: FF
 
 3C/8780: 00 9C 83 F8
 3C/8784: 00 9D 83 08
@@ -41304,6 +38239,9 @@
 3C/8850: 90 83     BCC $87D5
 3C/8852: E6 55     INC $55
 3C/8854: 4C D5 87  JMP $87D5
+
+; [ draw invincible sprite ]
+
 3C/8857: BD E0 83  LDA $83E0,X
 3C/885A: 85 54     STA $54
 3C/885C: BD E1 83  LDA $83E1,X
@@ -41320,19 +38258,22 @@
 3C/8871: 85 41     STA $41
 3C/8873: 68        PLA 
 3C/8874: 85 40     STA $40
-3C/8876: A5 F0     LDA $F0
+3C/8876: A5 F0     LDA $F0            ; draw shadow every other frame
 3C/8878: 4A        LSR 
 3C/8879: 90 0B     BCC $8886
-3C/887B: A9 86     LDA #$86
+3C/887B: A9 86     LDA #$86           ; 3C/8608 (invincible shadow)
 3C/887D: 85 55     STA $55
 3C/887F: A9 08     LDA #$08
 3C/8881: 85 54     STA $54
 3C/8883: 4C CD 87  JMP $87CD
 3C/8886: 60        RTS 
+
+; [ draw floating continent sprite ]
+
 3C/8887: A2 20     LDX #$20
 3C/8889: A0 E0     LDY #$E0
 3C/888B: 88        DEY 
-3C/888C: 20 68 89  JSR $8968
+3C/888C: 20 68 89  JSR $8968          ; check if coordinates are onscreen
 3C/888F: B0 25     BCS $88B6
 3C/8891: 20 B7 88  JSR $88B7
 3C/8894: A5 42     LDA $42
@@ -41392,6 +38333,9 @@
 3C/8904: CA        DEX 
 3C/8905: 10 F2     BPL $88F9
 3C/8907: 60        RTS 
+
+; [ draw leviathan shadow sprite ]
+
 3C/8908: AD 20 60  LDA $6020
 3C/890B: 29 02     AND #$02
 3C/890D: F0 58     BEQ $8967
@@ -41418,7 +38362,7 @@
 3C/8931: 69 20     ADC #$20
 3C/8933: AA        TAX 
 3C/8934: A0 35     LDY #$35
-3C/8936: 20 68 89  JSR $8968
+3C/8936: 20 68 89  JSR $8968          ; check if coordinates are onscreen
 3C/8939: B0 2C     BCS $8967
 3C/893B: A5 87     LDA $87
 3C/893D: 29 0F     AND #$0F
@@ -41445,6 +38389,9 @@
 3C/8962: 85 55     STA $55
 3C/8964: 4C CD 87  JMP $87CD
 3C/8967: 60        RTS 
+
+; [ check if coordinates are onscreen ]
+
 3C/8968: 98        TYA 
 3C/8969: 38        SEC 
 3C/896A: E5 28     SBC $28
@@ -41478,17 +38425,22 @@
 3C/8995: 60        RTS 
 3C/8996: 38        SEC 
 3C/8997: 60        RTS 
+
+; [ decode character string $30+ ]
+
 3C/8998: C9 80     CMP #$80
 3C/899A: 90 12     BCC $89AE
+; $80-$8F: current/max mp
 3C/899C: E9 80     SBC #$80
 3C/899E: C9 08     CMP #$08
 3C/89A0: 29 07     AND #$07
 3C/89A2: 2A        ROL 
 3C/89A3: 05 67     ORA $67
 3C/89A5: AA        TAX 
-3C/89A6: BD 30 61  LDA $6130,X
+3C/89A6: BD 30 61  LDA $6130,X        ; mp
 3C/89A9: 85 80     STA $80
-3C/89AB: 4C 29 8B  JMP $8B29
+3C/89AB: 4C 29 8B  JMP $8B29          ; copy number to text buffer (2 digits)
+; $48-
 3C/89AE: C9 48     CMP #$48
 3C/89B0: 90 14     BCC $89C6
 3C/89B2: E9 48     SBC #$48
@@ -41500,71 +38452,82 @@
 3C/89BD: 18        CLC 
 3C/89BE: 69 01     ADC #$01
 3C/89C0: 85 80     STA $80
-3C/89C2: 4C 29 8B  JMP $8B29
+3C/89C2: 4C 29 8B  JMP $8B29          ; copy number to text buffer (2 digits)
 3C/89C5: 60        RTS 
+; $40: magic evade %
 3C/89C6: A6 67     LDX $67
 3C/89C8: C9 40     CMP #$40
 3C/89CA: 90 62     BCC $8A2E
 3C/89CC: D0 06     BNE $89D4
-3C/89CE: BD 1E 61  LDA $611E,X
-3C/89D1: 4C F6 8A  JMP $8AF6
+3C/89CE: BD 1E 61  LDA $611E,X        ; magic evade %
+3C/89D1: 4C F6 8A  JMP $8AF6          ; 2-digit number with percent sign
+; $41: evade %
 3C/89D4: C9 41     CMP #$41
 3C/89D6: D0 06     BNE $89DE
-3C/89D8: BD 2C 61  LDA $612C,X
-3C/89DB: 4C F6 8A  JMP $8AF6
+3C/89D8: BD 2C 61  LDA $612C,X        ; evade %
+3C/89DB: 4C F6 8A  JMP $8AF6          ; 2-digit number with percent sign
+; $42: hit %
 3C/89DE: C9 42     CMP #$42
 3C/89E0: D0 13     BNE $89F5
 3C/89E2: BD 27 61  LDA $6127,X
 3C/89E5: F0 08     BEQ $89EF
 3C/89E7: 18        CLC 
-3C/89E8: 7D 22 61  ADC $6122,X
+3C/89E8: 7D 22 61  ADC $6122,X        ; hit %
 3C/89EB: 6A        ROR 
-3C/89EC: 4C F6 8A  JMP $8AF6
+3C/89EC: 4C F6 8A  JMP $8AF6          ; 2-digit number with percent sign
 3C/89EF: BD 22 61  LDA $6122,X
-3C/89F2: 4C F6 8A  JMP $8AF6
+3C/89F2: 4C F6 8A  JMP $8AF6          ; 2-digit number with percent sign
+; $43: right hand arrow qty
 3C/89F5: C9 43     CMP #$43
 3C/89F7: D0 06     BNE $89FF
-3C/89F9: BD 04 62  LDA $6204,X
+3C/89F9: BD 04 62  LDA $6204,X        ; right hand arrow qty
 3C/89FC: 4C 06 8A  JMP $8A06
+; $44: left hand arrow qty
 3C/89FF: C9 44     CMP #$44
 3C/8A01: D0 0B     BNE $8A0E
-3C/8A03: BD 06 62  LDA $6206,X
+3C/8A03: BD 06 62  LDA $6206,X        ; left hand arrow qty
 3C/8A06: F0 05     BEQ $8A0D
 3C/8A08: 85 80     STA $80
-3C/8A0A: 4C 20 8B  JMP $8B20
+3C/8A0A: 4C 20 8B  JMP $8B20          ; 2-digit number with colon
 3C/8A0D: 60        RTS 
+; $45: 
 3C/8A0E: C9 45     CMP #$45
 3C/8A10: D0 08     BNE $8A1A
 3C/8A12: BD 1D 61  LDA $611D,X
 3C/8A15: 85 80     STA $80
-3C/8A17: 4C 29 8B  JMP $8B29
+3C/8A17: 4C 29 8B  JMP $8B29          ; copy number to text buffer (2 digits)
+; $46: attack mult.
 3C/8A1A: C9 46     CMP #$46
 3C/8A1C: D0 0A     BNE $8A28
 3C/8A1E: BD 21 61  LDA $6121,X
 3C/8A21: 18        CLC 
 3C/8A22: 7D 26 61  ADC $6126,X
 3C/8A25: 4C 15 8A  JMP $8A15
+; $47: defense mult.
 3C/8A28: BD 2B 61  LDA $612B,X
 3C/8A2B: 4C 15 8A  JMP $8A15
+; $30: current hp
 3C/8A2E: C9 34     CMP #$34
 3C/8A30: B0 58     BCS $8A8A
 3C/8A32: C9 30     CMP #$30
 3C/8A34: D0 0D     BNE $8A43
-3C/8A36: BD 0C 61  LDA $610C,X
+3C/8A36: BD 0C 61  LDA $610C,X        ; current hp
 3C/8A39: 85 80     STA $80
 3C/8A3B: BD 0D 61  LDA $610D,X
 3C/8A3E: 85 81     STA $81
-3C/8A40: 4C 62 8B  JMP $8B62
+3C/8A40: 4C 62 8B  JMP $8B62          ; copy number to text buffer (4 digits)
+; $31: max hp
 3C/8A43: C9 31     CMP #$31
 3C/8A45: D0 15     BNE $8A5C
-3C/8A47: BD 0E 61  LDA $610E,X
+3C/8A47: BD 0E 61  LDA $610E,X        ; max hp
 3C/8A4A: 85 80     STA $80
 3C/8A4C: BD 0F 61  LDA $610F,X
 3C/8A4F: 85 81     STA $81
 3C/8A51: 20 F5 8C  JSR $8CF5
-3C/8A54: 20 F5 8B  JSR $8BF5
+3C/8A54: 20 F5 8B  JSR $8BF5          ; align 4-digit number to the left
 3C/8A57: A6 90     LDX $90
 3C/8A59: 4C 9D 8B  JMP $8B9D
+; $32: experience
 3C/8A5C: C9 32     CMP #$32
 3C/8A5E: D0 12     BNE $8A72
 3C/8A60: BD 03 61  LDA $6103,X
@@ -41573,10 +38536,11 @@
 3C/8A68: 85 81     STA $81
 3C/8A6A: BD 05 61  LDA $6105,X
 3C/8A6D: 85 82     STA $82
-3C/8A6F: 4C 83 8B  JMP $8B83
+3C/8A6F: 4C 83 8B  JMP $8B83          ; copy number to text buffer (7 digits)
+; $33: attack power
 3C/8A72: BD 02 61  LDA $6102,X
 3C/8A75: 29 28     AND #$28
-3C/8A77: D0 20     BNE $8A99
+3C/8A77: D0 20     BNE $8A99          ; branch if toad or mini
 3C/8A79: BD 23 61  LDA $6123,X
 3C/8A7C: 18        CLC 
 3C/8A7D: 7D 28 61  ADC $6128,X
@@ -41584,27 +38548,31 @@
 3C/8A82: A9 00     LDA #$00
 3C/8A84: 2A        ROL 
 3C/8A85: 85 81     STA $81
-3C/8A87: 4C 57 8B  JMP $8B57
+3C/8A87: 4C 57 8B  JMP $8B57          ; copy number to text buffer (3 digits)
+; $34: defense
 3C/8A8A: C9 38     CMP #$38
 3C/8A8C: B0 2B     BCS $8AB9
 3C/8A8E: C9 34     CMP #$34
 3C/8A90: D0 11     BNE $8AA3
 3C/8A92: BD 02 61  LDA $6102,X
 3C/8A95: 29 28     AND #$28
-3C/8A97: F0 04     BEQ $8A9D
-3C/8A99: A9 01     LDA #$01
+3C/8A97: F0 04     BEQ $8A9D          ; branch if not toad or mini
+3C/8A99: A9 01     LDA #$01           ; 1
 3C/8A9B: D0 13     BNE $8AB0
 3C/8A9D: BD 2D 61  LDA $612D,X
 3C/8AA0: 4C B0 8A  JMP $8AB0
+; $35: 
 3C/8AA3: C9 35     CMP #$35
 3C/8AA5: D0 06     BNE $8AAD
 3C/8AA7: BD 2F 61  LDA $612F,X
 3C/8AAA: 4C B0 8A  JMP $8AB0
+; $36: magic defense
 3C/8AAD: BD 1F 61  LDA $611F,X
 3C/8AB0: 85 80     STA $80
 3C/8AB2: A9 00     LDA #$00
 3C/8AB4: 85 81     STA $81
-3C/8AB6: 4C 57 8B  JMP $8B57
+3C/8AB6: 4C 57 8B  JMP $8B57          ; copy number to text buffer (3 digits)
+; $38-$3C: mod. stats
 3C/8AB9: C9 3D     CMP #$3D
 3C/8ABB: B0 0F     BCS $8ACC
 3C/8ABD: 38        SEC 
@@ -41614,17 +38582,20 @@
 3C/8AC3: AA        TAX 
 3C/8AC4: BD 17 61  LDA $6117,X
 3C/8AC7: 85 80     STA $80
-3C/8AC9: 4C 29 8B  JMP $8B29
+3C/8AC9: 4C 29 8B  JMP $8B29          ; copy number to text buffer (2 digits)
+; $3D: job level
 3C/8ACC: D0 06     BNE $8AD4
 3C/8ACE: BD 10 61  LDA $6110,X
 3C/8AD1: 4C D7 8A  JMP $8AD7
+; $3E: level
 3C/8AD4: BD 01 61  LDA $6101,X
 3C/8AD7: 85 80     STA $80
 3C/8AD9: E6 80     INC $80
-3C/8ADB: 4C 29 8B  JMP $8B29
+3C/8ADB: 4C 29 8B  JMP $8B29          ; copy number to text buffer (2 digits)
+; unused ???
 3C/8ADE: A5 81     LDA $81
 3C/8AE0: 48        PHA 
-3C/8AE1: 20 29 8B  JSR $8B29
+3C/8AE1: 20 29 8B  JSR $8B29          ; copy number to text buffer (2 digits)
 3C/8AE4: A9 C6     LDA #$C6
 3C/8AE6: 9D A0 07  STA $07A0,X
 3C/8AE9: E6 90     INC $90
@@ -41633,12 +38604,17 @@
 3C/8AEE: 20 57 8D  JSR $8D57
 3C/8AF1: A6 90     LDX $90
 3C/8AF3: 4C A9 8B  JMP $8BA9
+
+; [ 2-digit number with percent sign ]
+
 3C/8AF6: 85 80     STA $80
-3C/8AF8: 20 29 8B  JSR $8B29
+3C/8AF8: 20 29 8B  JSR $8B29          ; copy number to text buffer (2 digits)
 3C/8AFB: A9 C6     LDA #$C6
 3C/8AFD: 9D A0 07  STA $07A0,X
 3C/8B00: E6 90     INC $90
 3C/8B02: 60        RTS 
+
+; [ copy current gil to text buffer ]
 
 3C/8B03: AD 1C 60  LDA $601C          ; current gil
 3C/8B06: 85 80     STA $80
@@ -41646,21 +38622,34 @@
 3C/8B0B: 85 81     STA $81
 3C/8B0D: AD 1E 60  LDA $601E
 3C/8B10: 85 82     STA $82
-3C/8B12: 4C 83 8B  JMP $8B83
+3C/8B12: 4C 83 8B  JMP $8B83          ; copy number to text buffer (7 digits)
+
+; [ copy number to text buffer (1 digit) ]
+
+; unused
 
 3C/8B15: A5 80     LDA $80
 3C/8B17: 09 80     ORA #$80
 3C/8B19: 85 5F     STA $5F
 3C/8B1B: A6 90     LDX $90
-3C/8B1D: 4C AF 8B  JMP $8BAF
+3C/8B1D: 4C AF 8B  JMP $8BAF          ; copy number to text buffer
+
+; [ 2-digit number with colon (arrow qty) ]
+
 3C/8B20: A6 90     LDX $90
 3C/8B22: E6 90     INC $90
-3C/8B24: A9 C8     LDA #$C8
+3C/8B24: A9 C8     LDA #$C8           ; colon
 3C/8B26: 9D A0 07  STA $07A0,X
-3C/8B29: 20 57 8D  JSR $8D57
-3C/8B2C: 20 EA 8B  JSR $8BEA
+; fallthrough
+
+; [ copy number to text buffer (2 digits) ]
+
+3C/8B29: 20 57 8D  JSR $8D57          ; convert hex to decimal
+3C/8B2C: 20 EA 8B  JSR $8BEA          ; change preceding zeros to spaces
 3C/8B2F: A6 90     LDX $90
-3C/8B31: 4C A9 8B  JMP $8BA9
+3C/8B31: 4C A9 8B  JMP $8BA9          ; copy number to text buffer
+
+; [ copy save count to text buffer ]
 
 3C/8B34: AD 14 60  LDA $6014          ; save count
 3C/8B37: 85 80     STA $80
@@ -41678,26 +38667,41 @@
 3C/8B51: A5 5F     LDA $5F
 3C/8B53: 9D 80 07  STA $0780,X
 3C/8B56: 60        RTS 
-3C/8B57: 20 26 8D  JSR $8D26
-3C/8B5A: 20 E0 8B  JSR $8BE0
+
+; [ copy number to text buffer (3 digits) ]
+
+3C/8B57: 20 26 8D  JSR $8D26          ; convert hex to decimal
+3C/8B5A: 20 E0 8B  JSR $8BE0          ; change preceding zeros to spaces
 3C/8B5D: A6 90     LDX $90
-3C/8B5F: 4C A3 8B  JMP $8BA3
-3C/8B62: 20 F5 8C  JSR $8CF5
-3C/8B65: 20 D6 8B  JSR $8BD6
+3C/8B5F: 4C A3 8B  JMP $8BA3          ; copy number to text buffer
+
+; [ copy number to text buffer (4 digits) ]
+
+3C/8B62: 20 F5 8C  JSR $8CF5          ; convert hex to decimal
+3C/8B65: 20 D6 8B  JSR $8BD6          ; change preceding zeros to spaces
 3C/8B68: A6 90     LDX $90
-3C/8B6A: 4C 9D 8B  JMP $8B9D
-3C/8B6D: 20 B2 8C  JSR $8CB2
+3C/8B6A: 4C 9D 8B  JMP $8B9D          ; copy number to text buffer
+
+; [ copy number to text buffer (5 digits) ]
+
+; unused
+
+3C/8B6D: 20 B2 8C  JSR $8CB2          ; convert hex to decimal
 3C/8B70: A6 90     LDX $90
-3C/8B72: 20 CC 8B  JSR $8BCC
-3C/8B75: 4C 97 8B  JMP $8B97
+3C/8B72: 20 CC 8B  JSR $8BCC          ; change preceding zeros to spaces
+3C/8B75: 4C 97 8B  JMP $8B97          ; copy number to text buffer
 
-3C/8B78: 20 6F 8C  JSR $8C6F
+; [ copy number to text buffer (6 digits) ]
+
+3C/8B78: 20 6F 8C  JSR $8C6F          ; convert hex to decimal
 3C/8B7B: A6 90     LDX $90
-3C/8B7D: 20 C2 8B  JSR $8BC2
-3C/8B80: 4C 91 8B  JMP $8B91
+3C/8B7D: 20 C2 8B  JSR $8BC2          ; change preceding zeros to spaces
+3C/8B80: 4C 91 8B  JMP $8B91          ; copy number to text buffer
 
-3C/8B83: 20 2C 8C  JSR $8C2C
-3C/8B86: 20 B8 8B  JSR $8BB8
+; [ copy number to text buffer (7 digits) ]
+
+3C/8B83: 20 2C 8C  JSR $8C2C          ; convert hex to decimal
+3C/8B86: 20 B8 8B  JSR $8BB8          ; change preceding zeros to spaces
 3C/8B89: A6 90     LDX $90
 3C/8B8B: A5 59     LDA $59
 3C/8B8D: 9D A0 07  STA $07A0,X
@@ -41722,6 +38726,8 @@
 3C/8BB4: E8        INX 
 3C/8BB5: 86 90     STX $90
 3C/8BB7: 60        RTS 
+
+; [ change preceding zeros to spaces ]
 
 3C/8BB8: A5 59     LDA $59
 3C/8BBA: C9 80     CMP #$80
@@ -41754,6 +38760,9 @@
 3C/8BF0: A9 FF     LDA #$FF
 3C/8BF2: 85 5E     STA $5E
 3C/8BF4: 60        RTS 
+
+; [ align 4-digit number to the left ]
+
 3C/8BF5: A5 5C     LDA $5C
 3C/8BF7: C9 80     CMP #$80
 3C/8BF9: D0 30     BNE $8C2B
@@ -41782,27 +38791,33 @@
 3C/8C27: A9 FF     LDA #$FF
 3C/8C29: 85 5D     STA $5D
 3C/8C2B: 60        RTS 
+
+; [ convert hex to decimal (7 digits) ]
+
+;   ++$80: hex value
+; $59-$5F: decimal characters (max 9,999,999)
+
 3C/8C2C: A2 08     LDX #$08
 3C/8C2E: A5 82     LDA $82
-3C/8C30: DD 6E 8D  CMP $8D6E,X
+3C/8C30: DD 6E 8D  CMP $8D6E,X        ; top byte of millions
 3C/8C33: F0 0C     BEQ $8C41
 3C/8C35: B0 1C     BCS $8C53
 3C/8C37: CA        DEX 
 3C/8C38: 10 F4     BPL $8C2E
-3C/8C3A: A2 80     LDX #$80
+3C/8C3A: A2 80     LDX #$80           ; set millions digit to zero
 3C/8C3C: 86 59     STX $59
 3C/8C3E: 4C 6F 8C  JMP $8C6F
 3C/8C41: A5 81     LDA $81
-3C/8C43: DD 77 8D  CMP $8D77,X
+3C/8C43: DD 77 8D  CMP $8D77,X        ; middle byte of millions
 3C/8C46: F0 04     BEQ $8C4C
 3C/8C48: 90 ED     BCC $8C37
 3C/8C4A: B0 07     BCS $8C53
 3C/8C4C: A5 80     LDA $80
-3C/8C4E: DD 80 8D  CMP $8D80,X
+3C/8C4E: DD 80 8D  CMP $8D80,X        ; low byte of millions
 3C/8C51: 90 E4     BCC $8C37
 3C/8C53: A5 80     LDA $80
 3C/8C55: 38        SEC 
-3C/8C56: FD 80 8D  SBC $8D80,X
+3C/8C56: FD 80 8D  SBC $8D80,X        ; subtract out millions
 3C/8C59: 85 80     STA $80
 3C/8C5B: A5 81     LDA $81
 3C/8C5D: FD 77 8D  SBC $8D77,X
@@ -41813,10 +38828,11 @@
 3C/8C69: 8A        TXA 
 3C/8C6A: 18        CLC 
 3C/8C6B: 69 81     ADC #$81
-3C/8C6D: 85 59     STA $59
+3C/8C6D: 85 59     STA $59            ; set millions digit
+; 6 digits
 3C/8C6F: A2 08     LDX #$08
 3C/8C71: A5 82     LDA $82
-3C/8C73: DD 89 8D  CMP $8D89,X
+3C/8C73: DD 89 8D  CMP $8D89,X        ; top byte of hundred-thousands
 3C/8C76: F0 0C     BEQ $8C84
 3C/8C78: B0 1C     BCS $8C96
 3C/8C7A: CA        DEX 
@@ -41846,6 +38862,7 @@
 3C/8CAD: 18        CLC 
 3C/8CAE: 69 81     ADC #$81
 3C/8CB0: 85 5A     STA $5A
+; 5 digits
 3C/8CB2: A2 08     LDX #$08
 3C/8CB4: A5 82     LDA $82
 3C/8CB6: DD A4 8D  CMP $8DA4,X
@@ -41878,6 +38895,7 @@
 3C/8CF0: 18        CLC 
 3C/8CF1: 69 81     ADC #$81
 3C/8CF3: 85 5B     STA $5B
+; 4 digits
 3C/8CF5: A2 08     LDX #$08
 3C/8CF7: A5 81     LDA $81
 3C/8CF9: DD BF 8D  CMP $8DBF,X
@@ -41902,6 +38920,7 @@
 3C/8D21: 18        CLC 
 3C/8D22: 69 81     ADC #$81
 3C/8D24: 85 5C     STA $5C
+; 3 digits
 3C/8D26: A2 08     LDX #$08
 3C/8D28: A5 81     LDA $81
 3C/8D2A: DD D1 8D  CMP $8DD1,X
@@ -41926,6 +38945,7 @@
 3C/8D52: 18        CLC 
 3C/8D53: 69 81     ADC #$81
 3C/8D55: 85 5D     STA $5D
+; 2 digits
 3C/8D57: A2 00     LDX #$00
 3C/8D59: A5 80     LDA $80
 3C/8D5B: C9 0A     CMP #$0A
@@ -41940,80 +38960,93 @@
 3C/8D6B: 85 5E     STA $5E
 3C/8D6D: 60        RTS 
 
+; 1,000,000-9,000,000
 3C/8D6E: 0F 1E 2D 3D 4C 5B 6A 7A 89
 3C/8D77: 42 84 C6 09 4B 8D CF 12 54
 3C/8D80: 40 80 C0 00 40 80 C0 00 40
 
+; 100,000-900,000
 3C/8D89: 01 03 04 06 07 09 0A 0C 0D
 3C/8D92: 86 0D 93 1A A1 27 AE 35 BB
 3C/8D9B: A0 40 E0 80 20 C0 60 00 A0
 
+; 10,000-90,000
 3C/8DA4: 00 00 00 00 00 00 01 01 01
 3C/8DAD: 27 4E 75 9C C3 EA 11 38 5F
 3C/8DB6: 10 20 30 40 50 60 70 80 90
 
+; 1000-9000
 3C/8DBF: 03 07 0B 0F 13 17 1B 1F 23
 3C/8DC8: E8 D0 B8 A0 88 70 58 40 28
 
+; 100-900
 3C/8DD1: 00 00 01 01 01 02 02 03 03
 3C/8DDA: 64 C8 2C 90 F4 58 BC 20 84
 
+; [  ]
+
 3C/8DE3: A9 3C     LDA #$3C
 3C/8DE5: 85 57     STA $57
-3C/8DE7: A9 00     LDA #$00
+3C/8DE7: A9 00     LDA #$00           ; hide cursor 1 and 2
 3C/8DE9: 85 A2     STA $A2
 3C/8DEB: 85 A3     STA $A3
-3C/8DED: A9 01     LDA #$01
+3C/8DED: A9 01     LDA #$01           ; show cursor 3
 3C/8DEF: 85 A4     STA $A4
-3C/8DF1: A9 80     LDA #$80
+3C/8DF1: A9 80     LDA #$80           ; show page down arrow
 3C/8DF3: 85 B4     STA $B4
-3C/8DF5: 20 AD 90  JSR $90AD
+3C/8DF5: 20 AD 90  JSR $90AD          ; show item select window
 3C/8DF8: 20 3D 90  JSR $903D
 3C/8DFB: A9 00     LDA #$00
 3C/8DFD: 8D F0 7A  STA $7AF0
-3C/8E00: 20 D4 90  JSR $90D4
+3C/8E00: 20 D4 90  JSR $90D4          ; wait for vblank (update cursors)
 3C/8E03: A9 08     LDA #$08
-3C/8E05: 20 0D 92  JSR $920D
+3C/8E05: 20 0D 92  JSR $920D          ; update cursor 3 position
 3C/8E08: A5 25     LDA $25
 3C/8E0A: D0 17     BNE $8E23
 3C/8E0C: A5 24     LDA $24
 3C/8E0E: F0 F0     BEQ $8E00
-3C/8E10: 20 74 8F  JSR $8F74
+3C/8E10: 20 74 8F  JSR $8F74          ; cursor sound effect
 3C/8E13: AE F0 7A  LDX $7AF0
 3C/8E16: BD 03 7A  LDA $7A03,X
 3C/8E19: AA        TAX 
 3C/8E1A: BD C0 60  LDA $60C0,X
 3C/8E1D: 48        PHA 
-3C/8E1E: 20 F2 8F  JSR $8FF2
+3C/8E1E: 20 F2 8F  JSR $8FF2          ; inn (return)
 3C/8E21: 68        PLA 
 3C/8E22: 60        RTS 
 3C/8E23: A9 00     LDA #$00
 3C/8E25: F0 F6     BEQ $8E1D
-3C/8E27: A9 00     LDA #$00
+
+; [ calculate inn cost ]
+
+3C/8E27: A9 00     LDA #$00           ; clear gil amount
 3C/8E29: 85 61     STA $61
 3C/8E2B: 85 62     STA $62
 3C/8E2D: 85 63     STA $63
-3C/8E2F: 85 80     STA $80
+3C/8E2F: 85 80     STA $80            ; number of living characters
 3C/8E31: A2 00     LDX #$00
 3C/8E33: BD 02 61  LDA $6102,X
 3C/8E36: 29 C0     AND #$C0
-3C/8E38: D0 02     BNE $8E3C
+3C/8E38: D0 02     BNE $8E3C          ; branch if character is dead/stone
 3C/8E3A: E6 80     INC $80
 3C/8E3C: 8A        TXA 
 3C/8E3D: 18        CLC 
 3C/8E3E: 69 40     ADC #$40
 3C/8E40: AA        TAX 
 3C/8E41: D0 F0     BNE $8E33
-3C/8E43: A5 80     LDA $80
+3C/8E43: A5 80     LDA $80            ; multiply by 5
 3C/8E45: 0A        ASL 
 3C/8E46: 0A        ASL 
 3C/8E47: 18        CLC 
 3C/8E48: 65 80     ADC $80
 3C/8E4A: 85 80     STA $80
-3C/8E4C: AD 00 7B  LDA $7B00
+3C/8E4C: AD 00 7B  LDA $7B00          ; gil multiplier (from npc script)
 3C/8E4F: 85 61     STA $61
-3C/8E51: 20 55 8E  JSR $8E55
+3C/8E51: 20 55 8E  JSR $8E55          ; apply gil multiplier
 3C/8E54: 60        RTS 
+
+; [ apply gil multiplier ]
+
 3C/8E55: A9 00     LDA #$00
 3C/8E57: 85 81     STA $81
 3C/8E59: 85 82     STA $82
@@ -42043,39 +39076,45 @@
 3C/8E88: A5 83     LDA $83
 3C/8E8A: 85 63     STA $63
 3C/8E8C: 60        RTS 
-3C/8E8D: 20 27 8E  JSR $8E27
-3C/8E90: A9 04     LDA #$04
-3C/8E92: 20 F5 8E  JSR $8EF5
+
+; [ inn (main) ]
+
+3C/8E8D: 20 27 8E  JSR $8E27          ; calculate inn cost
+3C/8E90: A9 04     LDA #$04           ; "Welcome!\nIt'll cost \gil Gil\nto rest for the night.\nWill you be staying?"
+3C/8E92: 20 F5 8E  JSR $8EF5          ; load inn text
 3C/8E95: 20 58 8F  JSR $8F58
-3C/8E98: 20 D1 8F  JSR $8FD1
-3C/8E9B: 20 04 8F  JSR $8F04
-3C/8E9E: 90 03     BCC $8EA3
-3C/8EA0: 4C F2 8F  JMP $8FF2
-3C/8EA3: A5 61     LDA $61
+3C/8E98: 20 D1 8F  JSR $8FD1          ; show gil window
+3C/8E9B: 20 04 8F  JSR $8F04          ; get yes/no input
+3C/8E9E: 90 03     BCC $8EA3          ; branch if yes
+3C/8EA0: 4C F2 8F  JMP $8FF2          ; inn (return)
+3C/8EA3: A5 61     LDA $61            ; get gil amount
 3C/8EA5: 85 80     STA $80
 3C/8EA7: A5 62     LDA $62
 3C/8EA9: 85 81     STA $81
 3C/8EAB: A5 63     LDA $63
 3C/8EAD: 85 82     STA $82
-3C/8EAF: 20 97 8F  JSR $8F97
-3C/8EB2: 90 0E     BCC $8EC2
+3C/8EAF: 20 97 8F  JSR $8F97          ; take gil
+3C/8EB2: 90 0E     BCC $8EC2          ; branch if enough
 3C/8EB4: 20 C1 C9  JSR $C9C1
-3C/8EB7: A9 6C     LDA #$6C
-3C/8EB9: 20 F5 8E  JSR $8EF5
+3C/8EB7: A9 6C     LDA #$6C           ; "Not enough money."
+3C/8EB9: 20 F5 8E  JSR $8EF5          ; load inn text
 3C/8EBC: 20 38 8F  JSR $8F38
-3C/8EBF: 4C F2 8F  JMP $8FF2
+3C/8EBF: 4C F2 8F  JMP $8FF2          ; inn (return)
 3C/8EC2: 20 C1 C9  JSR $C9C1
-3C/8EC5: A9 4F     LDA #$4F
-3C/8EC7: 20 F5 8E  JSR $8EF5
-3C/8ECA: 20 D8 8E  JSR $8ED8
+3C/8EC5: A9 4F     LDA #$4F           ; "Thank you. Rest well…"
+3C/8EC7: 20 F5 8E  JSR $8EF5          ; load inn text
+3C/8ECA: 20 D8 8E  JSR $8ED8          ; restore party hp
 3C/8ECD: 20 38 8F  JSR $8F38
 3C/8ED0: AD 01 7B  LDA $7B01
-3C/8ED3: 85 6C     STA $6C
-3C/8ED5: 4C F2 8F  JMP $8FF2
+3C/8ED3: 85 6C     STA $6C            ; set event id
+3C/8ED5: 4C F2 8F  JMP $8FF2          ; inn (return)
+
+; [ restore party hp ]
+
 3C/8ED8: A2 00     LDX #$00
 3C/8EDA: BD 02 61  LDA $6102,X
 3C/8EDD: 29 C0     AND #$C0
-3C/8EDF: D0 0C     BNE $8EED
+3C/8EDF: D0 0C     BNE $8EED          ; skip dead/stone characters
 3C/8EE1: BD 0E 61  LDA $610E,X
 3C/8EE4: 9D 0C 61  STA $610C,X
 3C/8EE7: BD 0F 61  LDA $610F,X
@@ -42086,70 +39125,92 @@
 3C/8EF1: AA        TAX 
 3C/8EF2: D0 E6     BNE $8EDA
 3C/8EF4: 60        RTS 
+
+; [ load inn text ]
+
 3C/8EF5: 48        PHA 
 3C/8EF6: 20 B6 C9  JSR $C9B6
-3C/8EF9: A9 00     LDA #$00
+3C/8EF9: A9 00     LDA #$00           ; dialogue window
 3C/8EFB: 85 96     STA $96
-3C/8EFD: 20 02 ED  JSR $ED02
+3C/8EFD: 20 02 ED  JSR $ED02          ; open window
 3C/8F00: 68        PLA 
-3C/8F01: 4C FF 90  JMP $90FF
+3C/8F01: 4C FF 90  JMP $90FF          ; load text (multi-line)
+
+; [ get yes/no input (inn) ]
+
+; clear carry if yes, set carry if no/cancel
+
 3C/8F04: A9 00     LDA #$00
 3C/8F06: 85 24     STA $24
 3C/8F08: 85 25     STA $25
-3C/8F0A: A9 01     LDA #$01
+3C/8F0A: A9 01     LDA #$01           ; yes/no window
 3C/8F0C: 85 96     STA $96
-3C/8F0E: 20 02 ED  JSR $ED02
-3C/8F11: A9 06     LDA #$06
-3C/8F13: 20 FF 90  JSR $90FF
+3C/8F0E: 20 02 ED  JSR $ED02          ; open window
+3C/8F11: A9 06     LDA #$06           ; "Yes No"
+3C/8F13: 20 FF 90  JSR $90FF          ; load text (multi-line)
 3C/8F16: A9 00     LDA #$00
 3C/8F18: 8D F0 78  STA $78F0
-3C/8F1B: A9 01     LDA #$01
+3C/8F1B: A9 01     LDA #$01           ; show cursor 1
 3C/8F1D: 85 A2     STA $A2
-3C/8F1F: 20 D4 90  JSR $90D4
+3C/8F1F: 20 D4 90  JSR $90D4          ; wait for vblank (update cursors)
 3C/8F22: A9 04     LDA #$04
-3C/8F24: 20 A3 91  JSR $91A3
+3C/8F24: 20 A3 91  JSR $91A3          ; update cursor 1 position
 3C/8F27: A5 25     LDA $25
-3C/8F29: D0 0B     BNE $8F36
+3C/8F29: D0 0B     BNE $8F36          ; branch if B button is pressed
 3C/8F2B: A5 24     LDA $24
-3C/8F2D: F0 F0     BEQ $8F1F
+3C/8F2D: F0 F0     BEQ $8F1F          ; branch if A button is not pressed
 3C/8F2F: AD F0 78  LDA $78F0
 3C/8F32: D0 02     BNE $8F36
 3C/8F34: 18        CLC 
 3C/8F35: 60        RTS 
 3C/8F36: 38        SEC 
 3C/8F37: 60        RTS 
+
+; [  ]
+
 3C/8F38: 20 F0 90  JSR $90F0
-3C/8F3B: A9 00     LDA #$00
+3C/8F3B: A9 00     LDA #$00           ; hide cursor sprites
 3C/8F3D: 85 A2     STA $A2
 3C/8F3F: 85 A3     STA $A3
 3C/8F41: 85 A4     STA $A4
-3C/8F43: 20 D4 90  JSR $90D4
+3C/8F43: 20 D4 90  JSR $90D4          ; wait for vblank (update cursors)
 3C/8F46: 20 81 D2  JSR $D281          ; read joypad registers
 3C/8F49: A5 20     LDA $20
 3C/8F4B: D0 F6     BNE $8F43
-3C/8F4D: 20 D4 90  JSR $90D4
+3C/8F4D: 20 D4 90  JSR $90D4          ; wait for vblank (update cursors)
 3C/8F50: 20 81 D2  JSR $D281          ; read joypad registers
 3C/8F53: A5 20     LDA $20
 3C/8F55: F0 F6     BEQ $8F4D
 3C/8F57: 60        RTS 
+
+; [  ]
+
 3C/8F58: A9 00     LDA #$00
-3C/8F5A: 85 24     STA $24
+3C/8F5A: 85 24     STA $24            ; reset A/B button pressed
 3C/8F5C: 85 25     STA $25
 3C/8F5E: 85 47     STA $47
-3C/8F60: 85 A3     STA $A3
+3C/8F60: 85 A3     STA $A3            ; hide cursor 2 and 3
 3C/8F62: 85 A4     STA $A4
 3C/8F64: 20 81 D2  JSR $D281          ; read joypad registers
 3C/8F67: A5 20     LDA $20
 3C/8F69: 29 0F     AND #$0F
-3C/8F6B: 85 A1     STA $A1
+3C/8F6B: 85 A1     STA $A1            ; directions pressed
 3C/8F6D: A9 3C     LDA #$3C
 3C/8F6F: 85 57     STA $57
 3C/8F71: 85 B4     STA $B4
 3C/8F73: 60        RTS 
+
+; [ cursor sound effect ]
+
 3C/8F74: A9 00     LDA #$00
 3C/8F76: 85 24     STA $24
 3C/8F78: 85 25     STA $25
-3C/8F7A: 4C 0D D2  JMP $D20D
+3C/8F7A: 4C 0D D2  JMP $D20D          ; cursor sound effect
+
+; [  ]
+
+; unused ???
+
 3C/8F7D: 0A        ASL 
 3C/8F7E: AA        TAX 
 3C/8F7F: B0 0B     BCS $8F8C
@@ -42163,7 +39224,12 @@
 3C/8F91: BD 01 81  LDA $8101,X
 3C/8F94: 85 81     STA $81
 3C/8F96: 60        RTS 
-3C/8F97: AD 1E 60  LDA $601E
+
+; [ take gil ]
+
+; ++$82: amount to take, set carry if not enough
+
+3C/8F97: AD 1E 60  LDA $601E          ; current gil
 3C/8F9A: C5 82     CMP $82
 3C/8F9C: 90 16     BCC $8FB4
 3C/8F9E: F0 02     BEQ $8FA2
@@ -42190,51 +39256,68 @@
 3C/8FCC: 8D 1E 60  STA $601E
 3C/8FCF: 18        CLC 
 3C/8FD0: 60        RTS 
-3C/8FD1: A9 03     LDA #$03
+
+; [ show gil window ]
+
+3C/8FD1: A9 03     LDA #$03           ; gil window
 3C/8FD3: 85 96     STA $96
-3C/8FD5: 20 02 ED  JSR $ED02
-3C/8FD8: A9 05     LDA #$05
-3C/8FDA: 4C FF 90  JMP $90FF
+3C/8FD5: 20 02 ED  JSR $ED02          ; open window
+3C/8FD8: A9 05     LDA #$05           ; "\partygil         Gil"
+3C/8FDA: 4C FF 90  JMP $90FF          ; load text (multi-line)
+
+; [ inn (init) ]
+
 3C/8FDD: A9 00     LDA #$00
-3C/8FDF: 8D F0 78  STA $78F0
+3C/8FDF: 8D F0 78  STA $78F0          ; reset cursor positions
 3C/8FE2: 8D F0 79  STA $79F0
 3C/8FE5: 8D F0 7A  STA $7AF0
 3C/8FE8: 8D F1 79  STA $79F1
 3C/8FEB: A9 3C     LDA #$3C
 3C/8FED: 85 57     STA $57
 3C/8FEF: 4C 8D 8E  JMP $8E8D
-3C/8FF2: 20 0D D2  JSR $D20D
-3C/8FF5: 20 F0 90  JSR $90F0
+
+; [ inn (return) ]
+
+3C/8FF2: 20 0D D2  JSR $D20D          ; cursor sound effect
+3C/8FF5: 20 F0 90  JSR $90F0          ; reset sprites 8-15
 3C/8FF8: 20 00 FF  JSR $FF00          ; wait for vblank
 3C/8FFB: A9 02     LDA #$02
-3C/8FFD: 8D 14 40  STA $4014
+3C/8FFD: 8D 14 40  STA $4014          ; dma oam data to ppu
 3C/9000: 20 58 C7  JSR $C758          ; update sound
-3C/9003: 20 B6 C9  JSR $C9B6
-3C/9006: 20 C1 C9  JSR $C9C1
-3C/9009: A9 00     LDA #$00
+3C/9003: 20 B6 C9  JSR $C9B6          ; close text window (top)
+3C/9006: 20 C1 C9  JSR $C9C1          ; close text window (bottom)
+3C/9009: A9 00     LDA #$00           ; reset buttons pressed
 3C/900B: 85 24     STA $24
 3C/900D: 85 25     STA $25
 3C/900F: 85 22     STA $22
 3C/9011: 85 23     STA $23
 3C/9013: 85 47     STA $47
 3C/9015: 60        RTS 
+
+; [  ]
+
+; unused ???
+
 3C/9016: 20 81 D2  JSR $D281          ; read joypad registers
 3C/9019: A5 20     LDA $20
 3C/901B: 85 03     STA $03
 3C/901D: 20 81 D2  JSR $D281          ; read joypad registers
-3C/9020: 20 D4 90  JSR $90D4
+3C/9020: 20 D4 90  JSR $90D4          ; wait for vblank (update cursors)
 3C/9023: A5 20     LDA $20
 3C/9025: C5 03     CMP $03
 3C/9027: F0 F4     BEQ $901D
 3C/9029: 85 03     STA $03
 3C/902B: 20 81 D2  JSR $D281          ; read joypad registers
-3C/902E: 20 D4 90  JSR $90D4
+3C/902E: 20 D4 90  JSR $90D4          ; wait for vblank (update cursors)
 3C/9031: A5 20     LDA $20
 3C/9033: C5 03     CMP $03
 3C/9035: F0 F4     BEQ $902B
 3C/9037: A6 04     LDX $04
 3C/9039: 9A        TXS 
-3C/903A: 4C F2 8F  JMP $8FF2
+3C/903A: 4C F2 8F  JMP $8FF2          ; inn (return)
+
+; [ save dialogue window variables ]
+
 3C/903D: A5 38     LDA $38
 3C/903F: 8D F8 7A  STA $7AF8
 3C/9042: A5 39     LDA $39
@@ -42258,6 +39341,9 @@
 3C/906F: A5 3F     LDA $3F
 3C/9071: 8D F5 7A  STA $7AF5
 3C/9074: 60        RTS 
+
+; [ restore dialogue window variables ]
+
 3C/9075: AD F8 7A  LDA $7AF8
 3C/9078: 85 38     STA $38
 3C/907A: AD F9 7A  LDA $7AF9
@@ -42281,11 +39367,20 @@
 3C/90A7: AD F5 7A  LDA $7AF5
 3C/90AA: 85 3F     STA $3F
 3C/90AC: 60        RTS 
-3C/90AD: A9 02     LDA #$02
+
+; [ show item select window ]
+
+3C/90AD: A9 02     LDA #$02           ; item select window
 3C/90AF: 85 96     STA $96
-3C/90B1: 20 02 ED  JSR $ED02
-3C/90B4: A9 39     LDA #$39
-3C/90B6: 4C 0C 91  JMP $910C
+3C/90B1: 20 02 ED  JSR $ED02          ; open window
+3C/90B4: A9 39     LDA #$39           ; item list
+3C/90B6: 4C 0C 91  JMP $910C          ; load text (single-line)
+
+; [ remove item from inventory ]
+
+; $80: item id
+; $81: quantity to remove
+
 3C/90B9: 20 7E 93  JSR $937E          ; find item in inventory
 3C/90BC: BD C0 60  LDA $60C0,X
 3C/90BF: C5 80     CMP $80
@@ -42298,26 +39393,34 @@
 3C/90CE: A9 00     LDA #$00
 3C/90D0: 9D C0 60  STA $60C0,X
 3C/90D3: 60        RTS 
+
+; [ wait for vblank (update cursors) ]
+
+; same as 3C/A7CD but doesn't reset sprites 0-7
+
 3C/90D4: 20 00 FF  JSR $FF00          ; wait for vblank
 3C/90D7: A9 02     LDA #$02
-3C/90D9: 8D 14 40  STA $4014
+3C/90D9: 8D 14 40  STA $4014          ; dma oam data to ppu
 3C/90DC: E6 F0     INC $F0
 3C/90DE: 20 58 C7  JSR $C758          ; update sound
-3C/90E1: 20 F0 90  JSR $90F0
-3C/90E4: 20 19 91  JSR $9119
-3C/90E7: 20 2A 91  JSR $912A
-3C/90EA: 20 4C 91  JSR $914C
-3C/90ED: 4C E6 A7  JMP $A7E6
-3C/90F0: A2 1F     LDX #$1F
+3C/90E1: 20 F0 90  JSR $90F0          ; reset sprites 8-15
+3C/90E4: 20 19 91  JSR $9119          ; draw cursor sprite 1
+3C/90E7: 20 2A 91  JSR $912A          ; draw cursor sprite 2
+3C/90EA: 20 4C 91  JSR $914C          ; draw cursor sprite 3
+3C/90ED: 4C E6 A7  JMP $A7E6          ; wait for vblank (update cursors)
+
+; [ reset sprites 8-15 ]
+
+3C/90F0: A2 1F     LDX #$1F           ; reset sprites 8-15
 3C/90F2: A9 F8     LDA #$F8
 3C/90F4: 9D 20 02  STA $0220,X
 3C/90F7: CA        DEX 
 3C/90F8: 10 FA     BPL $90F4
-3C/90FA: A9 20     LDA #$20
+3C/90FA: A9 20     LDA #$20           ; start at sprite 8
 3C/90FC: 85 26     STA $26
 3C/90FE: 60        RTS 
 
-; [  ]
+; [ load text (multi-line) ]
 
 3C/90FF: 85 92     STA $92            ; text id
 3C/9101: A9 00     LDA #$00
@@ -42326,7 +39429,7 @@
 3C/9107: 85 95     STA $95
 3C/9109: 4C 65 EE  JMP $EE65          ; load text (multi-line)
 
-; [  ]
+; [ load text (single-line) ]
 
 3C/910C: 85 92     STA $92            ; text id
 3C/910E: A9 00     LDA #$00
@@ -42335,6 +39438,8 @@
 3C/9114: 85 95     STA $95
 3C/9116: 4C 9A EE  JMP $EE9A          ; load text (single-line)
 
+; [ draw cursor sprite 1 ]
+
 3C/9119: A5 A2     LDA $A2
 3C/911B: D0 01     BNE $911E
 3C/911D: 60        RTS 
@@ -42342,6 +39447,9 @@
 3C/9121: BE 00 78  LDX $7800,Y
 3C/9124: B9 01 78  LDA $7801,Y
 3C/9127: 4C 64 91  JMP $9164
+
+; [ draw cursor sprite 2 ]
+
 3C/912A: A5 A3     LDA $A3
 3C/912C: D0 01     BNE $912F
 3C/912E: 60        RTS 
@@ -42356,17 +39464,20 @@
 3C/9143: BE 00 79  LDX $7900,Y
 3C/9146: B9 01 79  LDA $7901,Y
 3C/9149: 4C 64 91  JMP $9164
+
+; [ draw cursor sprite 3 ]
+
 3C/914C: A5 A4     LDA $A4
 3C/914E: D0 01     BNE $9151
 3C/9150: 60        RTS 
 3C/9151: C9 01     CMP #$01
 3C/9153: F0 06     BEQ $915B
 3C/9155: A5 F0     LDA $F0
-3C/9157: 29 04     AND #$04
+3C/9157: 29 04     AND #$04           ; flash every 4 frames
 3C/9159: D0 F5     BNE $9150
 3C/915B: AC F0 7A  LDY $7AF0
-3C/915E: BE 00 7A  LDX $7A00,Y
-3C/9161: B9 01 7A  LDA $7A01,Y
+3C/915E: BE 00 7A  LDX $7A00,Y        ; x position
+3C/9161: B9 01 7A  LDA $7A01,Y        ; y position
 3C/9164: 0A        ASL 
 3C/9165: 0A        ASL 
 3C/9166: 0A        ASL 
@@ -42379,22 +39490,25 @@
 3C/916F: 0A        ASL 
 3C/9170: 0A        ASL 
 3C/9171: 0A        ASL 
-3C/9172: 4C EB D5  JMP $D5EB
-3C/9175: 20 19 D2  JSR $D219
+3C/9172: 4C EB D5  JMP $D5EB          ; draw cursor sprite
+
+; [ get cursor movement direction ]
+
+3C/9175: 20 19 D2  JSR $D219          ; update joypad input
 3C/9178: A5 20     LDA $20
 3C/917A: 29 0F     AND #$0F
-3C/917C: F0 0C     BEQ $918A
+3C/917C: F0 0C     BEQ $918A          ; branch if no direction buttons pressed
 3C/917E: C5 A1     CMP $A1
-3C/9180: F0 0F     BEQ $9191
+3C/9180: F0 0F     BEQ $9191          ; branch if same direction buttons pressed
 3C/9182: 85 A1     STA $A1
-3C/9184: 20 13 D2  JSR $D213
+3C/9184: 20 13 D2  JSR $D213          ; cursor sound effect (move)
 3C/9187: A5 A1     LDA $A1
 3C/9189: 60        RTS 
-3C/918A: A9 00     LDA #$00
+3C/918A: A9 00     LDA #$00           ; clear cursor delay counter
 3C/918C: 85 47     STA $47
 3C/918E: 85 A1     STA $A1
 3C/9190: 60        RTS 
-3C/9191: A5 47     LDA $47
+3C/9191: A5 47     LDA $47            ; increment cursor delay counter
 3C/9193: 18        CLC 
 3C/9194: 69 01     ADC #$01
 3C/9196: 85 47     STA $47
@@ -42404,33 +39518,43 @@
 3C/919E: 85 A1     STA $A1
 3C/91A0: A9 00     LDA #$00
 3C/91A2: 60        RTS 
+
+; [ update cursor 1 position ]
+
+; A: up/down increment
+
 3C/91A3: 85 06     STA $06
-3C/91A5: 20 75 91  JSR $9175
+3C/91A5: 20 75 91  JSR $9175          ; get cursor movement direction
 3C/91A8: 29 0F     AND #$0F
 3C/91AA: 85 80     STA $80
-3C/91AC: F0 1A     BEQ $91C8
+3C/91AC: F0 1A     BEQ $91C8          ; return if no cursor movement
 3C/91AE: C9 04     CMP #$04
-3C/91B0: B0 04     BCS $91B6
-3C/91B2: A2 04     LDX #$04
+3C/91B0: B0 04     BCS $91B6          ; branch if up or down
+3C/91B2: A2 04     LDX #$04           ; right/left increment is always 4
 3C/91B4: 86 06     STX $06
 3C/91B6: 29 05     AND #$05
-3C/91B8: D0 0F     BNE $91C9
+3C/91B8: D0 0F     BNE $91C9          ; branch if down or right
 3C/91BA: AD F0 78  LDA $78F0
 3C/91BD: 38        SEC 
-3C/91BE: E5 06     SBC $06
+3C/91BE: E5 06     SBC $06            ; decrement cursor position
 3C/91C0: B0 03     BCS $91C5
-3C/91C2: 6D F1 78  ADC $78F1
+3C/91C2: 6D F1 78  ADC $78F1          ; loop to end of list
 3C/91C5: 8D F0 78  STA $78F0
 3C/91C8: 60        RTS 
 3C/91C9: AD F0 78  LDA $78F0
 3C/91CC: 18        CLC 
-3C/91CD: 65 06     ADC $06
+3C/91CD: 65 06     ADC $06            ; increment cursor position
 3C/91CF: CD F1 78  CMP $78F1
 3C/91D2: 90 F1     BCC $91C5
-3C/91D4: ED F1 78  SBC $78F1
-3C/91D7: B0 EC     BCS $91C5
+3C/91D4: ED F1 78  SBC $78F1          ; loop to beginning of list
+3C/91D7: B0 EC     BCS $91C5          ; basically unconditional branch
+
+; [ update cursor 2 position ]
+
+; A: up/down increment
+
 3C/91D9: 85 06     STA $06
-3C/91DB: 20 75 91  JSR $9175
+3C/91DB: 20 75 91  JSR $9175          ; get cursor movement direction
 3C/91DE: 29 0F     AND #$0F
 3C/91E0: F0 1A     BEQ $91FC
 3C/91E2: C9 04     CMP #$04
@@ -42453,9 +39577,14 @@
 3C/9206: 90 F1     BCC $91F9
 3C/9208: ED F1 79  SBC $79F1
 3C/920B: B0 EC     BCS $91F9
+
+; [ update cursor 3 position ]
+
+; A: up/down increment
+
 3C/920D: 85 05     STA $05
 3C/920F: 85 06     STA $06
-3C/9211: 20 75 91  JSR $9175
+3C/9211: 20 75 91  JSR $9175          ; get cursor movement direction
 3C/9214: 29 0F     AND #$0F
 3C/9216: F0 28     BEQ $9240
 3C/9218: C9 04     CMP #$04
@@ -42463,7 +39592,7 @@
 3C/921C: A2 04     LDX #$04
 3C/921E: 86 06     STX $06
 3C/9220: 29 05     AND #$05
-3C/9222: D0 1D     BNE $9241
+3C/9222: D0 1D     BNE $9241          ; branch if down or right button pressed
 3C/9224: AD F0 7A  LDA $7AF0
 3C/9227: 38        SEC 
 3C/9228: E5 06     SBC $06
@@ -42471,8 +39600,8 @@
 3C/922C: 65 05     ADC $05
 3C/922E: 85 05     STA $05
 3C/9230: 20 75 90  JSR $9075
-3C/9233: 20 69 EB  JSR $EB69
-3C/9236: B0 22     BCS $925A
+3C/9233: 20 69 EB  JSR $EB69          ; scroll menu up
+3C/9236: B0 22     BCS $925A          ; branch if at top
 3C/9238: 20 3D 90  JSR $903D
 3C/923B: A5 05     LDA $05
 3C/923D: 8D F0 7A  STA $7AF0
@@ -42486,11 +39615,11 @@
 3C/924E: E5 05     SBC $05
 3C/9250: 85 05     STA $05
 3C/9252: 20 75 90  JSR $9075
-3C/9255: 20 2D EB  JSR $EB2D
-3C/9258: 90 07     BCC $9261
+3C/9255: 20 2D EB  JSR $EB2D          ; scroll menu down
+3C/9258: 90 07     BCC $9261          ; branch if not at bottom
 3C/925A: A9 00     LDA #$00
-3C/925C: 85 47     STA $47
-3C/925E: 4C 29 D5  JMP $D529
+3C/925C: 85 47     STA $47            ; no cursor movement
+3C/925E: 4C 29 D5  JMP $D529          ; error sound effect
 3C/9261: 20 3D 90  JSR $903D
 3C/9264: A5 05     LDA $05
 3C/9266: CD F1 7A  CMP $7AF1
@@ -42499,16 +39628,19 @@
 3C/926E: 38        SEC 
 3C/926F: E9 04     SBC #$04
 3C/9271: 4C 3D 92  JMP $923D
-3C/9274: AD 02 61  LDA $6102
+
+; [ update vehicle/status event switches ]
+
+3C/9274: AD 02 61  LDA $6102          ; check for toad/mini status
 3C/9277: 2D 42 61  AND $6142
 3C/927A: 2D 82 61  AND $6182
 3C/927D: 2D C2 61  AND $61C2
 3C/9280: AA        TAX 
-3C/9281: 29 20     AND #$20
+3C/9281: 29 20     AND #$20           ; toad flag
 3C/9283: 0A        ASL 
 3C/9284: 85 80     STA $80
 3C/9286: 8A        TXA 
-3C/9287: 29 08     AND #$08
+3C/9287: 29 08     AND #$08           ; mini flag
 3C/9289: 0A        ASL 
 3C/928A: 0A        ASL 
 3C/928B: 0A        ASL 
@@ -42519,7 +39651,7 @@
 3C/9294: 29 3F     AND #$3F
 3C/9296: 05 80     ORA $80
 3C/9298: 8D 2E 60  STA $602E
-3C/929B: AD 21 60  LDA $6021
+3C/929B: AD 21 60  LDA $6021          ; clear chocobo flag
 3C/929E: 29 7F     AND #$7F
 3C/92A0: 8D 21 60  STA $6021
 3C/92A3: AD 2F 60  LDA $602F
@@ -42527,39 +39659,45 @@
 3C/92A8: 8D 2F 60  STA $602F
 3C/92AB: A5 42     LDA $42
 3C/92AD: C9 01     CMP #$01
-3C/92AF: D0 09     BNE $92BA
-3C/92B1: AD 21 60  LDA $6021
+3C/92AF: D0 09     BNE $92BA          ; branch if not on chocobo
+3C/92B1: AD 21 60  LDA $6021          ; set chocobo flag
 3C/92B4: 09 80     ORA #$80
 3C/92B6: 8D 21 60  STA $6021
 3C/92B9: 60        RTS 
 3C/92BA: C9 05     CMP #$05
 3C/92BC: D0 09     BNE $92C7
-3C/92BE: AD 2F 60  LDA $602F
+3C/92BE: AD 2F 60  LDA $602F          ; set cid's airship flag
 3C/92C1: 09 04     ORA #$04
 3C/92C3: 8D 2F 60  STA $602F
 3C/92C6: 60        RTS 
 3C/92C7: C9 04     CMP #$04
 3C/92C9: D0 09     BNE $92D4
-3C/92CB: AD 2F 60  LDA $602F
+3C/92CB: AD 2F 60  LDA $602F          ; set enterprise flag
 3C/92CE: 09 08     ORA #$08
 3C/92D0: 8D 2F 60  STA $602F
 3C/92D3: 60        RTS 
 3C/92D4: C9 06     CMP #$06
 3C/92D6: D0 09     BNE $92E1
-3C/92D8: AD 2F 60  LDA $602F
+3C/92D8: AD 2F 60  LDA $602F          ; set nautilus flag
 3C/92DB: 09 10     ORA #$10
 3C/92DD: 8D 2F 60  STA $602F
 3C/92E0: 60        RTS 
 3C/92E1: C9 07     CMP #$07
 3C/92E3: D0 D4     BNE $92B9
-3C/92E5: AD 2F 60  LDA $602F
+3C/92E5: AD 2F 60  LDA $602F          ; set invincible flag
 3C/92E8: 09 20     ORA #$20
 3C/92EA: 8D 2F 60  STA $602F
 3C/92ED: 60        RTS 
-3C/92EE: A2 01     LDX #$01
+
+; [ check guest npc script ]
+
+3C/92EE: A2 01     LDX #$01           ; skip the first byte
 3C/92F0: 4C 1B 93  JMP $931B
+
+; [ check npc script ]
+
 3C/92F3: A2 00     LDX #$00
-3C/92F5: BD 00 7B  LDA $7B00,X
+3C/92F5: BD 00 7B  LDA $7B00,X        ; find the end of the conditional script
 3C/92F8: C9 FF     CMP #$FF
 3C/92FA: F0 0D     BEQ $9309
 3C/92FC: E8        INX 
@@ -42572,49 +39710,68 @@
 3C/9309: E8        INX 
 3C/930A: E8        INX 
 3C/930B: A0 00     LDY #$00
-3C/930D: BD 00 7B  LDA $7B00,X
+3C/930D: BD 00 7B  LDA $7B00,X        ; copy npc dialog to buffer
 3C/9310: 99 40 07  STA $0740,Y
 3C/9313: E8        INX 
 3C/9314: C8        INY 
 3C/9315: C0 20     CPY #$20
 3C/9317: 90 F4     BCC $930D
+; fallthrough
+
+; [ check trigger script ]
+
+; i think the format is pretty similar to ff4 trigger scripts
+; returns event id
+
 3C/9319: A2 00     LDX #$00
 3C/931B: BD 00 7B  LDA $7B00,X
-3C/931E: C9 FF     CMP #$FF
+3C/931E: C9 FF     CMP #$FF           ; $FF marks end of conditional
 3C/9320: D0 06     BNE $9328
-3C/9322: BD 01 7B  LDA $7B01,X
+; $FF execute event
+3C/9322: BD 01 7B  LDA $7B01,X        ; event id
 3C/9325: 85 6C     STA $6C
 3C/9327: 60        RTS 
 3C/9328: 10 08     BPL $9332
+; msb set: continue if switch is on
 3C/932A: E8        INX 
-3C/932B: 20 44 93  JSR $9344
+3C/932B: 20 44 93  JSR $9344          ; check event switch
 3C/932E: D0 EB     BNE $931B
 3C/9330: F0 06     BEQ $9338
+; msb clear: continue if switch is off
 3C/9332: E8        INX 
-3C/9333: 20 44 93  JSR $9344
+3C/9333: 20 44 93  JSR $9344          ; check event switch
 3C/9336: F0 E3     BEQ $931B
-3C/9338: BD 00 7B  LDA $7B00,X
+3C/9338: BD 00 7B  LDA $7B00,X        ; find end of conditional
 3C/933B: E8        INX 
 3C/933C: C9 FF     CMP #$FF
 3C/933E: D0 F8     BNE $9338
-3C/9340: E8        INX 
+3C/9340: E8        INX                ; check the next conditional
 3C/9341: 4C 1B 93  JMP $931B
+
+; [ check event switch ]
+
+; A: event switch id (ignore msb)
+
 3C/9344: 29 7F     AND #$7F
 3C/9346: 48        PHA 
 3C/9347: 29 07     AND #$07
 3C/9349: A8        TAY 
-3C/934A: B9 5A 93  LDA $935A,Y
+3C/934A: B9 5A 93  LDA $935A,Y        ; bit mask
 3C/934D: 85 80     STA $80
 3C/934F: 68        PLA 
 3C/9350: 4A        LSR 
 3C/9351: 4A        LSR 
 3C/9352: 4A        LSR 
 3C/9353: A8        TAY 
-3C/9354: B9 20 60  LDA $6020,Y
+3C/9354: B9 20 60  LDA $6020,Y        ; event switches
 3C/9357: 25 80     AND $80
 3C/9359: 60        RTS 
 
 3C/935A: 01 02 04 08 10 20 40 80
+
+; [ add item to inventory ]
+
+; set carry if inventory is full
 
 3C/9362: 20 7E 93  JSR $937E          ; find item in inventory
 3C/9365: 90 01     BCC $9368
@@ -42624,7 +39781,7 @@
 3C/936D: BD E0 60  LDA $60E0,X
 3C/9370: 18        CLC 
 3C/9371: 65 81     ADC $81
-3C/9373: C9 63     CMP #$63
+3C/9373: C9 63     CMP #$63           ; max 99
 3C/9375: 90 02     BCC $9379
 3C/9377: A9 63     LDA #$63
 3C/9379: 9D E0 60  STA $60E0,X
@@ -42633,7 +39790,7 @@
 
 ; [ find item in inventory ]
 
-; return carry set if inventory is full
+; set carry if inventory is full
 
 3C/937E: A2 00     LDX #$00
 3C/9380: BD C0 60  LDA $60C0,X
@@ -42662,7 +39819,7 @@
 3C/93A8: 20 86 C4  JSR $C486          ; clear oam data
 3C/93AB: 20 00 FF  JSR $FF00          ; wait for vblank
 3C/93AE: A9 02     LDA #$02
-3C/93B0: 8D 14 40  STA $4014
+3C/93B0: 8D 14 40  STA $4014          ; dma oam data to ppu
 3C/93B3: A9 00     LDA #$00
 3C/93B5: 85 65     STA $65
 3C/93B7: A9 00     LDA #$00
@@ -42891,15 +40048,26 @@
 3C/9586: CA        DEX 
 3C/9587: D0 FA     BNE $9583
 3C/9589: 4C 9F 95  JMP $959F
+
 3C/958C: A9 DD     LDA #$DD
 3C/958E: 8D 49 7F  STA $7F49
 3C/9591: 60        RTS 
+
+; [ reset A/B button ]
+
 3C/9592: A9 00     LDA #$00
 3C/9594: 85 24     STA $24
 3C/9596: 85 25     STA $25
 3C/9598: 60        RTS 
+
+; [  ]
+
 3C/9599: 20 00 FF  JSR $FF00          ; wait for vblank
 3C/959C: 20 B2 95  JSR $95B2
+; fallthrough
+
+; [  ]
+
 3C/959F: A5 FF     LDA $FF
 3C/95A1: 8D 00 20  STA $2000
 3C/95A4: A9 1E     LDA #$1E
@@ -42908,6 +40076,9 @@
 3C/95AB: 8D 05 20  STA $2005
 3C/95AE: 8D 05 20  STA $2005
 3C/95B1: 60        RTS 
+
+; [  ]
+
 3C/95B2: A2 00     LDX #$00
 3C/95B4: A0 CA     LDY #$CA
 3C/95B6: AD 02 61  LDA $6102
@@ -42955,98 +40126,118 @@
 3C/9614: 0F 0F 0F 03
 3C/9618: F0 F0 F0 30
 
-3C/961C: 20 74 8F  JSR $8F74
+; [ job menu ]
+
+; starts at 3C/962F
+
+3C/961C: 20 74 8F  JSR $8F74          ; cursor sound effect
 3C/961F: A9 14     LDA #$14
 3C/9621: 8D F0 78  STA $78F0
 3C/9624: A5 7F     LDA $7F
 3C/9626: 09 0F     ORA #$0F
 3C/9628: AA        TAX 
 3C/9629: 20 0B D1  JSR $D10B          ; update character equipment
-3C/962C: 4C 85 A6  JMP $A685
-3C/962F: 20 BA 96  JSR $96BA
-3C/9632: 20 92 95  JSR $9592
-3C/9635: 20 85 A6  JSR $A685
+3C/962C: 4C 85 A6  JMP $A685          ; close menu
+; subroutine starts here
+3C/962F: 20 BA 96  JSR $96BA          ; save job experience
+3C/9632: 20 92 95  JSR $9592          ; reset A/B button
+3C/9635: 20 85 A6  JSR $A685          ; close menu
 3C/9638: 20 6F 95  JSR $956F
-3C/963B: 20 85 AD  JSR $AD85
+3C/963B: 20 85 AD  JSR $AD85          ; calculate cp required to change jobs
 3C/963E: A9 00     LDA #$00
 3C/9640: 8D F0 78  STA $78F0
 3C/9643: 85 A3     STA $A3
-3C/9645: A2 0C     LDX #$0C
-3C/9647: 20 F1 AA  JSR $AAF1
-3C/964A: A9 48     LDA #$48
+3C/9645: A2 0C     LDX #$0C           ; job menu - name/current job
+3C/9647: 20 F1 AA  JSR $AAF1          ; open menu window
+3C/964A: A9 48     LDA #$48           ; character name and job
 3C/964C: 20 7A A8  JSR $A87A
-3C/964F: A2 0D     LDX #$0D
-3C/9651: 20 F1 AA  JSR $AAF1
-3C/9654: A9 49     LDA #$49
-3C/9656: 20 78 A6  JSR $A678
-3C/9659: A2 0E     LDX #$0E
-3C/965B: 20 F1 AA  JSR $AAF1
+3C/964F: A2 0D     LDX #$0D           ; job menu - cp
+3C/9651: 20 F1 AA  JSR $AAF1          ; open menu window
+3C/9654: A9 49     LDA #$49           ; "\cpC"
+3C/9656: 20 78 A6  JSR $A678          ; load menu text
+3C/9659: A2 0E     LDX #$0E           ; job menu - job list
+3C/965B: 20 F1 AA  JSR $AAF1          ; open menu window
 3C/965E: A2 0E     LDX #$0E
 3C/9660: 20 A6 AA  JSR $AAA6
-3C/9663: A9 4A     LDA #$4A
+3C/9663: A9 4A     LDA #$4A           ; job list string
 3C/9665: 20 7A A8  JSR $A87A
-3C/9668: A9 01     LDA #$01
+3C/9668: A9 01     LDA #$01           ; show cursor 1
 3C/966A: 85 A2     STA $A2
-3C/966C: 20 CD A7  JSR $A7CD
+3C/966C: 20 CD A7  JSR $A7CD          ; wait for vblank (update cursors)
 3C/966F: A9 08     LDA #$08
-3C/9671: 20 A3 91  JSR $91A3
+3C/9671: 20 A3 91  JSR $91A3          ; update cursor 1 position
 3C/9674: 20 98 96  JSR $9698
 3C/9677: A5 25     LDA $25
-3C/9679: D0 A1     BNE $961C
+3C/9679: D0 A1     BNE $961C          ; branch if B button pressed
 3C/967B: A5 24     LDA $24
-3C/967D: F0 E9     BEQ $9668
-3C/967F: 20 74 8F  JSR $8F74
+3C/967D: F0 E9     BEQ $9668          ; branch if A button not pressed
+3C/967F: 20 74 8F  JSR $8F74          ; cursor sound effect
 3C/9682: 20 A5 96  JSR $96A5
 3C/9685: 90 D7     BCC $965E
-3C/9687: A9 70     LDA #$70
+3C/9687: A9 70     LDA #$70           ; "Change Job? A;Yes B;No"
 3C/9689: 20 DA 96  JSR $96DA
 3C/968C: A5 20     LDA $20
 3C/968E: 29 80     AND #$80
 3C/9690: F0 CC     BEQ $965E
-3C/9692: 20 8F AB  JSR $AB8F
+3C/9692: 20 8F AB  JSR $AB8F          ; change job
 3C/9695: 4C 1C 96  JMP $961C
+
+; [  ]
+
 3C/9698: A9 B0     LDA #$B0
 3C/969A: 85 40     STA $40
 3C/969C: A9 10     LDA #$10
 3C/969E: 85 41     STA $41
 3C/96A0: A6 7F     LDX $7F
 3C/96A2: 4C 36 81  JMP $8136          ; load character sprite
+
+; [  ]
+
 3C/96A5: AD F0 78  LDA $78F0
 3C/96A8: 4A        LSR 
 3C/96A9: 4A        LSR 
-3C/96AA: 85 8F     STA $8F
+3C/96AA: 85 8F     STA $8F            ; selected job
 3C/96AC: A6 7F     LDX $7F
-3C/96AE: BD 00 61  LDA $6100,X
+3C/96AE: BD 00 61  LDA $6100,X        ; current job
 3C/96B1: C5 8F     CMP $8F
-3C/96B3: D0 1B     BNE $96D0
-3C/96B5: 20 29 D5  JSR $D529
+3C/96B3: D0 1B     BNE $96D0          ; branch if different from current job
+3C/96B5: 20 29 D5  JSR $D529          ; error sound effect
 3C/96B8: 18        CLC 
 3C/96B9: 60        RTS 
+
+; [ save job experience ]
+
 3C/96BA: A6 7F     LDX $7F
 3C/96BC: BD 00 61  LDA $6100,X
 3C/96BF: 0A        ASL 
 3C/96C0: 05 7F     ORA $7F
 3C/96C2: A8        TAY 
-3C/96C3: BD 11 61  LDA $6111,X
+3C/96C3: BD 11 61  LDA $6111,X        ; job experience
 3C/96C6: 99 11 62  STA $6211,Y
 3C/96C9: BD 10 61  LDA $6110,X
 3C/96CC: 99 10 62  STA $6210,Y
 3C/96CF: 60        RTS 
+
+; [  ]
+
 3C/96D0: 20 23 AE  JSR $AE23
 3C/96D3: B0 04     BCS $96D9
 3C/96D5: 20 DA 96  JSR $96DA
 3C/96D8: 18        CLC 
 3C/96D9: 60        RTS 
+
+; [  ]
+
 3C/96DA: 48        PHA 
-3C/96DB: A9 00     LDA #$00
+3C/96DB: A9 00     LDA #$00           ; hide cursor 1
 3C/96DD: 85 A2     STA $A2
-3C/96DF: 20 CD A7  JSR $A7CD
+3C/96DF: 20 CD A7  JSR $A7CD          ; wait for vblank (update cursors)
 3C/96E2: 20 98 96  JSR $9698
-3C/96E5: 20 CD A7  JSR $A7CD
+3C/96E5: 20 CD A7  JSR $A7CD          ; wait for vblank (update cursors)
 3C/96E8: A2 20     LDX #$20
-3C/96EA: 20 F1 AA  JSR $AAF1
+3C/96EA: 20 F1 AA  JSR $AAF1          ; open menu window
 3C/96ED: 68        PLA 
-3C/96EE: 20 6B A6  JSR $A66B
+3C/96EE: 20 6B A6  JSR $A66B          ; load menu text
 3C/96F1: 20 05 A3  JSR $A305
 3C/96F4: 60        RTS 
 3C/96F5: 20 15 A7  JSR $A715
@@ -43055,7 +40246,7 @@
 3C/96FB: A6 7F     LDX $7F
 3C/96FD: E4 0A     CPX $0A
 3C/96FF: D0 03     BNE $9704
-3C/9701: 4C 29 D5  JMP $D529
+3C/9701: 4C 29 D5  JMP $D529          ; error sound effect
 3C/9704: BD 02 61  LDA $6102,X
 3C/9707: 29 C0     AND #$C0
 3C/9709: D0 F6     BNE $9701
@@ -43081,6 +40272,9 @@
 3C/9730: 20 B4 A2  JSR $A2B4
 3C/9733: 20 98 D1  JSR $D198
 3C/9736: 60        RTS 
+
+; [  ]
+
 3C/9737: 48        PHA 
 3C/9738: A0 3F     LDY #$3F
 3C/973A: B9 00 7B  LDA $7B00,Y
@@ -43095,48 +40289,54 @@
 3C/974F: CA        DEX 
 3C/9750: 10 F7     BPL $9749
 3C/9752: 60        RTS 
-3C/9753: 20 74 8F  JSR $8F74
+
+; [ magic menu ]
+
+; starts at 3C/9761
+
+3C/9753: 20 74 8F  JSR $8F74          ; cursor sound effect
 3C/9756: A9 04     LDA #$04
 3C/9758: 8D F0 78  STA $78F0
 3C/975B: 20 C9 A1  JSR $A1C9
-3C/975E: 4C 85 A6  JMP $A685
-3C/9761: 20 92 95  JSR $9592
-3C/9764: 20 85 A6  JSR $A685
+3C/975E: 4C 85 A6  JMP $A685          ; close menu
+; subroutine starts here
+3C/9761: 20 92 95  JSR $9592          ; reset A/B button
+3C/9764: 20 85 A6  JSR $A685          ; close menu
 3C/9767: 20 6F 95  JSR $956F
 3C/976A: 20 49 A3  JSR $A349
 3C/976D: A9 00     LDA #$00
 3C/976F: 8D F0 78  STA $78F0
-3C/9772: 20 B4 A2  JSR $A2B4
+3C/9772: 20 B4 A2  JSR $A2B4          ; init spell list buffer
 3C/9775: 20 98 D1  JSR $D198
 3C/9778: 20 28 A3  JSR $A328
 3C/977B: A2 06     LDX #$06
-3C/977D: 20 F1 AA  JSR $AAF1
+3C/977D: 20 F1 AA  JSR $AAF1          ; open menu window
 3C/9780: A9 3C     LDA #$3C
 3C/9782: 20 7A A8  JSR $A87A
 3C/9785: 20 56 A3  JSR $A356
 3C/9788: A2 24     LDX #$24
-3C/978A: A9 36     LDA #$36
+3C/978A: A9 36     LDA #$36           ; "\char1[0x02] Use Swap Item"
 3C/978C: 20 37 97  JSR $9737
 3C/978F: A2 06     LDX #$06
 3C/9791: 20 A6 AA  JSR $AAA6
 3C/9794: A9 3C     LDA #$3C
 3C/9796: 20 7A A8  JSR $A87A
-3C/9799: 20 92 95  JSR $9592
-3C/979C: A9 00     LDA #$00
+3C/9799: 20 92 95  JSR $9592          ; reset A/B button
+3C/979C: A9 00     LDA #$00           ; hide cursor 2
 3C/979E: 85 A3     STA $A3
-3C/97A0: A9 01     LDA #$01
+3C/97A0: A9 01     LDA #$01           ; show cursor 1
 3C/97A2: 85 A2     STA $A2
-3C/97A4: 20 CD A7  JSR $A7CD
+3C/97A4: 20 CD A7  JSR $A7CD          ; wait for vblank (update cursors)
 3C/97A7: A9 04     LDA #$04
-3C/97A9: 20 A3 91  JSR $91A3
+3C/97A9: 20 A3 91  JSR $91A3          ; update cursor 1 position
 3C/97AC: A9 03     LDA #$03
-3C/97AE: 20 00 80  JSR $8000
+3C/97AE: 20 00 80  JSR $8000          ; draw characters
 3C/97B1: A5 25     LDA $25
 3C/97B3: F0 03     BEQ $97B8
 3C/97B5: 4C 53 97  JMP $9753
 3C/97B8: A5 24     LDA $24
 3C/97BA: F0 E0     BEQ $979C
-3C/97BC: 20 74 8F  JSR $8F74
+3C/97BC: 20 74 8F  JSR $8F74          ; cursor sound effect
 3C/97BF: A9 01     LDA #$01
 3C/97C1: 85 A3     STA $A3
 3C/97C3: A9 00     LDA #$00
@@ -43149,16 +40349,16 @@
 3C/97D1: D0 06     BNE $97D9
 3C/97D3: 20 F5 96  JSR $96F5
 3C/97D6: 4C 85 97  JMP $9785
-3C/97D9: 20 CD A7  JSR $A7CD
+3C/97D9: 20 CD A7  JSR $A7CD          ; wait for vblank (update cursors)
 3C/97DC: A9 0C     LDA #$0C
-3C/97DE: 20 D9 91  JSR $91D9
+3C/97DE: 20 D9 91  JSR $91D9          ; update cursor 2 position
 3C/97E1: A9 03     LDA #$03
-3C/97E3: 20 00 80  JSR $8000
+3C/97E3: 20 00 80  JSR $8000          ; draw characters
 3C/97E6: A5 25     LDA $25
 3C/97E8: D0 AF     BNE $9799
 3C/97EA: A5 24     LDA $24
 3C/97EC: F0 EB     BEQ $97D9
-3C/97EE: 20 74 8F  JSR $8F74
+3C/97EE: 20 74 8F  JSR $8F74          ; cursor sound effect
 3C/97F1: AE F0 79  LDX $79F0
 3C/97F4: BD 03 79  LDA $7903,X
 3C/97F7: 38        SEC 
@@ -43176,7 +40376,7 @@
 3C/9812: A6 8F     LDX $8F
 3C/9814: BD 00 7C  LDA $7C00,X
 3C/9817: D0 06     BNE $981F
-3C/9819: 20 29 D5  JSR $D529
+3C/9819: 20 29 D5  JSR $D529          ; error sound effect
 3C/981C: 4C D9 97  JMP $97D9
 3C/981F: AA        TAX 
 3C/9820: BD 00 72  LDA $7200,X
@@ -43244,7 +40444,7 @@
 3C/989F: 85 80     STA $80
 3C/98A1: A9 01     LDA #$01
 3C/98A3: 85 81     STA $81
-3C/98A5: 20 62 93  JSR $9362
+3C/98A5: 20 62 93  JSR $9362          ; add item to inventory
 3C/98A8: 90 05     BCC $98AF
 3C/98AA: A9 6B     LDA #$6B
 3C/98AC: 4C BB 98  JMP $98BB
@@ -43255,30 +40455,30 @@
 3C/98B8: 4C BB 98  JMP $98BB
 3C/98BB: 48        PHA 
 3C/98BC: A2 24     LDX #$24
-3C/98BE: 20 F1 AA  JSR $AAF1
+3C/98BE: 20 F1 AA  JSR $AAF1          ; open menu window
 3C/98C1: 68        PLA 
-3C/98C2: 20 6B A6  JSR $A66B
+3C/98C2: 20 6B A6  JSR $A66B          ; load menu text
 3C/98C5: A9 F8     LDA #$F8
 3C/98C7: A2 0F     LDX #$0F
 3C/98C9: 9D 00 02  STA $0200,X
 3C/98CC: CA        DEX 
 3C/98CD: 10 FA     BPL $98C9
-3C/98CF: 20 CD A7  JSR $A7CD
+3C/98CF: 20 CD A7  JSR $A7CD          ; wait for vblank (update cursors)
 3C/98D2: 4C 05 A3  JMP $A305
 
 ; [  ]
 
 3C/98D5: 48        PHA 
 3C/98D6: A2 24     LDX #$24
-3C/98D8: 20 F1 AA  JSR $AAF1
+3C/98D8: 20 F1 AA  JSR $AAF1          ; open menu window
 3C/98DB: 68        PLA 
-3C/98DC: 20 6B A6  JSR $A66B
+3C/98DC: 20 6B A6  JSR $A66B          ; load menu text
 3C/98DF: A9 F8     LDA #$F8
 3C/98E1: A2 0F     LDX #$0F
 3C/98E3: 9D 00 02  STA $0200,X
 3C/98E6: CA        DEX 
 3C/98E7: 10 FA     BPL $98E3
-3C/98E9: 4C CD A7  JMP $A7CD
+3C/98E9: 4C CD A7  JMP $A7CD          ; wait for vblank (update cursors)
 
 ; [  ]
 
@@ -43304,11 +40504,11 @@
 3C/9918: 20 8C 95  JSR $958C
 3C/991B: 20 57 99  JSR $9957
 3C/991E: 20 C9 A1  JSR $A1C9
-3C/9921: 20 85 A6  JSR $A685
+3C/9921: 20 85 A6  JSR $A685          ; close menu
 3C/9924: A9 00     LDA #$00
 3C/9926: 8D 01 20  STA $2001
 3C/9929: 60        RTS 
-3C/992A: 20 29 D5  JSR $D529
+3C/992A: 20 29 D5  JSR $D529          ; error sound effect
 3C/992D: 60        RTS 
 3C/992E: C9 D8     CMP #$D8
 3C/9930: D0 16     BNE $9948
@@ -43328,7 +40528,7 @@
 3C/994E: 4A        LSR 
 3C/994F: B0 D9     BCS $992A
 3C/9951: 20 57 99  JSR $9957
-3C/9954: 4C 25 A5  JMP $A525
+3C/9954: 4C 25 A5  JMP $A525          ; show minimap
 3C/9957: A6 8F     LDX $8F
 3C/9959: BD 00 7C  LDA $7C00,X
 3C/995C: 38        SEC 
@@ -43387,21 +40587,21 @@
 3C/99C4: 60        RTS 
 3C/99C5: 8A        TXA 
 3C/99C6: 20 D5 98  JSR $98D5
-3C/99C9: A9 00     LDA #$00
+3C/99C9: A9 00     LDA #$00           ; hide cursor 1
 3C/99CB: 85 A2     STA $A2
 3C/99CD: 20 15 A7  JSR $A715
 3C/99D0: B0 0F     BCS $99E1
 3C/99D2: 90 0E     BCC $99E2
 3C/99D4: 8A        TXA 
 3C/99D5: 20 D5 98  JSR $98D5
-3C/99D8: A9 00     LDA #$00
+3C/99D8: A9 00     LDA #$00           ; hide cursor 1
 3C/99DA: 85 A2     STA $A2
 3C/99DC: 20 5F A7  JSR $A75F
 3C/99DF: 90 01     BCC $99E2
 3C/99E1: 60        RTS 
 3C/99E2: 20 8C 95  JSR $958C
 3C/99E5: 20 EB 99  JSR $99EB
-3C/99E8: 4C 32 A3  JMP $A332
+3C/99E8: 4C 32 A3  JMP $A332          ; redraw character window
 
 ; [  ]
 
@@ -43465,7 +40665,7 @@
 3C/9A71: 4C 57 99  JMP $9957
 3C/9A74: A9 DC     LDA #$DC
 3C/9A76: 85 8D     STA $8D
-3C/9A78: 20 66 A4  JSR $A466
+3C/9A78: 20 66 A4  JSR $A466          ; healing spell effect
 3C/9A7B: 4C 57 99  JMP $9957
 3C/9A7E: A9 7F     LDA #$7F
 3C/9A80: 85 87     STA $87
@@ -43590,6 +40790,9 @@
 3C/9B75: AA        TAX 
 3C/9B76: 9A        TXS 
 3C/9B77: 4C 18 99  JMP $9918
+
+; [  ]
+
 3C/9B7A: A5 8B     LDA $8B
 3C/9B7C: C9 01     CMP #$01
 3C/9B7E: D0 0D     BNE $9B8D
@@ -43598,7 +40801,7 @@
 3C/9B85: F0 05     BEQ $9B8C
 3C/9B87: 68        PLA 
 3C/9B88: 68        PLA 
-3C/9B89: 4C 29 D5  JMP $D529
+3C/9B89: 4C 29 D5  JMP $D529          ; error sound effect
 3C/9B8C: 60        RTS 
 3C/9B8D: A2 00     LDX #$00
 3C/9B8F: BD 02 61  LDA $6102,X
@@ -43618,20 +40821,26 @@
 3C/9BA6: AA        TAX 
 3C/9BA7: D0 E6     BNE $9B8F
 3C/9BA9: 60        RTS 
-3C/9BAA: 20 74 8F  JSR $8F74
+
+; [ equip menu ]
+
+; starts at 3C/9BB5
+
+3C/9BAA: 20 74 8F  JSR $8F74          ; cursor sound effect
 3C/9BAD: A9 08     LDA #$08
 3C/9BAF: 8D F0 78  STA $78F0
-3C/9BB2: 4C 85 A6  JMP $A685
-3C/9BB5: 20 92 95  JSR $9592
+3C/9BB2: 4C 85 A6  JMP $A685          ; close menu
+; subroutine starts here
+3C/9BB5: 20 92 95  JSR $9592          ; reset A/B button
 3C/9BB8: A9 00     LDA #$00
-3C/9BBA: 85 B4     STA $B4
-3C/9BBC: 20 85 A6  JSR $A685
+3C/9BBA: 85 B4     STA $B4            ; hide page arrows
+3C/9BBC: 20 85 A6  JSR $A685          ; close menu
 3C/9BBF: 20 6F 95  JSR $956F
 3C/9BC2: A9 00     LDA #$00
 3C/9BC4: 8D F0 7A  STA $7AF0
 3C/9BC7: 8D F0 78  STA $78F0
-3C/9BCA: 20 42 D1  JSR $D142
-3C/9BCD: 20 92 95  JSR $9592
+3C/9BCA: 20 42 D1  JSR $D142          ; init inventory equipability
+3C/9BCD: 20 92 95  JSR $9592          ; reset A/B button
 3C/9BD0: A9 12     LDA #$12
 3C/9BD2: 20 67 F4  JSR $F467
 3C/9BD5: A9 00     LDA #$00
@@ -43641,44 +40850,50 @@
 3C/9BDD: 85 24     STA $24
 3C/9BDF: 85 25     STA $25
 3C/9BE1: A2 0A     LDX #$0A
-3C/9BE3: 20 F1 AA  JSR $AAF1
+3C/9BE3: 20 F1 AA  JSR $AAF1          ; open menu window
 3C/9BE6: A9 3E     LDA #$3E
 3C/9BE8: 20 7A A8  JSR $A87A
-3C/9BEB: 20 CD A7  JSR $A7CD
+3C/9BEB: 20 CD A7  JSR $A7CD          ; wait for vblank (update cursors)
 3C/9BEE: A9 08     LDA #$08
-3C/9BF0: 20 A3 91  JSR $91A3
-3C/9BF3: 20 5B 9D  JSR $9D5B
+3C/9BF0: 20 A3 91  JSR $91A3          ; update cursor 1 position
+3C/9BF3: 20 5B 9D  JSR $9D5B          ; draw character sprite
 3C/9BF6: A5 25     LDA $25
 3C/9BF8: D0 B0     BNE $9BAA
 3C/9BFA: A5 24     LDA $24
 3C/9BFC: F0 ED     BEQ $9BEB
-3C/9BFE: 20 74 8F  JSR $8F74
-3C/9C01: 20 9B 9D  JSR $9D9B
-3C/9C04: B0 C7     BCS $9BCD
-3C/9C06: A9 01     LDA #$01
+3C/9BFE: 20 74 8F  JSR $8F74          ; cursor sound effect
+3C/9C01: 20 9B 9D  JSR $9D9B          ; remove equipment
+3C/9C04: B0 C7     BCS $9BCD          ; branch if slot wasn't empty
+; item select
+3C/9C06: A9 01     LDA #$01           ; show cursor 3
 3C/9C08: 85 A4     STA $A4
-3C/9C0A: A2 0B     LDX #$0B
-3C/9C0C: 20 F1 AA  JSR $AAF1
-3C/9C0F: A9 2F     LDA #$2F
-3C/9C11: 20 78 A6  JSR $A678
+3C/9C0A: A2 0B     LDX #$0B           ; equip menu - item list
+3C/9C0C: 20 F1 AA  JSR $AAF1          ; open menu window
+3C/9C0F: A9 2F     LDA #$2F           ; item list
+3C/9C11: 20 78 A6  JSR $A678          ; load menu text
 3C/9C14: 20 3D 90  JSR $903D
 3C/9C17: A9 80     LDA #$80
-3C/9C19: 85 B4     STA $B4
+3C/9C19: 85 B4     STA $B4            ; show page down arrow
 3C/9C1B: 20 A8 A3  JSR $A3A8
-3C/9C1E: 20 CD A7  JSR $A7CD
+3C/9C1E: 20 CD A7  JSR $A7CD          ; wait for vblank (update cursors)
 3C/9C21: A9 08     LDA #$08
-3C/9C23: 20 0D 92  JSR $920D
-3C/9C26: 20 5B 9D  JSR $9D5B
+3C/9C23: 20 0D 92  JSR $920D          ; update cursor 3 position
+3C/9C26: 20 5B 9D  JSR $9D5B          ; draw character sprite
 3C/9C29: A5 25     LDA $25
-3C/9C2B: D0 A0     BNE $9BCD
+3C/9C2B: D0 A0     BNE $9BCD          ; branch if B button is pressed
 3C/9C2D: A5 24     LDA $24
-3C/9C2F: F0 ED     BEQ $9C1E
-3C/9C31: 20 3C 9C  JSR $9C3C
-3C/9C34: B0 97     BCS $9BCD
-3C/9C36: 20 74 8F  JSR $8F74
+3C/9C2F: F0 ED     BEQ $9C1E          ; branch if A button is not pressed
+3C/9C31: 20 3C 9C  JSR $9C3C          ; equip item
+3C/9C34: B0 97     BCS $9BCD          ; branch if success
+3C/9C36: 20 74 8F  JSR $8F74          ; cursor sound effect
 3C/9C39: 4C 1E 9C  JMP $9C1E
+
+; [ equip item ]
+
+; carry set = success, carry clear = fail
+
 3C/9C3C: AE F0 78  LDX $78F0
-3C/9C3F: BD 03 78  LDA $7803,X
+3C/9C3F: BD 03 78  LDA $7803,X        ; cursor 1 position (equipment slot)
 3C/9C42: 38        SEC 
 3C/9C43: E9 03     SBC #$03
 3C/9C45: C9 04     CMP #$04
@@ -43689,146 +40904,164 @@
 3C/9C4E: 05 7F     ORA $7F
 3C/9C50: AA        TAX 
 3C/9C51: 86 8A     STX $8A
-3C/9C53: AE F0 7A  LDX $7AF0
+3C/9C53: AE F0 7A  LDX $7AF0          ; cursor 3 position (inventory slot)
 3C/9C56: BD 03 7A  LDA $7A03,X
 3C/9C59: 85 8B     STA $8B
 3C/9C5B: AA        TAX 
-3C/9C5C: BD C0 60  LDA $60C0,X
-3C/9C5F: D0 02     BNE $9C63
+3C/9C5C: BD C0 60  LDA $60C0,X        ; inventory item id
+3C/9C5F: D0 02     BNE $9C63          ; branch if not empty
 3C/9C61: 18        CLC 
 3C/9C62: 60        RTS 
 3C/9C63: AA        TAX 
 3C/9C64: 86 8C     STX $8C
-3C/9C66: BD 00 72  LDA $7200,X
+3C/9C66: BD 00 72  LDA $7200,X        ; check if char can equip this item
 3C/9C69: F0 07     BEQ $9C72
-3C/9C6B: A9 6F     LDA #$6F
-3C/9C6D: 20 2A 9E  JSR $9E2A
+3C/9C6B: A9 6F     LDA #$6F           ; "Can't equip"
+3C/9C6D: 20 2A 9E  JSR $9E2A          ; close item list
 3C/9C70: 18        CLC 
 3C/9C71: 60        RTS 
 3C/9C72: A5 8E     LDA $8E
 3C/9C74: C9 03     CMP #$03
 3C/9C76: 90 03     BCC $9C7B
 3C/9C78: 4C C6 9C  JMP $9CC6
+; helmet
 3C/9C7B: C9 00     CMP #$00
 3C/9C7D: D0 0D     BNE $9C8C
 3C/9C7F: A5 8C     LDA $8C
-3C/9C81: C9 62     CMP #$62
+3C/9C81: C9 62     CMP #$62           ; $62-$71: helmets
 3C/9C83: 90 E6     BCC $9C6B
 3C/9C85: C9 72     CMP #$72
 3C/9C87: B0 E2     BCS $9C6B
 3C/9C89: 4C AA 9C  JMP $9CAA
+; armor
 3C/9C8C: C9 01     CMP #$01
 3C/9C8E: D0 0D     BNE $9C9D
 3C/9C90: A5 8C     LDA $8C
-3C/9C92: C9 72     CMP #$72
+3C/9C92: C9 72     CMP #$72           ; $72-$8A: armor
 3C/9C94: 90 D5     BCC $9C6B
 3C/9C96: C9 8B     CMP #$8B
 3C/9C98: B0 D1     BCS $9C6B
 3C/9C9A: 4C AA 9C  JMP $9CAA
+; gloves
 3C/9C9D: A5 8C     LDA $8C
-3C/9C9F: C9 8B     CMP #$8B
+3C/9C9F: C9 8B     CMP #$8B           ; $8B-$97: gloves
 3C/9CA1: 90 C8     BCC $9C6B
 3C/9CA3: C9 98     CMP #$98
 3C/9CA5: B0 C4     BCS $9C6B
 3C/9CA7: 4C AA 9C  JMP $9CAA
-3C/9CAA: A9 01     LDA #$01
+; equip armor
+3C/9CAA: A9 01     LDA #$01           ; qty: 1
 3C/9CAC: 85 81     STA $81
 3C/9CAE: A5 8C     LDA $8C
 3C/9CB0: 85 80     STA $80
 3C/9CB2: A6 8A     LDX $8A
 3C/9CB4: 9D 00 62  STA $6200,X
-3C/9CB7: 20 B9 90  JSR $90B9
+3C/9CB7: 20 B9 90  JSR $90B9          ; remove item from inventory
 3C/9CBA: A6 8A     LDX $8A
 3C/9CBC: A5 8A     LDA $8A
 3C/9CBE: 20 0B D1  JSR $D10B          ; update character equipment
 3C/9CC1: 20 4B 9E  JSR $9E4B
 3C/9CC4: 38        SEC 
 3C/9CC5: 60        RTS 
+; weapon
 3C/9CC6: A5 8A     LDA $8A
-3C/9CC8: 49 06     EOR #$06
+3C/9CC8: 49 06     EOR #$06           ; 3 <-> 5 (other hand equipped item)
 3C/9CCA: 85 89     STA $89
 3C/9CCC: A5 8C     LDA $8C
-3C/9CCE: C9 62     CMP #$62
+3C/9CCE: C9 62     CMP #$62           ; $00-$61: weapons
 3C/9CD0: 90 03     BCC $9CD5
-3C/9CD2: 4C 6B 9C  JMP $9C6B
+3C/9CD2: 4C 6B 9C  JMP $9C6B          ; can't equip
 3C/9CD5: A6 89     LDX $89
 3C/9CD7: BD 00 62  LDA $6200,X
-3C/9CDA: D0 03     BNE $9CDF
+3C/9CDA: D0 03     BNE $9CDF          ; branch if other hand is not empty
 3C/9CDC: 4C F6 9C  JMP $9CF6
-3C/9CDF: 20 2F 9D  JSR $9D2F
+3C/9CDF: 20 2F 9D  JSR $9D2F          ; get weapon type
 3C/9CE2: 85 80     STA $80
 3C/9CE4: A5 8C     LDA $8C
-3C/9CE6: 20 2F 9D  JSR $9D2F
+3C/9CE6: 20 2F 9D  JSR $9D2F          ; get weapon type
 3C/9CE9: 0A        ASL 
 3C/9CEA: 0A        ASL 
 3C/9CEB: 05 80     ORA $80
 3C/9CED: AA        TAX 
 3C/9CEE: BD 4B 9D  LDA $9D4B,X
-3C/9CF1: F0 03     BEQ $9CF6
-3C/9CF3: 4C 6B 9C  JMP $9C6B
+3C/9CF1: F0 03     BEQ $9CF6          ; branch if weapon combination is allowed
+3C/9CF3: 4C 6B 9C  JMP $9C6B          ; can't equip
+; equip weapon
 3C/9CF6: A6 8B     LDX $8B
-3C/9CF8: BD E0 60  LDA $60E0,X
+3C/9CF8: BD E0 60  LDA $60E0,X        ; inventory qty
 3C/9CFB: C9 15     CMP #$15
 3C/9CFD: 90 02     BCC $9D01
-3C/9CFF: A9 14     LDA #$14
+3C/9CFF: A9 14     LDA #$14           ; max qty: 20
 3C/9D01: 85 81     STA $81
 3C/9D03: A5 8C     LDA $8C
-3C/9D05: C9 4F     CMP #$4F
+3C/9D05: C9 4F     CMP #$4F           ; $4F-$56: arrows
 3C/9D07: 90 04     BCC $9D0D
 3C/9D09: C9 57     CMP #$57
 3C/9D0B: 90 04     BCC $9D11
-3C/9D0D: A9 01     LDA #$01
+3C/9D0D: A9 01     LDA #$01           ; qty: 1
 3C/9D0F: 85 81     STA $81
 3C/9D11: A5 8C     LDA $8C
 3C/9D13: 85 80     STA $80
 3C/9D15: A6 8A     LDX $8A
 3C/9D17: A5 80     LDA $80
-3C/9D19: 9D 00 62  STA $6200,X
+3C/9D19: 9D 00 62  STA $6200,X        ; equipped weapon id
 3C/9D1C: A5 81     LDA $81
-3C/9D1E: 9D 01 62  STA $6201,X
-3C/9D21: 20 B9 90  JSR $90B9
+3C/9D1E: 9D 01 62  STA $6201,X        ; equipped weapon qty
+3C/9D21: 20 B9 90  JSR $90B9          ; remove item from inventory
 3C/9D24: A5 8A     LDA $8A
 3C/9D26: AA        TAX 
 3C/9D27: 20 0B D1  JSR $D10B          ; update character equipment
 3C/9D2A: 20 4B 9E  JSR $9E4B
 3C/9D2D: 38        SEC 
 3C/9D2E: 60        RTS 
+
+; [ get weapon type ]
+
 3C/9D2F: C9 46     CMP #$46
-3C/9D31: 90 15     BCC $9D48
+3C/9D31: 90 15     BCC $9D48          ; branch if a weapon
 3C/9D33: C9 4A     CMP #$4A
-3C/9D35: B0 03     BCS $9D3A
+3C/9D35: B0 03     BCS $9D3A          ; branch if not a harp
+; 3: harp
 3C/9D37: A9 03     LDA #$03
 3C/9D39: 60        RTS 
+; 1: bow
 3C/9D3A: C9 4F     CMP #$4F
-3C/9D3C: B0 03     BCS $9D41
+3C/9D3C: B0 03     BCS $9D41          ; branch if not a bow
 3C/9D3E: A9 01     LDA #$01
 3C/9D40: 60        RTS 
+; 2: arrows
 3C/9D41: C9 57     CMP #$57
 3C/9D43: B0 03     BCS $9D48
 3C/9D45: A9 02     LDA #$02
 3C/9D47: 60        RTS 
+; 0: other
 3C/9D48: A9 00     LDA #$00
 3C/9D4A: 60        RTS 
-3C/9D4B: 00        BRK 
-3C/9D4C: 01 01     ORA ($01,X)
-3C/9D4E: 01 01     ORA ($01,X)
-3C/9D50: 01 00     ORA ($00,X)
-3C/9D52: 01 01     ORA ($01,X)
-3C/9D54: 00        BRK 
-3C/9D55: 01 01     ORA ($01,X)
-3C/9D57: 01 01     ORA ($01,X)
-3C/9D59: 01 01     ORA ($01,X)
+
+; allowed weapon combinations, 0 = allowed, 1 = not allowed (4x4 matrix)
+3C/9D4B: 00 01 01 01  ; weapon + weapon
+3C/9D4F: 01 01 00 01  ; bow + arrows
+3C/9D53: 01 00 01 01  ; arrows + bow
+3C/9D57: 01 01 01 01  ; can't pair harp with anything
+
+; [ draw character sprite (equip menu) ]
+
 3C/9D5B: A9 80     LDA #$80
 3C/9D5D: 85 40     STA $40
 3C/9D5F: A9 28     LDA #$28
 3C/9D61: 85 41     STA $41
 3C/9D63: A6 7F     LDX $7F
 3C/9D65: 4C 36 81  JMP $8136          ; load character sprite
+
+; [  ]
+
+; $61: item slot
+
 3C/9D68: A5 61     LDA $61
 3C/9D6A: 85 8E     STA $8E
 3C/9D6C: 05 7F     ORA $7F
 3C/9D6E: AA        TAX 
-3C/9D6F: BD 00 62  LDA $6200,X
+3C/9D6F: BD 00 62  LDA $6200,X        ; equipped item id
 3C/9D72: D0 04     BNE $9D78
 3C/9D74: A9 00     LDA #$00
 3C/9D76: 18        CLC 
@@ -43840,27 +41073,33 @@
 3C/9D80: 85 81     STA $81
 3C/9D82: A5 8E     LDA $8E
 3C/9D84: C9 03     CMP #$03
-3C/9D86: 90 05     BCC $9D8D
+3C/9D86: 90 05     BCC $9D8D          ; branch if not a weapon slot
 3C/9D88: BD 01 62  LDA $6201,X
 3C/9D8B: 85 81     STA $81
-3C/9D8D: 20 62 93  JSR $9362
+3C/9D8D: 20 62 93  JSR $9362          ; add item to inventory
 3C/9D90: 90 04     BCC $9D96
-3C/9D92: A9 6B     LDA #$6B
+3C/9D92: A9 6B     LDA #$6B           ; "No room to remove"
 3C/9D94: 38        SEC 
 3C/9D95: 60        RTS 
-3C/9D96: 20 0F 9E  JSR $9E0F
+3C/9D96: 20 0F 9E  JSR $9E0F          ; remove equipped item
 3C/9D99: 18        CLC 
 3C/9D9A: 60        RTS 
+
+; [ remove equipment ]
+
+; clear carry if equipment slot empty
+
 3C/9D9B: AD F0 78  LDA $78F0
 3C/9D9E: C9 10     CMP #$10
 3C/9DA0: D0 2C     BNE $9DCE
+; remove all equipment
 3C/9DA2: A9 00     LDA #$00
 3C/9DA4: 85 62     STA $62
 3C/9DA6: A9 05     LDA #$05
 3C/9DA8: 85 61     STA $61
 3C/9DAA: 20 68 9D  JSR $9D68
 3C/9DAD: 90 05     BCC $9DB4
-3C/9DAF: 20 2A 9E  JSR $9E2A
+3C/9DAF: 20 2A 9E  JSR $9E2A          ; close item list
 3C/9DB2: 38        SEC 
 3C/9DB3: 60        RTS 
 3C/9DB4: F0 02     BEQ $9DB8
@@ -43874,8 +41113,9 @@
 3C/9DC4: 10 E4     BPL $9DAA
 3C/9DC6: A5 62     LDA $62
 3C/9DC8: F0 E8     BEQ $9DB2
-3C/9DCA: A9 6E     LDA #$6E
+3C/9DCA: A9 6E     LDA #$6E           ; "Removed"
 3C/9DCC: D0 E1     BNE $9DAF
+; remove selected item
 3C/9DCE: AE F0 78  LDX $78F0
 3C/9DD1: BD 03 78  LDA $7803,X
 3C/9DD4: 38        SEC 
@@ -43888,7 +41128,7 @@
 3C/9DE0: 05 7F     ORA $7F
 3C/9DE2: AA        TAX 
 3C/9DE3: BD 00 62  LDA $6200,X
-3C/9DE6: D0 02     BNE $9DEA
+3C/9DE6: D0 02     BNE $9DEA          ; branch if slot is not empty
 3C/9DE8: 18        CLC 
 3C/9DE9: 60        RTS 
 3C/9DEA: 86 8A     STX $8A
@@ -43901,48 +41141,48 @@
 3C/9DF8: 90 05     BCC $9DFF
 3C/9DFA: BD 01 62  LDA $6201,X
 3C/9DFD: 85 81     STA $81
-3C/9DFF: 20 62 93  JSR $9362
+3C/9DFF: 20 62 93  JSR $9362          ; add item to inventory
 3C/9E02: 90 05     BCC $9E09
-3C/9E04: A9 6B     LDA #$6B
-3C/9E06: 4C 2A 9E  JMP $9E2A
-3C/9E09: 20 0F 9E  JSR $9E0F
-3C/9E0C: 4C 2A 9E  JMP $9E2A
+3C/9E04: A9 6B     LDA #$6B           ; "No room to remove"
+3C/9E06: 4C 2A 9E  JMP $9E2A          ; close item list
+3C/9E09: 20 0F 9E  JSR $9E0F          ; remove equipped item
+3C/9E0C: 4C 2A 9E  JMP $9E2A          ; close item list
 
-; [  ]
+; [ remove equipped item ]
 
 3C/9E0F: A6 8A     LDX $8A
 3C/9E11: A9 00     LDA #$00
 3C/9E13: 9D 00 62  STA $6200,X
 3C/9E16: A5 8E     LDA $8E
 3C/9E18: C9 03     CMP #$03
-3C/9E1A: 90 05     BCC $9E21
+3C/9E1A: 90 05     BCC $9E21          ; branch if not a weapon slot
 3C/9E1C: A9 00     LDA #$00
 3C/9E1E: 9D 01 62  STA $6201,X
 3C/9E21: A6 8A     LDX $8A
 3C/9E23: 8A        TXA 
 3C/9E24: 20 0B D1  JSR $D10B          ; update character equipment
-3C/9E27: A9 6E     LDA #$6E
+3C/9E27: A9 6E     LDA #$6E           ; "Removed"
 3C/9E29: 60        RTS 
 
-; [  ]
+; [ close item list ]
 
 3C/9E2A: 48        PHA 
 3C/9E2B: 20 A8 A3  JSR $A3A8
 3C/9E2E: A9 00     LDA #$00
-3C/9E30: 85 B4     STA $B4
+3C/9E30: 85 B4     STA $B4            ; hide page arrows
 3C/9E32: A2 1E     LDX #$1E
-3C/9E34: 20 F1 AA  JSR $AAF1
+3C/9E34: 20 F1 AA  JSR $AAF1          ; open menu window
 3C/9E37: 68        PLA 
-3C/9E38: 20 78 A6  JSR $A678
+3C/9E38: 20 78 A6  JSR $A678          ; load menu text
 3C/9E3B: 20 05 A3  JSR $A305
 3C/9E3E: A2 1E     LDX #$1E
-3C/9E40: 20 F1 AA  JSR $AAF1
+3C/9E40: 20 F1 AA  JSR $AAF1          ; open menu window
 3C/9E43: 20 75 90  JSR $9075
 3C/9E46: 20 8E A3  JSR $A38E
 3C/9E49: 38        SEC 
 3C/9E4A: 60        RTS 
 
-; [  ]
+; [ show equipped item message ]
 
 3C/9E4B: A2 06     LDX #$06
 3C/9E4D: A5 8A     LDA $8A
@@ -43964,7 +41204,7 @@
 3C/9E6D: 0A        ASL 
 3C/9E6E: 48        PHA 
 3C/9E6F: 90 05     BCC $9E76
-3C/9E71: A9 3F     LDA #$3F
+3C/9E71: A9 3F     LDA #$3F           ; "Strength 5 up!"
 3C/9E73: 20 2A 9E  JSR $9E2A
 3C/9E76: 68        PLA 
 3C/9E77: 0A        ASL 
@@ -43988,65 +41228,68 @@
 3C/9E95: 0A        ASL 
 3C/9E96: 48        PHA 
 3C/9E97: 90 05     BCC $9E9E
-3C/9E99: A9 43     LDA #$43
+3C/9E99: A9 43     LDA #$43           ; "Spirit 5 up!"
 3C/9E9B: 20 2A 9E  JSR $9E2A
 3C/9E9E: 68        PLA 
 3C/9E9F: 0A        ASL 
 3C/9EA0: 48        PHA 
 3C/9EA1: 90 05     BCC $9EA8
-3C/9EA3: A9 44     LDA #$44
+3C/9EA3: A9 44     LDA #$44           ; "\blackFire power up!"
 3C/9EA5: 20 2A 9E  JSR $9E2A
 3C/9EA8: 68        PLA 
 3C/9EA9: 0A        ASL 
 3C/9EAA: 48        PHA 
 3C/9EAB: 90 05     BCC $9EB2
-3C/9EAD: A9 45     LDA #$45
+3C/9EAD: A9 45     LDA #$45           ; "\blackIce power up!"
 3C/9EAF: 20 2A 9E  JSR $9E2A
 3C/9EB2: 68        PLA 
 3C/9EB3: 0A        ASL 
 3C/9EB4: 90 05     BCC $9EBB
-3C/9EB6: A9 46     LDA #$46
+3C/9EB6: A9 46     LDA #$46           ; "\blackBolt power up!"
 3C/9EB8: 20 2A 9E  JSR $9E2A
 3C/9EBB: 60        RTS 
 
-; [  ]
+; [ item menu ]
 
-3C/9EBC: 20 74 8F  JSR $8F74
-3C/9EBF: 4C 85 A6  JMP $A685
-3C/9EC2: 20 92 95  JSR $9592
+; starts at 3C/9EC2
+
+3C/9EBC: 20 74 8F  JSR $8F74          ; cursor sound effect
+3C/9EBF: 4C 85 A6  JMP $A685          ; close menu
+; subroutine starts here
+3C/9EC2: 20 92 95  JSR $9592          ; reset A/B button
 3C/9EC5: A9 80     LDA #$80
-3C/9EC7: 85 B4     STA $B4
-3C/9EC9: 20 85 A6  JSR $A685
+3C/9EC7: 85 B4     STA $B4            ; show page down arrow
+3C/9EC9: 20 85 A6  JSR $A685          ; close menu
 3C/9ECC: 20 6F 95  JSR $956F
 3C/9ECF: 20 28 A3  JSR $A328
-3C/9ED2: A9 00     LDA #$00
+3C/9ED2: A9 00     LDA #$00           ; hide cursor 1 and 2
 3C/9ED4: 85 A2     STA $A2
 3C/9ED6: 85 A3     STA $A3
-3C/9ED8: A9 01     LDA #$01
+3C/9ED8: A9 01     LDA #$01           ; show cursor 3
 3C/9EDA: 85 A4     STA $A4
 3C/9EDC: A9 00     LDA #$00
 3C/9EDE: 8D F0 7A  STA $7AF0
 3C/9EE1: A2 06     LDX #$06
-3C/9EE3: 20 F1 AA  JSR $AAF1
+3C/9EE3: 20 F1 AA  JSR $AAF1          ; open menu window
 3C/9EE6: A9 3D     LDA #$3D
-3C/9EE8: 20 78 A6  JSR $A678
+3C/9EE8: 20 78 A6  JSR $A678          ; load menu text
 3C/9EEB: 20 3D 90  JSR $903D
 3C/9EEE: 20 A8 A3  JSR $A3A8
 3C/9EF1: A2 05     LDX #$05
-3C/9EF3: 20 F1 AA  JSR $AAF1
-3C/9EF6: A9 35     LDA #$35
-3C/9EF8: 20 6B A6  JSR $A66B
+3C/9EF3: 20 F1 AA  JSR $AAF1          ; open menu window
+3C/9EF6: A9 35     LDA #$35           ; "Item"
+3C/9EF8: 20 6B A6  JSR $A66B          ; load menu text
 3C/9EFB: 20 8E A3  JSR $A38E
-3C/9EFE: 20 CD A7  JSR $A7CD
+3C/9EFE: 20 CD A7  JSR $A7CD          ; wait for vblank (update cursors)
 3C/9F01: A9 08     LDA #$08
-3C/9F03: 20 0D 92  JSR $920D
+3C/9F03: 20 0D 92  JSR $920D          ; update cursor 3 position
 3C/9F06: A9 03     LDA #$03
-3C/9F08: 20 00 80  JSR $8000
+3C/9F08: 20 00 80  JSR $8000          ; draw characters
 3C/9F0B: A5 25     LDA $25
 3C/9F0D: D0 AD     BNE $9EBC
 3C/9F0F: A5 24     LDA $24
 3C/9F11: F0 EB     BEQ $9EFE
-3C/9F13: 20 74 8F  JSR $8F74
+3C/9F13: 20 74 8F  JSR $8F74          ; cursor sound effect
 3C/9F16: A9 02     LDA #$02
 3C/9F18: 85 A3     STA $A3
 3C/9F1A: 85 A4     STA $A4
@@ -44063,30 +41306,30 @@
 3C/9F34: 85 8E     STA $8E
 3C/9F36: A9 00     LDA #$00
 3C/9F38: 8D F2 79  STA $79F2
-3C/9F3B: 20 CD A7  JSR $A7CD
+3C/9F3B: 20 CD A7  JSR $A7CD          ; wait for vblank (update cursors)
 3C/9F3E: A9 08     LDA #$08
-3C/9F40: 20 0D 92  JSR $920D
+3C/9F40: 20 0D 92  JSR $920D          ; update cursor 3 position
 3C/9F43: A9 03     LDA #$03
-3C/9F45: 20 00 80  JSR $8000
+3C/9F45: 20 00 80  JSR $8000          ; draw characters
 3C/9F48: A5 25     LDA $25
 3C/9F4A: F0 0E     BEQ $9F5A
-3C/9F4C: 20 74 8F  JSR $8F74
+3C/9F4C: 20 74 8F  JSR $8F74          ; cursor sound effect
 3C/9F4F: A9 00     LDA #$00
 3C/9F51: 85 A3     STA $A3
 3C/9F53: A9 01     LDA #$01
 3C/9F55: 85 A4     STA $A4
 3C/9F57: 4C FE 9E  JMP $9EFE
 3C/9F5A: A5 24     LDA $24
-3C/9F5C: F0 DD     BEQ $9F3B
+3C/9F5C: F0 DD     BEQ $9F3B          ; branch if A button not pressed
 3C/9F5E: 20 A8 A3  JSR $A3A8
 3C/9F61: 20 49 A3  JSR $A349
-3C/9F64: 20 74 8F  JSR $8F74
+3C/9F64: 20 74 8F  JSR $8F74          ; cursor sound effect
 3C/9F67: A9 00     LDA #$00
 3C/9F69: 85 A3     STA $A3
-3C/9F6B: 85 B4     STA $B4
+3C/9F6B: 85 B4     STA $B4            ; hide page arrows
 3C/9F6D: A9 01     LDA #$01
 3C/9F6F: 85 A4     STA $A4
-3C/9F71: 20 A5 9F  JSR $9FA5
+3C/9F71: 20 A5 9F  JSR $9FA5          ; use item
 3C/9F74: 08        PHP 
 3C/9F75: 20 8E A3  JSR $A38E
 3C/9F78: 20 56 A3  JSR $A356
@@ -44101,48 +41344,51 @@
 3C/9F8E: A5 1D     LDA $1D
 3C/9F90: 85 3F     STA $3F
 3C/9F92: 20 61 EB  JSR $EB61
-3C/9F95: 20 92 95  JSR $9592
-3C/9F98: A9 00     LDA #$00
+3C/9F95: 20 92 95  JSR $9592          ; reset A/B button
+3C/9F98: A9 00     LDA #$00           ; hide cursor 1 and 2
 3C/9F9A: 85 A3     STA $A3
 3C/9F9C: 85 A2     STA $A2
-3C/9F9E: A9 01     LDA #$01
+3C/9F9E: A9 01     LDA #$01           ; hide cursor 3
 3C/9FA0: 85 A4     STA $A4
 3C/9FA2: 4C FE 9E  JMP $9EFE
 
-; [  ]
+; [ use item ]
 
-3C/9FA5: AE F0 7A  LDX $7AF0
+3C/9FA5: AE F0 7A  LDX $7AF0          ; pointer to cursor data
 3C/9FA8: BD 03 7A  LDA $7A03,X
 3C/9FAB: 85 8F     STA $8F
 3C/9FAD: BD 02 7A  LDA $7A02,X
 3C/9FB0: C9 0F     CMP #$0F
-3C/9FB2: D0 28     BNE $9FDC
+3C/9FB2: D0 28     BNE $9FDC          ; branch if not trash can
 3C/9FB4: A6 8E     LDX $8E
 3C/9FB6: E0 20     CPX #$20
 3C/9FB8: B0 13     BCS $9FCD
-3C/9FBA: BD C0 60  LDA $60C0,X
-3C/9FBD: C9 F6     CMP #$F6
+3C/9FBA: BD C0 60  LDA $60C0,X        ; item id
+3C/9FBD: C9 F6     CMP #$F6           ; toad spell
 3C/9FBF: F0 0C     BEQ $9FCD
-3C/9FC1: C9 F7     CMP #$F7
+3C/9FC1: C9 F7     CMP #$F7           ; mini spell
 3C/9FC3: F0 08     BEQ $9FCD
 3C/9FC5: C9 9A     CMP #$9A
 3C/9FC7: 90 09     BCC $9FD2
 3C/9FC9: C9 A4     CMP #$A4
 3C/9FCB: B0 05     BCS $9FD2
-3C/9FCD: 20 29 D5  JSR $D529
+3C/9FCD: 20 29 D5  JSR $D529          ; error sound effect
 3C/9FD0: 38        SEC 
 3C/9FD1: 60        RTS 
+; remove item
 3C/9FD2: A9 00     LDA #$00
 3C/9FD4: 9D C0 60  STA $60C0,X
 3C/9FD7: 9D E0 60  STA $60E0,X
 3C/9FDA: 18        CLC 
 3C/9FDB: 60        RTS 
+; use or swap
 3C/9FDC: A6 8F     LDX $8F
 3C/9FDE: A4 8E     LDY $8E
 3C/9FE0: C0 20     CPY #$20
 3C/9FE2: B0 D6     BCS $9FBA
 3C/9FE4: C4 8F     CPY $8F
-3C/9FE6: F0 4B     BEQ $A033
+3C/9FE6: F0 4B     BEQ $A033          ; branch if same item
+; swap items
 3C/9FE8: BD C0 60  LDA $60C0,X
 3C/9FEB: 48        PHA 
 3C/9FEC: B9 C0 60  LDA $60C0,Y
@@ -44157,157 +41403,172 @@
 3D/A001: 99 E0 60  STA $60E0,Y
 3D/A004: 18        CLC 
 3D/A005: 60        RTS 
+; midgbread
 3D/A006: A5 2D     LDA $2D
 3D/A008: 4A        LSR 
 3D/A009: B0 31     BCS $A03C
-3D/A00B: 20 3C A3  JSR $A33C
-3D/A00E: 4C 25 A5  JMP $A525
+3D/A00B: 20 3C A3  JSR $A33C          ; decrement item quantity
+3D/A00E: 4C 25 A5  JMP $A525          ; show minimap
+; otterhead
 3D/A011: 68        PLA 
 3D/A012: A9 65     LDA #$65
 3D/A014: 20 F6 A2  JSR $A2F6
 3D/A017: A5 20     LDA $20
 3D/A019: 29 40     AND #$40
 3D/A01B: D0 14     BNE $A031
-3D/A01D: 20 3C A3  JSR $A33C
+3D/A01D: 20 3C A3  JSR $A33C          ; decrement item quantity
 3D/A020: 20 8C 95  JSR $958C
 3D/A023: 20 21 99  JSR $9921
 3D/A026: 4C ED C0  JMP $C0ED          ; world map main
-3D/A029: A9 5A     LDA #$5A
+; weapon or armor
+3D/A029: A9 5A     LDA #$5A           ; "Cannot use"
 3D/A02B: 20 F6 A2  JSR $A2F6
-3D/A02E: 20 92 95  JSR $9592
+3D/A02E: 20 92 95  JSR $9592          ; reset A/B button
 3D/A031: 18        CLC 
 3D/A032: 60        RTS 
+; use item
 3D/A033: A6 8E     LDX $8E
 3D/A035: 86 63     STX $63
-3D/A037: BD E0 60  LDA $60E0,X
+3D/A037: BD E0 60  LDA $60E0,X        ; check if quantity is zero
 3D/A03A: D0 08     BNE $A044
-3D/A03C: 20 29 D5  JSR $D529
+3D/A03C: 20 29 D5  JSR $D529          ; error sound effect
 3D/A03F: 38        SEC 
 3D/A040: 60        RTS 
-3D/A041: 4C 5F A1  JMP $A15F
+3D/A041: 4C 5F A1  JMP $A15F          ; spell
 3D/A044: BC C0 60  LDY $60C0,X
-3D/A047: C0 A4     CPY #$A4
+3D/A047: C0 A4     CPY #$A4           ; midgbread
 3D/A049: F0 BB     BEQ $A006
-3D/A04B: C0 A6     CPY #$A6
+3D/A04B: C0 A6     CPY #$A6           ; potion (first usable item)
 3D/A04D: 90 DA     BCC $A029
-3D/A04F: C0 C8     CPY #$C8
+3D/A04F: C0 C8     CPY #$C8           ; first spell
 3D/A051: B0 EE     BCS $A041
-3D/A053: C0 B1     CPY #$B1
+3D/A053: C0 B1     CPY #$B1           ; bombshard (first spell item)
 3D/A055: B0 D2     BCS $A029
-3D/A057: C0 AB     CPY #$AB
+3D/A057: C0 AB     CPY #$AB           ; maidkiss
 3D/A059: F0 04     BEQ $A05F
-3D/A05B: C0 AD     CPY #$AD
+3D/A05B: C0 AD     CPY #$AD           ; luckmallet
 3D/A05D: D0 0A     BNE $A069
 3D/A05F: A5 53     LDA $53
 3D/A061: 29 20     AND #$20
 3D/A063: F0 0E     BEQ $A073
-3D/A065: A9 77     LDA #$77
+3D/A065: A9 77     LDA #$77           ; "Can't change size."
 3D/A067: D0 C2     BNE $A02B
-3D/A069: C0 B0     CPY #$B0
+3D/A069: C0 B0     CPY #$B0           ; otterhead
 3D/A06B: D0 06     BNE $A073
 3D/A06D: 24 53     BIT $53
-3D/A06F: A9 78     LDA #$78
+3D/A06F: A9 78     LDA #$78           ; "Can't Warp."
 3D/A071: 70 B8     BVS $A02B
 3D/A073: 98        TYA 
 3D/A074: 48        PHA 
 3D/A075: 38        SEC 
-3D/A076: E9 A6     SBC #$A6
+3D/A076: E9 A6     SBC #$A6           ; potion
 3D/A078: 18        CLC 
-3D/A079: 69 5B     ADC #$5B
+3D/A079: 69 5B     ADC #$5B           ; "Recover Whose HP?", etc.
 3D/A07B: 48        PHA 
 3D/A07C: A2 15     LDX #$15
-3D/A07E: 20 F1 AA  JSR $AAF1
+3D/A07E: 20 F1 AA  JSR $AAF1          ; open menu window
 3D/A081: 68        PLA 
-3D/A082: 20 78 A6  JSR $A678
+3D/A082: 20 78 A6  JSR $A678          ; load menu text
 3D/A085: 68        PLA 
 3D/A086: 48        PHA 
 3D/A087: C9 B0     CMP #$B0
-3D/A089: F0 86     BEQ $A011
+3D/A089: F0 86     BEQ $A011          ; branch if otterhead
 3D/A08B: 20 15 A7  JSR $A715
 3D/A08E: 68        PLA 
 3D/A08F: A8        TAY 
 3D/A090: B0 9F     BCS $A031
 3D/A092: 20 8C 95  JSR $958C
 3D/A095: A6 7F     LDX $7F
-3D/A097: C0 A6     CPY #$A6
+; potion
+3D/A097: C0 A6     CPY #$A6           ; potion
 3D/A099: D0 19     BNE $A0B4
 3D/A09B: BD 02 61  LDA $6102,X
 3D/A09E: C9 40     CMP #$40
-3D/A0A0: B0 0F     BCS $A0B1
+3D/A0A0: B0 0F     BCS $A0B1          ; branch if stone or dead
 3D/A0A2: A9 1E     LDA #$1E
 3D/A0A4: 85 8D     STA $8D
 3D/A0A6: A9 01     LDA #$01
 3D/A0A8: 85 8B     STA $8B
 3D/A0AA: A9 03     LDA #$03
 3D/A0AC: 85 8C     STA $8C
-3D/A0AE: 20 8A A4  JSR $A48A
+3D/A0AE: 20 8A A4  JSR $A48A          ; healing spell/item effect
 3D/A0B1: 4C 2B A1  JMP $A12B
-3D/A0B4: C0 A7     CPY #$A7
+; hi-potion
+3D/A0B4: C0 A7     CPY #$A7           ; hi-potion
 3D/A0B6: D0 0C     BNE $A0C4
 3D/A0B8: BD 02 61  LDA $6102,X
 3D/A0BB: C9 40     CMP #$40
-3D/A0BD: B0 F2     BCS $A0B1
+3D/A0BD: B0 F2     BCS $A0B1          ; branch if stone or dead
 3D/A0BF: A9 78     LDA #$78
 3D/A0C1: 4C A4 A0  JMP $A0A4
-3D/A0C4: C0 A8     CPY #$A8
+; elixir
+3D/A0C4: C0 A8     CPY #$A8           ; elixir
 3D/A0C6: D0 10     BNE $A0D8
 3D/A0C8: BD 02 61  LDA $6102,X
 3D/A0CB: C9 40     CMP #$40
-3D/A0CD: B0 E2     BCS $A0B1
-3D/A0CF: 20 58 A4  JSR $A458
-3D/A0D2: 20 18 A4  JSR $A418
+3D/A0CD: B0 E2     BCS $A0B1          ; branch if stone or dead
+3D/A0CF: 20 58 A4  JSR $A458          ; restore hp to max
+3D/A0D2: 20 18 A4  JSR $A418          ; restore mp to max
 3D/A0D5: 4C 2B A1  JMP $A12B
-3D/A0D8: C0 A9     CPY #$A9
+; fenixdown
+3D/A0D8: C0 A9     CPY #$A9           ; fenixdown
 3D/A0DA: D0 16     BNE $A0F2
 3D/A0DC: BD 02 61  LDA $6102,X
-3D/A0DF: 10 5B     BPL $A13C
+3D/A0DF: 10 5B     BPL $A13C          ; branch if not dead
 3D/A0E1: 49 80     EOR #$80
 3D/A0E3: 9D 02 61  STA $6102,X
 3D/A0E6: A9 00     LDA #$00
 3D/A0E8: 85 82     STA $82
 3D/A0EA: A9 01     LDA #$01
-3D/A0EC: 20 38 A4  JSR $A438
+3D/A0EC: 20 38 A4  JSR $A438          ; add 1 to current hp
 3D/A0EF: 4C 2B A1  JMP $A12B
-3D/A0F2: C0 AA     CPY #$AA
+; soft
+3D/A0F2: C0 AA     CPY #$AA           ; soft
 3D/A0F4: D0 05     BNE $A0FB
 3D/A0F6: A9 40     LDA #$40
 3D/A0F8: 4C 44 A1  JMP $A144
-3D/A0FB: C0 AB     CPY #$AB
+; maidkiss
+3D/A0FB: C0 AB     CPY #$AB           ; maidkiss
 3D/A0FD: D0 05     BNE $A104
 3D/A0FF: A9 20     LDA #$20
 3D/A101: 4C 44 A1  JMP $A144
-3D/A104: C0 AC     CPY #$AC
+; echoherb
+3D/A104: C0 AC     CPY #$AC           ; echoherb
 3D/A106: D0 05     BNE $A10D
 3D/A108: A9 10     LDA #$10
 3D/A10A: 4C 44 A1  JMP $A144
-3D/A10D: C0 AD     CPY #$AD
+; luckmallet
+3D/A10D: C0 AD     CPY #$AD           ; luckmallet
 3D/A10F: D0 0C     BNE $A11D
 3D/A111: A9 08     LDA #$08
-3D/A113: 5D 02 61  EOR $6102,X
+3D/A113: 5D 02 61  EOR $6102,X        ; toggle mini status
 3D/A116: 9D 02 61  STA $6102,X
 3D/A119: 18        CLC 
 3D/A11A: 4C 2B A1  JMP $A12B
-3D/A11D: C0 AE     CPY #$AE
+; eyedrop
+3D/A11D: C0 AE     CPY #$AE           ; eyedrop
 3D/A11F: D0 05     BNE $A126
 3D/A121: A9 04     LDA #$04
 3D/A123: 4C 44 A1  JMP $A144
+; antidote
 3D/A126: A9 02     LDA #$02
 3D/A128: 4C 44 A1  JMP $A144
-3D/A12B: B0 0F     BCS $A13C
-3D/A12D: 20 3C A3  JSR $A33C
-3D/A130: 20 32 A3  JSR $A332
-3D/A133: A9 00     LDA #$00
+3D/A12B: B0 0F     BCS $A13C          ; branch if item not used
+3D/A12D: 20 3C A3  JSR $A33C          ; decrement item quantity
+3D/A130: 20 32 A3  JSR $A332          ; redraw character window
+3D/A133: A9 00     LDA #$00           ; hide cursor 1
 3D/A135: 85 A2     STA $A2
 3D/A137: 8D F0 78  STA $78F0
 3D/A13A: 18        CLC 
 3D/A13B: 60        RTS 
 3D/A13C: 98        TYA 
 3D/A13D: 48        PHA 
-3D/A13E: 20 29 D5  JSR $D529
+3D/A13E: 20 29 D5  JSR $D529          ; error sound effect
 3D/A141: 4C 8B A0  JMP $A08B
+; change status
 3D/A144: 85 80     STA $80
 3D/A146: 3D 02 61  AND $6102,X
-3D/A149: D0 04     BNE $A14F
+3D/A149: D0 04     BNE $A14F          ; branch if character has this status
 3D/A14B: 38        SEC 
 3D/A14C: 4C 2B A1  JMP $A12B
 3D/A14F: A5 80     LDA $80
@@ -44318,32 +41579,36 @@
 3D/A15A: 4C 2B A1  JMP $A12B
 3D/A15D: 18        CLC 
 3D/A15E: 60        RTS 
+; spell
 3D/A15F: 84 8C     STY $8C
 3D/A161: A2 15     LDX #$15
-3D/A163: 20 F1 AA  JSR $AAF1
-3D/A166: A9 73     LDA #$73
-3D/A168: 20 78 A6  JSR $A678
+3D/A163: 20 F1 AA  JSR $AAF1          ; open menu window
+3D/A166: A9 73     LDA #$73           ; "Give to whom?"
+3D/A168: 20 78 A6  JSR $A678          ; load menu text
 3D/A16B: 20 15 A7  JSR $A715
 3D/A16E: B0 ED     BCS $A15D
-3D/A170: 20 B4 A2  JSR $A2B4
+3D/A170: 20 B4 A2  JSR $A2B4          ; init spell list buffer
 3D/A173: A5 8C     LDA $8C
-3D/A175: 20 9C A1  JSR $A19C
+3D/A175: 20 9C A1  JSR $A19C          ; check if character has spell
 3D/A178: 90 08     BCC $A182
-3D/A17A: A9 75     LDA #$75
+3D/A17A: A9 75     LDA #$75           ; "Already has that!"
 3D/A17C: 20 F6 A2  JSR $A2F6
 3D/A17F: 4C 61 A1  JMP $A161
 3D/A182: C9 00     CMP #$00
 3D/A184: F0 05     BEQ $A18B
-3D/A186: A9 74     LDA #$74
+3D/A186: A9 74     LDA #$74           ; "Can't carry anymore."
 3D/A188: 4C 7C A1  JMP $A17C
 3D/A18B: A5 8C     LDA $8C
 3D/A18D: 9D 00 7C  STA $7C00,X
-3D/A190: 20 C9 A1  JSR $A1C9
-3D/A193: 20 3C A3  JSR $A33C
-3D/A196: A9 00     LDA #$00
+3D/A190: 20 C9 A1  JSR $A1C9          ; update spell list
+3D/A193: 20 3C A3  JSR $A33C          ; decrement item quantity
+3D/A196: A9 00     LDA #$00           ; hide cursor 1
 3D/A198: 85 A2     STA $A2
 3D/A19A: 18        CLC 
 3D/A19B: 60        RTS 
+
+; [ check if character has spell ]
+
 3D/A19C: 85 80     STA $80
 3D/A19E: 38        SEC 
 3D/A19F: E9 C8     SBC #$C8
@@ -44367,6 +41632,9 @@
 3D/A1C6: 60        RTS 
 3D/A1C7: 38        SEC 
 3D/A1C8: 60        RTS 
+
+; [ update spell list ]
+
 3D/A1C9: A6 7F     LDX $7F
 3D/A1CB: A0 00     LDY #$00
 3D/A1CD: 98        TYA 
@@ -44385,12 +41653,15 @@
 3D/A1EF: C0 18     CPY #$18
 3D/A1F1: 90 F3     BCC $A1E6
 3D/A1F3: 60        RTS 
+
+; [ add spell to spell list ]
+
 3D/A1F4: 38        SEC 
 3D/A1F5: E9 C8     SBC #$C8
 3D/A1F7: AA        TAX 
-3D/A1F8: BD 0C A2  LDA $A20C,X
+3D/A1F8: BD 0C A2  LDA $A20C,X        ; spell mask
 3D/A1FB: 85 80     STA $80
-3D/A1FD: BD 44 A2  LDA $A244,X
+3D/A1FD: BD 44 A2  LDA $A244,X        ; spell level
 3D/A200: 05 7F     ORA $7F
 3D/A202: AA        TAX 
 3D/A203: A5 80     LDA $80
@@ -44398,140 +41669,40 @@
 3D/A208: 9D 07 62  STA $6207,X
 3D/A20B: 60        RTS 
 
-3D/A20C: 01 02     ORA ($02,X)
-3D/A20E: 04        --- 
-3D/A20F: 08        PHP 
-3D/A210: 10 20     BPL $A232
-3D/A212: 40        RTI 
-3D/A213: 01 02     ORA ($02,X)
-3D/A215: 04        --- 
-3D/A216: 08        PHP 
-3D/A217: 10 20     BPL $A239
-3D/A219: 40        RTI 
-3D/A21A: 01 02     ORA ($02,X)
-3D/A21C: 04        --- 
-3D/A21D: 08        PHP 
-3D/A21E: 10 20     BPL $A240
-3D/A220: 40        RTI 
-3D/A221: 01 02     ORA ($02,X)
-3D/A223: 04        --- 
-3D/A224: 08        PHP 
-3D/A225: 10 20     BPL $A247
-3D/A227: 40        RTI 
-3D/A228: 01 02     ORA ($02,X)
-3D/A22A: 04        --- 
-3D/A22B: 08        PHP 
-3D/A22C: 10 20     BPL $A24E
-3D/A22E: 40        RTI 
-3D/A22F: 01 02     ORA ($02,X)
-3D/A231: 04        --- 
-3D/A232: 08        PHP 
-3D/A233: 10 20     BPL $A255
-3D/A235: 40        RTI 
-3D/A236: 01 02     ORA ($02,X)
-3D/A238: 04        --- 
-3D/A239: 08        PHP 
-3D/A23A: 10 20     BPL $A25C
-3D/A23C: 40        RTI 
-3D/A23D: 01 02     ORA ($02,X)
-3D/A23F: 04        --- 
-3D/A240: 08        PHP 
-3D/A241: 10 20     BPL $A263
-3D/A243: 40        RTI 
-3D/A244: 07        --- 
-3D/A245: 07        --- 
-3D/A246: 07        --- 
-3D/A247: 07        --- 
-3D/A248: 07        --- 
-3D/A249: 07        --- 
-3D/A24A: 07        --- 
-3D/A24B: 06 06     ASL $06
-3D/A24D: 06 06     ASL $06
-3D/A24F: 06 06     ASL $06
-3D/A251: 06 05     ASL $05
-3D/A253: 05 05     ORA $05
-3D/A255: 05 05     ORA $05
-3D/A257: 05 05     ORA $05
-3D/A259: 04        --- 
-3D/A25A: 04        --- 
-3D/A25B: 04        --- 
-3D/A25C: 04        --- 
-3D/A25D: 04        --- 
-3D/A25E: 04        --- 
-3D/A25F: 04        --- 
-3D/A260: 03        --- 
-3D/A261: 03        --- 
-3D/A262: 03        --- 
-3D/A263: 03        --- 
-3D/A264: 03        --- 
-3D/A265: 03        --- 
-3D/A266: 03        --- 
-3D/A267: 02        --- 
-3D/A268: 02        --- 
-3D/A269: 02        --- 
-3D/A26A: 02        --- 
-3D/A26B: 02        --- 
-3D/A26C: 02        --- 
-3D/A26D: 02        --- 
-3D/A26E: 01 01     ORA ($01,X)
-3D/A270: 01 01     ORA ($01,X)
-3D/A272: 01 01     ORA ($01,X)
-3D/A274: 01 00     ORA ($00,X)
-3D/A276: 00        BRK 
-3D/A277: 00        BRK 
-3D/A278: 00        BRK 
-3D/A279: 00        BRK 
-3D/A27A: 00        BRK 
-3D/A27B: 00        BRK 
-3D/A27C: 15 15     ORA $15,X
-3D/A27E: 15 15     ORA $15,X
-3D/A280: 15 15     ORA $15,X
-3D/A282: 15 12     ORA $12,X
-3D/A284: 12        --- 
-3D/A285: 12        --- 
-3D/A286: 12        --- 
-3D/A287: 12        --- 
-3D/A288: 12        --- 
-3D/A289: 12        --- 
-3D/A28A: 0F        --- 
-3D/A28B: 0F        --- 
-3D/A28C: 0F        --- 
-3D/A28D: 0F        --- 
-3D/A28E: 0F        --- 
-3D/A28F: 0F        --- 
-3D/A290: 0F        --- 
-3D/A291: 0C        --- 
-3D/A292: 0C        --- 
-3D/A293: 0C        --- 
-3D/A294: 0C        --- 
-3D/A295: 0C        --- 
-3D/A296: 0C        --- 
-3D/A297: 0C        --- 
-3D/A298: 09 09     ORA #$09
-3D/A29A: 09 09     ORA #$09
-3D/A29C: 09 09     ORA #$09
-3D/A29E: 09 06     ORA #$06
-3D/A2A0: 06 06     ASL $06
-3D/A2A2: 06 06     ASL $06
-3D/A2A4: 06 06     ASL $06
-3D/A2A6: 03        --- 
-3D/A2A7: 03        --- 
-3D/A2A8: 03        --- 
-3D/A2A9: 03        --- 
-3D/A2AA: 03        --- 
-3D/A2AB: 03        --- 
-3D/A2AC: 03        --- 
-3D/A2AD: 00        BRK 
-3D/A2AE: 00        BRK 
-3D/A2AF: 00        BRK 
-3D/A2B0: 00        BRK 
-3D/A2B1: 00        BRK 
-3D/A2B2: 00        BRK 
-3D/A2B3: 00        BRK 
+; spell masks
+3D/A20C: 01 02 04 08 10 20 40
+3D/A213: 01 02 04 08 10 20 40
+3D/A21A: 01 02 04 08 10 20 40
+3D/A221: 01 02 04 08 10 20 40
+3D/A228: 01 02 04 08 10 20 40
+3D/A22F: 01 02 04 08 10 20 40
+3D/A236: 01 02 04 08 10 20 40
+3D/A23D: 01 02 04 08 10 20 40
+
+; spell levels
+3D/A244: 07 07 07 07 07 07 07
+3D/A24B: 06 06 06 06 06 06 06
+3D/A252: 05 05 05 05 05 05 05
+3D/A259: 04 04 04 04 04 04 04
+3D/A260: 03 03 03 03 03 03 03
+3D/A267: 02 02 02 02 02 02 02
+3D/A26E: 01 01 01 01 01 01 01
+3D/A275: 00 00 00 00 00 00 00
+
+3D/A27C: 15 15 15 15 15 15 15
+3D/A283: 12 12 12 12 12 12 12
+3D/A28A: 0F 0F 0F 0F 0F 0F 0F
+3D/A291: 0C 0C 0C 0C 0C 0C 0C
+3D/A298: 09 09 09 09 09 09 09
+3D/A29F: 06 06 06 06 06 06 06
+3D/A2A6: 03 03 03 03 03 03 03
+3D/A2AD: 00 00 00 00 00 00 00
+
+; [ init spell list buffer ]
 
 3D/A2B4: A0 17     LDY #$17
 3D/A2B6: A9 00     LDA #$00
-3D/A2B8: 99 00 7C  STA $7C00,Y
+3D/A2B8: 99 00 7C  STA $7C00,Y        ; clear spell list buffer
 3D/A2BB: 88        DEY 
 3D/A2BC: 10 FA     BPL $A2B8
 3D/A2BE: A0 00     LDY #$00
@@ -44542,14 +41713,17 @@
 3D/A2CA: AA        TAX 
 3D/A2CB: BD 07 62  LDA $6207,X
 3D/A2CE: 25 80     AND $80
-3D/A2D0: F0 07     BEQ $A2D9
+3D/A2D0: F0 07     BEQ $A2D9          ; branch if spell is not known
 3D/A2D2: 84 80     STY $80
-3D/A2D4: 20 DF A2  JSR $A2DF
+3D/A2D4: 20 DF A2  JSR $A2DF          ; add spell to buffer
 3D/A2D7: A4 80     LDY $80
 3D/A2D9: C8        INY 
-3D/A2DA: C0 38     CPY #$38
+3D/A2DA: C0 38     CPY #$38           ; 7 * 8 = 56 spells total
 3D/A2DC: 90 E2     BCC $A2C0
 3D/A2DE: 60        RTS 
+
+; [ add spell to buffer ]
+
 3D/A2DF: 98        TYA 
 3D/A2E0: 18        CLC 
 3D/A2E1: 69 C8     ADC #$C8
@@ -44562,11 +41736,14 @@
 3D/A2F1: E8        INX 
 3D/A2F2: 9D 00 7C  STA $7C00,X
 3D/A2F5: 60        RTS 
+
+; [  ]
+
 3D/A2F6: 48        PHA 
 3D/A2F7: A2 15     LDX #$15
-3D/A2F9: 20 F1 AA  JSR $AAF1
+3D/A2F9: 20 F1 AA  JSR $AAF1          ; open menu window
 3D/A2FC: 68        PLA 
-3D/A2FD: 20 78 A6  JSR $A678
+3D/A2FD: 20 78 A6  JSR $A678          ; load menu text
 3D/A300: 20 05 A3  JSR $A305
 3D/A303: 18        CLC 
 3D/A304: 60        RTS 
@@ -44586,19 +41763,26 @@
 3D/A325: 85 21     STA $21
 3D/A327: 60        RTS 
 3D/A328: A2 07     LDX #$07
-3D/A32A: 20 F1 AA  JSR $AAF1
+3D/A32A: 20 F1 AA  JSR $AAF1          ; open menu window
 3D/A32D: A9 3B     LDA #$3B
-3D/A32F: 4C 78 A6  JMP $A678
+3D/A32F: 4C 78 A6  JMP $A678          ; load menu text
+
+; [ redraw character window (bottom of screen) ]
+
 3D/A332: A2 07     LDX #$07
 3D/A334: 20 A6 AA  JSR $AAA6
 3D/A337: A9 3B     LDA #$3B
-3D/A339: 4C 78 A6  JMP $A678
+3D/A339: 4C 78 A6  JMP $A678          ; load menu text
+
+; [ decrement item quantity ]
+
 3D/A33C: A6 63     LDX $63
 3D/A33E: DE E0 60  DEC $60E0,X
 3D/A341: D0 05     BNE $A348
 3D/A343: A9 00     LDA #$00
 3D/A345: 9D C0 60  STA $60C0,X
 3D/A348: 60        RTS 
+
 3D/A349: A5 80     LDA $80
 3D/A34B: 85 08     STA $08
 3D/A34D: A5 9E     LDA $9E
@@ -44606,6 +41790,7 @@
 3D/A351: A5 7F     LDA $7F
 3D/A353: 85 0A     STA $0A
 3D/A355: 60        RTS 
+
 3D/A356: A5 08     LDA $08
 3D/A358: 85 80     STA $80
 3D/A35A: A5 09     LDA $09
@@ -44613,6 +41798,7 @@
 3D/A35E: A5 0A     LDA $0A
 3D/A360: 85 7F     STA $7F
 3D/A362: 60        RTS 
+
 3D/A363: A2 80     LDX #$80
 3D/A365: BD 00 7A  LDA $7A00,X
 3D/A368: 18        CLC 
@@ -44632,6 +41818,7 @@
 3D/A387: AD F1 7A  LDA $7AF1
 3D/A38A: 8D F1 79  STA $79F1
 3D/A38D: 60        RTS 
+
 3D/A38E: AD EB 79  LDA $79EB
 3D/A391: 85 B4     STA $B4
 3D/A393: AD EC 79  LDA $79EC
@@ -44643,6 +41830,7 @@
 3D/A3A2: AD EF 79  LDA $79EF
 3D/A3A5: 85 B8     STA $B8
 3D/A3A7: 60        RTS 
+
 3D/A3A8: A5 B4     LDA $B4
 3D/A3AA: 8D EB 79  STA $79EB
 3D/A3AD: A5 B5     LDA $B5
@@ -44654,6 +41842,7 @@
 3D/A3BC: A5 B8     LDA $B8
 3D/A3BE: 8D EF 79  STA $79EF
 3D/A3C1: 60        RTS 
+
 3D/A3C2: A5 8B     LDA $8B
 3D/A3C4: C9 01     CMP #$01
 3D/A3C6: D0 26     BNE $A3EE
@@ -44661,7 +41850,7 @@
 3D/A3CA: BD 02 61  LDA $6102,X
 3D/A3CD: 25 87     AND $87
 3D/A3CF: D0 05     BNE $A3D6
-3D/A3D1: 20 29 D5  JSR $D529
+3D/A3D1: 20 29 D5  JSR $D529          ; error sound effect
 3D/A3D4: 38        SEC 
 3D/A3D5: 60        RTS 
 3D/A3D6: A5 87     LDA $87
@@ -44693,6 +41882,9 @@
 3D/A414: D0 C0     BNE $A3D6
 3D/A416: 18        CLC 
 3D/A417: 60        RTS 
+
+; [ restore mp to max ]
+
 3D/A418: A6 7F     LDX $7F
 3D/A41A: BD 31 61  LDA $6131,X
 3D/A41D: 9D 30 61  STA $6130,X
@@ -44703,41 +41895,52 @@
 3D/A425: D0 F3     BNE $A41A
 3D/A427: 18        CLC 
 3D/A428: 60        RTS 
+
+; [ restore hp ]
+
+; +$81: amount of hp to restore
+;  $83: restore to max if set
+
 3D/A429: A6 7F     LDX $7F
 3D/A42B: BD 02 61  LDA $6102,X
 3D/A42E: C9 40     CMP #$40
-3D/A430: B0 33     BCS $A465
+3D/A430: B0 33     BCS $A465          ; return if dead or stone
 3D/A432: A5 83     LDA $83
 3D/A434: D0 22     BNE $A458
 3D/A436: A5 81     LDA $81
 3D/A438: 18        CLC 
-3D/A439: 7D 0C 61  ADC $610C,X
+3D/A439: 7D 0C 61  ADC $610C,X        ; add to current hp
 3D/A43C: 9D 0C 61  STA $610C,X
 3D/A43F: BD 0D 61  LDA $610D,X
 3D/A442: 65 82     ADC $82
 3D/A444: 9D 0D 61  STA $610D,X
-3D/A447: DD 0F 61  CMP $610F,X
+3D/A447: DD 0F 61  CMP $610F,X        ; compare to max hp
 3D/A44A: 90 19     BCC $A465
 3D/A44C: F0 02     BEQ $A450
 3D/A44E: B0 08     BCS $A458
 3D/A450: BD 0C 61  LDA $610C,X
 3D/A453: DD 0E 61  CMP $610E,X
 3D/A456: 90 0D     BCC $A465
-3D/A458: BD 0E 61  LDA $610E,X
+3D/A458: BD 0E 61  LDA $610E,X        ; set hp to max
 3D/A45B: 9D 0C 61  STA $610C,X
 3D/A45E: BD 0F 61  LDA $610F,X
 3D/A461: 9D 0D 61  STA $610D,X
 3D/A464: 18        CLC 
 3D/A465: 60        RTS 
+
+; [ healing spell effect ]
+
+; (job level / 32) + (level / 16) + (mod. spirit / 16)
+
 3D/A466: A6 0A     LDX $0A
-3D/A468: BD 10 61  LDA $6110,X
+3D/A468: BD 10 61  LDA $6110,X        ; job level
 3D/A46B: 4A        LSR 
 3D/A46C: 4A        LSR 
 3D/A46D: 4A        LSR 
 3D/A46E: 4A        LSR 
 3D/A46F: 4A        LSR 
 3D/A470: 85 8C     STA $8C
-3D/A472: BD 01 61  LDA $6101,X
+3D/A472: BD 01 61  LDA $6101,X        ; level
 3D/A475: 4A        LSR 
 3D/A476: 4A        LSR 
 3D/A477: 4A        LSR 
@@ -44745,7 +41948,7 @@
 3D/A479: 18        CLC 
 3D/A47A: 65 8C     ADC $8C
 3D/A47C: 85 8C     STA $8C
-3D/A47E: BD 1B 61  LDA $611B,X
+3D/A47E: BD 1B 61  LDA $611B,X        ; mod. spirit
 3D/A481: 4A        LSR 
 3D/A482: 4A        LSR 
 3D/A483: 4A        LSR 
@@ -44753,6 +41956,10 @@
 3D/A485: 38        SEC 
 3D/A486: 65 8C     ADC $8C
 3D/A488: 85 8C     STA $8C
+; fallthrough
+
+; [ healing spell/item effect ]
+
 3D/A48A: 20 B5 A4  JSR $A4B5
 3D/A48D: A5 8C     LDA $8C
 3D/A48F: 85 80     STA $80
@@ -44763,10 +41970,10 @@
 3D/A49B: A5 8B     LDA $8B
 3D/A49D: C9 01     CMP #$01
 3D/A49F: D0 03     BNE $A4A4
-3D/A4A1: 4C 29 A4  JMP $A429
+3D/A4A1: 4C 29 A4  JMP $A429          ; restore hp
 3D/A4A4: A9 00     LDA #$00
 3D/A4A6: 85 7F     STA $7F
-3D/A4A8: 20 29 A4  JSR $A429
+3D/A4A8: 20 29 A4  JSR $A429          ; restore hp
 3D/A4AB: A5 7F     LDA $7F
 3D/A4AD: 18        CLC 
 3D/A4AE: 69 40     ADC #$40
@@ -44818,6 +42025,9 @@
 3D/A4FB: A5 80     LDA $80
 3D/A4FD: D0 DF     BNE $A4DE
 3D/A4FF: 60        RTS 
+
+; [  ]
+
 3D/A500: A9 00     LDA #$00
 3D/A502: 85 81     STA $81
 3D/A504: 85 82     STA $82
@@ -44839,14 +42049,14 @@
 3D/A522: D0 E8     BNE $A50C
 3D/A524: 60        RTS 
 
-; [  ]
+; [ show minimap ]
 
 3D/A525: 68        PLA 
 3D/A526: 68        PLA 
 3D/A527: 68        PLA 
 3D/A528: 68        PLA 
-3D/A529: 20 85 A6  JSR $A685
-3D/A52C: 20 63 C0  JSR $C063
+3D/A529: 20 85 A6  JSR $A685          ; close menu
+3D/A52C: 20 63 C0  JSR $C063          ; show minimap
 ; fallthrough
 
 ; [ main menu ]
@@ -44863,7 +42073,7 @@
 3D/A547: 20 86 C4  JSR $C486          ; clear oam data
 3D/A54A: 20 00 FF  JSR $FF00          ; wait for vblank
 3D/A54D: A9 02     LDA #$02
-3D/A54F: 8D 14 40  STA $4014
+3D/A54F: 8D 14 40  STA $4014          ; dma oam data to ppu
 3D/A552: 20 08 D3  JSR $D308          ; copy color palettes to vram
 3D/A555: A9 88     LDA #$88
 3D/A557: 85 FD     STA $FD
@@ -44879,98 +42089,109 @@
 3D/A56E: A2 00     LDX #$00
 3D/A570: 86 A3     STX $A3
 3D/A572: 86 A4     STX $A4
-3D/A574: 86 B4     STX $B4
-3D/A576: A9 30     LDA #$30
-3D/A578: 20 66 A6  JSR $A666
+3D/A574: 86 B4     STX $B4            ; hide page arrows
+3D/A576: A9 30     LDA #$30           ; character stats
+3D/A578: 20 66 A6  JSR $A666          ; open menu window with text
 3D/A57B: A2 01     LDX #$01
-3D/A57D: A9 31     LDA #$31
-3D/A57F: 20 66 A6  JSR $A666
+3D/A57D: A9 31     LDA #$31           ; menu options
+3D/A57F: 20 66 A6  JSR $A666          ; open menu window with text
 3D/A582: A2 02     LDX #$02
-3D/A584: A9 32     LDA #$32
-3D/A586: 20 66 A6  JSR $A666
+3D/A584: A9 32     LDA #$32           ; guest npc ???
+3D/A586: 20 66 A6  JSR $A666          ; open menu window with text
 3D/A589: A2 03     LDX #$03
-3D/A58B: A9 33     LDA #$33
-3D/A58D: 20 66 A6  JSR $A666
+3D/A58B: A9 33     LDA #$33           ; cp
+3D/A58D: 20 66 A6  JSR $A666          ; open menu window with text
 3D/A590: A2 04     LDX #$04
-3D/A592: A9 34     LDA #$34
-3D/A594: 20 66 A6  JSR $A666
-3D/A597: A9 01     LDA #$01
+3D/A592: A9 34     LDA #$34           ; gp
+3D/A594: 20 66 A6  JSR $A666          ; open menu window with text
+3D/A597: A9 01     LDA #$01           ; show cursor 1
 3D/A599: 85 A2     STA $A2
 3D/A59B: A5 2D     LDA $2D
 3D/A59D: 4A        LSR 
-3D/A59E: 90 09     BCC $A5A9
+3D/A59E: 90 09     BCC $A5A9          ; branch if saving is enabled
 3D/A5A0: AD F1 78  LDA $78F1
 3D/A5A3: 38        SEC 
-3D/A5A4: E9 04     SBC #$04
+3D/A5A4: E9 04     SBC #$04           ; remove last cursor position
 3D/A5A6: 8D F1 78  STA $78F1
-3D/A5A9: 20 CD A7  JSR $A7CD
+3D/A5A9: 20 CD A7  JSR $A7CD          ; wait for vblank (update cursors)
 3D/A5AC: A9 00     LDA #$00
-3D/A5AE: 20 00 80  JSR $8000
+3D/A5AE: 20 00 80  JSR $8000          ; draw characters
 3D/A5B1: A9 00     LDA #$00
 3D/A5B3: 20 CB 80  JSR $80CB
 3D/A5B6: A9 04     LDA #$04
-3D/A5B8: 20 A3 91  JSR $91A3
+3D/A5B8: 20 A3 91  JSR $91A3          ; update cursor 1 position
 3D/A5BB: A5 25     LDA $25
 3D/A5BD: F0 03     BEQ $A5C2
 3D/A5BF: 4C 46 A6  JMP $A646
 3D/A5C2: A5 24     LDA $24
 3D/A5C4: F0 E3     BEQ $A5A9
-3D/A5C6: 20 74 8F  JSR $8F74
+3D/A5C6: 20 74 8F  JSR $8F74          ; cursor sound effect
 3D/A5C9: 20 54 A6  JSR $A654
+; 0: item
 3D/A5CC: AD F0 78  LDA $78F0
 3D/A5CF: D0 06     BNE $A5D7
-3D/A5D1: 20 C2 9E  JSR $9EC2
+3D/A5D1: 20 C2 9E  JSR $9EC2          ; item menu
 3D/A5D4: 4C 67 A5  JMP $A567
+; 1: magic
 3D/A5D7: C9 04     CMP #$04
 3D/A5D9: D0 14     BNE $A5EF
-3D/A5DB: 20 B4 A6  JSR $A6B4
+3D/A5DB: 20 B4 A6  JSR $A6B4          ; character select
 3D/A5DE: B0 C9     BCS $A5A9
 3D/A5E0: A6 7F     LDX $7F
 3D/A5E2: BD 02 61  LDA $6102,X
 3D/A5E5: 29 C0     AND #$C0
 3D/A5E7: D0 39     BNE $A622
-3D/A5E9: 20 61 97  JSR $9761
+3D/A5E9: 20 61 97  JSR $9761          ; magic menu
 3D/A5EC: 4C 67 A5  JMP $A567
+; 2: equip
 3D/A5EF: C9 08     CMP #$08
 3D/A5F1: D0 0B     BNE $A5FE
-3D/A5F3: 20 B4 A6  JSR $A6B4
+3D/A5F3: 20 B4 A6  JSR $A6B4          ; character select
 3D/A5F6: B0 B1     BCS $A5A9
-3D/A5F8: 20 B5 9B  JSR $9BB5
+3D/A5F8: 20 B5 9B  JSR $9BB5          ; equip menu
 3D/A5FB: 4C 67 A5  JMP $A567
+; 3: status
 3D/A5FE: C9 0C     CMP #$0C
 3D/A600: D0 0B     BNE $A60D
-3D/A602: 20 B4 A6  JSR $A6B4
+3D/A602: 20 B4 A6  JSR $A6B4          ; character select
 3D/A605: B0 A2     BCS $A5A9
-3D/A607: 20 3B A8  JSR $A83B
+3D/A607: 20 3B A8  JSR $A83B          ; status menu
 3D/A60A: 4C 67 A5  JMP $A567
+; 4: row
 3D/A60D: C9 10     CMP #$10
 3D/A60F: D0 06     BNE $A617
-3D/A611: 20 96 A6  JSR $A696
+3D/A611: 20 96 A6  JSR $A696          ; row select
 3D/A614: 4C A9 A5  JMP $A5A9
+; 5: job
 3D/A617: C9 14     CMP #$14
 3D/A619: D0 25     BNE $A640
-3D/A61B: AD 21 60  LDA $6021
+3D/A61B: AD 21 60  LDA $6021          ; crystals obtained
 3D/A61E: 29 1F     AND #$1F
 3D/A620: D0 0A     BNE $A62C
-3D/A622: 20 29 D5  JSR $D529
+3D/A622: 20 29 D5  JSR $D529          ; error sound effect
 3D/A625: A9 00     LDA #$00
 3D/A627: 85 A3     STA $A3
 3D/A629: 4C A9 A5  JMP $A5A9
-3D/A62C: 20 B4 A6  JSR $A6B4
+3D/A62C: 20 B4 A6  JSR $A6B4          ; character select
 3D/A62F: B0 F8     BCS $A629
 3D/A631: A6 7F     LDX $7F
 3D/A633: BD 02 61  LDA $6102,X
 3D/A636: 29 C0     AND #$C0
-3D/A638: D0 E8     BNE $A622
-3D/A63A: 20 2F 96  JSR $962F
+3D/A638: D0 E8     BNE $A622          ; branch if stone or dead
+3D/A63A: 20 2F 96  JSR $962F          ; job menu
 3D/A63D: 4C 34 A5  JMP $A534
-3D/A640: 20 97 A8  JSR $A897
+; 6: save
+3D/A640: 20 97 A8  JSR $A897          ; game save menu
 3D/A643: 4C 67 A5  JMP $A567
-3D/A646: 20 85 A6  JSR $A685
+; B button pressed
+3D/A646: 20 85 A6  JSR $A685          ; close menu
 3D/A649: A9 00     LDA #$00
 3D/A64B: 8D 01 20  STA $2001
 3D/A64E: 20 54 A6  JSR $A654
 3D/A651: 4C 58 8F  JMP $8F58
+
+; [  ]
+
 3D/A654: A2 00     LDX #$00
 3D/A656: BD 02 61  LDA $6102,X
 3D/A659: 29 FE     AND #$FE
@@ -44982,11 +42203,15 @@
 3D/A663: D0 F1     BNE $A656
 3D/A665: 60        RTS 
 
-; [  ]
+; [ open menu window with text ]
 
 3D/A666: 48        PHA 
-3D/A667: 20 F1 AA  JSR $AAF1
+3D/A667: 20 F1 AA  JSR $AAF1          ; open menu window
 3D/A66A: 68        PLA 
+; fallthrough
+
+; [ load menu text (multi-line) ]
+
 3D/A66B: 85 92     STA $92            ; text id
 3D/A66D: A9 82     LDA #$82
 3D/A66F: 85 95     STA $95
@@ -44994,7 +42219,7 @@
 3D/A673: 85 94     STA $94
 3D/A675: 4C 65 EE  JMP $EE65          ; load text (multi-line)
 
-; [  ]
+; [ load menu text (single-line) ]
 
 3D/A678: 85 92     STA $92            ; text id
 3D/A67A: A9 82     LDA #$82
@@ -45003,25 +42228,35 @@
 3D/A680: 85 94     STA $94
 3D/A682: 4C 9A EE  JMP $EE9A          ; load text (single-line)
 
+; [ close menu ]
+
 3D/A685: 20 86 C4  JSR $C486          ; clear oam data
 3D/A688: 20 00 FF  JSR $FF00          ; wait for vblank
 3D/A68B: A9 02     LDA #$02
-3D/A68D: 8D 14 40  STA $4014
+3D/A68D: 8D 14 40  STA $4014          ; dma oam data to ppu
 3D/A690: 20 9F 95  JSR $959F
 3D/A693: 4C 65 F4  JMP $F465
+
+; [ row select ]
+
 3D/A696: A9 00     LDA #$00
-3D/A698: 20 B4 A6  JSR $A6B4
+3D/A698: 20 B4 A6  JSR $A6B4          ; character select
 3D/A69B: B0 16     BCS $A6B3
 3D/A69D: A6 7F     LDX $7F
 3D/A69F: BD 02 61  LDA $6102,X
 3D/A6A2: 29 C0     AND #$C0
-3D/A6A4: D0 08     BNE $A6AE
+3D/A6A4: D0 08     BNE $A6AE          ; branch if stone or dead
 3D/A6A6: BD 0F 62  LDA $620F,X
-3D/A6A9: 49 01     EOR #$01
+3D/A6A9: 49 01     EOR #$01           ; toggle battle row
 3D/A6AB: 9D 0F 62  STA $620F,X
-3D/A6AE: 20 CD A6  JSR $A6CD
+3D/A6AE: 20 CD A6  JSR $A6CD          ; character select again
 3D/A6B1: 90 EA     BCC $A69D
 3D/A6B3: 60        RTS 
+
+; [ character select (main menu) ]
+
+; set carry if canceled
+
 3D/A6B4: A9 00     LDA #$00
 3D/A6B6: 8D F0 79  STA $79F0
 3D/A6B9: A2 0F     LDX #$0F
@@ -45033,18 +42268,18 @@
 3D/A6C6: 8D F1 79  STA $79F1
 3D/A6C9: A9 01     LDA #$01
 3D/A6CB: 85 A3     STA $A3
-3D/A6CD: 20 CD A7  JSR $A7CD
+3D/A6CD: 20 CD A7  JSR $A7CD          ; wait for vblank (update cursors)
 3D/A6D0: A9 00     LDA #$00
-3D/A6D2: 20 00 80  JSR $8000
+3D/A6D2: 20 00 80  JSR $8000          ; draw characters
 3D/A6D5: A9 00     LDA #$00
 3D/A6D7: 20 CB 80  JSR $80CB
 3D/A6DA: A9 04     LDA #$04
-3D/A6DC: 20 D9 91  JSR $91D9
+3D/A6DC: 20 D9 91  JSR $91D9          ; update cursor 2 position
 3D/A6DF: A5 25     LDA $25
-3D/A6E1: D0 19     BNE $A6FC
+3D/A6E1: D0 19     BNE $A6FC          ; branch if B button pressed
 3D/A6E3: A5 24     LDA $24
 3D/A6E5: F0 E6     BEQ $A6CD
-3D/A6E7: 20 74 8F  JSR $8F74
+3D/A6E7: 20 74 8F  JSR $8F74          ; cursor sound effect
 3D/A6EA: AD F0 79  LDA $79F0
 3D/A6ED: 4A        LSR 
 3D/A6EE: 4A        LSR 
@@ -45059,21 +42294,18 @@
 3D/A6FB: 60        RTS 
 3D/A6FC: A9 00     LDA #$00
 3D/A6FE: 85 A3     STA $A3
-3D/A700: 20 74 8F  JSR $8F74
+3D/A700: 20 74 8F  JSR $8F74          ; cursor sound effect
 3D/A703: 38        SEC 
 3D/A704: 60        RTS 
-3D/A705: 01 05     ORA ($05,X)
-3D/A707: 00        BRK 
-3D/A708: 00        BRK 
-3D/A709: 01 0B     ORA ($0B,X)
-3D/A70B: 00        BRK 
-3D/A70C: 00        BRK 
-3D/A70D: 01 11     ORA ($11,X)
-3D/A70F: 00        BRK 
-3D/A710: 00        BRK 
-3D/A711: 01 17     ORA ($17,X)
-3D/A713: 00        BRK 
-3D/A714: 00        BRK 
+
+; cursor positions for character select (main menu)
+3D/A705: 01 05 00 00
+3D/A709: 01 0B 00 00
+3D/A70D: 01 11 00 00
+3D/A711: 01 17 00 00
+
+; [ select character ]
+
 3D/A715: A9 00     LDA #$00
 3D/A717: 8D F0 79  STA $79F0
 3D/A71A: A2 0F     LDX #$0F
@@ -45085,35 +42317,27 @@
 3D/A727: 8D F1 79  STA $79F1
 3D/A72A: A9 01     LDA #$01
 3D/A72C: 85 A3     STA $A3
-3D/A72E: 20 CD A7  JSR $A7CD
+3D/A72E: 20 CD A7  JSR $A7CD          ; wait for vblank (update cursors)
 3D/A731: A9 03     LDA #$03
-3D/A733: 20 00 80  JSR $8000
+3D/A733: 20 00 80  JSR $8000          ; draw characters
 3D/A736: A9 08     LDA #$08
-3D/A738: 20 D9 91  JSR $91D9
+3D/A738: 20 D9 91  JSR $91D9          ; update cursor 2 position
 3D/A73B: A5 25     LDA $25
-3D/A73D: D0 07     BNE $A746
+3D/A73D: D0 07     BNE $A746          ; branch if B button pressed
 3D/A73F: A5 24     LDA $24
-3D/A741: F0 EB     BEQ $A72E
+3D/A741: F0 EB     BEQ $A72E          ; branch if A button not pressed
 3D/A743: 4C E7 A6  JMP $A6E7
 3D/A746: A9 00     LDA #$00
 3D/A748: 85 A3     STA $A3
-3D/A74A: 20 74 8F  JSR $8F74
+3D/A74A: 20 74 8F  JSR $8F74          ; cursor sound effect
 3D/A74D: 38        SEC 
 3D/A74E: 60        RTS 
-3D/A74F: 01 17     ORA ($17,X)
-3D/A751: 00        BRK 
-3D/A752: 00        BRK 
-3D/A753: 0F        --- 
-3D/A754: 17        --- 
-3D/A755: 00        BRK 
-3D/A756: 00        BRK 
-3D/A757: 01 1A     ORA ($1A,X)
-3D/A759: 00        BRK 
-3D/A75A: 00        BRK 
-3D/A75B: 0F        --- 
-3D/A75C: 1A        --- 
-3D/A75D: 00        BRK 
-3D/A75E: 00        BRK 
+
+; cursor positions for character select
+3D/A74F: 01 17 00 00
+3D/A753: 0F 17 00 00
+3D/A757: 01 1A 00 00
+3D/A75B: 0F 1A 00 00
 
 ; [  ]
 
@@ -45130,9 +42354,9 @@
 3D/A776: 85 A3     STA $A3
 3D/A778: 20 99 A7  JSR $A799
 3D/A77B: A9 03     LDA #$03
-3D/A77D: 20 00 80  JSR $8000
+3D/A77D: 20 00 80  JSR $8000          ; draw characters
 3D/A780: A9 08     LDA #$08
-3D/A782: 20 D9 91  JSR $91D9
+3D/A782: 20 D9 91  JSR $91D9          ; update cursor 2 position
 3D/A785: A5 25     LDA $25
 3D/A787: D0 07     BNE $A790
 3D/A789: A5 24     LDA $24
@@ -45140,7 +42364,7 @@
 3D/A78D: 4C E7 A6  JMP $A6E7
 3D/A790: A9 00     LDA #$00
 3D/A792: 85 A3     STA $A3
-3D/A794: 20 74 8F  JSR $8F74
+3D/A794: 20 74 8F  JSR $8F74          ; cursor sound effect
 3D/A797: 38        SEC 
 3D/A798: 60        RTS 
 
@@ -45150,60 +42374,63 @@
 3D/A79C: 18        CLC 
 3D/A79D: 69 04     ADC #$04
 3D/A79F: CD F1 79  CMP $79F1
-3D/A7A2: D0 29     BNE $A7CD
+3D/A7A2: D0 29     BNE $A7CD          ; wait for vblank (update cursors)
 3D/A7A4: 20 00 FF  JSR $FF00          ; wait for vblank
 3D/A7A7: A9 02     LDA #$02
-3D/A7A9: 8D 14 40  STA $4014
+3D/A7A9: 8D 14 40  STA $4014          ; dma oam data to ppu
 3D/A7AC: 20 58 C7  JSR $C758          ; update sound
 3D/A7AF: 20 86 C4  JSR $C486          ; clear oam data
-3D/A7B2: 20 19 91  JSR $9119
+3D/A7B2: 20 19 91  JSR $9119          ; draw cursor sprite 1
 3D/A7B5: E6 F0     INC $F0
 3D/A7B7: A5 F0     LDA $F0
 3D/A7B9: 29 03     AND #$03
 3D/A7BB: 0A        ASL 
 3D/A7BC: 0A        ASL 
 3D/A7BD: 8D F0 79  STA $79F0
-3D/A7C0: 20 2A 91  JSR $912A
+3D/A7C0: 20 2A 91  JSR $912A          ; draw cursor sprite 2
 3D/A7C3: AD F1 79  LDA $79F1
 3D/A7C6: 38        SEC 
 3D/A7C7: E9 04     SBC #$04
 3D/A7C9: 8D F0 79  STA $79F0
 3D/A7CC: 60        RTS 
+
+; [ wait for vblank (update cursors) ]
+
 3D/A7CD: 20 00 FF  JSR $FF00          ; wait for vblank
 3D/A7D0: A9 02     LDA #$02
-3D/A7D2: 8D 14 40  STA $4014
-3D/A7D5: E6 F0     INC $F0
+3D/A7D2: 8D 14 40  STA $4014          ; dma oam data to ppu
+3D/A7D5: E6 F0     INC $F0            ; increment frame counter
 3D/A7D7: 20 58 C7  JSR $C758          ; update sound
 3D/A7DA: 20 86 C4  JSR $C486          ; clear oam data
-3D/A7DD: 20 19 91  JSR $9119
-3D/A7E0: 20 2A 91  JSR $912A
-3D/A7E3: 20 4C 91  JSR $914C
+3D/A7DD: 20 19 91  JSR $9119          ; draw cursor sprite 1
+3D/A7E0: 20 2A 91  JSR $912A          ; draw cursor sprite 2
+3D/A7E3: 20 4C 91  JSR $914C          ; draw cursor sprite 3
 3D/A7E6: A6 26     LDX $26
 3D/A7E8: 24 B4     BIT $B4
-3D/A7EA: 50 24     BVC $A810
+3D/A7EA: 50 24     BVC $A810          ; branch if no page up arrow
 3D/A7EC: A5 B5     LDA $B5
 3D/A7EE: 0A        ASL 
 3D/A7EF: 0A        ASL 
 3D/A7F0: 0A        ASL 
-3D/A7F1: 9D 00 02  STA $0200,X
-3D/A7F4: A9 E8     LDA #$E8
+3D/A7F1: 9D 00 02  STA $0200,X        ; y position
+3D/A7F4: A9 E8     LDA #$E8           ; page arrow sprite
 3D/A7F6: 9D 01 02  STA $0201,X
-3D/A7F9: A9 83     LDA #$83
+3D/A7F9: A9 83     LDA #$83           ; v-flip, use palette 3
 3D/A7FB: A4 37     LDY $37
 3D/A7FD: D0 02     BNE $A801
-3D/A7FF: A9 80     LDA #$80
+3D/A7FF: A9 80     LDA #$80           ; v-flip, use palette 0
 3D/A801: 9D 02 02  STA $0202,X
 3D/A804: A5 B6     LDA $B6
 3D/A806: 0A        ASL 
 3D/A807: 0A        ASL 
 3D/A808: 0A        ASL 
-3D/A809: 9D 03 02  STA $0203,X
+3D/A809: 9D 03 02  STA $0203,X        ; x position
 3D/A80C: E8        INX 
 3D/A80D: E8        INX 
 3D/A80E: E8        INX 
 3D/A80F: E8        INX 
 3D/A810: 24 B4     BIT $B4
-3D/A812: 10 24     BPL $A838
+3D/A812: 10 24     BPL $A838          ; branch if no page down arrow
 3D/A814: A5 B7     LDA $B7
 3D/A816: 0A        ASL 
 3D/A817: 0A        ASL 
@@ -45227,31 +42454,40 @@
 3D/A837: E8        INX 
 3D/A838: 86 26     STX $26
 3D/A83A: 60        RTS 
-3D/A83B: 20 92 95  JSR $9592
-3D/A83E: 20 85 A6  JSR $A685
+
+; [ status menu ]
+
+3D/A83B: 20 92 95  JSR $9592          ; reset A/B button
+3D/A83E: 20 85 A6  JSR $A685          ; close menu
 3D/A841: 20 6F 95  JSR $956F
-3D/A844: A9 00     LDA #$00
+3D/A844: A9 00     LDA #$00           ; hide cursor 1 and 2
 3D/A846: 85 A2     STA $A2
 3D/A848: 85 A3     STA $A3
-3D/A84A: 20 64 A8  JSR $A864
-3D/A84D: 20 CD A7  JSR $A7CD
+3D/A84A: 20 64 A8  JSR $A864          ; init status window
+3D/A84D: 20 CD A7  JSR $A7CD          ; wait for vblank (update cursors)
 3D/A850: A6 7F     LDX $7F
-3D/A852: 20 29 81  JSR $8129
-3D/A855: 20 19 D2  JSR $D219
+3D/A852: 20 29 81  JSR $8129          ; draw character sprite
+3D/A855: 20 19 D2  JSR $D219          ; update joypad input
 3D/A858: A5 24     LDA $24
 3D/A85A: 05 25     ORA $25
-3D/A85C: F0 EF     BEQ $A84D
-3D/A85E: 20 74 8F  JSR $8F74
-3D/A861: 4C 85 A6  JMP $A685
-3D/A864: A2 1D     LDX #$1D
-3D/A866: A9 47     LDA #$47
+3D/A85C: F0 EF     BEQ $A84D          ; branch if no buttons are pressed
+3D/A85E: 20 74 8F  JSR $8F74          ; cursor sound effect
+3D/A861: 4C 85 A6  JMP $A685          ; close menu
+
+; [ init status window ]
+
+3D/A864: A2 1D     LDX #$1D           ; status main window
+3D/A866: A9 47     LDA #$47           ; $0147: status text
 3D/A868: 20 75 A8  JSR $A875
-3D/A86B: A2 1C     LDX #$1C
-3D/A86D: 20 F1 AA  JSR $AAF1
-3D/A870: A9 37     LDA #$37
-3D/A872: 4C 6B A6  JMP $A66B
+3D/A86B: A2 1C     LDX #$1C           ; status title window
+3D/A86D: 20 F1 AA  JSR $AAF1          ; open menu window
+3D/A870: A9 37     LDA #$37           ; $0137: "Status"
+3D/A872: 4C 6B A6  JMP $A66B          ; load menu text
+
+; [  ]
+
 3D/A875: 48        PHA 
-3D/A876: 20 F1 AA  JSR $AAF1
+3D/A876: 20 F1 AA  JSR $AAF1          ; open menu window
 3D/A879: 68        PLA 
 3D/A87A: 20 B1 D1  JSR $D1B1
 3D/A87D: A9 18     LDA #$18
@@ -45261,39 +42497,43 @@
 3D/A885: A9 7B     LDA #$7B
 3D/A887: 85 3F     STA $3F
 3D/A889: 4C 61 EB  JMP $EB61
-3D/A88C: 20 74 8F  JSR $8F74
+
+; [ game save menu ]
+
+; starts at 3D/A897
+
+; close save menu
+3D/A88C: 20 74 8F  JSR $8F74          ; cursor sound effect
 3D/A88F: A9 18     LDA #$18
 3D/A891: 8D F0 78  STA $78F0
-3D/A894: 4C 85 A6  JMP $A685
-
-; [  ]
-
-3D/A897: AD 38 7F  LDA $7F38
+3D/A894: 4C 85 A6  JMP $A685          ; close menu
+; subroutine starts here
+3D/A897: AD 38 7F  LDA $7F38          ; check if save count is valid
 3D/A89A: C9 55     CMP #$55
 3D/A89C: D0 07     BNE $A8A5
 3D/A89E: AD 39 7F  LDA $7F39
 3D/A8A1: C9 AA     CMP #$AA
 3D/A8A3: F0 0F     BEQ $A8B4
-3D/A8A5: A9 55     LDA #$55
+3D/A8A5: A9 55     LDA #$55           ; validate save count
 3D/A8A7: 8D 38 7F  STA $7F38
 3D/A8AA: A9 AA     LDA #$AA
 3D/A8AC: 8D 39 7F  STA $7F39
-3D/A8AF: A9 01     LDA #$01
+3D/A8AF: A9 01     LDA #$01           ; set save count to 1
 3D/A8B1: 8D 3A 7F  STA $7F3A
 3D/A8B4: AD 3A 7F  LDA $7F3A
 3D/A8B7: 8D 14 60  STA $6014
-3D/A8BA: 20 5C AE  JSR $AE5C
-3D/A8BD: 20 92 95  JSR $9592
-3D/A8C0: 20 85 A6  JSR $A685
+3D/A8BA: 20 5C AE  JSR $AE5C          ; update sram checksum
+3D/A8BD: 20 92 95  JSR $9592          ; reset A/B button
+3D/A8C0: 20 85 A6  JSR $A685          ; close menu
 3D/A8C3: 20 6F 95  JSR $956F
 3D/A8C6: A9 00     LDA #$00
 3D/A8C8: 8D 01 20  STA $2001
 3D/A8CB: 20 06 DD  JSR $DD06          ; load menu graphics
 3D/A8CE: 20 00 FF  JSR $FF00          ; wait for vblank
 3D/A8D1: A9 02     LDA #$02
-3D/A8D3: 8D 14 40  STA $4014
+3D/A8D3: 8D 14 40  STA $4014          ; dma oam data to ppu
 3D/A8D6: 20 9F 95  JSR $959F
-3D/A8D9: A9 00     LDA #$00
+3D/A8D9: A9 00     LDA #$00           ; hide cursor 1 and 3
 3D/A8DB: 85 A2     STA $A2
 3D/A8DD: 85 A4     STA $A4
 3D/A8DF: A9 01     LDA #$01
@@ -45301,48 +42541,48 @@
 3D/A8E3: A9 00     LDA #$00
 3D/A8E5: 8D F0 79  STA $79F0
 3D/A8E8: 20 84 A9  JSR $A984
-3D/A8EB: 20 CD A7  JSR $A7CD
+3D/A8EB: 20 CD A7  JSR $A7CD          ; wait for vblank (update cursors)
 3D/A8EE: AD F0 79  LDA $79F0
 3D/A8F1: 4A        LSR 
 3D/A8F2: 4A        LSR 
 3D/A8F3: 29 03     AND #$03
 3D/A8F5: 20 41 82  JSR $8241
 3D/A8F8: A9 04     LDA #$04
-3D/A8FA: 20 D9 91  JSR $91D9
+3D/A8FA: 20 D9 91  JSR $91D9          ; update cursor 2 position
 3D/A8FD: A5 25     LDA $25
-3D/A8FF: D0 8B     BNE $A88C
+3D/A8FF: D0 8B     BNE $A88C          ; branch if B button is pressed
 3D/A901: A5 24     LDA $24
-3D/A903: F0 E6     BEQ $A8EB
-3D/A905: 20 74 8F  JSR $8F74
-3D/A908: A9 4C     LDA #$4C
+3D/A903: F0 E6     BEQ $A8EB          ; branch if A button is not pressed
+3D/A905: 20 74 8F  JSR $8F74          ; cursor sound effect
+3D/A908: A9 4C     LDA #$4C           ; "Replace data?\choice[0x0F]Yes\choice[0x13]No"
 3D/A90A: 20 96 A9  JSR $A996
-3D/A90D: A9 01     LDA #$01
+3D/A90D: A9 01     LDA #$01           ; show cursor 1
 3D/A90F: 85 A2     STA $A2
 3D/A911: A9 00     LDA #$00
 3D/A913: 8D F0 78  STA $78F0
-3D/A916: 20 CD A7  JSR $A7CD
+3D/A916: 20 CD A7  JSR $A7CD          ; wait for vblank (update cursors)
 3D/A919: AD F0 79  LDA $79F0
 3D/A91C: 4A        LSR 
 3D/A91D: 4A        LSR 
 3D/A91E: 29 03     AND #$03
 3D/A920: 20 41 82  JSR $8241
 3D/A923: A9 04     LDA #$04
-3D/A925: 20 A3 91  JSR $91A3
+3D/A925: 20 A3 91  JSR $91A3          ; update cursor 1 position
 3D/A928: A5 25     LDA $25
-3D/A92A: D0 09     BNE $A935
+3D/A92A: D0 09     BNE $A935          ; branch if B button is pressed
 3D/A92C: A5 24     LDA $24
-3D/A92E: F0 E6     BEQ $A916
+3D/A92E: F0 E6     BEQ $A916          ; branch if A button is not pressed
 3D/A930: AD F0 78  LDA $78F0
 3D/A933: F0 03     BEQ $A938
 3D/A935: 4C 8C A8  JMP $A88C
-3D/A938: A9 4D     LDA #$4D
+3D/A938: A9 4D     LDA #$4D           ; "Save complete!"
 3D/A93A: 20 96 A9  JSR $A996
-3D/A93D: AD 3A 7F  LDA $7F3A
+3D/A93D: AD 3A 7F  LDA $7F3A          ; increment save count
 3D/A940: 18        CLC 
 3D/A941: 69 01     ADC #$01
-3D/A943: C9 64     CMP #$64
+3D/A943: C9 64     CMP #$64           ; max 99
 3D/A945: 90 02     BCC $A949
-3D/A947: A9 01     LDA #$01
+3D/A947: A9 01     LDA #$01           ; reset back to 1
 3D/A949: 8D 3A 7F  STA $7F3A
 3D/A94C: AD F0 79  LDA $79F0
 3D/A94F: 29 0C     AND #$0C
@@ -45366,69 +42606,83 @@
 3D/A971: D0 EF     BNE $A962
 3D/A973: 20 67 AA  JSR $AA67
 3D/A976: 20 4B AA  JSR $AA4B
-3D/A979: A9 4E     LDA #$4E
+3D/A979: A9 4E     LDA #$4E           ; "Play again soon!"
 3D/A97B: 20 96 A9  JSR $A996
 3D/A97E: 20 4B AA  JSR $AA4B
 3D/A981: 4C 8C A8  JMP $A88C
-3D/A984: A2 0F     LDX #$0F
-3D/A986: 20 F1 AA  JSR $AAF1
-3D/A989: A9 38     LDA #$38
-3D/A98B: 20 6B A6  JSR $A66B
-3D/A98E: 20 A0 A9  JSR $A9A0
-3D/A991: A9 4B     LDA #$4B
-3D/A993: 4C 96 A9  JMP $A996
-3D/A996: 48        PHA 
-3D/A997: A2 10     LDX #$10
-3D/A999: 20 F1 AA  JSR $AAF1
-3D/A99C: 68        PLA 
-3D/A99D: 4C 78 A6  JMP $A678
 
 ; [  ]
+
+3D/A984: A2 0F     LDX #$0F
+3D/A986: 20 F1 AA  JSR $AAF1          ; open menu window
+3D/A989: A9 38     LDA #$38           ; "Save"
+3D/A98B: 20 6B A6  JSR $A66B          ; load menu text
+3D/A98E: 20 A0 A9  JSR $A9A0          ; init save slot windows
+3D/A991: A9 4B     LDA #$4B           ; "Save Which file?"
+3D/A993: 4C 96 A9  JMP $A996
+
+; [  ]
+
+3D/A996: 48        PHA 
+3D/A997: A2 10     LDX #$10
+3D/A999: 20 F1 AA  JSR $AAF1          ; open menu window
+3D/A99C: 68        PLA 
+3D/A99D: 4C 78 A6  JMP $A678          ; load menu text
+
+; [ init save slot windows ]
 
 3D/A9A0: 18        CLC 
 3D/A9A1: 20 18 AA  JSR $AA18
 3D/A9A4: A9 00     LDA #$00
 3D/A9A6: 85 62     STA $62
 3D/A9A8: A2 11     LDX #$11
-3D/A9AA: 20 F1 AA  JSR $AAF1
-3D/A9AD: A9 64     LDA #$64
-3D/A9AF: 20 E1 A9  JSR $A9E1
+3D/A9AA: 20 F1 AA  JSR $AAF1          ; open menu window
+3D/A9AD: A9 64     LDA #$64           ; save slot 1
+3D/A9AF: 20 E1 A9  JSR $A9E1          ; draw save slot text
 3D/A9B2: 26 62     ROL $62
 3D/A9B4: A2 12     LDX #$12
-3D/A9B6: 20 F1 AA  JSR $AAF1
-3D/A9B9: A9 68     LDA #$68
-3D/A9BB: 20 E1 A9  JSR $A9E1
+3D/A9B6: 20 F1 AA  JSR $AAF1          ; open menu window
+3D/A9B9: A9 68     LDA #$68           ; save slot 2
+3D/A9BB: 20 E1 A9  JSR $A9E1          ; draw save slot text
 3D/A9BE: 26 62     ROL $62
 3D/A9C0: A2 13     LDX #$13
-3D/A9C2: 20 F1 AA  JSR $AAF1
-3D/A9C5: A9 6C     LDA #$6C
-3D/A9C7: 20 E1 A9  JSR $A9E1
+3D/A9C2: 20 F1 AA  JSR $AAF1          ; open menu window
+3D/A9C5: A9 6C     LDA #$6C           ; save slot 3
+3D/A9C7: 20 E1 A9  JSR $A9E1          ; draw save slot text
 3D/A9CA: 26 62     ROL $62
 3D/A9CC: 38        SEC 
 3D/A9CD: 20 18 AA  JSR $AA18
 3D/A9D0: A2 0F     LDX #$0F
-3D/A9D2: BD 3B AA  LDA $AA3B,X
+3D/A9D2: BD 3B AA  LDA $AA3B,X        ; copy cursor data
 3D/A9D5: 9D 00 79  STA $7900,X
 3D/A9D8: CA        DEX 
 3D/A9D9: 10 F7     BPL $A9D2
-3D/A9DB: A9 0C     LDA #$0C
+3D/A9DB: A9 0C     LDA #$0C           ; start at the last cursor position
 3D/A9DD: 8D F1 79  STA $79F1
 3D/A9E0: 60        RTS 
+
+; [ draw save slot text ]
+
+; set carry if save slot is valid
+
 3D/A9E1: 48        PHA 
 3D/A9E2: 4A        LSR 
 3D/A9E3: 4A        LSR 
 3D/A9E4: 29 03     AND #$03
-3D/A9E6: 20 97 AE  JSR $AE97
-3D/A9E9: 90 03     BCC $A9EE
+3D/A9E6: 20 97 AE  JSR $AE97          ; check if save slot is valid
+3D/A9E9: 90 03     BCC $A9EE          ; branch if valid
 3D/A9EB: 68        PLA 
 3D/A9EC: 18        CLC 
 3D/A9ED: 60        RTS 
 3D/A9EE: 68        PLA 
-3D/A9EF: 20 F9 A9  JSR $A9F9
+3D/A9EF: 20 F9 A9  JSR $A9F9          ; load save slot
 3D/A9F2: A9 25     LDA #$25
-3D/A9F4: 20 6B A6  JSR $A66B
+3D/A9F4: 20 6B A6  JSR $A66B          ; load menu text
 3D/A9F7: 38        SEC 
 3D/A9F8: 60        RTS 
+
+; [ load save slot ]
+
 3D/A9F9: 85 83     STA $83
 3D/A9FB: A9 00     LDA #$00
 3D/A9FD: A8        TAY 
@@ -45436,7 +42690,7 @@
 3D/AA00: 85 82     STA $82
 3D/AA02: A9 60     LDA #$60
 3D/AA04: 85 81     STA $81
-3D/AA06: B1 82     LDA ($82),Y
+3D/AA06: B1 82     LDA ($82),Y        ; copy 1024 bytes to $6000
 3D/AA08: 91 80     STA ($80),Y
 3D/AA0A: C8        INY 
 3D/AA0B: D0 F9     BNE $AA06
@@ -45469,18 +42723,13 @@
 3D/AA38: D0 EF     BNE $AA29
 3D/AA3A: 60        RTS 
 
-3D/AA3B: 01 07     ORA ($07,X)
-3D/AA3D: 00        BRK 
-3D/AA3E: 00        BRK 
-3D/AA3F: 01 0F     ORA ($0F,X)
-3D/AA41: 00        BRK 
-3D/AA42: 00        BRK 
-3D/AA43: 01 17     ORA ($17,X)
-3D/AA45: 00        BRK 
-3D/AA46: 00        BRK 
-3D/AA47: 01 02     ORA ($02,X)
-3D/AA49: 00        BRK 
-3D/AA4A: 00        BRK 
+; cursor data for load menu
+3D/AA3B: 01 07 00 00
+3D/AA3F: 01 0F 00 00
+3D/AA43: 01 17 00 00
+3D/AA47: 01 02 00 00
+
+; [  ]
 
 3D/AA4B: 20 60 AA  JSR $AA60
 3D/AA4E: 20 81 D2  JSR $D281          ; read joypad registers
@@ -45494,39 +42743,45 @@
 3D/AA60: 20 00 FF  JSR $FF00          ; wait for vblank
 3D/AA63: 20 58 C7  JSR $C758          ; update sound
 3D/AA66: 60        RTS 
-3D/AA67: A9 00     LDA #$00
+
+; [  ]
+
+3D/AA67: A9 00     LDA #$00           ; hide cursor 1 and 2
 3D/AA69: 85 A3     STA $A3
 3D/AA6B: 85 A2     STA $A2
-3D/AA6D: 20 CD A7  JSR $A7CD
+3D/AA6D: 20 CD A7  JSR $A7CD          ; wait for vblank (update cursors)
 3D/AA70: AD F0 79  LDA $79F0
 3D/AA73: 4A        LSR 
 3D/AA74: 4A        LSR 
-3D/AA75: 29 03     AND #$03
+3D/AA75: 29 03     AND #$03           ; save slot
 3D/AA77: 48        PHA 
 3D/AA78: 18        CLC 
 3D/AA79: 69 11     ADC #$11
 3D/AA7B: AA        TAX 
-3D/AA7C: 20 F1 AA  JSR $AAF1
-3D/AA7F: A9 25     LDA #$25
-3D/AA81: 20 6B A6  JSR $A66B
+3D/AA7C: 20 F1 AA  JSR $AAF1          ; open menu window
+3D/AA7F: A9 25     LDA #$25           ; character stats for save/load menu
+3D/AA81: 20 6B A6  JSR $A66B          ; load menu text
 3D/AA84: 68        PLA 
 3D/AA85: 18        CLC 
 3D/AA86: 69 01     ADC #$01
-3D/AA88: 20 00 80  JSR $8000
-3D/AA8B: 4C CD A7  JMP $A7CD
+3D/AA88: 20 00 80  JSR $8000          ; draw characters
+3D/AA8B: 4C CD A7  JMP $A7CD          ; wait for vblank (update cursors)
+
+; [  ]
+
 3D/AA8E: 20 4B F4  JSR $F44B
 3D/AA91: A2 06     LDX #$06
 3D/AA93: 20 A0 AA  JSR $AAA0
 3D/AA96: A2 05     LDX #$05
-3D/AA98: 20 F1 AA  JSR $AAF1
-3D/AA9B: A9 35     LDA #$35
-3D/AA9D: 4C 78 A6  JMP $A678
-3D/AAA0: 20 BC AA  JSR $AABC
+3D/AA98: 20 F1 AA  JSR $AAF1          ; open menu window
+3D/AA9B: A9 35     LDA #$35           ; "Item"
+3D/AA9D: 4C 78 A6  JMP $A678          ; load menu text
+3D/AAA0: 20 BC AA  JSR $AABC          ; load menu window position
 3D/AAA3: 4C E5 EC  JMP $ECE5
 
 ; [  ]
 
-3D/AAA6: 20 BC AA  JSR $AABC
+3D/AAA6: 20 BC AA  JSR $AABC          ; load menu window position
 3D/AAA9: E6 38     INC $38
 3D/AAAB: E6 39     INC $39
 3D/AAAD: A5 3C     LDA $3C
@@ -45538,6 +42793,9 @@
 3D/AAB7: E9 02     SBC #$02
 3D/AAB9: 85 3D     STA $3D
 3D/AABB: 60        RTS 
+
+; [ load menu window position ]
+
 3D/AABC: BD F7 AA  LDA $AAF7,X
 3D/AABF: 85 B6     STA $B6
 3D/AAC1: 85 38     STA $38
@@ -45566,140 +42824,91 @@
 3D/AAEC: E9 03     SBC #$03
 3D/AAEE: 85 B7     STA $B7
 3D/AAF0: 60        RTS 
-3D/AAF1: 20 BC AA  JSR $AABC
-3D/AAF4: 4C 02 ED  JMP $ED02
 
-3D/AAF7: 01 17     ORA ($17,X)
-3D/AAF9: 17        --- 
-3D/AAFA: 09 11     ORA #$11
-3D/AAFC: 01 01     ORA ($01,X)
-3D/AAFE: 01 09     ORA ($09,X)
-3D/AB00: 18        CLC 
-3D/AB01: 01 01     ORA ($01,X)
-3D/AB03: 01 19     ORA ($19,X)
-3D/AB05: 01 01     ORA ($01,X)
-3D/AB07: 08        PHP 
-3D/AB08: 01 01     ORA ($01,X)
-3D/AB0A: 01 02     ORA ($02,X)
-3D/AB0C: 09 02     ORA #$02
-3D/AB0E: 10 02     BPL $AB12
-3D/AB10: 01 07     ORA ($07,X)
-3D/AB12: 01 01     ORA ($01,X)
-3D/AB14: 01 01     ORA ($01,X)
-3D/AB16: 01 02     ORA ($02,X)
-3D/AB18: 10 07     BPL $AB21
-3D/AB1A: 04        --- 
-3D/AB1B: 01 01     ORA ($01,X)
-3D/AB1D: 01 01     ORA ($01,X)
-3D/AB1F: 12        --- 
-3D/AB20: 1A        --- 
-3D/AB21: 1A        --- 
-3D/AB22: 01 04     ORA ($04,X)
-3D/AB24: 15 01     ORA $01,X
-3D/AB26: 01 01     ORA ($01,X)
-3D/AB28: 0B        --- 
-3D/AB29: 01 01     ORA ($01,X)
-3D/AB2B: 05 01     ORA $01
-3D/AB2D: 01 05     ORA ($05,X)
-3D/AB2F: 0D 15 02  ORA $0215
-3D/AB32: 02        --- 
-3D/AB33: 06 06     ASL $06
-3D/AB35: 0A        ASL 
-3D/AB36: 0A        ASL 
-3D/AB37: 01 06     ORA ($06,X)
-3D/AB39: 01 01     ORA ($01,X)
-3D/AB3B: 08        PHP 
-3D/AB3C: 12        --- 
-3D/AB3D: 08        PHP 
-3D/AB3E: 01 03     ORA ($03,X)
-3D/AB40: 0B        --- 
-3D/AB41: 01 01     ORA ($01,X)
-3D/AB43: 16 08     ASL $08,X
-3D/AB45: 08        PHP 
-3D/AB46: 08        PHP 
-3D/AB47: 0C        --- 
-3D/AB48: 08        PHP 
-3D/AB49: 1E 1E 0A  ASL $0A1E,X
-3D/AB4C: 07        --- 
-3D/AB4D: 1E 1E 12  ASL $121E,X
-3D/AB50: 06 1E     ASL $1E
-3D/AB52: 07        --- 
-3D/AB53: 17        --- 
-3D/AB54: 1E 1E 1E  ASL $1E1E,X
-3D/AB57: 08        PHP 
-3D/AB58: 15 0E     ORA $0E,X
-3D/AB5A: 0E 16 1E  ASL $1E16
-3D/AB5D: 18        CLC 
-3D/AB5E: 12        --- 
-3D/AB5F: 09 1E     ORA #$1E
-3D/AB61: 13        --- 
-3D/AB62: 12        --- 
-3D/AB63: 1C        --- 
-3D/AB64: 0F        --- 
-3D/AB65: 12        --- 
-3D/AB66: 18        CLC 
-3D/AB67: 1E 1E 1B  ASL $1B1E,X
-3D/AB6A: 11 09     ORA ($09),Y
-3D/AB6C: 03        --- 
-3D/AB6D: 03        --- 
-3D/AB6E: 04        --- 
-3D/AB6F: 12        --- 
-3D/AB70: 08        PHP 
-3D/AB71: 04        --- 
-3D/AB72: 04        --- 
-3D/AB73: 0B        --- 
-3D/AB74: 12        --- 
-3D/AB75: 04        --- 
-3D/AB76: 04        --- 
-3D/AB77: 18        CLC 
-3D/AB78: 04        --- 
-3D/AB79: 04        --- 
-3D/AB7A: 08        PHP 
-3D/AB7B: 08        PHP 
-3D/AB7C: 08        PHP 
-3D/AB7D: 04        --- 
-3D/AB7E: 04        --- 
-3D/AB7F: 04        --- 
-3D/AB80: 04        --- 
-3D/AB81: 12        --- 
-3D/AB82: 12        --- 
-3D/AB83: 04        --- 
-3D/AB84: 04        --- 
-3D/AB85: 04        --- 
-3D/AB86: 1C        --- 
-3D/AB87: 04        --- 
-3D/AB88: 04        --- 
-3D/AB89: 06 04     ASL $04
-3D/AB8B: 06 0E     ASL $0E
-3D/AB8D: 04        --- 
-3D/AB8E: 1C        --- 
+; [ open menu window ]
 
-3D/AB8F: 20 F2 AD  JSR $ADF2
+3D/AAF1: 20 BC AA  JSR $AABC          ; load menu window position
+3D/AAF4: 4C 02 ED  JMP $ED02          ; open window
+
+; menu window position data
+
+; $00: ( 1, 1) 22x27 main menu - main window
+; $01: (23, 1)  8x17 main menu - command list
+; $02: (23,18)  8x 9 main menu - guest npc
+; $03: ( 9,26)  8x 3 main menu - cp
+; $04: (17,26) 12x 3 main menu - gil
+; $05: ( 1, 1)  8x 4 submenu label (item/magic)
+; $06: ( 1, 4) 30x18 item/magic menu - item/magic list
+; $07: ( 1,21) 30x 8 item/magic menu - character window
+; $08: ( 9, 1) 10x 4 
+; $09: (24, 1)  7x 4
+; $0A: ( 1, 1) 30x11 equip menu - current equipment
+; $0B: ( 1,11) 30x18 equip menu - item list
+; $0C: ( 1, 1) 18x 4 job menu - name/current job (also "New Game")
+; $0D: (25, 1)  6x 4 job menu - cp
+; $0E: ( 1, 5) 30x24 job list
+; $0F: ( 1, 1)  7x 4 submenu label (save)
+; $10: ( 8, 1) 22x 4 save menu - description
+; $11: ( 1, 5) 30x 8 save menu - save slot 1
+; $12: ( 1,13) 30x 8 save menu - save slot 2
+; $13: ( 1,21) 30x 8 save menu - save slot 3
+
+; $1E: ( 1, 8) 19x 4 item menu - "Removed"
+
+; $21: (16, 1) 15x 4 load menu - msg. speed
+; $22: ( 7, 3) 18x 6 name change menu - name
+; $23: ( 4,11) 24x14 name change menu - alphabet
+; $24: ( 1, 1) 30x 4 magic menu - Use/Swap/Item
+; $25: ( 1, 1) 30x28 status menu - main window
+
+; menu window x positions
+3D/AAF7: 01 17 17 09 11 01 01 01 09 18 01 01 01 19 01 01
+3D/AB07: 08 01 01 01 02 09 02 10 02 01 07 01 01 01 01 01
+3D/AB17: 02 10 07 04 01 01
+
+; menu window y positions
+3D/AB1D: 01 01 12 1A 1A 01 04 15 01 01 01 0B 01 01 05 01
+3D/AB2D: 01 05 0D 15 02 02 06 06 0A 0A 01 06 01 01 08 12
+3D/AB3D: 08 01 03 0B 01 01
+
+; menu window widths
+3D/AB43: 16 08 08 08 0C 08 1E 1E 0A 07 1E 1E 12 06 1E 07
+3D/AB53: 17 1E 1E 1E 08 15 0E 0E 16 1E 18 12 09 1E 13 12
+3D/AB63: 1C 0F 12 18 1E 1E
+
+; menu window heights
+3D/AB69: 1B 11 09 03 03 04 12 08 04 04 0B 12 04 04 18 04
+3D/AB79: 04 08 08 08 04 04 04 04 12 12 04 04 04 1C 04 04
+3D/AB89: 06 04 06 0E 04 1C
+
+; [ change job ]
+
+3D/AB8F: 20 F2 AD  JSR $ADF2          ; load new job stats
 3D/AB92: A6 8F     LDX $8F
-3D/AB94: AD 1B 60  LDA $601B
+3D/AB94: AD 1B 60  LDA $601B          ; subtract cp
 3D/AB97: 38        SEC 
 3D/AB98: FD 00 72  SBC $7200,X
 3D/AB9B: 8D 1B 60  STA $601B
 3D/AB9E: A6 7F     LDX $7F
-3D/ABA0: BD 00 61  LDA $6100,X
+3D/ABA0: BD 00 61  LDA $6100,X        ; old job id
 3D/ABA3: 0A        ASL 
 3D/ABA4: 05 7F     ORA $7F
 3D/ABA6: A8        TAY 
-3D/ABA7: BD 10 61  LDA $6110,X
+3D/ABA7: BD 10 61  LDA $6110,X        ; save old job level
 3D/ABAA: 99 10 62  STA $6210,Y
-3D/ABAD: BD 11 61  LDA $6111,X
+3D/ABAD: BD 11 61  LDA $6111,X        ; save old job exp
 3D/ABB0: 99 11 62  STA $6211,Y
 3D/ABB3: A5 8F     LDA $8F
-3D/ABB5: 9D 00 61  STA $6100,X
+3D/ABB5: 9D 00 61  STA $6100,X        ; set new job
 3D/ABB8: A5 8F     LDA $8F
 3D/ABBA: 0A        ASL 
 3D/ABBB: 05 7F     ORA $7F
 3D/ABBD: A8        TAY 
-3D/ABBE: B9 10 62  LDA $6210,Y
+3D/ABBE: B9 10 62  LDA $6210,Y        ; load new job level
 3D/ABC1: 9D 10 61  STA $6110,X
-3D/ABC4: B9 11 62  LDA $6211,Y
+3D/ABC4: B9 11 62  LDA $6211,Y        ; load new job exp
 3D/ABC7: 9D 11 61  STA $6111,X
-3D/ABCA: AD 02 7C  LDA $7C02
+3D/ABCA: AD 02 7C  LDA $7C02          ; job stats
 3D/ABCD: 9D 12 61  STA $6112,X
 3D/ABD0: AD 03 7C  LDA $7C03
 3D/ABD3: 9D 13 61  STA $6113,X
@@ -45712,12 +42921,12 @@
 3D/ABE8: BD 02 61  LDA $6102,X
 3D/ABEB: 09 01     ORA #$01
 3D/ABED: 9D 02 61  STA $6102,X
-3D/ABF0: AD 07 7C  LDA $7C07
+3D/ABF0: AD 07 7C  LDA $7C07          ; mp progression
 3D/ABF3: 0A        ASL 
 3D/ABF4: 0A        ASL 
 3D/ABF5: 0A        ASL 
 3D/ABF6: A8        TAY 
-3D/ABF7: B9 88 9B  LDA $9B88,Y
+3D/ABF7: B9 88 9B  LDA $9B88,Y        ; 39/BB88 (character initial mp)
 3D/ABFA: 9D 31 61  STA $6131,X
 3D/ABFD: B9 89 9B  LDA $9B89,Y
 3D/AC00: 9D 33 61  STA $6133,X
@@ -45733,14 +42942,14 @@
 3D/AC1E: 9D 3D 61  STA $613D,X
 3D/AC21: B9 8F 9B  LDA $9B8F,Y
 3D/AC24: 9D 3F 61  STA $613F,X
-3D/AC27: BD 01 61  LDA $6101,X
+3D/AC27: BD 01 61  LDA $6101,X        ; level
 3D/AC2A: 85 87     STA $87
-3D/AC2C: D0 03     BNE $AC31
+3D/AC2C: D0 03     BNE $AC31          ; branch if not level 1
 3D/AC2E: 4C 1E AD  JMP $AD1E
 3D/AC31: BD 00 61  LDA $6100,X
 3D/AC34: 0A        ASL 
 3D/AC35: A8        TAY 
-3D/AC36: B9 59 AD  LDA $AD59,Y
+3D/AC36: B9 59 AD  LDA $AD59,Y        ; pointers to level progression
 3D/AC39: 85 80     STA $80
 3D/AC3B: B9 5A AD  LDA $AD5A,Y
 3D/AC3E: 85 81     STA $81
@@ -45759,7 +42968,7 @@
 3D/AC54: A5 82     LDA $82
 3D/AC56: 29 80     AND #$80
 3D/AC58: F0 09     BEQ $AC63
-3D/AC5A: BD 12 61  LDA $6112,X
+3D/AC5A: BD 12 61  LDA $6112,X        ; strength
 3D/AC5D: 20 45 AD  JSR $AD45
 3D/AC60: 9D 12 61  STA $6112,X
 3D/AC63: A5 82     LDA $82
@@ -45789,7 +42998,7 @@
 3D/AC9F: A5 83     LDA $83
 3D/ACA1: 29 80     AND #$80
 3D/ACA3: F0 09     BEQ $ACAE
-3D/ACA5: BD 3F 61  LDA $613F,X
+3D/ACA5: BD 3F 61  LDA $613F,X        ; mp
 3D/ACA8: 20 4F AD  JSR $AD4F
 3D/ACAB: 9D 3F 61  STA $613F,X
 3D/ACAE: A5 83     LDA $83
@@ -45834,19 +43043,19 @@
 3D/AD0E: BD 31 61  LDA $6131,X
 3D/AD11: 20 4F AD  JSR $AD4F
 3D/AD14: 9D 31 61  STA $6131,X
-3D/AD17: C6 87     DEC $87
+3D/AD17: C6 87     DEC $87            ; next level
 3D/AD19: F0 03     BEQ $AD1E
 3D/AD1B: 4C 31 AC  JMP $AC31
 3D/AD1E: 86 80     STX $80
 3D/AD20: A0 05     LDY #$05
-3D/AD22: BD 12 61  LDA $6112,X
+3D/AD22: BD 12 61  LDA $6112,X        ; copy base stats to mod. stats
 3D/AD25: 9D 17 61  STA $6117,X
 3D/AD28: E8        INX 
 3D/AD29: 88        DEY 
 3D/AD2A: D0 F6     BNE $AD22
 3D/AD2C: A6 80     LDX $80
 3D/AD2E: A0 08     LDY #$08
-3D/AD30: BD 31 61  LDA $6131,X
+3D/AD30: BD 31 61  LDA $6131,X        ; check if current mp > max mp
 3D/AD33: DD 30 61  CMP $6130,X
 3D/AD36: B0 03     BCS $AD3B
 3D/AD38: 9D 30 61  STA $6130,X
@@ -45856,12 +43065,18 @@
 3D/AD3E: D0 F0     BNE $AD30
 3D/AD40: A9 3C     LDA #$3C
 3D/AD42: 4C 06 FF  JMP $FF06          ; switch prg bank 0
+
+; [ check max stat ]
+
 3D/AD45: 18        CLC 
 3D/AD46: 65 84     ADC $84
 3D/AD48: C9 63     CMP #$63
 3D/AD4A: 90 02     BCC $AD4E
 3D/AD4C: A9 63     LDA #$63
 3D/AD4E: 60        RTS 
+
+; [ check max mp ]
+
 3D/AD4F: 18        CLC 
 3D/AD50: 69 01     ADC #$01
 3D/AD52: C9 63     CMP #$63
@@ -45869,14 +43084,19 @@
 3D/AD56: A9 63     LDA #$63
 3D/AD58: 60        RTS 
 
+; pointers to level progression for each job (bank 39)
 3D/AD59: 81D6 829A 835E 8422 84E6 85AA 866E 8732
 3D/AD69: 87F6 88BA 897E 8A42 8B06 8BCA 8C8E 8D52
 3D/AD78: 8E16 8EDA 8F9E 9062 9126 91EA
 
-3D/AD85: A9 00     LDA #$00
+; [ calculate cp required to change jobs ]
+
+; calculated values for every job -> $7200
+
+3D/AD85: A9 00     LDA #$00           ; loop through all jobs
 3D/AD87: 85 8F     STA $8F
-3D/AD89: 20 F2 AD  JSR $ADF2
-3D/AD8C: AD 00 7C  LDA $7C00
+3D/AD89: 20 F2 AD  JSR $ADF2          ; load job stats
+3D/AD8C: AD 00 7C  LDA $7C00          ; physical/magical index
 3D/AD8F: 4A        LSR 
 3D/AD90: 4A        LSR 
 3D/AD91: 4A        LSR 
@@ -45889,19 +43109,19 @@
 3D/AD9B: 4A        LSR 
 3D/AD9C: 38        SEC 
 3D/AD9D: E5 80     SBC $80
-3D/AD9F: 10 05     BPL $ADA6
+3D/AD9F: 10 05     BPL $ADA6          ; get abs difference
 3D/ADA1: 49 FF     EOR #$FF
 3D/ADA3: 18        CLC 
 3D/ADA4: 69 01     ADC #$01
 3D/ADA6: 85 80     STA $80
-3D/ADA8: AD 00 7C  LDA $7C00
+3D/ADA8: AD 00 7C  LDA $7C00          ; lawful/chaotic index
 3D/ADAB: 29 0F     AND #$0F
 3D/ADAD: 85 81     STA $81
 3D/ADAF: AD 08 7C  LDA $7C08
 3D/ADB2: 29 0F     AND #$0F
 3D/ADB4: 38        SEC 
 3D/ADB5: E5 81     SBC $81
-3D/ADB7: 10 05     BPL $ADBE
+3D/ADB7: 10 05     BPL $ADBE          ; get abs difference
 3D/ADB9: 49 FF     EOR #$FF
 3D/ADBB: 18        CLC 
 3D/ADBC: 69 01     ADC #$01
@@ -45909,20 +43129,20 @@
 3D/ADC0: A5 80     LDA $80
 3D/ADC2: 18        CLC 
 3D/ADC3: 65 81     ADC $81
-3D/ADC5: 85 82     STA $82
+3D/ADC5: 85 82     STA $82            ; sum of differences
 3D/ADC7: A5 8F     LDA $8F
 3D/ADC9: 0A        ASL 
 3D/ADCA: 05 7F     ORA $7F
 3D/ADCC: AA        TAX 
-3D/ADCD: BD 10 62  LDA $6210,X
+3D/ADCD: BD 10 62  LDA $6210,X        ; new job level
 3D/ADD0: 85 83     STA $83
-3D/ADD2: A5 82     LDA $82
+3D/ADD2: A5 82     LDA $82            ; diff * 4 - new job level
 3D/ADD4: 0A        ASL 
 3D/ADD5: 0A        ASL 
 3D/ADD6: 38        SEC 
 3D/ADD7: E5 83     SBC $83
 3D/ADD9: B0 02     BCS $ADDD
-3D/ADDB: A9 00     LDA #$00
+3D/ADDB: A9 00     LDA #$00           ; minimum is zero
 3D/ADDD: A6 8F     LDX $8F
 3D/ADDF: 9D 00 72  STA $7200,X
 3D/ADE2: E6 8F     INC $8F
@@ -45932,6 +43152,23 @@
 3D/ADEA: 4C 89 AD  JMP $AD89
 3D/ADED: A9 3C     LDA #$3C
 3D/ADEF: 4C 06 FF  JMP $FF06          ; switch prg bank 0
+
+; [ load new job stats ]
+
+; $8F: new job id
+
+; job stats format:
+;   $00: aaaabbbb job adjustment factors
+;          a: physical/magical index (8 is neutral)
+;          b: lawful/chaotic index (8 is neutral)
+;   $01: minimum level
+;   $02: strength
+;   $03: agility
+;   $04: vitality
+;   $05: intelligence
+;   $06: spirit
+;   $07: mp progression index
+
 3D/ADF2: A9 39     LDA #$39
 3D/ADF4: 20 06 FF  JSR $FF06          ; switch prg bank 0
 3D/ADF7: A5 8F     LDA $8F
@@ -45947,7 +43184,7 @@
 3D/AE07: E0 08     CPX #$08
 3D/AE09: 90 F4     BCC $ADFF
 3D/AE0B: A6 7F     LDX $7F
-3D/AE0D: BD 00 61  LDA $6100,X
+3D/AE0D: BD 00 61  LDA $6100,X        ; current job id
 3D/AE10: 0A        ASL 
 3D/AE11: 0A        ASL 
 3D/AE12: 0A        ASL 
@@ -45960,14 +43197,19 @@
 3D/AE1E: E0 08     CPX #$08
 3D/AE20: 90 F4     BCC $AE16
 3D/AE22: 60        RTS 
-3D/AE23: 20 F2 AD  JSR $ADF2
+
+; [ check if character can change jobs ]
+
+; set carry if allowed, clear carry if not
+
+3D/AE23: 20 F2 AD  JSR $ADF2          ; load new job stats
 3D/AE26: A9 3C     LDA #$3C
 3D/AE28: 20 06 FF  JSR $FF06          ; switch prg bank 0
 3D/AE2B: A6 7F     LDX $7F
 3D/AE2D: BD 01 61  LDA $6101,X
-3D/AE30: CD 01 7C  CMP $7C01
+3D/AE30: CD 01 7C  CMP $7C01          ; minimum level
 3D/AE33: B0 04     BCS $AE39
-3D/AE35: A9 3A     LDA #$3A
+3D/AE35: A9 3A     LDA #$3A           ; "Not enough experience"
 3D/AE37: 18        CLC 
 3D/AE38: 60        RTS 
 3D/AE39: BD 00 62  LDA $6200,X
@@ -45976,28 +43218,31 @@
 3D/AE42: 1D 03 62  ORA $6203,X
 3D/AE45: 1D 05 62  ORA $6205,X
 3D/AE48: F0 04     BEQ $AE4E
-3D/AE4A: A9 71     LDA #$71
+3D/AE4A: A9 71     LDA #$71           ; "Must remove equipment to change Jobs."
 3D/AE4C: 18        CLC 
 3D/AE4D: 60        RTS 
 3D/AE4E: AD 1B 60  LDA $601B
 3D/AE51: A6 8F     LDX $8F
 3D/AE53: DD 00 72  CMP $7200,X
 3D/AE56: B0 03     BCS $AE5B
-3D/AE58: A9 72     LDA #$72
+3D/AE58: A9 72     LDA #$72           ; "Not enough “Capacity”!"
 3D/AE5A: 18        CLC 
 3D/AE5B: 60        RTS 
+
+; [ update sram checksum ]
+
 3D/AE5C: A5 78     LDA $78
-3D/AE5E: 8D 08 60  STA $6008
+3D/AE5E: 8D 08 60  STA $6008          ; world id
 3D/AE61: A5 42     LDA $42
-3D/AE63: 8D 0F 60  STA $600F
+3D/AE63: 8D 0F 60  STA $600F          ; vehicle id
 3D/AE66: A5 27     LDA $27
-3D/AE68: 8D 09 60  STA $6009
+3D/AE68: 8D 09 60  STA $6009          ; world xy position
 3D/AE6B: A5 28     LDA $28
 3D/AE6D: 8D 0A 60  STA $600A
 3D/AE70: A9 00     LDA #$00
-3D/AE72: 8D 1A 60  STA $601A
+3D/AE72: 8D 1A 60  STA $601A          ; clear checksum
 3D/AE75: A9 5A     LDA #$5A
-3D/AE77: 8D 19 60  STA $6019
+3D/AE77: 8D 19 60  STA $6019          ; save slot is initialized
 3D/AE7A: A9 00     LDA #$00
 3D/AE7C: A2 00     LDX #$00
 3D/AE7E: 18        CLC 
@@ -46011,8 +43256,13 @@
 3D/AE8E: E8        INX 
 3D/AE8F: D0 ED     BNE $AE7E
 3D/AE91: 49 FF     EOR #$FF
-3D/AE93: 8D 1A 60  STA $601A
+3D/AE93: 8D 1A 60  STA $601A          ; update checksum
 3D/AE96: 60        RTS 
+
+; [ check if save slot is valid ]
+
+; set carry if not valid
+
 3D/AE97: 0A        ASL 
 3D/AE98: 0A        ASL 
 3D/AE99: 69 60     ADC #$60
@@ -46023,18 +43273,18 @@
 3D/AEA3: A0 19     LDY #$19
 3D/AEA5: B1 80     LDA ($80),Y
 3D/AEA7: C9 5A     CMP #$5A
-3D/AEA9: D0 16     BNE $AEC1
+3D/AEA9: D0 16     BNE $AEC1          ; return if save slot is not initialized
 3D/AEAB: A0 00     LDY #$00
 3D/AEAD: A9 00     LDA #$00
 3D/AEAF: 18        CLC 
-3D/AEB0: 71 80     ADC ($80),Y
+3D/AEB0: 71 80     ADC ($80),Y        ; sum of save slot bytes should be #$FFFF
 3D/AEB2: C8        INY 
 3D/AEB3: D0 FA     BNE $AEAF
 3D/AEB5: E6 81     INC $81
 3D/AEB7: CA        DEX 
 3D/AEB8: D0 F5     BNE $AEAF
 3D/AEBA: 18        CLC 
-3D/AEBB: 69 01     ADC #$01
+3D/AEBB: 69 01     ADC #$01           ; add 1, will get 0 if checksum valid
 3D/AEBD: D0 02     BNE $AEC1
 3D/AEBF: 18        CLC 
 3D/AEC0: 60        RTS 
@@ -46090,7 +43340,7 @@
 3D/AF1B: 8D C2 61  STA $61C2
 3D/AF1E: 60        RTS 
 
-; [  ]
+; [ shop menu ]
 
 3D/AF1F: 20 EB B1  JSR $B1EB
 3D/AF22: A9 00     LDA #$00
@@ -46103,7 +43353,7 @@
 3D/AF36: 20 86 C4  JSR $C486          ; clear oam data
 3D/AF39: 20 00 FF  JSR $FF00          ; wait for vblank
 3D/AF3C: A9 02     LDA #$02
-3D/AF3E: 8D 14 40  STA $4014
+3D/AF3E: 8D 14 40  STA $4014          ; dma oam data to ppu
 3D/AF41: 20 08 D3  JSR $D308          ; copy color palettes to vram
 3D/AF44: 20 69 B3  JSR $B369
 3D/AF47: A9 3C     LDA #$3C
@@ -46117,39 +43367,39 @@
 3D/AF57: C9 FC     CMP #$FC
 3D/AF59: 90 0D     BCC $AF68
 3D/AF5B: 4C 83 B3  JMP $B383
-3D/AF5E: 20 74 8F  JSR $8F74
+3D/AF5E: 20 74 8F  JSR $8F74          ; cursor sound effect
 3D/AF61: A9 00     LDA #$00
 3D/AF63: 85 50     STA $50
-3D/AF65: 4C 85 A6  JMP $A685
+3D/AF65: 4C 85 A6  JMP $A685          ; close menu
 3D/AF68: 20 20 B2  JSR $B220
 3D/AF6B: A2 14     LDX #$14
-3D/AF6D: 20 F1 AA  JSR $AAF1
+3D/AF6D: 20 F1 AA  JSR $AAF1          ; open menu window
 3D/AF70: AD 00 7B  LDA $7B00
-3D/AF73: 20 78 A6  JSR $A678
+3D/AF73: 20 78 A6  JSR $A678          ; load menu text
 3D/AF76: 20 61 F4  JSR $F461
 3D/AF79: A9 00     LDA #$00
 3D/AF7B: 85 64     STA $64
-3D/AF7D: A9 01     LDA #$01
+3D/AF7D: A9 01     LDA #$01           ; show cursor 1
 3D/AF7F: 85 A2     STA $A2
 3D/AF81: A9 00     LDA #$00
 3D/AF83: 8D F0 78  STA $78F0
 3D/AF86: 85 A3     STA $A3
 3D/AF88: 85 A4     STA $A4
-3D/AF8A: 85 B4     STA $B4
+3D/AF8A: 85 B4     STA $B4            ; hide page arrows
 3D/AF8C: 20 A8 A3  JSR $A3A8
 3D/AF8F: 20 F2 B1  JSR $B1F2
-3D/AF92: A9 26     LDA #$26
+3D/AF92: A9 26     LDA #$26           ; "Welcome!"
 3D/AF94: 20 0C B2  JSR $B20C
 3D/AF97: A9 0B     LDA #$0B
 3D/AF99: 20 16 B2  JSR $B216
-3D/AF9C: 20 CD A7  JSR $A7CD
+3D/AF9C: 20 CD A7  JSR $A7CD          ; wait for vblank (update cursors)
 3D/AF9F: A9 04     LDA #$04
-3D/AFA1: 20 A3 91  JSR $91A3
+3D/AFA1: 20 A3 91  JSR $91A3          ; update cursor 1 position
 3D/AFA4: A5 25     LDA $25
 3D/AFA6: D0 B6     BNE $AF5E
 3D/AFA8: A5 24     LDA $24
 3D/AFAA: F0 F0     BEQ $AF9C
-3D/AFAC: 20 74 8F  JSR $8F74
+3D/AFAC: 20 74 8F  JSR $8F74          ; cursor sound effect
 3D/AFAF: A2 00     LDX #$00
 3D/AFB1: AD F0 78  LDA $78F0
 3D/AFB4: 8E F0 78  STX $78F0
@@ -46159,10 +43409,10 @@
 3D/AFBD: 90 03     BCC $AFC2
 3D/AFBF: 4C EB B0  JMP $B0EB
 3D/AFC2: A2 18     LDX #$18
-3D/AFC4: 20 F1 AA  JSR $AAF1
+3D/AFC4: 20 F1 AA  JSR $AAF1          ; open menu window
 3D/AFC7: 20 81 B2  JSR $B281
 3D/AFCA: A9 20     LDA #$20
-3D/AFCC: 20 78 A6  JSR $A678
+3D/AFCC: 20 78 A6  JSR $A678          ; load menu text
 3D/AFCF: 20 C3 AE  JSR $AEC3
 3D/AFD2: A9 00     LDA #$00
 3D/AFD4: 85 A3     STA $A3
@@ -46170,18 +43420,18 @@
 3D/AFD8: 20 0C B2  JSR $B20C
 3D/AFDB: A9 2D     LDA #$2D
 3D/AFDD: 20 16 B2  JSR $B216
-3D/AFE0: 20 CD A7  JSR $A7CD
+3D/AFE0: 20 CD A7  JSR $A7CD          ; wait for vblank (update cursors)
 3D/AFE3: A9 04     LDA #$04
-3D/AFE5: 20 A3 91  JSR $91A3
+3D/AFE5: 20 A3 91  JSR $91A3          ; update cursor 1 position
 3D/AFE8: 20 35 B3  JSR $B335
 3D/AFEB: A5 25     LDA $25
 3D/AFED: F0 09     BEQ $AFF8
 3D/AFEF: 20 C3 AE  JSR $AEC3
-3D/AFF2: 20 74 8F  JSR $8F74
+3D/AFF2: 20 74 8F  JSR $8F74          ; cursor sound effect
 3D/AFF5: 4C 76 AF  JMP $AF76
 3D/AFF8: A5 24     LDA $24
 3D/AFFA: F0 E4     BEQ $AFE0
-3D/AFFC: 20 74 8F  JSR $8F74
+3D/AFFC: 20 74 8F  JSR $8F74          ; cursor sound effect
 3D/AFFF: AD F0 78  LDA $78F0
 3D/B002: 4A        LSR 
 3D/B003: 4A        LSR 
@@ -46190,15 +43440,15 @@
 3D/B008: 85 A3     STA $A3
 3D/B00A: 20 81 B2  JSR $B281
 3D/B00D: A2 18     LDX #$18
-3D/B00F: 20 F1 AA  JSR $AAF1
+3D/B00F: 20 F1 AA  JSR $AAF1          ; open menu window
 3D/B012: A9 20     LDA #$20
-3D/B014: 20 78 A6  JSR $A678
+3D/B014: 20 78 A6  JSR $A678          ; load menu text
 3D/B017: 20 D5 AE  JSR $AED5
-3D/B01A: 20 CD A7  JSR $A7CD
+3D/B01A: 20 CD A7  JSR $A7CD          ; wait for vblank (update cursors)
 3D/B01D: AD F0 79  LDA $79F0
 3D/B020: 48        PHA 
 3D/B021: A9 04     LDA #$04
-3D/B023: 20 D9 91  JSR $91D9
+3D/B023: 20 D9 91  JSR $91D9          ; update cursor 2 position
 3D/B026: 20 35 B3  JSR $B335
 3D/B029: 68        PLA 
 3D/B02A: CD F0 79  CMP $79F0
@@ -46206,11 +43456,11 @@
 3D/B02F: 20 D5 AE  JSR $AED5
 3D/B032: A5 25     LDA $25
 3D/B034: F0 06     BEQ $B03C
-3D/B036: 20 74 8F  JSR $8F74
+3D/B036: 20 74 8F  JSR $8F74          ; cursor sound effect
 3D/B039: 4C CF AF  JMP $AFCF
 3D/B03C: A5 24     LDA $24
 3D/B03E: F0 DA     BEQ $B01A
-3D/B040: 20 74 8F  JSR $8F74
+3D/B040: 20 74 8F  JSR $8F74          ; cursor sound effect
 3D/B043: 20 4D B0  JSR $B04D
 3D/B046: 20 F2 B1  JSR $B1F2
 3D/B049: 4C 1A B0  JMP $B01A
@@ -46227,7 +43477,7 @@
 3D/B062: 85 63     STA $63
 3D/B064: 20 CA B0  JSR $B0CA
 3D/B067: 90 05     BCC $B06E
-3D/B069: A9 6C     LDA #$6C
+3D/B069: A9 6C     LDA #$6C           ; "Not enough money."
 3D/B06B: 4C 0C B2  JMP $B20C
 3D/B06E: A6 8E     LDX $8E
 3D/B070: BD 80 7B  LDA $7B80,X
@@ -46244,7 +43494,7 @@
 3D/B086: 86 81     STX $81
 3D/B088: 20 7E 93  JSR $937E          ; find item in inventory
 3D/B08B: 90 05     BCC $B092
-3D/B08D: A9 2C     LDA #$2C
+3D/B08D: A9 2C     LDA #$2C           ; "Can't carry anymore."
 3D/B08F: 4C 0C B2  JMP $B20C
 3D/B092: C9 00     CMP #$00
 3D/B094: F0 0C     BEQ $B0A2
@@ -46268,7 +43518,7 @@
 3D/B0BD: AD 1E 60  LDA $601E
 3D/B0C0: E5 63     SBC $63
 3D/B0C2: 8D 1E 60  STA $601E
-3D/B0C5: A9 28     LDA #$28
+3D/B0C5: A9 28     LDA #$28           ; "Thank you!"
 3D/B0C7: 4C 0C B2  JMP $B20C
 3D/B0CA: AD 1E 60  LDA $601E
 3D/B0CD: C5 82     CMP $82
@@ -46288,32 +43538,32 @@
 3D/B0E9: 18        CLC 
 3D/B0EA: 60        RTS 
 3D/B0EB: A2 19     LDX #$19
-3D/B0ED: 20 F1 AA  JSR $AAF1
+3D/B0ED: 20 F1 AA  JSR $AAF1          ; open menu window
 3D/B0F0: A9 3D     LDA #$3D
-3D/B0F2: 20 78 A6  JSR $A678
+3D/B0F2: 20 78 A6  JSR $A678          ; load menu text
 3D/B0F5: 20 3D 90  JSR $903D
 3D/B0F8: A9 80     LDA #$80
-3D/B0FA: 85 B4     STA $B4
+3D/B0FA: 85 B4     STA $B4            ; show page down arrow
 3D/B0FC: 20 A8 A3  JSR $A3A8
 3D/B0FF: A9 00     LDA #$00
-3D/B101: 85 B4     STA $B4
+3D/B101: 85 B4     STA $B4            ; hide page arrows
 3D/B103: 8D F0 7A  STA $7AF0
 3D/B106: A9 00     LDA #$00
 3D/B108: 85 A4     STA $A4
-3D/B10A: 85 B4     STA $B4
-3D/B10C: A9 2A     LDA #$2A
+3D/B10A: 85 B4     STA $B4            ; hide page arrows
+3D/B10C: A9 2A     LDA #$2A           ; "Sell Which?"
 3D/B10E: 20 0C B2  JSR $B20C
-3D/B111: A9 2E     LDA #$2E
+3D/B111: A9 2E     LDA #$2E           ; " Qty? 1 All"
 3D/B113: 20 16 B2  JSR $B216
-3D/B116: 20 CD A7  JSR $A7CD
+3D/B116: 20 CD A7  JSR $A7CD          ; wait for vblank (update cursors)
 3D/B119: A9 04     LDA #$04
-3D/B11B: 20 A3 91  JSR $91A3
+3D/B11B: 20 A3 91  JSR $91A3          ; update cursor 1 position
 3D/B11E: A5 25     LDA $25
 3D/B120: F0 03     BEQ $B125
 3D/B122: 4C F2 AF  JMP $AFF2
 3D/B125: A5 24     LDA $24
 3D/B127: F0 ED     BEQ $B116
-3D/B129: 20 74 8F  JSR $8F74
+3D/B129: 20 74 8F  JSR $8F74          ; cursor sound effect
 3D/B12C: AD F0 78  LDA $78F0
 3D/B12F: 4A        LSR 
 3D/B130: 4A        LSR 
@@ -46322,16 +43572,16 @@
 3D/B135: 85 A4     STA $A4
 3D/B137: 20 8E A3  JSR $A38E
 3D/B13A: 20 19 B6  JSR $B619
-3D/B13D: 20 CD A7  JSR $A7CD
+3D/B13D: 20 CD A7  JSR $A7CD          ; wait for vblank (update cursors)
 3D/B140: A9 08     LDA #$08
-3D/B142: 20 0D 92  JSR $920D
+3D/B142: 20 0D 92  JSR $920D          ; update cursor 3 position
 3D/B145: A5 25     LDA $25
 3D/B147: F0 06     BEQ $B14F
-3D/B149: 20 74 8F  JSR $8F74
+3D/B149: 20 74 8F  JSR $8F74          ; cursor sound effect
 3D/B14C: 4C 06 B1  JMP $B106
 3D/B14F: A5 24     LDA $24
 3D/B151: F0 EA     BEQ $B13D
-3D/B153: 20 74 8F  JSR $8F74
+3D/B153: 20 74 8F  JSR $8F74          ; cursor sound effect
 3D/B156: AE F0 7A  LDX $7AF0
 3D/B159: BD 02 7A  LDA $7A02,X
 3D/B15C: C9 0F     CMP #$0F
@@ -46341,7 +43591,7 @@
 3D/B165: AA        TAX 
 3D/B166: BD C0 60  LDA $60C0,X
 3D/B169: D0 06     BNE $B171
-3D/B16B: 20 29 D5  JSR $D529
+3D/B16B: 20 29 D5  JSR $D529          ; error sound effect
 3D/B16E: 4C 3D B1  JMP $B13D
 3D/B171: C9 9A     CMP #$9A
 3D/B173: 90 0C     BCC $B181
@@ -46352,16 +43602,16 @@
 3D/B17D: C9 F7     CMP #$F7
 3D/B17F: F0 EA     BEQ $B16B
 3D/B181: 20 48 B2  JSR $B248
-3D/B184: A9 2B     LDA #$2B
+3D/B184: A9 2B     LDA #$2B           ; "\gil Gil,ok?"
 3D/B186: 20 FC B1  JSR $B1FC
 3D/B189: 20 CB B1  JSR $B1CB
 3D/B18C: A5 20     LDA $20
 3D/B18E: 29 80     AND #$80
 3D/B190: D0 08     BNE $B19A
-3D/B192: A9 2A     LDA #$2A
+3D/B192: A9 2A     LDA #$2A           ; "Sell Which?"
 3D/B194: 20 FC B1  JSR $B1FC
 3D/B197: 4C 3D B1  JMP $B13D
-3D/B19A: 20 74 8F  JSR $8F74
+3D/B19A: 20 74 8F  JSR $8F74          ; cursor sound effect
 3D/B19D: A6 8E     LDX $8E
 3D/B19F: A5 64     LDA $64
 3D/B1A1: D0 0B     BNE $B1AE
@@ -46395,31 +43645,46 @@
 3D/B1E6: F0 F3     BEQ $B1DB
 3D/B1E8: 85 21     STA $21
 3D/B1EA: 60        RTS 
+
+; [ init shop menu windows ]
+
 3D/B1EB: A9 00     LDA #$00
 3D/B1ED: 85 24     STA $24
 3D/B1EF: 85 25     STA $25
 3D/B1F1: 60        RTS 
 3D/B1F2: A2 17     LDX #$17
-3D/B1F4: 20 F1 AA  JSR $AAF1
-3D/B1F7: A9 05     LDA #$05
-3D/B1F9: 4C 78 A6  JMP $A678
+3D/B1F4: 20 F1 AA  JSR $AAF1          ; open menu window
+3D/B1F7: A9 05     LDA #$05           ; \partygil         Gil
+3D/B1F9: 4C 78 A6  JMP $A678          ; load menu text
+
+; [  ]
+
 3D/B1FC: 48        PHA 
 3D/B1FD: 20 A8 A3  JSR $A3A8
 3D/B200: A2 15     LDX #$15
-3D/B202: 20 F1 AA  JSR $AAF1
+3D/B202: 20 F1 AA  JSR $AAF1          ; open menu window
 3D/B205: 68        PLA 
-3D/B206: 20 78 A6  JSR $A678
+3D/B206: 20 78 A6  JSR $A678          ; load menu text
 3D/B209: 4C 8E A3  JMP $A38E
+
+; [  ]
+
 3D/B20C: 48        PHA 
 3D/B20D: A2 15     LDX #$15
-3D/B20F: 20 F1 AA  JSR $AAF1
+3D/B20F: 20 F1 AA  JSR $AAF1          ; open menu window
 3D/B212: 68        PLA 
-3D/B213: 4C 78 A6  JMP $A678
+3D/B213: 4C 78 A6  JMP $A678          ; load menu text
+
+; [  ]
+
 3D/B216: 48        PHA 
 3D/B217: A2 16     LDX #$16
-3D/B219: 20 F1 AA  JSR $AAF1
+3D/B219: 20 F1 AA  JSR $AAF1          ; open menu window
 3D/B21C: 68        PLA 
-3D/B21D: 4C 78 A6  JMP $A678
+3D/B21D: 4C 78 A6  JMP $A678          ; load menu text
+
+; [  ]
+
 3D/B220: A2 07     LDX #$07
 3D/B222: BD 01 7B  LDA $7B01,X
 3D/B225: 9D 80 7B  STA $7B80,X
@@ -46598,19 +43863,19 @@
 3D/B3A3: A9 00     LDA #$00
 3D/B3A5: 85 A3     STA $A3
 3D/B3A7: 85 A4     STA $A4
-3D/B3A9: 85 B4     STA $B4
+3D/B3A9: 85 B4     STA $B4            ; hide page arrows
 3D/B3AB: 8D F0 78  STA $78F0
-3D/B3AE: A9 01     LDA #$01
+3D/B3AE: A9 01     LDA #$01           ; show cursor 1
 3D/B3B0: 85 A2     STA $A2
-3D/B3B2: 20 CD A7  JSR $A7CD
+3D/B3B2: 20 CD A7  JSR $A7CD          ; wait for vblank (update cursors)
 3D/B3B5: A9 04     LDA #$04
-3D/B3B7: 20 A3 91  JSR $91A3
+3D/B3B7: 20 A3 91  JSR $91A3          ; update cursor 1 position
 3D/B3BA: 20 8C 80  JSR $808C
 3D/B3BD: A5 25     LDA $25
 3D/B3BF: D0 BF     BNE $B380
 3D/B3C1: A5 24     LDA $24
 3D/B3C3: F0 ED     BEQ $B3B2
-3D/B3C5: 20 74 8F  JSR $8F74
+3D/B3C5: 20 74 8F  JSR $8F74          ; cursor sound effect
 3D/B3C8: AD F0 78  LDA $78F0
 3D/B3CB: C9 08     CMP #$08
 3D/B3CD: B0 B1     BCS $B380
@@ -46619,27 +43884,27 @@
 3D/B3D3: A9 52     LDA #$52
 3D/B3D5: 20 F7 B5  JSR $B5F7
 3D/B3D8: A9 80     LDA #$80
-3D/B3DA: 85 B4     STA $B4
+3D/B3DA: 85 B4     STA $B4            ; show page down arrow
 3D/B3DC: A2 19     LDX #$19
-3D/B3DE: 20 F1 AA  JSR $AAF1
+3D/B3DE: 20 F1 AA  JSR $AAF1          ; open menu window
 3D/B3E1: A9 3D     LDA #$3D
-3D/B3E3: 20 78 A6  JSR $A678
+3D/B3E3: 20 78 A6  JSR $A678          ; load menu text
 3D/B3E6: A9 00     LDA #$00
 3D/B3E8: 8D F0 7A  STA $7AF0
 3D/B3EB: A9 01     LDA #$01
 3D/B3ED: 85 A4     STA $A4
 3D/B3EF: 20 3D 90  JSR $903D
-3D/B3F2: 20 CD A7  JSR $A7CD
+3D/B3F2: 20 CD A7  JSR $A7CD          ; wait for vblank (update cursors)
 3D/B3F5: 20 8C 80  JSR $808C
 3D/B3F8: A9 08     LDA #$08
-3D/B3FA: 20 0D 92  JSR $920D
+3D/B3FA: 20 0D 92  JSR $920D          ; update cursor 3 position
 3D/B3FD: A5 25     LDA $25
 3D/B3FF: F0 06     BEQ $B407
-3D/B401: 20 74 8F  JSR $8F74
+3D/B401: 20 74 8F  JSR $8F74          ; cursor sound effect
 3D/B404: 4C 83 B3  JMP $B383
 3D/B407: A5 24     LDA $24
 3D/B409: F0 E7     BEQ $B3F2
-3D/B40B: 20 74 8F  JSR $8F74
+3D/B40B: 20 74 8F  JSR $8F74          ; cursor sound effect
 3D/B40E: 20 AE B4  JSR $B4AE
 3D/B411: B0 DF     BCS $B3F2
 3D/B413: 20 19 B6  JSR $B619
@@ -46647,9 +43912,9 @@
 3D/B419: A9 53     LDA #$53
 3D/B41B: 20 F7 B5  JSR $B5F7
 3D/B41E: A9 80     LDA #$80
-3D/B420: 85 B4     STA $B4
+3D/B420: 85 B4     STA $B4            ; show page down arrow
 3D/B422: A2 19     LDX #$19
-3D/B424: 20 F1 AA  JSR $AAF1
+3D/B424: 20 F1 AA  JSR $AAF1          ; open menu window
 3D/B427: 20 70 B5  JSR $B570
 3D/B42A: A9 18     LDA #$18
 3D/B42C: 85 93     STA $93
@@ -46666,14 +43931,14 @@
 3D/B445: AD 00 7C  LDA $7C00
 3D/B448: F0 03     BEQ $B44D
 3D/B44A: 20 92 B4  JSR $B492
-3D/B44D: 20 CD A7  JSR $A7CD
+3D/B44D: 20 CD A7  JSR $A7CD          ; wait for vblank (update cursors)
 3D/B450: 20 8C 80  JSR $808C
 3D/B453: AE F0 7A  LDX $7AF0
 3D/B456: BC 03 7A  LDY $7A03,X
 3D/B459: B9 00 7C  LDA $7C00,Y
 3D/B45C: 48        PHA 
 3D/B45D: A9 08     LDA #$08
-3D/B45F: 20 0D 92  JSR $920D
+3D/B45F: 20 0D 92  JSR $920D          ; update cursor 3 position
 3D/B462: AE F0 7A  LDX $7AF0
 3D/B465: BC 03 7A  LDY $7A03,X
 3D/B468: 68        PLA 
@@ -46688,7 +43953,7 @@
 3D/B47D: 4C 01 B4  JMP $B401
 3D/B480: A5 24     LDA $24
 3D/B482: F0 C9     BEQ $B44D
-3D/B484: 20 74 8F  JSR $8F74
+3D/B484: 20 74 8F  JSR $8F74          ; cursor sound effect
 3D/B487: 20 04 B5  JSR $B504
 3D/B48A: B0 C1     BCS $B44D
 3D/B48C: 20 19 B6  JSR $B619
@@ -46716,7 +43981,7 @@
 3D/B4BD: AA        TAX 
 3D/B4BE: BD C0 60  LDA $60C0,X
 3D/B4C1: D0 05     BNE $B4C8
-3D/B4C3: 20 29 D5  JSR $D529
+3D/B4C3: 20 29 D5  JSR $D529          ; error sound effect
 3D/B4C6: 38        SEC 
 3D/B4C7: 60        RTS 
 3D/B4C8: C9 9A     CMP #$9A
@@ -46754,7 +44019,7 @@
 3D/B50C: AA        TAX 
 3D/B50D: BD 00 7C  LDA $7C00,X
 3D/B510: D0 05     BNE $B517
-3D/B512: 20 29 D5  JSR $D529
+3D/B512: 20 29 D5  JSR $D529          ; error sound effect
 3D/B515: 38        SEC 
 3D/B516: 60        RTS 
 3D/B517: 85 8F     STA $8F
@@ -46868,15 +44133,15 @@
 3D/B5EC: 60        RTS 
 3D/B5ED: 48        PHA 
 3D/B5EE: A2 1B     LDX #$1B
-3D/B5F0: 20 F1 AA  JSR $AAF1
+3D/B5F0: 20 F1 AA  JSR $AAF1          ; open menu window
 3D/B5F3: 68        PLA 
-3D/B5F4: 4C 78 A6  JMP $A678
+3D/B5F4: 4C 78 A6  JMP $A678          ; load menu text
 3D/B5F7: 48        PHA 
 3D/B5F8: 20 A8 A3  JSR $A3A8
 3D/B5FB: A2 1A     LDX #$1A
-3D/B5FD: 20 F1 AA  JSR $AAF1
+3D/B5FD: 20 F1 AA  JSR $AAF1          ; open menu window
 3D/B600: 68        PLA 
-3D/B601: 20 78 A6  JSR $A678
+3D/B601: 20 78 A6  JSR $A678          ; load menu text
 3D/B604: 4C 8E A3  JMP $A38E
 3D/B607: 20 B1 D1  JSR $D1B1
 3D/B60A: A9 18     LDA #$18
@@ -46934,34 +44199,38 @@
 3D/B66C: 85 A8     STA $A8
 3D/B66E: 60        RTS 
 
-; [  ]
+; [ invincible jump ??? ]
 
-3D/B66F: A5 33     LDA $33
+3D/B66F: A5 33     LDA $33            ; facing direction
 3D/B671: 4A        LSR 
 3D/B672: B0 14     BCS $B688
 3D/B674: 4A        LSR 
 3D/B675: B0 18     BCS $B68F
 3D/B677: 4A        LSR 
 3D/B678: B0 07     BCS $B681
-3D/B67A: A2 07     LDX #$07
+; up
+3D/B67A: A2 07     LDX #$07           ; target tile is 3 units up
 3D/B67C: A0 04     LDY #$04
 3D/B67E: 4C 93 B6  JMP $B693
+; down
 3D/B681: A2 07     LDX #$07
 3D/B683: A0 0A     LDY #$0A
 3D/B685: 4C 93 B6  JMP $B693
+; right
 3D/B688: A2 0A     LDX #$0A
 3D/B68A: A0 07     LDY #$07
 3D/B68C: 4C 93 B6  JMP $B693
+; left
 3D/B68F: A2 04     LDX #$04
 3D/B691: A0 07     LDY #$07
 3D/B693: 8A        TXA 
 3D/B694: 18        CLC 
-3D/B695: 65 27     ADC $27
+3D/B695: 65 27     ADC $27            ; x position
 3D/B697: 85 80     STA $80
 3D/B699: 85 82     STA $82
 3D/B69B: 98        TYA 
 3D/B69C: 18        CLC 
-3D/B69D: 65 28     ADC $28
+3D/B69D: 65 28     ADC $28            ; y position
 3D/B69F: 85 83     STA $83
 3D/B6A1: 98        TYA 
 3D/B6A2: 18        CLC 
@@ -46972,25 +44241,25 @@
 3D/B6AB: 09 70     ORA #$70
 3D/B6AD: 85 81     STA $81
 3D/B6AF: A0 00     LDY #$00
-3D/B6B1: B1 80     LDA ($80),Y
+3D/B6B1: B1 80     LDA ($80),Y        ; target tile id
 3D/B6B3: 0A        ASL 
 3D/B6B4: AA        TAX 
-3D/B6B5: BD 00 04  LDA $0400,X
+3D/B6B5: BD 00 04  LDA $0400,X        ; tile properties
 3D/B6B8: 29 30     AND #$30
-3D/B6BA: F0 04     BEQ $B6C0
+3D/B6BA: F0 04     BEQ $B6C0          ; branch if not passable
 3D/B6BC: A9 C1     LDA #$C1
 3D/B6BE: D0 02     BNE $B6C2
 3D/B6C0: A9 81     LDA #$81
-3D/B6C2: 85 A6     STA $A6
+3D/B6C2: 85 A6     STA $A6            ; set invincible jumping variable
 3D/B6C4: A9 00     LDA #$00
-3D/B6C6: 85 AF     STA $AF
-3D/B6C8: 85 24     STA $24
+3D/B6C6: 85 AF     STA $AF            ; reset invincible jumping delay counter
+3D/B6C8: 85 24     STA $24            ; clear buttons pressed
 3D/B6CA: 85 25     STA $25
 3D/B6CC: 85 22     STA $22
 3D/B6CE: 85 23     STA $23
-3D/B6D0: A5 33     LDA $33
+3D/B6D0: A5 33     LDA $33            ; facing direction
 3D/B6D2: 85 E0     STA $E0
-3D/B6D4: A9 AC     LDA #$AC
+3D/B6D4: A9 AC     LDA #$AC           ; sound effect $2C
 3D/B6D6: 8D 49 7F  STA $7F49
 3D/B6D9: 60        RTS 
 
@@ -47233,40 +44502,41 @@
 3D/B88C: 85 41     STA $41
 3D/B88E: 4C 36 82  JMP $8236
 
+; escape codes for character names
 3D/B891: 10 11 12 13
 
-; [  ]
+; [ name change menu ]
 
-3D/B895: 20 85 A6  JSR $A685
+3D/B895: 20 85 A6  JSR $A685          ; close menu
 3D/B898: 20 58 8F  JSR $8F58
-3D/B89B: A9 00     LDA #$00
+3D/B89B: A9 00     LDA #$00           ; reset cursor position
 3D/B89D: 8D F0 7A  STA $7AF0
 3D/B8A0: A2 23     LDX #$23
-3D/B8A2: 20 F1 AA  JSR $AAF1
-3D/B8A5: A9 21     LDA #$21
-3D/B8A7: 20 78 A6  JSR $A678
+3D/B8A2: 20 F1 AA  JSR $AAF1          ; open menu window
+3D/B8A5: A9 21     LDA #$21           ; alphabet for character name select
+3D/B8A7: 20 78 A6  JSR $A678          ; load menu text
 3D/B8AA: 20 3D 90  JSR $903D
-3D/B8AD: A9 80     LDA #$80
+3D/B8AD: A9 80     LDA #$80           ; show page down arrow
 3D/B8AF: 85 B4     STA $B4
 3D/B8B1: 20 A8 A3  JSR $A3A8
-3D/B8B4: A9 01     LDA #$01
+3D/B8B4: A9 01     LDA #$01           ; show cursor 3
 3D/B8B6: 85 A4     STA $A4
 3D/B8B8: A2 22     LDX #$22
-3D/B8BA: 20 F1 AA  JSR $AAF1
+3D/B8BA: 20 F1 AA  JSR $AAF1          ; open menu window
 3D/B8BD: A9 00     LDA #$00
-3D/B8BF: 85 07     STA $07
-3D/B8C1: 85 08     STA $08
+3D/B8BF: 85 07     STA $07            ; character id
+3D/B8C1: 85 08     STA $08            ; letter id
 3D/B8C3: 20 8E A3  JSR $A38E
-3D/B8C6: 20 E6 B8  JSR $B8E6
-3D/B8C9: 90 0E     BCC $B8D9
+3D/B8C6: 20 E6 B8  JSR $B8E6          ; get character name
+3D/B8C9: 90 0E     BCC $B8D9          ; branch if confirmed
 3D/B8CB: A5 07     LDA $07
 3D/B8CD: C9 01     CMP #$01
-3D/B8CF: 90 F5     BCC $B8C6
-3D/B8D1: 38        SEC 
+3D/B8CF: 90 F5     BCC $B8C6          ; repeat first slot
+3D/B8D1: 38        SEC                ; previous character
 3D/B8D2: E9 01     SBC #$01
 3D/B8D4: 85 07     STA $07
 3D/B8D6: 4C C6 B8  JMP $B8C6
-3D/B8D9: A5 07     LDA $07
+3D/B8D9: A5 07     LDA $07            ; next character
 3D/B8DB: 18        CLC 
 3D/B8DC: 69 01     ADC #$01
 3D/B8DE: 85 07     STA $07
@@ -47275,7 +44545,9 @@
 3D/B8E4: 18        CLC 
 3D/B8E5: 60        RTS 
 
-; [  ]
+; [ get character name ]
+
+; clear carry if name confirmed, set carry if canceled
 
 3D/B8E6: A6 07     LDX $07
 3D/B8E8: BD 91 B8  LDA $B891,X
@@ -47284,38 +44556,38 @@
 3D/B8EF: 4A        LSR 
 3D/B8F0: 6A        ROR 
 3D/B8F1: 6A        ROR 
-3D/B8F2: 85 7F     STA $7F
+3D/B8F2: 85 7F     STA $7F            ; pointer to character data
 3D/B8F4: 20 B7 B9  JSR $B9B7
 3D/B8F7: 20 00 FF  JSR $FF00          ; wait for vblank
 3D/B8FA: A9 02     LDA #$02
-3D/B8FC: 8D 14 40  STA $4014
+3D/B8FC: 8D 14 40  STA $4014          ; dma oam data to ppu
 3D/B8FF: 20 86 C4  JSR $C486          ; clear oam data
 3D/B902: 20 58 C7  JSR $C758          ; update sound
-3D/B905: 20 4C 91  JSR $914C
+3D/B905: 20 4C 91  JSR $914C          ; draw cursor sprite 3
 3D/B908: A6 7F     LDX $7F
 3D/B90A: 20 86 B8  JSR $B886
 3D/B90D: 20 E6 A7  JSR $A7E6
 3D/B910: 20 CA B9  JSR $B9CA
-3D/B913: A9 28     LDA #$28
-3D/B915: 20 0D 92  JSR $920D
+3D/B913: A9 28     LDA #$28           ; vertical increment: 10
+3D/B915: 20 0D 92  JSR $920D          ; update cursor 3 position
 3D/B918: A5 25     LDA $25
-3D/B91A: F0 12     BEQ $B92E
-3D/B91C: 20 74 8F  JSR $8F74
+3D/B91A: F0 12     BEQ $B92E          ; branch if B button is not pressed
+3D/B91C: 20 74 8F  JSR $8F74          ; cursor sound effect
 3D/B91F: A5 08     LDA $08
 3D/B921: 38        SEC 
-3D/B922: E9 01     SBC #$01
+3D/B922: E9 01     SBC #$01           ; previous letter
 3D/B924: 85 08     STA $08
 3D/B926: 10 CF     BPL $B8F7
-3D/B928: A9 05     LDA #$05
+3D/B928: A9 05     LDA #$05           ; loop to last letter
 3D/B92A: 85 08     STA $08
 3D/B92C: 38        SEC 
 3D/B92D: 60        RTS 
 3D/B92E: A5 24     LDA $24
-3D/B930: F0 C5     BEQ $B8F7
-3D/B932: 20 74 8F  JSR $8F74
+3D/B930: F0 C5     BEQ $B8F7          ; branch if A button is not pressed
+3D/B932: 20 74 8F  JSR $8F74          ; cursor sound effect
 3D/B935: A5 08     LDA $08
 3D/B937: C9 06     CMP #$06
-3D/B939: 90 06     BCC $B941
+3D/B939: 90 06     BCC $B941          ; branch if less than 6 letters
 3D/B93B: A9 00     LDA #$00
 3D/B93D: 85 08     STA $08
 3D/B93F: 18        CLC 
@@ -47325,7 +44597,7 @@
 3D/B945: A8        TAY 
 3D/B946: AE F0 7A  LDX $7AF0
 3D/B949: BD 02 7A  LDA $7A02,X
-3D/B94C: 99 06 61  STA $6106,Y
+3D/B94C: 99 06 61  STA $6106,Y        ; copy letter to character name in sram
 3D/B94F: E6 08     INC $08
 3D/B951: 20 B7 B9  JSR $B9B7
 3D/B954: A5 08     LDA $08
@@ -47334,20 +44606,23 @@
 3D/B95A: 4C F7 B8  JMP $B8F7
 3D/B95D: A5 07     LDA $07
 3D/B95F: F0 F9     BEQ $B95A
-3D/B961: C9 01     CMP #$01
+3D/B961: C9 01     CMP #$01           ; character slot 1
 3D/B963: F0 12     BEQ $B977
-3D/B965: C9 02     CMP #$02
+3D/B965: C9 02     CMP #$02           ; character slot 2
 3D/B967: F0 07     BEQ $B970
 3D/B969: A4 7F     LDY $7F
 3D/B96B: A2 80     LDX #$80
-3D/B96D: 20 81 B9  JSR $B981
+3D/B96D: 20 81 B9  JSR $B981          ; check for duplicate character names
 3D/B970: A4 7F     LDY $7F
 3D/B972: A2 40     LDX #$40
-3D/B974: 20 81 B9  JSR $B981
+3D/B974: 20 81 B9  JSR $B981          ; check for duplicate character names
 3D/B977: A4 7F     LDY $7F
 3D/B979: A2 00     LDX #$00
-3D/B97B: 20 81 B9  JSR $B981
+3D/B97B: 20 81 B9  JSR $B981          ; check for duplicate character names
 3D/B97E: 4C F7 B8  JMP $B8F7
+
+; [ check for duplicate character names ]
+
 3D/B981: B9 06 61  LDA $6106,Y
 3D/B984: DD 06 61  CMP $6106,X
 3D/B987: D0 2D     BNE $B9B6
@@ -47367,15 +44642,21 @@
 3D/B9AC: DD 0B 61  CMP $610B,X
 3D/B9AF: D0 05     BNE $B9B6
 3D/B9B1: C6 08     DEC $08
-3D/B9B3: 20 29 D5  JSR $D529
+3D/B9B3: 20 29 D5  JSR $D529          ; error sound effect
 3D/B9B6: 60        RTS 
+
+; [  ]
+
 3D/B9B7: 20 A8 A3  JSR $A3A8
-3D/B9BA: A2 22     LDX #$22
+3D/B9BA: A2 22     LDX #$22           ; name change - name window
 3D/B9BC: 20 A6 AA  JSR $AAA6
 3D/B9BF: A9 6D     LDA #$6D
 3D/B9C1: 20 B1 D1  JSR $D1B1
 3D/B9C4: 20 03 BC  JSR $BC03
 3D/B9C7: 4C 8E A3  JMP $A38E
+
+; [  ]
+
 3D/B9CA: E6 F0     INC $F0
 3D/B9CC: A5 08     LDA $08
 3D/B9CE: C9 06     CMP #$06
@@ -47424,7 +44705,7 @@
 3D/BA1C: 20 C7 BB  JSR $BBC7
 3D/BA1F: 20 00 FF  JSR $FF00          ; wait for vblank
 3D/BA22: A9 02     LDA #$02
-3D/BA24: 8D 14 40  STA $4014
+3D/BA24: 8D 14 40  STA $4014          ; dma oam data to ppu
 3D/BA27: 20 08 D3  JSR $D308          ; copy color palettes to vram
 3D/BA2A: A5 FF     LDA $FF
 3D/BA2C: 8D 00 20  STA $2000
@@ -47439,12 +44720,12 @@
 3D/BA43: 8D 43 7F  STA $7F43
 3D/BA46: A9 01     LDA #$01           ; play new song
 3D/BA48: 8D 42 7F  STA $7F42
-3D/BA4B: 20 A0 A9  JSR $A9A0
+3D/BA4B: 20 A0 A9  JSR $A9A0          ; init save slot windows
 3D/BA4E: 20 EF BB  JSR $BBEF
 3D/BA51: 20 AD BB  JSR $BBAD
 3D/BA54: 20 00 FF  JSR $FF00          ; wait for vblank
 3D/BA57: A9 02     LDA #$02
-3D/BA59: 8D 14 40  STA $4014
+3D/BA59: 8D 14 40  STA $4014          ; dma oam data to ppu
 3D/BA5C: 20 86 C4  JSR $C486          ; clear oam data
 3D/BA5F: 20 58 C7  JSR $C758          ; update sound
 3D/BA62: AD F0 78  LDA $78F0
@@ -47455,11 +44736,11 @@
 3D/BA6B: B0 05     BCS $BA72
 3D/BA6D: C9 00     CMP #$00
 3D/BA6F: 20 41 82  JSR $8241
-3D/BA72: 20 19 91  JSR $9119
+3D/BA72: 20 19 91  JSR $9119          ; draw cursor sprite 1
 3D/BA75: 20 DD BA  JSR $BADD
 3D/BA78: A5 24     LDA $24
 3D/BA7A: F0 D8     BEQ $BA54
-3D/BA7C: 20 74 8F  JSR $8F74
+3D/BA7C: 20 74 8F  JSR $8F74          ; cursor sound effect
 3D/BA7F: AD F0 78  LDA $78F0
 3D/BA82: C9 0C     CMP #$0C
 3D/BA84: B0 40     BCS $BAC6
@@ -47507,13 +44788,13 @@
 3D/BAD0: 20 06 FF  JSR $FF06          ; switch prg bank 0
 3D/BAD3: A5 08     LDA $08
 3D/BAD5: 8D 10 60  STA $6010          ; message speed
-3D/BAD8: 20 95 B8  JSR $B895
+3D/BAD8: 20 95 B8  JSR $B895          ; name change menu
 3D/BADB: 18        CLC 
 3D/BADC: 60        RTS 
 
 ; [  ]
 
-3D/BADD: 20 75 91  JSR $9175
+3D/BADD: 20 75 91  JSR $9175          ; get cursor movement direction
 3D/BAE0: 29 0F     AND #$0F
 3D/BAE2: F0 40     BEQ $BB24
 3D/BAE4: C9 04     CMP #$04
@@ -47615,17 +44896,17 @@
 3D/BB9F: 8D 00 20  STA $2000
 3D/BBA2: 4C 58 C7  JMP $C758          ; update sound
 
-3D/BBA5: 20 21 22  JSR $2221
-3D/BBA8: 20 DD DD  JSR $DDDD
-3D/BBAB: DD 51 A2  CMP $A251,X
-3D/BBAE: 0F        --- 
+3D/BBA5: 20 21 22 20
+3D/BBA9: DD DD DD 51
+
+3D/BBAD: A2 0F     LDX #$0F
 3D/BBAF: BD 00 79  LDA $7900,X
 3D/BBB2: 9D 00 78  STA $7800,X
 3D/BBB5: CA        DEX 
 3D/BBB6: 10 F7     BPL $BBAF
-3D/BBB8: A9 10     LDA #$10
+3D/BBB8: A9 10     LDA #$10           ; 4 cursor positions
 3D/BBBA: 8D F1 78  STA $78F1
-3D/BBBD: A9 01     LDA #$01
+3D/BBBD: A9 01     LDA #$01           ; show cursor 1
 3D/BBBF: 85 A2     STA $A2
 3D/BBC1: A5 08     LDA $08
 3D/BBC3: 20 7D BB  JSR $BB7D
@@ -47637,7 +44918,7 @@
 3D/BBD1: A9 01     LDA #$01
 3D/BBD3: 85 37     STA $37
 3D/BBD5: 20 58 8F  JSR $8F58
-3D/BBD8: A9 00     LDA #$00
+3D/BBD8: A9 00     LDA #$00           ; hide all cursors
 3D/BBDA: 85 A2     STA $A2
 3D/BBDC: 85 A3     STA $A3
 3D/BBDE: 85 A4     STA $A4
@@ -47645,16 +44926,19 @@
 3D/BBE3: 20 00 FF  JSR $FF00          ; wait for vblank
 3D/BBE6: 20 00 FF  JSR $FF00          ; wait for vblank
 3D/BBE9: A9 02     LDA #$02
-3D/BBEB: 8D 14 40  STA $4014
+3D/BBEB: 8D 14 40  STA $4014          ; dma oam data to ppu
 3D/BBEE: 60        RTS 
 3D/BBEF: A2 0C     LDX #$0C
-3D/BBF1: 20 F1 AA  JSR $AAF1
-3D/BBF4: A9 22     LDA #$22
-3D/BBF6: 20 78 A6  JSR $A678
+3D/BBF1: 20 F1 AA  JSR $AAF1          ; open menu window
+3D/BBF4: A9 22     LDA #$22           ; "\choice[0x01]New Game"
+3D/BBF6: 20 78 A6  JSR $A678          ; load menu text
 3D/BBF9: A2 21     LDX #$21
-3D/BBFB: 20 F1 AA  JSR $AAF1
-3D/BBFE: A9 23     LDA #$23
-3D/BC00: 4C 78 A6  JMP $A678
+3D/BBFB: 20 F1 AA  JSR $AAF1          ; open menu window
+3D/BBFE: A9 23     LDA #$23           ; "Msg.Speed \0x06"
+3D/BC00: 4C 78 A6  JMP $A678          ; load menu text
+
+; [  ]
+
 3D/BC03: A9 18     LDA #$18
 3D/BC05: 85 93     STA $93
 3D/BC07: A9 01     LDA #$01
@@ -47707,67 +44991,77 @@
 3D/BC58: 90 F5     BCC $BC4F
 3D/BC5A: 60        RTS 
 
+; [ check random battle ]
+
+; carry clear for world map, set for normal map
+
 3D/BC5B: 90 0B     BCC $BC68
 3D/BC5D: 4C B9 BD  JMP $BDB9
-3D/BC60: A5 44     LDA $44
+3D/BC60: A5 44     LDA $44            ; no battle
 3D/BC62: 29 3F     AND #$3F
 3D/BC64: 85 44     STA $44
 3D/BC66: 18        CLC 
 3D/BC67: 60        RTS 
+; world map
 3D/BC68: A5 6C     LDA $6C
-3D/BC6A: D0 F4     BNE $BC60
+3D/BC6A: D0 F4     BNE $BC60          ; branch if an event is running
 3D/BC6C: A9 2E     LDA #$2E
 3D/BC6E: 20 06 FF  JSR $FF06          ; switch prg bank 0
 3D/BC71: A5 78     LDA $78
-3D/BC73: D0 17     BNE $BC8C
-3D/BC75: AD 47 9D  LDA $9D47
+3D/BC73: D0 17     BNE $BC8C          ; branch if not floating continent
+; floating continent
+3D/BC75: AD 47 9D  LDA $9D47          ; 2E/9D47 (no vehicle battle rate: 5)
 3D/BC78: A6 42     LDX $42
-3D/BC7A: F0 49     BEQ $BCC5
-3D/BC7C: AD 48 9D  LDA $9D48
+3D/BC7A: F0 49     BEQ $BCC5          ; branch if no vehicle
+3D/BC7C: AD 48 9D  LDA $9D48          ; 2E/9D48 (canoe battle rate: 5)
 3D/BC7F: E0 02     CPX #$02
-3D/BC81: F0 42     BEQ $BCC5
-3D/BC83: AD 49 9D  LDA $9D49
+3D/BC81: F0 42     BEQ $BCC5          ; branch if canoe
+3D/BC83: AD 49 9D  LDA $9D49          ; 2E/9D49 (ship battle rate: 5)
 3D/BC86: E0 03     CPX #$03
-3D/BC88: F0 3B     BEQ $BCC5
+3D/BC88: F0 3B     BEQ $BCC5          ; branch if ship
 3D/BC8A: D0 D4     BNE $BC60
+; flooded world
 3D/BC8C: C9 02     CMP #$02
 3D/BC8E: D0 09     BNE $BC99
-3D/BC90: AD 4A 9D  LDA $9D4A
+3D/BC90: AD 4A 9D  LDA $9D4A          ; 2E/9D4A (no vehicle battle rate: 5)
 3D/BC93: A6 42     LDX $42
-3D/BC95: D0 C9     BNE $BC60
+3D/BC95: D0 C9     BNE $BC60          ; branch if in a vehicle
 3D/BC97: F0 2C     BEQ $BCC5
+; surface world
 3D/BC99: C9 03     CMP #$03
 3D/BC9B: D0 25     BNE $BCC2
-3D/BC9D: AD 4B 9D  LDA $9D4B
+3D/BC9D: AD 4B 9D  LDA $9D4B          ; 2E/9D4B (no vehicle battle rate: 5)
 3D/BCA0: A6 42     LDX $42
-3D/BCA2: F0 21     BEQ $BCC5
-3D/BCA4: AD 4C 9D  LDA $9D4C
+3D/BCA2: F0 21     BEQ $BCC5          ; branch if no vehicle
+3D/BCA4: AD 4C 9D  LDA $9D4C          ; 2E/9D4C (canoe battle rate: 5)
 3D/BCA7: E0 02     CPX #$02
 3D/BCA9: F0 1A     BEQ $BCC5
-3D/BCAB: AD 4D 9D  LDA $9D4D
+3D/BCAB: AD 4D 9D  LDA $9D4D          ; 2E/9D4D (ship battle rate: 5)
 3D/BCAE: E0 03     CPX #$03
 3D/BCB0: F0 13     BEQ $BCC5
 3D/BCB2: AD 2F 60  LDA $602F
 3D/BCB5: 4A        LSR 
 3D/BCB6: 90 07     BCC $BCBF
-3D/BCB8: AD 4E 9D  LDA $9D4E
+3D/BCB8: AD 4E 9D  LDA $9D4E          ; 2E/9D4E (chocobo ??? battle rate: 18)
 3D/BCBB: E0 04     CPX #$04
-3D/BCBD: B0 06     BCS $BCC5
+3D/BCBD: B0 06     BCS $BCC5          ; branch if in an airship
 3D/BCBF: 4C 60 BC  JMP $BC60
-3D/BCC2: AD 4F 9D  LDA $9D4F
+; underwater
+3D/BCC2: AD 4F 9D  LDA $9D4F          ; 2E/9D4F (underwater battle rate: 7)
 3D/BCC5: 85 80     STA $80
 3D/BCC7: 20 11 C7  JSR $C711          ; get random number
 3D/BCCA: C5 80     CMP $80
-3D/BCCC: 90 03     BCC $BCD1
+3D/BCCC: 90 03     BCC $BCD1          ; battle if (0..255) < (battle rate)
 3D/BCCE: 4C 60 BC  JMP $BC60
 3D/BCD1: A5 78     LDA $78
 3D/BCD3: D0 32     BNE $BD07
+; floating continent
 3D/BCD5: A6 42     LDX $42
 3D/BCD7: F0 0D     BEQ $BCE6
-3D/BCD9: AD 40 9D  LDA $9D40
+3D/BCD9: AD 40 9D  LDA $9D40          ; canoe battle group: $35
 3D/BCDC: E0 02     CPX #$02
 3D/BCDE: F0 03     BEQ $BCE3
-3D/BCE0: AD 41 9D  LDA $9D41
+3D/BCE0: AD 41 9D  LDA $9D41          ; ship battle group: $35
 3D/BCE3: 4C 4D BD  JMP $BD4D
 3D/BCE6: A5 27     LDA $27
 3D/BCE8: 18        CLC 
@@ -47788,22 +45082,24 @@
 3D/BCFD: 4A        LSR 
 3D/BCFE: 05 80     ORA $80
 3D/BD00: AA        TAX 
-3D/BD01: BD F0 9C  LDA $9CF0,X
+3D/BD01: BD F0 9C  LDA $9CF0,X        ; 2E/9CF0 (world 0 battle groups)
 3D/BD04: 4C 4D BD  JMP $BD4D
+; flooded world
 3D/BD07: C9 02     CMP #$02
 3D/BD09: D0 06     BNE $BD11
-3D/BD0B: AD 42 9D  LDA $9D42
+3D/BD0B: AD 42 9D  LDA $9D42          ; canoe battle group: $6B
 3D/BD0E: 4C 4D BD  JMP $BD4D
+; surface world
 3D/BD11: C9 03     CMP #$03
 3D/BD13: D0 35     BNE $BD4A
-3D/BD15: AD 43 9D  LDA $9D43
+3D/BD15: AD 43 9D  LDA $9D43          ; canoe battle group: $54
 3D/BD18: A6 42     LDX $42
 3D/BD1A: E0 02     CPX #$02
 3D/BD1C: F0 29     BEQ $BD47
-3D/BD1E: AD 44 9D  LDA $9D44
+3D/BD1E: AD 44 9D  LDA $9D44          ; ship battle group: $54
 3D/BD21: E0 03     CPX #$03
 3D/BD23: F0 22     BEQ $BD47
-3D/BD25: AD 45 9D  LDA $9D45
+3D/BD25: AD 45 9D  LDA $9D45          ; airship ??? battle group: $5F
 3D/BD28: E0 04     CPX #$04
 3D/BD2A: B0 B7     BCS $BCE3
 3D/BD2C: A5 27     LDA $27
@@ -47823,9 +45119,14 @@
 3D/BD40: 4A        LSR 
 3D/BD41: 05 80     ORA $80
 3D/BD43: AA        TAX 
-3D/BD44: BD 00 9D  LDA $9D00,X
+3D/BD44: BD 00 9D  LDA $9D00,X        ; 2E/9D00 (world 2 battle groups)
 3D/BD47: 4C 4D BD  JMP $BD4D
-3D/BD4A: AD 46 9D  LDA $9D46
+; underwater
+3D/BD4A: AD 46 9D  LDA $9D46          ; underwater battle group: $63
+; fallthrough
+
+; [ choose from battle group ]
+
 3D/BD4D: A0 00     LDY #$00
 3D/BD4F: 84 81     STY $81
 3D/BD51: 0A        ASL 
@@ -47835,7 +45136,7 @@
 3D/BD57: 0A        ASL 
 3D/BD58: 26 81     ROL $81
 3D/BD5A: 18        CLC 
-3D/BD5B: 69 F0     ADC #$F0
+3D/BD5B: 69 F0     ADC #$F0           ; 2E/94F0 (world map battle groups)
 3D/BD5D: 85 80     STA $80
 3D/BD5F: A5 81     LDA $81
 3D/BD61: 69 94     ADC #$94
@@ -47847,10 +45148,11 @@
 3D/BD6E: AA        TAX 
 3D/BD6F: BC 78 BD  LDY $BD78,X
 3D/BD72: B1 80     LDA ($80),Y
-3D/BD74: 85 6A     STA $6A
+3D/BD74: 85 6A     STA $6A            ; set battle id
 3D/BD76: 18        CLC 
 3D/BD77: 60        RTS 
 
+; battle probabilities
 ; 0: 12/256
 ; 1: 12/256
 ; 2: 12/256
@@ -47865,8 +45167,9 @@
 3D/BDA8: 04 04 04 04 04 04 05 05 05 05 05 05 06 06 06 07
 
 3D/BDB8: 60        RTS 
+; normal map
 3D/BDB9: A5 6C     LDA $6C
-3D/BDBB: D0 FB     BNE $BDB8
+3D/BDBB: D0 FB     BNE $BDB8          ; return if in an event
 3D/BDBD: 20 11 C7  JSR $C711          ; get random number
 3D/BDC0: C5 F8     CMP $F8
 3D/BDC2: B0 F4     BCS $BDB8
@@ -47874,13 +45177,13 @@
 3D/BDC6: 20 06 FF  JSR $FF06          ; switch prg bank 0
 3D/BDC9: A6 48     LDX $48
 3D/BDCB: A5 78     LDA $78
-3D/BDCD: D0 0B     BNE $BDDA
-3D/BDCF: BD F0 92  LDA $92F0,X
-3D/BDD2: 20 4D BD  JSR $BD4D
+3D/BDCD: D0 0B     BNE $BDDA          ; branch if not world 0
+3D/BDCF: BD F0 92  LDA $92F0,X        ; world 0 battle groups
+3D/BDD2: 20 4D BD  JSR $BD4D          ; choose from battle group
 3D/BDD5: A9 20     LDA #$20           ; battle
 3D/BDD7: 85 AB     STA $AB
 3D/BDD9: 60        RTS 
-3D/BDDA: BD F0 93  LDA $93F0,X
+3D/BDDA: BD F0 93  LDA $93F0,X        ; world 2 battle groups
 3D/BDDD: 4C D2 BD  JMP $BDD2
 
 ; [  ]
@@ -47985,6 +45288,9 @@
 3D/BEB3: CA        DEX 
 3D/BEB4: D0 F7     BNE $BEAD
 3D/BEB6: 60        RTS 
+
+; [  ]
+
 3D/BEB7: A5 8A     LDA $8A
 3D/BEB9: C9 6A     CMP #$6A
 3D/BEBB: B0 01     BCS $BEBE
@@ -48012,50 +45318,41 @@
 3D/BEE6: 90 F4     BCC $BEDC
 3D/BEE8: 60        RTS 
 
-3D/BEE9: 6F        --- 
-3D/BEEA: FC        --- 
-3D/BEEB: 03        --- 
-3D/BEEC: 70 6F     BVS $BF5D
-3D/BEEE: FD 03 78  SBC $7803,X
-3D/BEF1: 77        --- 
-3D/BEF2: FE 03 70  INC $7003,X
-3D/BEF5: 77        --- 
-3D/BEF6: FF        --- 
-3D/BEF7: 03        --- 
-3D/BEF8: 78        SEI 
+3D/BEE9: 6F FC 03 70
+3D/BEED: 6F FD 03 78
+3D/BEF1: 77 FE 03 70
+3D/BEF5: 77 FF 03 78
 
-3D/BEF9: 6F        --- 
-3D/BEFA: FD 43 70  SBC $7043,X
-3D/BEFD: 6F        --- 
-3D/BEFE: FC        --- 
-3D/BEFF: 43        --- 
-3D/BF00: 78        SEI 
-3D/BF01: 77        --- 
-3D/BF02: FF        --- 
-3D/BF03: 43        --- 
-3D/BF04: 70 77     BVS $BF7D
-3D/BF06: FE 43 78  INC $7843,X
+3D/BEF9: 6F FD 43 70
+3D/BEFD: 6F FC 43 78
+3D/BF01: 77 FF 43 70
+3D/BF05: 77 FE 43 78
+
+; [ draw ship chain ]
+
+; starts at 3D/BF0A
+
 3D/BF09: 60        RTS 
-
+; subroutine starts here
 3D/BF0A: A5 78     LDA $78
 3D/BF0C: C9 03     CMP #$03
-3D/BF0E: D0 F9     BNE $BF09
+3D/BF0E: D0 F9     BNE $BF09          ; return if not world 3
 3D/BF10: AD 20 60  LDA $6020
 3D/BF13: 29 20     AND #$20
 3D/BF15: F0 F2     BEQ $BF09
-3D/BF17: A9 75     LDA #$75
+3D/BF17: A9 75     LDA #$75           ; screen position (128,117) in pixels
 3D/BF19: 85 41     STA $41
 3D/BF1B: A9 80     LDA #$80
 3D/BF1D: 85 40     STA $40
-3D/BF1F: A9 A2     LDA #$A2
+3D/BF1F: A9 A2     LDA #$A2           ; x position 162
 3D/BF21: 38        SEC 
-3D/BF22: E5 27     SBC $27
+3D/BF22: E5 27     SBC $27            ; horizontal scroll position
 3D/BF24: 0A        ASL 
 3D/BF25: 0A        ASL 
 3D/BF26: 0A        ASL 
 3D/BF27: 0A        ASL 
 3D/BF28: 38        SEC 
-3D/BF29: E5 35     SBC $35
+3D/BF29: E5 35     SBC $35            ; horizontal subtile position
 3D/BF2B: 38        SEC 
 3D/BF2C: E9 08     SBC #$08
 3D/BF2E: 90 D9     BCC $BF09
@@ -48070,12 +45367,12 @@
 3D/BF3C: A6 26     LDX $26
 3D/BF3E: B9 7A BF  LDA $BF7A,Y
 3D/BF41: 48        PHA 
-3D/BF42: 29 0F     AND #$0F
+3D/BF42: 29 0F     AND #$0F           ; lo nybble is x-offset (in pixels)
 3D/BF44: 18        CLC 
 3D/BF45: 65 40     ADC $40
 3D/BF47: 85 40     STA $40
 3D/BF49: 9D 03 02  STA $0203,X
-3D/BF4C: 68        PLA 
+3D/BF4C: 68        PLA                ; hi nybble is y-offset (in pixels, signed)
 3D/BF4D: 4A        LSR 
 3D/BF4E: 4A        LSR 
 3D/BF4F: 4A        LSR 
@@ -48090,7 +45387,7 @@
 3D/BF5D: 65 41     ADC $41
 3D/BF5F: 85 41     STA $41
 3D/BF61: 9D 00 02  STA $0200,X
-3D/BF64: A9 B6     LDA #$B6
+3D/BF64: A9 B6     LDA #$B6           ; tile offset (0B/BF60)
 3D/BF66: 9D 01 02  STA $0201,X
 3D/BF69: A9 03     LDA #$03
 3D/BF6B: 9D 02 02  STA $0202,X
@@ -48104,100 +45401,29 @@
 3D/BF77: 86 26     STX $26
 3D/BF79: 60        RTS 
 
-3D/BF7A: 00        BRK 
-3D/BF7B: 10 10     BPL $BF8D
-3D/BF7D: 10 90     BPL $BF0F
-3D/BF7F: A0 00     LDY #$00
-3D/BF81: 12        --- 
-3D/BF82: 10 10     BPL $BF94
-3D/BF84: 90 A0     BCC $BF26
-3D/BF86: 00        BRK 
-3D/BF87: 12        --- 
-3D/BF88: 12        --- 
-3D/BF89: 10 90     BPL $BF1B
-3D/BF8B: A0 00     LDY #$00
-3D/BF8D: 12        --- 
-3D/BF8E: 12        --- 
-3D/BF8F: 10 92     BPL $BF23
-3D/BF91: A0 00     LDY #$00
-3D/BF93: 14        --- 
-3D/BF94: 12        --- 
-3D/BF95: 10 92     BPL $BF29
-3D/BF97: A0 00     LDY #$00
-3D/BF99: 14        --- 
-3D/BF9A: 12        --- 
-3D/BF9B: 12        --- 
-3D/BF9C: 92        --- 
-3D/BF9D: A0 00     LDY #$00
-3D/BF9F: 16 12     ASL $12,X
-3D/BFA1: 12        --- 
-3D/BFA2: 92        --- 
-3D/BFA3: A0 00     LDY #$00
-3D/BFA5: 16 12     ASL $12,X
-3D/BFA7: 12        --- 
-3D/BFA8: 92        --- 
-3D/BFA9: A2 00     LDX #$00
-3D/BFAB: 16 14     ASL $14,X
-3D/BFAD: 12        --- 
-3D/BFAE: 92        --- 
-3D/BFAF: A2 00     LDX #$00
-3D/BFB1: 16 16     ASL $16,X
-3D/BFB3: 12        --- 
-3D/BFB4: 92        --- 
-3D/BFB5: A2 00     LDX #$00
-3D/BFB7: 16 16     ASL $16,X
-3D/BFB9: 04        --- 
-3D/BFBA: 92        --- 
-3D/BFBB: 92        --- 
-3D/BFBC: 00        BRK 
-3D/BFBD: 18        CLC 
-3D/BFBE: 16 04     ASL $04,X
-3D/BFC0: 92        --- 
-3D/BFC1: 92        --- 
-3D/BFC2: 00        BRK 
-3D/BFC3: 18        CLC 
-3D/BFC4: 16 06     ASL $06,X
-3D/BFC6: 92        --- 
-3D/BFC7: 92        --- 
-3D/BFC8: 00        BRK 
-3D/BFC9: 18        CLC 
-3D/BFCA: 16 06     ASL $06,X
-3D/BFCC: 92        --- 
-3D/BFCD: 94 00     STY $00,X
-3D/BFCF: 18        CLC 
-3D/BFD0: 16 06     ASL $06,X
-3D/BFD2: 94 94     STY $94,X
-3D/BFD4: 00        BRK 
-3D/BFD5: 18        CLC 
-3D/BFD6: 18        CLC 
-3D/BFD7: 06 94     ASL $94
-3D/BFD9: 94 00     STY $00,X
-3D/BFDB: 18        CLC 
-3D/BFDC: 18        CLC 
-3D/BFDD: 96 04     STX $04,Y
-3D/BFDF: 96 00     STX $00,Y
-3D/BFE1: 18        CLC 
-3D/BFE2: 18        CLC 
-3D/BFE3: 96 06     STX $06,Y
-3D/BFE5: 96 00     STX $00,Y
-3D/BFE7: 08        PHP 
-3D/BFE8: 18        CLC 
-3D/BFE9: 98        TYA 
-3D/BFEA: 06 06     ASL $06
-3D/BFEC: 00        BRK 
-3D/BFED: 08        PHP 
-3D/BFEE: 08        PHP 
-3D/BFEF: 08        PHP 
-3D/BFF0: 08        PHP 
-3D/BFF1: 06 00     ASL $00
-3D/BFF3: 08        PHP 
-3D/BFF4: 08        PHP 
-3D/BFF5: 08        PHP 
-3D/BFF6: 08        PHP 
-3D/BFF7: 08        PHP 
-3D/BFF8: 08        PHP 
-3D/BFF9: 08        PHP 
-3D/BFFA: 08        PHP 
+; ship chain link positions (lo/hi nybble is x/y, relative)
+3D/BF7A: 00 10 10 10 90 A0  ;  0
+3D/BF80: 00 12 10 10 90 A0  ;  2
+3D/BF86: 00 12 12 10 90 A0  ;  4
+3D/BF8C: 00 12 12 10 92 A0  ;  6
+3D/BF92: 00 14 12 10 92 A0  ;  8
+3D/BF98: 00 14 12 12 92 A0  ; 10
+3D/BF9E: 00 16 12 12 92 A0  ; 12
+3D/BFA4: 00 16 12 12 92 A2  ; 14
+3D/BFAA: 00 16 14 12 92 A2  ; 16
+3D/BFB0: 00 16 16 12 92 A2  ; 18
+3D/BFB6: 00 16 16 04 92 92  ; 20
+3D/BFBC: 00 18 16 04 92 92  ; 22
+3D/BFC2: 00 18 16 06 92 92  ; 24
+3D/BFC8: 00 18 16 06 92 94  ; 26
+3D/BFCE: 00 18 16 06 94 94  ; 28
+3D/BFD4: 00 18 18 06 94 94  ; 30
+3D/BFDA: 00 18 18 96 04 96  ; 32
+3D/BFE0: 00 18 18 96 06 96  ; 34
+3D/BFE6: 00 08 18 98 06 06  ; 36
+3D/BFEC: 00 08 08 08 08 06  ; 38
+3D/BFF2: 00 08 08 08 08 08  ; 40
+3D/BFF8: 08 08 08
 
 ; uninitialized padding
 3D/BFFB: D5 FF 7D FF F7
@@ -48205,15 +45431,15 @@
 ; --------------------------------------------------------------------------
 
 3E/C000: 4C 6E C0  JMP $C06E          ; program start
-3E/C003: 4C AF D3  JMP $D3AF
+3E/C003: 4C AF D3  JMP $D3AF          ; darken/restore bg palette
 3E/C006: 4C BB F7  JMP $F7BB
 3E/C009: 4C 58 C7  JMP $C758          ; update sound
 3E/C00C: 4C 7A D2  JMP $D27A          ; update joypad input
 3E/C00F: 4C 08 D3  JMP $D308          ; copy color palettes to vram
-3E/C012: 4C 66 D6  JMP $D666
+3E/C012: 4C 66 D6  JMP $D666          ; draw inactive invincible
 3E/C015: 4C 00 00  JMP $0000          ; unused
-3E/C018: 4C 83 CC  JMP $CC83          ; decompress world tilemap (minimap ???)
-3E/C01B: 4C D3 D8  JMP $D8D3
+3E/C018: 4C 83 CC  JMP $CC83          ; decompress world tilemap (minimap)
+3E/C01B: 4C D3 D8  JMP $D8D3          ; update player sprites
 3E/C01E: 4C 3A DA  JMP $DA3A          ; draw object sprite
 3E/C021: 4C 3E C0  JMP $C03E
 
@@ -48243,7 +45469,7 @@
 3E/C049: 20 8A C9  JSR $C98A          ; load prg banks $3C/$3D
 3E/C04C: 20 12 BC  JSR $BC12          ; interlace inventory before battle
 3E/C04F: A5 6A     LDA $6A            ; battle index
-3E/C051: A6 6B     LDX $6B
+3E/C051: A6 6B     LDX $6B            ; battle bg
 3E/C053: A4 78     LDY $78            ; battle flags
 3E/C055: 20 00 F8  JSR $F800          ; execute battle
 3E/C058: 90 03     BCC $C05D          ; branch if not defeated
@@ -48251,11 +45477,11 @@
 3E/C05D: 20 8A C9  JSR $C98A          ; load prg banks $3C/$3D
 3E/C060: 4C 2D BC  JMP $BC2D          ; deinterlace inventory after battle
 
-; [  ]
+; [ show minimap ]
 
 3E/C063: A9 3A     LDA #$3A
 3E/C065: 20 03 FF  JSR $FF03          ; switch prg bank 0 and 1 (sequential)
-3E/C068: 20 00 85  JSR $8500
+3E/C068: 20 00 85  JSR $8500          ; show minimap
 3E/C06B: 4C 8A C9  JMP $C98A          ; load prg banks $3C/$3D
 
 ; [ program start ]
@@ -48279,7 +45505,7 @@
 3E/C093: 20 86 C4  JSR $C486          ; clear oam data
 3E/C096: 20 00 FF  JSR $FF00          ; wait for vblank
 3E/C099: A9 02     LDA #$02
-3E/C09B: 8D 14 40  STA $4014
+3E/C09B: 8D 14 40  STA $4014          ; dma oam data to ppu
 3E/C09E: 20 08 D3  JSR $D308          ; copy color palettes to vram
 3E/C0A1: A5 FA     LDA $FA
 3E/C0A3: C9 77     CMP #$77
@@ -48313,11 +45539,11 @@
 3E/C0E6: A9 00     LDA #$00
 3E/C0E8: 85 48     STA $48            ; map id
 3E/C0EA: 20 DC E1  JSR $E1DC          ; map main
-; fall through
+; fallthrough
 
 ; [ world map main ]
 
-3E/C0ED: 20 59 C8  JSR $C859
+3E/C0ED: 20 59 C8  JSR $C859          ; load world map
 3E/C0F0: 20 9F CF  JSR $CF9F
 3E/C0F3: AD 11 60  LDA $6011
 3E/C0F6: 10 10     BPL $C108          ; branch if surface world not emerging
@@ -48329,7 +45555,7 @@
 3E/C105: 20 9B 93  JSR $939B          ; surface world emerging cutscene
 3E/C108: A2 FF     LDX #$FF           ; reset stack pointer
 3E/C10A: 9A        TXS 
-3E/C10B: 20 65 C7  JSR $C765
+3E/C10B: 20 65 C7  JSR $C765          ; get current tile id
 3E/C10E: 29 20     AND #$20
 3E/C110: 85 43     STA $43
 ; world map main loop
@@ -48367,7 +45593,7 @@
 3E/C156: 20 8A B7  JSR $B78A          ; update guest npc
 3E/C159: 20 F9 B7  JSR $B7F9
 3E/C15C: 20 86 C4  JSR $C486          ; clear oam data
-3E/C15F: 20 3C D8  JSR $D83C
+3E/C15F: 20 3C D8  JSR $D83C          ; update sprites
 3E/C162: 4C 12 C1  JMP $C112
 
 ; [ check player input/triggers ]
@@ -48386,22 +45612,22 @@
 3E/C176: A6 78     LDX $78
 3E/C178: 85 78     STA $78
 3E/C17A: C9 03     CMP #$03
-3E/C17C: D0 1C     BNE $C19A
+3E/C17C: D0 1C     BNE $C19A          ; branch if not going to surface world
 3E/C17E: E0 04     CPX #$04
-3E/C180: D0 18     BNE $C19A
-3E/C182: 20 59 C8  JSR $C859
+3E/C180: D0 18     BNE $C19A          ; branch if not coming from underwater
+3E/C182: 20 59 C8  JSR $C859          ; load world map
 3E/C185: A9 01     LDA #$01
 3E/C187: 20 69 D4  JSR $D469
 3E/C18A: A9 D2     LDA #$D2
 3E/C18C: 8D 49 7F  STA $7F49
-3E/C18F: 20 D4 D6  JSR $D6D4
+3E/C18F: 20 D4 D6  JSR $D6D4          ; lift-off airship
 3E/C192: A9 A7     LDA #$A7
 3E/C194: 8D 49 7F  STA $7F49
 3E/C197: 4C 08 C1  JMP $C108
 3E/C19A: 4C E6 C8  JMP $C8E6          ; reload world map
 ; $40: battle
 3E/C19D: 20 4D D3  JSR $D34D
-3E/C1A0: 20 65 C7  JSR $C765
+3E/C1A0: 20 65 C7  JSR $C765          ; get current tile id
 3E/C1A3: BD 01 04  LDA $0401,X        ; battle bg
 3E/C1A6: 85 6B     STA $6B
 3E/C1A8: 20 49 C0  JSR $C049          ; battle
@@ -48435,7 +45661,7 @@
 3E/C1E6: 30 C6     BMI $C1AE
 3E/C1E8: 70 B3     BVS $C19D          ; branch if a battle
 3E/C1EA: A5 A6     LDA $A6
-3E/C1EC: 30 20     BMI $C20E
+3E/C1EC: 30 20     BMI $C20E          ; branch if invincible is jumping
 3E/C1EE: A5 6C     LDA $6C
 3E/C1F0: D0 1C     BNE $C20E
 3E/C1F2: A5 23     LDA $23
@@ -48451,14 +45677,14 @@
 3E/C209: F0 03     BEQ $C20E
 3E/C20B: 4C 82 C2  JMP $C282
 3E/C20E: 24 A6     BIT $A6
-3E/C210: 10 27     BPL $C239
-3E/C212: 70 2E     BVS $C242
+3E/C210: 10 27     BPL $C239          ; branch if invincible is not jumping
+3E/C212: 70 2E     BVS $C242          ; return if invincible is moving
 3E/C214: A5 AF     LDA $AF
 3E/C216: F0 2A     BEQ $C242
 3E/C218: C6 AF     DEC $AF
-3E/C21A: A5 E0     LDA $E0
+3E/C21A: A5 E0     LDA $E0            ; restore facing direction
 3E/C21C: 85 33     STA $33
-3E/C21E: 20 5D C6  JSR $C65D          ; get destination tile properties
+3E/C21E: 20 5D C6  JSR $C65D          ; check destination tile
 3E/C221: A5 44     LDA $44
 3E/C223: 29 C0     AND #$C0
 3E/C225: 05 6C     ORA $6C
@@ -48479,7 +45705,7 @@
 3E/C242: 60        RTS 
 3E/C243: A5 A9     LDA $A9
 3E/C245: D0 0B     BNE $C252
-3E/C247: 20 19 D2  JSR $D219
+3E/C247: 20 19 D2  JSR $D219          ; execute event script
 3E/C24A: A5 20     LDA $20
 3E/C24C: 29 0F     AND #$0F
 3E/C24E: D0 03     BNE $C253
@@ -48514,11 +45740,11 @@
 3E/C286: A5 42     LDA $42
 3E/C288: F0 F5     BEQ $C27F          ; branch if no vehicle
 3E/C28A: C9 07     CMP #$07
-3E/C28C: D0 14     BNE $C2A2          ; branch if not invincible
+3E/C28C: D0 14     BNE $C2A2          ; return if not invincible
 3E/C28E: A5 A6     LDA $A6
-3E/C290: 30 10     BMI $C2A2
+3E/C290: 30 10     BMI $C2A2          ; return if invincible jumping
 ; board invincible
-3E/C292: 20 65 C7  JSR $C765
+3E/C292: 20 65 C7  JSR $C765          ; get current tile id
 3E/C295: 29 81     AND #$81
 3E/C297: 20 A3 C2  JSR $C2A3
 3E/C29A: A9 80     LDA #$80
@@ -48527,7 +45753,7 @@
 3E/C2A0: 85 45     STA $45
 3E/C2A2: 60        RTS 
 
-; [ invincible jump ??? ]
+; [ enter invincible interior ??? ]
 
 3E/C2A3: D0 09     BNE $C2AE
 3E/C2A5: AD 2B 60  LDA $602B
@@ -48564,7 +45790,7 @@
 3E/C2E0: 48        PHA 
 3E/C2E1: 4C 5C C3  JMP $C35C
 ; 4,5,6: airship
-3E/C2E4: 4C A5 C7  JMP $C7A5
+3E/C2E4: 4C A5 C7  JMP $C7A5          ; exit vehicle
 ; 1: chocobo
 3E/C2E7: A9 80     LDA #$80
 3E/C2E9: 85 B0     STA $B0
@@ -48825,8 +46051,12 @@
 3E/C4B5: 10 FA     BPL $C4B1
 3E/C4B7: 60        RTS 
 
+; [ do player movement (world map) ]
+
+; starts at 3E/C4FC
+
 3E/C4B8: A5 78     LDA $78
-3E/C4BA: D0 15     BNE $C4D1
+3E/C4BA: D0 15     BNE $C4D1          ; branch if not world 0
 3E/C4BC: AD 20 60  LDA $6020
 3E/C4BF: 29 04     AND #$04
 3E/C4C1: F0 2C     BEQ $C4EF
@@ -48839,10 +46069,10 @@
 3E/C4CF: F0 15     BEQ $C4E6
 3E/C4D1: A5 78     LDA $78
 3E/C4D3: C9 03     CMP #$03
-3E/C4D5: D0 18     BNE $C4EF
+3E/C4D5: D0 18     BNE $C4EF          ; branch if not world 3
 3E/C4D7: AD 20 60  LDA $6020
 3E/C4DA: 29 20     AND #$20
-3E/C4DC: F0 11     BEQ $C4EF
+3E/C4DC: F0 11     BEQ $C4EF          ; branch if no ship chain
 3E/C4DE: A5 82     LDA $82
 3E/C4E0: C9 A6     CMP #$A6
 3E/C4E2: 90 02     BCC $C4E6
@@ -48850,7 +46080,6 @@
 3E/C4E6: A5 43     LDA $43
 3E/C4E8: 85 44     STA $44
 3E/C4EA: 60        RTS 
-
 3E/C4EB: A5 43     LDA $43
 3E/C4ED: 85 44     STA $44
 3E/C4EF: A5 42     LDA $42
@@ -48858,13 +46087,11 @@
 3E/C4F3: 20 8A C9  JSR $C98A          ; load prg banks $3C/$3D
 3E/C4F6: 20 DA B6  JSR $B6DA
 3E/C4F9: 4C 67 CA  JMP $CA67
-
-; [ do player movement (world map) ]
-
+; subroutine starts here
 3E/C4FC: A6 42     LDX $42
 3E/C4FE: E0 02     CPX #$02
 3E/C500: B0 29     BCS $C52B
-3E/C502: 20 5D C6  JSR $C65D          ; get destination tile properties
+3E/C502: 20 5D C6  JSR $C65D          ; check destination tile
 3E/C505: B0 14     BCS $C51B          ; branch if not passable
 3E/C507: A5 42     LDA $42
 3E/C509: F0 04     BEQ $C50F          ; branch if no vehicle
@@ -48883,7 +46110,7 @@
 3E/C527: 90 C2     BCC $C4EB
 3E/C529: B0 BB     BCS $C4E6
 3E/C52B: D0 14     BNE $C541
-3E/C52D: 20 5D C6  JSR $C65D          ; get destination tile properties
+3E/C52D: 20 5D C6  JSR $C65D          ; check destination tile
 3E/C530: 90 BD     BCC $C4EF          ; branch if passable
 3E/C532: 20 B5 C5  JSR $C5B5
 3E/C535: 90 B4     BCC $C4EB
@@ -48893,14 +46120,14 @@
 3E/C53E: 4C B8 C4  JMP $C4B8
 3E/C541: E0 03     CPX #$03
 3E/C543: D0 11     BNE $C556
-3E/C545: 20 5D C6  JSR $C65D          ; get destination tile properties
+3E/C545: 20 5D C6  JSR $C65D          ; check destination tile
 3E/C548: 90 F4     BCC $C53E          ; branch if passable
 3E/C54A: 20 DE C5  JSR $C5DE          ; check boarding canoe
 3E/C54D: 90 9C     BCC $C4EB
 3E/C54F: 20 B5 C5  JSR $C5B5
 3E/C552: 90 97     BCC $C4EB
 3E/C554: B0 90     BCS $C4E6
-3E/C556: 20 5D C6  JSR $C65D          ; get destination tile properties
+3E/C556: 20 5D C6  JSR $C65D          ; check destination tile
 3E/C559: B0 8B     BCS $C4E6          ; branch if not passable
 3E/C55B: A5 78     LDA $78
 3E/C55D: F0 07     BEQ $C566
@@ -48932,6 +46159,8 @@
 3E/C598: 4C EF C4  JMP $C4EF
 3E/C59B: 4C E6 C4  JMP $C4E6
 
+; [  ]
+
 3E/C59E: A5 27     LDA $27
 3E/C5A0: 18        CLC 
 3E/C5A1: 69 07     ADC #$07
@@ -48944,6 +46173,9 @@
 3E/C5B0: 8D 03 60  STA $6003
 3E/C5B3: 18        CLC 
 3E/C5B4: 60        RTS 
+
+; [  ]
+
 3E/C5B5: A5 44     LDA $44
 3E/C5B7: 4A        LSR 
 3E/C5B8: 90 01     BCC $C5BB
@@ -49037,15 +46269,17 @@
 3E/C64D: 18        CLC 
 3E/C64E: 60        RTS 
 
+; [  ]
+
 3E/C64F: A5 42     LDA $42
-3E/C651: D0 09     BNE $C65C
+3E/C651: D0 09     BNE $C65C          ; return if in a vehicle
 3E/C653: AD 0B 60  LDA $600B
-3E/C656: F0 04     BEQ $C65C
+3E/C656: F0 04     BEQ $C65C          ; return if no guest npc
 3E/C658: A9 01     LDA #$01
 3E/C65A: 85 A9     STA $A9
 3E/C65C: 60        RTS 
 
-; [ get destination tile properties (world map) ]
+; [ check destination tile (world map) ]
 
 ; A: ----udlr direction
 ; set carry if not passable
@@ -49092,47 +46326,50 @@
 3E/C69D: B1 80     LDA ($80),Y
 3E/C69F: 0A        ASL 
 3E/C6A0: AA        TAX 
-3E/C6A1: BD 00 04  LDA $0400,X
+3E/C6A1: BD 00 04  LDA $0400,X        ; tile properties 1
 3E/C6A4: 85 44     STA $44
-3E/C6A6: BD 01 04  LDA $0401,X
+3E/C6A6: BD 01 04  LDA $0401,X        ; tile properties 1
 3E/C6A9: 85 45     STA $45
-3E/C6AB: A4 42     LDY $42
-3E/C6AD: B9 CD C6  LDA $C6CD,Y
+3E/C6AB: A4 42     LDY $42            ; vehicle id
+3E/C6AD: B9 CD C6  LDA $C6CD,Y        ; tile passability mask
 3E/C6B0: 25 44     AND $44
 3E/C6B2: D9 CD C6  CMP $C6CD,Y
-3E/C6B5: D0 1E     BNE $C6D5
+3E/C6B5: D0 1E     BNE $C6D5          ; branch if passable
 3E/C6B7: 38        SEC 
 3E/C6B8: 60        RTS 
-
+; from 3E/C6E1
 3E/C6B9: A5 78     LDA $78
 3E/C6BB: C9 04     CMP #$04
-3E/C6BD: F0 0C     BEQ $C6CB
+3E/C6BD: F0 0C     BEQ $C6CB          ; branch if underwater
 3E/C6BF: A5 42     LDA $42
 3E/C6C1: C9 04     CMP #$04
-3E/C6C3: 90 06     BCC $C6CB
+3E/C6C3: 90 06     BCC $C6CB          ; branch if not in airship
 3E/C6C5: A5 44     LDA $44
 3E/C6C7: 29 7F     AND #$7F
 3E/C6C9: 85 44     STA $44
+; $00: passable
 3E/C6CB: 18        CLC 
 3E/C6CC: 60        RTS 
 
 ; tile passability masks for each vehicle
 3E/C6CD: 01 03 02 04 10 10 10 10
 
+; from 3E/C6B5
 3E/C6D5: A5 44     LDA $44
 3E/C6D7: 30 06     BMI $C6DF
 3E/C6D9: 29 40     AND #$40
 3E/C6DB: F0 EE     BEQ $C6CB
 3E/C6DD: D0 18     BNE $C6F7
+; $80 or $C0: entrance/event
 3E/C6DF: A5 45     LDA $45
 3E/C6E1: 10 D6     BPL $C6B9
-3E/C6E3: 8A        TXA 
+3E/C6E3: 8A        TXA                ; X is tile id
 3E/C6E4: 48        PHA 
-3E/C6E5: A5 82     LDA $82
+3E/C6E5: A5 82     LDA $82            ; push x and y position
 3E/C6E7: 48        PHA 
 3E/C6E8: A5 83     LDA $83
 3E/C6EA: 48        PHA 
-3E/C6EB: 20 11 C9  JSR $C911
+3E/C6EB: 20 11 C9  JSR $C911          ; event trigger
 3E/C6EE: 68        PLA 
 3E/C6EF: 85 83     STA $83
 3E/C6F1: 68        PLA 
@@ -49140,16 +46377,17 @@
 3E/C6F4: 68        PLA 
 3E/C6F5: AA        TAX 
 3E/C6F6: 60        RTS 
-3E/C6F7: 8A        TXA 
+; $40: battle
+3E/C6F7: 8A        TXA                ; X is tile id
 3E/C6F8: 48        PHA 
-3E/C6F9: A5 82     LDA $82
+3E/C6F9: A5 82     LDA $82            ; push x and y position
 3E/C6FB: 48        PHA 
 3E/C6FC: A5 83     LDA $83
 3E/C6FE: 48        PHA 
 3E/C6FF: A9 3D     LDA #$3D
 3E/C701: 20 09 FF  JSR $FF09          ; switch prg bank 1
 3E/C704: 18        CLC 
-3E/C705: 20 5B BC  JSR $BC5B
+3E/C705: 20 5B BC  JSR $BC5B          ; check random battle
 3E/C708: 68        PLA 
 3E/C709: 85 83     STA $83
 3E/C70B: 68        PLA 
@@ -49175,7 +46413,7 @@
 3E/C728: BD 00 FE  LDA $FE00,X        ; random number table
 3E/C72B: 60        RTS 
 
-; [  ]
+; [ execute event ]
 
 3E/C72C: 0A        ASL 
 3E/C72D: A8        TAY 
@@ -49212,7 +46450,7 @@
 3E/C760: A5 57     LDA $57
 3E/C762: 4C 03 FF  JMP $FF03          ; switch prg bank 0 and 1 (sequential)
 
-; [  ]
+; [ get current tile id ]
 
 3E/C765: A5 27     LDA $27
 3E/C767: 18        CLC 
@@ -49234,14 +46472,21 @@
 3E/C782: BD 00 04  LDA $0400,X
 3E/C785: 60        RTS 
 
+; [ exit vehicle ]
+
+; A button is pressed while in a vehicle
+
+; starts at 3E/C7A5
+
+; surface nautilus
 3E/C786: 29 02     AND #$02
-3E/C788: D0 1A     BNE $C7A4
+3E/C788: D0 1A     BNE $C7A4          ; return if nautilus can't surface
 3E/C78A: A9 AD     LDA #$AD
 3E/C78C: 8D 49 7F  STA $7F49
 3E/C78F: 20 A7 D6  JSR $D6A7
-3E/C792: A9 03     LDA #$03
+3E/C792: A9 03     LDA #$03           ; load world 3 (surface world)
 3E/C794: 85 7B     STA $7B
-3E/C796: A5 27     LDA $27
+3E/C796: A5 27     LDA $27            ; set destination position
 3E/C798: 85 79     STA $79
 3E/C79A: A5 28     LDA $28
 3E/C79C: 85 7A     STA $7A
@@ -49249,10 +46494,8 @@
 3E/C7A0: 85 7E     STA $7E
 3E/C7A2: 85 44     STA $44
 3E/C7A4: 60        RTS 
-
-; [ land airship ]
-
-3E/C7A5: A5 27     LDA $27
+; subroutine starts here
+3E/C7A5: A5 27     LDA $27            ; x position
 3E/C7A7: 18        CLC 
 3E/C7A8: 69 07     ADC #$07
 3E/C7AA: 85 82     STA $82
@@ -49270,35 +46513,38 @@
 3E/C7C0: 09 70     ORA #$70
 3E/C7C2: 85 81     STA $81
 3E/C7C4: A0 00     LDY #$00
-3E/C7C6: B1 80     LDA ($80),Y
+3E/C7C6: B1 80     LDA ($80),Y        ; tile id
 3E/C7C8: 0A        ASL 
 3E/C7C9: AA        TAX 
-3E/C7CA: BD 00 04  LDA $0400,X
+3E/C7CA: BD 00 04  LDA $0400,X        ; tile properties
 3E/C7CD: A4 78     LDY $78
 3E/C7CF: C0 04     CPY #$04
-3E/C7D1: B0 B3     BCS $C786
+3E/C7D1: B0 B3     BCS $C786          ; branch if underwater
 3E/C7D3: A4 42     LDY $42
-3E/C7D5: 39 51 C8  AND $C851,Y
-3E/C7D8: F0 20     BEQ $C7FA
+3E/C7D5: 39 51 C8  AND $C851,Y        ; landing flag
+3E/C7D8: F0 20     BEQ $C7FA          ; branch if can't land
 3E/C7DA: A5 78     LDA $78
 3E/C7DC: C9 03     CMP #$03
-3E/C7DE: D0 16     BNE $C7F6
+3E/C7DE: D0 16     BNE $C7F6          ; branch if not surface world
 3E/C7E0: E0 3C     CPX #$3C
-3E/C7E2: D0 12     BNE $C7F6
+3E/C7E2: D0 12     BNE $C7F6          ; branch if not a sea tile
+; submerge nautilus
 3E/C7E4: AD 20 60  LDA $6020
 3E/C7E7: 10 0D     BPL $C7F6
 3E/C7E9: A9 A9     LDA #$A9
 3E/C7EB: 8D 49 7F  STA $7F49
-3E/C7EE: 20 F2 D6  JSR $D6F2
-3E/C7F1: A9 04     LDA #$04
+3E/C7EE: 20 F2 D6  JSR $D6F2          ; submerge nautilus
+3E/C7F1: A9 04     LDA #$04           ; load world 4 (underwater)
 3E/C7F3: 4C 94 C7  JMP $C794
+; land airship
 3E/C7F6: 38        SEC 
-3E/C7F7: 4C 10 D7  JMP $D710
+3E/C7F7: 4C 10 D7  JMP $D710          ; land airship
+; can't land
 3E/C7FA: A6 82     LDX $82
 3E/C7FC: A4 83     LDY $83
 3E/C7FE: A5 42     LDA $42
 3E/C800: C9 04     CMP #$04
-3E/C802: D0 15     BNE $C819
+3E/C802: D0 15     BNE $C819          ; branch if not enterprise
 3E/C804: 8E 01 60  STX $6001
 3E/C807: 8C 02 60  STY $6002
 3E/C80A: A5 78     LDA $78
@@ -49308,7 +46554,7 @@
 3E/C814: A9 03     LDA #$03
 3E/C816: 4C 3D C8  JMP $C83D
 3E/C819: C9 05     CMP #$05
-3E/C81B: D0 0E     BNE $C82B
+3E/C81B: D0 0E     BNE $C82B          ; branch if not cid's airship
 3E/C81D: 8E 01 60  STX $6001
 3E/C820: 8C 02 60  STY $6002
 3E/C823: A9 A4     LDA #$A4
@@ -49323,7 +46569,7 @@
 3E/C83B: A9 00     LDA #$00           ; no vehicle
 3E/C83D: 48        PHA 
 3E/C83E: 18        CLC 
-3E/C83F: 20 10 D7  JSR $D710
+3E/C83F: 20 10 D7  JSR $D710          ; land airship
 3E/C842: 68        PLA 
 3E/C843: 85 46     STA $46
 3E/C845: 85 42     STA $42
@@ -49332,9 +46578,10 @@
 3E/C84B: 20 3A C9  JSR $C93A          ; play world map song
 3E/C84E: 4C F7 C8  JMP $C8F7
 
-3E/C851:           .DB $00,$00,$00,$00,$04,$08,$08,$08
+; landing flag for each vehicle
+3E/C851: 00 00 00 00 04 08 08 08
 
-; [ load world map ??? ]
+; [ load world map ]
 
 3E/C859: A5 FF     LDA $FF
 3E/C85B: 8D 00 20  STA $2000
@@ -49402,7 +46649,7 @@
 
 3E/C8E6: A5 33     LDA $33
 3E/C8E8: 48        PHA 
-3E/C8E9: 20 59 C8  JSR $C859
+3E/C8E9: 20 59 C8  JSR $C859          ; load world map
 3E/C8EC: 68        PLA 
 3E/C8ED: 85 33     STA $33
 3E/C8EF: A9 01     LDA #$01
@@ -49422,21 +46669,23 @@
 3E/C90C: A2 04     LDX #$04
 3E/C90E: 4C 03 A0  JMP $A003          ; execute object command
 
+; [ event trigger ]
+
 3E/C911: A5 44     LDA $44
 3E/C913: 29 7F     AND #$7F
 3E/C915: 85 44     STA $44
 3E/C917: A5 6C     LDA $6C
-3E/C919: D0 1D     BNE $C938
+3E/C919: D0 1D     BNE $C938          ; return if in an event
 3E/C91B: A2 3F     LDX #$3F
-3E/C91D: BD 00 7B  LDA $7B00,X
+3E/C91D: BD 00 7B  LDA $7B00,X        ; save ??? to buffer
 3E/C920: 9D 80 07  STA $0780,X
 3E/C923: CA        DEX 
 3E/C924: 10 F7     BPL $C91D
 3E/C926: A5 45     LDA $45
 3E/C928: 29 7F     AND #$7F
-3E/C92A: 20 C6 E6  JSR $E6C6
+3E/C92A: 20 C6 E6  JSR $E6C6          ; event trigger
 3E/C92D: A2 3F     LDX #$3F
-3E/C92F: BD 80 07  LDA $0780,X
+3E/C92F: BD 80 07  LDA $0780,X        ; restore ??? from buffer
 3E/C932: 9D 00 7B  STA $7B00,X
 3E/C935: CA        DEX 
 3E/C936: 10 F7     BPL $C92F
@@ -49582,7 +46831,7 @@
 3E/CA20: A5 57     LDA $57
 3E/CA22: 4C 03 FF  JMP $FF03          ; switch prg bank 0 and 1 (sequential)
 
-; [  ]
+; [ map wipe in ??? ]
 
 3E/CA25: A9 00     LDA #$00
 3E/CA27: 85 2F     STA $2F
@@ -49599,7 +46848,7 @@
 3E/CA3B: 69 0F     ADC #$0F
 3E/CA3D: 29 3F     AND #$3F
 3E/CA3F: 85 2A     STA $2A
-3E/CA41: A9 08     LDA #$08
+3E/CA41: A9 08     LDA #$08           ; facing up
 3E/CA43: 85 33     STA $33
 3E/CA45: 20 67 CA  JSR $CA67
 3E/CA48: 20 79 CA  JSR $CA79          ; update map background
@@ -49637,6 +46886,8 @@
 3E/CA84: A9 00     LDA #$00
 3E/CA86: 85 32     STA $32            ; background doesn't need update
 3E/CA88: 60        RTS 
+
+; [  ]
 
 3E/CA89: A5 2D     LDA $2D
 3E/CA8B: 4A        LSR 
@@ -49776,8 +47027,8 @@
 3E/CB81: 10 EB     BPL $CB6E
 3E/CB83: 60        RTS 
 
-3E/CB84:           .DB $00,$40,$80,$C0,$00,$40,$80,$C0,$00,$40,$80,$C0,$00,$40,$80,$C0
-3E/CB94:           .DB $20,$20,$20,$20,$21,$21,$21,$21,$22,$22,$22,$22,$23,$23,$23,$23
+3E/CB84: 00 40 80 C0 00 40 80 C0 00 40 80 C0 00 40 80 C0
+3E/CB94: 20 20 20 20 21 21 21 21 22 22 22 22 23 23 23 23
 
 ; [ load map ]
 
@@ -49915,7 +47166,7 @@
 3E/CC7F: 4C 4C CC  JMP $CC4C
 3E/CC82: 60        RTS 
 
-; [ decompress world tilemap (minimap ???) ]
+; [ decompress world tilemap (minimap) ]
 
 ; decompress one row (256 tiles) to $0600
 ; $2C: row
@@ -50508,7 +47759,7 @@
 ; [  ]
 
 3E/D0B2: A9 02     LDA #$02
-3E/D0B4: 8D 14 40  STA $4014
+3E/D0B4: 8D 14 40  STA $4014          ; dma oam data to ppu
 3E/D0B7: 20 08 D3  JSR $D308          ; copy color palettes to vram
 3E/D0BA: A5 2D     LDA $2D
 3E/D0BC: 4A        LSR 
@@ -50589,8 +47840,13 @@
 3E/D13D: A9 3C     LDA #$3C
 3E/D13F: 4C 03 FF  JMP $FF03          ; switch prg bank 0 and 1 (sequential)
 
+; [ init inventory equipability ]
+
+; used by equip menu, checks all available items
+; fills a buffer at $7200 indexed by item id
+
 3E/D142: A6 7F     LDX $7F
-3E/D144: BD 00 62  LDA $6200,X
+3E/D144: BD 00 62  LDA $6200,X        ; check currently equipped items
 3E/D147: 20 81 D1  JSR $D181
 3E/D14A: A6 7F     LDX $7F
 3E/D14C: BD 01 62  LDA $6201,X
@@ -50606,7 +47862,7 @@
 3E/D167: 20 81 D1  JSR $D181
 3E/D16A: A2 00     LDX #$00
 3E/D16C: 86 8F     STX $8F
-3E/D16E: BD C0 60  LDA $60C0,X
+3E/D16E: BD C0 60  LDA $60C0,X        ; check inventory items
 3E/D171: 20 81 D1  JSR $D181
 3E/D174: E6 8F     INC $8F
 3E/D176: A6 8F     LDX $8F
@@ -50615,7 +47871,9 @@
 3E/D17C: A9 3C     LDA #$3C
 3E/D17E: 4C 03 FF  JMP $FF03          ; switch prg bank 0 and 1 (sequential)
 
-3E/D181: F0 14     BEQ $D197
+; [ check item equipability ]
+
+3E/D181: F0 14     BEQ $D197          ; return if no item
 3E/D183: AA        TAX 
 3E/D184: C9 98     CMP #$98
 3E/D186: B0 0C     BCS $D194
@@ -50629,6 +47887,8 @@
 3E/D194: 9D 00 72  STA $7200,X
 3E/D197: 60        RTS 
 
+; [  ]
+
 3E/D198: A2 00     LDX #$00
 3E/D19A: 86 8F     STX $8F
 3E/D19C: BD 00 7C  LDA $7C00,X
@@ -50641,10 +47901,12 @@
 3E/D1AC: A9 3C     LDA #$3C
 3E/D1AE: 4C 03 FF  JMP $FF03          ; switch prg bank 0 and 1 (sequential)
 
+; [  ]
+
 3E/D1B1: 48        PHA 
 3E/D1B2: A9 18     LDA #$18
 3E/D1B4: 20 03 FF  JSR $FF03          ; switch prg bank 0 and 1 (sequential)
-3E/D1B7: A9 00     LDA #$00
+3E/D1B7: A9 00     LDA #$00           ; text offset $0100
 3E/D1B9: 85 82     STA $82
 3E/D1BB: A9 82     LDA #$82
 3E/D1BD: 85 83     STA $83
@@ -50653,7 +47915,7 @@
 3E/D1C1: A8        TAY 
 3E/D1C2: 90 02     BCC $D1C6
 3E/D1C4: E6 83     INC $83
-3E/D1C6: B1 82     LDA ($82),Y
+3E/D1C6: B1 82     LDA ($82),Y        ; pointer to text
 3E/D1C8: 85 80     STA $80
 3E/D1CA: C8        INY 
 3E/D1CB: B1 82     LDA ($82),Y
@@ -50692,33 +47954,39 @@
 3E/D208: A9 3C     LDA #$3C
 3E/D20A: 4C 03 FF  JMP $FF03          ; switch prg bank 0 and 1 (sequential)
 
+; [ cursor sound effect (confirm) ]
+
 3E/D20D: A9 85     LDA #$85
 3E/D20F: 8D 49 7F  STA $7F49
 3E/D212: 60        RTS 
+
+; [ cursor sound effect (move) ]
 
 3E/D213: A9 98     LDA #$98
 3E/D215: 8D 49 7F  STA $7F49
 3E/D218: 60        RTS 
 
-; [ execute event script ]
+; [ execute event script / update joypad input ]
+
+; also used to update joypad input on menus
  
 3E/D219: A5 6C     LDA $6C
 3E/D21B: F0 5D     BEQ $D27A          ; update joypad input
 3E/D21D: A5 17     LDA $17
 3E/D21F: F0 05     BEQ $D226
-3E/D221: C6 17     DEC $17
+3E/D221: C6 17     DEC $17            ; decrement event repeat counter
 3E/D223: 4C 6D D2  JMP $D26D
 3E/D226: A9 2C     LDA #$2C
 3E/D228: 20 03 FF  JSR $FF03          ; switch prg bank 0 and 1 (sequential)
 3E/D22B: A0 00     LDY #$00
 3E/D22D: B1 72     LDA ($72),Y        ; event command
 3E/D22F: C9 FE     CMP #$FE
-3E/D231: D0 19     BNE $D24C
+3E/D231: D0 19     BNE $D24C          ; branch if not repeat
 3E/D233: C8        INY 
-3E/D234: B1 72     LDA ($72),Y
+3E/D234: B1 72     LDA ($72),Y        ; set event repeat counter
 3E/D236: 85 17     STA $17
 3E/D238: C6 17     DEC $17
-3E/D23A: A5 72     LDA $72
+3E/D23A: A5 72     LDA $72            ; increment event script pointer
 3E/D23C: 18        CLC 
 3E/D23D: 69 02     ADC #$02
 3E/D23F: 85 72     STA $72
@@ -50733,14 +48001,14 @@
 3E/D251: 85 71     STA $71
 3E/D253: A2 01     LDX #$01
 3E/D255: A5 70     LDA $70
-3E/D257: C9 E4     CMP #$E4
+3E/D257: C9 E4     CMP #$E4           ; event commands $00-$E3 are 1 byte
 3E/D259: 90 06     BCC $D261
-3E/D25B: C9 FD     CMP #$FD
-3E/D25D: B0 02     BCS $D261
+3E/D25B: C9 FD     CMP #$FD           ; event commands $E4-$FC are 2 bytes
+3E/D25D: B0 02     BCS $D261          ; event commands $FD and $FF are 1 byte
 3E/D25F: A2 02     LDX #$02
 3E/D261: 8A        TXA 
 3E/D262: 18        CLC 
-3E/D263: 65 72     ADC $72
+3E/D263: 65 72     ADC $72            ; increment event script pointer
 3E/D265: 85 72     STA $72
 3E/D267: A5 73     LDA $73
 3E/D269: 69 00     ADC #$00
@@ -50855,17 +48123,23 @@
 3E/D332: 8D 06 20  STA $2006
 3E/D335: 60        RTS 
 
+; [  ]
+
 3E/D336: 20 86 C4  JSR $C486          ; clear oam data
 3E/D339: 20 00 FF  JSR $FF00          ; wait for vblank
 3E/D33C: A9 02     LDA #$02
-3E/D33E: 8D 14 40  STA $4014
+3E/D33E: 8D 14 40  STA $4014          ; dma oam data to ppu
 3E/D341: 60        RTS 
+
+; [  ]
 
 3E/D342: A5 2D     LDA $2D
 3E/D344: 4A        LSR 
 3E/D345: 90 03     BCC $D34A
 3E/D347: 4C 71 E5  JMP $E571          ; update scrolling
 3E/D34A: 4C 98 C3  JMP $C398
+
+; [  ]
 
 3E/D34D: A9 95     LDA #$95
 3E/D34F: 8D 49 7F  STA $7F49
@@ -50890,6 +48164,8 @@
 3E/D37D: 8D 01 20  STA $2001
 3E/D380: 60        RTS 
 
+; [  ]
+
 3E/D381: AD 02 20  LDA $2002
 3E/D384: A2 00     LDX #$00
 3E/D386: A9 3F     LDA #$3F
@@ -50910,11 +48186,14 @@
 3E/D3AB: 8D 06 20  STA $2006
 3E/D3AE: 60        RTS 
 
-; [  ]
+; [ darken/restore bg palette ]
+
+; carry clear = darken, set = restore
 
 3E/D3AF: A9 02     LDA #$02
 3E/D3B1: 85 61     STA $61
 3E/D3B3: B0 30     BCS $D3E5
+; darken
 3E/D3B5: A2 0F     LDX #$0F
 3E/D3B7: BD C0 03  LDA $03C0,X
 3E/D3BA: 29 1F     AND #$1F
@@ -50938,6 +48217,7 @@
 3E/D3E0: 4C C4 D3  JMP $D3C4
 3E/D3E3: 68        PLA 
 3E/D3E4: 60        RTS 
+; restore
 3E/D3E5: A9 01     LDA #$01
 3E/D3E7: 48        PHA 
 3E/D3E8: 29 03     AND #$03
@@ -50957,6 +48237,8 @@
 3E/D407: 20 00 FF  JSR $FF00          ; wait for vblank
 3E/D40A: 20 08 D3  JSR $D308          ; copy color palettes to vram
 3E/D40D: 4C 42 D3  JMP $D342
+
+; [  ]
 
 3E/D410: A0 00     LDY #$00
 3E/D412: A2 0F     LDX #$0F
@@ -50984,6 +48266,8 @@
 3E/D43D: 10 D5     BPL $D414
 3E/D43F: 60        RTS 
 
+; [  ]
+
 3E/D440: A0 00     LDY #$00
 3E/D442: A2 0F     LDX #$0F
 3E/D444: BD F0 03  LDA $03F0,X
@@ -51006,6 +48290,8 @@
 3E/D465: CA        DEX 
 3E/D466: 10 DC     BPL $D444
 3E/D468: 60        RTS 
+
+; [  ]
 
 3E/D469: 85 8C     STA $8C
 3E/D46B: 20 36 D3  JSR $D336
@@ -51034,6 +48320,8 @@
 3E/D49D: A9 3C     LDA #$3C
 3E/D49F: 4C 03 FF  JMP $FF03          ; switch prg bank 0 and 1 (sequential)
 
+; [  ]
+
 3E/D4A2: A5 8C     LDA $8C
 3E/D4A4: 29 04     AND #$04
 3E/D4A6: F0 13     BEQ $D4BB
@@ -51055,6 +48343,8 @@
 3E/D4CC: 8D 01 20  STA $2001
 3E/D4CF: 60        RTS 
 
+; [  ]
+
 3E/D4D0: A2 00     LDX #$00
 3E/D4D2: A5 8C     LDA $8C
 3E/D4D4: 4A        LSR 
@@ -51073,6 +48363,8 @@
 3E/D4EE: E0 10     CPX #$10
 3E/D4F0: 90 F5     BCC $D4E7
 3E/D4F2: 60        RTS 
+
+; [  ]
 
 3E/D4F3: A0 00     LDY #$00
 3E/D4F5: A2 00     LDX #$00
@@ -51104,29 +48396,35 @@
 3E/D526: 90 EC     BCC $D514
 3E/D528: 60        RTS 
 
+; [ error sound effect ]
+
 3E/D529: A9 86     LDA #$86
 3E/D52B: 8D 49 7F  STA $7F49
 3E/D52E: 60        RTS 
 
+; [ draw leviathan shadow sprite ]
+
 3E/D52F: A9 3C     LDA #$3C
 3E/D531: 20 06 FF  JSR $FF06          ; switch prg bank 0
-3E/D534: 4C 08 89  JMP $8908
+3E/D534: 4C 08 89  JMP $8908          ; draw leviathan shadow sprite
+
+; [ draw misc. floating continent sprites ]
 
 3E/D537: AD 20 60  LDA $6020
 3E/D53A: 29 01     AND #$01
 3E/D53C: F0 0E     BEQ $D54C
-3E/D53E: A2 51     LDX #$51
+3E/D53E: A2 51     LDX #$51           ; boulder at (81,54)
 3E/D540: A0 36     LDY #$36
-3E/D542: 20 E4 DB  JSR $DBE4
+3E/D542: 20 E4 DB  JSR $DBE4          ; check if coordinates are onscreen
 3E/D545: B0 5B     BCS $D5A2
 3E/D547: A9 90     LDA #$90
 3E/D549: 4C 03 D6  JMP $D603
 3E/D54C: AD 20 60  LDA $6020
 3E/D54F: 29 04     AND #$04
 3E/D551: F0 13     BEQ $D566
-3E/D553: A2 43     LDX #$43
+3E/D553: A2 43     LDX #$43           ; whirlpool at (67,32) 
 3E/D555: A0 20     LDY #$20
-3E/D557: 20 E4 DB  JSR $DBE4
+3E/D557: 20 E4 DB  JSR $DBE4          ; check if coordinates are onscreen
 3E/D55A: B0 0A     BCS $D566
 3E/D55C: A5 F0     LDA $F0
 3E/D55E: 4A        LSR 
@@ -51142,13 +48440,13 @@
 3E/D574: 20 03 A0  JSR $A003          ; execute object command
 3E/D577: A5 81     LDA $81
 3E/D579: 18        CLC 
-3E/D57A: 69 2D     ADC #$2D
+3E/D57A: 69 2D     ADC #$2D           ; hein's castle at (45,86)ish
 3E/D57C: AA        TAX 
 3E/D57D: A5 83     LDA $83
 3E/D57F: 18        CLC 
 3E/D580: 69 56     ADC #$56
 3E/D582: A8        TAY 
-3E/D583: 20 E4 DB  JSR $DBE4
+3E/D583: 20 E4 DB  JSR $DBE4          ; check if coordinates are onscreen
 3E/D586: B0 1A     BCS $D5A2
 3E/D588: A5 40     LDA $40
 3E/D58A: 18        CLC 
@@ -51174,13 +48472,13 @@
 3E/D5B1: 20 03 A0  JSR $A003          ; execute object command
 3E/D5B4: A5 81     LDA $81
 3E/D5B6: 18        CLC 
-3E/D5B7: 69 2D     ADC #$2D
+3E/D5B7: 69 2D     ADC #$2D           ; hein's castle offset from (45,86)
 3E/D5B9: AA        TAX 
 3E/D5BA: A5 83     LDA $83
 3E/D5BC: 18        CLC 
 3E/D5BD: 69 56     ADC #$56
 3E/D5BF: A8        TAY 
-3E/D5C0: 20 E4 DB  JSR $DBE4
+3E/D5C0: 20 E4 DB  JSR $DBE4          ; check if coordinates are onscreen
 3E/D5C3: B0 DD     BCS $D5A2
 3E/D5C5: A5 40     LDA $40
 3E/D5C7: 18        CLC 
@@ -51198,17 +48496,19 @@
 3E/D5DD: 20 06 FF  JSR $FF06          ; switch prg bank 0
 3E/D5E0: 4C DB 88  JMP $88DB
 
+; [ draw floating continent sprite ]
+
 3E/D5E3: A9 3C     LDA #$3C
 3E/D5E5: 20 06 FF  JSR $FF06          ; switch prg bank 0
-3E/D5E8: 4C 87 88  JMP $8887
+3E/D5E8: 4C 87 88  JMP $8887          ; draw floating continent sprite
 
-; [  ]
+; [ draw cursor sprite ]
 
-3E/D5EB: A9 E4     LDA #$E4
+3E/D5EB: A9 E4     LDA #$E4           ; tile offset (cursor)
 3E/D5ED: 85 82     STA $82
 3E/D5EF: A5 37     LDA $37
 3E/D5F1: D0 12     BNE $D605
-3E/D5F3: A9 F2     LDA #$F2           ; 3E/DCFA
+3E/D5F3: A9 F2     LDA #$F2           ; 3E/DCFA (palette 0)
 3E/D5F5: 18        CLC 
 3E/D5F6: 69 08     ADC #$08
 3E/D5F8: 85 80     STA $80
@@ -51217,18 +48517,18 @@
 3E/D5FE: 85 81     STA $81
 3E/D600: 4C 3A DA  JMP $DA3A          ; draw object sprite
 3E/D603: 85 82     STA $82
-3E/D605: A9 DC     LDA #$DC           ; 3E/DCF2
+3E/D605: A9 DC     LDA #$DC           ; 3E/DCF2 (palette 3)
 3E/D607: 85 81     STA $81
 3E/D609: A9 F2     LDA #$F2
 3E/D60B: 85 80     STA $80
 3E/D60D: 4C 3A DA  JMP $DA3A          ; draw object sprite
 
-; [  ]
+; [ draw invincible sprite ]
 
 ; subroutine starts at 3E/D622
 
 3E/D610: A5 A6     LDA $A6
-3E/D612: 20 7E D9  JSR $D97E
+3E/D612: 20 7E D9  JSR $D97E          ; calculate invincible y position
 3E/D615: 38        SEC 
 3E/D616: 69 5F     ADC #$5F
 3E/D618: 85 41     STA $41
@@ -51237,17 +48537,17 @@
 3E/D61F: 4C A1 87  JMP $87A1
 ; subroutine starts here
 3E/D622: A5 A6     LDA $A6
-3E/D624: 10 16     BPL $D63C
+3E/D624: 10 16     BPL $D63C          ; branch if not jumping
 3E/D626: A5 F0     LDA $F0
 3E/D628: 4A        LSR 
-3E/D629: A9 00     LDA #$00
+3E/D629: A9 00     LDA #$00           ; increment y-offset every 2 frames
 3E/D62B: 65 A6     ADC $A6
 3E/D62D: 85 A6     STA $A6
 3E/D62F: 29 1F     AND #$1F
-3E/D631: D0 DD     BNE $D610
+3E/D631: D0 DD     BNE $D610          ; branch if jumping
 3E/D633: A9 00     LDA #$00
 3E/D635: 85 A6     STA $A6
-3E/D637: A9 A8     LDA #$A8
+3E/D637: A9 A8     LDA #$A8           ; sound effect $26
 3E/D639: 8D 49 7F  STA $7F49
 3E/D63C: A5 33     LDA $33
 3E/D63E: 29 0F     AND #$0F
@@ -51274,7 +48574,7 @@
 3E/D661: AA        TAX 
 3E/D662: 4C 8A D6  JMP $D68A
 
-; [  ]
+; [ draw inactive invincible ]
 
 ; subroutine starts at 3E/D666
 
@@ -51282,35 +48582,36 @@
 ; subroutine starts here
 3E/D666: A5 42     LDA $42
 3E/D668: C9 07     CMP #$07
-3E/D66A: F0 F9     BEQ $D665
+3E/D66A: F0 F9     BEQ $D665          ; return if in invincible
 3E/D66C: AD 04 60  LDA $6004
-3E/D66F: F0 F4     BEQ $D665
+3E/D66F: F0 F4     BEQ $D665          ; return if invincible is not visible
 3E/D671: AD 07 60  LDA $6007
 3E/D674: C5 78     CMP $78
-3E/D676: D0 ED     BNE $D665
+3E/D676: D0 ED     BNE $D665          ; return if invincible is not on this world
 3E/D678: AE 05 60  LDX $6005
 3E/D67B: AC 06 60  LDY $6006
 3E/D67E: 88        DEY 
-3E/D67F: 20 E4 DB  JSR $DBE4
+3E/D67F: 20 E4 DB  JSR $DBE4          ; check if coordinates are onscreen
 3E/D682: B0 E1     BCS $D665
 3E/D684: A5 F0     LDA $F0
-3E/D686: 29 10     AND #$10
+3E/D686: 29 10     AND #$10           ; animation rate is 16 frames
 3E/D688: 0A        ASL 
 3E/D689: AA        TAX 
 3E/D68A: A9 3C     LDA #$3C
 3E/D68C: 20 06 FF  JSR $FF06          ; switch prg bank 0
-3E/D68F: 20 57 88  JSR $8857
+3E/D68F: 20 57 88  JSR $8857          ; draw invincible sprite
 3E/D692: A9 3A     LDA #$3A
 3E/D694: 4C 03 FF  JMP $FF03          ; switch prg bank 0 and 1 (sequential)
 
-; [  ]
+; [ lift-off enterprise/surface nautilus ]
 
 ; subroutine starts at 3E/D6A7
 
+; surface nautilus
 3E/D697: A9 5F     LDA #$5F
 3E/D699: 85 8A     STA $8A
 3E/D69B: 20 3E D7  JSR $D73E
-3E/D69E: C6 8A     DEC $8A
+3E/D69E: C6 8A     DEC $8A            ; move sprite up
 3E/D6A0: A5 8A     LDA $8A
 3E/D6A2: C9 10     CMP #$10
 3E/D6A4: B0 F5     BCS $D69B
@@ -51318,15 +48619,17 @@
 ; subroutine starts here
 3E/D6A7: A5 78     LDA $78
 3E/D6A9: C9 04     CMP #$04
-3E/D6AB: B0 EA     BCS $D697
+3E/D6AB: B0 EA     BCS $D697          ; branch if underwater
+; lift-off enterprise
 3E/D6AD: A9 6F     LDA #$6F
 3E/D6AF: 85 8A     STA $8A
 3E/D6B1: A5 42     LDA $42
 3E/D6B3: C9 04     CMP #$04
-3E/D6B5: D0 07     BNE $D6BE
-3E/D6B7: 20 7D D7  JSR $D77D
+3E/D6B5: D0 07     BNE $D6BE          ; branch if not enterprise
+3E/D6B7: 20 7D D7  JSR $D77D          ; transform enterprise into airship
 3E/D6BA: A9 68     LDA #$68
 3E/D6BC: 85 8A     STA $8A
+; lift-off
 3E/D6BE: 20 3E D7  JSR $D73E
 3E/D6C1: A5 F0     LDA $F0
 3E/D6C3: 29 01     AND #$01
@@ -51339,7 +48642,7 @@
 3E/D6D1: 85 33     STA $33
 3E/D6D3: 60        RTS 
 
-; [  ]
+; [ lift-off airship ]
 
 3E/D6D4: A9 6F     LDA #$6F
 3E/D6D6: 85 8A     STA $8A
@@ -51356,7 +48659,7 @@
 3E/D6EF: B0 E7     BCS $D6D8
 3E/D6F1: 60        RTS 
 
-; [  ]
+; [ submerge nautilus ]
 
 3E/D6F2: A9 5F     LDA #$5F
 3E/D6F4: 85 8A     STA $8A
@@ -51373,7 +48676,7 @@
 3E/D70D: 90 E7     BCC $D6F6
 3E/D70F: 60        RTS 
 
-; [  ]
+; [ land airship ]
 
 3E/D710: 08        PHP 
 3E/D711: A9 5F     LDA #$5F
@@ -51386,25 +48689,27 @@
 3E/D720: A5 8A     LDA $8A
 3E/D722: A6 42     LDX $42
 3E/D724: E0 04     CPX #$04
-3E/D726: D0 0A     BNE $D732
+3E/D726: D0 0A     BNE $D732          ; branch if not enterprise
 3E/D728: C9 68     CMP #$68
 3E/D72A: 90 E9     BCC $D715
 3E/D72C: 28        PLP 
 3E/D72D: B0 8F     BCS $D6BE
-3E/D72F: 4C 89 D7  JMP $D789
+3E/D72F: 4C 89 D7  JMP $D789          ; transform enterprise into ship
 3E/D732: C9 70     CMP #$70
 3E/D734: 90 DF     BCC $D715
 3E/D736: 28        PLP 
 3E/D737: B0 85     BCS $D6BE
-3E/D739: A9 01     LDA #$01
+3E/D739: A9 01     LDA #$01           ; facing right
 3E/D73B: 85 33     STA $33
 3E/D73D: 60        RTS 
 
-; [  ]
+; [ update airship lift-off/landing ]
+
+; $8A: y position
 
 3E/D73E: 20 00 FF  JSR $FF00          ; wait for vblank
 3E/D741: A9 02     LDA #$02
-3E/D743: 8D 14 40  STA $4014
+3E/D743: 8D 14 40  STA $4014          ; dma oam data to ppu
 3E/D746: A9 3A     LDA #$3A
 3E/D748: 20 06 FF  JSR $FF06          ; switch prg bank 0
 3E/D74B: 20 15 85  JSR $8515          ; update water animation
@@ -51423,13 +48728,13 @@
 3E/D76B: 29 08     AND #$08
 3E/D76D: 09 10     ORA #$10
 3E/D76F: 85 80     STA $80
-3E/D771: A9 68     LDA #$68
-3E/D773: 20 07 DA  JSR $DA07
+3E/D771: A9 68     LDA #$68           ; airship
+3E/D773: 20 07 DA  JSR $DA07          ; draw vehicle sprite
 3E/D776: 20 DA D9  JSR $D9DA
-3E/D779: 20 5A D8  JSR $D85A
+3E/D779: 20 5A D8  JSR $D85A          ; update world map sprites
 3E/D77C: 60        RTS 
 
-; [  ]
+; [ transform enterprise into airship ]
 
 3E/D77D: A9 00     LDA #$00
 3E/D77F: 85 8A     STA $8A
@@ -51438,23 +48743,25 @@
 3E/D786: 10 F9     BPL $D781
 3E/D788: 60        RTS 
 
-; [  ]
+; [ transform enterprise into ship ]
 
 3E/D789: A9 7F     LDA #$7F
 3E/D78B: 85 8A     STA $8A
 3E/D78D: 20 99 D7  JSR $D799
 3E/D790: C6 8A     DEC $8A
 3E/D792: 10 F9     BPL $D78D
-3E/D794: A9 02     LDA #$02
+3E/D794: A9 02     LDA #$02           ; face left
 3E/D796: 85 33     STA $33
 3E/D798: 60        RTS 
 
-; [  ]
+; [ update transforming enterprise ]
+
+; $8A: animation counter (0 to 127)
 
 3E/D799: A5 8A     LDA $8A
 3E/D79B: D0 06     BNE $D7A3
 3E/D79D: A2 00     LDX #$00
-3E/D79F: A0 AC     LDY #$AC
+3E/D79F: A0 AC     LDY #$AC           ; 0B/AC00 (normal ship)
 3E/D7A1: D0 11     BNE $D7B4
 3E/D7A3: 4A        LSR 
 3E/D7A4: 4A        LSR 
@@ -51462,10 +48769,10 @@
 3E/D7A6: 4A        LSR 
 3E/D7A7: 4A        LSR 
 3E/D7A8: 18        CLC 
-3E/D7A9: 69 B1     ADC #$B1
+3E/D7A9: 69 B1     ADC #$B1           ; 0B/B100 (transforming, 16 frames)
 3E/D7AB: A8        TAY 
 3E/D7AC: A5 8A     LDA $8A
-3E/D7AE: 29 18     AND #$18
+3E/D7AE: 29 18     AND #$18           ; 4 tiles per frame
 3E/D7B0: 0A        ASL 
 3E/D7B1: 0A        ASL 
 3E/D7B2: 0A        ASL 
@@ -51474,7 +48781,7 @@
 3E/D7B6: 20 09 FF  JSR $FF09          ; switch prg bank 1
 3E/D7B9: 20 00 FF  JSR $FF00          ; wait for vblank
 3E/D7BC: A9 02     LDA #$02
-3E/D7BE: 8D 14 40  STA $4014
+3E/D7BE: 8D 14 40  STA $4014          ; dma oam data to ppu
 3E/D7C1: E6 F0     INC $F0
 3E/D7C3: 20 1E D8  JSR $D81E
 3E/D7C6: A9 3A     LDA #$3A
@@ -51515,10 +48822,10 @@
 3E/D80C: 85 40     STA $40
 3E/D80E: A9 10     LDA #$10
 3E/D810: 85 80     STA $80
-3E/D812: A9 50     LDA #$50
-3E/D814: 20 07 DA  JSR $DA07
+3E/D812: A9 50     LDA #$50           ; ship
+3E/D814: 20 07 DA  JSR $DA07          ; draw vehicle sprite
 3E/D817: 20 DA D9  JSR $D9DA
-3E/D81A: 20 5A D8  JSR $D85A
+3E/D81A: 20 5A D8  JSR $D85A          ; update world map sprites
 3E/D81D: 60        RTS 
 
 ; [  ]
@@ -51538,103 +48845,109 @@
 3E/D839: 90 F6     BCC $D831
 3E/D83B: 60        RTS 
 
-; [  ]
+; [ update sprites (world map) ]
 
-3E/D83C: A4 42     LDY $42
-3E/D83E: 20 D3 D8  JSR $D8D3
-3E/D841: 4C 5A D8  JMP $D85A
+3E/D83C: A4 42     LDY $42            ; vehicle id
+3E/D83E: 20 D3 D8  JSR $D8D3          ; update player sprites
+3E/D841: 4C 5A D8  JMP $D85A          ; update world map sprites
 
-; [  ]
+; [ update sprites (normal map) ]
 
-3E/D844: A0 00     LDY #$00
-3E/D846: 20 D3 D8  JSR $D8D3
-3E/D849: 20 58 DB  JSR $DB58
-3E/D84C: A9 40     LDA #$40
+3E/D844: A0 00     LDY #$00           ; no vehicle
+3E/D846: 20 D3 D8  JSR $D8D3          ; update player sprites
+3E/D849: 20 58 DB  JSR $DB58          ; update guest npc sprites
+3E/D84C: A9 40     LDA #$40           ; npcs start at sprite 16
 3E/D84E: 85 26     STA $26
-3E/D850: A2 06     LDX #$06
+3E/D850: A2 06     LDX #$06           ; update npcs
 3E/D852: A9 3B     LDA #$3B
 3E/D854: 20 09 FF  JSR $FF09          ; switch prg bank 1
 3E/D857: 4C 03 A0  JMP $A003          ; execute object command
 
-; [  ]
+; [ update world map sprites ]
 
 3E/D85A: A5 78     LDA $78
 3E/D85C: 4A        LSR 
-3E/D85D: F0 05     BEQ $D864
+3E/D85D: F0 05     BEQ $D864          ; branch if world 0 or 1
 3E/D85F: 4A        LSR 
-3E/D860: F0 37     BEQ $D899
-3E/D862: D0 5E     BNE $D8C2
-3E/D864: A5 F0     LDA $F0
+3E/D860: F0 37     BEQ $D899          ; branch if world 2 or 3
+3E/D862: D0 5E     BNE $D8C2          ; branch if world 4
+; floating continent
+3E/D864: A5 F0     LDA $F0            ; reverse order every other frame
 3E/D866: 4A        LSR 
 3E/D867: B0 18     BCS $D881
-3E/D869: 20 58 DB  JSR $DB58
+3E/D869: 20 58 DB  JSR $DB58          ; update guest npc sprites
 3E/D86C: 20 09 DB  JSR $DB09
-3E/D86F: 20 2F DB  JSR $DB2F
-3E/D872: 20 D4 DA  JSR $DAD4
-3E/D875: 20 A3 DA  JSR $DAA3
-3E/D878: 20 2F D5  JSR $D52F
-3E/D87B: 20 37 D5  JSR $D537
-3E/D87E: 4C 66 D6  JMP $D666
-3E/D881: 20 66 D6  JSR $D666
-3E/D884: 20 37 D5  JSR $D537
-3E/D887: 20 2F D5  JSR $D52F
-3E/D88A: 20 A3 DA  JSR $DAA3
-3E/D88D: 20 D4 DA  JSR $DAD4
-3E/D890: 20 2F DB  JSR $DB2F
+3E/D86F: 20 2F DB  JSR $DB2F          ; draw inactive airship
+3E/D872: 20 D4 DA  JSR $DAD4          ; draw inactive ship
+3E/D875: 20 A3 DA  JSR $DAA3          ; draw chocobo running away
+3E/D878: 20 2F D5  JSR $D52F          ; draw leviathan shadow sprite
+3E/D87B: 20 37 D5  JSR $D537          ; draw misc. floating continent sprites
+3E/D87E: 4C 66 D6  JMP $D666          ; draw inactive invincible
+3E/D881: 20 66 D6  JSR $D666          ; draw inactive invincible
+3E/D884: 20 37 D5  JSR $D537          ; draw misc. floating continent sprites
+3E/D887: 20 2F D5  JSR $D52F          ; draw leviathan shadow sprite
+3E/D88A: 20 A3 DA  JSR $DAA3          ; draw chocobo running away
+3E/D88D: 20 D4 DA  JSR $DAD4          ; draw inactive ship
+3E/D890: 20 2F DB  JSR $DB2F          ; draw inactive airship
 3E/D893: 20 09 DB  JSR $DB09
-3E/D896: 4C 58 DB  JMP $DB58
-3E/D899: A5 F0     LDA $F0
+3E/D896: 4C 58 DB  JMP $DB58          ; update guest npc sprites
+; flooded/surface world
+3E/D899: A5 F0     LDA $F0            ; reverse order every other frame
 3E/D89B: 4A        LSR 
 3E/D89C: B0 12     BCS $D8B0
-3E/D89E: 20 58 DB  JSR $DB58
-3E/D8A1: 20 2F DB  JSR $DB2F
-3E/D8A4: 20 D4 DA  JSR $DAD4
-3E/D8A7: 20 A3 DA  JSR $DAA3
-3E/D8AA: 20 E3 D5  JSR $D5E3
-3E/D8AD: 4C 66 D6  JMP $D666
-3E/D8B0: 20 66 D6  JSR $D666
-3E/D8B3: 20 E3 D5  JSR $D5E3
-3E/D8B6: 20 A3 DA  JSR $DAA3
-3E/D8B9: 20 D4 DA  JSR $DAD4
-3E/D8BC: 20 2F DB  JSR $DB2F
-3E/D8BF: 4C 58 DB  JMP $DB58
+3E/D89E: 20 58 DB  JSR $DB58          ; update guest npc sprites
+3E/D8A1: 20 2F DB  JSR $DB2F          ; draw inactive airship
+3E/D8A4: 20 D4 DA  JSR $DAD4          ; draw inactive ship
+3E/D8A7: 20 A3 DA  JSR $DAA3          ; draw chocobo running away
+3E/D8AA: 20 E3 D5  JSR $D5E3          ; draw floating continent sprite
+3E/D8AD: 4C 66 D6  JMP $D666          ; draw inactive invincible
+3E/D8B0: 20 66 D6  JSR $D666          ; draw inactive invincible
+3E/D8B3: 20 E3 D5  JSR $D5E3          ; draw floating continent sprite
+3E/D8B6: 20 A3 DA  JSR $DAA3          ; draw chocobo running away
+3E/D8B9: 20 D4 DA  JSR $DAD4          ; draw inactive ship
+3E/D8BC: 20 2F DB  JSR $DB2F          ; draw inactive airship
+3E/D8BF: 4C 58 DB  JMP $DB58          ; update guest npc sprites
+; underwater
 3E/D8C2: A9 3A     LDA #$3A
 3E/D8C4: 20 06 FF  JSR $FF06          ; switch prg bank 0
-3E/D8C7: 4C 0F 85  JMP $850F
+3E/D8C7: 4C 0F 85  JMP $850F          ; update underwater bubbles
 
-3E/D8CA:           .DB $6C,$6C,$6F,$6F,$5F,$5F,$5F,$5F
+; y position for each vehicle sprite
+3E/D8CA: 6C 6C 6F 6F 5F 5F 5F 5F
 
-; [  ]
+; [ update player sprites ]
 
 ; subroutine starts at 3E/D8D3
+
+; Y: vehicle id
 
 3E/D8D2: 60        RTS 
 ; subroutine starts here
 3E/D8D3: 24 7E     BIT $7E
 3E/D8D5: 30 FB     BMI $D8D2
-3E/D8D7: A9 70     LDA #$70
+3E/D8D7: A9 70     LDA #$70           ; x position is always $70
 3E/D8D9: 85 40     STA $40
-3E/D8DB: B9 CA D8  LDA $D8CA,Y
+3E/D8DB: B9 CA D8  LDA $D8CA,Y        ; get y position
 3E/D8DE: 85 41     STA $41
-3E/D8E0: A5 35     LDA $35
+3E/D8E0: A5 35     LDA $35            ; normal animation based on subtile position
 3E/D8E2: 05 36     ORA $36
 3E/D8E4: C0 04     CPY #$04
-3E/D8E6: 90 03     BCC $D8EB
+3E/D8E6: 90 03     BCC $D8EB          ; branch if not in an airship
 3E/D8E8: A5 F0     LDA $F0
-3E/D8EA: 0A        ASL 
+3E/D8EA: 0A        ASL                ; airship animation is based on frame counter
 3E/D8EB: 29 08     AND #$08
-3E/D8ED: A6 33     LDX $33
+3E/D8ED: A6 33     LDX $33            ; facing direction
 3E/D8EF: 1D 1A DC  ORA $DC1A,X
 3E/D8F2: 85 80     STA $80
 3E/D8F4: AD 2F 60  LDA $602F
 3E/D8F7: 29 40     AND #$40
-3E/D8F9: F0 22     BEQ $D91D
+3E/D8F9: F0 22     BEQ $D91D          ; branch if not spinning ???
 3E/D8FB: A5 19     LDA $19
 3E/D8FD: 18        CLC 
 3E/D8FE: 69 04     ADC #$04
 3E/D900: 85 19     STA $19
 3E/D902: 90 08     BCC $D90C
-3E/D904: AD 2F 60  LDA $602F
+3E/D904: AD 2F 60  LDA $602F          ; toggle spinning
 3E/D907: 49 40     EOR #$40
 3E/D909: 8D 2F 60  STA $602F
 3E/D90C: A5 F0     LDA $F0
@@ -51661,22 +48974,27 @@
 3E/D933: F0 07     BEQ $D93C
 3E/D935: C0 06     CPY #$06
 3E/D937: F0 03     BEQ $D93C
-3E/D939: 4C 22 D6  JMP $D622
+3E/D939: 4C 22 D6  JMP $D622          ; draw invincible sprite
+; airship
 3E/D93C: A9 68     LDA #$68
-3E/D93E: 20 07 DA  JSR $DA07
-3E/D941: 20 DA D9  JSR $D9DA
+3E/D93E: 20 07 DA  JSR $DA07          ; draw vehicle sprite
+3E/D941: 20 DA D9  JSR $D9DA          ; draw airship shadow sprite
 3E/D944: 4C 7C D7  JMP $D77C
+; ship
 3E/D947: A9 50     LDA #$50
-3E/D949: 20 07 DA  JSR $DA07
+3E/D949: 20 07 DA  JSR $DA07          ; draw vehicle sprite
 3E/D94C: A9 3C     LDA #$3C
 3E/D94E: 20 03 FF  JSR $FF03          ; switch prg bank 0 and 1 (sequential)
-3E/D951: 4C 0A BF  JMP $BF0A
+3E/D951: 4C 0A BF  JMP $BF0A          ; draw ship chain
+; canoe
 3E/D954: A9 20     LDA #$20
-3E/D956: 4C 07 DA  JMP $DA07
+3E/D956: 4C 07 DA  JMP $DA07          ; draw vehicle sprite
+; chocobo
 3E/D959: A9 38     LDA #$38
-3E/D95B: 20 07 DA  JSR $DA07
+3E/D95B: 20 07 DA  JSR $DA07          ; draw vehicle sprite
 3E/D95E: A5 43     LDA $43
-3E/D960: 4C A7 D9  JMP $D9A7
+3E/D960: 4C A7 D9  JMP $D9A7          ; set sprite layer priority
+; no vehicle
 3E/D963: A5 80     LDA $80
 3E/D965: 29 08     AND #$08
 3E/D967: F0 0B     BEQ $D974
@@ -51688,9 +49006,11 @@
 3E/D974: A9 00     LDA #$00
 3E/D976: 20 2B DA  JSR $DA2B
 3E/D979: A5 43     LDA $43
-3E/D97B: 4C A7 D9  JMP $D9A7
+3E/D97B: 4C A7 D9  JMP $D9A7          ; set sprite layer priority
 
-; [  ]
+; [ calculate invincible y position ]
+
+; A: invincible jumping variable from $A6
 
 3E/D97E: 29 1F     AND #$1F
 3E/D980: C9 10     CMP #$10
@@ -51715,7 +49035,7 @@
 3E/D9A4: 49 E0     EOR #$E0
 3E/D9A6: 60        RTS 
 
-; [  ]
+; [ set sprite layer priority ]
 
 3E/D9A7: 48        PHA 
 3E/D9A8: A5 26     LDA $26
@@ -51725,8 +49045,8 @@
 3E/D9AE: 68        PLA 
 3E/D9AF: 48        PHA 
 3E/D9B0: 29 24     AND #$24
-3E/D9B2: F0 10     BEQ $D9C4
-3E/D9B4: BD 0A 02  LDA $020A,X
+3E/D9B2: F0 10     BEQ $D9C4          ; branch if upper sprites in front of bg
+3E/D9B4: BD 0A 02  LDA $020A,X        ; toggle layer priority of lower sprites
 3E/D9B7: 49 20     EOR #$20
 3E/D9B9: 9D 0A 02  STA $020A,X
 3E/D9BC: BD 0E 02  LDA $020E,X
@@ -51734,8 +49054,8 @@
 3E/D9C1: 9D 0E 02  STA $020E,X
 3E/D9C4: 68        PLA 
 3E/D9C5: 29 14     AND #$14
-3E/D9C7: F0 10     BEQ $D9D9
-3E/D9C9: BD 02 02  LDA $0202,X
+3E/D9C7: F0 10     BEQ $D9D9          ; branch if lower sprites in front of bg
+3E/D9C9: BD 02 02  LDA $0202,X        ; toggle layer priority of upper sprites
 3E/D9CC: 49 20     EOR #$20
 3E/D9CE: 9D 02 02  STA $0202,X
 3E/D9D1: BD 06 02  LDA $0206,X
@@ -51743,7 +49063,7 @@
 3E/D9D6: 9D 06 02  STA $0206,X
 3E/D9D9: 60        RTS 
 
-; [  ]
+; [ draw airship shadow sprite ]
 
 3E/D9DA: A5 F0     LDA $F0
 3E/D9DC: 4A        LSR 
@@ -51769,7 +49089,9 @@
 3E/DA03: 9D 04 02  STA $0204,X
 3E/DA06: 60        RTS 
 
-; [  ]
+; [ draw vehicle sprite ]
+
+; A: tile offset (from 0B/8600)
 
 3E/DA07: 85 82     STA $82
 3E/DA09: A5 80     LDA $80
@@ -51781,7 +49103,7 @@
 3E/DA14: 85 81     STA $81
 3E/DA16: 4C 3A DA  JMP $DA3A          ; draw object sprite
 
-; [  ]
+; [ draw guest npc sprite ]
 
 3E/DA19: 85 82     STA $82
 3E/DA1B: A5 80     LDA $80
@@ -51793,7 +49115,7 @@
 3E/DA26: 85 81     STA $81
 3E/DA28: 4C 3A DA  JMP $DA3A          ; draw object sprite
 
-; [  ]
+; [ draw player sprite ]
 
 3E/DA2B: 85 82     STA $82
 3E/DA2D: A9 2A     LDA #$2A           ; 3E/DC2A
@@ -51803,10 +49125,11 @@
 3E/DA34: A9 DC     LDA #$DC
 3E/DA36: 69 00     ADC #$00
 3E/DA38: 85 81     STA $81
+; fallthrough
 
 ; [ draw object sprite ]
 
-;  $26: sprite data offset
+;  $26: sprite data offset (incremented after drawing)
 ;  $40: x position
 ;  $41: y position
 ; +$80: pointer to tile ids and palette/flags
@@ -51865,40 +49188,40 @@
 3E/DAA0: 85 26     STA $26
 3E/DAA2: 60        RTS 
 
-; [  ]
+; [ draw chocobo running away ]
 
 3E/DAA3: A5 B0     LDA $B0
-3E/DAA5: 30 01     BMI $DAA8
+3E/DAA5: 30 01     BMI $DAA8          ; return if no chocobo animation
 3E/DAA7: 60        RTS 
-3E/DAA8: A5 B1     LDA $B1
+3E/DAA8: A5 B1     LDA $B1            ; run offscreen to the right
 3E/DAAA: 18        CLC 
 3E/DAAB: 69 02     ADC #$02
 3E/DAAD: 85 B1     STA $B1
 3E/DAAF: C9 F8     CMP #$F8
-3E/DAB1: 90 05     BCC $DAB8
-3E/DAB3: A9 00     LDA #$00
+3E/DAB1: 90 05     BCC $DAB8          ; branch if not offscreen
+3E/DAB3: A9 00     LDA #$00           ; end chocobo animation
 3E/DAB5: 85 B0     STA $B0
 3E/DAB7: 60        RTS 
 3E/DAB8: 85 40     STA $40
 3E/DABA: 29 08     AND #$08
 3E/DABC: 85 80     STA $80
 3E/DABE: A5 F0     LDA $F0
-3E/DAC0: 10 04     BPL $DAC6
+3E/DAC0: 10 04     BPL $DAC6          ; switch up/down direction every 128 frames
 3E/DAC2: A9 01     LDA #$01
 3E/DAC4: D0 02     BNE $DAC8
 3E/DAC6: A9 FF     LDA #$FF
 3E/DAC8: 18        CLC 
 3E/DAC9: 65 B2     ADC $B2
 3E/DACB: 85 B2     STA $B2
-3E/DACD: 85 41     STA $41
+3E/DACD: 85 41     STA $41            ; oscillate up and down
 3E/DACF: A9 38     LDA #$38
-3E/DAD1: 4C 07 DA  JMP $DA07
+3E/DAD1: 4C 07 DA  JMP $DA07          ; draw vehicle sprite
 
-; [  ]
+; [ draw inactive ship ]
 
 3E/DAD4: AD 20 60  LDA $6020
 3E/DAD7: 4A        LSR 
-3E/DAD8: B0 2E     BCS $DB08
+3E/DAD8: B0 2E     BCS $DB08          ; return if nautilus has been obtained
 3E/DADA: 29 20     AND #$20
 3E/DADC: D0 2A     BNE $DB08
 3E/DADE: A5 42     LDA $42
@@ -51913,19 +49236,19 @@
 3E/DAF2: F0 14     BEQ $DB08
 3E/DAF4: AE 01 60  LDX $6001
 3E/DAF7: AC 02 60  LDY $6002
-3E/DAFA: 20 E4 DB  JSR $DBE4
+3E/DAFA: 20 E4 DB  JSR $DBE4          ; check if coordinates are onscreen
 3E/DAFD: B0 09     BCS $DB08
 3E/DAFF: A9 00     LDA #$00
 3E/DB01: 85 80     STA $80
 3E/DB03: A9 50     LDA #$50
-3E/DB05: 4C 07 DA  JMP $DA07
+3E/DB05: 4C 07 DA  JMP $DA07          ; draw vehicle sprite
 3E/DB08: 60        RTS 
 
-; [  ]
+; [ draw inactive nautilus ]
 
 3E/DB09: AD 20 60  LDA $6020
 3E/DB0C: 29 01     AND #$01
-3E/DB0E: F0 F8     BEQ $DB08
+3E/DB0E: F0 F8     BEQ $DB08          ; return if nautilus hasn't been obtained
 3E/DB10: A5 42     LDA $42
 3E/DB12: C9 05     CMP #$05
 3E/DB14: F0 F2     BEQ $DB08
@@ -51933,14 +49256,14 @@
 3E/DB19: F0 ED     BEQ $DB08
 3E/DB1B: AE 01 60  LDX $6001
 3E/DB1E: AC 02 60  LDY $6002
-3E/DB21: 20 E4 DB  JSR $DBE4
+3E/DB21: 20 E4 DB  JSR $DBE4          ; check if coordinates are onscreen
 3E/DB24: B0 E2     BCS $DB08
 3E/DB26: A9 10     LDA #$10
 3E/DB28: 85 80     STA $80
 3E/DB2A: A9 68     LDA #$68
-3E/DB2C: 4C 07 DA  JMP $DA07
+3E/DB2C: 4C 07 DA  JMP $DA07          ; draw vehicle sprite
 
-; [  ]
+; [ draw inactive airship ]
 
 3E/DB2F: AD 20 60  LDA $6020
 3E/DB32: 29 40     AND #$40
@@ -51953,14 +49276,14 @@
 3E/DB41: D0 C5     BNE $DB08
 3E/DB43: AE 01 60  LDX $6001
 3E/DB46: AC 02 60  LDY $6002
-3E/DB49: 20 E4 DB  JSR $DBE4
+3E/DB49: 20 E4 DB  JSR $DBE4          ; check if coordinates are onscreen
 3E/DB4C: B0 BA     BCS $DB08
 3E/DB4E: A9 10     LDA #$10
 3E/DB50: 85 80     STA $80
 3E/DB52: A9 68     LDA #$68
-3E/DB54: 4C 07 DA  JMP $DA07
+3E/DB54: 4C 07 DA  JMP $DA07          ; draw vehicle sprite
 
-; [  ]
+; [ update guest npc sprites ]
 
 ; subroutine starts at 3E/DB58
 
@@ -52001,7 +49324,7 @@
 3E/DB9C: A9 10     LDA #$10
 3E/DB9E: 20 19 DA  JSR $DA19
 3E/DBA1: A5 A8     LDA $A8
-3E/DBA3: 4C A7 D9  JMP $D9A7
+3E/DBA3: 4C A7 D9  JMP $D9A7          ; set sprite layer priority
 
 ; [  ]
 
@@ -52045,7 +49368,7 @@
 3E/DBE1: C6 41     DEC $41
 3E/DBE3: 60        RTS 
 
-; [  ]
+; [ check if coordinates are onscreen ]
 
 3E/DBE4: 98        TYA 
 3E/DBE5: 38        SEC 
@@ -52089,23 +49412,25 @@
 3E/DC22: 20 00 10 00
 3E/DC26: 30 00 10 00
 
-3E/DC2A: 09 40 0B 41
+; player sprites (palette 0 and 1)
+3E/DC2A: 09 40 0B 41  ; right
 3E/DC2E: 08 40 0A 41
 3E/DC32: 0D 40 0F 41
 3E/DC36: 0C 40 0E 41
-3E/DC3A: 08 00 0A 01
+3E/DC3A: 08 00 0A 01  ; left
 3E/DC3E: 09 00 0B 01
 3E/DC42: 0C 00 0E 01
 3E/DC46: 0D 00 0F 01
-3E/DC4A: 04 00 06 01
+3E/DC4A: 04 00 06 01  ; up
 3E/DC4E: 05 00 07 01
 3E/DC52: 04 00 07 41
 3E/DC56: 05 00 06 41
-3E/DC5A: 00 00 02 01
+3E/DC5A: 00 00 02 01  ; down
 3E/DC5E: 01 00 03 01
 3E/DC62: 00 00 03 41
 3E/DC66: 01 00 02 41
 
+; guest npc sprites (palette 2)
 3E/DC6A: 09 42 0B 42
 3E/DC6E: 08 42 0A 42
 3E/DC72: 0D 42 0F 42
@@ -52123,6 +49448,7 @@
 3E/DCA2: 00 02 03 42
 3E/DCA6: 01 02 02 42
 
+; vehicle sprites (palette 3)
 3E/DCAA: 11 43 13 43
 3E/DCAE: 10 43 12 43
 3E/DCB2: 15 43 17 43
@@ -52140,12 +49466,15 @@
 3E/DCE2: 0C 03 0E 03
 3E/DCE6: 0D 03 0F 03
 
+; airship shadow sprites (palette 3)
 3E/DCEA: 00 03 02 03
 3E/DCEE: 00 43 03 03
 
+; cursor sprite (palette 3)
 3E/DCF2: 00 03 02 03
 3E/DCF6: 01 03 03 03
 
+; cursor sprite (palette 0)
 3E/DCFA: 00 00 02 00
 3E/DCFE: 01 00 03 00
 
@@ -52442,7 +49771,7 @@
 3E/DEFF: 60        RTS 
 
 ; tile count
-3E/DF00:           .DB $1A,$08,$08,$0E,$08,$10,$10,$10
+3E/DF00: 1A 08 08 0E 08 10 10 10
 
 ; [  ]
 
@@ -52662,12 +49991,14 @@
 3F/E0B4: 4C 2A DE  JMP $DE2A          ; copy data to ppu
 
 ; pointers to guest npc graphics (+28/BC00)
-3F/E0B7:           .DW $0000,$0060,$00C0,$0120,$0180,$01E0,$0240,$02A0
+3F/E0B7: 0000 0060 00C0 0120 0180 01E0 0240 02A0
 
 ; pointers to character graphics (bank 28)
-3F/E0C7:           .DW $8000,$82A0,$8540,$87E0,$8A80,$8D20,$8FC0,$9260
-3F/E0D7:           .DW $9500,$97A0,$9A40,$9CE0,$9F80,$A220,$A4C0,$A760
-3F/E0E7:           .DW $AA00,$ACA0,$AF40,$B1E0,$B480,$B720
+3F/E0C7: 8000 82A0 8540 87E0 8A80 8D20 8FC0 9260
+3F/E0D7: 9500 97A0 9A40 9CE0 9F80 A220 A4C0 A760
+3F/E0E7: AA00 ACA0 AF40 B1E0 B480 B720
+
+; [  ]
 
 3F/E0F3: AD 02 65  LDA $6502
 3F/E0F6: AE 00 65  LDX $6500
@@ -52817,7 +50148,7 @@
 3F/E23A: 20 28 EB  JSR $EB28          ; load prg banks $3C/$3D
 3F/E23D: 20 8A B7  JSR $B78A          ; update guest npc
 3F/E240: 20 86 C4  JSR $C486          ; clear oam data
-3F/E243: 20 44 D8  JSR $D844
+3F/E243: 20 44 D8  JSR $D844          ; update sprites
 3F/E246: 20 28 EB  JSR $EB28          ; load prg banks $3C/$3D
 3F/E249: 20 F9 B7  JSR $B7F9
 3F/E24C: A5 4B     LDA $4B
@@ -52855,7 +50186,7 @@
 3F/E285: 20 06 FF  JSR $FF06          ; switch prg bank 0
 3F/E288: 4C 33 85  JMP $8533          ; get default battle bg
 
-; $40: 
+; $40: exit (to previous map ???)
 3F/E28B: D0 08     BNE $E295
 3F/E28D: A9 94     LDA #$94           ; sound effect $14
 3F/E28F: 8D 49 7F  STA $7F49
@@ -52891,7 +50222,7 @@
 3F/E2C7: 85 A5     STA $A5
 3F/E2C9: A9 81     LDA #$81           ; load submap
 3F/E2CB: 4C DE E1  JMP $E1DE
-; $C0: exit
+; $C0: exit (to world map)
 3F/E2CE: C9 C0     CMP #$C0
 3F/E2D0: D0 26     BNE $E2F8          ; other values branch to subroutine ???
 3F/E2D2: A9 94     LDA #$94           ; sound effect $14
@@ -52922,22 +50253,26 @@
 3F/E303: 10 1A     BPL $E31F
 3F/E305: C9 80     CMP #$80
 3F/E307: D0 0B     BNE $E314
+; $80: prologue
 3F/E309: A9 1E     LDA #$1E
 3F/E30B: 20 03 FF  JSR $FF03          ; switch prg bank 0 and 1 (sequential)
 3F/E30E: 20 F7 BF  JSR $BFF7          ; prologue
 3F/E311: 4C 25 E3  JMP $E325
+; $81: epilogue
 3F/E314: A9 1E     LDA #$1E
 3F/E316: 20 03 FF  JSR $FF03          ; switch prg bank 0 and 1 (sequential)
 3F/E319: 20 FA BF  JSR $BFFA          ; epilogue
 3F/E31C: 4C 25 E3  JMP $E325
+; $01: shop
 3F/E31F: 20 28 EB  JSR $EB28          ; load prg banks $3C/$3D
-3F/E322: 20 1F AF  JSR $AF1F
+3F/E322: 20 1F AF  JSR $AF1F          ; shop menu
 3F/E325: A9 00     LDA #$00
 3F/E327: 85 50     STA $50
 3F/E329: A9 01     LDA #$01
 3F/E32B: 4C F8 E7  JMP $E7F8          ; reload map
+; $00: none
 3F/E32E: A5 6C     LDA $6C
-3F/E330: D0 3C     BNE $E36E
+3F/E330: D0 3C     BNE $E36E          ; branch if an event is running
 ; A button
 3F/E332: A5 24     LDA $24
 3F/E334: F0 03     BEQ $E339
@@ -52945,7 +50280,7 @@
 ; B button
 3F/E339: A5 25     LDA $25
 3F/E33B: F0 03     BEQ $E340
-3F/E33D: 4C 9C EA  JMP $EA9C
+3F/E33D: 4C 9C EA  JMP $EA9C          ; check guest npc dialog
 ; start button
 3F/E340: A5 23     LDA $23
 3F/E342: F0 17     BEQ $E35B
@@ -52967,14 +50302,14 @@
 3F/E365: 8D 49 7F  STA $7F49
 3F/E368: 20 28 EB  JSR $EB28          ; load prg banks $3C/$3D
 3F/E36B: 4C 2C F7  JMP $F72C          ; increment showing character
-; 
+; event running or no button pressed
 3F/E36E: A5 4B     LDA $4B            ; map title
 3F/E370: C9 FF     CMP #$FF
 3F/E372: D0 09     BNE $E37D
-3F/E374: 20 19 D2  JSR $D219          ; execute event script ???
+3F/E374: 20 19 D2  JSR $D219          ; execute event script
 3F/E377: A5 20     LDA $20
 3F/E379: 29 0F     AND #$0F
-3F/E37B: D0 01     BNE $E37E
+3F/E37B: D0 01     BNE $E37E          ; branch if any direction buttons pressed
 3F/E37D: 60        RTS 
 ; direction button
 3F/E37E: 85 33     STA $33            ; set facing direction
@@ -53000,7 +50335,7 @@
 3F/E3A9: A9 3D     LDA #$3D
 3F/E3AB: 20 09 FF  JSR $FF09          ; switch prg bank 1
 3F/E3AE: 38        SEC 
-3F/E3AF: 20 5B BC  JSR $BC5B
+3F/E3AF: 20 5B BC  JSR $BC5B          ; check random battle
 3F/E3B2: A5 44     LDA $44
 3F/E3B4: 29 07     AND #$07
 3F/E3B6: F0 12     BEQ $E3CA
@@ -53387,8 +50722,8 @@
 3F/E666: 85 36     STA $36
 3F/E668: 60        RTS 
 
-3F/E669:           .DW $E689,$E68F,$E6B9,$E6B9,$E695,$E69B,$E6A8,$E6B9
-3F/E679:           .DW $E6B9,$E6B9,$E6B9,$E6B9,$E6B3,$E6B3,$E6B3,$E6BE
+3F/E669: E689 E68F E6B9 E6B9 E695 E69B E6A8 E6B9
+3F/E679: E6B9 E6B9 E6B9 E6B9 E6B3 E6B3 E6B3 E6BE
 
 3F/E689: A9 40     LDA #$40           ; damage tile ???
 3F/E68B: 85 AB     STA $AB
@@ -53424,12 +50759,20 @@
 3F/E6B9: A5 44     LDA $44
 3F/E6BB: 4C B4 E3  JMP $E3B4
 
-3F/E6BE: A5 45     LDA $45
+; [  ]
+
+3F/E6BE: A5 45     LDA $45            ; trigger id
 3F/E6C0: 29 0F     AND #$0F
 3F/E6C2: AA        TAX 
-3F/E6C3: BD 20 07  LDA $0720,X
+3F/E6C3: BD 20 07  LDA $0720,X        ; map triggers
+; fallthrough
+
+; [ event trigger ]
+
+; A: trigger id
+
 3F/E6C6: 48        PHA 
-3F/E6C7: 20 23 EB  JSR $EB23
+3F/E6C7: 20 23 EB  JSR $EB23          ; load prg banks $2C/$2D
 3F/E6CA: 68        PLA 
 3F/E6CB: 0A        ASL 
 3F/E6CC: AA        TAX 
@@ -53439,9 +50782,9 @@
 3F/E6D5: 85 83     STA $83
 3F/E6D7: 20 1B EA  JSR $EA1B
 3F/E6DA: 20 28 EB  JSR $EB28          ; load prg banks $3C/$3D
-3F/E6DD: 20 74 92  JSR $9274
-3F/E6E0: 20 19 93  JSR $9319
-3F/E6E3: 20 DD E9  JSR $E9DD
+3F/E6DD: 20 74 92  JSR $9274          ; update vehicle/status event switches
+3F/E6E0: 20 19 93  JSR $9319          ; check trigger script
+3F/E6E3: 20 DD E9  JSR $E9DD          ; execute event
 3F/E6E6: A5 2D     LDA $2D
 3F/E6E8: 4A        LSR 
 3F/E6E9: 90 29     BCC $E714
@@ -53556,8 +50899,8 @@
 3F/E7C4: 8D 07 20  STA $2007
 3F/E7C7: 60        RTS 
 
-3F/E7C8:           .DB $FC,$F3,$CF,$3F
-3F/E7CC:           .DB $03,$0C,$30,$C0
+3F/E7C8: FC F3 CF 3F
+3F/E7CC: 03 0C 30 C0
 
 ; [  ]
 
@@ -53628,7 +50971,7 @@
 3F/E82F: A9 3A     LDA #$3A
 3F/E831: 20 06 FF  JSR $FF06          ; switch prg bank 0
 3F/E834: 20 09 85  JSR $8509          ; load map palette
-3F/E837: A5 33     LDA $33
+3F/E837: A5 33     LDA $33            ; save facing direction
 3F/E839: 48        PHA 
 3F/E83A: 20 25 CA  JSR $CA25
 3F/E83D: 68        PLA 
@@ -53687,9 +51030,9 @@
 3F/E8AA: A6 48     LDX $48
 3F/E8AC: A5 78     LDA $78
 3F/E8AE: F0 06     BEQ $E8B6
-3F/E8B0: BD 00 BF  LDA $BF00,X
+3F/E8B0: BD 00 BF  LDA $BF00,X        ; 39/BF00 (initial random battle rng)
 3F/E8B3: 4C B9 E8  JMP $E8B9
-3F/E8B6: BD 00 BE  LDA $BE00,X
+3F/E8B6: BD 00 BE  LDA $BE00,X        ; 39/BE00
 3F/E8B9: 85 F8     STA $F8
 3F/E8BB: A9 00     LDA #$00
 3F/E8BD: 20 03 FF  JSR $FF03          ; switch prg bank 0 and 1 (sequential)
@@ -53699,25 +51042,25 @@
 3F/E8C8: F0 04     BEQ $E8CE          ; branch if coming from world map
 3F/E8CA: A9 FF     LDA #$FF           ; no map title
 3F/E8CC: 85 4B     STA $4B
-3F/E8CE: A5 4D     LDA $4D            ; song id
-3F/E8D0: 30 09     BMI $E8DB
+3F/E8CE: A5 4D     LDA $4D
+3F/E8D0: 30 09     BMI $E8DB          ; branch if there is a conditional song
 3F/E8D2: 8D 43 7F  STA $7F43
 3F/E8D5: A9 01     LDA #$01           ; play new song
 3F/E8D7: 8D 42 7F  STA $7F42
 3F/E8DA: 60        RTS 
 3F/E8DB: 29 07     AND #$07
 3F/E8DD: 09 38     ORA #$38
-3F/E8DF: A2 88     LDX #$88
-3F/E8E1: 20 04 EA  JSR $EA04
+3F/E8DF: A2 88     LDX #$88           ; trigger script pointer offset: 2C/8870
+3F/E8E1: 20 04 EA  JSR $EA04          ; load trigger script
 3F/E8E4: 20 28 EB  JSR $EB28          ; load prg banks $3C/$3D
-3F/E8E7: A5 6C     LDA $6C
+3F/E8E7: A5 6C     LDA $6C            ; save event id
 3F/E8E9: 48        PHA 
-3F/E8EA: 20 19 93  JSR $9319
-3F/E8ED: A5 6C     LDA $6C
+3F/E8EA: 20 19 93  JSR $9319          ; check trigger script
+3F/E8ED: A5 6C     LDA $6C            ; set song id
 3F/E8EF: 85 71     STA $71
-3F/E8F1: A9 F8     LDA #$F8           ; event command $F8
+3F/E8F1: A9 F8     LDA #$F8           ; event command $F8 (play song)
 3F/E8F3: 85 70     STA $70
-3F/E8F5: 68        PLA 
+3F/E8F5: 68        PLA                ; restore event id
 3F/E8F6: 85 6C     STA $6C
 3F/E8F8: A9 3B     LDA #$3B
 3F/E8FA: 20 09 FF  JSR $FF09          ; switch prg bank 1
@@ -53785,7 +51128,7 @@
 3F/E95E: 18        CLC 
 3F/E95F: 60        RTS 
 
-3F/E960:           .DB $01,$02,$04,$08,$10,$20,$40,$80
+3F/E960: 01 02 04 08 10 20 40 80
 
 ; $90-$9F
 3F/E968: AE 0E 60  LDX $600E
@@ -53844,37 +51187,47 @@
 3F/E9BD: 85 44     STA $44
 3F/E9BF: BD 00 70  LDA $7000,X
 3F/E9C2: 85 A0     STA $A0
-3F/E9C4: A2 82     LDX #$82
+3F/E9C4: A2 82     LDX #$82           ; trigger script pointer offset: 2C/8200
 3F/E9C6: A5 78     LDA $78
 3F/E9C8: F0 02     BEQ $E9CC
-3F/E9CA: A2 84     LDX #$84
+3F/E9CA: A2 84     LDX #$84           ; trigger script pointer offset: 2C/8400
 3F/E9CC: A5 A0     LDA $A0
-3F/E9CE: 20 04 EA  JSR $EA04
+3F/E9CE: 20 04 EA  JSR $EA04          ; load trigger script
 3F/E9D1: A5 A0     LDA $A0
 3F/E9D3: C9 E0     CMP #$E0
 3F/E9D5: B0 11     BCS $E9E8
 3F/E9D7: 20 28 EB  JSR $EB28          ; load prg banks $3C/$3D
-3F/E9DA: 20 F3 92  JSR $92F3
+3F/E9DA: 20 F3 92  JSR $92F3          ; check npc script
+; fallthrough
+
+; [ execute event ]
+
 3F/E9DD: A5 6C     LDA $6C
-3F/E9DF: F0 03     BEQ $E9E4
-3F/E9E1: 4C 2C C7  JMP $C72C
+3F/E9DF: F0 03     BEQ $E9E4          ; return if no event
+3F/E9E1: 4C 2C C7  JMP $C72C          ; execute event
 3F/E9E4: 60        RTS 
-3F/E9E5: E6 50     INC $50
+
+; shop npc (from 3F/E9EA)
+3F/E9E5: E6 50     INC $50            ; set shop flag
 3F/E9E7: 60        RTS 
+; from 3F/E9D5
 3F/E9E8: C9 E3     CMP #$E3
-3F/E9EA: B0 F9     BCS $E9E5
+3F/E9EA: B0 F9     BCS $E9E5          ; branch if a shop
 3F/E9EC: A2 08     LDX #$08
 3F/E9EE: A9 3B     LDA #$3B
 3F/E9F0: 20 09 FF  JSR $FF09          ; switch prg bank 1
 3F/E9F3: 20 03 A0  JSR $A003          ; execute object command
 3F/E9F6: 20 28 EB  JSR $EB28          ; load prg banks $3C/$3D
-3F/E9F9: 20 DD 8F  JSR $8FDD
+3F/E9F9: 20 DD 8F  JSR $8FDD          ; inn
 3F/E9FC: A5 6C     LDA $6C
 3F/E9FE: F0 03     BEQ $EA03
-3F/EA00: 4C 2C C7  JMP $C72C
+3F/EA00: 4C 2C C7  JMP $C72C          ; execute event
 3F/EA03: 60        RTS 
 
-; [  ]
+; [ load trigger script ]
+
+; A: trigger script id
+; X: hi byte of pointer table address (bank 2C/2D)
 
 3F/EA04: 0A        ASL 
 3F/EA05: A8        TAY 
@@ -53883,12 +51236,18 @@
 3F/EA09: 86 81     STX $81
 3F/EA0B: A9 00     LDA #$00
 3F/EA0D: 85 80     STA $80
-3F/EA0F: 20 23 EB  JSR $EB23
+3F/EA0F: 20 23 EB  JSR $EB23          ; load prg banks $2C/$2D
 3F/EA12: B1 80     LDA ($80),Y
 3F/EA14: 85 82     STA $82
 3F/EA16: C8        INY 
 3F/EA17: B1 80     LDA ($80),Y
 3F/EA19: 85 83     STA $83
+; fallthrough
+
+; [ load trigger script ]
+
+; +$82: pointer to trigger script
+
 3F/EA1B: A0 3F     LDY #$3F
 3F/EA1D: B1 82     LDA ($82),Y
 3F/EA1F: 99 00 7B  STA $7B00,Y
@@ -53928,7 +51287,7 @@
 3F/EA5A: AD 0B 60  LDA $600B
 3F/EA5D: F0 F2     BEQ $EA51          ; branch if no guest npc
 3F/EA5F: E6 A9     INC $A9
-3F/EA61: 20 23 EB  JSR $EB23
+3F/EA61: 20 23 EB  JSR $EB23          ; load prg banks $2C/$2D
 3F/EA64: AD 0B 60  LDA $600B          ; guest npc
 3F/EA67: 38        SEC 
 3F/EA68: E9 01     SBC #$01
@@ -53940,17 +51299,17 @@
 3F/EA74: 85 83     STA $83
 3F/EA76: 20 1B EA  JSR $EA1B
 3F/EA79: 20 28 EB  JSR $EB28          ; load prg banks $3C/$3D
-3F/EA7C: 20 19 93  JSR $9319
+3F/EA7C: 20 19 93  JSR $9319          ; check trigger script
 3F/EA7F: A5 E1     LDA $E1
 3F/EA81: 29 0F     AND #$0F
 3F/EA83: AA        TAX 
 3F/EA84: BD 8C EA  LDA $EA8C,X
 3F/EA87: 85 33     STA $33
-3F/EA89: 4C DD E9  JMP $E9DD
+3F/EA89: 4C DD E9  JMP $E9DD          ; execute event
 
-3F/EA8C:           .DB $08,$02,$01,$00,$08,$02,$01,$00,$04,$02,$01,$00,$00,$00,$00,$00
+3F/EA8C: 08 02 01 00 08 02 01 00 04 02 01 00 00 00 00 00
 
-; [ guest npc dialog ??? ]
+; [ check guest npc dialog ]
 
 3F/EA9C: A9 00     LDA #$00
 3F/EA9E: 85 25     STA $25
@@ -53999,9 +51358,9 @@
 3F/EAFC: F0 05     BEQ $EB03
 3F/EAFE: 8A        TXA 
 3F/EAFF: 18        CLC 
-3F/EB00: 69 30     ADC #$30
+3F/EB00: 69 30     ADC #$30           ; pointer offset is 2C/8860
 3F/EB02: AA        TAX 
-3F/EB03: 20 23 EB  JSR $EB23
+3F/EB03: 20 23 EB  JSR $EB23          ; load prg banks $2C/$2D
 3F/EB06: BD 00 88  LDA $8800,X
 3F/EB09: 85 82     STA $82
 3F/EB0B: BD 01 88  LDA $8801,X
@@ -54011,7 +51370,7 @@
 3F/EB16: AD 00 7B  LDA $7B00
 3F/EB19: C5 A0     CMP $A0
 3F/EB1B: D0 CE     BNE $EAEB
-3F/EB1D: 20 EE 92  JSR $92EE
+3F/EB1D: 20 EE 92  JSR $92EE          ; check guest npc script
 3F/EB20: 4C DD E9  JMP $E9DD
 
 ; [ load prg banks $2C/$2D ]
@@ -54024,21 +51383,23 @@
 3F/EB28: A9 3C     LDA #$3C
 3F/EB2A: 4C 03 FF  JMP $FF03          ; switch prg bank 0 and 1 (sequential)
 
-; [  ]
+; [ scroll menu down ]
+
+; set carry if at bottom
 
 3F/EB2D: A0 00     LDY #$00
 3F/EB2F: A5 93     LDA $93
 3F/EB31: 20 03 FF  JSR $FF03          ; switch prg bank 0 and 1 (sequential)
 3F/EB34: B1 3E     LDA ($3E),Y
-3F/EB36: D0 0B     BNE $EB43
+3F/EB36: D0 0B     BNE $EB43          ; branch if not at bottom
 3F/EB38: A9 40     LDA #$40
-3F/EB3A: 85 B4     STA $B4
+3F/EB3A: 85 B4     STA $B4            ; show page up arrow
 3F/EB3C: A5 57     LDA $57
 3F/EB3E: 20 03 FF  JSR $FF03          ; switch prg bank 0 and 1 (sequential)
 3F/EB41: 38        SEC 
 3F/EB42: 60        RTS 
 3F/EB43: A9 C0     LDA #$C0
-3F/EB45: 85 B4     STA $B4
+3F/EB45: 85 B4     STA $B4            ; show both page arrows
 3F/EB47: A5 A3     LDA $A3
 3F/EB49: C9 02     CMP #$02
 3F/EB4B: D0 11     BNE $EB5E
@@ -54050,12 +51411,18 @@
 3F/EB59: E9 00     SBC #$00
 3F/EB5B: 8D F2 79  STA $79F2
 3F/EB5E: 20 A9 EB  JSR $EBA9
-3F/EB61: 20 C0 EE  JSR $EEC0
-3F/EB64: 20 F5 EC  JSR $ECF5
+; fallthrough
+
+; [ load next line of text (external) ]
+
+3F/EB61: 20 C0 EE  JSR $EEC0          ; load next line of text
+3F/EB64: 20 F5 EC  JSR $ECF5          ; restore prg banks
 3F/EB67: 18        CLC 
 3F/EB68: 60        RTS 
 
-; [  ]
+; [ scroll menu up ]
+
+; set carry if at top
 
 3F/EB69: A5 1C     LDA $1C
 3F/EB6B: 38        SEC 
@@ -54068,10 +51435,10 @@
 3F/EB78: 20 03 FF  JSR $FF03          ; switch prg bank 0 and 1 (sequential)
 3F/EB7B: A0 01     LDY #$01
 3F/EB7D: B1 1C     LDA ($1C),Y
-3F/EB7F: F0 21     BEQ $EBA2
+3F/EB7F: F0 21     BEQ $EBA2          ; branch if at top
 3F/EB81: 20 D1 EB  JSR $EBD1
 3F/EB84: A9 C0     LDA #$C0
-3F/EB86: 85 B4     STA $B4
+3F/EB86: 85 B4     STA $B4            ; show both page arrows
 3F/EB88: A5 A3     LDA $A3
 3F/EB8A: C9 02     CMP #$02
 3F/EB8C: D0 11     BNE $EB9F
@@ -54084,7 +51451,7 @@
 3F/EB9C: 8D F2 79  STA $79F2
 3F/EB9F: 4C 61 EB  JMP $EB61
 3F/EBA2: A9 80     LDA #$80
-3F/EBA4: 85 B4     STA $B4
+3F/EBA4: 85 B4     STA $B4            ; show page down arrow
 3F/EBA6: 4C 3C EB  JMP $EB3C
 
 ; [  ]
@@ -54193,17 +51560,17 @@
 3F/EC66: 60        RTS 
 
 ; text window regions for covering sprites
-3F/EC67:           .DB $0A,$0A,$0A,$8A,$0A,$0A,$0A ; left
-3F/EC6E:           .DB $EF,$4F,$EF,$EF,$EF,$EF,$EF ; right
-3F/EC75:           .DB $0A,$8A,$8A,$6A,$0A,$0A,$6A ; top
-3F/EC7C:           .DB $57,$D7,$D7,$87,$2A,$57,$D7 ; bottom
+3F/EC67: 0A 0A 0A 8A 0A 0A 0A  ; left
+3F/EC6E: EF 4F EF EF EF EF EF  ; right
+3F/EC75: 0A 8A 8A 6A 0A 0A 6A  ; top
+3F/EC7C: 57 D7 D7 87 2A 57 D7  ; bottom
 
 ; [  ]
 
 ; unused ???
 
 3F/EC83: A9 00     LDA #$00
-3F/EC85: 20 FA EC  JSR $ECFA
+3F/EC85: 20 FA EC  JSR $ECFA          ; open window
 3F/EC88: 4C 65 EE  JMP $EE65          ; load text (multi-line)
 
 ; [ show dialogue ]
@@ -54215,7 +51582,7 @@
 
 ; A: window size -> $96
 
-3F/EC8D: 20 FA EC  JSR $ECFA          ; open text window
+3F/EC8D: 20 FA EC  JSR $ECFA          ; open window
 3F/EC90: 20 65 EE  JSR $EE65          ; load text (multi-line)
 3F/EC93: 20 AB EC  JSR $ECAB          ; wait for keypress
 3F/EC96: A5 7D     LDA $7D
@@ -54268,7 +51635,7 @@
 3F/ECF5: A5 57     LDA $57
 3F/ECF7: 4C 03 FF  JMP $FF03          ; switch prg bank 0 and 1 (sequential)
 
-; [ open text window ]
+; [ open window ]
 
 ; A: window size
 ;      0: dialogue
@@ -54281,6 +51648,7 @@
 3F/ECFC: A9 00     LDA #$00           ; clear buttons pressed
 3F/ECFE: 85 24     STA $24
 3F/ED00: 85 25     STA $25
+; menu code jumps here
 3F/ED02: A6 96     LDX $96
 3F/ED04: 20 61 ED  JSR $ED61          ; get text window position
 3F/ED07: A5 39     LDA $39
@@ -54381,10 +51749,10 @@
 3F/EDB1: 60        RTS 
 
 ; text window positions
-3F/EDB2:           .DB $02,$02,$02,$12,$02 ; left
-3F/EDB7:           .DB $02,$12,$12,$0E,$02 ; top
-3F/EDBC:           .DB $1C,$08,$1C,$0C,$1C ; width
-3F/EDC1:           .DB $0A,$0A,$0A,$04,$04 ; height
+3F/EDB2: 02 02 02 12 02  ; left
+3F/EDB7: 02 12 12 0E 02  ; top
+3F/EDBC: 1C 08 1C 0C 1C  ; width
+3F/EDC1: 0A 0A 0A 04 04  ; height
 
 ; [ copy text window to ppu ]
 
@@ -54393,7 +51761,7 @@
 3F/EDCA: 20 8F C9  JSR $C98F
 3F/EDCD: 20 00 FF  JSR $FF00          ; wait for vblank
 3F/EDD0: A9 02     LDA #$02
-3F/EDD2: 8D 14 40  STA $4014
+3F/EDD2: 8D 14 40  STA $4014          ; dma oam data to ppu
 3F/EDD5: 20 AA F6  JSR $F6AA
 3F/EDD8: 20 A9 C9  JSR $C9A9
 3F/EDDB: 20 E1 ED  JSR $EDE1          ; update scrolling (text window)
@@ -54538,7 +51906,7 @@
 3F/EECB: 85 1C     STA $1C
 3F/EECD: A5 3F     LDA $3F
 3F/EECF: 85 1D     STA $1D
-3F/EED1: 85 1D     STA $1D
+3F/EED1: 85 1D     STA $1D            ; oops...
 3F/EED3: A5 38     LDA $38
 3F/EED5: 85 3A     STA $3A
 3F/EED7: A5 39     LDA $39
@@ -54624,7 +51992,7 @@
 3F/EF6E: 20 27 F7  JSR $F727          ; load prg banks $3C/$3D
 3F/EF71: A6 BB     LDX $BB
 3F/EF73: 20 D4 F5  JSR $F5D4          ; get item price
-3F/EF76: 20 78 8B  JSR $8B78
+3F/EF76: 20 78 8B  JSR $8B78          ; copy number to text buffer (6 digits)
 3F/EF79: 4C 91 F2  JMP $F291
 
 ; $04: gil (variable)
@@ -54637,14 +52005,14 @@
 3F/EF88: A5 63     LDA $63
 3F/EF8A: 85 82     STA $82
 3F/EF8C: 20 27 F7  JSR $F727          ; load prg banks $3C/$3D
-3F/EF8F: 20 78 8B  JSR $8B78
+3F/EF8F: 20 78 8B  JSR $8B78          ; copy number to text buffer (6 digits)
 3F/EF92: 4C 91 F2  JMP $F291
 
 ; $05: current gil
 3F/EF95: C9 05     CMP #$05
 3F/EF97: D0 09     BNE $EFA2
 3F/EF99: 20 27 F7  JSR $F727          ; load prg banks $3C/$3D
-3F/EF9C: 20 03 8B  JSR $8B03
+3F/EF9C: 20 03 8B  JSR $8B03          ; copy current gil to text buffer
 3F/EF9F: 4C 91 F2  JMP $F291
 
 ; $06: 
@@ -54671,7 +52039,7 @@
 3F/EFC4: A9 00     LDA #$00
 3F/EFC6: 85 81     STA $81
 3F/EFC8: 20 27 F7  JSR $F727          ; load prg banks $3C/$3D
-3F/EFCB: 20 57 8B  JSR $8B57
+3F/EFCB: 20 57 8B  JSR $8B57          ; copy number to text buffer (3 digits)
 3F/EFCE: A6 90     LDX $90
 3F/EFD0: E6 90     INC $90
 3F/EFD2: A9 5C     LDA #$5C
@@ -54701,11 +52069,11 @@
 3F/EFF4: AE 0E 60  LDX $600E
 3F/EFF7: 4C 16 F3  JMP $F316
 
-; $0D:
+; $0D: save count
 3F/EFFA: C9 0D     CMP #$0D
 3F/EFFC: D0 09     BNE $F007
 3F/EFFE: 20 27 F7  JSR $F727          ; load prg banks $3C/$3D
-3F/F001: 20 34 8B  JSR $8B34
+3F/F001: 20 34 8B  JSR $8B34          ; copy save count to text buffer
 3F/F004: 4C 91 F2  JMP $F291
 
 ; $0F: trash can icon
@@ -54859,7 +52227,7 @@
 3F/F10E: 4C 9D F0  JMP $F09D
 3F/F111: 4C FA EE  JMP $EEFA
 
-; $1A:
+; $1A: inventory item name
 3F/F114: C9 1A     CMP #$1A
 3F/F116: D0 10     BNE $F128
 3F/F118: A9 00     LDA #$00
@@ -54882,13 +52250,13 @@
 3F/F13A: 85 B9     STA $B9
 3F/F13C: 4C 9D F0  JMP $F09D
 
-; $1C:
+; $1C: inventory item quantity
 3F/F13F: C9 1C     CMP #$1C
 3F/F141: D0 09     BNE $F14C
 3F/F143: A6 84     LDX $84
 3F/F145: BD E0 60  LDA $60E0,X        ; inventory item quantity
 3F/F148: F0 C7     BEQ $F111
-3F/F14A: D0 1A     BNE $F166
+3F/F14A: D0 1A     BNE $F166          ; add the ":"
 
 ; $1D:
 3F/F14C: C9 1D     CMP #$1D
@@ -54910,28 +52278,28 @@
 3F/F16C: A9 C8     LDA #$C8           ; ":"
 3F/F16E: 9D A0 07  STA $07A0,X
 3F/F171: 20 27 F7  JSR $F727          ; load prg banks $3C/$3D
-3F/F174: 20 29 8B  JSR $8B29
+3F/F174: 20 29 8B  JSR $8B29          ; copy number to text buffer (2 digits)
 3F/F177: 4C 91 F2  JMP $F291
 
-; $1E:
+; $1E: job name (for job list)
 3F/F17A: C9 1E     CMP #$1E
 3F/F17C: D0 1C     BNE $F19A
-3F/F17E: 20 8A F3  JSR $F38A
+3F/F17E: 20 8A F3  JSR $F38A          ; get number of available jobs
 3F/F181: C5 84     CMP $84
-3F/F183: B0 0D     BCS $F192
+3F/F183: B0 0D     BCS $F192          ; branch if job is available
 3F/F185: AD F1 78  LDA $78F1
 3F/F188: 38        SEC 
-3F/F189: E9 04     SBC #$04
+3F/F189: E9 04     SBC #$04           ; remove last cursor position
 3F/F18B: 8D F1 78  STA $78F1
-3F/F18E: A9 FF     LDA #$FF
+3F/F18E: A9 FF     LDA #$FF           ; terminate string
 3F/F190: 18        CLC 
 3F/F191: 60        RTS 
 3F/F192: A5 84     LDA $84
 3F/F194: 18        CLC 
-3F/F195: 69 E2     ADC #$E2
+3F/F195: 69 E2     ADC #$E2           ; string offset $01E2: "OnionKid"
 3F/F197: 4C D8 F2  JMP $F2D8
 
-; $1F:
+; $1F: job cp required
 3F/F19A: C9 1F     CMP #$1F
 3F/F19C: D0 1D     BNE $F1BB
 3F/F19E: A6 84     LDX $84
@@ -54939,12 +52307,12 @@
 3F/F1A3: 85 80     STA $80
 3F/F1A5: A6 90     LDX $90
 3F/F1A7: E6 90     INC $90
-3F/F1A9: A9 C8     LDA #$C8
+3F/F1A9: A9 C8     LDA #$C8           ; ":"
 3F/F1AB: 9D A0 07  STA $07A0,X
 3F/F1AE: A9 00     LDA #$00
 3F/F1B0: 85 81     STA $81
 3F/F1B2: 20 27 F7  JSR $F727          ; load prg banks $3C/$3D
-3F/F1B5: 20 57 8B  JSR $8B57
+3F/F1B5: 20 57 8B  JSR $8B57          ; copy number to text buffer (3 digits)
 3F/F1B8: 4C 91 F2  JMP $F291
 
 ; $20:
@@ -54972,7 +52340,7 @@
 3F/F1E6: BD A0 7B  LDA $7BA0,X
 3F/F1E9: 85 82     STA $82
 3F/F1EB: 20 27 F7  JSR $F727          ; load prg banks $3C/$3D
-3F/F1EE: 20 78 8B  JSR $8B78
+3F/F1EE: 20 78 8B  JSR $8B78          ; copy number to text buffer (6 digits)
 3F/F1F1: A5 93     LDA $93
 3F/F1F3: 20 03 FF  JSR $FF03          ; switch prg bank 0 and 1 (sequential)
 3F/F1F6: 4C FA EE  JMP $EEFA
@@ -55013,15 +52381,16 @@
 3F/F239: 4A        LSR 
 3F/F23A: 6A        ROR 
 3F/F23B: 6A        ROR 
-3F/F23C: 29 C0     AND #$C0
+3F/F23C: 29 C0     AND #$C0           ; character pointer
 3F/F23E: 85 67     STA $67
 3F/F240: A5 84     LDA $84
 3F/F242: C9 30     CMP #$30
 3F/F244: 90 53     BCC $F299
 3F/F246: C9 FF     CMP #$FF
 3F/F248: D0 3F     BNE $F289
+; character string $FF
 3F/F24A: A6 67     LDX $67
-3F/F24C: BD 01 61  LDA $6101,X
+3F/F24C: BD 01 61  LDA $6101,X        ; level
 3F/F24F: C9 62     CMP #$62
 3F/F251: B0 3E     BCS $F291
 3F/F253: 85 80     STA $80
@@ -55037,7 +52406,7 @@
 3F/F266: A0 B0     LDY #$B0
 3F/F268: B1 84     LDA ($84),Y
 3F/F26A: 38        SEC 
-3F/F26B: FD 03 61  SBC $6103,X
+3F/F26B: FD 03 61  SBC $6103,X        ; experience
 3F/F26E: 85 80     STA $80
 3F/F270: C8        INY 
 3F/F271: B1 84     LDA ($84),Y
@@ -55048,8 +52417,9 @@
 3F/F27B: FD 05 61  SBC $6105,X
 3F/F27E: 85 82     STA $82
 3F/F280: 20 27 F7  JSR $F727          ; load prg banks $3C/$3D
-3F/F283: 20 78 8B  JSR $8B78
+3F/F283: 20 78 8B  JSR $8B78          ; copy number to text buffer (6 digits)
 3F/F286: 4C 91 F2  JMP $F291
+; character string $30-$FE
 3F/F289: 48        PHA 
 3F/F28A: 20 27 F7  JSR $F727          ; load prg banks $3C/$3D
 3F/F28D: 68        PLA 
@@ -55170,7 +52540,7 @@
 3F/F368: 85 84     STA $84
 3F/F36A: 4C A1 F0  JMP $F0A1
 
-3F/F36D:           .DB $DD,$DE,$DF,$E0,$E1,$E1
+3F/F36D: DD DE DF E0 E1 E1
 
 ; $08+: character stat
 3F/F373: 38        SEC 
@@ -55185,7 +52555,7 @@
 3F/F384: 4C 9D F0  JMP $F09D
 3F/F387: 4C FA EE  JMP $EEFA
 
-; [  ]
+; [ get number of available jobs ]
 
 3F/F38A: AD 21 60  LDA $6021          ; crystal level
 3F/F38D: 29 1F     AND #$1F
@@ -55268,21 +52638,24 @@
 3F/F407: 10 F3     BPL $F3FC
 3F/F409: 60        RTS 
 
-; [  ]
+; [ set ppu address ]
 
-3F/F40A: AD 02 20  LDA $2002
+; $3A: x position
+; $3B: y position
+
+3F/F40A: AD 02 20  LDA $2002          ; latch ppu
 3F/F40D: A6 3A     LDX $3A
 3F/F40F: A4 3B     LDY $3B
 3F/F411: E0 20     CPX #$20
-3F/F413: B0 0E     BCS $F423
+3F/F413: B0 0E     BCS $F423          ; branch if on 2nd screen
 3F/F415: B9 C1 F4  LDA $F4C1,Y
-3F/F418: 8D 06 20  STA $2006
+3F/F418: 8D 06 20  STA $2006          ; ppu address
 3F/F41B: 8A        TXA 
 3F/F41C: 19 A1 F4  ORA $F4A1,Y
 3F/F41F: 8D 06 20  STA $2006
 3F/F422: 60        RTS 
 3F/F423: B9 C1 F4  LDA $F4C1,Y
-3F/F426: 09 04     ORA #$04
+3F/F426: 09 04     ORA #$04           ; 2nd screen (columns 32-63)
 3F/F428: 8D 06 20  STA $2006
 3F/F42B: 8A        TXA 
 3F/F42C: 29 1F     AND #$1F
@@ -55306,7 +52679,7 @@
 3F/F448: 85 55     STA $55
 3F/F44A: 60        RTS 
 
-; [  ]
+; [ close menu 1 ??? ]
 
 3F/F44B: A9 02     LDA #$02
 3F/F44D: 85 39     STA $39
@@ -55319,8 +52692,14 @@
 3F/F45B: 85 3D     STA $3D
 3F/F45D: A9 02     LDA #$02
 3F/F45F: D0 19     BNE $F47A
+
+; [ close menu 2 ??? ]
+
 3F/F461: A9 14     LDA #$14
 3F/F463: D0 02     BNE $F467
+
+; [ close menu 3 ??? ]
+
 3F/F465: A9 1C     LDA #$1C
 3F/F467: 85 3D     STA $3D
 3F/F469: A9 1B     LDA #$1B
@@ -55353,11 +52732,13 @@
 3F/F49C: D0 DC     BNE $F47A
 3F/F49E: 4C F5 EC  JMP $ECF5
 
+; name table ppu address (lo byte)
 3F/F4A1: 00 20 40 60 80 A0 C0 E0
 3F/F4A9: 00 20 40 60 80 A0 C0 E0
 3F/F4B1: 00 20 40 60 80 A0 C0 E0
-3F/F4B9: 00 20 40 60 80 A0 00 20
+3F/F4B9: 00 20 40 60 80 A0 00 20  ; loop around to $2000
 
+; name table ppu address (hi byte)
 3F/F4C1: 20 20 20 20 20 20 20 20
 3F/F4C9: 21 21 21 21 21 21 21 21
 3F/F4D1: 22 22 22 22 22 22 22 22
@@ -55532,7 +52913,7 @@
 3F/F664: 9D 40 60  STA $6040,X
 3F/F667: 60        RTS 
 
-3F/F668:           .DB $01,$02,$04,$08,$10,$20,$40,$80
+3F/F668: 01 02 04 08 10 20 40 80
 
 ; [ clear text buffer ??? ]
 
@@ -55738,7 +53119,7 @@
 3F/F7E6: 60        RTS 
 
 ; stale code
-3F/F7E7: FA        --- 
+3F/F7E7: -- FA
 3F/F7E8: CA        DEX 
 3F/F7E9: D0 F7     BNE $F7E2
 3F/F7EB: 8D 07 20  STA $2007
@@ -55750,10 +53131,8 @@
 3F/F7F8: C8        INY 
 3F/F7F9: D0 FA     BNE $F7F5
 3F/F7FB: 60        RTS 
-3F/F7FC: 00        BRK 
-3F/F7FD: 00        BRK 
-3F/F7FE: 00        BRK 
-3F/F7FF: 00        BRK 
+
+3F/F7FC: 00 00 00 00
 
 ; --------------------------------------------------------------------------
 
@@ -55883,8 +53262,8 @@
 
 ; [ copy oam data to ppu ]
 
-3F/F8AA: A9 02     LDA #$02           ; oam dma from $0200
-3F/F8AC: 8D 14 40  STA $4014
+3F/F8AA: A9 02     LDA #$02
+3F/F8AC: 8D 14 40  STA $4014          ; dma oam data to ppu
 3F/F8AF: 60        RTS 
 
 ; [ wait for vblank (update oam and color) ]
@@ -56589,7 +53968,7 @@
 3F/FD23: 60        RTS 
 
 ; bit masks
-3F/FD24:           .DB $80,$40,$20,$10,$08,$04,$02,$01
+3F/FD24: 80 40 20 10 08 04 02 01
 
 ; [ clear bit ]
 
@@ -56597,7 +53976,7 @@
 3F/FD2F: 60        RTS 
 
 ; inverse bit masks
-3F/FD30:           .DB $7F,$BF,$DF,$EF,$F7,$FB,$FD,$FE
+3F/FD30: 7F BF DF EF F7 FB FD FE
 
 ; [ check bit ]
 
@@ -56756,22 +54135,22 @@
 ; --------------------------------------------------------------------------
 
 ; random number table
-3F/FE00:           .DB $1F,$A6,$DE,$BA,$CC,$12,$7D,$74,$1B,$F3,$B4,$88,$F8,$52,$F4,$07
-3F/FE10:           .DB $90,$AB,$B3,$BD,$AA,$55,$28,$BC,$8A,$60,$0E,$C4,$83,$A9,$3B,$76
-3F/FE20:           .DB $20,$7C,$09,$92,$FD,$4A,$A8,$F0,$61,$E3,$F2,$69,$6C,$BB,$38,$C3
-3F/FE30:           .DB $AE,$B7,$43,$84,$78,$23,$7B,$9B,$2D,$DB,$3E,$91,$CF,$02,$2A,$B6
-3F/FE40:           .DB $86,$EE,$9C,$8E,$B8,$6F,$1A,$57,$05,$E9,$73,$31,$D2,$D9,$1D,$FB
-3F/FE50:           .DB $94,$9D,$B1,$0A,$3A,$11,$5A,$47,$95,$2C,$44,$E0,$6A,$8C,$5B,$7A
-3F/FE60:           .DB $A7,$5D,$36,$70,$E5,$C7,$49,$DC,$68,$97,$D8,$66,$A3,$0F,$B0,$9F
-3F/FE70:           .DB $03,$D6,$77,$16,$13,$30,$25,$3C,$10,$17,$AD,$98,$6B,$2F,$D7,$A1
-3F/FE80:           .DB $FF,$A4,$EB,$51,$FE,$27,$8D,$93,$D5,$3D,$F6,$08,$75,$E1,$A5,$46
-3F/FE90:           .DB $63,$F5,$4D,$DA,$32,$AF,$40,$37,$D3,$C0,$89,$67,$06,$21,$6E,$81
-3F/FEA0:           .DB $B5,$A0,$4F,$0C,$2E,$E7,$1C,$58,$85,$E8,$59,$CE,$35,$CB,$1E,$C6
-3F/FEB0:           .DB $2B,$9A,$E6,$DD,$F1,$EC,$96,$CA,$AC,$00,$50,$C9,$4C,$FC,$14,$7E
-3F/FEC0:           .DB $56,$80,$D0,$79,$BF,$29,$87,$48,$24,$19,$C5,$22,$71,$7F,$72,$0D
-3F/FED0:           .DB $CD,$8F,$BE,$3F,$90,$34,$ED,$53,$54,$04,$62,$A2,$C2,$41,$5E,$82
-3F/FEE0:           .DB $4B,$26,$5C,$42,$65,$99,$4E,$60,$8B,$F7,$0B,$33,$DF,$D1,$64,$C8
-3F/FEF0:           .DB $C0,$01,$EF,$F9,$FA,$E4,$5F,$18,$B9,$B2,$39,$D4,$15,$E2,$EA,$45
+3F/FE00: 1F A6 DE BA CC 12 7D 74 1B F3 B4 88 F8 52 F4 07
+3F/FE10: 90 AB B3 BD AA 55 28 BC 8A 60 0E C4 83 A9 3B 76
+3F/FE20: 20 7C 09 92 FD 4A A8 F0 61 E3 F2 69 6C BB 38 C3
+3F/FE30: AE B7 43 84 78 23 7B 9B 2D DB 3E 91 CF 02 2A B6
+3F/FE40: 86 EE 9C 8E B8 6F 1A 57 05 E9 73 31 D2 D9 1D FB
+3F/FE50: 94 9D B1 0A 3A 11 5A 47 95 2C 44 E0 6A 8C 5B 7A
+3F/FE60: A7 5D 36 70 E5 C7 49 DC 68 97 D8 66 A3 0F B0 9F
+3F/FE70: 03 D6 77 16 13 30 25 3C 10 17 AD 98 6B 2F D7 A1
+3F/FE80: FF A4 EB 51 FE 27 8D 93 D5 3D F6 08 75 E1 A5 46
+3F/FE90: 63 F5 4D DA 32 AF 40 37 D3 C0 89 67 06 21 6E 81
+3F/FEA0: B5 A0 4F 0C 2E E7 1C 58 85 E8 59 CE 35 CB 1E C6
+3F/FEB0: 2B 9A E6 DD F1 EC 96 CA AC 00 50 C9 4C FC 14 7E
+3F/FEC0: 56 80 D0 79 BF 29 87 48 24 19 C5 22 71 7F 72 0D
+3F/FED0: CD 8F BE 3F 90 34 ED 53 54 04 62 A2 C2 41 5E 82
+3F/FEE0: 4B 26 5C 42 65 99 4E 60 8B F7 0B 33 DF D1 64 C8
+3F/FEF0: C0 01 EF F9 FA E4 5F 18 B9 B2 39 D4 15 E2 EA 45
 
 3F/FF00: 4C 36 FF  JMP $FF36          ; wait for vblank
 3F/FF03: 4C 17 FF  JMP $FF17          ; switch prg bank 0 and 1 (sequential)
@@ -56888,7 +54267,7 @@
 3F/FFF0: FF 5D FF D6 FF 75 FF F5 BF D7
 
 ; interrupt vectors
-3F/FFF8: 03 01     .DW $0103          ; abort (unused)
-3F/FFFA: 00 01     .DW $0100          ; nmi
-3F/FFFC: 48 FF     .DW $FF48          ; reset
-3F/FFFE: 03 01     .DW $0103          ; irq
+3F/FFF8: 0103  ; abort (unused)
+3F/FFFA: 0100  ; nmi
+3F/FFFC: FF48  ; reset
+3F/FFFE: 0103  ; irq

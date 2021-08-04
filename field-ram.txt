@@ -48,7 +48,7 @@
 |             |                                                             |
 |             |     $05 nmi indicator (cleared after nmi)                   |
 |             |     $06 ppu control -> $2000 (nmi)                          |
-|             |                                                             |
+|             |     $07                                                     |
 |             |     $08 ppu control -> $2000 (irq)                          |
 |             |     $09 ppu mask -> $2001 (nmi)                             |
 |             |                                                             |
@@ -56,46 +56,60 @@
 |             |                                                             |
 |             |    +$10 ppu scroll -> +$2005 (irq)                          |
 |             |                                                             |
+|             |     $17 event repeat counter                                |
+|             |                                                             |
+|             |     $19 counter for spinning sprite ???                     |
+|             |                                                             |
+|             |    +$1C text pointer for menu scrolling                     |
+|             |                                                             |
 |             |     $20 abesudlr buttons pressed this frame                 |
 |             |     $21 new buttons pressed this frame                      |
 |             |     $22 select button pressed                               |
 |             |     $23 start button pressed                                |
 |             |     $24 A button pressed                                    |
 |             |     $25 B button pressed                                    |
-|             |     $26                                                     |
+|             |     $26 pointer to current sprite data                      |
 |             |     $27 map horizontal scroll position                      |
 |             |     $28 map vertical scroll position                        |
 |             |     $29 horizontal scroll position                          |
 |             |     $2A player y position                                   |
 |             |                                                             |
+|             |     $2D ???????s                                            |
+|             |           s: enable saving in menu                          |
+|             |                                                             |
 |             |     $2F vertical scroll position                            |
 |             |     $30                                                     |
 |             |     $31                                                     |
 |             |     $32 map background needs update (see 3E/CA79)           |
-|             |     $33 player facing direction                             |
+|             |     $33 ----udlr player facing direction                    |
+|             |           u: up                                             |
+|             |           d: down                                           |
+|             |           l: left                                           |
+|             |           r: right                                          |
 |             |     $34 player movement speed                               |
 |             |     $35 player horizontal subtile position                  |
 |             |     $36 player vertical subtile position                    |
 |             |     $37                                                     |
 |             |                                                             |
-|             |     $40 player sprite frame for vertical movement ???       |
-|             |     $41 player sprite frame for horizontal movement ???     |
-|             |     $42 vehicle id ???                                      |
-|             |     $43 --ul-b-- current tile properties                    |
+|             |     $40 sprite x position                                   |
+|             |     $41 sprite y position                                   |
+|             |     $42 vehicle id                                          |
+|             |     $43 --ul-b-- current sprite layering                    |
 |             |     $44 aaul?bzz tile properties byte 1                     |
 |             |           a: tile type                                      |
 |             |                0: passable                                  |
 |             |                1: battle                                    |
 |             |                2: entrance                                  |
 |             |                3: impassable                                |
-|             |           u: upper sprite priority                          |
-|             |           l: lower sprite priority                          |
+|             |           u: upper sprites behind bg                        |
+|             |           l: lower sprites behind bg                        |
 |             |           b: bridge tile ???                                |
 |             |           z: z-level passability -> $A5                     |
-|             |         ???a?srp tile properties byte 1 (world map)         |
+|             |         ???ansrp tile properties byte 1 (world map)         |
 |             |           a: passable in airship                            |
+|             |           n: nautilus can submerge ???                      |
 |             |           s: passable in ship                               |
-|             |           r: passable in canoe/chocobo (river)              |
+|             |           r: passable in canoe/chocobo, nautilus can surface|
 |             |           p: passable with no vehicle                       |
 |             |     $45 ????xxxx tile properties byte 2                     |
 |             |           x: treasure/trigger id                            |
@@ -105,11 +119,11 @@
 |             |           1: chocobo                                        |
 |             |           2: canoe                                          |
 |             |           3: ship                                           |
-|             |           4: cid's airship ???                              |
-|             |           5: enterprise ???                                 |
+|             |           4: enterprise ???                                 |
+|             |           5: cid's airship ???                              |
 |             |           6: nautilus ???                                   |
 |             |           7: invincible                                     |
-|             |     $47 current vehicle id ???                              |
+|             |     $47 current vehicle id ??? (also cursor move direction) |
 |             |     $48 map id                                              |
 |             |     $49 treasures 16-31 contain gil                         |
 |             |     $4A pointer to current npc (for random movement)        |
@@ -117,6 +131,18 @@
 |             |     $4C fill tile (map properties byte 3)                   |
 |             |     $4D map song                                            |
 |             |     $4E determines if nautilus is flying or floating ???    |
+|             |                                                             |
+|             |     $50 inn/prologue/epilogue (see 3F/E2F8)                 |
+|             |           $00: none                                         |
+|             |           $01: shop                                         |
+|             |           $80: prologue                                     |
+|             |           $81: epilogue                                     |
+|             |                                                             |
+|             |     $53 ?wm?????                                            |
+|             |           w: disable warp (otterhead)                       |
+|             |           m: can't remove mini status                       |
+|             |                                                             |
+|             |   ++$61 gil amount for inn                                  |
 |             |                                                             |
 |             |     $67 tile id for npc                                     |
 |             |                                                             |
@@ -128,12 +154,19 @@
 |             |     $70 event command                                       |
 |             |     $71 event parameter                                     |
 |             |    +$72 event script pointer                                |
-|             |                                                             |
+|             |     $74 event wait counter                                  |
+|             |     $75 w???????                                            |
+|             |           w: waiting for event                              |
 |             |     $76 pending dialogue id                                 |
 |             |                                                             |
 |             |     $78 world id                                            |
-|             |                                                             |
+|             |     $79 destination x position                              |
+|             |     $7A destination y position                              |
+|             |     $7B destination world id                                |
+|             |     $7C                                                     |
 |             |     $7D event dialogue bank ???                             |
+|             |     $7E ?g??????                                            |
+|             |           g: hide guest npc                                 |
 |             |                                                             |
 |             | $80-   scratchpad                                           |
 |             |                                                             |
@@ -150,17 +183,38 @@
 |             |     $97 text x position ???                                 |
 |             |     $98 text y position ???                                 |
 |             |                                                             |
+|             |     $9C don't load guest npc palette                        |
+|             |                                                             |
+|             |     $A1 ----udlr menu cursor movement direction             |
+|             |     $A2 show cursor sprite 1                                |
+|             |     $A3 show cursor sprite 2                                |
+|             |     $A4 show cursor sprite 3 (2 = flash)                    |
 |             |     $A5 ------ab z-level passability                        |
 |             |           a: impassable on upper z-level                    |
 |             |           b: impassable on lower z-level                    |
-|             |                                                             |
+|             |     $A6 jm??????                                            |
+|             |           j: invincible is jumping                          |
+|             |           m: invincible is moving while jumping             |
+|             |     $A7                                                     |
+|             |     $A8                                                     |
 |             |     $A9 temp prg-bank is active / ignore trigger ???        |
 |             |     $AA s------r                                            |
 |             |           s: load submap                                    |
 |             |           r: not coming from a world map                    |
 |             |     $AB temp prg-bank index / triggered event type ???      |
 |             |           $20: battle                                       |
+|             |           $40: exit (to previous map ???)                   |
+|             |           $80: entrance                                     |
+|             |           $C0: exit (to world map)                          |
 |             |                                                             |
+|             |     $AF invincible jumping delay counter                    |
+|             |     $B0 chocobo running off animation if msb set            |
+|             |     $B1 chocobo x position                                  |
+|             |     $B2 chocobo y position                                  |
+|             |                                                             |
+|             |     $B4 du??????                                            |
+|             |           d: show page down arrow                           |
+|             |           u: show page up arrow                             |
 |             |     $B5 text window top position                            |
 |             |     $B6 text window left position                           |
 |             |     $B7 text window bottom position                         |
@@ -179,10 +233,13 @@
 |             |    +$D6 generic data pointer                                |
 |             |    +$D8 generic data pointer                                |
 |             | $DA-$DF unused                                              |
+|             |     $E0 saved facing direction for invincible jump          |
 |             |                                                             |
 |             |    +$F0 frame counter                                       |
 |             |                                                             |
 |             |     $F4 random number counter for npc movement              |
+|             |                                                             |
+|             |     $F8 random number counter for random battles            |
 |             |                                                             |
 |             | $FA-$FF saved interrupt jump code                           |
 |     ++$0100 | nmi jump code                                               |
@@ -191,6 +248,7 @@
 | $0200-$02FF | sprite (oam) data                                           |
 |             |                                                             |
 | $03C0-$03DF | color palettes                                              |
+|             |                                                             |
 | $0400-$04FF | tile properties byte 1 (see $44)                            |
 | $0500-$05FF | tile properties byte 2 (see $45)                            |
 | $0600-$06FF | map tileset name table                                      |
@@ -198,6 +256,7 @@
 | $0710-$071F | map treasures                                               |
 | $0720-$072F | map triggers                                                |
 |       $0730 | map exit                                                    |
+|             |                                                             |
 | $0740-$077F | buffer                                                      |
 | $0780-$079F | text buffer (dakuten), also map properties buffer           |
 | $07A0-$07BF | text buffer                                                 |
@@ -244,16 +303,39 @@
 |             |                                                             |
 |       $6014 | save count                                                  |
 |             |                                                             |
-|       $601A | checksum                                                    |
+|       $6019 | set to #$5A if save slot is valid                           |
+|       $601A | save slot checksum                                          |
 |       $601B | cp (change points)                                          |
 |     ++$601C | gil                                                         |
 |       $601F |                                                             |
-|       $6020 | ???????? vehicles available ???                             |
-|       $6021 | crystal level                                               |
+| $6020-$602F | event switches (256 * 1 bit)                                |
+|             |         $6020 sac????n vehicles obtained                    |
+|             |                 s: nautilus can submerge                    |
+|             |                 a: cid's airship ???                        |
+|             |                 c: ship is chained up                       |
+|             |                 n: nautilus                                 |
+|             |         $6021 hccccccc                                      |
+|             |                 h: on a chocobo                             |
+|             |                 c: crystal level                            |
 |             |                                                             |
-|       $602E | ???????c                                                    |
-|             |   c: obtained canoe                                         |
-|             |                                                             |
+|             |         $602E mts4321c                                      |
+|             |                 m: $77 all characters are mini              |
+|             |                 t: $76 all characters are toads             |
+|             |                 s: $75 saronia gate opened                  |
+|             |                 4: $74 statue 4 destroyed                   |
+|             |                 3: $73 statue 3 destroyed                   |
+|             |                 2: $72 statue 2 destroyed                   |
+|             |                 1: $71 statue 1 destroyed                   |
+|             |                 c: $70 obtained canoe                       |
+|             |         $602F ?sineahc                                      |
+|             |                 s: $7E player sprite is spinning ???        |
+|             |                 i: $7D in invincible                        |
+|             |                 n: $7C in nautilus                          |
+|             |                 e: $7B in enterprise                        |
+|             |                 a: $7A in cid's airship                     |
+|             |                 h: $79 show hein's castle ???               |
+|             |                 c: $78 enable battles on chocobo ???        |
+| $6030-$603F | -                                                           |
 | $6040-$607F | treasure switches (512 * 1 bit)                             |
 | $6080-$60BF | npc switches (512 * 1 bit)                                  |
 | $60C0-$60DF | inventory (item id)                                         |
@@ -261,7 +343,7 @@
 | $6100-$61FF | character properties, part 1 (4 * 64 bytes)                 |
 |             |         $6100 job id                                        |
 |             |                 00: onion kid                               |
-|             |                 01: fight                                   |
+|             |                 01: fighter                                 |
 |             |                 02: monk                                    |
 |             |                 03: white mage                              |
 |             |                 04: black mage                              |
@@ -309,17 +391,19 @@
 |             |         $611A mod. intelligence                             |
 |             |         $611B mod. spirit                                   |
 |             |         $611C                                               |
-|             |         $611D determines mp ???                             |
-|             |         $611E magic evade                                   |
+|             |         $611D mp progression                                |
+|             |         $611E magic evade %                                 |
 |             |         $611F magic defense                                 |
 |             |         $6120                                               |
-|             |         $6121 attack roll ???                               |
+|             |         $6121 attack mult.                                  |
 |             |         $6122 hit %                                         |
 |             |         $6123 attack power                                  |
 |             |                                                             |
-|             |         $612B defense %                                     |
+|             |         $612B defense mult.                                 |
 |             |         $612C evade %                                       |
-|             |                                                             |
+|             |         $612D defense                                       |
+|             |         $612E                                               |
+|             |         $612F                                               |
 |             |   $6130-$613F current/max mp for each spell level           |
 | $6200-$62FF | character properties, part 2 (4 * 64 bytes)                 |
 |             |         $6200 helmet                                        |
@@ -329,7 +413,7 @@
 |             |         $6204 right hand arrow qty                          |
 |             |         $6205 left hand                                     |
 |             |         $6206 left hand arrow qty                           |
-|             |                                                             |
+|             |   $6207-$620E spell list (1 byte per spell level)           |
 |             |         $620F ???eeewwr                                     |
 |             |                 e: equipment elements                       |
 |             |                 w: weapon type                              |
@@ -338,7 +422,7 @@
 |             |                      2: harp                                |
 |             |                      3: bow and arrow                       |
 |             |                 r: battle row (back row if set)             |
-|             |                                                             |
+|             |   $6210-$6239 job levels/exp (2 bytes each)                 |
 |             |         $621E weak elements                                 |
 |             |         $621F m.evade multiplier                            |
 |             |         $6220 m.evade %                                     |
@@ -365,8 +449,9 @@
 | $6C00-$6FFF | save slot 3                                                 |
 | $7000-$70FF | object properties, part 1 (16 * 16 bytes)                   |
 |             |         $7000 visible                                       |
-|             |         $7001 r???????                                      |
+|             |         $7001 rt??????                                      |
 |             |                 r: npc moves randomly                       |
+|             |                 t: don't turn when moving ???               |
 |             |         $7002 x position ???                                |
 |             |         $7003 y position ???                                |
 |             |         $7004 x position ???                                |
@@ -396,10 +481,21 @@
 | $7200-$72FF | map tileset (bottom right)                                  |
 |             |                                                             |
 | $7400-$77FF | map bg tilemap (32x32)                                      |
+| $7800-$7AFF | menu cursor data (3 * 256 bytes)                            |
+|             |   $00-$EF cursor data (60 * 4 bytes)                        |
+|             |       $F0 current cursor position                           |
+|             |       $F1 length of cursor data                             |
+| $7B00-$7B3F | trigger script                                              |
+|             |                                                             |
 | $7C00-$7CFF | map tileset (top left)                                      |
 | $7D00-$7DFF | map tileset (top right)                                     |
 | $7E00-$7EFF | map tileset (bottom left)                                   |
 | $7F00-      | graphics buffer for water animation                         |
+|             |                                                             |
+|       $7F38 | set to $55 if save count is valid                           |
+|       $7F39 | set to $AA if save count is valid                           |
+|       $7F3A | save count                                                  |
+|             |                                                             |
 |             |                                                             |
 |       $7F40 | current song id                                             |
 |       $7F41 | paused song id                                              |

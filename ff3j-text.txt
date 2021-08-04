@@ -13,7 +13,7 @@
 | author: everything8215@gmail.com                                          |
 +---------------------------------------------------------------------------+
 
-dialogue bank 3
+event dialogue
 0x0000: 
         　　そのグルガンぞくのおとこは　しずかにかたった……
         　このだいじしんでさえも　たんなるよちょうにすぎぬと。
@@ -1637,7 +1637,7 @@ character names
 0x01FE: 　ドーガ
 0x01FF: 　　ウネ
 
-dialogue bank 1
+npc dialogue (floating continent)
 0x0200: 
 0x0201: ４にんは　いずみのみずを　のんだ……
 0x0202: 
@@ -2462,7 +2462,7 @@ dialogue bank 1
         くれる。
 0x02FF: チョコボみーっけっ！
 
-dialogue bank 2
+npc dialogue (surface world)
 0x0300: 
 0x0301: だいじしんが　おこったちょくごに
         せかいは　うみに　しずんでしまった……

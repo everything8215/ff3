@@ -23,9 +23,9 @@
         
           But,hope is not yet lost.
          Four souls will take up the
-             quest of the Light.
+            quest of the Light.
         
-              And so it begins…
+             And so it begins…
 0x0001: 
            Four orphans have been
         raised by the priest Topapa
@@ -55,13 +55,13 @@
 0x0006: “Ouch…!”
         “We've fallen into a pit!”
         “Shucks…”
-0x0007: “Are We gonna be all right?
+0x0007: “Are we gonna be all right?
          In a place like this?”
         “Hey! It was your idea to
          come here!”
         “Hey,if you've got time to
          fight,you've got time to
-         look for a Way out!”
+         look for a way out!”
         
 0x0008: “Wh…what were those!?”
         “Oh man…”
@@ -69,15 +69,15 @@
 0x0009: “Wh…what is this!?”
         Something evil attacked!
 0x000A: “It's Jinn!”
-        Sara:I'll seal him With
+        Sara:I'll seal him with
          this ring!
 0x000B: Jinn:Fuhahaha… That thing
-         Won't Work on me now.
-         I've allied With the
+         won't work on me now.
+         I've allied with the
          great power of Darkness!
 0x000C: “Now,Sara!
-         Seal Jinn With the ring
-         While he's Weak!”
+         Seal Jinn with the ring
+         while he's weak!”
         Sara raised the ring…
 0x000D: Sara:Thank you.
          Because of you,we were
@@ -85,7 +85,7 @@
         
          Now if we put this ring
          in Sasoon's holy spring
-         We can release Jinn's
+         we can release Jinn's
          curse.
          Let's use the ring's
          power to warp back to
@@ -97,10 +97,10 @@
          father's side.
          I'd like to go with
          you,but I'm sure I'd
-         just get in the Way.
+         just get in the way.
         “Sara…”
         Sara:Please come back and
-         visit When your journey
+         visit when your journey
          is over. I'll be waiting…
         
 0x000F: I knew you could do it!
@@ -108,7 +108,7 @@
         better use of the airship
         than I could.
         Anyway,take me to the town
-        of Canaan Where Granny's
+        of Canaan where Granny's
         waiting. Please!
         
         Cid joined the party!
@@ -124,11 +124,11 @@
 0x0011: Welcome to the
         Tower of Owen.
         It will be your grave…
-0x0012: Just keep Wandering
+0x0012: Just keep wandering
         forever…
 0x0013: Heeheehee…
 0x0014: Ouch!
-        An invisible Wall!
+        An invisible wall!
 0x0015: Wait!
         I'll dissolve the magic.
 0x0016: Now you can pass.
@@ -151,7 +151,7 @@
          at Sir Hyne's castle!’
 0x001A: “Alright! We're all tiny!”
         “Let's go!”
-        Entered the hole Where the
+        Entered the hole where the
         dragon's eye used to be!
 0x001B: Fuhahaha!
         I've taken the power
@@ -159,7 +159,7 @@
         and become even stronger!
         But until I destroy you
         who have been blessed by
-        the Light,I Won't possess
+        the Light,I won't possess
         the true power of Fire…
         Sorry,but I guess you'll
         just have to die!
@@ -176,17 +176,17 @@
          remaining in me.
         
          At this rate,this light
-         Will soon vanish as well…
+         will soon vanish as well…
          The balance of everything
          is crumbling.
          When you take the Light
-         you Will be able to
+         you will be able to
          receive great strength
          from the Crystals.
          You are the ones chosen
          to keep the hope.
          You must not let this
-         World disappear…’
+         world disappear…’
         Light surrounded the four…
         
 0x001E: You can go outside through
@@ -200,7 +200,7 @@
         Received Jobs from the
         Crystal of Fire!
         
-0x0020: ‘This door Was built to
+0x0020: ‘This door was built to
          guard the Altar of Water.
          Only a Maiden of Water
          can open it.’
@@ -217,7 +217,7 @@
         “Elia!”
         Elia:\xchar……
         “Elia…!!”
-0x0025: You Were lucky my Cursed
+0x0025: You were lucky my Cursed
         Arrow didn't get you,
         Light Warriors.
         It's a quick killer.
@@ -231,7 +231,7 @@
         
         Elia:The Light has returned
          to the Crystal… I couldn't
-         have done it Without you…
+         have done it without you…
         “Elia! Don't speak!”
         Elia:Please,take these…
          These are the Jobs that
@@ -246,10 +246,10 @@
         “UWAAAAH……!!”
 0x0028: ‘You're awake? You've been
          asleep for three days!’
-        “Where are We?”
+        “Where are we?”
         
         ‘This is Amur,the town of
-         Water. Grandpa found you
+         water. Grandpa found you
          lying unconscious in the
          Temple of Water.’
 0x0029: “Three whole days…”
@@ -263,14 +263,14 @@
         
 0x002B: Old man:Aiee!! Help us!!
         “Hey,it's those old guys
-         We just saw!”
+         we just saw!”
         “Let's help them!”
 0x002C: ‘We're sorry.
          Thanks for helping us
          out of that predicament.
         
-         Did you really think We
-         Were the four legendary
+         Did you really think we
+         were the four legendary
          heroes!? No way!
          Fuhahaha!’
 0x002D: Hyahyahya!
@@ -290,16 +290,16 @@
          …Just kidding.
          I've seen the shoes
          before.’
-0x0030: Old man:Hey De\0xD3\0xD4a,these
+0x0030: Old man:Hey De\xD3\xD4a,these
          kids are the real heroes!
-        De\0xD3\0xD4a:Oh! I had no idea.
+        De\xD3\xD4a:Oh! I had no idea.
          I’m terribly sorry.
-        Old man:De\0xD3\0xD4a,won't you
+        Old man:De\xD3\xD4a,won't you
          lend them the shoes?
-        De\0xD3\0xD4a:Well,since you asked…
+        De\xD3\xD4a:Well,since you asked…
          Here,take these.
 0x0031: Received Floating Shoes!
-        “Yeah! Now We can cross the
+        “Yeah! Now we can cross the
          Bottomless Swamp.”
         
         “Thanks,old guys! You guys
@@ -310,7 +310,7 @@
          here. Hold on to me,kids.
          I'll use \whiteExit to take
          us out!
-0x0032: ‘Well Well,this kid seems
+0x0032: ‘Well well,this kid seems
          to think he's the Prince.
          Heh,what a laugh!’
 0x0033: ‘Oh,what's the matter,
@@ -325,16 +325,16 @@
          Thank you for saving me!’
         “What the heck's going on?”
         Allus:My father suddenly
-         started a civil War.
+         started a civil war.
          I tried to stop him,
          but he didn't listen…
          I've been banished from
          the castle. I beg you,
          travelers,won't you
          help me?
-         I Want to go back to the
+         I want to go back to the
          castle and ask my father
-         Why he's doing this…
+         why he's doing this…
         
         “We understand.”
         Allus:Thank you!
@@ -355,7 +355,7 @@
         Then there's something I
         must speak to you about…
         
-0x003B: Dorga:Come this Way…
+0x003B: Dorga:Come this way…
          Unne and I have prepared
          something for you!
 0x003C: Dorga:Go south of Salonia…
@@ -367,7 +367,7 @@
         “Noah's Lute?”
         
         Dorga:A lute whose sound
-         echoes across this World
+         echoes across this world
          and the world of dreams.
         
          Use it to bring Unne back
@@ -377,22 +377,22 @@
          You awaken Unne and get
          the Great Ship!
         
-0x003D: The Magic Circle Cave Will
-        soon disappear. I'll Warp
+0x003D: The Magic Circle Cave will
+        soon disappear. I'll warp
         you outside.
         Farewell,Light Warriors!
-0x003E: Who dares Wake me from
+0x003E: Who dares wake me from
         my peaceful slumber…
 0x003F: I am Leviathan. I shall
         only lend my power to
         those with the Light!
-        Are you Worthy?
+        Are you worthy?
 0x0040: The phantom Lute,
         sealed in time…
         Noah's Lute began
         playing a song…
 0x0041: Unne:Leave it to me!
-         If I strike it With the
+         If I strike it with the
          rock of the Dream World,
         
          even Adamantite should
@@ -410,7 +410,7 @@
         Zande is abusing my power
         to plunge the world into
         darkness.
-        Take the power Which lies
+        Take the power which lies
         within me,and rid this
         world of the Dark Cloud!’
         
@@ -452,12 +452,12 @@
         
          What can lift the Demon
          Dragons’ curse is a heart
-         filled With Light…
+         filled with Light…
          We need your strength!
         Sara:What! \xchar
          is in danger!?
          I'll go!
-         Please,take me With you!
+         Please,take me with you!
 0x0048: Dorga:Cid,won't you lend
          us your strength?
         
@@ -481,11 +481,11 @@
         
          I've finally finished
          fixing the Tower of Owen.
-         That Wasn't safe…
+         That wasn't safe…
         
          Just a little longer and
          the Floating Continent
-         Would've collapsed!
+         would've collapsed!
         
         Dorga:\xchar and the
          others are in danger…
@@ -509,12 +509,12 @@
         ‘Hurry,while we hold off
          the Demon Dragons!’
         
-        ‘Don't let this World be
+        ‘Don't let this world be
          plunged into darkness!’
         
 0x004E: “Thank you everyone!”
         “Let's go!!”
-0x004F: The Sylx Tower Was built
+0x004F: The Sylx Tower was built
         by concentrating the power
         of Light.
         
@@ -538,7 +538,7 @@
         each other.
         
         And when those two worlds
-        mix into one, a World of
+        mix into one, a world of
         Void will be born.
         
         The Light is losing its
@@ -569,22 +569,22 @@
         Hope…
         
         
-        Perhaps the world Will once
+        Perhaps the world will once
         again return to the void…
         
         
-        But still in the Worlds
+        But still in the worlds
         of Light and Dark there
         is hope and love left to
         fight this.
         Go,destroy those who would
-        return the World to Void!
+        return the world to Void!
         With the hope of Light
         and Dark!
 0x0054: You've done well to make it
         so far. But now it's over.
         The flood of Darkness will
-        return the World to Void!
+        return the world to Void!
 0x0055: I am one of the four
         Dark Warriors…
         
@@ -607,15 +607,15 @@
         
         The flood of Darkness will
         destroy not only your
-        world,but ours as Well.
-        Both Will return to Void…
+        world,but ours as well.
+        Both will return to Void…
         But if we join our forces,
         we may still have time!
         Quickly,let us go and
         defeat the Dark Cloud!
 0x0058: I am the Dark Cloud!
-        I Will turn both this World
-        and your World of Light
+        I will turn both this world
+        and your world of Light
         back into utter Void…!
 0x0059: “We won't let you
          do that!”
@@ -624,7 +624,7 @@
         Dark Cloud:Hahaha…
          This is the Dark World.
          I cannot be defeated here
-         With the power of Light!
+         with the power of Light!
 0x005A: Dark Warriors:It's not
          just the Light Warriors!
          We'll hold off your
@@ -635,15 +635,15 @@
         
         Dark Warriors:We will not
          allow you to return this
-         World to the Void!
+         world to the Void!
         
 0x005B: Dark Cloud:The power of
          the Dark Crystals is
          lost,but I don't need it
          anymore!
          I'll defeat you,and then
-         turn this World into Void
-         With your power of Light!
+         turn this world into Void
+         with your power of Light!
          Perish,Light Warriors!
 0x005C: Dark Cloud:It's futile…
          You cannot defeat me!
@@ -658,7 +658,7 @@
         
 0x005E: Dorga:Listen. Long ago…
          Weapons too powerful for
-         people to handle Were
+         people to handle were
          sealed in Eureka.
          But now those weapons are
          necessary!
@@ -668,9 +668,9 @@
          enter Eureka,the energy
          of our battle is needed.
         
-        “No matter What you say,
+        “No matter what you say,
          Dorga,Unne…
-         There's no way We could
+         There's no way we could
          fight you!”
         Dorga:You stubborn fools!
          Then how about this?
@@ -679,29 +679,29 @@
 0x005F: “Dorga! Don't die!”
         Unne:Next is my turn!
         “No,Unne!”
-        “We don't Want to fight!”
-        Unne:Oh,don't Whine.
+        “We don't want to fight!”
+        Unne:Oh,don't whine.
          Even if my body dies,my
-         soul Will not perish…
+         soul will not perish…
          Now,let's go!
 0x0060: “Dorga! Unne!”
 0x0061: Dorga:Alright,now the
          Eureka Key is complete.
-         Take this With you…
+         Take this with you…
         
         Received Eureka Key.
         
         
         
         “Dorga!!”
-        Dorga:Don't Worry. Though
+        Dorga:Don't worry. Though
          our bodies may die,our
          souls will not be lost…
          Now,go to the tower
          protected by the four
          statues,the Sylx Tower.
         
-         You must stop the one Who
+         You must stop the one who
          is trying to summon the
          Darkness,Zande.
         
@@ -719,7 +719,7 @@
         “Unne!!”
         Received Sylx Key.
         
-0x0063: If you can Withstand my
+0x0063: If you can withstand my
         power I shall give you the
         Jobs of Ninja and Sage!
 0x0064: Obtained \staffEldest!
@@ -727,7 +727,7 @@
         
         
         Gained the Jobs of Ninja,
-        who can use every Weapon,
+        who can use every weapon,
         and Sage,who can use
         every magic!
 0x0065: “OK,do we dive in?”
@@ -758,7 +758,7 @@
         Canaan. We've gotta do
         something about that
         rock blocking the valley…
-0x006D: My dear Wife is
+0x006D: My dear wife is
         waiting for me in Canaan!
 0x006E: If we mounted a Mithril
         bow on the airship,we
@@ -768,7 +768,7 @@
         the blacksmith of Kazus…
         
 0x006F: The airship's been
-        fitted With a Mithril bow!
+        fitted with a Mithril bow!
         Let's ram it into the
         big rock!
 0x0070: Unne:We can rest in the
@@ -776,7 +776,7 @@
 0x0071: Unne:Hang in there!
          Let's meet again at
          Dorga's house!
-0x0072: Unne:Remember this Well.
+0x0072: Unne:Remember this well.
          If you go down that
          stairway, you can return
          to the ground.
@@ -838,7 +838,7 @@
         
         “Alright! Now,back to
          Dorga's house. Dorga and
-         Unne are Waiting!”
+         Unne are waiting!”
         
 0x007F: Splendid!
         Well then,take this blade.
@@ -852,7 +852,7 @@
         to the rear row!
         And you ought to use the
         power of the Crystals.
-        It'll be tough Without
+        It'll be tough without
         about three Black Wizards…
 0x0081: “Ouch…”
 0x0082: 
@@ -870,8 +870,8 @@
         animal… and I begin to go
         wild.
         Here,take this.
-        The Water Fang… it Will
-        smash What blocks your Way
+        The Water Fang… it will
+        smash what blocks your way
         with the power of Water…
         Received Water Fang!
         
@@ -921,19 +921,19 @@
         
 0x008E: The seal vanished.
         Elia:Alright,let's go.
-0x008F: De\0xD3\0xD4a:What do you Want?
+0x008F: De\xD3\xD4a:What do you want?
         “We were just wondering if
          you could lend us the
          Floating Shoes…”
 0x0090: Can't carry anymore.
 0x0091: Odin:Light Warriors…
-         You are Worthy!
+         You are worthy!
         
         
         Obtained \summonOdin!
         
 0x0092: Leviathan:I shall give my
-         power to aid you Who have
+         power to aid you who have
          the Light!
         
         Obtained \summonLevia!
@@ -955,7 +955,7 @@
         
         Allus:What could have
          happened to Father?
-         Why Would he banish his
+         Why would he banish his
          child from his castle?
          Doesn't he love me?
         
@@ -970,7 +970,7 @@
         
         
         “It'll all be made clear
-         When We meet with the
+         when we meet with the
          king tomorrow.”
         
         Allus:But I still feel
@@ -983,7 +983,7 @@
         Allus:Father!!
         
 0x0099: Gigames:What are you
-         Waiting for?
+         waiting for?
          Kill the prince!
         
         
@@ -1043,12 +1043,12 @@
          You loved your father.”
         
         
-        Allus:I Will take Father's
+        Allus:I will take Father's
          place as King of Salonia.
-         That Was his final Wish.
+         That was his final wish.
         
          Truly,thank you. Because
-         of you We were able to
+         of you we were able to
          defeat Gigames.
         
         “Prince Allus. Take care!”
@@ -1062,7 +1062,7 @@
          come to Unne and me!’
 0x00A0: Hey!
 0x00A1: You can't just come in
-        here Whenever you like!
+        here whenever you like!
         Grumble…
 0x00A2: Tree:Thank you…
          I’m finally back.
@@ -1075,7 +1075,7 @@
          Please,take this. Soon,
          the power of Darkness will
          attempt to block your
-         path. This Will be of use!
+         path. This will be of use!
         Received Wind Fang!
         
 0x00A3: Tree:I must sleep until
@@ -1093,20 +1093,20 @@
          the lock.
          The sewers lie ahead.
 0x00A5: Be careful!
-0x00A6: ‘Phew! That Was close.
+0x00A6: ‘Phew! That was close.
          Come on,let's get out
          of here!’
         “Yeah!”
 0x00A7: Desh:Here,take this!
          I can't do anything
-         With this magic.
+         with this magic.
          It's \whiteMini.
         Received \whiteMini.
         
         
         
         Desh:Hey,why don't I
-         come With you?
+         come with you?
         “Uh,we wouldn't mind,but…”
         
         Desh:Then it's decided.
@@ -1117,13 +1117,13 @@
         
 0x00A8: Desh:Let's go!
         “Ready? Jump!”
-0x00A9: A voice from the Walls:
-        ‘Thank you… Warriors…’
+0x00A9: A voice from the walls:
+        ‘Thank you… warriors…’
         “What was that!?”
         
         ‘I am the eldest tree of
          the Living Forest.
-         I Was put under a curse
+         I was put under a curse
          by Hyne…
          But thanks to you,the
          curse has been lifted.
@@ -1150,7 +1150,7 @@
         “Now that you mention it…”
 0x00AF: Played Noah's Lute…
         The tone said to reach
-        even the World of dreams
+        even the world of dreams
         echoes through the room…
 0x00B0: Unne:Mumble,mumble…
          -yawn-
@@ -1164,7 +1164,7 @@
          my shoulder!
         Parrot:Aye aye sir!
         Unne:Now it's time for
-         Wake-up exercises!
+         wake-up exercises!
         
 0x00B2: Unne:Presenting…
          Unne of the Dream World!
@@ -1172,26 +1172,26 @@
 0x00B3: 
                   ?
 0x00B4: The journey'll be safe
-        if I'm With you guys.
+        if I'm with you guys.
         Let's go!
 0x00B5: There's a forest of
         midgets around here,but
         you'd have to be tiny
         yourself to find it!
 0x00B6: Aah! We're so tiny…
-        Now We can't use swords…
+        Now we can't use swords…
         We can't fight with
         anything but magic!
 0x00B7: It's crazy to fight
         without magic as midgets.
-        Kill’em With black magic!
-0x00B8: Aren't We supposed to
+        Kill’em with black magic!
+0x00B8: Aren't we supposed to
         put Nepto's Eye back in
         the dragon statue?
         Let's return it!
 0x00B9: Yeah! We got a ship!
-        Now We can search for
-        beautiful Women all over
+        Now we can search for
+        beautiful women all over
         the world…
         Hey,hey!
         I'm kidding!
@@ -1201,7 +1201,7 @@
         the secret of airships…
         I heard it in Canaan.
 0x00BB: I've heard a tribe of bald
-        old men Who can't see live
+        old men who can't see live
         in some valley…
         They're called the Gurgans.
         I've even heard that they
@@ -1256,7 +1256,7 @@
         back from the sea.
 0x00C8: So the Crystal
         has chosen you…
-        I sense a very Warm
+        I sense a very warm
         Light from you.
 0x00C9: 
 0x00CA: ‘Light Warriors…
@@ -1271,7 +1271,7 @@
          Save Tokkle!’
         
 0x00CB: ‘Hyne can change his
-         Weak point…
+         weak point…
          But the Scholar can
          see through that…’
 0x00CC: You've come far.
@@ -1290,9 +1290,9 @@
         to return all to the Void…
         To turn both Light and
         Dark into nothingness…
-        And first I Will erase you
+        And first I will erase you
         with the power of Light
-        from this World!
+        from this world!
         Die!!
 0x00CF: Cid:\xchar!
         Old man:Don't die!
@@ -1365,7 +1365,7 @@
 0x00D7: 
 0x00D8: The Magic Circle is
         connected to another
-        dimension. That is Where
+        dimension. That is where
         the Eureka Key lies.
 0x00D9: Eureka is the land where
         weapons with power too
@@ -1379,7 +1379,7 @@
         from the castle.
         Father told me never
         to come back…
-0x00DC: Cannot warp Without the
+0x00DC: Cannot warp without the
         Crystal's power.
 0x00DD: The Great Ship can
         cross mountains.
@@ -1397,7 +1397,7 @@
         Zande didn't understand…
 0x00E0: The Cave of Darkness
         is north of Amur in a
-        mountainous area With
+        mountainous area with
         many valleys.
 0x00E1: The four Fangs can
         destroy the Statues of
@@ -1409,19 +1409,19 @@
         
 0x00E2: Dorga:The one trying to
          bring Darkness upon this
-         World is Zande.
+         world is Zande.
         
          Zande and I once studied
          under the same teacher.
-         That teacher Was the
+         That teacher was the
          Archmage Noah.
          When Noah died,he left
          me his magic,Unne the
          Dream World,and Zande
          life as a human.
          Zande was dissatisfied
-         With that,and left this
-         World.
+         with that,and left this
+         world.
         
          And now he has caused
          that earthquake using
@@ -1432,7 +1432,7 @@
         
         
         Dorga:Goldor?
-         Ah,that Was the Crystal
+         Ah,that was the Crystal
          I created that gives
          birth to gold.
          The Earth Crystal still
@@ -1445,7 +1445,7 @@
          to make it his power.
          It is a sad affair…
          We have to stop him no
-         matter What!
+         matter what!
          I'll lend you my help.’
         Dorga joined the party!
         
@@ -1457,14 +1457,14 @@
         We must do this quickly.
         It seems I do not have
         much longer to live.
-0x00E7: Dorga:First I Will enchant
+0x00E7: Dorga:First I will enchant
         your ship Nautilus so that
         it can go under the sea…
         Zehapid muh kaine!
 0x00E8: Obtained \boomerangFullMoon!
 0x00E9: Obtained \darkswordMasamune!
 0x00EA: Obtained \swordExcalibur!
-0x00EB: ‘The door Will only open
+0x00EB: ‘The door will only open
          for those with the Light
          of the four Crystals…’
         
@@ -1479,7 +1479,7 @@
          \char4[0x02]!
         Cid:You did it!
         Allus:You really did it!
-        Old man:I knew you Were
+        Old man:I knew you were
          the real thing!
         Desh:Aren't they amazing!
         
@@ -1503,7 +1503,7 @@
          And the Water Crystal has
          sunken into the ground.
          The people protected by
-         the power of Water Were
+         the power of Water were
          turned to stone and the
          land sank into the sea.
          If we offer the Crystal
@@ -1512,7 +1512,7 @@
          the curse might be lifted…
 0x00EF: “But in your condition…”
         Elia:I'll be fine.
-         We must save the World…
+         We must save the world…
          Cough… I beg you!
          Please take me to the
          Temple of Water!
@@ -1521,7 +1521,7 @@
         Elia joined the party!
         
 0x00F0: “Thanks,old man!”
-        ‘Ah,it Was nothing.
+        ‘Ah,it was nothing.
          Well,I guess it's time
          to go back to Amur.’
 0x00F1: ‘Hello,everyone!’
@@ -1533,7 +1533,7 @@
         ‘Ha! Whenever you run into
          trouble,count on us!’
         ‘Come see us anytime.
-         You can train With us!
+         You can train with us!
          Ho ho ho!
          Farewell!’
 0x00F3: “It's Salonia!”
@@ -1544,7 +1544,7 @@
         
         Allus:Your hearts of Light
          saved the world.
-         It is We who should
+         It is we who should
          say thanks to you.
          I'll never forget the
          courage you've taught me!
@@ -1552,9 +1552,9 @@
          
 0x00F5: “We're approaching Canaan.”
         Cid:We're almost there?
-         I’m sure Granny's Waiting.
+         I’m sure Granny's waiting.
 0x00F6: Cid:Granny!
-        Cid's Wife:Don't do that!
+        Cid's wife:Don't do that!
          I’m shy of hugging in
          front of people!
 0x00F7: Desh:Sarina!
@@ -1566,7 +1566,7 @@
          forever!
         
 0x00F8: Cid:……Granny!
-        Cid's Wife:What are you
+        Cid's wife:What are you
          doing! You're hugging me!
          Oh,I give up…
 0x00F9: “Ahem… people…”
@@ -1591,14 +1591,14 @@
          back to Sasoon Castle.”
         
         
-        Sara:No,I don't Want to!
-         I Wanna have fun With
+        Sara:No,I don't want to!
+         I wanna have fun with
          you a bit more!
          Don't go back just yet.
         “Huh? But,Princess…”
         Sara:Don't be so dull!
-         I Want to be with you
-         a little While longer!
+         I want to be with you
+         a little while longer!
         “…………”
         Sara:Why are you blushing?
          Come on,let's go back
@@ -1615,8 +1615,8 @@
         
         
         Topapa:Well done!
-         Truly Well done!!
-        Nina:You Worked so hard…!
+         Truly well done!!
+        Nina:You worked so hard…!
         
 0x00FD: ‘Ooh… The light…’
         ‘The Crystal has returned
@@ -1628,11 +1628,11 @@
         
         Topapa:The darkness parts,
          and light shines upon the
-         World…
+         world…
          It's a new dawn…
 0x00FE: ‘Welcome back!’
         ‘You saved the world!’
-        ‘You really Were the
+        ‘You really were the
          Light Warriors!’
         Dancer:I'll give you
          this as thanks!
@@ -1657,14 +1657,14 @@
         It'll cost \gil Gil
         to rest for the night.
         Will you be staying?
-0x0105: \partygil         Gil
+0x0105: \partygil        Gil
 0x0106: \choice[0x01]Yes
         \choice[0x01]No
 0x0107: Weapon
 0x0108: Armor
 0x0109:  Item
 0x010A: Magic
-0x010B: \choice[0x01]Buy\choice[0x05]Sell\choice[0x09]\0x64\0x65\0x66
+0x010B: \choice[0x01]Buy\choice[0x05]Sell\choice[0x09]\x64\x65\x66
         
 0x010C: Revived
 0x010D: Cured
@@ -1686,8 +1686,8 @@
 0x011D: Mini
 0x011E: Blind
 0x011F: Pois
-0x0120: \0x16
-        \0x19
+0x0120: \x16
+        \x19
 0x0121: \x17[0x01]A\x17[0x03]B\x17[0x05]C\x17[0x07]D\x17[0x09]E\x17[0x0C]a\x17[0x0E]b\x17[0x10]c\x17[0x12]d\x17[0x14]e
         \x17[0x01]F\x17[0x03]G\x17[0x05]H\x17[0x07]I\x17[0x09]J\x17[0x0C]f\x17[0x0E]g\x17[0x10]h\x17[0x12]i\x17[0x14]j
         \x17[0x01]K\x17[0x03]L\x17[0x05]M\x17[0x07]N\x17[0x09]O\x17[0x0C]k\x17[0x0E]l\x17[0x10]m\x17[0x12]n\x17[0x14]o
@@ -1697,64 +1697,95 @@
         \x17[0x01]0\x17[0x03]1\x17[0x05]2\x17[0x07]3\x17[0x09]4\x17[0x0C]5\x17[0x0E]6\x17[0x10]7\x17[0x12]8\x17[0x14]9
         
 0x0122: \choice[0x01]New Game
-0x0123: Msg.Speed \0x06
+0x0123: Msg.Speed \x06
 0x0124: \choice[0x01]Give\choice[0x06]Take\choice[0x0B]Exit
-0x0125: \0x0D   \char1[0x02] LV\char1[0x3E]                 \char2[0x02] LV\char2[0x3E]
-           HP     \char1[0x30]/\char1[0x31]                 HP                   \char2[0x30]/\char2[0x31]\0x09   \char3[0x02] LV\char3[0x3E]                 \char4[0x02] LV\char4[0x3E]
-           HP     \char3[0x30]/\char3[0x31]                 HP                   \char4[0x30]/\char4[0x31]\0x0A
+0x0125: \x0D   \char1[0x02] LV\char1[0x3E]\t[0x11]\char2[0x02] LV\char2[0x3E]
+           HP    \char1[0x30]/\char1[0x31]\t[0x11]HP\t[0x13]\char2[0x30]/\char2[0x31]\x09   \char3[0x02] LV\char3[0x3E]\t[0x11]\char4[0x02] LV\char4[0x3E]
+           HP    \char3[0x30]/\char3[0x31]\t[0x11]HP\t[0x13]\char4[0x30]/\char4[0x31]\x0A
 0x0126: Welcome!
 0x0127: Purchase which?
 0x0128: Thank you!
 0x0129: Thank you!
-0x012A: Sell Which?
+0x012A: Sell which?
 0x012B: \gil Gil,ok?
 0x012C: Can't carry anymore.
 0x012D:  Qty?\choice[0x06]1\choice[0x08]4\choice[0x0A]10
 0x012E:  Qty?\choice[0x06]1\choice[0x09]All
-0x012F: \x17[0x01]\0x20
-0x0130: \char1[0x02]       \char1[0x01]                \char1[0x00]
-              HP           \char1[0x30]/\char1[0x31]
-              MP         \char1[0x80]/            \char1[0x81]/               \char1[0x82]/                  \char1[0x83]\0x09         \char1[0x84]/            \char1[0x85]/               \char1[0x86]/                  \char1[0x87]\0x09\char2[0x02]       \char2[0x01]                \char2[0x00]
-              HP           \char2[0x30]/\char2[0x31]
-              MP         \char2[0x80]/            \char2[0x81]/               \char2[0x82]/                  \char2[0x83]\0x09         \char2[0x84]/            \char2[0x85]/               \char2[0x86]/                  \char2[0x87]\0x09\char3[0x02]       \char3[0x01]                \char3[0x00]
-              HP           \char3[0x30]/\char3[0x31]
-              MP         \char3[0x80]/            \char3[0x81]/               \char3[0x82]/                  \char3[0x83]\0x09         \char3[0x84]/            \char3[0x85]/               \char3[0x86]/                  \char3[0x87]\0x09\char4[0x02]       \char4[0x01]                \char4[0x00]
-              HP           \char4[0x30]/\char4[0x31]
-              MP         \char4[0x80]/            \char4[0x81]/               \char4[0x82]/                  \char4[0x83]\0x09         \char4[0x84]/            \char4[0x85]/               \char4[0x86]/                  \char4[0x87]\0x0A
+0x012F: \x17[0x01]\x20
+0x0130: \char1[0x02]      \char1[0x01]\t[0x10]\char1[0x00]
+             HP           \char1[0x30]/\char1[0x31]
+             MP         \char1[0x80]/            \char1[0x81]/\t[0x0F]\char1[0x82]/\t[0x12]\char1[0x83]\x09         \char1[0x84]/            \char1[0x85]/\t[0x0F]\char1[0x86]/\t[0x12]\char1[0x87]\x09\char2[0x02]      \char2[0x01]\t[0x10]\char2[0x00]
+             HP           \char2[0x30]/\char2[0x31]
+             MP         \char2[0x80]/            \char2[0x81]/\t[0x0F]\char2[0x82]/\t[0x12]\char2[0x83]\x09         \char2[0x84]/            \char2[0x85]/\t[0x0F]\char2[0x86]/\t[0x12]\char2[0x87]\x09\char3[0x02]      \char3[0x01]\t[0x10]\char3[0x00]
+             HP           \char3[0x30]/\char3[0x31]
+             MP         \char3[0x80]/            \char3[0x81]/\t[0x0F]\char3[0x82]/\t[0x12]\char3[0x83]\x09         \char3[0x84]/            \char3[0x85]/\t[0x0F]\char3[0x86]/\t[0x12]\char3[0x87]\x09\char4[0x02]      \char4[0x01]\t[0x10]\char4[0x00]
+             HP           \char4[0x30]/\char4[0x31]
+             MP         \char4[0x80]/            \char4[0x81]/\t[0x0F]\char4[0x82]/\t[0x12]\char4[0x83]\x09         \char4[0x84]/            \char4[0x85]/\t[0x0F]\char4[0x86]/\t[0x12]\char4[0x87]\x0A
 0x0131: \choice[0x01]Item
         \choice[0x01]Magic
         \choice[0x01]Equip
-        \choice[0x01]S\0x60\0x61\0x62\0x63
+        \choice[0x01]S\x60\x61\x62\x63
         \choice[0x01]Row
         \choice[0x01]Job
         \choice[0x01]Save
 0x0132: 
         
-        \0x07
-0x0133:  \cp\0x0A
-0x0134:  \partygilG\0x0A
+        \x07
+0x0133:  \cp\x0A
+0x0134:  \partygilG\x0A
 0x0135:  Item
 0x0136:  \char1[0x02]\choice[0x09]Use\choice[0x0F]Swap\choice[0x16]Item
-0x0137:  S\0x60\0x61\0x62\0x63
+0x0137:  S\x60\x61\x62\x63
 0x0138:  Save
-0x0139: \x17[0x01]\0x1A
+0x0139: \x17[0x01]\inventory[0x00]          \inventoryqty[0x00]\x17[0x0E]\inventory[0x01]\t[0x17]\inventoryqty[0x01]
+        \x17[0x01]\inventory[0x02]          \inventoryqty[0x02]\x17[0x0E]\inventory[0x03]\t[0x17]\inventoryqty[0x03]
+        \x17[0x01]\inventory[0x04]          \inventoryqty[0x04]\x17[0x0E]\inventory[0x05]\t[0x17]\inventoryqty[0x05]
+        \x17[0x01]\inventory[0x06]          \inventoryqty[0x06]\x17[0x0E]\inventory[0x07]\t[0x17]\inventoryqty[0x07]
+        \x17[0x01]\inventory[0x08]          \inventoryqty[0x08]\x17[0x0E]\inventory[0x09]\t[0x17]\inventoryqty[0x09]
+        \x17[0x01]\inventory[0x0A]          \inventoryqty[0x0A]\x17[0x0E]\inventory[0x0B]\t[0x17]\inventoryqty[0x0B]
+        \x17[0x01]\inventory[0x0C]          \inventoryqty[0x0C]\x17[0x0E]\inventory[0x0D]\t[0x17]\inventoryqty[0x0D]
+        \x17[0x01]\inventory[0x0E]          \inventoryqty[0x0E]\x17[0x0E]\inventory[0x0F]\t[0x17]\inventoryqty[0x0F]
+        \x17[0x01]\inventory[0x10]          \inventoryqty[0x10]\x17[0x0E]\inventory[0x11]\t[0x17]\inventoryqty[0x11]
+        \x17[0x01]\inventory[0x12]          \inventoryqty[0x12]\x17[0x0E]\inventory[0x13]\t[0x17]\inventoryqty[0x13]
+        \x17[0x01]\inventory[0x14]          \inventoryqty[0x14]\x17[0x0E]\inventory[0x15]\t[0x17]\inventoryqty[0x15]
+        \x17[0x01]\inventory[0x16]          \inventoryqty[0x16]\x17[0x0E]\inventory[0x17]\t[0x17]\inventoryqty[0x17]
+        \x17[0x01]\inventory[0x18]          \inventoryqty[0x18]\x17[0x0E]\inventory[0x19]\t[0x17]\inventoryqty[0x19]
+        \x17[0x01]\inventory[0x1A]          \inventoryqty[0x1A]\x17[0x0E]\inventory[0x1B]\t[0x17]\inventoryqty[0x1B]
+        \x17[0x01]\inventory[0x1C]          \inventoryqty[0x1C]\x17[0x0E]\inventory[0x1D]\t[0x17]\inventoryqty[0x1D]
+        \x17[0x01]\inventory[0x1E]          \inventoryqty[0x1E]\x17[0x0E]\inventory[0x1F]\t[0x17]\inventoryqty[0x1F]
 0x013A:  Not enough experience
          for this Job.
-0x013B: \0x16
-          \char1[0x02] \char1[0x00]\0x16\trash  \char2[0x02] \char2[0x00]
-           HP     \char1[0x30]/\char1[0x31]                 HP                   \char2[0x30]/\char2[0x31]\0x09\0x16
-          \char3[0x02] \char3[0x00]\0x16\trash  \char4[0x02] \char4[0x00]
-           HP     \char3[0x30]/\char3[0x31]                 HP                   \char4[0x30]/\char4[0x31]\0x0A
-0x013C: 1 \char1[0x80]/\char1[0x88]\0x16\cp\char1[0x08]\0x16\trash\char1[0x09]\0x16\0x16\char1[0x0A]
-        2 \char1[0x81]/\char1[0x89]\0x16\cp\char1[0x0B]\0x16\trash\char1[0x0C]\0x16\0x16\char1[0x0D]
-        3 \char1[0x82]/\char1[0x8A]\0x16\cp\char1[0x0E]\0x16\trash\char1[0x0F]\0x16\0x16\char1[0x10]
-        4 \char1[0x83]/\char1[0x8B]\0x16\cp\char1[0x11]\0x16\trash\char1[0x12]\0x16\0x16\char1[0x13]
-        5 \char1[0x84]/\char1[0x8C]\0x16\cp\char1[0x14]\0x16\trash\char1[0x15]\0x16\0x16\char1[0x16]
-        6 \char1[0x85]/\char1[0x8D]\0x16\cp\char1[0x17]\0x16\trash\char1[0x18]\0x16\0x16\char1[0x19]
-        7 \char1[0x86]/\char1[0x8E]\0x16\cp\char1[0x1A]\0x16\trash\char1[0x1B]\0x16\0x16\char1[0x1C]
-        8 \char1[0x87]/\char1[0x8F]\0x16\cp\char1[0x1D]\0x16\trash\char1[0x1E]\0x16\0x16\char1[0x1F]
-0x013D: \x17[0x01]\0x1A
-0x013E:  \char1[0x02]           Att;\char1[0x33]                    Def;\char1[0x34]
+0x013B: \x16
+          \char1[0x02] \char1[0x00]\x16\trash  \char2[0x02] \char2[0x00]
+           HP    \char1[0x30]/\char1[0x31]\t[0x11]HP\t[0x13]\char2[0x30]/\char2[0x31]\x09\x16
+          \char3[0x02] \char3[0x00]\x16\trash  \char4[0x02] \char4[0x00]
+           HP    \char3[0x30]/\char3[0x31]\t[0x11]HP\t[0x13]\char4[0x30]/\char4[0x31]\x0A
+0x013C: 1 \char1[0x80]/\char1[0x88]\x16\cp\char1[0x08]\x16\trash\char1[0x09]\x16\x16\char1[0x0A]
+        2 \char1[0x81]/\char1[0x89]\x16\cp\char1[0x0B]\x16\trash\char1[0x0C]\x16\x16\char1[0x0D]
+        3 \char1[0x82]/\char1[0x8A]\x16\cp\char1[0x0E]\x16\trash\char1[0x0F]\x16\x16\char1[0x10]
+        4 \char1[0x83]/\char1[0x8B]\x16\cp\char1[0x11]\x16\trash\char1[0x12]\x16\x16\char1[0x13]
+        5 \char1[0x84]/\char1[0x8C]\x16\cp\char1[0x14]\x16\trash\char1[0x15]\x16\x16\char1[0x16]
+        6 \char1[0x85]/\char1[0x8D]\x16\cp\char1[0x17]\x16\trash\char1[0x18]\x16\x16\char1[0x19]
+        7 \char1[0x86]/\char1[0x8E]\x16\cp\char1[0x1A]\x16\trash\char1[0x1B]\x16\x16\char1[0x1C]
+        8 \char1[0x87]/\char1[0x8F]\x16\cp\char1[0x1D]\x16\trash\char1[0x1E]\x16\x16\char1[0x1F]
+0x013D: \x17[0x01]\inventory[0x00]           \inventoryqty[0x00]\x17[0x0F]\inventory[0x01]\t[0x19]\inventoryqty[0x01]
+        \x17[0x01]\inventory[0x02]           \inventoryqty[0x02]\x17[0x0F]\inventory[0x03]\t[0x19]\inventoryqty[0x03]
+        \x17[0x01]\inventory[0x04]           \inventoryqty[0x04]\x17[0x0F]\inventory[0x05]\t[0x19]\inventoryqty[0x05]
+        \x17[0x01]\inventory[0x06]           \inventoryqty[0x06]\x17[0x0F]\inventory[0x07]\t[0x19]\inventoryqty[0x07]
+        \x17[0x01]\inventory[0x08]           \inventoryqty[0x08]\x17[0x0F]\inventory[0x09]\t[0x19]\inventoryqty[0x09]
+        \x17[0x01]\inventory[0x0A]           \inventoryqty[0x0A]\x17[0x0F]\inventory[0x0B]\t[0x19]\inventoryqty[0x0B]
+        \x17[0x01]\inventory[0x0C]           \inventoryqty[0x0C]\x17[0x0F]\inventory[0x0D]\t[0x19]\inventoryqty[0x0D]
+        \x17[0x01]\inventory[0x0E]           \inventoryqty[0x0E]\x17[0x0F]\inventory[0x0F]\t[0x19]\inventoryqty[0x0F]
+        \x17[0x01]\inventory[0x10]           \inventoryqty[0x10]\x17[0x0F]\inventory[0x11]\t[0x19]\inventoryqty[0x11]
+        \x17[0x01]\inventory[0x12]           \inventoryqty[0x12]\x17[0x0F]\inventory[0x13]\t[0x19]\inventoryqty[0x13]
+        \x17[0x01]\inventory[0x14]           \inventoryqty[0x14]\x17[0x0F]\inventory[0x15]\t[0x19]\inventoryqty[0x15]
+        \x17[0x01]\inventory[0x16]           \inventoryqty[0x16]\x17[0x0F]\inventory[0x17]\t[0x19]\inventoryqty[0x17]
+        \x17[0x01]\inventory[0x18]           \inventoryqty[0x18]\x17[0x0F]\inventory[0x19]\t[0x19]\inventoryqty[0x19]
+        \x17[0x01]\inventory[0x1A]           \inventoryqty[0x1A]\x17[0x0F]\inventory[0x1B]\t[0x19]\inventoryqty[0x1B]
+        \x17[0x01]\inventory[0x1C]           \inventoryqty[0x1C]\x17[0x0F]\inventory[0x1D]\t[0x19]\inventoryqty[0x1D]
+        \x17[0x01]\inventory[0x1E]           \inventoryqty[0x1E]\x17[0x0F]\inventory[0x1F]\t[0x19]\inventoryqty[0x1F]
+        \x17[0x05]\trash
+0x013E:  \char1[0x02]           Att;\char1[0x33]\t[0x14]Def;\char1[0x34]
         \choice[0x01]\char1[0x06]\char1[0x43]\choice[0x12]\char1[0x03]
         \choice[0x01]\char1[0x07]\char1[0x44]\choice[0x12]\char1[0x04]
         \choice[0x01]Remove\choice[0x12]\char1[0x05]
@@ -1766,31 +1797,41 @@
 0x0144: \blackFire power up!
 0x0145: \blackIce power up!
 0x0146: \blackBolt power up!
-0x0147:             \char1[0x02]                    \char1[0x01]
-                            Skill \char1[0x3D]
-         Level \char1[0x3E]              Exp \char1[0x32]
+0x0147:             \char1[0x02]\t[0x14]\char1[0x01]
+        \t[0x14]Skill \char1[0x3D]
+         Level \char1[0x3E]\t[0x0E]Exp \char1[0x32]
                  Next Lvl  \char1[0xFF]
          HP \char1[0x30]/\char1[0x31]
          MP \char1[0x80]/\char1[0x81]/\char1[0x82]/\char1[0x83]/\char1[0x84]/\char1[0x85]/\char1[0x86]/\char1[0x87]
         
-         Strength;\char1[0x38]              Att.\char1[0x46]x ;\char1[0x33]
-         Agility  ;\char1[0x39]              Hit %                ; \char1[0x42]
-         Vitality ;\char1[0x3A]              Def.\char1[0x47]x ;\char1[0x34]
-         Intellect;\char1[0x3B]              Evade                ; \char1[0x41]
-         Spirit  ;\char1[0x3C]              M.Def.                ;\char1[0x36]
-                      M.Evade ; \char1[0x40]
-0x0148:  \char1[0x02]        \char1[0x01]
+         Strength;\char1[0x38]\t[0x0E]Att.\char1[0x46]x ;\char1[0x33]
+         Agility  ;\char1[0x39]\t[0x0E]Hit %\t[0x16]; \char1[0x42]
+         Vitality ;\char1[0x3A]\t[0x0E]Def.\char1[0x47]x ;\char1[0x34]
+         Intellect;\char1[0x3B]\t[0x0E]Evade\t[0x16]; \char1[0x41]
+         Spirit  ;\char1[0x3C]\t[0x0E]M.Def.\t[0x16];\char1[0x36]
+        \t[0x0E]M.Evade ; \char1[0x40]
+0x0148:  \char1[0x02]       \char1[0x01]
 0x0149: \cpC
-0x014A: \choice[0x01]\0x1E
-0x014B: Save Which file?
+0x014A: \choice[0x01]\job[0x00]\jobcp[0x00]\choice[0x0F]\job[0x01]\jobcp[0x01]
+        \choice[0x01]\job[0x02]\jobcp[0x02]\choice[0x0F]\job[0x03]\jobcp[0x03]
+        \choice[0x01]\job[0x04]\jobcp[0x04]\choice[0x0F]\job[0x05]\jobcp[0x05]
+        \choice[0x01]\job[0x06]\jobcp[0x06]\choice[0x0F]\job[0x07]\jobcp[0x07]
+        \choice[0x01]\job[0x08]\jobcp[0x08]\choice[0x0F]\job[0x09]\jobcp[0x09]
+        \choice[0x01]\job[0x0A]\jobcp[0x0A]\choice[0x0F]\job[0x0B]\jobcp[0x0B]
+        \choice[0x01]\job[0x0C]\jobcp[0x0C]\choice[0x0F]\job[0x0D]\jobcp[0x0D]
+        \choice[0x01]\job[0x0E]\jobcp[0x0E]\choice[0x0F]\job[0x0F]\jobcp[0x0F]
+        \choice[0x01]\job[0x10]\jobcp[0x10]\choice[0x0F]\job[0x11]\jobcp[0x11]
+        \choice[0x01]\job[0x12]\jobcp[0x12]\choice[0x0F]\job[0x13]\jobcp[0x13]
+        \choice[0x01]\job[0x14]\jobcp[0x14]\choice[0x0F]\job[0x15]\jobcp[0x15]
+0x014B: Save which file?
 0x014C: Replace data?\choice[0x0F]Yes\choice[0x13]No
 0x014D: Save complete!
 0x014E: Play again soon!
 0x014F: Thank you. Rest well…
 0x0150: Can't carry anymore.
-0x0151: Hey…! Whatcha Want?
+0x0151: Hey…! Whatcha want?
 0x0152: Whatcha got for me?
-0x0153: Whatcha Want back?
+0x0153: Whatcha want back?
 0x0154: Thanks! -swallow-
 0x0155: Ugh… I’m stuffed…
 0x0156: But ya can't carry it!
@@ -1798,10 +1839,10 @@
 0x0158: Here ya go…
 0x0159: Found \item!
 0x015A: Cannot use
-0x015B: Recover Whose HP?
-0x015C: Recover Whose HP?
-0x015D: Restore Whom?
-0x015E: Revive Whom?
+0x015B: Recover whose HP?
+0x015C: Recover whose HP?
+0x015D: Restore whom?
+0x015E: Revive whom?
 0x015F: Cures “Stone”
 0x0160: Cures “Frog”
 0x0161: Cures “Mute”
@@ -1819,8 +1860,8 @@
 0x016D: \t[0x01]\char1[0x02]
 0x016E: Removed
 0x016F: Can't equip
-0x0170:        Change Job?
-              A;Yes    B;No
+0x0170:       Change Job?
+             A;Yes    B;No
 0x0171:  Must remove equipment
          to change Jobs.
 0x0172:  Not enough “Capacity”!
@@ -1829,7 +1870,7 @@
 0x0175: Already has that!
 0x0176: Found \item!
 0x0177: Can't change size.
-0x0178: Can't Warp.
+0x0178: Can't warp.
 0x0179: Can't use magic.
 0x017A: Unlocked by the
         Thief's ability!
@@ -1839,71 +1880,71 @@
 0x017E:           Canaan
 0x017F:           Tozas
 0x0180:           Tokkle
-0x0181:      Ancients’ Village
+0x0181:     Ancients’ Village
 0x0182:           Gisahl
 0x0183:            Amur
 0x0184:           Dastar
 0x0185:           Leprit
 0x0186:          Salonia
 0x0187: 
-0x0188:         Fargabaad
-0x0189:       Sasoon Castle
-0x018A:       Argass Castle
-0x018B:       Salonia Castle
-0x018C:         Dwarf Cave
-0x018D:        Viking Base
-0x018E:        Gurgan Valley
-0x018F:         Left Tower
-0x0190:        Right Tower
-0x0191:         Left Tower
-0x0192:        Right Tower
-0x0193:        Round Table
+0x0188:        Fargabaad
+0x0189:      Sasoon Castle
+0x018A:      Argass Castle
+0x018B:      Salonia Castle
+0x018C:        Dwarf Cave
+0x018D:       Viking Base
+0x018E:       Gurgan Valley
+0x018F:        Left Tower
+0x0190:       Right Tower
+0x0191:        Left Tower
+0x0192:       Right Tower
+0x0193:       Round Table
 0x0194:     Road to the Summit
-0x0195:       Chocobo Forest
-0x0196:       Living Forest
-0x0197:       Bahamut's Nest
-0x0198:        Cid's Airship
-0x0199:        Nepto Shrine
-0x019A:        Mithril Mine
+0x0195:      Chocobo Forest
+0x0196:      Living Forest
+0x0197:      Bahamut's Nest
+0x0198:       Cid's Airship
+0x0199:       Nepto Shrine
+0x019A:       Mithril Mine
 0x019B: 
-0x019C:      Cave of the Seal
-0x019D:         Flame Cave
-0x019E:         Altar Cave
+0x019C:     Cave of the Seal
+0x019D:        Flame Cave
+0x019E:        Altar Cave
 0x019F:          Salonia
 0x01A0:          Salonia
 0x01A1:          Salonia
-0x01A2:        Battlefield
-0x01A3:      Underground Lake
-0x01A4:        Hidden Road
-0x01A5:       Tower of Owen
-0x01A6:        Castle Hyne
-0x01A7:       Fargabaad Cave
-0x01A8:        Wind Crystal
-0x01A9:        Fire Crystal
+0x01A2:       Battlefield
+0x01A3:     Underground Lake
+0x01A4:       Hidden Road
+0x01A5:      Tower of Owen
+0x01A6:       Castle Hyne
+0x01A7:      Fargabaad Cave
+0x01A8:       Wind Crystal
+0x01A9:       Fire Crystal
 0x01AA:          Lake Dol
-0x01AB:      Cave of Bahamut
-0x01AC:        Dorga's House
-0x01AD:        Unne's Shrine
-0x01AE:         Shipwreck
-0x01AF:      Temple of Water
-0x01B0:         Water Cave
+0x01AB:     Cave of Bahamut
+0x01AC:       Dorga's House
+0x01AD:       Unne's Shrine
+0x01AE:        Shipwreck
+0x01AF:     Temple of Water
+0x01B0:        Water Cave
 0x01B1:           Sewer
-0x01B2:      Goldor's Mansion
+0x01B2:     Goldor's Mansion
 0x01B3:     Magic Circle Cave
-0x01B4:        Dorga's Cave
-0x01B5:       Temple of Time
-0x01B6:       Undersea Cave
+0x01B4:       Dorga's Cave
+0x01B5:      Temple of Time
+0x01B6:      Undersea Cave
 0x01B7: 
-0x01B8:      Cave of Darkness
-0x01B9:       Ancient Ruins
-0x01BA:         Invincible
+0x01B8:     Cave of Darkness
+0x01B9:      Ancient Ruins
+0x01BA:        Invincible
 0x01BB:    Ancients’ Labyrinth
-0x01BC:         Sylx Tower
+0x01BC:        Sylx Tower
 0x01BD: 
-0x01BE:         Dark World
+0x01BE:        Dark World
 0x01BF:            B1F
-0x01C0:       Water Crystal
-0x01C1:       Earth Crystal
+0x01C0:      Water Crystal
+0x01C1:      Earth Crystal
 0x01C2:     Wind Dark Crystal
 0x01C3:     Fire Dark Crystal
 0x01C4:     Water Dark Crystal
@@ -1928,9 +1969,9 @@
 0x01D7:            10F
 0x01D8:             1F
 0x01D9:          Library
-0x01DA:       Dorga's Village
-0x01DB:      Forest of Healing
-0x01DC:        Throne Room
+0x01DA:      Dorga's Village
+0x01DB:     Forest of Healing
+0x01DC:       Throne Room
 0x01DD:  Head
 0x01DE:  Body
 0x01DF:  Arms
@@ -1939,14 +1980,14 @@
 0x01E2: OnionKid
 0x01E3: Fighter 
 0x01E4: Monk    
-0x01E5: Wh\0xD5\0xD6Wiz.
-0x01E6: B\0xD7\0xD8\0xD9Wiz.
+0x01E5: Wh\xD5\xD6Wiz.
+0x01E6: B\xD7\xD8\xD9Wiz.
 0x01E7: Red Wiz.
 0x01E8: Hunter  
 0x01E9: Knight  
 0x01EA: Thief   
 0x01EB: Scholar 
-0x01EC: Ge\0xDA\0xDB\0xDC\0xDD\0xDE\0xDF
+0x01EC: Ge\xDA\xDB\xDC\xDD\xDE\xDF
 0x01ED: Dragoon 
 0x01EE: Viking  
 0x01EF: Karateka
@@ -1981,7 +2022,7 @@
         
         
         What…? You're going to
-        go save the World…?
+        go save the world…?
         Did you get hit on the
         head or something!?
 0x0208: 
@@ -1989,7 +2030,7 @@
 0x020A: Oh my!
         How did you get here?
         There are some Potions in
-        this Well!
+        this well!
 0x020B: You'd better take \whiteCure
         from the storehouse ahead.
         Monsters appear along the
@@ -2000,11 +2041,11 @@
         hidden door.
         
         The switch on the other
-        side is on the north Wall!
+        side is on the north wall!
         
 0x020E: Those blessed by the
         Crystals can be healed by
-        holy Water from shrines.
+        holy water from shrines.
 0x020F: The town of Kazus lies
         to the south. But no one
         dares leave this village
@@ -2028,20 +2069,20 @@
         ‘Spiritual “Capacity” is
          needed to use the Jobs
          granted by the Crystals.’
-0x0215: The man Who raised the
+0x0215: The man who raised the
         orphans,Topapa the Elder.
         “Dad! We…”
 0x0216: Topapa:I know. I had no
-         idea you Would be chosen.
+         idea you would be chosen.
          \char1[0x02],\char2[0x02],
          \char3[0x02],\char4[0x02]…
          First you must know that
-         this Was no accident.
+         this was no accident.
          The Crystals have chosen
-         you by their Will.
+         you by their will.
          Don't let their power…
          don't let your hearts of
-         Light go to Waste!
+         Light go to waste!
         
          Begin your journey!
          Seal off the power of
@@ -2050,8 +2091,8 @@
 0x0217: Topapa:Go now!
          Begin your journey!
 0x0218: You're going on a journey?
-        I Won't take your money.
-        Please rest Well.
+        I won't take your money.
+        Please rest well.
 0x0219: How do you like it?
 0x021A: I'll guess your strength!
         Hmm…
@@ -2080,7 +2121,7 @@
         
 0x0221: Hey,try playing the piano!
 0x0222: Aieee!!
-0x0223: Sorry. I thought you Were
+0x0223: Sorry. I thought you were
         ghosts,too…
         This town is cursed.
         There're ghosts in the Inn!
@@ -2089,20 +2130,20 @@
         
         
         Sara:Just wait. I'll seal
-         Jinn With this ring!
+         Jinn with this ring!
         
         
-        King:I'll Worry for you…
+        King:I'll worry for you…
         Sara:I'll be fine!
          See,I've got \xchar
-         With me!
+         with me!
 0x0225: If you had an airship,you
         could cross the lake and
         reach the Cave of the Seal
         where Jinn is.
 0x0226: Thank you. Because of you,
         we're back to ourselves!
-0x0227: The Nelb Valley Was blocked
+0x0227: The Nelb Valley was blocked
         by a large rock after the
         earthquake.
 0x0228: Kazus has grown around the
@@ -2118,8 +2159,8 @@
         Jinn's curse…
 0x022C: Thank you. Because of you,
         we're back to ourselves!
-0x022D: Jinn Who was contained in
-        the Cave of the Seal Was
+0x022D: Jinn who was contained in
+        the Cave of the Seal was
         freed in the earthquake.
 0x022E: Hey!
         You can't come in here.
@@ -2129,14 +2170,14 @@
         If only you had that ring…
 0x0230: There is a secret entrance
         at the end of the mine.
-        Try the Wall three steps
+        Try the wall three steps
         from the left.
 0x0231: The only thing which can
         reseal Jinn is the Mithril
         Ring made in this town.
 0x0232: I'm Cid,from Canaan.
         The Nelb valley got blocked
-        by a boulder and I Wasn't
+        by a boulder and I wasn't
         able to go back to Canaan.
         So I decided to stay the
         night at the Inn here,
@@ -2145,11 +2186,11 @@
         Will you help me if I
         lend you my Airship?
         It's hidden in the
-        desert to the West.
+        desert to the west.
         Heard about the Airship
-        in the Western desert!!
+        in the western desert!!
         
-0x0233: I Want my pretty
+0x0233: I want my pretty
         face back…
 0x0234: Thanks to you I got my
         pretty face back!
@@ -2164,16 +2205,16 @@
 0x0236: Taca:It's finished!
          No need to thank me.
          You kids saved the
-         Whole village!
-        Cid:Now We have to smash
-         the boulder With the
+         whole village!
+        Cid:Now we have to smash
+         the boulder with the
          Airship!
         
 0x0237: Good luck!
 0x0238: Everyone's been turned
         into ghosts by Jinn.
-        Since I Was away on a
-        mission I Was spared…
+        Since I was away on a
+        mission I was spared…
         If I had a Mithril Ring
         I could reseal Jinn,
         but the village of Kazus,
@@ -2190,7 +2231,7 @@
         It's a holy sword with
         power against undead.
         But only a Red Wizard
-        can Wield it.
+        can wield it.
         
 0x023B: The monsters in the Cave
         of the Seal are all undead.
@@ -2223,7 +2264,7 @@
          Sara has one…”
         
         
-        ‘Oh,yes! A While ago a
+        ‘Oh,yes! A while ago a
          Mithril Ring was sent
          to Sara from Kazus.
         
@@ -2257,20 +2298,20 @@
         Received Canoe!
         
 0x0241: Sara:The truth is,I
-         Want to go with you…
+         want to go with you…
          But I'm sure I'd just
-         get in the Way…
+         get in the way…
         “Princess Sara…”
         
         
         
-        Sara:Come see me When
+        Sara:Come see me when
          your journey is over.
          I'll be waiting!
         
 0x0242: Princess Sara talks
         about you every day!
-0x0243: Princess Sara Wanted
+0x0243: Princess Sara wanted
         to see you!
         Her room is at the top
         of the right tower.
@@ -2283,8 +2324,8 @@
          come to such a place?”
         
         
-        Sara:Since I Was Wearing
-         the Mithril Ring,I Wasn't
+        Sara:Since I was wearing
+         the Mithril Ring,I wasn't
          put under Jinn's curse.
         
          I came here to help
@@ -2293,15 +2334,15 @@
          the monsters…
         “This place is dangerous.
          Princess Sara,please
-         Wait at the castle.”
+         wait at the castle.”
         
         Sara:No! I’m going!
          I'll keep going alone if
          I have to!
         
-0x0246: Sara:Take me With you!
+0x0246: Sara:Take me with you!
          You can't seal Jinn
-         Without this Mithril Ring!
+         without this Mithril Ring!
         
         “Seems we have no choice…”
         
@@ -2310,8 +2351,8 @@
         Sara joined the party!
         
 0x0247: Cid:Oh no,Granny got
-         Worse while I Was away…
-         If only We had the
+         worse while I was away…
+         If only we had the
          magical medicine,Elixir…
 0x0248: Cid:Now I've been
          helped by you twice.
@@ -2327,9 +2368,9 @@
 0x0249: The Crystal is shedding
         its light silently…
         ‘Light Warriors,bring
-         hope back to this World…’
+         hope back to this world…’
 0x024A: Cough,cough!
-0x024B: If you go all the Way
+0x024B: If you go all the way
         around the continent on
         a chocobo,I'll give you
         a prize!
@@ -2344,33 +2385,33 @@
 0x024F: It's said that there's a
         town of midgets in a
         forest south of here.
-0x0250: You can become tiny With
+0x0250: You can become tiny with
         the magic \whiteMini,but
         I've sold the last one to
         a guy called Desh.
 0x0251: What…? Desh…?
         That jerk swindled our
         daughter Sarina.
-        I don't know What to do…
+        I don't know what to do…
         He went off on a trip,
         saying there was something
         he had to search for.
-        Sarina Won't stop crying…
+        Sarina won't stop crying…
 0x0252: Sarina:Oh… Desh…
          Even though I feel so
          much for you…
          Sob,sob…
-         You Went to the southern
-         mountain Where they say
+         You went to the southern
+         mountain where they say
          a dragon lives…
         
 0x0253: The magic \whiteAero uses
         the wind to cause damage.
-        It really Works well on
+        It really works well on
         monsters that fly!
 0x0254: A traveler called Desh
         came through this town.
-        But he soon Went off
+        But he soon went off
         somewhere again.
 0x0255: What is it?
 0x0256: Wark!!
@@ -2391,14 +2432,14 @@
          anything besides my name.
          I know there's something
          I've gotta do…
-         But I have no idea What
+         But I have no idea what
          it could be…
         
 0x0259: Desh:Uh oh!!
          The dragon's back!
          Hide!!
-0x025A: Desh:There's no way We'll
-         ever Win fighting it!
+0x025A: Desh:There's no way we'll
+         ever win fighting it!
          Run away! Run away!!
 0x025B: ‘Hey!
          You're Desh!’
@@ -2417,22 +2458,22 @@
         
 0x025D: You're new around here,
         aren't you.
-0x025E: There is a tunnel Which
+0x025E: There is a tunnel which
         pierces through the
         Myranos mountains.
         
         If you pass through it,
         you'll come into the
-        Myraluka valley Where
+        Myraluka valley where
         the Vikings live.
 0x025F: Please stay around awhile.
-        Sara really Wanted to
+        Sara really wanted to
         see you.
 0x0260: We're the midgets.
         We're a content people!
 0x0261: I've heard there's a
         Living Forest somewhere.
-        I Wonder if the faeries
+        I wonder if the faeries
         there are cute!
 0x0262: Dr.Shelco's stomach is
         hurting terribly! No one
@@ -2443,7 +2484,7 @@
 0x0265: Uhh… ooh…
         Antidote…
         Please……
-0x0266: “I feel a power Welling
+0x0266: “I feel a power welling
          up inside me!”
         
 0x0267: 
@@ -2457,7 +2498,7 @@
         the magic \whiteSight!
 0x026B: You can see the world
         using Midget Bread!
-0x026C: It's a Wall of flame.
+0x026C: It's a wall of flame.
 0x026D: Congratulations on
         circling the continent
         on a chocobo!
@@ -2470,7 +2511,7 @@
         ……Well……
         Actually,we have a problem.
         After the quake,the sea
-        dragon Went berserk and
+        dragon went berserk and
         destroyed our ships.
         Only the Enterprise was
         spared,but everyone's
@@ -2504,7 +2545,7 @@
 0x027B: 
 0x027C: You shouldn't be sailing!
         If you go past the cape,
-        the sea dragon Will attack.
+        the sea dragon will attack.
         
         That has to be the sea
         dragon Nepto enshrined
@@ -2528,11 +2569,11 @@
         Enterprise is now yours!
 0x0282: I'm the very oldest of
         the Vikings. The Nepto
-        Shrine is Where the dragon
+        Shrine is where the dragon
         Nepto used to sleep.
         But something happened
         since the earthquake,and
-        the dragon Went mad…
+        the dragon went mad…
         
 0x0283: Thank you,youngsters!
         The sea dragon Nepto has
@@ -2544,21 +2585,21 @@
         One of the eyes is missing
         and there is a small hole
         leading beyond…
-        “I Wonder if we could get
+        “I wonder if we could get
          in if we became tiny?”
         
-0x0287: A Dwarf Horn Was stolen!
+0x0287: A Dwarf Horn was stolen!
         Lali laliho!
 0x0288: Both of the horns have
         been stolen!
         Lali laliho,lali!!
 0x0289: We give you the treasure
         of the Dwarves as thanks!
-        Moonwalk Will be your
+        Moonwalk will be your
         guide,lali!
 0x028A: The sea dragon Nepto
         rests in a deep sleep.
-0x028B: Squeek! I Won't give this
+0x028B: Squeek! I won't give this
         gem to anyone! Squeeek!
 0x028C: Obtained Nepto's Eye!
 0x028D: Aaah!
@@ -2588,7 +2629,7 @@
          King Argass!?”
         
 0x0296: 
-0x0297: People Who call themselves
+0x0297: People who call themselves
         the descendants of the
         Ancients live to the west,
         across the desert.
@@ -2600,9 +2641,9 @@
         village had come again…
         Sob… They took my husband…
         They took him into the
-        desert. The men Wearing
+        desert. The men wearing
         the crest of Argass…
-0x029B: I Wonder if he's alright…
+0x029B: I wonder if he's alright…
         Oh,please be alive!
 0x029C: My husband is safe!
         Thank you so much!
@@ -2619,7 +2660,7 @@
         returned safely home
         from Hyne's castle.
 0x02A0: This is the elder's house.
-        Please hear What the elder
+        Please hear what the elder
         has to say.
 0x02A1: 
 0x02A2: I am the elder.
@@ -2643,11 +2684,11 @@
         this forest.
 0x02A7: The wizard who abducted
         the Eldest Tree can change
-        his Weakness.
+        his weakness.
 0x02A8: This forest is alive.
 0x02A9: The forest is crying…
         The Eldest Tree has been
-        cursed by a Wizard and
+        cursed by a wizard and
         taken away somewhere.
 0x02AA: Unless the Eldest Tree
         returns,this forest will
@@ -2656,8 +2697,8 @@
         into the shape of a castle
         and wanders the desert…
         Please,help him!
-0x02AC: A Wizard of Argass Castle,
-        Hyne,is the one Who cursed
+0x02AC: A wizard of Argass Castle,
+        Hyne,is the one who cursed
         the Eldest Tree.
 0x02AD: Hyne uses “WallChange”.
         He can change his own
@@ -2666,7 +2707,7 @@
         the Gurgans.
 0x02AF: You must go to the
         Crystals of Fire,Water
-        and Earth. Then you Will
+        and Earth. Then you will
         gain even greater power…
 0x02B0: The power of Earth has
         sealed the Light of the
@@ -2693,10 +2734,10 @@
         Desh's destiny awaits.
 0x02B5: When the tower emits a red
         flame,it is about to fall…
-        At that time a man Who is
+        At that time a man who is
         to alter fate shall awaken.
 0x02B6: If people knew the future,
-        it Would only bring them
+        it would only bring them
         sadness.
 0x02B7: I can see neither light
         nor dark in the future…
@@ -2711,10 +2752,10 @@
         Crystals and manipulated
         the power of Light.
         But the Light began to
-        destroy the World.
+        destroy the world.
         It was too great a power
-        for humans to Wield.
-        Then four Warriors came
+        for humans to wield.
+        Then four warriors came
         from the Dark World and
         forced back the Flood
         of Light.
@@ -2727,12 +2768,12 @@
         It was conceived by the
         Ancients’ civilization.
         And it still floats today…
-        The Tower of Owen is What
+        The Tower of Owen is what
         gives it power.
         
 0x02BC: Our law…
         It is to entrust ourselves
-        to the greater Will. We
+        to the greater will. We
         mustn't rely on machines.
 0x02BD: When something occurs,
         Light or Dark select four
@@ -2764,10 +2805,10 @@
          My memory's come back.
          I’m the surviving Ancient
          guardian of this tower.
-         I Was asleep for ages…
+         I was asleep for ages…
          But when something
          happened to the tower,
-         I Was awakened.
+         I was awakened.
          I must have lost it
          from sleeping so long…
         
@@ -2791,12 +2832,12 @@
          the strait,you go to the
          island of Dwarves.
          Got it?
-         That's Where the power
+         That's where the power
          of Fire should be.
         
         
          Once I'm down below,I'll
-         Warp you outta here.
+         warp you outta here.
          Well,see ya!
          This is it!!
 0x02C5: “Desh…!!”
@@ -2849,7 +2890,7 @@
 0x02D2: Takeoff!
 0x02D3: Ouch!
 0x02D4: Aagh! Stay back!
-        I Won't give you the horn!
+        I won't give you the horn!
         Die!
 0x02D5: Obtained Dwarf Horn.
 0x02D6: I came from the forest of
@@ -2874,7 +2915,7 @@
         trees in the middle of the
         forest. Maybe you'll meet
         the Fat Chocobo!
-0x02DD: I'm Writing letters!
+0x02DD: I'm writing letters!
         You all send me your
         letters too!
         Square development section
@@ -2899,15 +2940,15 @@
          Please,defeat Hyne!’
 0x02E2: Hyne is Argass’ minister.
         After the great earthquake
-        he Was possessed by an
+        he was possessed by an
         evil power.
-0x02E3: This castle Was made by
+0x02E3: This castle was made by
         uprooting the Eldest Tree
         of the Living Forest.
 0x02E4: I'm already done for…
         Use this to become tiny.
         Escape through the hole
-        in the Wall in the corner…
+        in the wall in the corner…
         Received LuckMallet.
         
 0x02E5: Hyne gained some kind of
@@ -2929,7 +2970,7 @@
          I have mobilized a living
          tree,controlled an army,
          and now I shall become
-         the ruler of this World!
+         the ruler of this world!
          You cannot stop me!
          Perish!!
 0x02E9: Come on,over here!
@@ -2938,7 +2979,7 @@
         with you!?
 0x02EA: Gisahl's a village on the
         edge of the world!
-        They've got a smith Who
+        They've got a smith who
         makes magic keys!
 0x02EB: Guzco stole the Dwarves’
         treasure,the two horns!
@@ -2958,7 +2999,7 @@
         This is the “Time Gear”.
         It has been in the royal
         family for generations.
-        They say it Was created
+        They say it was created
         by the Ancients.
         Take this to a man named
         Cid who lives in Canaan.
@@ -3021,13 +3062,13 @@
          Light left in this shard.
          Come on,let's go to the
          cave north of here!
-0x0306: Something is Written:
+0x0306: Something is written:
         ‘The seal shall open
-         With the Sylx Key.’
+         with the Sylx Key.’
 0x0307: The Crystal is shedding
         its light silently…
         ‘Light Warriors,bring
-         hope back to this World…’
+         hope back to this world…’
 0x0308: 
 0x0309: “You've helped a lot.
          Thank you.”
@@ -3046,28 +3087,28 @@
         If you fall in,you'll die!
 0x0310: Whoa!
         Your ship can fly!?
-0x0311: Four Warriors came from
+0x0311: Four warriors came from
         the Dark World and stopped
         the Flood of Light from
         the Crystals…
-        Goldor,thinking you Were
-        those four Warriors,put
+        Goldor,thinking you were
+        those four warriors,put
         a chain on your ship so
-        you Won't get his Crystal.
-0x0312: The old man Who saved Elia:
+        you won't get his Crystal.
+0x0312: The old man who saved Elia:
         ‘What? Elia…
          I see…
          …………
          How tragic… Please,for
          Elia's sake too, bring the
-         Light back to this World.
+         Light back to this world.
          We're counting on you!’
 0x0313: There's a huge city
         called Salonia somewhere.
         I've heard that they have
         a really fast Airship…
 0x0314: The Crystal?
-        A guy named Goldor Who
+        A guy named Goldor who
         lives to the south has
         one.
 0x0315: Go see Salonia.
@@ -3081,7 +3122,7 @@
         can cross the Bottomless
         Swamp.
         
-        Didn't that old lady De\0xD3\0xD4a
+        Didn't that old lady De\xD3\xD4a
         who lives in the sewers
         have them?
         
@@ -3096,7 +3137,7 @@
         that have been coming out.
         Old Jiru has the key…
 0x031B: 
-0x031C: Jiru:What do you Want?
+0x031C: Jiru:What do you want?
         
         
         
@@ -3111,9 +3152,9 @@
         “But we have to find the
          last of the Crystals.”
         Jiru:What!? You're the
-         legendary four Warriors!
-0x031D: ‘What? The four Warriors?’
-        ‘That's Who we are!’
+         legendary four warriors!
+0x031D: ‘What? The four warriors?’
+        ‘That's who we are!’
         ‘Seems like they're going
          into the sewers…’
         ‘Well then,we'll get
@@ -3125,7 +3166,7 @@
 0x0320: 
 0x0321: Locked.
 0x0322: There's a legend…
-        That four Warriors will
+        That four warriors will
         crush the overflowing of
         Light and Dark.
 0x0323: Old men:
@@ -3133,27 +3174,27 @@
         ‘Those old men…
          They think that they're
          the legendary heroes!’
-0x0325: No,what I just used Wasn't
-        actually \whiteExit,it Was
+0x0325: No,what I just used wasn't
+        actually \whiteExit,it was
         an OtterHead!
 0x0326: We're heroes too!
 0x0327: Something in your eyes…
         Maybe you really can do it.
 0x0328: You may be stronger,but
-        we're better With the
+        we're better with the
         women!
 0x0329: I'm not a match for you
         youngsters after all,huh?
         I'll just stay here.
 0x032A: You're really the four
         legendary heroes?
-        But I thought that Was us!
+        But I thought that was us!
 0x032B: Thanks!
 0x032C: We still need to train
         some more!
 0x032D: How are the four old men
         doing?
-0x032E: I Won't let you have my
+0x032E: I won't let you have my
         Crystal!
         Die!!
 0x032F: 
@@ -3166,7 +3207,7 @@
 0x0333: “The chain is released,
          but the Crystal's in
          pieces…
-         What will We do?”
+         What will we do?”
 0x0334: 
 0x0335: There is an undersea cave
         at a small triangular
@@ -3183,10 +3224,10 @@
         
 0x0338: We're excavating the
         Ancient Ruins.
-0x0339: The cave Was filled With
+0x0339: The cave was filled with
         Adamantite so we can't
         proceed ahead.
-0x033A: The cave Walls collapsed
+0x033A: The cave walls collapsed
         in the earthquake.
         Our advance party should
         be beyond,but…
@@ -3199,7 +3240,7 @@
         selling them.
 0x033D: Bahamut,Leviathan,Odin…
         If you have these three
-        as allies,they Will grant
+        as allies,they will grant
         you Summon magic.
 0x033E: Every painting found in
         the ruins has what looks
@@ -3209,14 +3250,14 @@
         
         
         The monsters here can't be
-        killed With normal swords.
+        killed with normal swords.
         Instead,they'll just split
         in two.
 0x0340: ‘…………’
         “You alright?”
         
         
-        ‘Seems I Was not yet
+        ‘Seems I was not yet
          experienced enough…
          Please,take this……’
         
@@ -3231,7 +3272,7 @@
         Sometimes,the damage will
         backfire on oneself.
 0x0346: Geomancers can use the
-        terrain as a Weapon.
+        terrain as a weapon.
 0x0347: I heard that there is an
         amazingly fast airship
         in Salonia.
@@ -3248,7 +3289,7 @@
         time he can be freed from
         the bonds of Darkness…
 0x034B: The Dragon King Bahamut.
-        When one Who can defeat
+        When one who can defeat
         him appears,his heart will
         grant the ultimate power…
 0x034C: Odin feared the use of
@@ -3259,14 +3300,14 @@
         Light into their hands.
         
         And the power of Light
-        that overflowed Was about
-        to destroy the World…
+        that overflowed was about
+        to destroy the world…
         
-        At that time,four Warriors
+        At that time,four warriors
         came from the Dark World
         to return the Light to its
         original place…
-0x034E: This is When you get
+0x034E: This is when you get
         an item!
 0x034F: Chocobo Chocobo Cho-Co-Bo!
         Chocobo Chocobo
@@ -3301,7 +3342,7 @@
         terrific magic…
 0x0359: I am one of the Gurgans…
 0x035A: Just as long ago Light
-        flooded the World,now the
+        flooded the world,now the
         power of Darkness is about
         to flood the world…
         Someone is summoning the
@@ -3334,12 +3375,12 @@
 0x0360: 
 0x0361: The side that loses
         will be executed.
-0x0362: For some reason We have
+0x0362: For some reason we have
         to fight our allies!
 0x0363: Charge!!
 0x0364: By order of the King all
         shops have been closed.
-        I hear there's one Weapon
+        I hear there's one weapon
         shop defying the order.
 0x0365: Thanks to you peace has
         returned to Salonia!
@@ -3358,17 +3399,17 @@
         It should have information
         you need.
 0x036D: If the war continues,
-        Salonia Will become a
+        Salonia will become a
         burnt ruin.
 0x036E: 
 0x036F: There's a rumor that
-        Prince Allus Was banished
+        Prince Allus was banished
         from the castle…
 0x0370: 
 0x0371: I saw a child who looked
         like the Prince go into
         the Pub.
-0x0372: The retainer's shadow Was
+0x0372: The retainer's shadow was
         in the shape of a giant
         bird. Could it be the
         legendary bird Garuda…?
@@ -3418,10 +3459,10 @@
         
         
         
-        As my father Wished,I Will
+        As my father wished,I will
         restore peace to Salonia.
         No,not only Salonia,but
-        the entire World!
+        the entire world!
         Maybe there's something
         here in Salonia that could
         be of use to you. Please,
@@ -3436,7 +3477,7 @@
         the continent of Dalug.
         With the Nautilus’ engine,
         you should be able to fly
-        through the Winds that
+        through the winds that
         blow out at the peninsula.
         Light Warriors,head for
         the continent of Dalug!
@@ -3475,7 +3516,7 @@
         Isn't it great!
 0x0391: 
 0x0392: There is a hidden room
-        in Salonia. Check the Wall
+        in Salonia. Check the wall
         in the Wizards’ room,two
         steps from the right.
 0x0393: You're going to climb
@@ -3487,8 +3528,8 @@
         The treasure of a family of
         Dragoons is there.
 0x0395: I've heard that the only
-        ones Who could defeat the
-        legendary bird Garuda Were
+        ones who could defeat the
+        legendary bird Garuda were
         called Dragoons.
 0x0396: On an island south of
         Salonia is the town of
@@ -3501,11 +3542,11 @@
         
         
         My attempt to float the
-        continent in the sky Was
+        continent in the sky was
         successful…
         
-        I think I Will name the
-        tower Where the reactor is
+        I think I will name the
+        tower where the reactor is
         the Tower of Owen, after
         myself…
 0x039A: 
@@ -3517,7 +3558,7 @@
         going to cryogenically
         freeze my son Desh.
         If anything happens to the
-        Tower,he Will awaken and
+        Tower,he will awaken and
         fix the problem.
         Desh… I’m counting on you…
 0x039B: 
@@ -3525,12 +3566,12 @@
         
         
         The four Statues. They
-        annihilate any Who try
-        to pass them. They Will
+        annihilate any who try
+        to pass them. They will
         protect the Crystal.
         The key to them is the
         Four Fangs.
-        Only We can pass through
+        Only we can pass through
         freely…
 0x039C: 
         Ancient Book II
@@ -3546,13 +3587,13 @@
         
         We've overused the Light.
         The power has grown out of
-        control,and not even We
+        control,and not even we
         can stop it…
 0x039E: 
         Ancient Book IV
         
         
-        Four Warriors came from
+        Four warriors came from
         the Dark World and stopped
         the Flood of Light.
         The world has been saved…
@@ -3560,7 +3601,7 @@
         Book of the Dark Swords
         
         
-        If you Would master the
+        If you would master the
         dark swords,then head for
         Fargabaad,hidden in the
         mountains west of Salonia…
@@ -3593,13 +3634,13 @@
         
         
         But he felt the human life
-        he Was given by Noah Was
+        he was given by Noah was
         insignificant,and left
         this place.
 0x03A6: We heard from Dorga that
         the great earthquake was
         caused by Zande…
-0x03A7: There is magical Water
+0x03A7: There is magical water
         in this pot which can
         restore your strength.
 0x03A8: Sir Dorga,you're going
@@ -3618,12 +3659,12 @@
         Noah's Lute?
         It might be able to
         awaken Unne…
-0x03AC: So Sir Dorga Went to
+0x03AC: So Sir Dorga went to
         another dimension to
         get the Eureka Key.
         Please be safe…
 0x03AD: Servant:Lady Unne!?
-         Sir Dorga Went to
+         Sir Dorga went to
          another dimension…
         Unne:I hope he's alright…
 0x03AE: How could Sir Dorga
@@ -3631,25 +3672,25 @@
         Sob…
 0x03AF: I'm Unne!
         I haven't seen this
-        world for a While.
+        world for a while.
         Ah! This place is good!
         Oh,I heard about you in
         my dreams from Dorga.
         I can't believe Zande
         would do such a thing…
-        Anyway,first We've got to
+        Anyway,first we've got to
         to get the Great Ship.
         It can cross mountains!
         
         It must be in the Ancient
         Ruins to the north.
-        Shall We be off?
+        Shall we be off?
         
         “Huh?”
         
         
         
-        Unne:What! You don't Want
+        Unne:What! You don't want
          to go with this old lady,
          is that it?
         
@@ -3689,7 +3730,7 @@
 0x03B8: 
 0x03B9: Takeoff!
 0x03BA: This is Fargabaad,a town
-        of people Who are trying
+        of people who are trying
         to master the dark swords.
 0x03BB: The Dark Sword can only be
         handled by those who have
@@ -3705,9 +3746,9 @@
 0x03BD: Long ago there were those
         who mastered both the dark
         swords and the holy swords
-        and could use all Weapons…
+        and could use all weapons…
         If I remember correctly,
-        those people Were called
+        those people were called
         “Ninja”…
         
 0x03BE: The monsters of this cave
@@ -3715,7 +3756,7 @@
         dark swords!
 0x03BF: I am searching for someone
         worthy of this “Kiku”…
-        I Wonder if you can
+        I wonder if you can
         defeat this monster?
 0x03C0: 
 0x03C1: Abandon your fear,and the
@@ -3731,11 +3772,11 @@
         
 0x03C3: Some monsters split in
         two when they are hit by
-        any Weapon other than a
+        any weapon other than a
         dark sword.
 0x03C4: It's the Earth Fang…
         ‘Who dares break this
-         seal Which has lasted
+         seal which has lasted
          so long!’
 0x03C5: 
 0x03C6: This is Dorga's Village.
@@ -3745,12 +3786,12 @@
 0x03C7: 
 0x03C8: ‘I am the door to the
          Forbidden Land Eureka,
-         Where the forbidden
-         Weapons are sealed…’
-        An invisible Wall blocks
+         where the forbidden
+         weapons are sealed…’
+        An invisible wall blocks
         the path.
         
-0x03C9: The FullMoon chakram With
+0x03C9: The FullMoon chakram with
         the power of darkness.
         ‘Let's see if you can
          defeat me!’
@@ -3758,9 +3799,9 @@
         ‘If you can defeat me,
          I shall become yours!’
 0x03CB: The holy sword Excalibur.
-        ‘Can you Withstand
+        ‘Can you withstand
          my light?’
-0x03CC: Where in the World could
+0x03CC: Where in the world could
         Prince Allus be…?
 0x03CD: Why,it's Prince Allus!
         Take this please!
@@ -3769,7 +3810,7 @@
         Received \armorDragon!
         
 0x03CE: Prince Allus! You're alive!
-        I Wanted to give this to
+        I wanted to give this to
         you so I snuck out of the
         castle!
         Received \spearWind!
@@ -3784,7 +3825,7 @@
 0x03D2: Man,we've both been dealt
         tough lots,eh?
         Well,do your best!
-0x03D3: I'm With ya!
+0x03D3: I'm with ya!
         Hang in there!
 0x03D4: Please,come back safe!
 0x03D5: It's all up to you.
@@ -3822,9 +3863,9 @@
         
           But,hope is not yet lost.
          Four souls will take up the
-             quest of the Light.
+            quest of the Light.
         
-              And so it begins…
+             And so it begins…
 0x03EE:  The Gurgan quietly spoke…
          This earthquake is but an
         omen. The tremors that pulled
@@ -3835,9 +3876,9 @@
         
           But,hope is not yet lost.
          Four souls will take up the
-             quest of the Light.
+            quest of the Light.
         
-              And so it begins…
+             And so it begins…
 0x03EF:  The Gurgan quietly spoke…
          This earthquake is but an
         omen. The tremors that pulled
@@ -3848,9 +3889,9 @@
         
           But,hope is not yet lost.
          Four souls will take up the
-             quest of the Light.
+            quest of the Light.
         
-              And so it begins…
+             And so it begins…
 0x03F0:  The Gurgan quietly spoke…
          This earthquake is but an
         omen. The tremors that pulled
@@ -3861,9 +3902,9 @@
         
           But,hope is not yet lost.
          Four souls will take up the
-             quest of the Light.
+            quest of the Light.
         
-              And so it begins…
+             And so it begins…
 0x03F1:  The Gurgan quietly spoke…
          This earthquake is but an
         omen. The tremors that pulled
@@ -3874,9 +3915,9 @@
         
           But,hope is not yet lost.
          Four souls will take up the
-             quest of the Light.
+            quest of the Light.
         
-              And so it begins…
+             And so it begins…
 0x03F2:  The Gurgan quietly spoke…
          This earthquake is but an
         omen. The tremors that pulled
@@ -3887,9 +3928,9 @@
         
           But,hope is not yet lost.
          Four souls will take up the
-             quest of the Light.
+            quest of the Light.
         
-              And so it begins…
+             And so it begins…
 0x03F3:  The Gurgan quietly spoke…
          This earthquake is but an
         omen. The tremors that pulled
@@ -3900,9 +3941,9 @@
         
           But,hope is not yet lost.
          Four souls will take up the
-             quest of the Light.
+            quest of the Light.
         
-              And so it begins…
+             And so it begins…
 0x03F4:  The Gurgan quietly spoke…
          This earthquake is but an
         omen. The tremors that pulled
@@ -3913,9 +3954,9 @@
         
           But,hope is not yet lost.
          Four souls will take up the
-             quest of the Light.
+            quest of the Light.
         
-              And so it begins…
+             And so it begins…
 0x03F5:  The Gurgan quietly spoke…
          This earthquake is but an
         omen. The tremors that pulled
@@ -3926,9 +3967,9 @@
         
           But,hope is not yet lost.
          Four souls will take up the
-             quest of the Light.
+            quest of the Light.
         
-              And so it begins…
+             And so it begins…
 0x03F6:  The Gurgan quietly spoke…
          This earthquake is but an
         omen. The tremors that pulled
@@ -3939,9 +3980,9 @@
         
           But,hope is not yet lost.
          Four souls will take up the
-             quest of the Light.
+            quest of the Light.
         
-              And so it begins…
+             And so it begins…
 0x03F7:  The Gurgan quietly spoke…
          This earthquake is but an
         omen. The tremors that pulled
@@ -3952,9 +3993,9 @@
         
           But,hope is not yet lost.
          Four souls will take up the
-             quest of the Light.
+            quest of the Light.
         
-              And so it begins…
+             And so it begins…
 0x03F8:  The Gurgan quietly spoke…
          This earthquake is but an
         omen. The tremors that pulled
@@ -3965,9 +4006,9 @@
         
           But,hope is not yet lost.
          Four souls will take up the
-             quest of the Light.
+            quest of the Light.
         
-              And so it begins…
+             And so it begins…
 0x03F9:  The Gurgan quietly spoke…
          This earthquake is but an
         omen. The tremors that pulled
@@ -3978,9 +4019,9 @@
         
           But,hope is not yet lost.
          Four souls will take up the
-             quest of the Light.
+            quest of the Light.
         
-              And so it begins…
+             And so it begins…
 0x03FA:  The Gurgan quietly spoke…
          This earthquake is but an
         omen. The tremors that pulled
@@ -3991,9 +4032,9 @@
         
           But,hope is not yet lost.
          Four souls will take up the
-             quest of the Light.
+            quest of the Light.
         
-              And so it begins…
+             And so it begins…
 0x03FB:  The Gurgan quietly spoke…
          This earthquake is but an
         omen. The tremors that pulled
@@ -4004,9 +4045,9 @@
         
           But,hope is not yet lost.
          Four souls will take up the
-             quest of the Light.
+            quest of the Light.
         
-              And so it begins…
+             And so it begins…
 0x03FC:  The Gurgan quietly spoke…
          This earthquake is but an
         omen. The tremors that pulled
@@ -4017,9 +4058,9 @@
         
           But,hope is not yet lost.
          Four souls will take up the
-             quest of the Light.
+            quest of the Light.
         
-              And so it begins…
+             And so it begins…
 0x03FD:  The Gurgan quietly spoke…
          This earthquake is but an
         omen. The tremors that pulled
@@ -4030,9 +4071,9 @@
         
           But,hope is not yet lost.
          Four souls will take up the
-             quest of the Light.
+            quest of the Light.
         
-              And so it begins…
+             And so it begins…
 0x03FE:  The Gurgan quietly spoke…
          This earthquake is but an
         omen. The tremors that pulled
@@ -4043,9 +4084,9 @@
         
           But,hope is not yet lost.
          Four souls will take up the
-             quest of the Light.
+            quest of the Light.
         
-              And so it begins…
+             And so it begins…
 0x03FF:  The Gurgan quietly spoke…
          This earthquake is but an
         omen. The tremors that pulled
@@ -4056,18 +4097,21 @@
         
           But,hope is not yet lost.
          Four souls will take up the
-             quest of the Light.
+            quest of the Light.
         
-              And so it begins…
+             And so it begins…
 0x0400:  Empty
 0x0401: \clawKaiser
 0x0402: \clawCatClaw
 0x0403: \claw
 0x0404: \clawElven
 0x0405: \clawHellClaw
-0x0406: \nunchuckNunchuck
-0x0407: \nunchuckTonfa
-0x0408: \nunchuck3-Part
+0x0406: 
+        unchucksNunchuck
+0x0407: 
+        unchucksTonfa
+0x0408: 
+        unchucks3-Part
 0x0409: \rodMithril
 0x040A: \rod
 0x040B: \rodIce
@@ -4184,7 +4228,7 @@
 0x047A: \robeDarkSuit
 0x047B: \robeWizard
 0x047C: \armorViking
-0x047D: \robeB\0xD7\0xD8\0xD9Belt
+0x047D: \robeB\xD7\xD8\xD9Belt
 0x047E: \armorKnight
 0x047F: \armorDragon
 0x0480: \robeBard
@@ -4193,8 +4237,8 @@
 0x0483: \armorDemon
 0x0484: \armorDiamond
 0x0485: \armorReflect
-0x0486: \robeWh\0xD5\0xD6Robe
-0x0487: \robeB\0xD7\0xD8\0xD9Robe
+0x0486: \robeWh\xD5\xD6Robe
+0x0487: \robeB\xD7\xD8\xD9Robe
 0x0488: \armorGenji
 0x0489: \armorCrystal
 0x048A: \armorRusted
@@ -4247,7 +4291,7 @@
 0x04B9: Gods’Wine
 0x04BA: TurtlShell
 0x04BB: Devil'sSigh
-0x04BC: B\0xD7\0xD8\0xD9Hole
+0x04BC: B\xD7\xD8\xD9Hole
 0x04BD: DarkScent
 0x04BE: LilithKiss
 0x04BF: Imp'sYawn
@@ -4258,7 +4302,7 @@
 0x04C4: BombHead
 0x04C5: Barrier
 0x04C6: ChocoRage
-0x04C7: Wh\0xD5\0xD6Scent
+0x04C7: Wh\xD5\xD6Scent
 0x04C8: \blackFlare
 0x04C9: \blackDeath
 0x04CA: \blackMeteo
@@ -4614,7 +4658,7 @@
 0x0628: Jump
 0x0629: Miss!
 0x062A: Sure kill
-0x062B: Terrain
+0x062B: Te\x67\x68\x69\x6A
 0x062C: Peep
 0x062D: Scan
 0x062E: Steal

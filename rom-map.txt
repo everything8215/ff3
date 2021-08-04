@@ -39,12 +39,11 @@
 | 009600-00963F | 001610-00164F | initial npc switches                      |
 | 009640-00966F | 001650-00167F | map base palettes (3 * 16 bytes)          |
 | 009670-00968F | 001680-00169F | map sprite palettes (2 * 16 bytes)        |
-| 009690-009707 | 0016A0-001717 | map character palettes (30 * 4 bytes)     |
-| 009708-009807 | 001718-001817 | pointers to ???                           |
-| 009808-01A1CB | 001818-0021DB |                                           |
-|               |               |                                           |
-| 01A24E-       | 00225E-       | terrain attack for each map ???           |
-|               |               |                                           |
+| 009690-0096F7 | 0016A0-001707 | map character palettes (26 * 4 bytes)     |
+| 0096F8-009707 | 001708-001717 | guest npc palettes (8 * 2 bytes)          |
+| 009708-009807 | 001718-001817 | pointers to ??? attack animation data     |
+| 009808-01A24D | 001818-00225D | ??? attack animation data                 |
+| 01A24E-01A35C | 00225E-00236C | terrain attack for each map (512 * 4 bits)|
 | 01A35E-01A37F | 00236E-00238F | item multipliers (34 * 1 byte)            |
 | 01A380-01B17F | 002390-00318F | map tilesets (7 * 512 bytes)              |
 | 01B180-01B4FF | 003190-00350F | map tileset name tables (7 * 128 bytes)   |
@@ -53,8 +52,8 @@
 | 01BE00-01BFFF | 003E10-00400F | movement/animation speeds for each npc id |
 | 028000-029FFF | 004010-00600F | map properties (512 * 16 bytes)           |
 | 03A000-068BFF | 006010-00CC0F | map background graphics                   |
-| 068C00-068CB5 | 00CC10-00CCC5 | pointers to ???                           |
-| 068CB6-068E1F | 00CCC6-00CE2F |                                           |
+| 068C00-068CB5 | 00CC10-00CCC5 | pointers to ??? attack animation data     |
+| 068CB6-068E1F | 00CCC6-00CE2F | ??? attack animation data                 |
 | 068E20-068FFF | 00CE30-00D00F | (pointers at 33/BB9C)                     |
 | 069000-0697FF | 00D010-00D80F | pointers to world map tilemaps            |
 | 069800-09B3FF | 00D810-01340F | world map tilemaps (4 * 256 items)        |
@@ -62,8 +61,8 @@
 | 09B40C-09BFFF | 01341C-01400F | songs $3B-$40                             |
 | 0A8000-0A8BFF | 014010-014C0F | two-frame sprite graphics                 |
 | 0A8C00-0A93FF | 014C10-01540F | world map bg graphics (common)            |
-| 0A9400-0B87FF | 014010-01680F | world map bg graphics (3 * 1024ish bytes) |
-| 0B8800-0BBFFF | 014010-01800F | world map sprite graphics                 |
+| 0A9400-0B85FF | 015410-01660F | world map bg graphics (3 * 1024ish bytes) |
+| 0B8600-0BBFFF | 016610-01800F | world map sprite graphics                 |
 | 0C8000-0C97FF | 018010-01980F | battle background graphics                |
 | 0C9800-0DA7FF | 019810-01A80F | summon graphics                           |
 | 0DA800-0DBFFF | 01A810-01C00F | battle sprite graphics                    |
@@ -96,27 +95,29 @@
 | 1FA5A5-1FA5DE | 03E5B6-03E5EE | cutscene text positions (19 * 3 bytes)    |
 | 1FA5DF-1FA600 | 03E5EF-03E610 | pointers to cutscene text                 |
 | 1FA601-1FA931 | 03E611-03E941 | cutscene text (17 items)                  |
-| 1FA932-1FA93B | 03E942-03E94B | pointers to data at 1F/A93C               |
-| 1FA93C-       | 03E94C-       |                                           |
-|               |               |                                           |
+| 1FA932-1FA93B | 03E942-03E94B | pointers to compressed ending data        |
+| 1FA93C-1FB12C | 03E94C-03F13C | compressed ending data                    |
 | 1FB12D-1FBFFF | 03F13D-04000F | cutscene code                             |
 | 208000-27BFFF | 040010-05000F | monster graphics                          |
 | 288000-29BFFF | 050010-05400F | battle character graphics                 |
 | 2A8000-2A943F | 054010-05544F | boss tilemaps (24 * 216 bytes)            |
-| 2A9440-2A9480 | 055450-055490 | summon graphics properties (8 * 8 bytes)  |
-|               |               |                                           |
+| 2A9440-2A947F | 055450-05548F | summon graphics properties (8 * 8 bytes)  |
+| 2A9480-2A95FF | 055490-05560F | summon tilemaps                           |
 | 2A9600-2BBFFF | 055610-05800F | attack graphics                           |
 | 2C8000-2C81FF | 058010-05820F | pointers to npc properties                |
-| 2C8200-2C83FF | 058210-05840F | pointers to                               |
-| 2C8400-2C85FF | 058410-05860F | pointers to                               |
+| 2C8200-2C85FF | 058210-05860F | pointers to npc scripts                   |
 | 2C8600-2C87FF | 058610-05880F | pointers to event scripts                 |
-| 2C8800-2C892F | 058810-05893F | pointers to                               |
-|               |               |                                           |
-| 2C8A80-2C9943 | 058A90-059953 | npc properties (4 bytes each)             |
-|               |               |                                           |
-| 2DA06F-       | 05A07F-       | shop properties                           |
-|               |               |                                           |
-| 2DA3F5-2DBFFF | 05A405-05C00F | event script                              |
+| 2C8800-2C885F | 058810-05886F | pointers to ??? trigger scripts           |
+| 2C8860-2C886F | 058870-05887F | pointers to guest npc scripts             |
+| 2C8870-2C887F | 058880-05888F | pointers to conditional song scripts      |
+| 2C8880-2C8A7F | 058890-058A8F | pointers to event trigger scripts         |
+| 2C8A80-2C9942 | 058A90-059952 | npc properties (256 * 4 bytes)            |
+| 2C9943-2DA122 | 059953-05A132 | npc scripts (512 items)                   |
+| 2CA123-2DA306 | 05A133-05A316 | event trigger scripts (128 items)         |
+| 2CA307-2DA354 | 05A317-05A464 | ??? trigger scripts                       |
+| 2CA355-2DA3CF | 05A365-05A4DF | guest npc scripts (8 items)               |
+| 2CA3D0-2DA3F4 | 05A3E0-05A404 | conditional song scripts (8 items)        |
+| 2DA3F5-2DBFFF | 05A405-05C00F | event scripts (256 items)                 |
 | 2E8000-2E83FF | 05C010-05C40F | battle properties (512 * 2 bytes)         |
 | 2E8400-2E89FF | 05C410-05CA0F | battle monster id (256 * 6 bytes)         |
 | 2E8A00-2E8AFF | 05CA10-05CB0F | battle monster count (64 * 4 bytes)       |
@@ -128,9 +129,12 @@
 | 2E9068-2E9097 | 05D078-05D0A7 | pointers to boss graphics (24 * 2 bytes)  |
 | 2E9098-2E919F | 05D0A8-05D1AF | weapon animation properties (88 * 3 bytes)|
 | 2E91A0-2E91CF | 05D1B0-05D1DF | item spell cast (48 * 1 byte)             |
-|               |               |                                           |
-| 2E9890-       | 05D8A0-       |                                           |
-|               |               |                                           |
+| 2E91D0-2E92EF | 05D1E0-05D2FF | (96 * 3 bytes)                            |
+| 2E92F0-2E94EF | 05D300-05D4FF | normal map battle groups (512 * 1 byte)   |
+| 2E94F0-2E9CEF | 05D500-05DCFF | random battle groups (256 * 8 bytes)      |
+| 2E9CF0-2E9CFF | 05DD00-05DD0F | world 0 battle groups (16 32x32 sectors)  |
+| 2E9D00-2E9D3F | 05DD10-05DD4F | world 2 battle groups (64 32x32 sectors)  |
+| 2E9D40-2E9D4F | 05DD50-05DD5F | misc. world battle data (see 3D/BC5B)     |
 | 2E9D50-2FBFFF | 05DD60-06000F | battle graphics code                      |
 | 308000-308FFF | 060010-06100F | monster properties (256 * 16 bytes)       |
 | 309000-3091FF | 061010-06120F | monster stat values (170 * 3 bytes)       |
@@ -145,8 +149,8 @@
 | 368000-368C76 | 06C010-06CC86 | sound/music code                          |
 | 368C77-368C8E | 06CC87-06CC9E | pointers to songs $2B-36                  |
 | 368C8F-3692C4 | 06CC9F-06D2D4 | songs $2B-36                              |
-| 3692C5-369386 | 06D2D4-06D296 | pointers to 2-channel sound effects       |
-| 369387-369A7B | 06D296-06DA8B | 2-channel sound effects                   |
+| 3692C5-369386 | 06D2D4-06D296 | pointers to sound effects                 |
+| 369387-369A7B | 06D296-06DA8B | sound effects                             |
 | 369A7C-369ACD | 06DA8C-06DADD | pointers to volume envelope data          |
 | 369ACE-369EAA | 06DADE-06DEBA | volume envelope data (41 items)           |
 | 369EAB-369ECA | 06DEBB-06DEDA | pointers to pitch envelope data           |
@@ -160,18 +164,20 @@
 | 39A1D6-39B2AD | 0721E6-0732BD | level up stat bonuses (98*22 * 2 bytes)   |
 | 39B2AE-39B3AD | 0732BE-0733BD | monster cp (256 * 1 byte)                 |
 | 39B3AE-39B3B5 | 0733BE-0733C5 | pointers to songs $37-$3A                 |
-| 39B3B6-39BB02 | 0733C6-073B12 | songs $37-$3A                             |
-|               |               |                                           |
+| 39B3B6-39BB19 | 0733C6-073B29 | songs $37-$3A                             |
 | 39BB1A-39BB87 | 073B2A-073B97 | job stat modifiers (22 * 5 bytes)         |
-|               |               |                                           |
-| 39BBD8-       | 073BE8-       | character starting hp                     |
-|               |               |                                           |
-| 39BBF0-39BBF5 | 073C00-073C05 | character starting equipment              |
-|               |               |                                           |
+| 39BB88-39BBD7 | 073B98-073BE7 | character initial mp (10 * 8 bytes)       |
+| 39BBD8-39BBD9 | 073BE8-073BE9 | character initial hp                      |
+| 39BBDA-39BBED | 073BEA-073BFF | character initial stats                   |
+| 39BBF0-39BBFF | 073C00-073C0F | character initial equipment               |
 | 39BC00-39BCFF | 073C10-073D0F | battle bg for world 1 maps                |
 | 39BD00-39BDFF | 073D10-073E0F | battle bg for world 0 maps                |
-|               |               |                                           |
-| 3A8200-3A84FF | 074210-07450F | ff3 cutscene graphics ???                 |
+| 39BE00-39BFFF | 073E10-07400F | initial random battle rng (512 * 1 byte)  |
+| 3A8000-3A803F | 074010-07404F | minimap attribute table                   |
+| 3A8040-3A804F | 074050-07405F | minimap sprite data                       |
+| 3A8050-3A807F | 074060-07408F | minimap palettes                          |
+| 3A8080-3A817F | 074090-07418F | minimap tilemap (4 * 64 bytes)            |
+| 3A8180-3A84FF | 074190-07450F | minimap graphics                          |
 | 3A8500-3A9FFF | 074510-07600F | map code                                  |
 | 3BA000-3BBFFF | 076010-07800F | event code                                |
 | 3C8000-3DBFFF | 078010-07C00F | menu/field code                           |
