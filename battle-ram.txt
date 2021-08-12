@@ -48,12 +48,12 @@
 |             |     $04 monster entry frame counter                         |
 |             |     $05 nmi indicator (cleared after nmi)                   |
 |             |     $06 ppu control -> $2000 (nmi)                          |
-|             |                                                             |
+|             |     $07                                                     |
 |             |     $08 ppu control -> $2000 (irq)                          |
 |             |     $09 ppu mask -> $2001 (nmi)                             |
 |             |                                                             |
 |             |    +$0C ppu scroll -> +$2005 (nmi)                          |
-|             |                                                             |
+|             |     $0E                                                     |
 |             |     $0F ppu scroll x for monster entry                      |
 |             |    +$10 ppu scroll -> +$2005 (irq)                          |
 |             |     $12 rlduseba buttons pressed this frame                 |
@@ -61,11 +61,22 @@
 |             |     $14 button repeat counter                               |
 |             | $15-$22 rng data                                            |
 |             |                                                             |
-|             |     $30 no. of hits                                         |
+|             |     $30 no. of hits (after hit % check)                     |
 |             |                                                             |
 |             |     $38 attack multiplier                                   |
 |             |                                                             |
-|             | $50-$51                                                     |
+|             |    +$3C target's current hp                                 |
+|             |                                                             |
+|             |    +$40 attacker's previous hp                              |
+|             |     $42 hp restored                                         |
+|             |     $43 damage drained/absorbed                             |
+|             |                                                             |
+|             |    +$4E text buffer offset                                  |
+|             | $50-$51 rl????ba cursor input button                        |
+|             |           r: right                                          |
+|             |           l: left                                           |
+|             |           b: B                                              |
+|             |           a: A                                              |
 |             |     $52 current character id                                |
 |             |     $53 number of characters                                |
 |             |     $54                                                     |
@@ -76,35 +87,89 @@
 |             |    +$5D pointer to monster properties ($7675)               |
 |             |     $5F current character offset (id * $40)                 |
 |             |                                                             |
-|             |    +$6A net physical damage ???                             |
+|             |     $62 attacker slot * 2 (pointer to $F0)                  |
+|             |     $63                                                     |
+|             |     $64 target slot * 2 (pointer to $F0)                    |
+|             |     $65                                                     |
+|             |     $66 attacker slot                                       |
+|             |     $67                                                     |
+|             |     $68 target slot                                         |
+|             |     $69 causes monsters to do nothing ???                   |
+|             |    +$6A net damage                                          |
 |             |                                                             |
 |             |    +$6E pointer to attacker properties ($7575)              |
 |             |    +$70 pointer to target properties ($7575)                |
 |             |     $72 show item name in top right window                  |
 |             |                                                             |
-|             |    +$78 net magic damage ???                                |
+|             |     $74 player trying to run away (any character)           |
 |             |                                                             |
-|             |     $7C no. of hits                                         |
+|             |    +$78 current damage ($FFFF = null)                       |
+|             |                                                             |
+|             |     $7C total no. of hits                                   |
+|             |     $7D total no. of hits (previous hand)                   |
+|             |     $7E current weapon animation id                         |
+|             |           0: unarmed                                        |
+|             |           1: axe, spear, knife, sword                       |
+|             |           2: nunchuck, rod, staff, hammer                   |
+|             |           3: bow                                            |
+|             |           4: harp                                           |
+|             |           5: boomerang                                      |
+|             |           6: fullmoon                                       |
+|             |           7: shuriken                                       |
+|             |           8: arrow                                          |
+|             |           9: claw                                           |
 |             |                                                             |
 |             |     $93 battle graphics command id                          |
 |             |                                                             |
 |             |     $95 attacker id                                         |
 |             |                                                             |
-|             |     $A9 temp prg-bank is active                             |
-|             |     $AA enable ppu update at irq                            |
-|             |     $AB temp prg-bank index                                 |
+|             |     $A5 character id for target select                      |
 |             |                                                             |
+|             |     $A9 prg-bank is loading (disable sound update)          |
+|             |     $AA disable ppu update at irq                           |
+|             |     $AB loaded prg-bank index                               |
+|             |     $AC                                                     |
+|             |     $AD target select monster mask                          |
+|             |     $AE target select character mask                        |
+|             |     $AF target select column                                |
+|             |     $B0 target select monster row                           |
+|             |     $B1 target select type                                  |
+|             |           0: single monster                                 |
+|             |           1: all monsters                                   |
+|             |           2:                                                |
+|             |           3:                                                |
+|             |           4: single character                               |
+|             |           5: all characters                                 |
+|             |     $B2 target select character row                         |
+|             |     $B3                                                     |
+|             |     $B4 target mask -> byte $2F of character properties     |
+|             |     $B5 target flags -> byte $30 of character properties    |
 |             |     $B6 animation frame counter                             |
+|             |     $B7 persistent frame counter ???                        |
+|             |     $B8 target id (for animation)                           |
 |             |                                                             |
+|             |     $BA hit animation id                                    |
+|             |           0:                                                |
+|             |           1:                                                |
+|             |           2:                                                |
+|             |           3:                                                |
+|             |           4:                                                |
+|             |           5:                                                |
+|             | $BB-$BC number of hits (right/left hand)                    |
+|             |    +$BD animation hits counter                              |
+|             |     $BF scratchpad for subroutine at 32/98E8                |
 |             | $C0-$C3 character sprite x positions                        |
 |             | $C4-$C7 character sprite y positions                        |
 |             |     $C8 pointer to next available animation sprite          |
 |             |     $C9 sound effect pending                                |
 |             |     $CA sound effect id                                     |
+|             |     $CB crit flag                                           |
+|             |                                                             |
+|             |     $CD right hand or left hand weapon (0 or 1)             |
 |             |                                                             |
 |             | $D0-$DF sound/music dp (see field-ram.txt)                  |
-|             |                                                             |
-|             | $F0-$FF pending status to set/remove ???                    |
+|             | $E0-$EF target status buffer (8 * 2 bytes)                  |
+|             | $F0-$FF attacker status buffer (8 * 2 bytes)                |
 |     ++$0100 | nmi jump code                                               |
 |     ++$0103 | irq jump code                                               |
 | $0106-$01FF | cpu stack                                                   |
@@ -119,8 +184,8 @@
 +-------------+-------------------------------------------------------------+
 |   address   |                         description                         |
 +-------------+-------------------------------------------------------------+
-| $6000-$727F | map data (see field-ram.txt)                                |
-| $7280-$737F | generic buffer                                              |
+| $6000-$71FF | map data (see field-ram.txt)                                |
+| $7200-$737F | generic buffer                                              |
 | $7380-$73FF | animation sprite data buffer                                |
 | $7400-$747F | generic buffer (battle main)                                |
 | $7480-$754F | saved field dp $00-$CF                                      |
@@ -130,46 +195,27 @@
 | $7675-$7874 | monster properties (8 * 64 bytes)                           |
 | $7875-$78B4 | summon properties (1 * 64 bytes)                            |
 |             |       $00 level                                             |
-|             |       $01 abcjjjjj job id / monster status ???              |
+|             |       $01 abcdefgh status                                   |
 |             |             a: dead                                         |
 |             |             b: stone                                        |
-|             |             c: paralyzed                                    |
-|             |             j: job id                                       |
-|             |                  00: onion kid                              |
-|             |                  01: fight                                  |
-|             |                  02: monk                                   |
-|             |                  03: white mage                             |
-|             |                  04: black mage                             |
-|             |                  05: red mage                               |
-|             |                  06: hunter                                 |
-|             |                  07: knight                                 |
-|             |                  08: thief                                  |
-|             |                  09: scholar                                |
-|             |                  0A: geomancer                              |
-|             |                  0B: dragoon                                |
-|             |                  0C: viking                                 |
-|             |                  0D: karateka                               |
-|             |                  0E: m.knight                               |
-|             |                  0F: conjurer                               |
-|             |                  10: bard                                   |
-|             |                  11: warlock                                |
-|             |                  12: shaman                                 |
-|             |                  13: summoner                               |
-|             |                  14: sage                                   |
-|             |                  15: ninja                                  |
-|             |       $02 abcdefgh status                                   |
-|             |             a: asleep                                       |
-|             |             b: confused                                     |
 |             |             c: toad                                         |
 |             |             d: silence                                      |
 |             |             e: mini                                         |
 |             |             f: blind                                        |
 |             |             g: poison                                       |
-|             |             h: jumping ???                                  |
+|             |             h: near fatal                                   |
+|             |       $02 abcxxppj status 2                                 |
+|             |             a: paralyzed                                    |
+|             |             b: asleep                                       |
+|             |             c: confused                                     |
+|             |             x: turn counter until status removed            |
+|             |             p: partial petrify                              |
+|             |             j: jumping                                      |
 |             |      +$03 current hp                                        |
 |             |      +$05 max hp                                            |
 |             |   $07-$0E mp                                                |
-|             |       $0F job level/special attack id                       |
+|             |       $0E special attack id (monsters)                      |
+|             |       $0F job level                                         |
 |             |       $10 intelligence                                      |
 |             |       $11 spirit                                            |
 |             |       $12 weak elements                                     |
@@ -190,14 +236,14 @@
 |             |       $21 evade multiplier                                  |
 |             |       $22 evade %                                           |
 |             |       $23 defense                                           |
-|             |       $24 resistant status                                  |
+|             |       $24 status immunity                                   |
 |             |       $25                                                   |
-|             |       $26                                                   |
-|             |       $27                                                   |
-|             |       $28 byte 0 from 39/BB1A                               |
-|             |       $29 byte 1 from 39/BB1A                               |
-|             |       $2A byte 2 from 39/BB1A                               |
-|             |       $2B byte 3 from 39/BB1A                               |
+|             |       $26 reflect counter                                   |
+|             |       $27 damage multiplier for jump (2) and buildup (1)    |
+|             |       $28 crit probability (39/BB1A, byte 0)                |
+|             |       $29 crit bonus (39/BB1A, byte 1)                      |
+|             |       $2A run probability (39/BB1A, byte 2)                 |
+|             |       $2B sleep probability (39/BB1A, byte 3)               |
 |             |       $2C m--ahsss attacker flags                           |
 |             |             m: is a monster                                 |
 |             |             a: using a magic attack                         |
@@ -206,9 +252,9 @@
 |             |       $2D                                                   |
 |             |       $2E command id (item/magic id if $2C.3/4 set)         |
 |             |             00: do nothing                                  |
-|             |             01:                                             |
-|             |             02:                                             |
-|             |             03:                                             |
+|             |             01: asleep/paralyzed                            |
+|             |             02: change to front row                         |
+|             |             03: change to back row                          |
 |             |             04: fight                                       |
 |             |             05: defend                                      |
 |             |             06: run                                         |
@@ -237,7 +283,7 @@
 |             |             a: arrow                                        |
 |             |             b: bow                                          |
 |             |             n: normal                                       |
-|             |       $33 aaaeeeww?                                         |
+|             |       $33 aaaeeewwr                                         |
 |             |             a: equipment element boost ???                  |
 |             |             e: ???                                          |
 |             |             w: weapon type                                  |
@@ -245,24 +291,54 @@
 |             |                  1: normal                                  |
 |             |                  2: harp                                    |
 |             |                  3: bow and arrow                           |
-|             |                                                             |
-|             |       $35 byte 4 from 39/BB1A/normal attack ???             |
+|             |             r: battle row (back row if set)                 |
+|             |       $34                                                   |
+|             |       $35 aabbccdd (39/BB1A byte 4)                         |
+|             |             a: job experience multiplier for command slot 0 |
+|             |             b: job experience multiplier for command slot 1 |
+|             |             c: job experience multiplier for command slot 2 |
+|             |             d: job experience multiplier for command slot 3 |
 |             |       $36 ???iiiii                                          |
 |             |             i: item set                                     |
 |             |       $37 special attack rate                               |
 |             |   $38-$3F special attack script (monsters)                  |
-|             |       $3E ??? (characters)                                  |
-|             |       $3F item id ??? (characters)                          |
+|             |       $38 right hand weapon attack bonus                    |
+|             |       $39 left hand weapon attack bonus                     |
+|             |       $3E used an equipped item (characters)                |
+|             |       $3F used item id (characters)                         |
 |      +$78B5 |                                                             |
 |       $78B7 |                                                             |
-|       $78B8 |                                                             |
-|       $78B9 |                                                             |
-|       $78BA |                                                             |
-| $78BB-$78C2 |                                                             |
+|       $78B8 | menu window width (in a single tilemap sector)              |
+|       $78B9 | menu window width (overflow into the other sector)          |
+|       $78BA | s???????                                                    |
+|             |   s: surprise attack round ???                              |
+| $78BB-$78C2 | character status for battle graphics (4 * 2 bytes)          |
+|             |     $78BB abcdefgh status                                   |
+|             |             a: dead                                         |
+|             |             b: stone                                        |
+|             |             c: paralyzed                                    |
+|             |             d: asleep                                       |
+|             |             e: confused                                     |
+|             |             f: toad                                         |
+|             |             g: silence                                      |
+|             |             h: mini                                         |
+|             |     $78BC abc----- status 2                                 |
+|             |             a: blind                                        |
+|             |             b: poison                                       |
+|             |             c: near fatal                                   |
 |       $78C3 | back attack if set to $88                                   |
-|             |                                                             |
+| $78C4-$78C7 | status id to display in character hp window ($FF = none)    |
+|             |   0: paralyzed                                              |
+|             |   1: asleep                                                 |
+|             |   2: confused                                               |
+|             |   3: silence                                                |
+|             |   4: blind                                                  |
+|             |   5: poison                                                 |
+|             |   6: near fatal                                             |
+|             |   7: partial petrify                                        |
+|       $78C8 |                                                             |
 | $78C9-$78CE |                                                             |
-| $78CF-$78D2 | battle command used by each character                       |
+| $78CF-$78D2 | battle command used by each character (hp window display)   |
 |       $78D3 | dv????r? battle end condition                               |
 |             |   d: defeat                                                 |
 |             |   v: victory                                                |
@@ -279,39 +355,43 @@
 |       $78D7 | top right message (see 34/90A0)                             |
 |       $78D8 | middle left message (target id, msb: monster)               |
 |       $78D9 | middle right message (status)                               |
-| $78DA-      | bottom message queue (battle messages)                      |
-|             |                                                             |
-| $78E4-      | variables for messages ???                                  |
-|             |                                                             |
+| $78DA-$78E3 | bottom message queue (battle messages)                      |
+| $78E4-$78ED | message variable queue                                      |
 |       $78EE | battle message queue size                                   |
-|       $78EF |                                                             |
-| $78F0-$78FF |                                                             |
+|       $78EF | message variable queue size                                 |
+| $78F0-$78FF | number of times each battle command was used (4 * 4 bytes)  |
 +-------------+-------------------------------------------------------------+
 | $7900-$7ABF | generic buffer (battle graphics)                            |
-|       $7AC0 |                                                             |
-|       $7AC1 |                                                             |
+|      +$7AC0 | pointer to menu window text buffer                          |
 |       $7AC2 | attack queue pointer                                        |
-| $7AC3-$7AC6 |                                                             |
+| $7AC3-$7AC6 | selected command slot for each character                    |
 | $7AC7-$7ACA | spell level or summon id for each character                 |
 | $7ACB-$7AD6 | action attacker id ??? (msb: character/monster)             |
 | $7AD7-      | text buffer                                                 |
 |             |                                                             |
-| $7AF5-      |                                                             |
+| $7AF5-$7AFC | left/right hand equipped item buffer                        |
+| $7AFD-$7B3C | inventory buffer                                            |
+| $7B3D-$7B40 | left/right hand item usability for current character        |
+| $7B41-$7B60 | inventory item usability for current character              |
+|             |                                                             |
+|      +$7BB5 | reflected target pointer                                    |
 |             |                                                             |
 | $7BD3-      |                                                             |
 |             |                                                             |
-|       $7BE1 |                                                             |
+|       $7BE1 | characters using magic ??? (1 bit per character)            |
 |       $7BE2 | number of turns since last barrier shift (amon/hein)        |
 | $7BE3-$7CE2 | random number table                                         |
 |       $7CE3 |                                                             |
 | $7CE4-$7CE7 | saved defense value for each character (defend command)     |
+|       $7CE8 | set to $FF when using potion, hi-potion, or elixir          |
+|       $7CE9 | target is in back row                                       |
 |             |                                                             |
-|       $7CEB |                                                             |
-|             |                                                             |
+|       $7CEB | disable character hp window update                          |
+|       $7CEC | characters that are near fatal (mask)                       |
 |      +$7CED | battle id                                                   |
 |       $7CEF | palette offset (see 3F/F877)                                |
 | $7CF0-$7CF2 | palette buffer                                              |
-|       $7CF3 | nonzero after first turn                                    |
+|       $7CF3 | nonzero after first turn (screen on ???)                    |
 |             |                                                             |
 |       $7CF6 | current prg bank                                            |
 | $7CF7-$7D16 | color palettes                                              |
@@ -333,14 +413,15 @@
 |       $7D7B | monster tilemap mode ???                                    |
 |             |                                                             |
 | $7D7F-$7D82 | character x positions                                       |
-| $7D83-$7D86 |                                                             |
-| $7D87-$7D8A |                                                             |
+| $7D83-$7D86 | character animation frames (flip if msb set)                |
+| $7D87-$7D8A | saved character animation frames                            |
 | $7D8B-$7D8E | character jobs                                              |
 | $7D8F-$7D92 | ???????r                                                    |
 |             |   r: character battle row                                   |
 | $7D93-$7D96 | character palette ids                                       |
 |             |                                                             |
-| $7D9B-$7DA2 | ???????? ?????t?m (4 * 2 bytes)                             |
+| $7D9B-$7DA2 | ???????? ????rt?m (4 * 2 bytes)                             |
+|             |   r: facing right (back attack)                             |
 |             |   t: toad                                                   |
 |             |   m: mini                                                   |
 | $7DA3-$7DA6 | character graphics type                                     |
@@ -350,24 +431,39 @@
 |             |   3: mini                                                   |
 | $7DA7-$7DAE | monster types                                               |
 | $7DAF-$7DB6 | monster types ???                                           |
-|             |                                                             |
+| $7DB7-$7DBA | copied from $78C4-$78C7 but for animated status graphics    |
 |      +$7DBB | ppu address for battle bg graphics loader                   |
 |      +$7DBD | ram address for battle bg graphics loader                   |
 |       $7DBF | frame counter for battle bg graphics counter                |
-|             |                                                             |
+| $7DC1-$7DC4 |                                                             |
 |      +$7DC5 |                                                             |
 |      +$7DC7 |                                                             |
 |             |                                                             |
+|       $7DCA |                                                             |
+|             |                                                             |
 | $7DCE-$7DD1 | number of monsters of each type remaining                   |
 |       $7DD2 | total number of monsters remaining                          |
+| $7DD3-$7DD6 |                                                             |
+| $7DD7-$7DE5 | monster xy positions (8 * 2 bytes)                          |
+|             |                                                             |
+| $7DF7-$7E06 | xy positions for target numerals ??? (8 * 2 bytes)          |
 |             |                                                             |
 | $7E0F-$7E12 | selected targets for each character                         |
+|       $7E13 | right hand weapon graphics                                  |
+|       $7E14 | right hand weapon palette                                   |
+|       $7E15 | left hand weapon graphics                                   |
+|       $7E16 | left hand weapon palette                                    |
+|       $7E17 | right hand hit palette ???                                  |
+|       $7E18 | left hand hit palette ???                                   |
 |             |                                                             |
+|       $7E1F | right hand weapon (item id then animation id)               |
+|       $7E20 | left hand weapon (item id then animation id)                |
+|       $7E21 |                                                             |
 | $7E22-$7E25 |                                                             |
-| $7E26-$7E2F |                                                             |
-| $7E30-$7E39 |                                                             |
-| $7E3A-$7E43 |                                                             |
-| $7E44-$7E4D |                                                             |
+| $7E26-$7E2F | vector distances for x-component                            |
+| $7E30-$7E39 | vector distances for y-component                            |
+| $7E3A-$7E43 | vector angles for x-component                               |
+| $7E44-$7E4D | vector angles for y-component                               |
 |       $7E4E |                                                             |
 | $7E4F-$7E5E | damage 1 (for damage numerals)                              |
 | $7E5F-$7E6E | damage 2 (for damage numerals)                              |
@@ -402,37 +498,45 @@
 |             |   00: normal                                                |
 |             |   01: kill                                                  |
 |             |   02: quake                                                 |
-|             |   03: meteo / cave-in                                       |
+|             |   03: meteo, cave-in                                        |
 |             |   04: drain                                                 |
-|             |   05: life 1 / life 2                                       |
-|             |   06:                                                       |
+|             |   05: life, life 2                                          |
+|             |   06: summon, split                                         |
 |             |   07: brak2                                                 |
 |             |   08: toad                                                  |
-|             |   09:                                                       |
-|             |   0A:                                                       |
-|             |   0B:                                                       |
-|             |   0C:                                                       |
+|             |   09: flare wave                                            |
+|             |   0A: tsunami                                               |
+|             |   0B: glare, mind blast, mega flare                         |
+|             |   0C: explode                                               |
 |             |   0D: mini                                                  |
 |             |   0E: earthquake                                            |
-|             |   0F:                                                       |
-|             |   10:                                                       |
-|             |   11:                                                       |
-|             |   12:                                                       |
+|             |   0F: none                                                  |
+|             |   10: flame                                                 |
+|             |   11: blizzard                                              |
+|             |   12: thunder                                               |
 |             |                                                             |
-|       $7EB8 |                                                             |
-|             |                                                             |
-|       $7EC1 | target slot                                                 |
+|       $7EB8 | reflected target mask                                       |
+| $7EB9-$7EC0 | targets reflected onto                                      |
+|       $7EC1 | current target slot                                         |
 |       $7EC2 | action id (for animation)                                   |
 |       $7EC3 | increment animation if target is a monster (0 or 1)         |
-|             |                                                             |
+| $7EC4-$7ECB |                                                             |
+|       $7ECC |                                                             |
+| $7ECD-$7ED4 | monster types (from $7DA7)                                  |
+|       $7ED5 |                                                             |
+|       $7ED6 | saved Y register for function at 33/A7A5                    |
+|       $7ED7 | saved X register for function at 33/A7A5                    |
 |       $7ED8 | b?c????s battle flags                                       |
 |             |   b: boss battle                                            |
 |             |   c: cannon blast                                           |
 |             |   s: disable scare ??? / boss battle ???                    |
-|             |                                                             |
-|       $7EE2 | set for chocobo dash ???                                    |
+| $7ED9-$7EDE | saved interrupt jump code                                   |
+|       $7EDF | knight target using cover                                   |
+|       $7EE0 | target being covered                                        |
+|       $7EE1 | split monster type ???                                      |
+|       $7EE2 | no fade in after summon animation (chocobo dash)            |
 | $7EE3-$7EF4 | sine function (copied from 2E/9F6C)                         |
-| $7EF5-$7F06 | bank 10 function (copied from 2E/9F7E)                      |
+| $7EF5-$7F06 | bank 10 final boss animation jump code (copied from 2E/9F7E)|
 | $7F07-$7F3F | -                                                           |
 +-------------+-------------------------------------------------------------+
 | $7F40-$7FFF | sound/music ram (see field-ram.txt)                         |

@@ -160,7 +160,7 @@
 ; surface world shops ($01E3-$01FF)
 
 2C/A06F: 09 A7 AA AB AC AD AE AF 99   ; $E3: generic item shop
-2C/A078: 09 A7 AA AC AE AF B0 99 A4   ; $E4: saronia item shop
+2C/A078: 09 A7 AA AC AE AF B0 99 A4   ; $E4: invincible item shop
 2C/A081: 09 A7 99 A4 00               ; $E5: falgabard item shop
 2C/A086: 07 17 19 21 3F 01 00         ; $E6: amur weapon shop
 2C/A08D: 07 30 31 32 2D 2E 00         ; $E7: ancient ruins weapon shop

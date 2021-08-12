@@ -22,7 +22,9 @@
 
 ; --------------------------------------------------------------------------
 
-; [  ]
+; [ final boss animation ]
+
+; from 2E/9F7E, copied into ram at $7EF5
 
 10/8A00: A5 7E     LDA $7E
 10/8A02: 0A        ASL 
@@ -33,9 +35,10 @@
 10/8A0C: 85 7F     STA $7F
 10/8A0E: 6C 7E 00  JMP ($007E)
 
+; final boss animation jump table
 10/8A11: 8BD5 8A85
 
-; [  ]
+; [ dark cloud green color cycle ]
 
 10/8A15: A9 00     LDA #$00
 10/8A17: 85 B6     STA $B6
@@ -49,7 +52,7 @@
 10/8A27: 0A        ASL 
 10/8A28: A8        TAY 
 10/8A29: A2 00     LDX #$00
-10/8A2B: B9 C9 8B  LDA $8BC9,Y
+10/8A2B: B9 C9 8B  LDA $8BC9,Y        ; dark cloud green color palettes
 10/8A2E: 9D F7 7C  STA $7CF7,X        ; color palettes
 10/8A31: C8        INY 
 10/8A32: E8        INX 
@@ -70,42 +73,42 @@
 10/8A4C: 20 25 30 23 27 1A 26 31 30 29 2D 21 2A 30 22 28
 10/8A5C: 01 02 01 03 02 03 01 02 03
 
-; [  ]
+; [ wait ]
 
 10/8A65: 20 C5 F8  JSR $F8C5          ; wait for vblank (no color update)
 10/8A68: CA        DEX 
 10/8A69: D0 FA     BNE $8A65
 10/8A6B: 60        RTS 
 
-; [  ]
+; [ flash screen ]
 
 10/8A6C: A9 C3     LDA #$C3           ; sound effect $C3
 10/8A6E: 8D 49 7F  STA $7F49
-10/8A71: A9 10     LDA #$10
+10/8A71: A9 10     LDA #$10           ; 16 frames
 10/8A73: 85 B6     STA $B6
 10/8A75: 20 C5 F8  JSR $F8C5          ; wait for vblank (no color update)
 10/8A78: A5 09     LDA $09
-10/8A7A: 49 01     EOR #$01
+10/8A7A: 49 01     EOR #$01           ; toggle grayscale
 10/8A7C: 85 09     STA $09
 10/8A7E: 85 0A     STA $0A
 10/8A80: C6 B6     DEC $B6
 10/8A82: D0 F1     BNE $8A75
 10/8A84: 60        RTS 
 
-; [  ]
+; [ final boss animation 1: death animation ]
 
-10/8A85: 20 6C 8A  JSR $8A6C
-10/8A88: A2 3C     LDX #$3C
+10/8A85: 20 6C 8A  JSR $8A6C          ; flash screen
+10/8A88: A2 3C     LDX #$3C           ; wait 60 frames
 10/8A8A: 20 65 8A  JSR $8A65
-10/8A8D: 20 6C 8A  JSR $8A6C
-10/8A90: A2 0A     LDX #$0A
+10/8A8D: 20 6C 8A  JSR $8A6C          ; flash screen
+10/8A90: A2 0A     LDX #$0A           ; wait 10 frames
 10/8A92: 20 65 8A  JSR $8A65
-10/8A95: 20 6C 8A  JSR $8A6C
-10/8A98: A2 78     LDX #$78
+10/8A95: 20 6C 8A  JSR $8A6C          ; flash screen
+10/8A98: A2 78     LDX #$78           ; wait 120 frames
 10/8A9A: 20 65 8A  JSR $8A65
-10/8A9D: A9 8E     LDA #$8E
+10/8A9D: A9 8E     LDA #$8E           ; sound effect $0E
 10/8A9F: 8D 49 7F  STA $7F49
-10/8AA2: A9 F0     LDA #$F0
+10/8AA2: A9 F0     LDA #$F0           ; +$7E = $0FF0
 10/8AA4: 85 7E     STA $7E
 10/8AA6: A9 0F     LDA #$0F
 10/8AA8: 85 7F     STA $7F
@@ -244,15 +247,17 @@
 10/8BC6: 85 03     STA $03
 10/8BC8: 60        RTS 
 
-; ??? color palettes
-10/8BC9: 0F 2B 16 1B 0F 3B 16 2B 0F 1B 16 3B
+; dark cloud green color palettes
+10/8BC9: 0F 2B 16 1B
+10/8BCD: 0F 3B 16 2B
+10/8BD1: 0F 1B 16 3B
 
-; [  ]
+; [ final boss animation 0: flare wave ]
 
-10/8BD5: 20 15 8A  JSR $8A15
-10/8BD8: 20 19 8C  JSR $8C19
+10/8BD5: 20 15 8A  JSR $8A15          ; dark cloud green color cycle
+10/8BD8: 20 19 8C  JSR $8C19          ; reset vector angles
 10/8BDB: A9 10     LDA #$10
-10/8BDD: 8D 26 7E  STA $7E26
+10/8BDD: 8D 26 7E  STA $7E26          ; vector distance
 10/8BE0: A9 80     LDA #$80
 10/8BE2: 85 8C     STA $8C
 10/8BE4: A0 00     LDY #$00
@@ -273,7 +278,7 @@
 10/8C02: 18        CLC 
 10/8C03: 69 08     ADC #$08
 10/8C05: 85 8C     STA $8C
-10/8C07: C9 E8     CMP #$E8
+10/8C07: C9 E8     CMP #$E8           ; x position ???
 10/8C09: B0 0A     BCS $8C15
 10/8C0B: C8        INY 
 10/8C0C: C0 08     CPY #$08
@@ -283,7 +288,7 @@
 10/8C15: 20 23 8D  JSR $8D23          ; clear oam data ($00-$9F)
 10/8C18: 60        RTS 
 
-; [  ]
+; [ reset vector angles ]
 
 10/8C19: A2 0A     LDX #$0A
 10/8C1B: A9 00     LDA #$00
@@ -370,7 +375,7 @@
 10/8C9E: 99 44 7E  STA $7E44,Y
 10/8CA1: 60        RTS 
 
-; [  ]
+; [ update flare wave sprites ]
 
 10/8CA2: 85 7E     STA $7E
 10/8CA4: 98        TYA 
@@ -412,7 +417,7 @@
 10/8CE4: A8        TAY 
 10/8CE5: 60        RTS 
 
-; [  ]
+; [ update flare wave animation ]
 
 10/8CE6: 85 7E     STA $7E
 10/8CE8: 98        TYA 
@@ -1817,6 +1822,9 @@
 1F/B387: 60        RTS 
 1F/B388: A9 04     LDA #$04
 1F/B38A: 60        RTS 
+
+; [  ]
+
 1F/B38B: AD C2 7E  LDA $7EC2
 1F/B38E: F0 06     BEQ $B396
 1F/B390: 20 96 B3  JSR $B396
@@ -3558,7 +3566,7 @@
 2E/9F7C: 68        PLA 
 2E/9F7D: 60        RTS 
 
-; [  ]
+; [ final boss animation ]
 
 ; this code gets copied into ram at $7EF5
 
@@ -4853,7 +4861,7 @@
 
 ; [ load weapon animation properties ]
 
-2F/A8EA: AD 1F 7E  LDA $7E1F          ; weapon id
+2F/A8EA: AD 1F 7E  LDA $7E1F          ; weapon id (right hand)
 2F/A8ED: A2 03     LDX #$03
 2F/A8EF: 20 EA F8  JSR $F8EA          ; multiply
 2F/A8F2: 18        CLC 
@@ -4871,7 +4879,7 @@
 2F/A909: C8        INY 
 2F/A90A: B1 7E     LDA ($7E),Y        ; weapon palette
 2F/A90C: 8D 14 7E  STA $7E14
-2F/A90F: AD 20 7E  LDA $7E20          ; weapon id
+2F/A90F: AD 20 7E  LDA $7E20          ; weapon id (left hand)
 2F/A912: A2 03     LDX #$03
 2F/A914: 20 EA F8  JSR $F8EA          ; multiply
 2F/A917: 18        CLC 
@@ -4903,7 +4911,7 @@
 2F/A94F: 86 7F     STX $7F
 2F/A951: A9 03     LDA #$03           ; hit
 2F/A953: 20 B9 A1  JSR $A1B9          ; load battle graphics
-2F/A956: AD 14 7E  LDA $7E14
+2F/A956: AD 14 7E  LDA $7E14          ; use weapon palette for hit palette
 2F/A959: 8D 17 7E  STA $7E17
 2F/A95C: AD 16 7E  LDA $7E16
 2F/A95F: 8D 18 7E  STA $7E18
@@ -5652,31 +5660,31 @@
 
 ; [ execute animation function ]
 
-2F/AEDF: A9 00     LDA #$00           ; update character sprite ???
+2F/AEDF: A9 00     LDA #$00           ; init character sprite ???
 2F/AEE1: 4C 54 F8  JMP $F854
-2F/AEE4: A9 01     LDA #$01
+2F/AEE4: A9 01     LDA #$01           ; choose targets
 2F/AEE6: D0 F9     BNE $AEE1
-2F/AEE8: A9 02     LDA #$02           ; init character sprites ???
+2F/AEE8: A9 02     LDA #$02           ; update character sprites
 2F/AEEA: D0 F5     BNE $AEE1
-2F/AEEC: A9 03     LDA #$03
+2F/AEEC: A9 03     LDA #$03           ; update status and target numeral sprites
 2F/AEEE: D0 F1     BNE $AEE1
-2F/AEF0: A9 04     LDA #$04
+2F/AEF0: A9 04     LDA #$04           ; weapon animation
 2F/AEF2: D0 ED     BNE $AEE1
-2F/AEF4: A9 05     LDA #$05
+2F/AEF4: A9 05     LDA #$05           ; character hit
 2F/AEF6: D0 E9     BNE $AEE1
-2F/AEF8: A9 06     LDA #$06
+2F/AEF8: A9 06     LDA #$06           ; defend
 2F/AEFA: D0 E5     BNE $AEE1
 2F/AEFC: A9 07     LDA #$07
 2F/AEFE: D0 E1     BNE $AEE1
-2F/AF00: A9 08     LDA #$08
+2F/AF00: A9 08     LDA #$08           ; jump 1
 2F/AF02: D0 DD     BNE $AEE1
-2F/AF04: A9 09     LDA #$09
+2F/AF04: A9 09     LDA #$09           ; jump 2
 2F/AF06: D0 D9     BNE $AEE1
-2F/AF08: A9 0A     LDA #$0A
+2F/AF08: A9 0A     LDA #$0A           ; scare
 2F/AF0A: D0 D5     BNE $AEE1
-2F/AF0C: A9 0B     LDA #$0B
+2F/AF0C: A9 0B     LDA #$0B           ; cheer
 2F/AF0E: D0 D1     BNE $AEE1
-2F/AF10: A9 0C     LDA #$0C
+2F/AF10: A9 0C     LDA #$0C           ; damage numerals
 2F/AF12: D0 CD     BNE $AEE1
 2F/AF14: A9 0D     LDA #$0D           ; magic animation
 2F/AF16: D0 C9     BNE $AEE1
@@ -5684,9 +5692,9 @@
 2F/AF1A: D0 C5     BNE $AEE1
 2F/AF1C: A9 0F     LDA #$0F           ; cycle sprite palettes
 2F/AF1E: D0 C1     BNE $AEE1
-2F/AF20: A9 10     LDA #$10
+2F/AF20: A9 10     LDA #$10           ; pre-summon animation ???
 2F/AF22: D0 BD     BNE $AEE1
-2F/AF24: A9 11     LDA #$11
+2F/AF24: A9 11     LDA #$11           ; characters run away ???
 2F/AF26: D0 B9     BNE $AEE1
 2F/AF28: A9 12     LDA #$12
 2F/AF2A: D0 B5     BNE $AEE1
@@ -5696,11 +5704,11 @@
 2F/AF32: D0 AD     BNE $AEE1
 2F/AF34: A9 15     LDA #$15           ; copy attribute table to ppu (32/8EFB)
 2F/AF36: D0 A9     BNE $AEE1
-2F/AF38: A9 16     LDA #$16
+2F/AF38: A9 16     LDA #$16           ; unarmed attack
 2F/AF3A: D0 A5     BNE $AEE1
 2F/AF3C: A9 17     LDA #$17
 2F/AF3E: D0 A1     BNE $AEE1
-2F/AF40: A9 18     LDA #$18
+2F/AF40: A9 18     LDA #$18           ; toad/mini
 2F/AF42: D0 9D     BNE $AEE1
 2F/AF44: A9 19     LDA #$19
 2F/AF46: D0 99     BNE $AEE1
@@ -5757,7 +5765,7 @@
 2F/AFE2: D0 F8     BNE $AFDC
 2F/AFE4: 4C C5 F8  JMP $F8C5          ; wait for vblank (no color update)
 
-; [ battle graphics $23: toad / mini ??? ]
+; [ battle graphics $23: toad/mini ]
 
 2F/AFE7: A5 7E     LDA $7E
 2F/AFE9: 20 BA BA  JSR $BABA
@@ -5770,7 +5778,7 @@
 2F/AFF9: 20 B3 A1  JSR $A1B3          ; load battle graphics
 2F/AFFC: 4C 40 AF  JMP $AF40
 
-; [ battle graphics $22:  ]
+; [ battle graphics $22: brak2 ]
 
 2F/AFFF: 20 38 A7  JSR $A738
 2F/B002: 4C 34 AF  JMP $AF34          ; copy attribute table to ppu
@@ -5796,7 +5804,7 @@
 
 2F/B024: AD 9D 7E  LDA $7E9D
 2F/B027: C9 09     CMP #$09
-2F/B029: F0 1E     BEQ $B049
+2F/B029: F0 1E     BEQ $B049          ; return if flare wave
 2F/B02B: A9 00     LDA #$00
 2F/B02D: 85 B6     STA $B6
 2F/B02F: A5 B6     LDA $B6
@@ -5875,14 +5883,14 @@
 2F/B0C8: AD E2 7E  LDA $7EE2          ; return if chocobo dash (no fade in)
 2F/B0CB: F0 01     BEQ $B0CE
 2F/B0CD: 60        RTS 
-2F/B0CE: 20 B8 B5  JSR $B5B8
+2F/B0CE: 20 B8 B5  JSR $B5B8          ; update character sprites
 2F/B0D1: 20 D9 9D  JSR $9DD9
 2F/B0D4: 20 1C AF  JSR $AF1C          ; cycle sprite palettes
 2F/B0D7: A6 95     LDX $95
 2F/B0D9: 20 EB B2  JSR $B2EB
 2F/B0DC: 20 03 B1  JSR $B103
 2F/B0DF: 20 09 B9  JSR $B909          ; update number of monsters remaining
-2F/B0E2: 20 5B B2  JSR $B25B
+2F/B0E2: 20 5B B2  JSR $B25B          ; move back after attack
 2F/B0E5: AD 94 7E  LDA $7E94
 2F/B0E8: A2 00     LDX #$00
 2F/B0EA: DD 58 B1  CMP $B158,X
@@ -5939,7 +5947,7 @@
 2F/B150: E8        INX 
 2F/B151: E0 08     CPX #$08
 2F/B153: D0 D2     BNE $B127
-2F/B155: 4C B8 B5  JMP $B5B8
+2F/B155: 4C B8 B5  JMP $B5B8          ; update character sprites
 
 ; summon attack / ??? (3 * 2 bytes)
 2F/B158: 30 34 50 0C 70 13
@@ -5988,27 +5996,27 @@
 
 2F/B1AC: 4C 10 AF  JMP $AF10
 
-; [ battle graphics $1B:  ]
+; [ battle graphics $1B: cheer ]
 
 2F/B1AF: 20 CF A9  JSR $A9CF          ; load character animation graphics
 2F/B1B2: 4C 0C AF  JMP $AF0C
 
-; [ battle graphics $1A:  ]
+; [ battle graphics $1A: scare ]
 
 2F/B1B5: 20 8E B3  JSR $B38E          ; step forward
 2F/B1B8: 20 CF A9  JSR $A9CF          ; load character animation graphics
 2F/B1BB: 20 08 AF  JSR $AF08
-2F/B1BE: 4C 5B B2  JMP $B25B
+2F/B1BE: 4C 5B B2  JMP $B25B          ; move back after attack
 
-; [ battle graphics $19:  ]
+; [ battle graphics $19: jump 2 ]
 
 2F/B1C1: 20 CF A9  JSR $A9CF          ; load character animation graphics
 2F/B1C4: A9 0A     LDA #$0A           ; dragoon graphics ???
 2F/B1C6: 20 B3 A1  JSR $A1B3          ; load battle graphics
 2F/B1C9: 20 04 AF  JSR $AF04
-2F/B1CC: 4C 5B B2  JMP $B25B
+2F/B1CC: 4C 5B B2  JMP $B25B          ; move back after attack
 
-; [ battle graphics $18:  ]
+; [ battle graphics $18: jump 1 ]
 
 2F/B1CF: 20 8E B3  JSR $B38E          ; step forward
 2F/B1D2: 20 CF A9  JSR $A9CF          ; load character animation graphics
@@ -6028,7 +6036,10 @@
 2F/B1E8: 20 CF A9  JSR $A9CF          ; load character animation graphics
 2F/B1EB: 20 B1 A9  JSR $A9B1          ; load character hit graphics
 2F/B1EE: 20 FC AE  JSR $AEFC
-2F/B1F1: 4C 5B B2  JMP $B25B
+2F/B1F1: 4C 5B B2  JMP $B25B          ; move back after attack
+
+; [ get character index from target mask ]
+
 2F/B1F4: A2 00     LDX #$00
 2F/B1F6: 0A        ASL 
 2F/B1F7: B0 07     BCS $B200
@@ -6038,42 +6049,42 @@
 2F/B1FE: A2 00     LDX #$00
 2F/B200: 60        RTS 
 
-; [ battle graphics $14:  ]
+; [ battle graphics $14: character hit ]
 
 2F/B201: 20 B1 A9  JSR $A9B1          ; load character hit graphics
 2F/B204: AD DF 7E  LDA $7EDF
-2F/B207: F0 33     BEQ $B23C
-2F/B209: 20 F4 B1  JSR $B1F4
+2F/B207: F0 33     BEQ $B23C          ; branch if no "cover" target
+2F/B209: 20 F4 B1  JSR $B1F4          ; get character index from target mask
 2F/B20C: 8A        TXA 
 2F/B20D: A8        TAY 
-2F/B20E: B5 C0     LDA $C0,X
+2F/B20E: B5 C0     LDA $C0,X          ; save xy position
 2F/B210: 48        PHA 
 2F/B211: B5 C4     LDA $C4,X
 2F/B213: 48        PHA 
-2F/B214: AD E0 7E  LDA $7EE0
-2F/B217: 20 F4 B1  JSR $B1F4
+2F/B214: AD E0 7E  LDA $7EE0          ; target being covered
+2F/B217: 20 F4 B1  JSR $B1F4          ; get character index from target mask
 2F/B21A: B5 C0     LDA $C0,X
 2F/B21C: 38        SEC 
 2F/B21D: E9 18     SBC #$18
-2F/B21F: 99 C0 00  STA $00C0,Y
+2F/B21F: 99 C0 00  STA $00C0,Y        ; move in front of target being covered
 2F/B222: B5 C4     LDA $C4,X
 2F/B224: 99 C4 00  STA $00C4,Y
-2F/B227: 20 B8 B5  JSR $B5B8
-2F/B22A: 20 3C B2  JSR $B23C
+2F/B227: 20 B8 B5  JSR $B5B8          ; update character sprites
+2F/B22A: 20 3C B2  JSR $B23C          ; do hit animation
 2F/B22D: AD DF 7E  LDA $7EDF
-2F/B230: 20 F4 B1  JSR $B1F4
+2F/B230: 20 F4 B1  JSR $B1F4          ; get character index from target mask
 2F/B233: 68        PLA 
-2F/B234: 95 C4     STA $C4,X
+2F/B234: 95 C4     STA $C4,X          ; restore "cover" target's xy position
 2F/B236: 68        PLA 
 2F/B237: 95 C0     STA $C0,X
-2F/B239: 4C B8 B5  JMP $B5B8
+2F/B239: 4C B8 B5  JMP $B5B8          ; update character sprites
 2F/B23C: A5 BB     LDA $BB
 2F/B23E: 05 BC     ORA $BC
-2F/B240: F0 03     BEQ $B245
-2F/B242: 20 F4 AE  JSR $AEF4
+2F/B240: F0 03     BEQ $B245          ; return if no hits
+2F/B242: 20 F4 AE  JSR $AEF4          ; character hit
 2F/B245: 60        RTS 
 
-; [ battle graphics $15:  ]
+; [ battle graphics $15: defend ]
 
 2F/B246: 20 CF A9  JSR $A9CF          ; load character animation graphics
 2F/B249: 4C F8 AE  JMP $AEF8
@@ -6082,12 +6093,12 @@
 
 2F/B24C: 4C EC AE  JMP $AEEC
 
-; [ battle graphics $12:  ]
+; [ battle graphics $12: character fight ]
 
 2F/B24F: 20 8E B3  JSR $B38E          ; step forward
 2F/B252: 20 CF A9  JSR $A9CF          ; load character animation graphics
 2F/B255: 20 EA A8  JSR $A8EA          ; load weapon animation properties
-2F/B258: 20 F0 AE  JSR $AEF0
+2F/B258: 20 F0 AE  JSR $AEF0          ; weapon animation
 ; fallthrough
 
 ; [ move back after attack ]
@@ -6117,7 +6128,7 @@
 2F/B289: A9 00     LDA #$00
 2F/B28B: 85 B6     STA $B6
 2F/B28D: 20 63 A9  JSR $A963
-2F/B290: 20 B8 B5  JSR $B5B8
+2F/B290: 20 B8 B5  JSR $B5B8          ; update character sprites
 2F/B293: A2 00     LDX #$00
 2F/B295: AD 8B 7D  LDA $7D8B
 2F/B298: C9 FF     CMP #$FF
@@ -6167,21 +6178,23 @@
 2F/B2EB: A9 00     LDA #$00
 2F/B2ED: 85 AC     STA $AC
 2F/B2EF: 20 8D 9F  JSR $9F8D          ; clear oam data
-2F/B2F2: 20 B8 B5  JSR $B5B8
+2F/B2F2: 20 B8 B5  JSR $B5B8          ; update character sprites
 2F/B2F5: A9 06     LDA #$06
 2F/B2F7: 4C B3 A1  JMP $A1B3          ; load battle graphics
 
-; [ battle graphics $10:  ]
+; [ battle graphics $10: choose targets ]
+
+; X: character id
 
 2F/B2FA: 86 A5     STX $A5
 2F/B2FC: A9 00     LDA #$00
-2F/B2FE: 9D 0F 7E  STA $7E0F,X
-2F/B301: 4C E4 AE  JMP $AEE4
+2F/B2FE: 9D 0F 7E  STA $7E0F,X        ; clear selected targets for this character
+2F/B301: 4C E4 AE  JMP $AEE4          ; choose targets
 
 ; [ battle graphics $0E:  ]
 
 2F/B304: A2 00     LDX #$00
-2F/B306: BD C4 78  LDA $78C4,X
+2F/B306: BD C4 78  LDA $78C4,X        ; copy status buffer
 2F/B309: 9D B7 7D  STA $7DB7,X
 2F/B30C: E8        INX 
 2F/B30D: E0 04     CPX #$04
@@ -6199,28 +6212,31 @@
 2F/B32B: 20 BA BD  JSR $BDBA
 2F/B32E: E6 AC     INC $AC
 2F/B330: 60        RTS 
+
+; [  ]
+
 2F/B331: A9 FF     LDA #$FF
 2F/B333: 20 28 9E  JSR $9E28
 2F/B336: A0 1C     LDY #$1C
 2F/B338: 20 1A 9E  JSR $9E1A
 2F/B33B: 4C BC F8  JMP $F8BC          ; wait for vblank (no oam update)
 
-; [ battle graphics $0A:  ]
+; [ battle graphics $0A: monster death animations ]
 
 2F/B33E: A5 7E     LDA $7E
 2F/B340: 4C 0A BB  JMP $BB0A
 
-; [ battle graphics $0B:  ]
+; [ battle graphics $0B: monster entry ??? ]
 
 2F/B343: A5 7E     LDA $7E
 2F/B345: 4C 59 B9  JMP $B959
 
-; [ battle graphics $0C:  ]
+; [ battle graphics $0C: summon/split ]
 
 2F/B348: A6 7E     LDX $7E
 2F/B34A: 4C 3A B9  JMP $B93A
 
-; [ battle graphics $0D:  ]
+; [ battle graphics $0D: monster run away ??? ]
 
 2F/B34D: A5 7E     LDA $7E
 2F/B34F: 4C 5E BB  JMP $BB5E
@@ -6297,10 +6313,10 @@
 2F/B3CD: 20 8E B3  JSR $B38E          ; step forward
 2F/B3D0: 4C 8F B5  JMP $B58F
 
-; [ battle graphics $07:  ]
+; [ battle graphics $07: character death animations ??? ]
 
 2F/B3D3: 20 80 9E  JSR $9E80
-2F/B3D6: 4C B8 B5  JMP $B5B8
+2F/B3D6: 4C B8 B5  JMP $B5B8          ; update character sprites
 
 ; [ battle graphics $06:  ]
 
@@ -6310,7 +6326,7 @@
 2F/B3DE: A9 00     LDA #$00
 2F/B3E0: 8D 7D 7D  STA $7D7D
 2F/B3E3: A9 B0     LDA #$B0
-2F/B3E5: 9D 7F 7D  STA $7D7F,X
+2F/B3E5: 9D 7F 7D  STA $7D7F,X        ; character x position
 2F/B3E8: 20 5C B4  JSR $B45C
 2F/B3EB: 20 8F B5  JSR $B58F
 2F/B3EE: 68        PLA 
@@ -6398,7 +6414,7 @@
 2F/B480: AD 68 7D  LDA $7D68
 2F/B483: 0A        ASL 
 2F/B484: 10 03     BPL $B489          ; branch if not a boss
-2F/B486: 20 97 BE  JSR $BE97          ; fade in boss
+2F/B486: 20 97 BE  JSR $BE97          ; boss entry
 2F/B489: E6 98     INC $98
 2F/B48B: A2 00     LDX #$00
 2F/B48D: BD 8F 7D  LDA $7D8F,X        ; battle row
@@ -6412,7 +6428,7 @@
 2F/B49E: D0 ED     BNE $B48D
 2F/B4A0: 20 E8 AE  JSR $AEE8
 2F/B4A3: 20 BC F8  JSR $F8BC          ; wait for vblank (no oam update)
-2F/B4A6: 20 B8 B5  JSR $B5B8
+2F/B4A6: 20 B8 B5  JSR $B5B8          ; update character sprites
 2F/B4A9: 4C 09 B9  JMP $B909          ; update number of monsters remaining
 
 ; [  ]
@@ -6476,7 +6492,7 @@
 2F/B522: 30 30 30 30
 2F/B526: 2C 48 64 80
 
-; [  ]
+; [ load status and system graphics ]
 
 2F/B52A: A9 07     LDA #$07           ; damage numerals
 2F/B52C: 20 B3 A1  JSR $A1B3          ; load battle graphics
@@ -6489,14 +6505,14 @@
 2F/B53A: 9D B7 7D  STA $7DB7,X
 2F/B53D: BD B7 7D  LDA $7DB7,X
 2F/B540: C9 FF     CMP #$FF
-2F/B542: F0 2D     BEQ $B571
+2F/B542: F0 2D     BEQ $B571          ; branch if not status
 2F/B544: 29 07     AND #$07
 2F/B546: 0A        ASL 
 2F/B547: 0A        ASL 
 2F/B548: A2 10     LDX #$10
 2F/B54A: 20 EA F8  JSR $F8EA          ; multiply
 2F/B54D: 18        CLC 
-2F/B54E: 69 40     ADC #$40
+2F/B54E: 69 40     ADC #$40           ; 0D/B240 (animated status graphics)
 2F/B550: 85 7E     STA $7E
 2F/B552: 8A        TXA 
 2F/B553: 69 B2     ADC #$B2
@@ -6554,7 +6570,9 @@
 2F/B5B6: AA        TAX 
 2F/B5B7: 60        RTS 
 
-; [ load character sprites ??? ]
+; [ update character sprites ]
+
+; all characters
 
 2F/B5B8: A2 00     LDX #$00
 2F/B5BA: 20 C3 B5  JSR $B5C3
@@ -6563,7 +6581,9 @@
 2F/B5C0: D0 F8     BNE $B5BA
 2F/B5C2: 60        RTS 
 
-; [  ]
+; [ update character sprites ]
+
+; single character
 
 2F/B5C3: 8A        TXA 
 2F/B5C4: 48        PHA 
@@ -6849,6 +6869,8 @@
 
 2F/B82D: 00 00 00 00 00 00 00 00
 
+; [  ]
+
 2F/B835: 20 48 AF  JSR $AF48
 2F/B838: D0 11     BNE $B84B
 2F/B83A: A9 A2     LDA #$A2
@@ -6978,13 +7000,13 @@
 2F/B937: D0 F2     BNE $B92B
 2F/B939: 60        RTS 
 
-; [  ]
+; [ summon/split animation ]
 
 2F/B93A: 86 7E     STX $7E
 2F/B93C: A2 00     LDX #$00
-2F/B93E: BD A7 7D  LDA $7DA7,X
+2F/B93E: BD A7 7D  LDA $7DA7,X        ; monster type
 2F/B941: C9 FF     CMP #$FF
-2F/B943: F0 06     BEQ $B94B
+2F/B943: F0 06     BEQ $B94B          ; branch if not valid
 2F/B945: E8        INX 
 2F/B946: E0 06     CPX #$06
 2F/B948: D0 F4     BNE $B93E
@@ -6994,6 +7016,9 @@
 2F/B950: 9D CD 7E  STA $7ECD,X
 2F/B953: 20 6F B9  JSR $B96F
 2F/B956: 4C 09 B9  JMP $B909          ; update number of monsters remaining
+
+; [ monster entry ??? ]
+
 2F/B959: 8D CA 7D  STA $7DCA
 2F/B95C: 85 7E     STA $7E
 2F/B95E: A2 00     LDX #$00
@@ -7036,6 +7061,9 @@
 2F/B9B6: E0 37     CPX #$37
 2F/B9B8: D0 F1     BNE $B9AB
 2F/B9BA: 60        RTS 
+
+; [  ]
+
 2F/B9BB: 85 7E     STA $7E
 2F/B9BD: 86 7F     STX $7F
 2F/B9BF: 2C 02 20  BIT $2002
@@ -7142,6 +7170,9 @@
 2F/BA9D: C0 16     CPY #$16
 2F/BA9F: D0 F6     BNE $BA97
 2F/BAA1: 60        RTS 
+
+; [  ]
+
 2F/BAA2: AD CA 7D  LDA $7DCA
 2F/BAA5: 85 7E     STA $7E
 2F/BAA7: A2 00     LDX #$00
@@ -7178,6 +7209,9 @@
 2F/BAE7: 29 FE     AND #$FE
 2F/BAE9: 85 06     STA $06
 2F/BAEB: 4C C5 F8  JMP $F8C5          ; wait for vblank (no color update)
+
+; [  ]
+
 2F/BAEE: 8D CA 7D  STA $7DCA
 2F/BAF1: 85 7E     STA $7E
 2F/BAF3: A0 00     LDY #$00
@@ -7192,10 +7226,16 @@
 2F/BB05: C0 08     CPY #$08
 2F/BB07: D0 EC     BNE $BAF5
 2F/BB09: 60        RTS 
+
+; [ monster death animations ]
+
 2F/BB0A: 20 EE BA  JSR $BAEE
 2F/BB0D: AD CA 7D  LDA $7DCA
 2F/BB10: 4C 5E BB  JMP $BB5E
-2F/BB13: A9 16     LDA #$16
+
+; [  ]
+
+2F/BB13: A9 16     LDA #$16           ; $7916
 2F/BB15: 85 7E     STA $7E
 2F/BB17: A9 79     LDA #$79
 2F/BB19: 85 7F     STA $7F
@@ -7211,6 +7251,9 @@
 2F/BB2D: CA        DEX 
 2F/BB2E: D0 ED     BNE $BB1D
 2F/BB30: 60        RTS 
+
+; [  ]
+
 2F/BB31: A2 00     LDX #$00
 2F/BB33: BD A0 02  LDA $02A0,X
 2F/BB36: 9D 00 02  STA $0200,X
@@ -7220,6 +7263,9 @@
 2F/BB3F: E0 60     CPX #$60
 2F/BB41: D0 F0     BNE $BB33
 2F/BB43: 60        RTS 
+
+; [  ]
+
 2F/BB44: A2 00     LDX #$00
 2F/BB46: BD 00 02  LDA $0200,X
 2F/BB49: 9D A0 02  STA $02A0,X
@@ -7233,12 +7279,15 @@
 2F/BB59: E0 A0     CPX #$A0
 2F/BB5B: D0 F8     BNE $BB55
 2F/BB5D: 60        RTS 
+
+; [ monster death/run away animations ]
+
 2F/BB5E: 85 7E     STA $7E
 2F/BB60: 8D CA 7D  STA $7DCA
 2F/BB63: 20 31 BB  JSR $BB31
 2F/BB66: A9 0F     LDA #$0F
 2F/BB68: A2 00     LDX #$00
-2F/BB6A: 9D 13 7D  STA $7D13,X
+2F/BB6A: 9D 13 7D  STA $7D13,X        ; clear animation color palette
 2F/BB6D: E8        INX 
 2F/BB6E: E0 04     CPX #$04
 2F/BB70: D0 F8     BNE $BB6A
@@ -7253,7 +7302,7 @@
 2F/BB88: AD 68 7D  LDA $7D68
 2F/BB8B: 0A        ASL 
 2F/BB8C: 10 06     BPL $BB94           ; branch if not a boss
-2F/BB8E: 20 A4 BE  JSR $BEA4
+2F/BB8E: 20 A4 BE  JSR $BEA4           ; boss death
 2F/BB91: 4C 44 BB  JMP $BB44
 2F/BB94: A9 FF     LDA #$FF
 2F/BB96: 85 7E     STA $7E
@@ -7292,11 +7341,11 @@
 2F/BBDA: 85 84     STA $84
 2F/BBDC: A9 01     LDA #$01
 2F/BBDE: 85 85     STA $85
-2F/BBE0: A9 C6     LDA #$C6
+2F/BBE0: A9 C6     LDA #$C6           ; x scroll
 2F/BBE2: 85 7E     STA $7E
-2F/BBE4: A9 20     LDA #$20
+2F/BBE4: A9 20     LDA #$20           ; y scroll
 2F/BBE6: 85 7F     STA $7F
-2F/BBE8: A9 26     LDA #$26
+2F/BBE8: A9 26     LDA #$26           ; $7926
 2F/BBEA: 85 80     STA $80
 2F/BBEC: A9 79     LDA #$79
 2F/BBEE: 85 81     STA $81
@@ -7313,11 +7362,11 @@
 2F/BC07: 85 84     STA $84
 2F/BC09: A9 01     LDA #$01
 2F/BC0B: 85 85     STA $85
-2F/BC0D: A9 D9     LDA #$D9
+2F/BC0D: A9 D9     LDA #$D9           ; x scroll
 2F/BC0F: 85 7E     STA $7E
-2F/BC11: A9 20     LDA #$20
+2F/BC11: A9 20     LDA #$20           ; y scroll
 2F/BC13: 85 7F     STA $7F
-2F/BC15: A9 39     LDA #$39
+2F/BC15: A9 39     LDA #$39           ; $7939
 2F/BC17: 85 80     STA $80
 2F/BC19: A9 79     LDA #$79
 2F/BC1B: 85 81     STA $81
@@ -7401,6 +7450,9 @@
 2F/BCC8: C6 90     DEC $90
 2F/BCCA: D0 9C     BNE $BC68
 2F/BCCC: 4C 44 BB  JMP $BB44
+
+; [  ]
+
 2F/BCCF: 1E 04 73  ASL $7304,X
 2F/BCD2: 3E 03 73  ROL $7303,X
 2F/BCD5: 3E 02 73  ROL $7302,X
@@ -7640,7 +7692,7 @@
 2F/BE7F: 10 14 14 12 0D 14 14 1C 24 0B 16 0E 06 06 06 06
 2F/BE8F: 09 09 14 09 09 09 0E 0D
 
-; [ fade in boss ]
+; [ boss entry ]
 
 2F/BE97: A9 07     LDA #$07
 2F/BE99: 85 88     STA $88
@@ -7648,6 +7700,9 @@
 2F/BE9D: 85 8A     STA $8A
 2F/BE9F: A9 00     LDA #$00
 2F/BEA1: 4C AC BE  JMP $BEAC
+
+; [ boss death ]
+
 2F/BEA4: A9 01     LDA #$01
 2F/BEA6: 85 88     STA $88
 2F/BEA8: 85 8A     STA $8A
@@ -7655,12 +7710,12 @@
 2F/BEAC: 85 8B     STA $8B
 2F/BEAE: A5 8B     LDA $8B
 2F/BEB0: F0 0F     BEQ $BEC1
-2F/BEB2: AD EE 7C  LDA $7CEE
+2F/BEB2: AD EE 7C  LDA $7CEE          ; hi byte of battle index
 2F/BEB5: F0 0A     BEQ $BEC1
 2F/BEB7: AD ED 7C  LDA $7CED          ; battle index
 2F/BEBA: C9 78     CMP #$78
-2F/BEBC: D0 03     BNE $BEC1          ; branch if not first dark cloud battle
-2F/BEBE: 4C 93 BF  JMP $BF93
+2F/BEBC: D0 03     BNE $BEC1          ; branch if not 2nd dark cloud battle
+2F/BEBE: 4C 93 BF  JMP $BF93          ; final boss death animation
 2F/BEC1: A9 00     LDA #$00
 2F/BEC3: 85 B7     STA $B7
 2F/BEC5: 85 86     STA $86
@@ -7776,7 +7831,7 @@
 2F/BF91: 68        PLA 
 2F/BF92: 60        RTS 
 
-; [  ]
+; [ final boss death animation ]
 
 2F/BF93: 20 7F B1  JSR $B17F
 2F/BF96: A9 0C     LDA #$0C           ; fade out music
@@ -7785,7 +7840,7 @@
 2F/BF9E: AD 42 7F  LDA $7F42
 2F/BFA1: D0 F8     BNE $BF9B          ; wait for music to fade out
 2F/BFA3: 20 16 B1  JSR $B116
-2F/BFA6: A9 01     LDA #$01
+2F/BFA6: A9 01     LDA #$01           ; final boss death animation
 2F/BFA8: 85 7E     STA $7E
 2F/BFAA: 20 F5 7E  JSR $7EF5
 2F/BFAD: A9 00     LDA #$00
@@ -7843,16 +7898,17 @@
 
 ; [ battle algorithm $03: do fight effect ]
 
-30/9E8A: 20 BA A2  JSR $A2BA
+30/9E8A: 20 BA A2  JSR $A2BA          ; init attacker and target
 30/9E8D: A6 64     LDX $64
-30/9E8F: B5 E0     LDA $E0,X
+30/9E8F: B5 E0     LDA $E0,X          ; target status
 30/9E91: 29 C0     AND #$C0
-30/9E93: D0 0A     BNE $9E9F
+30/9E93: D0 0A     BNE $9E9F          ; branch if dead or stone
 30/9E95: E8        INX 
 30/9E96: B5 E0     LDA $E0,X
 30/9E98: 29 01     AND #$01
-30/9E9A: D0 03     BNE $9E9F
+30/9E9A: D0 03     BNE $9E9F          ; branch if jumping
 30/9E9C: 4C D5 9E  JMP $9ED5
+; retarget randomly
 30/9E9F: A0 30     LDY #$30
 30/9EA1: B1 6E     LDA ($6E),Y
 30/9EA3: 10 10     BPL $9EB5          ; branch if a character
@@ -7877,7 +7933,7 @@
 30/9ECB: CA        DEX 
 30/9ECC: 8E D8 78  STX $78D8
 30/9ECF: 4C 64 A2  JMP $A264
-30/9ED2: 20 BA A2  JSR $A2BA
+30/9ED2: 20 BA A2  JSR $A2BA          ; init attacker and target
 30/9ED5: A2 FF     LDX #$FF
 30/9ED7: 8E E1 7E  STX $7EE1
 30/9EDA: E8        INX 
@@ -7885,222 +7941,223 @@
 30/9EDE: 86 7C     STX $7C
 30/9EE0: 86 7D     STX $7D
 30/9EE2: 8E 1E 74  STX $741E
-30/9EE5: 86 6A     STX $6A
+30/9EE5: 86 6A     STX $6A            ; clear net damage
 30/9EE7: 86 6B     STX $6B
 30/9EE9: 86 42     STX $42
 30/9EEB: E8        INX 
-30/9EEC: 8E 1F 74  STX $741F
+30/9EEC: 8E 1F 74  STX $741F          ; 1 hand
 30/9EEF: A0 03     LDY #$03
-30/9EF1: B1 6E     LDA ($6E),Y
+30/9EF1: B1 6E     LDA ($6E),Y        ; attacker hp
 30/9EF3: 85 40     STA $40
-30/9EF5: B1 70     LDA ($70),Y
+30/9EF5: B1 70     LDA ($70),Y        ; target hp
 30/9EF7: 85 3C     STA $3C
 30/9EF9: C8        INY 
 30/9EFA: B1 6E     LDA ($6E),Y
 30/9EFC: 85 41     STA $41
 30/9EFE: B1 70     LDA ($70),Y
 30/9F00: 85 3D     STA $3D
-30/9F02: 20 B5 A2  JSR $A2B5
-30/9F05: 10 14     BPL $9F1B
+30/9F02: 20 B5 A2  JSR $A2B5          ; get attacker flags
+30/9F05: 10 14     BPL $9F1B          ; branch if a character
 30/9F07: A5 74     LDA $74
-30/9F09: F0 35     BEQ $9F40
+30/9F09: F0 35     BEQ $9F40          ; branch if not trying to run
 30/9F0B: 20 25 BC  JSR $BC25          ; get target flags
-30/9F0E: 30 30     BMI $9F40
+30/9F0E: 30 30     BMI $9F40          ; branch if a monster
 30/9F10: A0 27     LDY #$27
 30/9F12: 18        CLC 
-30/9F13: B1 70     LDA ($70),Y
+30/9F13: B1 70     LDA ($70),Y        ; running characters get jump/buildup penalty
 30/9F15: 69 01     ADC #$01
 30/9F17: 91 70     STA ($70),Y
 30/9F19: D0 25     BNE $9F40
 30/9F1B: A0 31     LDY #$31
-30/9F1D: B1 6E     LDA ($6E),Y
-30/9F1F: 30 16     BMI $9F37
+30/9F1D: B1 6E     LDA ($6E),Y        ; right hand item type
+30/9F1F: 30 16     BMI $9F37          ; branch if shield
 30/9F21: 29 01     AND #$01
-30/9F23: F0 12     BEQ $9F37
+30/9F23: F0 12     BEQ $9F37          ; branch if harp, arrow, or bow
 30/9F25: C8        INY 
-30/9F26: B1 6E     LDA ($6E),Y
-30/9F28: 30 0D     BMI $9F37
+30/9F26: B1 6E     LDA ($6E),Y        ; left hand item type
+30/9F28: 30 0D     BMI $9F37          ; branch if shield
 30/9F2A: 29 01     AND #$01
-30/9F2C: F0 09     BEQ $9F37
-30/9F2E: EE 1F 74  INC $741F
+30/9F2C: F0 09     BEQ $9F37          ; branch if harp, arrow, or bow
+30/9F2E: EE 1F 74  INC $741F          ; 2 hands
 30/9F31: EE 1E 74  INC $741E
 30/9F34: 4C 40 9F  JMP $9F40
 30/9F37: A0 31     LDY #$31
 30/9F39: B1 6E     LDA ($6E),Y
 30/9F3B: C8        INY 
 30/9F3C: 11 6E     ORA ($6E),Y
-30/9F3E: F0 EE     BEQ $9F2E
+30/9F3E: F0 EE     BEQ $9F2E          ; branch if unarmed in both hands
 30/9F40: A0 16     LDY #$16
 30/9F42: A2 00     LDX #$00
-30/9F44: B1 6E     LDA ($6E),Y
+30/9F44: B1 6E     LDA ($6E),Y        ; copy attacker's attack stats
 30/9F46: 9D 20 74  STA $7420,X
 30/9F49: 9D 40 74  STA $7440,X
 30/9F4C: C8        INY 
 30/9F4D: E8        INX 
 30/9F4E: E0 0A     CPX #$0A
 30/9F50: D0 F2     BNE $9F44
-30/9F52: B1 70     LDA ($70),Y
+30/9F52: B1 70     LDA ($70),Y        ; copy target's defense stats
 30/9F54: 9D 20 74  STA $7420,X
 30/9F57: C8        INY 
 30/9F58: E8        INX 
 30/9F59: E0 0F     CPX #$0F
 30/9F5B: D0 F5     BNE $9F52
 30/9F5D: A0 27     LDY #$27
-30/9F5F: B1 6E     LDA ($6E),Y
+30/9F5F: B1 6E     LDA ($6E),Y        ; copy attacker's job modifiers
 30/9F61: 9D 20 74  STA $7420,X
 30/9F64: C8        INY 
 30/9F65: E8        INX 
 30/9F66: E0 12     CPX #$12
 30/9F68: D0 F5     BNE $9F5F
-30/9F6A: AD 41 74  LDA $7441
+; start of loop for 2 hands
+30/9F6A: AD 41 74  LDA $7441          ; attack multiplier
 30/9F6D: 85 24     STA $24
-30/9F6F: AD 42 74  LDA $7442
+30/9F6F: AD 42 74  LDA $7442          ; hit %
 30/9F72: 85 25     STA $25
 30/9F74: A6 62     LDX $62
 30/9F76: B5 F0     LDA $F0,X
 30/9F78: 29 04     AND #$04
-30/9F7A: F0 02     BEQ $9F7E
-30/9F7C: 46 25     LSR $25
+30/9F7A: F0 02     BEQ $9F7E          ; branch if attacker is not blind
+30/9F7C: 46 25     LSR $25            ; halve hit %
 30/9F7E: A0 33     LDY #$33
 30/9F80: B1 6E     LDA ($6E),Y
 30/9F82: 29 04     AND #$04
-30/9F84: D0 20     BNE $9FA6
+30/9F84: D0 20     BNE $9FA6          ; branch if harp or bow + arrow
 30/9F86: A0 2C     LDY #$2C
 30/9F88: B1 6E     LDA ($6E),Y        ; attacker flags
-30/9F8A: 30 05     BMI $9F91
-30/9F8C: 20 97 A3  JSR $A397
-30/9F8F: B0 15     BCS $9FA6
+30/9F8A: 30 05     BMI $9F91          ; branch if a monster
+30/9F8C: 20 97 A3  JSR $A397          ; check for back row penalty
+30/9F8F: B0 15     BCS $9FA6          ; branch if no penalty
 30/9F91: A0 33     LDY #$33
 30/9F93: B1 6E     LDA ($6E),Y
 30/9F95: 29 01     AND #$01
-30/9F97: F0 02     BEQ $9F9B
-30/9F99: 46 25     LSR $25
+30/9F97: F0 02     BEQ $9F9B          ; branch if attacker not in back row
+30/9F99: 46 25     LSR $25            ; halve hit %
 30/9F9B: B1 70     LDA ($70),Y
 30/9F9D: 29 01     AND #$01
-30/9F9F: F0 05     BEQ $9FA6
+30/9F9F: F0 05     BEQ $9FA6          ; branch if target is not in back row
 30/9FA1: EE E9 7C  INC $7CE9
-30/9FA4: 46 25     LSR $25
+30/9FA4: 46 25     LSR $25            ; halve hit %
 30/9FA6: 20 28 BB  JSR $BB28          ; get number of hits
 30/9FA9: 85 7C     STA $7C
-30/9FAB: AD 2B 74  LDA $742B
+30/9FAB: AD 2B 74  LDA $742B          ; evade multiplier
 30/9FAE: 85 24     STA $24
-30/9FB0: AD 2C 74  LDA $742C
+30/9FB0: AD 2C 74  LDA $742C          ; evade %
 30/9FB3: 85 25     STA $25
 30/9FB5: A6 64     LDX $64
 30/9FB7: B5 E0     LDA $E0,X
 30/9FB9: 29 04     AND #$04
-30/9FBB: F0 02     BEQ $9FBF
-30/9FBD: 46 25     LSR $25
+30/9FBB: F0 02     BEQ $9FBF          ; branch if target is not blind
+30/9FBD: 46 25     LSR $25            ; halve evade %
 30/9FBF: B5 E0     LDA $E0,X
 30/9FC1: 29 28     AND #$28
-30/9FC3: D0 06     BNE $9FCB
+30/9FC3: D0 06     BNE $9FCB          ; branch if target is toad or mini
 30/9FC5: A0 27     LDY #$27
 30/9FC7: B1 70     LDA ($70),Y
-30/9FC9: F0 04     BEQ $9FCF
-30/9FCB: A9 00     LDA #$00
+30/9FC9: F0 04     BEQ $9FCF          ; branch if target not using jump/buildup
+30/9FCB: A9 00     LDA #$00           ; zero evade
 30/9FCD: 85 24     STA $24
 30/9FCF: 20 28 BB  JSR $BB28          ; get number of hits
 30/9FD2: AD E9 7C  LDA $7CE9
-30/9FD5: F0 02     BEQ $9FD9
-30/9FD7: E6 30     INC $30
+30/9FD5: F0 02     BEQ $9FD9          ; branch if target not in back row
+30/9FD7: E6 30     INC $30            ; subtract one hit
 30/9FD9: 38        SEC 
-30/9FDA: A5 7C     LDA $7C
+30/9FDA: A5 7C     LDA $7C            ; subtract from total number of hits
 30/9FDC: E5 30     SBC $30
 30/9FDE: B0 02     BCS $9FE2
-30/9FE0: A9 00     LDA #$00
+30/9FE0: A9 00     LDA #$00           ; min 0
 30/9FE2: 85 24     STA $24
 30/9FE4: 85 7C     STA $7C
-30/9FE6: D0 09     BNE $9FF1
+30/9FE6: D0 09     BNE $9FF1          ; branch if nonzero net hits
 30/9FE8: A0 27     LDY #$27
-30/9FEA: A9 00     LDA #$00
+30/9FEA: A9 00     LDA #$00           ; remove attacker's jump/buildup multiplier
 30/9FEC: 91 6E     STA ($6E),Y
 30/9FEE: 4C 39 A1  JMP $A139
 30/9FF1: A0 12     LDY #$12
-30/9FF3: B1 70     LDA ($70),Y
+30/9FF3: B1 70     LDA ($70),Y        ; target's weak elements
 30/9FF5: 2D 40 74  AND $7440
-30/9FF8: F0 04     BEQ $9FFE
-30/9FFA: A9 04     LDA #$04
+30/9FF8: F0 04     BEQ $9FFE          ; branch if not weak
+30/9FFA: A9 04     LDA #$04           ; 4x multiplier
 30/9FFC: D0 12     BNE $A010
-30/9FFE: AD 2A 74  LDA $742A
+30/9FFE: AD 2A 74  LDA $742A          ; resistant elements
 31/A001: C9 02     CMP #$02
 31/A003: F0 05     BEQ $A00A
 31/A005: 2D 40 74  AND $7440
 31/A008: F0 04     BEQ $A00E
-31/A00A: A9 01     LDA #$01
+31/A00A: A9 01     LDA #$01           ; 1x multiplier
 31/A00C: D0 02     BNE $A010
-31/A00E: A9 02     LDA #$02
+31/A00E: A9 02     LDA #$02           ; 2x multiplier
 31/A010: 85 27     STA $27
 31/A012: A2 00     LDX #$00
-31/A014: 86 2B     STX $2B
+31/A014: 86 2B     STX $2B            ; clear attack msb
 31/A016: E8        INX 
-31/A017: 86 2A     STX $2A
-31/A019: AD 31 74  LDA $7431
+31/A017: 86 2A     STX $2A            ; 1 target hit (no damage division)
+31/A019: AD 31 74  LDA $7431          ; crit bonus
 31/A01C: 85 28     STA $28
-31/A01E: A9 00     LDA #$00
+31/A01E: A9 00     LDA #$00           ; reset crit flag
 31/A020: 85 29     STA $29
-31/A022: AD 43 74  LDA $7443
+31/A022: AD 43 74  LDA $7443          ; attack
 31/A025: 85 25     STA $25
-31/A027: 20 B5 A2  JSR $A2B5
-31/A02A: 30 09     BMI $A035
-31/A02C: A0 38     LDY #$38
-31/A02E: 20 89 A3  JSR $A389
-31/A031: C8        INY 
-31/A032: 20 89 A3  JSR $A389
-31/A035: AD 2D 74  LDA $742D
+31/A027: 20 B5 A2  JSR $A2B5          ; get attacker flags
+31/A02A: 30 09     BMI $A035          ; branch if a monster
+31/A02C: A0 38     LDY #$38           ; right hand
+31/A02E: 20 89 A3  JSR $A389          ; add weapon bonus to attack
+31/A031: C8        INY                ; left hand
+31/A032: 20 89 A3  JSR $A389          ; add weapon bonus to attack
+31/A035: AD 2D 74  LDA $742D          ; defense
 31/A038: 85 26     STA $26
 31/A03A: 20 25 BC  JSR $BC25          ; get target flags
-31/A03D: 30 16     BMI $A055
+31/A03D: 30 16     BMI $A055          ; branch if a monster
 31/A03F: 29 07     AND #$07
 31/A041: AA        TAX 
-31/A042: BD E4 7C  LDA $7CE4,X
-31/A045: F0 0E     BEQ $A055
+31/A042: BD E4 7C  LDA $7CE4,X        ; target's defense
+31/A045: F0 0E     BEQ $A055          ; branch if zero
 31/A047: A5 26     LDA $26
 31/A049: C9 80     CMP #$80
 31/A04B: 90 06     BCC $A053
-31/A04D: A9 FF     LDA #$FF
+31/A04D: A9 FF     LDA #$FF           ; max defense is 255
 31/A04F: 85 26     STA $26
 31/A051: D0 02     BNE $A055
 31/A053: 06 26     ASL $26
 31/A055: A6 62     LDX $62
 31/A057: B5 F0     LDA $F0,X
 31/A059: 29 28     AND #$28
-31/A05B: F0 04     BEQ $A061
-31/A05D: A9 01     LDA #$01
+31/A05B: F0 04     BEQ $A061          ; branch if attacker is not toad or mini
+31/A05D: A9 01     LDA #$01           ; set attack to 1
 31/A05F: 85 25     STA $25
 31/A061: A6 64     LDX $64
 31/A063: B5 E0     LDA $E0,X
 31/A065: 29 28     AND #$28
-31/A067: D0 06     BNE $A06F
+31/A067: D0 06     BNE $A06F          ; branch if target is toad or mini
 31/A069: A0 27     LDY #$27
 31/A06B: B1 70     LDA ($70),Y
-31/A06D: F0 08     BEQ $A077
-31/A06F: 06 25     ASL $25
+31/A06D: F0 08     BEQ $A077          ; branch if target not using jump/buildup
+31/A06F: 06 25     ASL $25            ; double attack
 31/A071: 26 2B     ROL $2B
-31/A073: A9 00     LDA #$00
+31/A073: A9 00     LDA #$00           ; set defense to 0
 31/A075: 85 26     STA $26
 31/A077: A9 63     LDA #$63
 31/A079: 20 B4 BE  JSR $BEB4          ; random (0..A)
-31/A07C: CD 30 74  CMP $7430
+31/A07C: CD 30 74  CMP $7430          ; crit probability
 31/A07F: B0 04     BCS $A085
-31/A081: E6 29     INC $29
+31/A081: E6 29     INC $29            ; crit flag
 31/A083: E6 CB     INC $CB
 31/A085: A6 62     LDX $62
 31/A087: B5 F0     LDA $F0,X
 31/A089: 29 28     AND #$28
-31/A08B: F0 06     BEQ $A093
+31/A08B: F0 06     BEQ $A093          ; branch if attacker is not toad or mini
 31/A08D: A9 00     LDA #$00
-31/A08F: 85 29     STA $29
+31/A08F: 85 29     STA $29            ; no crit
 31/A091: 85 CB     STA $CB
 31/A093: 20 44 BB  JSR $BB44          ; calculate damage
 31/A096: A5 29     LDA $29
-31/A098: F0 0B     BEQ $A0A5
+31/A098: F0 0B     BEQ $A0A5          ; branch if not a crit
 31/A09A: AE EE 78  LDX $78EE
 31/A09D: A9 34     LDA #$34           ; $0654: "クリティカルヒット！" / "Critical hit!"
 31/A09F: 9D DA 78  STA $78DA,X
 31/A0A2: EE EE 78  INC $78EE
 31/A0A5: A0 27     LDY #$27
 31/A0A7: B1 6E     LDA ($6E),Y
-31/A0A9: F0 15     BEQ $A0C0
+31/A0A9: F0 15     BEQ $A0C0          ; branch if attacker not using jump/buildup
 31/A0AB: AA        TAX 
 31/A0AC: E8        INX 
 31/A0AD: 86 18     STX $18
@@ -8115,9 +8172,9 @@
 31/A0C0: A5 1C     LDA $1C
 31/A0C2: 05 1D     ORA $1D
 31/A0C4: D0 02     BNE $A0C8
-31/A0C6: E6 1C     INC $1C
+31/A0C6: E6 1C     INC $1C            ; minimum damage is 1
 31/A0C8: A5 1C     LDA $1C
-31/A0CA: 85 78     STA $78
+31/A0CA: 85 78     STA $78            ; net damage
 31/A0CC: A5 1D     LDA $1D
 31/A0CE: 85 79     STA $79
 31/A0D0: A5 70     LDA $70
@@ -8125,48 +8182,50 @@
 31/A0D4: A5 71     LDA $71
 31/A0D6: 85 25     STA $25
 31/A0D8: A0 12     LDY #$12
-31/A0DA: AD 40 74  LDA $7440
+31/A0DA: AD 40 74  LDA $7440          ; attack elements
 31/A0DD: 29 01     AND #$01
-31/A0DF: F0 1E     BEQ $A0FF
-31/A0E1: 20 E2 BB  JSR $BBE2
-31/A0E4: B0 03     BCS $A0E9
-31/A0E6: 20 68 A3  JSR $A368
+31/A0DF: F0 1E     BEQ $A0FF          ; branch if not recovery attack (drain)
+31/A0E1: 20 E2 BB  JSR $BBE2          ; check if target is undead
+31/A0E4: B0 03     BCS $A0E9          ; branch if undead
+31/A0E6: 20 68 A3  JSR $A368          ; add to net damage
 31/A0E9: 20 25 BC  JSR $BC25          ; get target flags
 31/A0EC: 29 87     AND #$87
 31/A0EE: 85 18     STA $18
-31/A0F0: 20 B5 A2  JSR $A2B5
+31/A0F0: 20 B5 A2  JSR $A2B5          ; get attacker flags
 31/A0F3: 29 87     AND #$87
 31/A0F5: C5 18     CMP $18
-31/A0F7: F0 0D     BEQ $A106
-31/A0F9: 20 67 BD  JSR $BD67
+31/A0F7: F0 0D     BEQ $A106          ; branch if self-target (can't drain)
+31/A0F9: 20 67 BD  JSR $BD67          ; drain hp to attacker
 31/A0FC: 4C 0D A1  JMP $A10D
 31/A0FF: A9 00     LDA #$00
 31/A101: 85 26     STA $26
-31/A103: 20 68 A3  JSR $A368
-31/A106: 20 D2 BC  JSR $BCD2
-31/A109: 90 08     BCC $A113
+31/A103: 20 68 A3  JSR $A368          ; add to net damage
+31/A106: 20 D2 BC  JSR $BCD2          ; subtract damage from hp
+31/A109: 90 08     BCC $A113          ; branch if hp reached zero
 31/A10B: B0 1C     BCS $A129
 31/A10D: A5 26     LDA $26
-31/A10F: F0 18     BEQ $A129
-31/A111: 30 0B     BMI $A11E
-31/A113: A6 64     LDX $64
+31/A10F: F0 18     BEQ $A129          ; branch if neither died
+31/A111: 30 0B     BMI $A11E          ; branch if attacker died
+; target died
+31/A113: A6 64     LDX $64            ; set dead status on target
 31/A115: B5 E0     LDA $E0,X
 31/A117: 09 80     ORA #$80
 31/A119: 95 E0     STA $E0,X
 31/A11B: 4C 39 A1  JMP $A139
-31/A11E: A6 62     LDX $62
+; attacker died
+31/A11E: A6 62     LDX $62            ; set dead status on attacker
 31/A120: B5 F0     LDA $F0,X
 31/A122: 09 80     ORA #$80
 31/A124: 95 F0     STA $F0,X
 31/A126: 4C 39 A1  JMP $A139
 31/A129: AD D8 7E  LDA $7ED8
-31/A12C: 30 0B     BMI $A139
+31/A12C: 30 0B     BMI $A139          ; branch if boss battle
 31/A12E: A0 01     LDY #$01
 31/A130: B1 6E     LDA ($6E),Y
 31/A132: 29 28     AND #$28
-31/A134: D0 03     BNE $A139
-31/A136: 20 14 BE  JSR $BE14
-31/A139: CE 1F 74  DEC $741F
+31/A134: D0 03     BNE $A139          ; branch if toad or mini
+31/A136: 20 14 BE  JSR $BE14          ; apply attack status
+31/A139: CE 1F 74  DEC $741F          ; next hand
 31/A13C: AD 1F 74  LDA $741F
 31/A13F: F0 1C     BEQ $A15D
 31/A141: A2 00     LDX #$00
@@ -8175,16 +8234,16 @@
 31/A149: E8        INX 
 31/A14A: E0 05     CPX #$05
 31/A14C: D0 F5     BNE $A143
-31/A14E: A5 7C     LDA $7C
+31/A14E: A5 7C     LDA $7C            ; save previous number of hits
 31/A150: 85 7D     STA $7D
 31/A152: A9 00     LDA #$00
-31/A154: 85 7C     STA $7C
-31/A156: 85 78     STA $78
+31/A154: 85 7C     STA $7C            ; clear number of hits
+31/A156: 85 78     STA $78            ; clear current damage
 31/A158: 85 79     STA $79
 31/A15A: 4C 6A 9F  JMP $9F6A
 31/A15D: AD 1E 74  LDA $741E
 31/A160: F0 0A     BEQ $A16C
-31/A162: A5 7C     LDA $7C
+31/A162: A5 7C     LDA $7C            ; swap number of hits for each hand
 31/A164: 48        PHA 
 31/A165: A5 7D     LDA $7D
 31/A167: 85 7C     STA $7C
@@ -8194,35 +8253,35 @@
 31/A16E: A5 7C     LDA $7C
 31/A170: 85 BB     STA $BB
 31/A172: 05 7D     ORA $7D
-31/A174: D0 0E     BNE $A184
+31/A174: D0 0E     BNE $A184          ; branch if nonzero hits
 31/A176: 85 BC     STA $BC
-31/A178: 99 4F 7E  STA $7E4F,Y
+31/A178: 99 4F 7E  STA $7E4F,Y        ; clear numeral value
 31/A17B: C8        INY 
-31/A17C: A9 40     LDA #$40
+31/A17C: A9 40     LDA #$40           ; set miss flag
 31/A17E: 99 4F 7E  STA $7E4F,Y
 31/A181: 4C 64 A2  JMP $A264
 31/A184: A5 7D     LDA $7D
 31/A186: 85 BC     STA $BC
 31/A188: A0 03     LDY #$03
-31/A18A: B1 6E     LDA ($6E),Y
+31/A18A: B1 6E     LDA ($6E),Y        ; attacker current hp
 31/A18C: 85 78     STA $78
 31/A18E: C8        INY 
 31/A18F: B1 6E     LDA ($6E),Y
 31/A191: 85 79     STA $79
 31/A193: A6 62     LDX $62
-31/A195: 20 B5 A2  JSR $A2B5
+31/A195: 20 B5 A2  JSR $A2B5          ; get attacker flags
 31/A198: 29 87     AND #$87
 31/A19A: 85 18     STA $18
 31/A19C: B1 70     LDA ($70),Y
 31/A19E: 29 87     AND #$87
 31/A1A0: C5 18     CMP $18
-31/A1A2: F0 5F     BEQ $A203
+31/A1A2: F0 5F     BEQ $A203          ; branch if self-target
 31/A1A4: 38        SEC 
-31/A1A5: A5 40     LDA $40
+31/A1A5: A5 40     LDA $40            ; attacker's previous hp
 31/A1A7: E5 78     SBC $78
 31/A1A9: A5 41     LDA $41
 31/A1AB: E5 79     SBC $79
-31/A1AD: 90 2B     BCC $A1DA
+31/A1AD: 90 2B     BCC $A1DA          ; branch if attacker didn't gain hp
 31/A1AF: 38        SEC 
 31/A1B0: A5 40     LDA $40
 31/A1B2: E5 78     SBC $78
@@ -8246,14 +8305,14 @@
 31/A1DA: 38        SEC 
 31/A1DB: A5 78     LDA $78
 31/A1DD: E5 40     SBC $40
-31/A1DF: 9D 5F 7E  STA $7E5F,X
+31/A1DF: 9D 5F 7E  STA $7E5F,X        ; set damage numeral value for attacker
 31/A1E2: E8        INX 
 31/A1E3: A5 79     LDA $79
 31/A1E5: E5 41     SBC $41
 31/A1E7: 09 80     ORA #$80
 31/A1E9: 9D 5F 7E  STA $7E5F,X
-31/A1EC: 20 B5 A2  JSR $A2B5
-31/A1EF: 30 0A     BMI $A1FB
+31/A1EC: 20 B5 A2  JSR $A2B5          ; get attacker flags
+31/A1EF: 30 0A     BMI $A1FB          ; branch if a monster
 31/A1F1: AE EE 78  LDX $78EE
 31/A1F4: A9 25     LDA #$25           ; $0645: "ＨＰをきゅうしゅうした！" / "Absorbed HP!"
 31/A1F6: 9D DA 78  STA $78DA,X
@@ -8266,7 +8325,7 @@
 31/A207: AE EE 78  LDX $78EE
 31/A20A: BD DA 78  LDA $78DA,X
 31/A20D: C9 FF     CMP #$FF
-31/A20F: F0 05     BEQ $A216
+31/A20F: F0 05     BEQ $A216          ; branch if no drained/absorbed message
 31/A211: E6 43     INC $43
 31/A213: EE EE 78  INC $78EE
 31/A216: A6 62     LDX $62
@@ -8275,75 +8334,75 @@
 31/A21C: 29 7F     AND #$7F
 31/A21E: CA        DEX 
 31/A21F: 1D 5F 7E  ORA $7E5F,X
-31/A222: D0 18     BNE $A23C
+31/A222: D0 18     BNE $A23C          ; branch if attacker hp changed
 31/A224: A9 FF     LDA #$FF
-31/A226: 9D 5F 7E  STA $7E5F,X
+31/A226: 9D 5F 7E  STA $7E5F,X        ; set damage to $FFFF
 31/A229: E8        INX 
 31/A22A: 9D 5F 7E  STA $7E5F,X
 31/A22D: A5 43     LDA $43
-31/A22F: F0 0B     BEQ $A23C
+31/A22F: F0 0B     BEQ $A23C          ; remove drained/absorbed message from queue
 31/A231: CE EE 78  DEC $78EE
 31/A234: AE EE 78  LDX $78EE
 31/A237: A9 FF     LDA #$FF
 31/A239: 9D DA 78  STA $78DA,X
 31/A23C: A6 64     LDX $64
 31/A23E: A5 42     LDA $42
-31/A240: F0 17     BEQ $A259
+31/A240: F0 17     BEQ $A259          ; branch if hp restored
 31/A242: A0 03     LDY #$03
 31/A244: 38        SEC 
 31/A245: B1 70     LDA ($70),Y
 31/A247: E5 3C     SBC $3C
-31/A249: 9D 4F 7E  STA $7E4F,X
+31/A249: 9D 4F 7E  STA $7E4F,X        ; set damage numeral value
 31/A24C: C8        INY 
 31/A24D: E8        INX 
 31/A24E: B1 70     LDA ($70),Y
 31/A250: E5 3D     SBC $3D
-31/A252: 09 80     ORA #$80
+31/A252: 09 80     ORA #$80           ; green numerals
 31/A254: 9D 4F 7E  STA $7E4F,X
 31/A257: D0 0B     BNE $A264
 31/A259: A5 6A     LDA $6A
-31/A25B: 9D 4F 7E  STA $7E4F,X
+31/A25B: 9D 4F 7E  STA $7E4F,X        ; set damage numeral value
 31/A25E: E8        INX 
 31/A25F: A5 6B     LDA $6B
 31/A261: 9D 4F 7E  STA $7E4F,X
 31/A264: A5 74     LDA $74
-31/A266: F0 20     BEQ $A288
-31/A268: 20 B5 A2  JSR $A2B5
-31/A26B: 10 1B     BPL $A288
+31/A266: F0 20     BEQ $A288          ; branch if not trying to run away
+31/A268: 20 B5 A2  JSR $A2B5          ; get attacker flags
+31/A26B: 10 1B     BPL $A288          ; branch if a character
 31/A26D: B1 70     LDA ($70),Y
-31/A26F: 30 17     BMI $A288
+31/A26F: 30 17     BMI $A288          ; branch if target is a monster
 31/A271: A0 27     LDY #$27
-31/A273: B1 70     LDA ($70),Y
+31/A273: B1 70     LDA ($70),Y        ; undo effect from 30/9F15
 31/A275: E9 01     SBC #$01
 31/A277: 91 70     STA ($70),Y
 31/A279: A5 7C     LDA $7C
-31/A27B: F0 0B     BEQ $A288
+31/A27B: F0 0B     BEQ $A288          ; branch if no hits
 31/A27D: AE EE 78  LDX $78EE
 31/A280: A9 55     LDA #$55           ; $0675: "にげごしで　ぼうぎょできなかった" / "Defenceless"
 31/A282: 9D DA 78  STA $78DA,X
 31/A285: EE EE 78  INC $78EE
-31/A288: 20 B5 A2  JSR $A2B5
-31/A28B: 30 28     BMI $A2B5
-31/A28D: 20 53 BF  JSR $BF53
+31/A288: 20 B5 A2  JSR $A2B5          ; get attacker flags
+31/A28B: 30 28     BMI $A2B5          ; return if a monster
+31/A28D: 20 53 BF  JSR $BF53          ; split monster
 31/A290: A0 31     LDY #$31
-31/A292: B1 6E     LDA ($6E),Y
-31/A294: 30 04     BMI $A29A
+31/A292: B1 6E     LDA ($6E),Y        ; right hand item
+31/A294: 30 04     BMI $A29A          ; branch if a shield
 31/A296: 29 01     AND #$01
-31/A298: D0 0C     BNE $A2A6
+31/A298: D0 0C     BNE $A2A6          ; branch if a normal weapon
 31/A29A: A5 7D     LDA $7D
-31/A29C: D0 08     BNE $A2A6
+31/A29C: D0 08     BNE $A2A6          ; branch if nonzero number of hits
 31/A29E: A5 7C     LDA $7C
-31/A2A0: 85 BC     STA $BC
+31/A2A0: 85 BC     STA $BC            ; set number of hits
 31/A2A2: A9 00     LDA #$00
 31/A2A4: 85 BB     STA $BB
 31/A2A6: A0 33     LDY #$33
 31/A2A8: B1 6E     LDA ($6E),Y
 31/A2AA: 29 04     AND #$04
-31/A2AC: F0 07     BEQ $A2B5
+31/A2AC: F0 07     BEQ $A2B5          ; branch if not harp or bow + arrow
 31/A2AE: 18        CLC 
 31/A2AF: A5 7C     LDA $7C
 31/A2B1: 65 7D     ADC $7D
-31/A2B3: 85 BB     STA $BB
+31/A2B3: 85 BB     STA $BB            ; total number of hits
 ; fallthrough
 
 ; [ get attacker flags ]
@@ -8352,21 +8411,21 @@
 31/A2B7: B1 6E     LDA ($6E),Y
 31/A2B9: 60        RTS 
 
-; [  ]
+; [ init attacker and target ]
 
 31/A2BA: 20 B5 A2  JSR $A2B5          ; get attacker flags
 31/A2BD: 29 07     AND #$07
-31/A2BF: 85 66     STA $66
+31/A2BF: 85 66     STA $66            ; set attacker slot
 31/A2C1: 0A        ASL 
 31/A2C2: 85 62     STA $62
-31/A2C4: B1 70     LDA ($70),Y
+31/A2C4: B1 70     LDA ($70),Y        ; target flags
 31/A2C6: 29 07     AND #$07
-31/A2C8: 85 68     STA $68
+31/A2C8: 85 68     STA $68            ; set target slot
 31/A2CA: 0A        ASL 
 31/A2CB: 85 64     STA $64
 31/A2CD: A6 62     LDX $62
 31/A2CF: A0 01     LDY #$01
-31/A2D1: B1 6E     LDA ($6E),Y
+31/A2D1: B1 6E     LDA ($6E),Y        ; set attacker status buffer
 31/A2D3: 95 F0     STA $F0,X
 31/A2D5: E8        INX 
 31/A2D6: C8        INY 
@@ -8374,7 +8433,7 @@
 31/A2D9: 95 F0     STA $F0,X
 31/A2DB: A6 64     LDX $64
 31/A2DD: 88        DEY 
-31/A2DE: B1 70     LDA ($70),Y
+31/A2DE: B1 70     LDA ($70),Y        ; set target status buffer
 31/A2E0: 95 E0     STA $E0,X
 31/A2E2: E8        INX 
 31/A2E3: C8        INY 
@@ -8396,6 +8455,10 @@
 31/A2FA: 65 5C     ADC $5C
 31/A2FC: 85 6F     STA $6F
 31/A2FE: A9 07     LDA #$07
+; fallthrough
+
+; [  ]
+
 31/A300: 85 4A     STA $4A
 31/A302: A5 1A     LDA $1A
 31/A304: 48        PHA 
@@ -8449,10 +8512,10 @@
 31/A365: 85 1A     STA $1A
 31/A367: 60        RTS 
 
-; [  ]
+; [ add to net damage ]
 
 31/A368: 18        CLC 
-31/A369: A5 6A     LDA $6A
+31/A369: A5 6A     LDA $6A            ; add to net damage
 31/A36B: 65 78     ADC $78
 31/A36D: 85 6A     STA $6A
 31/A36F: A5 6B     LDA $6B
@@ -8464,24 +8527,29 @@
 31/A37A: A5 6B     LDA $6B
 31/A37C: E9 27     SBC #$27
 31/A37E: 90 08     BCC $A388
-31/A380: A9 0F     LDA #$0F
+31/A380: A9 0F     LDA #$0F           ; max 9999
 31/A382: 85 6A     STA $6A
 31/A384: A9 27     LDA #$27
 31/A386: 85 6B     STA $6B
 31/A388: 60        RTS 
 
-; [  ]
+; [ add weapon bonus to attack ]
+
+; 127 for shuriken and onion sword, 0 otherwise
 
 31/A389: 18        CLC 
 31/A38A: B1 6E     LDA ($6E),Y
-31/A38C: 65 25     ADC $25
+31/A38C: 65 25     ADC $25            ; add to attack
 31/A38E: 85 25     STA $25
 31/A390: A5 2B     LDA $2B
 31/A392: 69 00     ADC #$00
 31/A394: 85 2B     STA $2B
 31/A396: 60        RTS 
 
-; [  ]
+; [ check for back row penalty ]
+
+; A: slot
+; return carry set if no back row penalty
 
 31/A397: 29 07     AND #$07
 31/A399: 85 52     STA $52
@@ -8490,20 +8558,20 @@
 31/A39F: C8        INY 
 31/A3A0: 11 6E     ORA ($6E),Y
 31/A3A2: 29 08     AND #$08
-31/A3A4: D0 58     BNE $A3FE
+31/A3A4: D0 58     BNE $A3FE          ; return if arrow equipped (carry set)
 31/A3A6: 20 90 BE  JSR $BE90          ; get character offset
 31/A3A9: A8        TAY 
 31/A3AA: C8        INY 
 31/A3AB: C8        INY 
 31/A3AC: C8        INY 
-31/A3AD: B1 59     LDA ($59),Y
+31/A3AD: B1 59     LDA ($59),Y        ; right hand item
 31/A3AF: 85 18     STA $18
 31/A3B1: C8        INY 
 31/A3B2: C8        INY 
-31/A3B3: B1 59     LDA ($59),Y
+31/A3B3: B1 59     LDA ($59),Y        ; left hand item
 31/A3B5: 85 19     STA $19
 31/A3B7: 05 18     ORA $18
-31/A3B9: F0 40     BEQ $A3FB
+31/A3B9: F0 40     BEQ $A3FB          ; return if unarmed (carry clear)
 31/A3BB: AD 1E 74  LDA $741E
 31/A3BE: D0 1E     BNE $A3DE
 31/A3C0: A5 18     LDA $18
@@ -8651,7 +8719,7 @@
 31/A4C3: 69 1A     ADC #$1A
 31/A4C5: 85 46     STA $46
 31/A4C7: A9 00     LDA #$00
-31/A4C9: 69 BB     ADC #$BB           ; 39/BB1A (job stat modifiers)
+31/A4C9: 69 BB     ADC #$BB           ; 39/BB1A (job modifiers)
 31/A4CB: 85 47     STA $47
 31/A4CD: A9 05     LDA #$05
 31/A4CF: 85 4B     STA $4B
@@ -8742,7 +8810,7 @@
 31/A566: A0 37     LDY #$37
 31/A568: 91 5D     STA ($5D),Y
 31/A56A: A0 04     LDY #$04
-31/A56C: B1 24     LDA ($24),Y        ; special attack id
+31/A56C: B1 24     LDA ($24),Y        ; job level ???
 31/A56E: A0 0F     LDY #$0F
 31/A570: 91 5D     STA ($5D),Y
 31/A572: A9 05     LDA #$05
@@ -8880,6 +8948,10 @@
 
 ; [ battle algorithm $04: do item effect ]
 
+; this subroutine is where the item actually gets removed from the inventory.
+; during item selection, items are only removed from inventory temporarily
+; so that other characters can't use the same item (see 34/8374 and 34/9AE7).
+
 ; $1A: item id
 
 31/A65E: A9 01     LDA #$01           ; action script $01: magic/command
@@ -8990,7 +9062,7 @@
 31/A732: A9 00     LDA #$00
 31/A734: 85 4A     STA $4A
 31/A736: 85 69     STA $69
-31/A738: A9 00     LDA #$00
+31/A738: A9 00     LDA #$00           ; clear confused flag
 31/A73A: 85 53     STA $53
 31/A73C: A5 4A     LDA $4A
 31/A73E: 85 18     STA $18            ; index
@@ -9014,20 +9086,20 @@
 31/A764: C8        INY 
 31/A765: 91 24     STA ($24),Y
 31/A767: A0 01     LDY #$01
-31/A769: B1 24     LDA ($24),Y        ; 
+31/A769: B1 24     LDA ($24),Y        ; status 1
 31/A76B: 29 E8     AND #$E8
-31/A76D: F0 05     BEQ $A774          ; branch if not asleep, confused, toad, mini
+31/A76D: F0 05     BEQ $A774          ; branch if not dead, stone, toad, mini
 31/A76F: A9 00     LDA #$00           ; do nothing
 31/A771: 4C B9 A8  JMP $A8B9
 31/A774: C8        INY 
-31/A775: B1 24     LDA ($24),Y        ; status
+31/A775: B1 24     LDA ($24),Y        ; status 2
 31/A777: 29 E0     AND #$E0
-31/A779: F0 0E     BEQ $A789
+31/A779: F0 0E     BEQ $A789          ; branch if not asleep, paralyzed, or confused
 31/A77B: 29 20     AND #$20
-31/A77D: F0 05     BEQ $A784          ; branch if not toad
-31/A77F: E6 53     INC $53
+31/A77D: F0 05     BEQ $A784          ; branch if not confused
+31/A77F: E6 53     INC $53            ; set confused flag
 31/A781: 4C C5 A7  JMP $A7C5
-31/A784: A9 01     LDA #$01
+31/A784: A9 01     LDA #$01           ; asleep/paralyzed
 31/A786: 4C B9 A8  JMP $A8B9
 31/A789: AD D8 7E  LDA $7ED8
 31/A78C: 30 37     BMI $A7C5          ; branch if boss battle
@@ -9081,12 +9153,12 @@
 31/A7EF: A9 64     LDA #$64
 31/A7F1: 20 B4 BE  JSR $BEB4          ; random (0..A)
 31/A7F4: A0 37     LDY #$37
-31/A7F6: D1 24     CMP ($24),Y
+31/A7F6: D1 24     CMP ($24),Y        ; special attack rate
 31/A7F8: B0 03     BCS $A7FD
 31/A7FA: 4C 5F A8  JMP $A85F          ; use special attack
 31/A7FD: A5 53     LDA $53
-31/A7FF: F0 08     BEQ $A809
-31/A801: 20 CD A8  JSR $A8CD
+31/A7FF: F0 08     BEQ $A809          ; branch if not confused
+31/A801: 20 CD A8  JSR $A8CD          ; target a random monster
 31/A804: A9 04     LDA #$04           ; use fight command
 31/A806: 4C B9 A8  JMP $A8B9
 31/A809: A9 00     LDA #$00
@@ -9137,8 +9209,9 @@
 31/A864: 91 24     STA ($24),Y        ; using magic
 31/A866: AD D8 7E  LDA $7ED8
 31/A869: 10 2B     BPL $A896          ; branch if not a boss battle
+; boss scripts go sequentially
 31/A86B: 38        SEC 
-31/A86C: AD B7 78  LDA $78B7
+31/A86C: AD B7 78  LDA $78B7          ; special attack script pointer
 31/A86F: E9 01     SBC #$01
 31/A871: 18        CLC 
 31/A872: 69 38     ADC #$38
@@ -9147,10 +9220,10 @@
 31/A877: 29 7F     AND #$7F
 31/A879: 48        PHA 
 31/A87A: B1 24     LDA ($24),Y
-31/A87C: 20 1B A9  JSR $A91B          ; choose target
+31/A87C: 20 1B A9  JSR $A91B          ; choose target (monster special attack)
 31/A87F: A5 69     LDA $69
-31/A881: D0 2A     BNE $A8AD
-31/A883: EE B7 78  INC $78B7
+31/A881: D0 2A     BNE $A8AD          ; if ???, do nothing
+31/A883: EE B7 78  INC $78B7          ; increment special attack script pointer
 31/A886: AD B7 78  LDA $78B7
 31/A889: C9 09     CMP #$09
 31/A88B: D0 05     BNE $A892
@@ -9158,6 +9231,7 @@
 31/A88F: 8D B7 78  STA $78B7
 31/A892: 68        PLA 
 31/A893: 4C B9 A8  JMP $A8B9
+; normal monster scripts are random
 31/A896: A9 07     LDA #$07
 31/A898: 20 B4 BE  JSR $BEB4          ; random (0..A)
 31/A89B: 18        CLC 
@@ -9167,9 +9241,9 @@
 31/A8A1: 29 7F     AND #$7F
 31/A8A3: 48        PHA 
 31/A8A4: B1 24     LDA ($24),Y        ; choose a random special attack
-31/A8A6: 20 1B A9  JSR $A91B          ; choose target
+31/A8A6: 20 1B A9  JSR $A91B          ; choose target (monster special attack)
 31/A8A9: A5 69     LDA $69
-31/A8AB: F0 0B     BEQ $A8B8
+31/A8AB: F0 0B     BEQ $A8B8          ; if ???, do nothing
 31/A8AD: 20 C8 A8  JSR $A8C8          ; get flags
 31/A8B0: 29 EF     AND #$EF
 31/A8B2: 91 24     STA ($24),Y
@@ -9191,11 +9265,11 @@
 31/A8CA: B1 24     LDA ($24),Y
 31/A8CC: 60        RTS 
 
-; [  ]
+; [ target a random monster ]
 
 31/A8CD: A0 30     LDY #$30
 31/A8CF: A9 80     LDA #$80
-31/A8D1: 91 24     STA ($24),Y
+31/A8D1: 91 24     STA ($24),Y        ; set target flags
 31/A8D3: A9 07     LDA #$07
 31/A8D5: 20 B4 BE  JSR $BEB4          ; random (0..A)
 31/A8D8: AA        TAX 
@@ -9244,7 +9318,7 @@
 31/A918: D0 D6     BNE $A8F0
 31/A91A: 60        RTS 
 
-; [ choose target ]
+; [ choose target (monster special attack) ]
 
 31/A91B: 85 46     STA $46
 31/A91D: 29 7F     AND #$7F
@@ -9267,13 +9341,13 @@
 31/A93E: AD 05 74  LDA $7405
 31/A941: 30 75     BMI $A9B8
 31/A943: A5 53     LDA $53
-31/A945: D0 71     BNE $A9B8
+31/A945: D0 71     BNE $A9B8          ; branch if confused
 31/A947: AD 05 74  LDA $7405
 31/A94A: 29 40     AND #$40
 31/A94C: F0 27     BEQ $A975
 31/A94E: 85 63     STA $63
 31/A950: A5 64     LDA $64
-31/A952: 20 F7 A9  JSR $A9F7
+31/A952: 20 F7 A9  JSR $A9F7          ; validate target (monster special attack)
 31/A955: D0 09     BNE $A960
 31/A957: A6 64     LDX $64
 31/A959: A5 62     LDA $62
@@ -9305,7 +9379,7 @@
 31/A990: 95 65     STA $65,X
 31/A992: 8A        TXA 
 31/A993: 48        PHA 
-31/A994: 20 F7 A9  JSR $A9F7
+31/A994: 20 F7 A9  JSR $A9F7          ; validate target (monster special attack)
 31/A997: F0 13     BEQ $A9AC
 31/A999: 68        PLA 
 31/A99A: 18        CLC 
@@ -9323,6 +9397,7 @@
 31/A9B0: 20 20 FD  JSR $FD20          ; set bit
 31/A9B3: 85 62     STA $62
 31/A9B5: 4C EB A9  JMP $A9EB
+; confused ???
 31/A9B8: A9 80     LDA #$80
 31/A9BA: 85 63     STA $63
 31/A9BC: AD 05 74  LDA $7405
@@ -9338,7 +9413,7 @@
 31/A9D3: C9 04     CMP #$04
 31/A9D5: 90 F7     BCC $A9CE
 31/A9D7: 85 22     STA $22
-31/A9D9: 20 F7 A9  JSR $A9F7
+31/A9D9: 20 F7 A9  JSR $A9F7          ; validate target (monster special attack)
 31/A9DC: D0 F0     BNE $A9CE
 31/A9DE: 38        SEC 
 31/A9DF: A5 22     LDA $22
@@ -9355,9 +9430,12 @@
 31/A9F4: 91 24     STA ($24),Y
 31/A9F6: 60        RTS 
 
-; [  ]
+; [ validate target (monster special attack) ]
 
-31/A9F7: 85 18     STA $18            ; index
+; A: character id
+; return nonzero if target invalid
+
+31/A9F7: 85 18     STA $18
 31/A9F9: A9 40     LDA #$40           ; size = 64 bytes
 31/A9FB: 85 1A     STA $1A
 31/A9FD: A9 75     LDA #$75           ; offset = $7575
@@ -9366,15 +9444,35 @@
 31/AA03: 85 21     STA $21
 31/AA05: 20 9D BE  JSR $BE9D          ; calculate pointer
 31/AA08: A0 01     LDY #$01
-31/AA0A: B1 1C     LDA ($1C),Y        ; job id
+31/AA0A: B1 1C     LDA ($1C),Y
 31/AA0C: 29 C0     AND #$C0
-31/AA0E: D0 05     BNE $AA15
+31/AA0E: D0 05     BNE $AA15          ; branch if dead or stone
 31/AA10: C8        INY 
 31/AA11: B1 1C     LDA ($1C),Y
-31/AA13: 29 01     AND #$01
+31/AA13: 29 01     AND #$01           ; check if jumping
 31/AA15: 60        RTS 
 
 ; [ battle algorithm $05: update character equipment ]
+
+; weapon properties format (30/9400-30/96BF)
+;   $00: attack element
+;   $01: hit %
+;   $02: attack
+;   $03: attack status
+;   $04: spell cast
+;   $05: cbbbbbbb
+;          c: consumable
+;          b: attack bonus (onion sword and shuriken)
+;   $06: abcdefgh
+;          a: +5 strength
+;          b: +5 agility
+;          c: +5 vitality
+;          d: +5 intellect
+;          e: +5 spirit
+;          f: fire boost
+;          g: ice boost
+;          h: lightning boost
+;   $07: equipability
 
 ; A: character id
 
@@ -9652,11 +9750,11 @@
 31/AC57: 20 98 BE  JSR $BE98          ; add character offset
 31/AC5A: AD 1D 74  LDA $741D
 31/AC5D: 29 7F     AND #$7F
-31/AC5F: 91 5B     STA ($5B),Y
+31/AC5F: 91 5B     STA ($5B),Y        ; right hand bonus attack
 31/AC61: C8        INY 
 31/AC62: AD 25 74  LDA $7425
 31/AC65: 29 7F     AND #$7F
-31/AC67: 91 5B     STA ($5B),Y
+31/AC67: 91 5B     STA ($5B),Y        ; left hand bonus attack
 31/AC69: 18        CLC 
 31/AC6A: A4 5F     LDY $5F
 31/AC6C: B1 57     LDA ($57),Y
@@ -10135,7 +10233,7 @@
 31/B02B: 85 70     STA $70
 31/B02D: A9 76     LDA #$76
 31/B02F: 85 71     STA $71
-31/B031: 20 BA A2  JSR $A2BA
+31/B031: 20 BA A2  JSR $A2BA          ; init attacker and target
 31/B034: A2 FF     LDX #$FF
 31/B036: 86 78     STX $78
 31/B038: 86 79     STX $79
@@ -10146,7 +10244,7 @@
 31/B042: 8E 73 75  STX $7573
 31/B045: AD 9D 7E  LDA $7E9D
 31/B048: C9 06     CMP #$06
-31/B04A: F0 19     BEQ $B065
+31/B04A: F0 19     BEQ $B065          ; branch if summon or split
 31/B04C: A6 62     LDX $62
 31/B04E: B5 F0     LDA $F0,X
 31/B050: 29 C0     AND #$C0
@@ -10292,12 +10390,12 @@
 31/B177: 85 1B     STA $1B
 31/B179: 6C 1A 00  JMP ($001A)
 
-; [ attack effect $00: normal damage ]
+; [ attack effect $00: normal magic damage ]
 
 31/B17C: A0 26     LDY #$26
 31/B17E: B1 70     LDA ($70),Y
-31/B180: F0 03     BEQ $B185
-31/B182: 20 FA B9  JSR $B9FA
+31/B180: F0 03     BEQ $B185          ; branch if no reflect
+31/B182: 20 FA B9  JSR $B9FA          ; do reflect effect
 31/B185: 20 8F B8  JSR $B88F
 31/B188: 20 E7 B8  JSR $B8E7
 31/B18B: F0 24     BEQ $B1B1
@@ -10315,7 +10413,7 @@
 31/B1A7: B1 70     LDA ($70),Y
 31/B1A9: CD 03 74  CMP $7403
 31/B1AC: 90 06     BCC $B1B4
-31/B1AE: 20 26 B9  JSR $B926
+31/B1AE: 20 26 B9  JSR $B926          ; attack ineffective
 31/B1B1: 4C 1C B2  JMP $B21C
 31/B1B4: A0 15     LDY #$15
 31/B1B6: B1 70     LDA ($70),Y
@@ -10364,9 +10462,9 @@
 31/B20D: A5 1D     LDA $1D
 31/B20F: 85 79     STA $79
 31/B211: 20 BC BD  JSR $BDBC
-31/B214: 20 D2 BC  JSR $BCD2
+31/B214: 20 D2 BC  JSR $BCD2          ; subtract damage from hp
 31/B217: 90 03     BCC $B21C
-31/B219: 20 43 BE  JSR $BE43
+31/B219: 20 43 BE  JSR $BE43          ; apply magic status
 31/B21C: AD 74 75  LDA $7574
 31/B21F: F0 11     BEQ $B232
 31/B221: A0 03     LDY #$03
@@ -10382,12 +10480,14 @@
 
 ; [ attack effect $01/$18: healing ]
 
-31/B233: 20 E2 BB  JSR $BBE2
+31/B233: 20 E2 BB  JSR $BBE2          ; check if target is undead
+; undead
 31/B236: 90 07     BCC $B23F
 31/B238: A9 01     LDA #$01
 31/B23A: 85 54     STA $54
 31/B23C: 4C 7C B1  JMP $B17C
-31/B23F: 20 21 B9  JSR $B921
+; not undead
+31/B23F: 20 21 B9  JSR $B921          ; check if attack was effective
 31/B242: F0 31     BEQ $B275
 31/B244: AD 05 74  LDA $7405
 31/B247: 29 07     AND #$07
@@ -10406,9 +10506,9 @@
 31/B261: 91 70     STA ($70),Y
 31/B263: 18        CLC 
 31/B264: 90 0F     BCC $B275
-31/B266: 20 DD B6  JSR $B6DD
+31/B266: 20 DD B6  JSR $B6DD          ; calculate restorative damage
 31/B269: 20 BC BD  JSR $BDBC
-31/B26C: 20 24 BD  JSR $BD24
+31/B26C: 20 24 BD  JSR $BD24          ; add damage to hp
 31/B26F: A5 79     LDA $79
 31/B271: 09 80     ORA #$80
 31/B273: 85 79     STA $79
@@ -10424,7 +10524,7 @@
 31/B27E: 10 0B     BPL $B28B
 31/B280: AD D8 7E  LDA $7ED8
 31/B283: 10 06     BPL $B28B
-31/B285: 20 26 B9  JSR $B926
+31/B285: 20 26 B9  JSR $B926          ; attack ineffective
 31/B288: 4C B4 B2  JMP $B2B4
 31/B28B: AD 02 74  LDA $7402
 31/B28E: 20 B4 BE  JSR $BEB4          ; random (0..A)
@@ -10438,7 +10538,7 @@
 31/B29E: B1 70     LDA ($70),Y
 31/B2A0: E9 00     SBC #$00
 31/B2A2: B0 06     BCS $B2AA
-31/B2A4: 20 26 B9  JSR $B926
+31/B2A4: 20 26 B9  JSR $B926          ; attack ineffective
 31/B2A7: 4C B4 B2  JMP $B2B4
 31/B2AA: 88        DEY 
 31/B2AB: A5 18     LDA $18
@@ -10458,7 +10558,7 @@
 31/B2BD: 10 08     BPL $B2C7
 31/B2BF: AD D8 7E  LDA $7ED8
 31/B2C2: 10 03     BPL $B2C7
-31/B2C4: 4C 26 B9  JMP $B926
+31/B2C4: 4C 26 B9  JMP $B926          ; attack ineffective
 31/B2C7: 20 B5 A2  JSR $A2B5          ; get attacker flags
 31/B2CA: 29 87     AND #$87
 31/B2CC: 85 28     STA $28
@@ -10466,13 +10566,13 @@
 31/B2D0: 29 87     AND #$87
 31/B2D2: C5 28     CMP $28
 31/B2D4: F0 EE     BEQ $B2C4
-31/B2D6: 20 DD B6  JSR $B6DD
+31/B2D6: 20 DD B6  JSR $B6DD          ; calculate restorative damage
 31/B2D9: A5 78     LDA $78
 31/B2DB: 48        PHA 
 31/B2DC: A5 79     LDA $79
 31/B2DE: 48        PHA 
 31/B2DF: 20 BC BD  JSR $BDBC
-31/B2E2: 20 67 BD  JSR $BD67
+31/B2E2: 20 67 BD  JSR $BD67          ; drain hp to attacker
 31/B2E5: 68        PLA 
 31/B2E6: 85 79     STA $79
 31/B2E8: 68        PLA 
@@ -10496,7 +10596,7 @@
 
 ; [ attack effect $04: apply status ]
 
-31/B30C: 20 E2 BB  JSR $BBE2
+31/B30C: 20 E2 BB  JSR $BBE2          ; check if target is undead
 31/B30F: 90 0E     BCC $B31F
 31/B311: AD 88 7E  LDA $7E88
 31/B314: C9 01     CMP #$01
@@ -10510,7 +10610,7 @@
 31/B327: 10 0B     BPL $B334
 31/B329: AD D8 7E  LDA $7ED8
 31/B32C: 10 06     BPL $B334
-31/B32E: 20 26 B9  JSR $B926
+31/B32E: 20 26 B9  JSR $B926          ; attack ineffective
 31/B331: 4C 79 B3  JMP $B379
 31/B334: AD 03 74  LDA $7403
 31/B337: 85 24     STA $24
@@ -10520,11 +10620,11 @@
 31/B33F: BD E0 00  LDA $00E0,X
 31/B342: 29 40     AND #$40
 31/B344: F0 06     BEQ $B34C
-31/B346: 20 26 B9  JSR $B926
+31/B346: 20 26 B9  JSR $B926          ; attack ineffective
 31/B349: 4C 79 B3  JMP $B379
 31/B34C: 20 75 B8  JSR $B875
 31/B34F: B0 06     BCS $B357
-31/B351: 20 26 B9  JSR $B926
+31/B351: 20 26 B9  JSR $B926          ; attack ineffective
 31/B354: 4C 79 B3  JMP $B379
 31/B357: AD 88 7E  LDA $7E88
 31/B35A: C9 16     CMP #$16
@@ -10541,7 +10641,7 @@
 31/B36D: B1 70     LDA ($70),Y
 31/B36F: C5 18     CMP $18
 31/B371: B0 D3     BCS $B346
-31/B373: 20 F3 BB  JSR $BBF3
+31/B373: 20 F3 BB  JSR $BBF3          ; apply status
 31/B376: 4C 79 B3  JMP $B379
 31/B379: 60        RTS 
 
@@ -10550,7 +10650,7 @@
 ; "レイズ" / "Life"
 ; "アレイズ" / "Life2"
 
-31/B37A: 20 E2 BB  JSR $BBE2
+31/B37A: 20 E2 BB  JSR $BBE2          ; check if target is undead
 31/B37D: 90 0F     BCC $B38E
 31/B37F: A6 64     LDX $64
 31/B381: B5 E0     LDA $E0,X
@@ -10559,7 +10659,7 @@
 31/B387: A9 04     LDA #$04
 31/B389: 85 54     STA $54
 31/B38B: 4C 0C B3  JMP $B30C
-31/B38E: 20 21 B9  JSR $B921
+31/B38E: 20 21 B9  JSR $B921          ; check if attack was effective
 31/B391: F0 36     BEQ $B3C9
 31/B393: A6 64     LDX $64
 31/B395: B5 E0     LDA $E0,X
@@ -10569,18 +10669,18 @@
 31/B39E: F0 EE     BEQ $B38E
 31/B3A0: AD 03 74  LDA $7403
 31/B3A3: 85 24     STA $24
-31/B3A5: 20 F1 B7  JSR $B7F1
+31/B3A5: 20 F1 B7  JSR $B7F1          ; remove status
 31/B3A8: 20 25 BC  JSR $BC25          ; get target flags
 31/B3AB: 10 08     BPL $B3B5
 31/B3AD: 29 07     AND #$07
 31/B3AF: AA        TAX 
 31/B3B0: A9 00     LDA #$00
 31/B3B2: 9D C4 7E  STA $7EC4,X
-31/B3B5: A9 00     LDA #$00
+31/B3B5: A9 00     LDA #$00           ; $010C: "そせい" / "Revived"
 31/B3B7: 8D D9 78  STA $78D9
-31/B3BA: 20 03 BD  JSR $BD03
+31/B3BA: 20 03 BD  JSR $BD03          ; restore hp
 31/B3BD: 20 BC BD  JSR $BDBC
-31/B3C0: 20 24 BD  JSR $BD24
+31/B3C0: 20 24 BD  JSR $BD24          ; add damage to hp
 31/B3C3: A5 79     LDA $79
 31/B3C5: 09 80     ORA #$80
 31/B3C7: 85 79     STA $79
@@ -10588,23 +10688,23 @@
 
 ; [ attack effect $06: remove status ]
 
-31/B3CA: 20 21 B9  JSR $B921
+31/B3CA: 20 21 B9  JSR $B921          ; check if attack was effective
 31/B3CD: F0 21     BEQ $B3F0
-31/B3CF: AD 03 74  LDA $7403
+31/B3CF: AD 03 74  LDA $7403          ; status effect
 31/B3D2: 85 24     STA $24
 31/B3D4: C9 FF     CMP #$FF
-31/B3D6: D0 15     BNE $B3ED
+31/B3D6: D0 15     BNE $B3ED          ; branch if removing all ???
 31/B3D8: A6 64     LDX $64
 31/B3DA: B5 E0     LDA $E0,X
 31/B3DC: 29 40     AND #$40
-31/B3DE: F0 0D     BEQ $B3ED
+31/B3DE: F0 0D     BEQ $B3ED          ; branch if target not stone
 31/B3E0: E8        INX 
 31/B3E1: B5 E0     LDA $E0,X
 31/B3E3: 29 20     AND #$20
-31/B3E5: F0 06     BEQ $B3ED
-31/B3E7: 20 26 B9  JSR $B926
+31/B3E5: F0 06     BEQ $B3ED          ; branch if target not confused
+31/B3E7: 20 26 B9  JSR $B926          ; attack ineffective
 31/B3EA: 4C F0 B3  JMP $B3F0
-31/B3ED: 20 F1 B7  JSR $B7F1
+31/B3ED: 20 F1 B7  JSR $B7F1          ; remove status
 31/B3F0: 60        RTS 
 
 ; [ attack effect $07: toad/mini ]
@@ -10619,7 +10719,7 @@
 31/B402: 10 0B     BPL $B40F          ; branch if target is a character
 31/B404: AD D8 7E  LDA $7ED8
 31/B407: 10 06     BPL $B40F
-31/B409: 20 26 B9  JSR $B926
+31/B409: 20 26 B9  JSR $B926          ; attack ineffective
 31/B40C: 4C 73 B4  JMP $B473
 31/B40F: A0 01     LDY #$01
 31/B411: B1 70     LDA ($70),Y
@@ -10639,7 +10739,7 @@
 31/B42F: A5 18     LDA $18
 31/B431: 29 20     AND #$20
 31/B433: D0 3E     BNE $B473
-31/B435: A9 0F     LDA #$0F
+31/B435: A9 0F     LDA #$0F           ; "かえる" / "Frog"
 31/B437: 8D D9 78  STA $78D9
 31/B43A: D0 37     BNE $B473
 31/B43C: A5 19     LDA $19
@@ -10648,7 +10748,7 @@
 31/B442: A5 18     LDA $18
 31/B444: 29 08     AND #$08
 31/B446: D0 2B     BNE $B473
-31/B448: A9 11     LDA #$11
+31/B448: A9 11     LDA #$11           ; "こびと　" / "Mini"
 31/B44A: 8D D9 78  STA $78D9
 31/B44D: D0 24     BNE $B473
 31/B44F: A5 18     LDA $18
@@ -10657,7 +10757,7 @@
 31/B455: A5 19     LDA $19
 31/B457: 29 20     AND #$20
 31/B459: D0 18     BNE $B473
-31/B45B: A9 05     LDA #$05
+31/B45B: A9 05     LDA #$05           ; "もとにもどった" / "Cured"
 31/B45D: 8D D9 78  STA $78D9
 31/B460: D0 11     BNE $B473
 31/B462: A5 18     LDA $18
@@ -10666,7 +10766,7 @@
 31/B468: A5 19     LDA $19
 31/B46A: 29 08     AND #$08
 31/B46C: D0 05     BNE $B473
-31/B46E: A9 07     LDA #$07
+31/B46E: A9 07     LDA #$07           ; "おおきくなった" / "Enlarged"
 31/B470: 8D D9 78  STA $78D9
 31/B473: 60        RTS 
 
@@ -10674,9 +10774,9 @@
 
 ; "プロテス" /  "Safe"
 
-31/B474: 20 21 B9  JSR $B921
+31/B474: 20 21 B9  JSR $B921          ; check if attack was effective
 31/B477: F0 06     BEQ $B47F
-31/B479: 20 DD B6  JSR $B6DD
+31/B479: 20 DD B6  JSR $B6DD          ; calculate restorative damage
 31/B47C: 20 04 B7  JSR $B704          ; protect effect
 31/B47F: 60        RTS 
 
@@ -10684,9 +10784,9 @@
 
 ; "デジョン" / "Haste"
 
-31/B480: 20 21 B9  JSR $B921
+31/B480: 20 21 B9  JSR $B921          ; check if attack was effective
 31/B483: F0 06     BEQ $B48B
-31/B485: 20 DD B6  JSR $B6DD
+31/B485: 20 DD B6  JSR $B6DD          ; calculate restorative damage
 31/B488: 20 52 B7  JSR $B752          ; haste effect
 31/B48B: 60        RTS 
 
@@ -10694,12 +10794,12 @@
 
 ; "リフレク" / "Wall"
 
-31/B48C: 20 21 B9  JSR $B921
+31/B48C: 20 21 B9  JSR $B921          ; check if attack was effective
 31/B48F: F0 09     BEQ $B49A
 31/B491: A0 26     LDY #$26
 31/B493: B1 70     LDA ($70),Y
 31/B495: 18        CLC 
-31/B496: 69 01     ADC #$01
+31/B496: 69 01     ADC #$01           ; increment reflect counter
 31/B498: 91 70     STA ($70),Y
 31/B49A: 60        RTS 
 
@@ -10713,7 +10813,7 @@
 31/B4A3: 10 0B     BPL $B4B0
 31/B4A5: AD D8 7E  LDA $7ED8
 31/B4A8: 10 06     BPL $B4B0
-31/B4AA: 20 26 B9  JSR $B926
+31/B4AA: 20 26 B9  JSR $B926          ; attack ineffective
 31/B4AD: 4C B8 B4  JMP $B4B8
 31/B4B0: A0 20     LDY #$20
 31/B4B2: B1 70     LDA ($70),Y
@@ -10770,14 +10870,14 @@
 31/B4EE: 20 A0 B9  JSR $B9A0
 31/B4F1: 4C CF B4  JMP $B4CF
 
-; [ attack effect $10: monster summon ??? ]
+; [ attack effect $10: monster summon ]
 
 ; "しょうかんまほう" / "Summon"
 
 31/B4F4: 20 36 B9  JSR $B936
 31/B4F7: A6 1C     LDX $1C
 31/B4F9: 86 27     STX $27
-31/B4FB: 20 ED B9  JSR $B9ED
+31/B4FB: 20 ED B9  JSR $B9ED          ; clear target status
 31/B4FE: A9 03     LDA #$03
 31/B500: 20 B4 BE  JSR $BEB4          ; random (0..A)
 31/B503: F0 F9     BEQ $B4FE
@@ -10819,7 +10919,7 @@
 31/B540: 06 78     ASL $78
 31/B542: 26 79     ROL $79
 31/B544: 20 BC BD  JSR $BDBC
-31/B547: 20 D2 BC  JSR $BCD2
+31/B547: 20 D2 BC  JSR $BCD2          ; subtract damage from hp
 31/B54A: A0 03     LDY #$03           ; set hp to zero
 31/B54C: A9 00     LDA #$00
 31/B54E: 91 6E     STA ($6E),Y
@@ -11072,21 +11172,21 @@
 31/B6D8: 95 E0     STA $E0,X
 31/B6DA: 4C CF B4  JMP $B4CF
 
-; [  ]
+; [ calculate restorative damage ]
 
 31/B6DD: A9 00     LDA #$00
-31/B6DF: 85 28     STA $28
-31/B6E1: 85 29     STA $29
-31/B6E3: 85 2B     STA $2B
+31/B6DF: 85 28     STA $28            ; no crit bonus
+31/B6E1: 85 29     STA $29            ; no crit flag
+31/B6E3: 85 2B     STA $2B            ; clear attack msb
 31/B6E5: A9 02     LDA #$02
-31/B6E7: 85 27     STA $27
+31/B6E7: 85 27     STA $27            ; set damage multiplier
 31/B6E9: A5 7C     LDA $7C
-31/B6EB: 85 24     STA $24
+31/B6EB: 85 24     STA $24            ; no. of hits
 31/B6ED: AD 02 74  LDA $7402
-31/B6F0: 85 25     STA $25
+31/B6F0: 85 25     STA $25            ; attack
 31/B6F2: A0 15     LDY #$15
-31/B6F4: B1 70     LDA ($70),Y
-31/B6F6: 85 26     STA $26
+31/B6F4: B1 70     LDA ($70),Y        ; target's m.defense
+31/B6F6: 85 26     STA $26            ; defense
 31/B6F8: 20 44 BB  JSR $BB44          ; calculate damage
 31/B6FB: A5 1C     LDA $1C
 31/B6FD: 85 78     STA $78
@@ -11096,17 +11196,19 @@
 
 ; [ protect effect ]
 
+; +$78: bonus to defense and m.defense
+
 31/B704: A0 23     LDY #$23
-31/B706: B1 70     LDA ($70),Y
+31/B706: B1 70     LDA ($70),Y        ; target defense
 31/B708: C9 FF     CMP #$FF
 31/B70A: D0 08     BNE $B714
 31/B70C: A0 15     LDY #$15
-31/B70E: B1 70     LDA ($70),Y
+31/B70E: B1 70     LDA ($70),Y        ; target m.defense
 31/B710: C9 FF     CMP #$FF
-31/B712: F0 31     BEQ $B745
+31/B712: F0 31     BEQ $B745          ; ineffective if *both* are maxed out
 31/B714: A0 23     LDY #$23
 31/B716: 18        CLC 
-31/B717: B1 70     LDA ($70),Y
+31/B717: B1 70     LDA ($70),Y        ; add to defense
 31/B719: 65 78     ADC $78
 31/B71B: 91 70     STA ($70),Y
 31/B71D: A9 00     LDA #$00
@@ -11114,11 +11216,11 @@
 31/B721: 85 79     STA $79
 31/B723: A5 79     LDA $79
 31/B725: F0 04     BEQ $B72B
-31/B727: A9 FF     LDA #$FF
+31/B727: A9 FF     LDA #$FF           ; max 255
 31/B729: 91 70     STA ($70),Y
 31/B72B: A0 15     LDY #$15
 31/B72D: 18        CLC 
-31/B72E: B1 70     LDA ($70),Y
+31/B72E: B1 70     LDA ($70),Y        ; add to m.defense
 31/B730: 65 78     ADC $78
 31/B732: 91 70     STA ($70),Y
 31/B734: A9 00     LDA #$00
@@ -11126,11 +11228,14 @@
 31/B738: 85 79     STA $79
 31/B73A: A5 79     LDA $79
 31/B73C: F0 04     BEQ $B742
-31/B73E: A9 FF     LDA #$FF
+31/B73E: A9 FF     LDA #$FF           ; max 255
 31/B740: 91 70     STA ($70),Y
-31/B742: 4C 4B B7  JMP $B74B
-31/B745: 20 4B B7  JSR $B74B
-31/B748: 4C 26 B9  JMP $B926
+31/B742: 4C 4B B7  JMP $B74B          ; set damage to null
+31/B745: 20 4B B7  JSR $B74B          ; set damage to null
+31/B748: 4C 26 B9  JMP $B926          ; attack ineffective
+
+; [ set damage to null ]
+
 31/B74B: A2 FF     LDX #$FF
 31/B74D: 86 79     STX $79
 31/B74F: 86 78     STX $78
@@ -11156,7 +11261,7 @@
 31/B76A: A0 1C     LDY #$1C
 31/B76C: B1 70     LDA ($70),Y        ; attack multiplier (left hand)
 31/B76E: C9 10     CMP #$10
-31/B770: B0 4F     BCS $B7C1
+31/B770: B0 4F     BCS $B7C1          ; ineffective if *any* are already maxed out
 31/B772: A0 19     LDY #$19
 31/B774: 18        CLC 
 31/B775: B1 70     LDA ($70),Y        ; add +$78 to attack power
@@ -11187,37 +11292,37 @@
 31/B7A5: 65 7C     ADC $7C
 31/B7A7: C9 10     CMP #$10
 31/B7A9: 90 02     BCC $B7AD
-31/B7AB: A9 10     LDA #$10
+31/B7AB: A9 10     LDA #$10           ; max 16
 31/B7AD: 91 70     STA ($70),Y
 31/B7AF: A0 1C     LDY #$1C
 31/B7B1: 18        CLC 
-31/B7B2: B1 70     LDA ($70),Y
+31/B7B2: B1 70     LDA ($70),Y        ; left hand
 31/B7B4: 65 7C     ADC $7C
 31/B7B6: C9 10     CMP #$10
 31/B7B8: 90 02     BCC $B7BC
-31/B7BA: A9 10     LDA #$10
+31/B7BA: A9 10     LDA #$10           ; max 16
 31/B7BC: 91 70     STA ($70),Y
-31/B7BE: 4C 4B B7  JMP $B74B
-31/B7C1: 20 4B B7  JSR $B74B
-31/B7C4: 4C 26 B9  JMP $B926
+31/B7BE: 4C 4B B7  JMP $B74B          ; set damage to null
+31/B7C1: 20 4B B7  JSR $B74B          ; set damage to null
+31/B7C4: 4C 26 B9  JMP $B926          ; attack ineffective
 
 ; [  ]
 
 ; unused ???
 
 31/B7C7: A0 01     LDY #$01
-31/B7C9: B1 70     LDA ($70),Y
+31/B7C9: B1 70     LDA ($70),Y        ; toggle near fatal status
 31/B7CB: 45 24     EOR $24
 31/B7CD: 91 70     STA ($70),Y
 31/B7CF: B1 70     LDA ($70),Y
 31/B7D1: 29 20     AND #$20
-31/B7D3: F0 00     BEQ $B7D5
+31/B7D3: F0 00     BEQ $B7D5          ; branch if not toad (does nothing...)
 31/B7D5: B1 70     LDA ($70),Y
 31/B7D7: 29 08     AND #$08
-31/B7D9: F0 00     BEQ $B7DB
+31/B7D9: F0 00     BEQ $B7DB          ; branch if not mini (does nothing...)
 31/B7DB: B1 70     LDA ($70),Y
 31/B7DD: 29 28     AND #$28
-31/B7DF: F0 0F     BEQ $B7F0
+31/B7DF: F0 0F     BEQ $B7F0          ; return if not toad or mini
 31/B7E1: A0 37     LDY #$37
 31/B7E3: B1 70     LDA ($70),Y
 31/B7E5: C8        INY 
@@ -11225,21 +11330,24 @@
 31/B7E8: F0 06     BEQ $B7F0
 31/B7EA: A0 01     LDY #$01
 31/B7EC: A9 80     LDA #$80
-31/B7EE: 91 70     STA ($70),Y
+31/B7EE: 91 70     STA ($70),Y        ; set dead status
 31/B7F0: 60        RTS 
 
-; [  ]
+; [ remove status ]
+
+; $24: status to remove
 
 31/B7F1: A5 24     LDA $24
 31/B7F3: 29 01     AND #$01
-31/B7F5: D0 30     BNE $B827
+31/B7F5: D0 30     BNE $B827          ; branch if status 2
+; status 1
 31/B7F7: A0 01     LDY #$01
 31/B7F9: B1 70     LDA ($70),Y
 31/B7FB: 25 24     AND $24
 31/B7FD: D0 03     BNE $B802
-31/B7FF: 4C 26 B9  JMP $B926
+31/B7FF: 4C 26 B9  JMP $B926          ; attack ineffective
 31/B802: A5 24     LDA $24
-31/B804: 49 FF     EOR #$FF
+31/B804: 49 FF     EOR #$FF           ; remove status
 31/B806: 31 70     AND ($70),Y
 31/B808: 91 70     STA ($70),Y
 31/B80A: A6 64     LDX $64
@@ -11255,9 +11363,10 @@
 31/B81C: C9 02     CMP #$02
 31/B81E: 90 03     BCC $B823
 31/B820: 18        CLC 
-31/B821: 69 03     ADC #$03
+31/B821: 69 03     ADC #$03           ; status removed message
 31/B823: 8D D9 78  STA $78D9
 31/B826: 60        RTS 
+; status 2
 31/B827: A0 01     LDY #$01
 31/B829: B1 70     LDA ($70),Y
 31/B82B: C8        INY 
@@ -11305,9 +11414,11 @@
 
 ; [  ]
 
-31/B875: 20 21 B9  JSR $B921
+; return carry clear if attack was effective
+
+31/B875: 20 21 B9  JSR $B921          ; check if attack was effective
 31/B878: A0 24     LDY #$24
-31/B87A: B1 70     LDA ($70),Y
+31/B87A: B1 70     LDA ($70),Y        ; resistant status
 31/B87C: 25 24     AND $24
 31/B87E: D0 03     BNE $B883
 31/B880: 38        SEC 
@@ -11317,7 +11428,10 @@
 
 ; [  ]
 
-31/B885: 20 21 B9  JSR $B921
+; unused ???
+; return carry clear if attack was effective
+
+31/B885: 20 21 B9  JSR $B921          ; check if attack was effective
 31/B888: F0 03     BEQ $B88D
 31/B88A: 38        SEC 
 31/B88B: B0 01     BCS $B88E
@@ -11401,12 +11515,20 @@
 31/B91B: B0 02     BCS $B91F
 31/B91D: A9 00     LDA #$00
 31/B91F: 85 7C     STA $7C
+; fallthrough
+
+; [ check if attack was effective ]
+
 31/B921: AD 7C 00  LDA $007C
-31/B924: D0 0C     BNE $B932
-31/B926: AE C1 7E  LDX $7EC1
+31/B924: D0 0C     BNE $B932          ; branch if nonzero hits
+; fallthrough
+
+; [ attack ineffective ]
+
+31/B926: AE C1 7E  LDX $7EC1          ; current target slot
 31/B929: AD 9B 7E  LDA $7E9B
 31/B92C: 20 2C FD  JSR $FD2C          ; clear bit
-31/B92F: 8D 9B 7E  STA $7E9B
+31/B92F: 8D 9B 7E  STA $7E9B          ; remove from target mask
 31/B932: AD 7C 00  LDA $007C
 31/B935: 60        RTS 
 
@@ -11469,7 +11591,7 @@
 31/B9A0: A2 FF     LDX #$FF
 31/B9A2: 8E D8 78  STX $78D8
 31/B9A5: 20 AB B9  JSR $B9AB          ; copy monster properties
-31/B9A8: 4C ED B9  JMP $B9ED
+31/B9A8: 4C ED B9  JMP $B9ED          ; clear target status
 
 ; [ copy monster properties ]
 
@@ -11512,7 +11634,9 @@
 31/B9EA: 91 20     STA ($20),Y
 31/B9EC: 60        RTS 
 
-; [  ]
+; [ clear target status ]
+
+; $1C: target id
 
 31/B9ED: A5 1C     LDA $1C
 31/B9EF: 0A        ASL 
@@ -11522,16 +11646,16 @@
 31/B9F6: 9D F0 00  STA $00F0,X
 31/B9F9: 60        RTS 
 
-; [  ]
+; [ do reflect effect ]
 
 31/B9FA: 20 B5 A2  JSR $A2B5          ; get attacker flags
-31/B9FD: 30 05     BMI $BA04
+31/B9FD: 30 05     BMI $BA04          ; branch if a monster
 31/B9FF: B1 70     LDA ($70),Y
-31/BA01: 30 05     BMI $BA08
-31/BA03: 60        RTS 
+31/BA01: 30 05     BMI $BA08          ; branch if target is a monster
+31/BA03: 60        RTS                ; no reflect if attacking same side
 31/BA04: B1 70     LDA ($70),Y
-31/BA06: 30 FB     BMI $BA03
-31/BA08: AD 88 7E  LDA $7E88
+31/BA06: 30 FB     BMI $BA03          ; branch if target is a monster
+31/BA08: AD 88 7E  LDA $7E88          ; spell id
 31/BA0B: 85 18     STA $18
 31/BA0D: 20 46 FD  JSR $FD46          ; lsr3
 31/BA10: AA        TAX 
@@ -11543,21 +11667,21 @@
 31/BA1A: 0A        ASL 
 31/BA1B: 88        DEY 
 31/BA1C: D0 FC     BNE $BA1A
-31/BA1E: 90 7B     BCC $BA9B
+31/BA1E: 90 7B     BCC $BA9B          ; return if not reflectable
 31/BA20: A5 70     LDA $70
-31/BA22: 8D B5 78  STA $78B5
+31/BA22: 8D B5 78  STA $78B5          ; set reflected target pointer
 31/BA25: A5 71     LDA $71
 31/BA27: 8D B6 78  STA $78B6
 31/BA2A: 20 25 BC  JSR $BC25          ; get target flags
 31/BA2D: 48        PHA 
 31/BA2E: 29 07     AND #$07
 31/BA30: AA        TAX 
-31/BA31: AD B8 7E  LDA $7EB8
+31/BA31: AD B8 7E  LDA $7EB8          ; set reflected target
 31/BA34: 20 20 FD  JSR $FD20          ; set bit
 31/BA37: 8D B8 7E  STA $7EB8
 31/BA3A: A0 26     LDY #$26
 31/BA3C: A9 00     LDA #$00
-31/BA3E: 91 70     STA ($70),Y
+31/BA3E: 91 70     STA ($70),Y        ; clear reflect counter
 31/BA40: 85 24     STA $24
 31/BA42: 85 27     STA $27
 31/BA44: A9 03     LDA #$03
@@ -11596,13 +11720,13 @@
 31/BA83: C8        INY 
 31/BA84: B1 70     LDA ($70),Y
 31/BA86: 29 01     AND #$01
-31/BA88: D0 CD     BNE $BA57          ; branch if jumping ???
+31/BA88: D0 CD     BNE $BA57          ; branch if jumping
 31/BA8A: A6 26     LDX $26
 31/BA8C: A9 00     LDA #$00
 31/BA8E: 20 20 FD  JSR $FD20          ; set bit
 31/BA91: AE C1 7E  LDX $7EC1
 31/BA94: E8        INX 
-31/BA95: 9D B8 7E  STA $7EB8,X
+31/BA95: 9D B8 7E  STA $7EB8,X        ; set target reflected onto
 31/BA98: EE 74 75  INC $7574
 31/BA9B: 60        RTS 
 
@@ -11616,7 +11740,7 @@
 31/BAFC: B679 B679 B67F B679 B67F B67F B679 B679
 31/BB0C: B679
 
-; ??? (1 bit per magic attack)
+; spell reflectability (1 bit per magic attack)
 31/BB0E: 84 03 44 0C 1C 34 60 78 00 20 00 00 00 00
 
 ; [ set monster damage numeral buffer ]
@@ -11650,6 +11774,15 @@
 
 ; [ calculate damage ]
 
+; $24: no. of hits (before hit % check)
+; $25: attack
+; $26: defense
+; $27: damage multiplier (gets divided by 2)
+; $28: crit bonus
+; $29: crit flag
+; $2A: number of targets hit (divide damage)
+; $2B: attack msb
+
 31/BB44: A5 2B     LDA $2B
 31/BB46: 4A        LSR 
 31/BB47: A5 25     LDA $25
@@ -11657,61 +11790,61 @@
 31/BB4A: 20 B4 BE  JSR $BEB4          ; random (0..A)
 31/BB4D: 18        CLC 
 31/BB4E: 65 25     ADC $25
-31/BB50: 85 18     STA $18
+31/BB50: 85 18     STA $18            ; +$18 = attack * (1..3/2)
 31/BB52: A5 2B     LDA $2B
 31/BB54: 69 00     ADC #$00
 31/BB56: 85 19     STA $19
-31/BB58: A9 00     LDA #$00
+31/BB58: A9 00     LDA #$00           ; clear hi byte of attack multiplier
 31/BB5A: 85 1B     STA $1B
-31/BB5C: A5 27     LDA $27
+31/BB5C: A5 27     LDA $27            ; attack multiplier
 31/BB5E: 4A        LSR 
 31/BB5F: D0 0F     BNE $BB70
-31/BB61: 46 19     LSR $19
+31/BB61: 46 19     LSR $19            ; divide by 2
 31/BB63: 66 18     ROR $18
 31/BB65: A5 18     LDA $18
-31/BB67: 85 1C     STA $1C
+31/BB67: 85 1C     STA $1C            ; +$1C <- +$18
 31/BB69: A5 19     LDA $19
 31/BB6B: 85 1D     STA $1D
 31/BB6D: 18        CLC 
 31/BB6E: 90 05     BCC $BB75
-31/BB70: 85 1A     STA $1A
+31/BB70: 85 1A     STA $1A            ; apply multiplier
 31/BB72: 20 F5 FC  JSR $FCF5          ; multiply (16-bit)
 31/BB75: A5 1C     LDA $1C
 31/BB77: 85 30     STA $30
 31/BB79: A5 1D     LDA $1D
 31/BB7B: 85 31     STA $31
-31/BB7D: A6 28     LDX $28
-31/BB7F: A5 29     LDA $29
+31/BB7D: A6 28     LDX $28            ; crit bonus
+31/BB7F: A5 29     LDA $29            ; crit flag
 31/BB81: 20 D6 FC  JSR $FCD6          ; multiply
 31/BB84: 18        CLC 
 31/BB85: A5 1A     LDA $1A
 31/BB87: 65 30     ADC $30
-31/BB89: 85 18     STA $18
+31/BB89: 85 18     STA $18            ; +$18 = attack + crit bonus
 31/BB8B: A5 1B     LDA $1B
 31/BB8D: 65 31     ADC $31
 31/BB8F: 85 19     STA $19
 31/BB91: 20 B5 A2  JSR $A2B5          ; get attacker flags
-31/BB94: 30 04     BMI $BB9A
+31/BB94: 30 04     BMI $BB9A          ; branch if attacker is a monster
 31/BB96: B1 70     LDA ($70),Y
-31/BB98: 10 15     BPL $BBAF
+31/BB98: 10 15     BPL $BBAF          ; branch if target is a character
 31/BB9A: 38        SEC 
 31/BB9B: A5 18     LDA $18
-31/BB9D: E5 26     SBC $26
+31/BB9D: E5 26     SBC $26            ; subtract defense
 31/BB9F: 85 18     STA $18
 31/BBA1: A5 19     LDA $19
 31/BBA3: E9 00     SBC #$00
 31/BBA5: 85 19     STA $19
 31/BBA7: B0 06     BCS $BBAF
-31/BBA9: A9 00     LDA #$00
+31/BBA9: A9 00     LDA #$00           ; min 0
 31/BBAB: 85 18     STA $18
 31/BBAD: 85 19     STA $19
 31/BBAF: A9 00     LDA #$00
 31/BBB1: 85 1B     STA $1B
-31/BBB3: AD 7C 00  LDA $007C
+31/BBB3: AD 7C 00  LDA $007C          ; total no. of hits
 31/BBB6: 85 1A     STA $1A
 31/BBB8: 20 F5 FC  JSR $FCF5          ; multiply (16-bit)
 31/BBBB: A5 1C     LDA $1C
-31/BBBD: 85 18     STA $18
+31/BBBD: 85 18     STA $18            ; +$18 = net damage
 31/BBBF: A5 1D     LDA $1D
 31/BBC1: 85 19     STA $19
 31/BBC3: A9 00     LDA #$00
@@ -11727,12 +11860,17 @@
 31/BBD7: 90 08     BCC $BBE1
 31/BBD9: A9 0F     LDA #$0F
 31/BBDB: 85 1C     STA $1C
-31/BBDD: A9 27     LDA #$27
+31/BBDD: A9 27     LDA #$27           ; max damage is 9999
 31/BBDF: 85 1D     STA $1D
 31/BBE1: 60        RTS 
+
+; [ check if target is undead ]
+
+; return carry set if undead
+
 31/BBE2: A0 12     LDY #$12
 31/BBE4: B1 70     LDA ($70),Y
-31/BBE6: 10 07     BPL $BBEF
+31/BBE6: 10 07     BPL $BBEF          ; branch if not weak to holy
 31/BBE8: 38        SEC 
 31/BBE9: A9 02     LDA #$02
 31/BBEB: 85 27     STA $27
@@ -11741,7 +11879,7 @@
 31/BBF0: A9 00     LDA #$00
 31/BBF2: 60        RTS 
 
-; [  ]
+; [ apply status ]
 
 31/BBF3: 20 25 BC  JSR $BC25          ; get target flags
 31/BBF6: 29 07     AND #$07
@@ -11749,46 +11887,43 @@
 31/BBF9: AA        TAX 
 31/BBFA: A5 24     LDA $24
 31/BBFC: 29 01     AND #$01
-31/BBFE: D0 2A     BNE $BC2A
+31/BBFE: D0 2A     BNE $BC2A          ; branch if status 2
+; status 1
 31/BC00: B5 E0     LDA $E0,X
 31/BC02: C5 24     CMP $24
 31/BC04: 90 03     BCC $BC09
-31/BC06: 4C 26 B9  JMP $B926
+31/BC06: 4C 26 B9  JMP $B926          ; attack ineffective
 31/BC09: 05 24     ORA $24
-31/BC0B: 95 E0     STA $E0,X
+31/BC0B: 95 E0     STA $E0,X          ; apply status
 31/BC0D: A2 00     LDX #$00
 31/BC0F: A5 24     LDA $24
 31/BC11: 0A        ASL 
-31/BC12: B0 03     BCS $BC17
+31/BC12: B0 03     BCS $BC17          ; find index of status
 31/BC14: E8        INX 
 31/BC15: D0 FA     BNE $BC11
 31/BC17: 8A        TXA 
 31/BC18: C9 02     CMP #$02
-31/BC1A: 90 03     BCC $BC1F
+31/BC1A: 90 03     BCC $BC1F          ; branch if not dead or stone
 31/BC1C: 18        CLC 
-31/BC1D: 69 03     ADC #$03
+31/BC1D: 69 03     ADC #$03           ; skip over paralyzed, asleep, confused
 31/BC1F: 18        CLC 
 31/BC20: 69 0A     ADC #$0A
-31/BC22: 8D D9 78  STA $78D9
-; fallthrough
-
-; [ get target flags ]
-
+31/BC22: 8D D9 78  STA $78D9          ; middle right message
+; get target flags
 31/BC25: A0 2C     LDY #$2C
 31/BC27: B1 70     LDA ($70),Y
 31/BC29: 60        RTS 
-
-; [  ]
-
+; status 2
 31/BC2A: A5 24     LDA $24
 31/BC2C: 29 20     AND #$20
-31/BC2E: F0 05     BEQ $BC35
+31/BC2E: F0 05     BEQ $BC35          ; branch if not confuse
 31/BC30: AD D8 7E  LDA $7ED8
-31/BC33: 30 1B     BMI $BC50
+31/BC33: 30 1B     BMI $BC50          ; branch if a boss battle
 31/BC35: E8        INX 
 31/BC36: A5 24     LDA $24
 31/BC38: 29 06     AND #$06
-31/BC3A: D0 49     BNE $BC85
+31/BC3A: D0 49     BNE $BC85          ; branch if partial petrify
+; paralyzed, asleep, confused
 31/BC3C: B5 E0     LDA $E0,X
 31/BC3E: 85 25     STA $25
 31/BC40: 29 E0     AND #$E0
@@ -11799,7 +11934,7 @@
 31/BC4A: A5 18     LDA $18
 31/BC4C: C5 19     CMP $19
 31/BC4E: 90 03     BCC $BC53
-31/BC50: 4C 26 B9  JMP $B926
+31/BC50: 4C 26 B9  JMP $B926          ; attack ineffective
 31/BC53: A5 25     LDA $25
 31/BC55: 29 07     AND #$07
 31/BC57: 85 18     STA $18
@@ -11826,6 +11961,7 @@
 31/BC7F: 69 0C     ADC #$0C
 31/BC81: 8D D9 78  STA $78D9
 31/BC84: 60        RTS 
+; partial petrify
 31/BC85: A5 24     LDA $24
 31/BC87: 29 7E     AND #$7E
 31/BC89: 85 18     STA $18
@@ -11865,25 +12001,28 @@
 31/BCCE: 9D DA 78  STA $78DA,X
 31/BCD1: 60        RTS 
 
-; [  ]
+; [ subtract damage from hp ]
+
+; +$24: pointer to target properties
+; return carry clear if hp reaches zero
 
 31/BCD2: A5 78     LDA $78
 31/BCD4: 05 79     ORA $79
-31/BCD6: D0 03     BNE $BCDB
+31/BCD6: D0 03     BNE $BCDB          ; set carry and return if zero damage
 31/BCD8: 38        SEC 
 31/BCD9: B0 27     BCS $BD02
 31/BCDB: 38        SEC 
 31/BCDC: A0 03     LDY #$03
-31/BCDE: B1 24     LDA ($24),Y
+31/BCDE: B1 24     LDA ($24),Y        ; hp
 31/BCE0: E5 78     SBC $78
 31/BCE2: 91 24     STA ($24),Y
 31/BCE4: C8        INY 
 31/BCE5: B1 24     LDA ($24),Y
 31/BCE7: E5 79     SBC $79
 31/BCE9: 91 24     STA ($24),Y
-31/BCEB: B0 0D     BCS $BCFA
+31/BCEB: B0 0D     BCS $BCFA          ; branch if not dead
 31/BCED: EE 73 75  INC $7573
-31/BCF0: A9 00     LDA #$00
+31/BCF0: A9 00     LDA #$00           ; set hp to zero
 31/BCF2: 91 24     STA ($24),Y
 31/BCF4: 88        DEY 
 31/BCF5: 91 24     STA ($24),Y
@@ -11895,11 +12034,17 @@
 31/BCFF: F0 EC     BEQ $BCED
 31/BD01: 38        SEC 
 31/BD02: 60        RTS 
+
+; [ restore hp (life spells) ]
+
+; for life 1, restore single digit hp
+; for life 2, restore hp to max
+
 31/BD03: AD 02 74  LDA $7402
 31/BD06: C9 FF     CMP #$FF
 31/BD08: D0 0C     BNE $BD16
 31/BD0A: A0 05     LDY #$05
-31/BD0C: B1 70     LDA ($70),Y
+31/BD0C: B1 70     LDA ($70),Y        ; max hp
 31/BD0E: 85 78     STA $78
 31/BD10: C8        INY 
 31/BD11: B1 70     LDA ($70),Y
@@ -11912,10 +12057,15 @@
 31/BD1F: A9 00     LDA #$00
 31/BD21: 85 79     STA $79
 31/BD23: 60        RTS 
+
+; [ add damage to hp ]
+
+; +$24: pointer to target properties
+
 31/BD24: 18        CLC 
 31/BD25: A0 03     LDY #$03
-31/BD27: B1 24     LDA ($24),Y
-31/BD29: 85 1A     STA $1A
+31/BD27: B1 24     LDA ($24),Y        ; add to current hp
+31/BD29: 85 1A     STA $1A            ; +$1A: previous hp
 31/BD2B: 65 78     ADC $78
 31/BD2D: 91 24     STA ($24),Y
 31/BD2F: C8        INY 
@@ -11925,74 +12075,99 @@
 31/BD36: 91 24     STA ($24),Y
 31/BD38: 38        SEC 
 31/BD39: A0 05     LDY #$05
-31/BD3B: B1 24     LDA ($24),Y
+31/BD3B: B1 24     LDA ($24),Y        ; +$18: max hp
 31/BD3D: 85 18     STA $18
 31/BD3F: A0 03     LDY #$03
-31/BD41: F1 24     SBC ($24),Y
+31/BD41: F1 24     SBC ($24),Y        ; subtract current hp
 31/BD43: A0 06     LDY #$06
 31/BD45: B1 24     LDA ($24),Y
 31/BD47: 85 19     STA $19
 31/BD49: A0 04     LDY #$04
 31/BD4B: F1 24     SBC ($24),Y
-31/BD4D: B0 17     BCS $BD66
+31/BD4D: B0 17     BCS $BD66          ; return if current hp <= max hp
 31/BD4F: A5 19     LDA $19
-31/BD51: 91 24     STA ($24),Y
+31/BD51: 91 24     STA ($24),Y        ; set hp to max
 31/BD53: 88        DEY 
 31/BD54: A5 18     LDA $18
 31/BD56: 91 24     STA ($24),Y
 31/BD58: 38        SEC 
 31/BD59: B1 24     LDA ($24),Y
 31/BD5B: E5 1A     SBC $1A
-31/BD5D: 85 78     STA $78
+31/BD5D: 85 78     STA $78            ; +$78: effective hp restored
 31/BD5F: C8        INY 
 31/BD60: B1 24     LDA ($24),Y
 31/BD62: E5 1B     SBC $1B
 31/BD64: 85 79     STA $79
 31/BD66: 60        RTS 
+
+; [ drain hp to attacker ]
+
+; drain spell - drain all damage dealt
+; fight command: drain 1/4 of damage dealt
+
+; $26: result
+;        $00: neither died
+;        $01: target died
+;        $81: attacker died
+
 31/BD67: A9 00     LDA #$00
 31/BD69: 85 26     STA $26
-31/BD6B: 20 E2 BB  JSR $BBE2
-31/BD6E: 90 1F     BCC $BD8F
+31/BD6B: 20 E2 BB  JSR $BBE2          ; check if target is undead
+31/BD6E: 90 1F     BCC $BD8F          ; branch if not undead
+; undead target - invert damage
 31/BD70: E6 42     INC $42
-31/BD72: 20 B3 BD  JSR $BDB3
-31/BD75: 20 D2 BC  JSR $BCD2
-31/BD78: B0 04     BCS $BD7E
+31/BD72: 20 B3 BD  JSR $BDB3          ; get attacker pointer
+31/BD75: 20 D2 BC  JSR $BCD2          ; subtract damage from hp
+31/BD78: B0 04     BCS $BD7E          ; branch if not dead
 31/BD7A: A9 81     LDA #$81
 31/BD7C: 85 26     STA $26
 31/BD7E: A0 2E     LDY #$2E
 31/BD80: B1 6E     LDA ($6E),Y
 31/BD82: C9 04     CMP #$04
-31/BD84: D0 03     BNE $BD89
-31/BD86: 20 AA BD  JSR $BDAA
-31/BD89: 20 24 BD  JSR $BD24
+31/BD84: D0 03     BNE $BD89          ; branch if not fight command
+31/BD86: 20 AA BD  JSR $BDAA          ; divide damage by 4
+31/BD89: 20 24 BD  JSR $BD24          ; add damage to hp
 31/BD8C: 4C A9 BD  JMP $BDA9
-31/BD8F: 20 D2 BC  JSR $BCD2
+; not undead
+31/BD8F: 20 D2 BC  JSR $BCD2          ; subtract damage from hp
 31/BD92: B0 04     BCS $BD98
 31/BD94: A9 01     LDA #$01
 31/BD96: 85 26     STA $26
-31/BD98: 20 B3 BD  JSR $BDB3
+31/BD98: 20 B3 BD  JSR $BDB3          ; get attacker pointer
 31/BD9B: A0 2E     LDY #$2E
 31/BD9D: B1 6E     LDA ($6E),Y
 31/BD9F: C9 04     CMP #$04
-31/BDA1: D0 03     BNE $BDA6
-31/BDA3: 20 AA BD  JSR $BDAA
-31/BDA6: 20 24 BD  JSR $BD24
+31/BDA1: D0 03     BNE $BDA6          ; branch if not fight command
+31/BDA3: 20 AA BD  JSR $BDAA          ; divide damage by 4
+31/BDA6: 20 24 BD  JSR $BD24          ; add damage to hp
 31/BDA9: 60        RTS 
+
+; [ divide damage by 4 ]
+
 31/BDAA: 46 79     LSR $79
 31/BDAC: 66 78     ROR $78
 31/BDAE: 46 79     LSR $79
 31/BDB0: 66 78     ROR $78
 31/BDB2: 60        RTS 
+
+; [ get attacker pointer ]
+
 31/BDB3: A5 6E     LDA $6E
 31/BDB5: 85 24     STA $24
 31/BDB7: A5 6F     LDA $6F
 31/BDB9: 85 25     STA $25
 31/BDBB: 60        RTS 
+
+; [ get target pointer ]
+
 31/BDBC: A5 70     LDA $70
 31/BDBE: 85 24     STA $24
 31/BDC0: A5 71     LDA $71
 31/BDC2: 85 25     STA $25
 31/BDC4: 60        RTS 
+
+; [  ]
+
 31/BDC5: 48        PHA 
 31/BDC6: 48        PHA 
 31/BDC7: A9 80     LDA #$80
@@ -12028,37 +12203,43 @@
 31/BDFD: D0 13     BNE $BE12
 31/BDFF: 68        PLA 
 31/BE00: D0 08     BNE $BE0A
-31/BE02: B5 E0     LDA $E0,X
+31/BE02: B5 E0     LDA $E0,X          ; make target dead
 31/BE04: 09 80     ORA #$80
 31/BE06: 95 E0     STA $E0,X
 31/BE08: D0 09     BNE $BE13
-31/BE0A: B5 F0     LDA $F0,X
+31/BE0A: B5 F0     LDA $F0,X          ; make attacker dead
 31/BE0C: 09 80     ORA #$80
 31/BE0E: 95 F0     STA $F0,X
 31/BE10: D0 01     BNE $BE13
 31/BE12: 68        PLA 
 31/BE13: 60        RTS 
-31/BE14: AD 44 74  LDA $7444
+
+; [ apply attack status (fight effect) ]
+
+31/BE14: AD 44 74  LDA $7444          ; attack status (from $7575 + #$1A)
 31/BE17: 85 25     STA $25
-31/BE19: F0 27     BEQ $BE42
-31/BE1B: A5 7C     LDA $7C
+31/BE19: F0 27     BEQ $BE42          ; return if no attack status
+31/BE1B: A5 7C     LDA $7C            ; total number of hits
 31/BE1D: 85 24     STA $24
-31/BE1F: F0 21     BEQ $BE42
-31/BE21: AD 2E 74  LDA $742E
+31/BE1F: F0 21     BEQ $BE42          ; return if no hits
+31/BE21: AD 2E 74  LDA $742E          ; status immunity
 31/BE24: 25 25     AND $25
-31/BE26: D0 1A     BNE $BE42
+31/BE26: D0 1A     BNE $BE42          ; branch if immune
 31/BE28: 38        SEC 
-31/BE29: AD 42 74  LDA $7442
-31/BE2C: ED 2C 74  SBC $742C
+31/BE29: AD 42 74  LDA $7442          ; hit %
+31/BE2C: ED 2C 74  SBC $742C          ; evade %
 31/BE2F: B0 02     BCS $BE33
-31/BE31: A9 00     LDA #$00
+31/BE31: A9 00     LDA #$00           ; zero probability
 31/BE33: 85 25     STA $25
 31/BE35: 20 28 BB  JSR $BB28          ; get number of hits
-31/BE38: F0 08     BEQ $BE42
+31/BE38: F0 08     BEQ $BE42          ; branch if no hits
 31/BE3A: AD 44 74  LDA $7444
 31/BE3D: 85 24     STA $24
-31/BE3F: 20 F3 BB  JSR $BBF3
+31/BE3F: 20 F3 BB  JSR $BBF3          ; apply status
 31/BE42: 60        RTS 
+
+; [ apply magic status (normal magic damage) ]
+
 31/BE43: A5 7C     LDA $7C
 31/BE45: F0 48     BEQ $BE8F
 31/BE47: AD 03 74  LDA $7403
@@ -12066,7 +12247,7 @@
 31/BE4C: A0 24     LDY #$24
 31/BE4E: B1 70     LDA ($70),Y
 31/BE50: 2D 03 74  AND $7403
-31/BE53: D0 3A     BNE $BE8F
+31/BE53: D0 3A     BNE $BE8F          ; return if immune to status
 31/BE55: AD 7C 00  LDA $007C
 31/BE58: 85 18     STA $18
 31/BE5A: A9 64     LDA #$64
@@ -12092,7 +12273,7 @@
 31/BE85: F0 08     BEQ $BE8F
 31/BE87: AD 03 74  LDA $7403
 31/BE8A: 85 24     STA $24
-31/BE8C: 4C F3 BB  JMP $BBF3
+31/BE8C: 4C F3 BB  JMP $BBF3          ; apply status
 31/BE8F: 60        RTS 
 
 ; [ get character offset ]
@@ -12219,12 +12400,12 @@
 31/BF50: 91 5B     STA ($5B),Y        ; clear target flags
 31/BF52: 60        RTS
 
-; [  ]
+; [ split monster ]
 
 31/BF53: A9 00     LDA #$00
 31/BF55: 85 18     STA $18
 31/BF57: 20 25 BC  JSR $BC25          ; get target flags
-31/BF5A: 10 60     BPL $BFBC
+31/BF5A: 10 60     BPL $BFBC          ; return if a character
 31/BF5C: A6 64     LDX $64
 31/BF5E: BD E0 00  LDA $00E0,X
 31/BF61: 29 E8     AND #$E8
@@ -12235,7 +12416,7 @@
 31/BF6B: D0 4F     BNE $BFBC
 31/BF6D: A0 38     LDY #$38
 31/BF6F: B1 70     LDA ($70),Y
-31/BF71: C9 4F     CMP #$4F
+31/BF71: C9 4F     CMP #$4F           ; check for "split" attack
 31/BF73: D0 47     BNE $BFBC
 31/BF75: A5 BB     LDA $BB
 31/BF77: 05 BC     ORA $BC
@@ -12326,7 +12507,7 @@
 ; ??? for each summon
 32/8043: E7 E8 EA EC EF F4 F5 F8
 
-; ??? for each monster attack
+; screen flash color for each monster attack (starting with atom edge)
 32/804B: 1C 16 22 2A 24 18 10 31 27 12 16 16 2B 2B 18 23
 32/805B: 2C 24 30 19 21 26
 
@@ -12387,7 +12568,7 @@
 32/80C7: C6 90     DEC $90
 32/80C9: D0 D6     BNE $80A1
 32/80CB: 20 44 8A  JSR $8A44
-32/80CE: 20 E6 8A  JSR $8AE6
+32/80CE: 20 E6 8A  JSR $8AE6          ; increment animation frame counter
 32/80D1: C9 80     CMP #$80
 32/80D3: D0 A7     BNE $807C
 32/80D5: A9 97     LDA #$97
@@ -12454,7 +12635,7 @@
 32/814E: A9 20     LDA #$20
 32/8150: 8D 26 7E  STA $7E26          ; oscillation amplitude
 32/8153: A0 00     LDY #$00
-32/8155: 20 7B BF  JSR $BF7B
+32/8155: 20 7B BF  JSR $BF7B          ; get vector y-component
 32/8158: A6 8C     LDX $8C
 32/815A: 9D 00 79  STA $7900,X
 32/815D: AD 3A 7E  LDA $7E3A          ; increment phase
@@ -12561,7 +12742,7 @@
 32/8232: A9 00     LDA #$00
 32/8234: 85 8C     STA $8C
 32/8236: A0 00     LDY #$00
-32/8238: 20 7B BF  JSR $BF7B
+32/8238: 20 7B BF  JSR $BF7B          ; get vector y-component
 32/823B: A6 8C     LDX $8C
 32/823D: 9D 00 79  STA $7900,X
 32/8240: BD E3 7B  LDA $7BE3,X        ; rng table
@@ -12637,7 +12818,7 @@
 32/82CD: 9D 80 79  STA $7980,X
 32/82D0: 68        PLA 
 32/82D1: AA        TAX 
-32/82D2: 20 C6 BF  JSR $BFC6
+32/82D2: 20 C6 BF  JSR $BFC6          ; A * sin(X)
 32/82D5: 18        CLC 
 32/82D6: 65 8C     ADC $8C
 32/82D8: 85 8C     STA $8C
@@ -12716,7 +12897,7 @@
 32/835B: A9 90     LDA #$90
 32/835D: 85 7F     STA $7F
 32/835F: 20 B7 85  JSR $85B7
-32/8362: 20 E6 8A  JSR $8AE6
+32/8362: 20 E6 8A  JSR $8AE6          ; increment animation frame counter
 32/8365: C9 40     CMP #$40
 32/8367: D0 BD     BNE $8326
 32/8369: A2 DC     LDX #$DC
@@ -12798,7 +12979,7 @@
 32/83F9: E8        INX 
 32/83FA: C6 90     DEC $90
 32/83FC: D0 D0     BNE $83CE
-32/83FE: 20 E6 8A  JSR $8AE6
+32/83FE: 20 E6 8A  JSR $8AE6          ; increment animation frame counter
 32/8401: C9 40     CMP #$40
 32/8403: D0 87     BNE $838C
 32/8405: A9 F0     LDA #$F0
@@ -12819,7 +13000,7 @@
 32/841F: 8D D5 7E  STA $7ED5
 32/8422: 20 81 8B  JSR $8B81
 32/8425: A9 30     LDA #$30
-32/8427: 8D 07 7D  STA $7D07
+32/8427: 8D 07 7D  STA $7D07          ; backdrop color
 32/842A: 20 59 A0  JSR $A059          ; reset animation frame counter
 32/842D: E6 C9     INC $C9
 32/842F: 20 B0 F8  JSR $F8B0          ; wait for vblank (update oam and color)
@@ -12829,11 +13010,11 @@
 32/8437: A8        TAY 
 32/8438: B9 12 84  LDA $8412,Y
 32/843B: 85 09     STA $09
-32/843D: 20 E6 8A  JSR $8AE6
+32/843D: 20 E6 8A  JSR $8AE6          ; increment animation frame counter
 32/8440: 29 10     AND #$10
 32/8442: F0 EB     BEQ $842F
 32/8444: A9 0F     LDA #$0F
-32/8446: 8D 07 7D  STA $7D07
+32/8446: 8D 07 7D  STA $7D07          ; backdrop color
 32/8449: A9 1E     LDA #$1E
 32/844B: 85 09     STA $09
 32/844D: A9 C0     LDA #$C0
@@ -12859,7 +13040,7 @@
 32/847B: 20 AD 87  JSR $87AD
 32/847E: 68        PLA 
 32/847F: 85 8F     STA $8F
-32/8481: 20 E6 8A  JSR $8AE6
+32/8481: 20 E6 8A  JSR $8AE6          ; increment animation frame counter
 32/8484: C9 40     CMP #$40
 32/8486: D0 DF     BNE $8467
 32/8488: 20 E4 8C  JSR $8CE4          ; clear oam data
@@ -12901,7 +13082,7 @@
 32/84CE: 20 40 A4  JSR $A440          ; load animation palette
 32/84D1: A9 0F     LDA #$0F
 32/84D3: 20 1E BF  JSR $BF1E          ; load animation graphics
-32/84D6: 20 5F BF  JSR $BF5F
+32/84D6: 20 5F BF  JSR $BF5F          ; reset vector angles
 32/84D9: A9 60     LDA #$60
 32/84DB: 20 5C B3  JSR $B35C
 32/84DE: A0 00     LDY #$00
@@ -12917,12 +13098,12 @@
 32/84F7: C6 8C     DEC $8C
 32/84F9: C6 8C     DEC $8C
 32/84FB: C6 8C     DEC $8C
-32/84FD: 20 7B BF  JSR $BF7B
+32/84FD: 20 7B BF  JSR $BF7B          ; get vector y-component
 32/8500: 85 8D     STA $8D
 32/8502: A9 FE     LDA #$FE
 32/8504: 20 B1 BF  JSR $BFB1
 32/8507: 20 8E 84  JSR $848E
-32/850A: 20 E6 8A  JSR $8AE6
+32/850A: 20 E6 8A  JSR $8AE6          ; increment animation frame counter
 32/850D: C9 20     CMP #$20
 32/850F: D0 DE     BNE $84EF
 32/8511: 20 5E A0  JSR $A05E          ; reset animation sprites
@@ -12944,7 +13125,7 @@
 32/8537: 20 AD 87  JSR $87AD
 32/853A: 68        PLA 
 32/853B: 85 8F     STA $8F
-32/853D: 20 E6 8A  JSR $8AE6
+32/853D: 20 E6 8A  JSR $8AE6          ; increment animation frame counter
 32/8540: C9 60     CMP #$60
 32/8542: D0 DF     BNE $8523
 32/8544: 20 5E A0  JSR $A05E          ; reset animation sprites
@@ -13245,22 +13426,31 @@
 
 ; "ぜんいんにバリア！" / "Barrier"
 
-32/877D: A9 2B     LDA #$2B
-32/877F: A2 20     LDX #$20
+32/877D: A9 2B     LDA #$2B           ; blue-green
+; fallthrough
+
+; [ flash screen ]
+
+; A: flash color
+
+32/877F: A2 20     LDX #$20           ; lasts 32 frames (8 flashes)
 32/8781: 85 7E     STA $7E
 32/8783: 86 B6     STX $B6
 32/8785: 20 B0 F8  JSR $F8B0          ; wait for vblank (update oam and color)
 32/8788: A5 B6     LDA $B6
-32/878A: 29 03     AND #$03
+32/878A: 29 03     AND #$03           ; flash once every 4 frames
 32/878C: D0 08     BNE $8796
 32/878E: A5 7E     LDA $7E
-32/8790: 8D 07 7D  STA $7D07
+32/8790: 8D 07 7D  STA $7D07          ; backdrop color
 32/8793: 4C 9B 87  JMP $879B
 32/8796: A9 0F     LDA #$0F
-32/8798: 8D 07 7D  STA $7D07
+32/8798: 8D 07 7D  STA $7D07          ; backdrop color
 32/879B: C6 B6     DEC $B6
 32/879D: D0 E6     BNE $8785
 32/879F: 60        RTS 
+
+; [  ]
+
 32/87A0: A9 40     LDA #$40
 32/87A2: A2 B0     LDX #$B0
 32/87A4: 85 7E     STA $7E
@@ -13349,7 +13539,7 @@
 32/883F: A9 16     LDA #$16
 32/8841: 4C 46 88  JMP $8846
 32/8844: A9 0F     LDA #$0F
-32/8846: 8D 07 7D  STA $7D07
+32/8846: 8D 07 7D  STA $7D07          ; backdrop color
 32/8849: C6 B6     DEC $B6
 32/884B: D0 DF     BNE $882C
 32/884D: 20 E4 8C  JSR $8CE4          ; clear oam data
@@ -13376,7 +13566,7 @@
 32/887A: C9 FF     CMP #$FF
 32/887C: F0 03     BEQ $8881
 32/887E: 20 8E 88  JSR $888E
-32/8881: 20 E6 8A  JSR $8AE6
+32/8881: 20 E6 8A  JSR $8AE6          ; increment animation frame counter
 32/8884: C9 40     CMP #$40
 32/8886: D0 D0     BNE $8858
 32/8888: 20 E4 8C  JSR $8CE4          ; clear oam data
@@ -13471,7 +13661,7 @@
 32/8935: 85 C8     STA $C8
 32/8937: A5 B8     LDA $B8
 32/8939: 20 49 89  JSR $8949
-32/893C: 20 E6 8A  JSR $8AE6
+32/893C: 20 E6 8A  JSR $8AE6          ; increment animation frame counter
 32/893F: C9 20     CMP #$20
 32/8941: D0 EA     BNE $892D
 32/8943: 20 E4 8C  JSR $8CE4          ; clear oam data
@@ -13502,8 +13692,8 @@
 
 ; "かいふくまほう" / "Recovery"
 
-32/8972: A9 31     LDA #$31
-32/8974: 4C 7F 87  JMP $877F
+32/8972: A9 31     LDA #$31           ; light blue
+32/8974: 4C 7F 87  JMP $877F          ; flash screen
 
 ; [ summon animation $07/$08: thunderstorm/judgment bolt (ramuh) ]
 
@@ -13523,7 +13713,7 @@
 32/898E: 20 B0 F8  JSR $F8B0          ; wait for vblank (update oam and color)
 32/8991: A2 08     LDX #$08
 32/8993: 20 AD 87  JSR $87AD
-32/8996: 20 E6 8A  JSR $8AE6
+32/8996: 20 E6 8A  JSR $8AE6          ; increment animation frame counter
 32/8999: C9 08     CMP #$08
 32/899B: D0 F1     BNE $898E
 32/899D: A2 00     LDX #$00
@@ -13542,7 +13732,7 @@
 
 32/89B7: A5 8C     LDA $8C
 32/89B9: 8D 88 7E  STA $7E88
-32/89BC: A9 07     LDA #$07
+32/89BC: A9 07     LDA #$07           ; brak2 animation
 32/89BE: 8D 9D 7E  STA $7E9D
 32/89C1: A9 00     LDA #$00
 32/89C3: 8D B8 7E  STA $7EB8
@@ -13575,8 +13765,8 @@
 32/89EB: D0 01     BNE $89EE
 32/89ED: 60        RTS 
 32/89EE: E6 C9     INC $C9
-32/89F0: A9 31     LDA #$31
-32/89F2: 20 7F 87  JSR $877F
+32/89F0: A9 31     LDA #$31           ; light blue
+32/89F2: 20 7F 87  JSR $877F          ; flash screen
 32/89F5: 20 59 A0  JSR $A059          ; reset animation frame counter
 32/89F8: 20 FB 8E  JSR $8EFB
 32/89FB: 4C B0 8A  JMP $8AB0
@@ -13601,7 +13791,7 @@
 32/8A11: 20 FB 8E  JSR $8EFB
 32/8A14: 20 B0 F8  JSR $F8B0          ; wait for vblank (update oam and color)
 32/8A17: 20 24 8A  JSR $8A24
-32/8A1A: 20 E6 8A  JSR $8AE6
+32/8A1A: 20 E6 8A  JSR $8AE6          ; increment animation frame counter
 32/8A1D: C9 30     CMP #$30
 32/8A1F: D0 F3     BNE $8A14
 32/8A21: 4C 34 8A  JMP $8A34
@@ -13658,7 +13848,7 @@
 32/8A87: AA        TAX 
 32/8A88: 20 E3 7E  JSR $7EE3          ; sine
 32/8A8B: AA        TAX 
-32/8A8C: 20 C6 BF  JSR $BFC6
+32/8A8C: 20 C6 BF  JSR $BFC6          ; A * sin(X)
 32/8A8F: 48        PHA 
 32/8A90: 99 00 73  STA $7300,Y
 32/8A93: 68        PLA 
@@ -13704,7 +13894,7 @@
 32/8AD7: 29 03     AND #$03
 32/8AD9: 85 7F     STA $7F
 32/8ADB: 20 76 8E  JSR $8E76
-32/8ADE: 20 E6 8A  JSR $8AE6
+32/8ADE: 20 E6 8A  JSR $8AE6          ; increment animation frame counter
 32/8AE1: C9 20     CMP #$20
 32/8AE3: D0 E6     BNE $8ACB
 32/8AE5: 60        RTS 
@@ -13728,7 +13918,7 @@
 32/8AF9: A9 10     LDA #$10
 32/8AFB: 85 BB     STA $BB
 32/8AFD: 85 BC     STA $BC
-32/8AFF: 20 45 A2  JSR $A245
+32/8AFF: 20 45 A2  JSR $A245          ; init animation hits counter
 32/8B02: 20 59 A0  JSR $A059          ; reset animation frame counter
 32/8B05: E6 C9     INC $C9
 32/8B07: 20 C5 F8  JSR $F8C5          ; wait for vblank (no color update)
@@ -13750,8 +13940,8 @@
 32/8B26: D0 F1     BNE $8B19
 32/8B28: 86 C8     STX $C8
 32/8B2A: A9 01     LDA #$01
-32/8B2C: 20 B2 97  JSR $97B2
-32/8B2F: 20 E6 8A  JSR $8AE6
+32/8B2C: 20 B2 97  JSR $97B2          ; do hit animation
+32/8B2F: 20 E6 8A  JSR $8AE6          ; increment animation frame counter
 32/8B32: C9 40     CMP #$40
 32/8B34: D0 D1     BNE $8B07
 32/8B36: 60        RTS 
@@ -13819,7 +14009,7 @@
 32/8BAA: 20 AD 87  JSR $87AD
 32/8BAD: A2 04     LDX #$04
 32/8BAF: 20 AD 87  JSR $87AD
-32/8BB2: 20 E6 8A  JSR $8AE6
+32/8BB2: 20 E6 8A  JSR $8AE6          ; increment animation frame counter
 32/8BB5: C9 30     CMP #$30
 32/8BB7: D0 EC     BNE $8BA5
 32/8BB9: 4C 47 85  JMP $8547
@@ -13896,7 +14086,7 @@
 32/8C58: 29 07     AND #$07
 32/8C5A: D0 03     BNE $8C5F
 32/8C5C: 20 70 8C  JSR $8C70
-32/8C5F: 20 E6 8A  JSR $8AE6
+32/8C5F: 20 E6 8A  JSR $8AE6          ; increment animation frame counter
 32/8C62: C9 60     CMP #$60
 32/8C64: F0 03     BEQ $8C69
 32/8C66: 4C E4 8B  JMP $8BE4
@@ -13943,7 +14133,7 @@
 32/8CAA: 20 B0 F8  JSR $F8B0          ; wait for vblank (update oam and color)
 32/8CAD: A9 02     LDA #$02
 32/8CAF: 20 87 FA  JSR $FA87          ; fade out color palettes
-32/8CB2: 20 E6 8A  JSR $8AE6
+32/8CB2: 20 E6 8A  JSR $8AE6          ; increment animation frame counter
 32/8CB5: C9 10     CMP #$10
 32/8CB7: D0 F1     BNE $8CAA
 32/8CB9: 60        RTS 
@@ -14441,19 +14631,19 @@
 32/90D5: C9 88     CMP #$88
 32/90D7: 60        RTS 
 
-; [ animation function $02: init character sprites ??? ]
+; [ animation function $02: update character sprites ]
 
 32/90D8: 20 2B A4  JSR $A42B          ; clear animation oam data
 32/90DB: A9 A0     LDA #$A0           ; start with sprite 40
 32/90DD: 85 C8     STA $C8
 32/90DF: A2 00     LDX #$00
-32/90E1: 20 EA 90  JSR $90EA
+32/90E1: 20 EA 90  JSR $90EA          ; update character sprite
 32/90E4: E8        INX 
 32/90E5: E0 04     CPX #$04
 32/90E7: D0 F8     BNE $90E1
 32/90E9: 60        RTS 
 
-; [  ]
+; [ update character sprite ]
 
 32/90EA: A9 00     LDA #$00
 32/90EC: 85 91     STA $91
@@ -14625,8 +14815,9 @@
 
 32/9295: 01 0F 1D 2B
 
-; [ update animation sprite at character position ??? ]
+; [ update weapon sprite ]
 
+; i think this is for non-weapon animation sprites too
 ; A: animation frame id
 
 32/9299: 48        PHA 
@@ -14636,24 +14827,24 @@
 32/92A0: 68        PLA 
 ; fallthrough
 
-; [  ]
+; [ update attacker animation sprite ]
 
 ; $7E: x offset
 ; $7F: y offset
 ;   A: animation frame id
 
-32/92A1: A6 95     LDX $95
+32/92A1: A6 95     LDX $95            ; attacker
 32/92A3: 85 8E     STA $8E            ; frame id
 32/92A5: 8A        TXA 
 32/92A6: 0A        ASL 
 32/92A7: A8        TAY 
 32/92A8: B9 9B 7D  LDA $7D9B,Y
 32/92AB: 29 08     AND #$08
-32/92AD: F0 07     BEQ $92B6
-32/92AF: A9 01     LDA #$01
+32/92AD: F0 07     BEQ $92B6          ; branch if facing left
+32/92AF: A9 01     LDA #$01           ; h-flip
 32/92B1: 85 8F     STA $8F
 32/92B3: 4C BA 92  JMP $92BA
-32/92B6: A9 00     LDA #$00
+32/92B6: A9 00     LDA #$00           ; no h-flip
 32/92B8: 85 8F     STA $8F
 32/92BA: B5 C0     LDA $C0,X          ; character x position
 32/92BC: 18        CLC 
@@ -15123,23 +15314,31 @@
 32/979A: BF C0 C1 C2 C3 C4
 32/97A0: C5 C6 C7 C8 C9 CA
 32/97A6: CB CC CD CE CF D0
-32/97AC: 8D 07 7D 4C B0 F8
+
+; [ set backdrop color (crit flash) ]
+
+32/97AC: 8D 07 7D  STA $7D07          ; backdrop color
+32/97AF: 4C B0 F8  JMP $F8B0          ; wait for vblank (update oam and color)
+
+; [ do hit animation ]
+
+; A: hit animation id
 
 32/97B2: 48        PHA 
 32/97B3: A6 CD     LDX $CD
 32/97B5: B5 BB     LDA $BB,X
-32/97B7: D0 02     BNE $97BB
+32/97B7: D0 02     BNE $97BB          ; return if there are no hits
 32/97B9: 68        PLA 
 32/97BA: 60        RTS 
 32/97BB: A5 CB     LDA $CB
-32/97BD: F0 10     BEQ $97CF
+32/97BD: F0 10     BEQ $97CF          ; branch if not a crit
 32/97BF: A5 B7     LDA $B7
 32/97C1: D0 0C     BNE $97CF
-32/97C3: A9 27     LDA #$27
-32/97C5: 20 AC 97  JSR $97AC
-32/97C8: A9 0F     LDA #$0F
+32/97C3: A9 27     LDA #$27           ; orange
+32/97C5: 20 AC 97  JSR $97AC          ; set backdrop color
+32/97C8: A9 0F     LDA #$0F           ; black
 32/97CA: 85 B7     STA $B7
-32/97CC: 20 AC 97  JSR $97AC
+32/97CC: 20 AC 97  JSR $97AC          ; set backdrop color
 32/97CF: 68        PLA 
 32/97D0: 0A        ASL 
 32/97D1: A8        TAY 
@@ -15149,50 +15348,56 @@
 32/97DA: 85 7F     STA $7F
 32/97DC: 6C 7E 00  JMP ($007E)
 
+; hit animation jump table
 32/97DF: 991F 98E0 98D1 981C 9815 97EB
 
-32/97EB: A5 B8     LDA $B8
+; hit 5: boomerang
+32/97EB: A5 B8     LDA $B8            ; target id
 32/97ED: 29 07     AND #$07
 32/97EF: 0A        ASL 
 32/97F0: A8        TAY 
 32/97F1: B9 D7 7D  LDA $7DD7,Y
 32/97F4: 18        CLC 
 32/97F5: 69 10     ADC #$10
-32/97F7: 85 8C     STA $8C
+32/97F7: 85 8C     STA $8C            ; x
 32/97F9: B9 D8 7D  LDA $7DD8,Y
 32/97FC: 18        CLC 
 32/97FD: 69 10     ADC #$10
-32/97FF: 85 8D     STA $8D
+32/97FF: 85 8D     STA $8D            ; y
 32/9801: A9 00     LDA #$00
-32/9803: 85 8F     STA $8F
+32/9803: 85 8F     STA $8F            ; no flip
 32/9805: A5 CD     LDA $CD
-32/9807: F0 05     BEQ $980E
+32/9807: F0 05     BEQ $980E          ; branch if right hand
 32/9809: A9 11     LDA #$11
 32/980B: 4C 10 98  JMP $9810
 32/980E: A9 10     LDA #$10
-32/9810: 85 8E     STA $8E
+32/9810: 85 8E     STA $8E            ; frame id
 32/9812: 4C 57 93  JMP $9357          ; update animation sprite
+
+; hit 4: shuriken
 32/9815: A9 01     LDA #$01
 32/9817: 85 90     STA $90
 32/9819: 4C 23 98  JMP $9823
+
+; hit 3: arrow
 32/981C: A9 00     LDA #$00
 32/981E: 85 90     STA $90
-32/9820: 4C 23 98  JMP $9823
-32/9823: A5 B8     LDA $B8
+32/9820: 4C 23 98  JMP $9823          ; this does nothing...
+32/9823: A5 B8     LDA $B8            ; target
 32/9825: 29 07     AND #$07
 32/9827: 0A        ASL 
 32/9828: A8        TAY 
 32/9829: B9 D7 7D  LDA $7DD7,Y
-32/982C: 85 8C     STA $8C
+32/982C: 85 8C     STA $8C            ; x
 32/982E: B9 D8 7D  LDA $7DD8,Y
-32/9831: 85 8D     STA $8D
+32/9831: 85 8D     STA $8D            ; y
 32/9833: A9 00     LDA #$00
 32/9835: 85 21     STA $21
 32/9837: AA        TAX 
 32/9838: A9 18     LDA #$18
 32/983A: 20 EF FB  JSR $FBEF          ; random (X..A)
 32/983D: 18        CLC 
-32/983E: 65 8C     ADC $8C
+32/983E: 65 8C     ADC $8C            ; add to x
 32/9840: 38        SEC 
 32/9841: E9 10     SBC #$10
 32/9843: 85 8C     STA $8C
@@ -15203,18 +15408,21 @@
 32/984D: A9 26     LDA #$26
 32/984F: 20 EF FB  JSR $FBEF          ; random (X..A)
 32/9852: 18        CLC 
-32/9853: 65 8D     ADC $8D
+32/9853: 65 8D     ADC $8D            ; add to y
 32/9855: 38        SEC 
 32/9856: E9 10     SBC #$10
 32/9858: 85 8D     STA $8D
 32/985A: A5 90     LDA $90
-32/985C: F0 06     BEQ $9864
+32/985C: F0 06     BEQ $9864          ; branch if arrow
 32/985E: 20 6C 98  JSR $986C
 32/9861: 4C 67 98  JMP $9867
 32/9864: 20 7C 98  JSR $987C
-32/9867: C6 BD     DEC $BD
+32/9867: C6 BD     DEC $BD            ; next hit
 32/9869: D0 B8     BNE $9823
 32/986B: 60        RTS 
+
+; [ ??? shuriken ]
+
 32/986C: A5 CD     LDA $CD
 32/986E: F0 05     BEQ $9875
 32/9870: A9 53     LDA #$53
@@ -15222,6 +15430,9 @@
 32/9875: A9 4B     LDA #$4B
 32/9877: 85 8E     STA $8E
 32/9879: 4C 8C 98  JMP $988C
+
+; [ ??? arrow ]
+
 32/987C: A5 CD     LDA $CD
 32/987E: F0 05     BEQ $9885
 32/9880: A9 4A     LDA #$4A
@@ -15229,7 +15440,8 @@
 32/9885: A9 52     LDA #$52
 32/9887: 85 8E     STA $8E
 32/9889: 4C 8C 98  JMP $988C
-32/988C: A9 DA     LDA #$DA
+
+32/988C: A9 DA     LDA #$DA           ; sound effect $5A
 32/988E: 8D 49 7F  STA $7F49
 32/9891: 20 D2 90  JSR $90D2
 32/9894: D0 0E     BNE $98A4
@@ -15265,6 +15477,8 @@
 32/98CD: CA        DEX 
 32/98CE: D0 F6     BNE $98C6
 32/98D0: 60        RTS 
+
+; hit 2: claw
 32/98D1: 20 E8 98  JSR $98E8
 32/98D4: A0 12     LDY #$12
 32/98D6: A5 CD     LDA $CD
@@ -15272,13 +15486,18 @@
 32/98DA: C8        INY 
 32/98DB: 84 8E     STY $8E
 32/98DD: 4C 57 93  JMP $9357          ; update animation sprite
+
+; hit 1: slice
 32/98E0: 20 E8 98  JSR $98E8
 32/98E3: A0 10     LDY #$10
 32/98E5: 4C D6 98  JMP $98D6
-32/98E8: A5 B6     LDA $B6
+
+; [  ]
+
+32/98E8: A5 B6     LDA $B6            ; animation frame counter
 32/98EA: 29 01     AND #$01
 32/98EC: D0 24     BNE $9912
-32/98EE: A5 B8     LDA $B8
+32/98EE: A5 B8     LDA $B8            ; target id
 32/98F0: 29 07     AND #$07
 32/98F2: 0A        ASL 
 32/98F3: A8        TAY 
@@ -15303,13 +15522,15 @@
 32/991A: A9 00     LDA #$00
 32/991C: 85 8F     STA $8F
 32/991E: 60        RTS 
-32/991F: A5 B8     LDA $B8
+
+; hit 0: normal
+32/991F: A5 B8     LDA $B8            ; target
 32/9921: 29 07     AND #$07
 32/9923: 0A        ASL 
 32/9924: A8        TAY 
-32/9925: B9 D7 7D  LDA $7DD7,Y
+32/9925: B9 D7 7D  LDA $7DD7,Y        ; monster x position
 32/9928: 85 7E     STA $7E
-32/992A: B9 D8 7D  LDA $7DD8,Y
+32/992A: B9 D8 7D  LDA $7DD8,Y        ; monster y position + 8
 32/992D: 18        CLC 
 32/992E: 69 08     ADC #$08
 32/9930: 85 7F     STA $7F
@@ -15332,7 +15553,7 @@
 32/9953: E6 B9     INC $B9
 32/9955: A0 00     LDY #$00
 32/9957: A6 C8     LDX $C8
-32/9959: B9 80 73  LDA $7380,Y
+32/9959: B9 80 73  LDA $7380,Y        ; copy 12 sprites
 32/995C: 9D 00 02  STA $0200,X
 32/995F: E8        INX 
 32/9960: C8        INY 
@@ -15342,6 +15563,8 @@
 32/9967: 60        RTS 
 
 32/9968: 3F CF F3 FC
+
+; [  ]
 
 32/996C: A2 00     LDX #$00
 32/996E: A0 00     LDY #$00
@@ -15400,6 +15623,8 @@
 
 32/99E9: 4D 4E 4D 4F 4D 4F 4D 4F 4D 4F 00 50
 
+; [ add to +$8E ]
+
 32/99F5: A2 00     LDX #$00
 32/99F7: 18        CLC 
 32/99F8: 65 8E     ADC $8E
@@ -15409,12 +15634,17 @@
 32/99FF: 85 8F     STA $8F
 32/9A01: 60        RTS 
 
+; [ init monster selection layout pointer ]
+
+; +$8C: top row pointer
+; +$8D: bottom row pointer
+
 32/9A02: AD 7B 7D  LDA $7D7B
 32/9A05: 0A        ASL 
 32/9A06: 0A        ASL 
 32/9A07: 0A        ASL 
 32/9A08: 18        CLC 
-32/9A09: 69 AD     ADC #$AD           ; 39/9EAD
+32/9A09: 69 AD     ADC #$AD           ; 32/9EAD (monster selection layout)
 32/9A0B: 85 8C     STA $8C
 32/9A0D: 85 8E     STA $8E
 32/9A0F: A9 00     LDA #$00
@@ -15422,16 +15652,16 @@
 32/9A13: 85 8D     STA $8D
 32/9A15: 85 8F     STA $8F
 32/9A17: A9 04     LDA #$04
-32/9A19: 4C F5 99  JMP $99F5
+32/9A19: 4C F5 99  JMP $99F5          ; add to +$8E
 
-; [ animation function $01:  ]
+; [ animation function $01: choose targets ]
 
 32/9A1C: A9 01     LDA #$01
 32/9A1E: 85 12     STA $12
 32/9A20: 85 13     STA $13
 32/9A22: A9 10     LDA #$10
 32/9A24: 85 14     STA $14
-32/9A26: 20 02 9A  JSR $9A02
+32/9A26: 20 02 9A  JSR $9A02          ; init monster selection layout pointer
 32/9A29: A9 00     LDA #$00
 32/9A2B: 85 AF     STA $AF
 32/9A2D: 85 B0     STA $B0
@@ -15443,17 +15673,17 @@
 32/9A38: 68        PLA 
 32/9A39: 29 02     AND #$02
 32/9A3B: F0 0A     BEQ $9A47
-32/9A3D: A9 05     LDA #$05
+32/9A3D: A9 05     LDA #$05           ; all characters
 32/9A3F: 85 B1     STA $B1
 32/9A41: 20 80 9C  JSR $9C80
 32/9A44: 4C 4E 9A  JMP $9A4E
-32/9A47: A9 04     LDA #$04
+32/9A47: A9 04     LDA #$04           ; single character
 32/9A49: 85 B1     STA $B1
 32/9A4B: 20 80 9C  JSR $9C80
-32/9A4E: 20 11 9F  JSR $9F11
+32/9A4E: 20 11 9F  JSR $9F11          ; update status and target numeral sprites
 32/9A51: 20 AA FB  JSR $FBAA          ; update joypad input
 32/9A54: 20 C5 F8  JSR $F8C5          ; wait for vblank (no color update)
-32/9A57: 20 69 9A  JSR $9A69          ; draw battle command list
+32/9A57: 20 69 9A  JSR $9A69
 32/9A5A: A5 AD     LDA $AD
 32/9A5C: 05 AE     ORA $AE
 32/9A5E: D0 EE     BNE $9A4E
@@ -15557,11 +15787,17 @@
 32/9B29: C9 08     CMP #$08
 32/9B2B: D0 C5     BNE $9AF2
 32/9B2D: 60        RTS 
+
+; [  ]
+
 32/9B2E: 06 86     ASL $86
 32/9B30: 06 86     ASL $86
 32/9B32: 06 86     ASL $86
 32/9B34: 06 86     ASL $86
 32/9B36: 60        RTS 
+
+; [  ]
+
 32/9B37: A2 00     LDX #$00
 32/9B39: 8A        TXA 
 32/9B3A: 0A        ASL 
@@ -15603,6 +15839,9 @@
 32/9B87: E0 04     CPX #$04
 32/9B89: D0 AE     BNE $9B39
 32/9B8B: 60        RTS 
+
+; [  ]
+
 32/9B8C: A5 AD     LDA $AD
 32/9B8E: 48        PHA 
 32/9B8F: A5 AE     LDA $AE
@@ -15643,12 +15882,15 @@
 32/9BCA: 68        PLA 
 32/9BCB: 68        PLA 
 32/9BCC: 60        RTS 
-32/9BCD: 20 02 9A  JSR $9A02
-32/9BD0: AD 12 00  LDA $0012
+
+; [ get user input for target select ]
+
+32/9BCD: 20 02 9A  JSR $9A02          ; init monster selection layout pointer
+32/9BD0: AD 12 00  LDA $0012          ; button pressed
 32/9BD3: 48        PHA 
 32/9BD4: 29 F0     AND #$F0
-32/9BD6: F0 05     BEQ $9BDD
-32/9BD8: A9 98     LDA #$98
+32/9BD6: F0 05     BEQ $9BDD          ; branch if no direction buttons pressed
+32/9BD8: A9 98     LDA #$98           ; sound effect $18
 32/9BDA: 8D 49 7F  STA $7F49
 32/9BDD: 68        PLA 
 32/9BDE: C9 80     CMP #$80
@@ -15664,45 +15906,54 @@
 32/9BF2: C9 02     CMP #$02
 32/9BF4: F0 2E     BEQ $9C24
 32/9BF6: 60        RTS 
-32/9BF7: A9 85     LDA #$85
+; A button
+32/9BF7: A9 85     LDA #$85           ; sound effect $05
 32/9BF9: 8D 49 7F  STA $7F49
 32/9BFC: A5 AD     LDA $AD
-32/9BFE: F0 09     BEQ $9C09
+32/9BFE: F0 09     BEQ $9C09          ; branch if no monster targets
 32/9C00: 85 B4     STA $B4
-32/9C02: A9 C0     LDA #$C0
+32/9C02: A9 C0     LDA #$C0           ; monster target
 32/9C04: 85 B5     STA $B5
 32/9C06: 4C 13 9C  JMP $9C13
 32/9C09: A5 AE     LDA $AE
 32/9C0B: 29 F0     AND #$F0
 32/9C0D: 85 B4     STA $B4
-32/9C0F: A9 40     LDA #$40
+32/9C0F: A9 40     LDA #$40           ; character target
 32/9C11: 85 B5     STA $B5
 32/9C13: 20 50 9C  JSR $9C50
 32/9C16: A6 A5     LDX $A5
 32/9C18: A5 AD     LDA $AD
-32/9C1A: 9D 0F 7E  STA $7E0F,X
+32/9C1A: 9D 0F 7E  STA $7E0F,X        ; set selected targets for numeral display
 32/9C1D: A9 00     LDA #$00
 32/9C1F: 85 AD     STA $AD
 32/9C21: 85 AE     STA $AE
 32/9C23: 60        RTS 
+; B button
 32/9C24: A9 00     LDA #$00
 32/9C26: 85 AD     STA $AD
 32/9C28: 85 AE     STA $AE
-32/9C2A: 85 B4     STA $B4
+32/9C2A: 85 B4     STA $B4            ; clear targets
 32/9C2C: 85 B5     STA $B5
 32/9C2E: A6 A5     LDX $A5
 32/9C30: 9D 0F 7E  STA $7E0F,X
 32/9C33: 60        RTS 
+; right button
 32/9C34: 20 D2 90  JSR $90D2
 32/9C37: D0 03     BNE $9C3C
 32/9C39: 4C 80 9C  JMP $9C80
 32/9C3C: 4C DC 9C  JMP $9CDC
+; left button
 32/9C3F: 20 D2 90  JSR $90D2
 32/9C42: D0 03     BNE $9C47
 32/9C44: 4C DC 9C  JMP $9CDC
 32/9C47: 4C 80 9C  JMP $9C80
+; down button
 32/9C4A: 4C 8E 9D  JMP $9D8E
+; up button
 32/9C4D: 4C 4F 9D  JMP $9D4F
+
+; [  ]
+
 32/9C50: A2 00     LDX #$00
 32/9C52: BD 61 9A  LDA $9A61,X
 32/9C55: C5 B4     CMP $B4
@@ -15715,6 +15966,9 @@
 32/9C61: E0 08     CPX #$08
 32/9C63: D0 ED     BNE $9C52
 32/9C65: 60        RTS 
+
+; [  ]
+
 32/9C66: E6 B0     INC $B0
 32/9C68: A5 B0     LDA $B0
 32/9C6A: 29 01     AND #$01
@@ -15722,6 +15976,9 @@
 32/9C6E: D0 02     BNE $9C72
 32/9C70: E6 AF     INC $AF
 32/9C72: 60        RTS 
+
+; [  ]
+
 32/9C73: C6 B0     DEC $B0
 32/9C75: A5 B0     LDA $B0
 32/9C77: 29 01     AND #$01
@@ -15729,6 +15986,9 @@
 32/9C7B: F0 02     BEQ $9C7F
 32/9C7D: C6 AF     DEC $AF
 32/9C7F: 60        RTS 
+
+; [  ]
+
 32/9C80: A5 B1     LDA $B1
 32/9C82: F0 2A     BEQ $9CAE
 32/9C84: C9 05     CMP #$05
@@ -15740,7 +16000,9 @@
 32/9C90: C9 03     CMP #$03
 32/9C92: F0 1A     BEQ $9CAE
 32/9C94: 60        RTS 
+; 5: all characters
 32/9C95: 4C D0 9D  JMP $9DD0
+; 4: single character
 32/9C98: A9 03     LDA #$03
 32/9C9A: 85 AF     STA $AF
 32/9C9C: A9 01     LDA #$01
@@ -15750,6 +16012,7 @@
 32/9CA5: 4C 03 9E  JMP $9E03
 32/9CA8: 20 73 9C  JSR $9C73
 32/9CAB: 4C A0 9C  JMP $9CA0
+; 0,2,3: single monster
 32/9CAE: A5 AF     LDA $AF
 32/9CB0: D0 09     BNE $9CBB
 32/9CB2: A9 00     LDA #$00
@@ -15770,6 +16033,9 @@
 32/9CD6: C9 FF     CMP #$FF
 32/9CD8: F0 D8     BEQ $9CB2
 32/9CDA: D0 ED     BNE $9CC9
+
+; [  ]
+
 32/9CDC: A5 B1     LDA $B1
 32/9CDE: F0 28     BEQ $9D08
 32/9CE0: C9 01     CMP #$01
@@ -15781,6 +16047,7 @@
 32/9CEC: C9 03     CMP #$03
 32/9CEE: F0 18     BEQ $9D08
 32/9CF0: 60        RTS 
+; 1: all monsters
 32/9CF1: A9 00     LDA #$00
 32/9CF3: 85 AF     STA $AF
 32/9CF5: 85 B0     STA $B0
@@ -15789,7 +16056,9 @@
 32/9CFC: 4C 03 9E  JMP $9E03
 32/9CFF: 20 66 9C  JSR $9C66
 32/9D02: 4C F7 9C  JMP $9CF7
+; 4: single character
 32/9D05: 4C 1A 9E  JMP $9E1A
+; 0,2,3: single monster
 32/9D08: A5 AF     LDA $AF
 32/9D0A: C9 03     CMP #$03
 32/9D0C: D0 03     BNE $9D11
@@ -15808,6 +16077,9 @@
 32/9D2C: C9 04     CMP #$04
 32/9D2E: D0 EF     BNE $9D1F
 32/9D30: 4C D0 9D  JMP $9DD0
+
+; [  ]
+
 32/9D33: A5 B0     LDA $B0
 32/9D35: 29 01     AND #$01
 32/9D37: 0A        ASL 
@@ -15826,6 +16098,9 @@
 32/9D4C: 60        RTS 
 32/9D4D: 18        CLC 
 32/9D4E: 60        RTS 
+
+; [  ]
+
 32/9D4F: A5 B1     LDA $B1
 32/9D51: F0 25     BEQ $9D78
 32/9D53: C9 04     CMP #$04
@@ -15889,11 +16164,13 @@
 32/9DCE: 22
 32/9DCF: 11
 
+; [  ]
+
 32/9DD0: A5 B2     LDA $B2
 32/9DD2: 29 03     AND #$03
 32/9DD4: 85 B2     STA $B2
 32/9DD6: AA        TAX 
-32/9DD7: BD 8B 7D  LDA $7D8B,X
+32/9DD7: BD 8B 7D  LDA $7D8B,X        ; character job
 32/9DDA: C9 FF     CMP #$FF
 32/9DDC: F0 08     BEQ $9DE6
 32/9DDE: BD 22 7E  LDA $7E22,X
@@ -15910,9 +16187,12 @@
 32/9DF8: 85 AE     STA $AE
 32/9DFA: A9 00     LDA #$00
 32/9DFC: 85 AD     STA $AD
-32/9DFE: A9 04     LDA #$04
+32/9DFE: A9 04     LDA #$04           ; select single character
 32/9E00: 85 B1     STA $B1
 32/9E02: 60        RTS 
+
+; [  ]
+
 32/9E03: A5 B0     LDA $B0
 32/9E05: 0A        ASL 
 32/9E06: 0A        ASL 
@@ -15923,14 +16203,17 @@
 32/9E0D: A8        TAY 
 32/9E0E: B9 61 9A  LDA $9A61,Y
 32/9E11: 85 AD     STA $AD
-32/9E13: A9 00     LDA #$00
+32/9E13: A9 00     LDA #$00           ; select single monster
 32/9E15: 85 AE     STA $AE
 32/9E17: 85 B1     STA $B1
 32/9E19: 60        RTS 
+
+; [  ]
+
 32/9E1A: A9 00     LDA #$00
 32/9E1C: 85 AD     STA $AD
 32/9E1E: 85 AE     STA $AE
-32/9E20: A9 05     LDA #$05
+32/9E20: A9 05     LDA #$05           ; select all characters
 32/9E22: 85 B1     STA $B1
 32/9E24: A2 00     LDX #$00
 32/9E26: BD 8B 7D  LDA $7D8B,X
@@ -15951,13 +16234,16 @@
 32/9E44: 06 AE     ASL $AE
 32/9E46: 06 AE     ASL $AE
 32/9E48: 60        RTS 
+
+; [  ]
+
 32/9E49: A9 00     LDA #$00
 32/9E4B: 85 AD     STA $AD
 32/9E4D: 85 AE     STA $AE
 32/9E4F: 85 AF     STA $AF
 32/9E51: 85 B0     STA $B0
 32/9E53: 85 B2     STA $B2
-32/9E55: A9 01     LDA #$01
+32/9E55: A9 01     LDA #$01           ; select all monsters
 32/9E57: 85 B1     STA $B1
 32/9E59: A2 00     LDX #$00
 32/9E5B: BD A7 7D  LDA $7DA7,X
@@ -15972,12 +16258,21 @@
 32/9E6C: E0 08     CPX #$08
 32/9E6E: D0 EB     BNE $9E5B
 32/9E70: 60        RTS 
+
+; [  ]
+
 32/9E71: A9 02     LDA #$02
 32/9E73: 85 B1     STA $B1
 32/9E75: 4C 7F 9E  JMP $9E7F
-32/9E78: A9 03     LDA #$03
+
+; [  ]
+
+32/9E78: A9 03     LDA #$03           ; 
 32/9E7A: 85 B1     STA $B1
 32/9E7C: 4C 7F 9E  JMP $9E7F
+
+; [  ]
+
 32/9E7F: A9 00     LDA #$00
 32/9E81: 85 AD     STA $AD
 32/9E83: 85 AE     STA $AE
@@ -16005,6 +16300,8 @@
 32/9EAA: D0 EB     BNE $9E97
 32/9EAC: 60        RTS 
 
+; monster selection layout for each monster tilemap
+; 10 * 8 bytes, 4 bytes per row, top then bottom
 32/9EAD: 00 02 04 06 01 03 05 07
 32/9EB5: 00 02 04 06 01 03 05 07
 32/9EBD: 00 01 03 05 FF 02 04 06
@@ -16016,6 +16313,7 @@
 32/9EED: 00 01 FF FF FF 02 FF FF
 32/9EF5: 00 FF FF FF FF FF FF FF
 
+; sprite data for status animations
 32/9EFD: 00 00 03 00
 32/9F01: 00 00 03 08
 32/9F05: 00 00 43 08
@@ -16023,18 +16321,18 @@
 
 32/9F0D: 49 4D 51 55
 
-; [ animation function $03:  ]
+; [ animation function $03: update status and target numeral sprites ]
 
 32/9F11: A5 AC     LDA $AC
 32/9F13: D0 01     BNE $9F16
 32/9F15: 60        RTS 
 32/9F16: A2 00     LDX #$00
 32/9F18: 86 A3     STX $A3
-32/9F1A: B5 C0     LDA $C0,X
+32/9F1A: B5 C0     LDA $C0,X          ; character x position
 32/9F1C: 85 9D     STA $9D
-32/9F1E: B5 C4     LDA $C4,X
+32/9F1E: B5 C4     LDA $C4,X          ; character y position
 32/9F20: 85 9E     STA $9E
-32/9F22: 20 D2 90  JSR $90D2
+32/9F22: 20 D2 90  JSR $90D2          ; check back attack
 32/9F25: D0 0E     BNE $9F35
 32/9F27: A5 9D     LDA $9D
 32/9F29: 49 FF     EOR #$FF
@@ -16056,7 +16354,7 @@
 32/9F48: 0A        ASL 
 32/9F49: 0A        ASL 
 32/9F4A: 0A        ASL 
-32/9F4B: 85 A0     STA $A0
+32/9F4B: 85 A0     STA $A0            ; pointer to first sprite
 32/9F4D: A5 B7     LDA $B7
 32/9F4F: 29 08     AND #$08
 32/9F51: 4A        LSR 
@@ -16066,18 +16364,18 @@
 32/9F56: 85 9F     STA $9F
 32/9F58: BD B7 7D  LDA $7DB7,X
 32/9F5B: C9 FF     CMP #$FF
-32/9F5D: D0 02     BNE $9F61
+32/9F5D: D0 02     BNE $9F61          ; branch if no status to show
 32/9F5F: 85 9F     STA $9F
-32/9F61: 20 E4 9F  JSR $9FE4
-32/9F64: A6 A3     LDX $A3
+32/9F61: 20 E4 9F  JSR $9FE4          ; update status animation sprites
+32/9F64: A6 A3     LDX $A3            ; next character
 32/9F66: E8        INX 
 32/9F67: E0 04     CPX #$04
 32/9F69: D0 AD     BNE $9F18
-32/9F6B: 20 71 9F  JSR $9F71
+32/9F6B: 20 71 9F  JSR $9F71          ; update character target numerals
 32/9F6E: E6 B7     INC $B7
 32/9F70: 60        RTS 
 
-; [  ]
+; [ update character target numerals ]
 
 32/9F71: A9 F0     LDA #$F0
 32/9F73: A2 00     LDX #$00
@@ -16085,22 +16383,22 @@
 32/9F78: E8        INX 
 32/9F79: E0 20     CPX #$20
 32/9F7B: D0 F8     BNE $9F75
-32/9F7D: A5 B7     LDA $B7
-32/9F7F: 29 18     AND #$18
+32/9F7D: A5 B7     LDA $B7            ; persistent frame counter
+32/9F7F: 29 18     AND #$18           ; change character every 8 frames
 32/9F81: 4A        LSR 
 32/9F82: 4A        LSR 
 32/9F83: 4A        LSR 
-32/9F84: 85 A3     STA $A3
+32/9F84: 85 A3     STA $A3            ; character id
 32/9F86: AA        TAX 
-32/9F87: BD 0F 7E  LDA $7E0F,X
+32/9F87: BD 0F 7E  LDA $7E0F,X        ; character's selected targets
 32/9F8A: 85 A4     STA $A4
 32/9F8C: A0 00     LDY #$00
 32/9F8E: 06 A4     ASL $A4
-32/9F90: 90 4C     BCC $9FDE
+32/9F90: 90 4C     BCC $9FDE          ; branch if target not included
 32/9F92: 98        TYA 
 32/9F93: 0A        ASL 
 32/9F94: AA        TAX 
-32/9F95: BD F7 7D  LDA $7DF7,X
+32/9F95: BD F7 7D  LDA $7DF7,X        ; x position
 32/9F98: 85 9D     STA $9D
 32/9F9A: A5 A3     LDA $A3
 32/9F9C: 0A        ASL 
@@ -16109,7 +16407,7 @@
 32/9F9F: 18        CLC 
 32/9FA0: 65 9D     ADC $9D
 32/9FA2: 85 9D     STA $9D
-32/9FA4: 20 D2 90  JSR $90D2
+32/9FA4: 20 D2 90  JSR $90D2          ; check back attack
 32/9FA7: D0 0C     BNE $9FB5
 32/9FA9: A5 9D     LDA $9D
 32/9FAB: 49 FF     EOR #$FF
@@ -16121,7 +16419,7 @@
 32/9FB7: 18        CLC 
 32/9FB8: 69 08     ADC #$08
 32/9FBA: 85 9D     STA $9D
-32/9FBC: BD F8 7D  LDA $7DF8,X
+32/9FBC: BD F8 7D  LDA $7DF8,X        ; y position
 32/9FBF: 85 9E     STA $9E
 32/9FC1: 8A        TXA 
 32/9FC2: 0A        ASL 
@@ -16132,16 +16430,19 @@
 32/9FC9: 9D 00 02  STA $0200,X
 32/9FCC: A5 A3     LDA $A3
 32/9FCE: 18        CLC 
-32/9FCF: 69 3A     ADC #$3A
+32/9FCF: 69 3A     ADC #$3A           ; "1"
 32/9FD1: 9D 01 02  STA $0201,X
 32/9FD4: A9 03     LDA #$03
 32/9FD6: 9D 02 02  STA $0202,X
 32/9FD9: A5 9D     LDA $9D
 32/9FDB: 9D 03 02  STA $0203,X
-32/9FDE: C8        INY 
+32/9FDE: C8        INY                ; next target
 32/9FDF: C0 08     CPY #$08
 32/9FE1: D0 AB     BNE $9F8E
 32/9FE3: 60        RTS 
+
+; [ update status animation sprites ]
+
 32/9FE4: A0 00     LDY #$00
 32/9FE6: A6 A0     LDX $A0
 32/9FE8: B1 A1     LDA ($A1),Y
@@ -16169,9 +16470,9 @@
 33/A014: AA        TAX 
 33/A015: A5 A7     LDA $A7
 33/A017: 29 FC     AND #$FC
-33/A019: 1D 51 A0  ORA $A051,X
+33/A019: 1D 51 A0  ORA $A051,X        ; palette
 33/A01C: 85 A7     STA $A7
-33/A01E: BD 49 A0  LDA $A049,X
+33/A01E: BD 49 A0  LDA $A049,X        ; y offset
 33/A021: 85 A8     STA $A8
 33/A023: 68        PLA 
 33/A024: AA        TAX 
@@ -16198,20 +16499,11 @@
 33/A046: D0 A0     BNE $9FE8
 33/A048: 60        RTS 
 
-33/A049: FC        --- 
-33/A04A: FC        --- 
-33/A04B: FC        --- 
-33/A04C: FC        --- 
-33/A04D: 09 FC     ORA #$FC
-33/A04F: FC        --- 
-33/A050: FC        --- 
-33/A051: 00        BRK 
-33/A052: 01 02     ORA ($02,X)
-33/A054: 00        BRK 
-33/A055: 03        --- 
-33/A056: 00        BRK 
-33/A057: 00        BRK 
-33/A058: 03        --- 
+; y offset for status sprites
+33/A049: FC FC FC FC 09 FC FC FC
+
+; palette for status sprites
+33/A051: 00 01 02 00 03 00 00 03
 
 ; [ reset animation frame counter ]
 
@@ -16225,26 +16517,42 @@
 33/A060: 85 C8     STA $C8
 33/A062: 4C 2B A4  JMP $A42B          ; clear animation oam data
 
-; [  ]
+; [ update weapon and attacker sprites ]
 
 33/A065: 48        PHA 
 33/A066: 8A        TXA 
-33/A067: 20 EB A3  JSR $A3EB
+33/A067: 20 EB A3  JSR $A3EB          ; update weapon sprite
 33/A06A: 68        PLA 
-33/A06B: 4C DD A3  JMP $A3DD
+33/A06B: 4C DD A3  JMP $A3DD          ; update attacking character sprite
 
-; [  ]
+; [ update attacker and weapon sprites ]
 
 33/A06E: 48        PHA 
 33/A06F: 8A        TXA 
-33/A070: 20 DD A3  JSR $A3DD
+33/A070: 20 DD A3  JSR $A3DD          ; update attacking character sprite
 33/A073: 68        PLA 
-33/A074: 4C EB A3  JMP $A3EB
+33/A074: 4C EB A3  JMP $A3EB          ; update weapon sprite
 
+; max number of hits for each weapon animation
 33/A077: 07 05 05 07 05 07 07 07 07
 
+; weapon animation jump table
 33/A080: A2F2 A365 A36F A251 A1A5 A12C A125 A1EF
 33/A090: A2F2 A2FB
+
+; [ do weapon animation (one hand) ]
+
+; A: weapon animation id
+;      0: unarmed
+;      1: axe, spear, knife, sword
+;      2: nunchuck, rod, staff, hammer
+;      3: bow
+;      4: harp
+;      5: boomerang
+;      6: fullmoon
+;      7: shuriken
+;      8: arrow
+;      9: claw
 
 33/A094: 85 7E     STA $7E
 33/A096: A9 00     LDA #$00
@@ -16252,7 +16560,7 @@
 33/A09A: A6 CD     LDX $CD
 33/A09C: B5 BB     LDA $BB,X
 33/A09E: A4 7E     LDY $7E
-33/A0A0: D9 77 A0  CMP $A077,Y
+33/A0A0: D9 77 A0  CMP $A077,Y        ; limit max number of hits
 33/A0A3: 90 0A     BCC $A0AF
 33/A0A5: B9 77 A0  LDA $A077,Y
 33/A0A8: 38        SEC 
@@ -16268,53 +16576,63 @@
 33/A0BB: 85 7F     STA $7F
 33/A0BD: 6C 7E 00  JMP ($007E)
 
-; [ animation function $04:  ]
+; [ animation function $04: weapon animation ]
 
 33/A0C0: 20 C3 A6  JSR $A6C3
 33/A0C3: 90 06     BCC $A0CB
 33/A0C5: A9 00     LDA #$00
 33/A0C7: 85 BB     STA $BB
 33/A0C9: 85 BC     STA $BC
-33/A0CB: A9 00     LDA #$00
+33/A0CB: A9 00     LDA #$00           ; right hand first
 33/A0CD: 85 CD     STA $CD
 33/A0CF: AD 1F 7E  LDA $7E1F
 33/A0D2: C9 03     CMP #$03
-33/A0D4: D0 0B     BNE $A0E1
+33/A0D4: D0 0B     BNE $A0E1          ; branch if not bow (right hand)
 33/A0D6: AD 20 7E  LDA $7E20
 33/A0D9: C9 08     CMP #$08
-33/A0DB: D0 1B     BNE $A0F8
+33/A0DB: D0 1B     BNE $A0F8          ; branch if not arrow (left hand)
 33/A0DD: A9 00     LDA #$00
 33/A0DF: F0 0D     BEQ $A0EE
 33/A0E1: C9 08     CMP #$08
-33/A0E3: D0 13     BNE $A0F8
+33/A0E3: D0 13     BNE $A0F8          ; branch if not arrow (right hand)
 33/A0E5: AD 20 7E  LDA $7E20
 33/A0E8: C9 03     CMP #$03
-33/A0EA: D0 0C     BNE $A0F8
-33/A0EC: A9 01     LDA #$01
+33/A0EA: D0 0C     BNE $A0F8          ; branch if not bow (left hand)
+; bow + arrow
+33/A0EC: A9 01     LDA #$01           ; left hand only
 33/A0EE: 85 CD     STA $CD
 33/A0F0: 20 4C A2  JSR $A24C
 33/A0F3: A9 03     LDA #$03
-33/A0F5: 4C 94 A0  JMP $A094
+33/A0F5: 4C 94 A0  JMP $A094          ; do weapon animation
 33/A0F8: AD 1F 7E  LDA $7E1F
 33/A0FB: C9 04     CMP #$04
-33/A0FD: D0 06     BNE $A105
+33/A0FD: D0 06     BNE $A105          ; branch if not harp (right hand)
+; harp
 33/A0FF: 20 4C A2  JSR $A24C
 33/A102: 4C 0C A1  JMP $A10C
+; all others
 33/A105: AD 20 7E  LDA $7E20
 33/A108: C9 04     CMP #$04
-33/A10A: F0 F3     BEQ $A0FF
+33/A10A: F0 F3     BEQ $A0FF          ; branch if harp (left hand)
 33/A10C: AD 1F 7E  LDA $7E1F
-33/A10F: 20 94 A0  JSR $A094
-33/A112: A9 01     LDA #$01
+33/A10F: 20 94 A0  JSR $A094          ; do weapon animation
+33/A112: A9 01     LDA #$01           ; left hand second
 33/A114: 85 CD     STA $CD
 33/A116: AD 20 7E  LDA $7E20
-33/A119: 4C 94 A0  JMP $A094
-33/A11C: 20 45 A2  JSR $A245
-33/A11F: 20 38 A4  JSR $A438
-33/A122: 4C 0F A4  JMP $A40F
+33/A119: 4C 94 A0  JMP $A094          ; do weapon animation
+
+; [  ]
+
+33/A11C: 20 45 A2  JSR $A245          ; init animation hits counter
+33/A11F: 20 38 A4  JSR $A438          ; load current hand hit palette
+33/A122: 4C 0F A4  JMP $A40F          ; save character animations frames
+
+; 6: fullmoon
 33/A125: A9 04     LDA #$04
 33/A127: 85 89     STA $89
 33/A129: 4C 30 A1  JMP $A130
+
+; 5: boomerang
 33/A12C: A9 00     LDA #$00
 33/A12E: 85 89     STA $89
 33/A130: 20 1C A1  JSR $A11C
@@ -16365,11 +16683,13 @@
 33/A190: 65 88     ADC $88
 33/A192: 20 6E A0  JSR $A06E
 33/A195: 20 B0 F8  JSR $F8B0          ; wait for vblank (update oam and color)
-33/A198: 20 E6 8A  JSR $8AE6
+33/A198: 20 E6 8A  JSR $8AE6          ; increment animation frame counter
 33/A19B: 29 10     AND #$10
 33/A19D: F0 A1     BEQ $A140
-33/A19F: 20 D4 A4  JSR $A4D4
-33/A1A2: 4C 35 AC  JMP $AC35
+33/A19F: 20 D4 A4  JSR $A4D4          ; boomerang hit animation
+33/A1A2: 4C 35 AC  JMP $AC35          ; clean up after animation
+
+; 4: harp
 33/A1A5: 20 1C A1  JSR $A11C
 33/A1A8: A6 95     LDX $95
 33/A1AA: 20 F9 A3  JSR $A3F9
@@ -16391,9 +16711,9 @@
 33/A1D1: 29 08     AND #$08
 33/A1D3: F0 05     BEQ $A1DA
 33/A1D5: A9 01     LDA #$01
-33/A1D7: 20 B2 97  JSR $97B2
+33/A1D7: 20 B2 97  JSR $97B2          ; do hit animation
 33/A1DA: 20 B0 F8  JSR $F8B0          ; wait for vblank (update oam and color)
-33/A1DD: 20 E6 8A  JSR $8AE6
+33/A1DD: 20 E6 8A  JSR $8AE6          ; increment animation frame counter
 33/A1E0: 29 10     AND #$10
 33/A1E2: F0 D3     BEQ $A1B7
 33/A1E4: A5 BD     LDA $BD
@@ -16401,6 +16721,8 @@
 33/A1E8: C6 BD     DEC $BD
 33/A1EA: D0 C6     BNE $A1B2
 33/A1EC: 4C 3A AC  JMP $AC3A
+
+; 7: shuriken
 33/A1EF: 20 1C A1  JSR $A11C
 33/A1F2: A6 95     LDX $95
 33/A1F4: 20 F9 A3  JSR $A3F9
@@ -16431,75 +16753,91 @@
 33/A230: A9 19     LDA #$19
 33/A232: 20 6E A0  JSR $A06E
 33/A235: 20 B0 F8  JSR $F8B0          ; wait for vblank (update oam and color)
-33/A238: 20 E6 8A  JSR $8AE6
+33/A238: 20 E6 8A  JSR $8AE6          ; increment animation frame counter
 33/A23B: 29 10     AND #$10
 33/A23D: F0 C0     BEQ $A1FF
-33/A23F: 20 FE A5  JSR $A5FE
-33/A242: 4C 35 AC  JMP $AC35
+33/A23F: 20 FE A5  JSR $A5FE          ; shuriken hit animation
+33/A242: 4C 35 AC  JMP $AC35          ; clean up after animation
+
+; [ init animation hits counter ]
+
 33/A245: A6 CD     LDX $CD
 33/A247: B5 BB     LDA $BB,X
 33/A249: 85 BD     STA $BD
 33/A24B: 60        RTS 
+
+; [  ]
+
 33/A24C: A5 BB     LDA $BB
 33/A24E: 85 BC     STA $BC
 33/A250: 60        RTS 
-33/A251: 20 45 A2  JSR $A245
-33/A254: AD 17 7E  LDA $7E17
+
+; 3: bow
+33/A251: 20 45 A2  JSR $A245          ; init animation hits counter
+33/A254: AD 17 7E  LDA $7E17          ; swap left and right hand hit palette
 33/A257: 48        PHA 
 33/A258: AD 18 7E  LDA $7E18
 33/A25B: 8D 17 7E  STA $7E17
 33/A25E: 68        PLA 
 33/A25F: 8D 18 7E  STA $7E18
-33/A262: 20 38 A4  JSR $A438
-33/A265: 20 0F A4  JSR $A40F
+33/A262: 20 38 A4  JSR $A438          ; load current hand hit palette
+33/A265: 20 0F A4  JSR $A40F          ; save character animations frames
 33/A268: A6 95     LDX $95
 33/A26A: 20 F9 A3  JSR $A3F9
 33/A26D: 20 59 A0  JSR $A059          ; reset animation frame counter
-33/A270: A9 AF     LDA #$AF
+33/A270: A9 AF     LDA #$AF           ; sound effect $2F
 33/A272: 8D 49 7F  STA $7F49
 33/A275: 20 5E A0  JSR $A05E          ; reset animation sprites
 33/A278: A5 B6     LDA $B6
 33/A27A: 29 08     AND #$08
-33/A27C: D0 22     BNE $A2A0
+33/A27C: D0 22     BNE $A2A0          ; branch after first 7 frames
+; frame 0-7
 33/A27E: A5 CD     LDA $CD
-33/A280: F0 0F     BEQ $A291
+33/A280: F0 0F     BEQ $A291          ; branch if right hand
 33/A282: A2 06     LDX #$06
 33/A284: A9 0B     LDA #$0B
 33/A286: 20 6E A0  JSR $A06E
 33/A289: A9 07     LDA #$07
-33/A28B: 20 EB A3  JSR $A3EB
+33/A28B: 20 EB A3  JSR $A3EB          ; update weapon sprite
 33/A28E: 4C BF A2  JMP $A2BF
 33/A291: A9 05     LDA #$05
-33/A293: 20 EB A3  JSR $A3EB
+33/A293: 20 EB A3  JSR $A3EB          ; update weapon sprite
 33/A296: A2 09     LDX #$09
 33/A298: A9 01     LDA #$01
 33/A29A: 20 65 A0  JSR $A065
 33/A29D: 4C BF A2  JMP $A2BF
+; frame 8-15
 33/A2A0: A5 CD     LDA $CD
-33/A2A2: F0 0F     BEQ $A2B3
+33/A2A2: F0 0F     BEQ $A2B3          ; branch if right hand
 33/A2A4: A2 06     LDX #$06
 33/A2A6: A9 0C     LDA #$0C
 33/A2A8: 20 6E A0  JSR $A06E
 33/A2AB: A9 08     LDA #$08
-33/A2AD: 20 EB A3  JSR $A3EB
+33/A2AD: 20 EB A3  JSR $A3EB          ; update weapon sprite
 33/A2B0: 4C BF A2  JMP $A2BF
 33/A2B3: A9 06     LDA #$06
-33/A2B5: 20 EB A3  JSR $A3EB
+33/A2B5: 20 EB A3  JSR $A3EB          ; update weapon sprite
 33/A2B8: A2 0A     LDX #$0A
 33/A2BA: A9 01     LDA #$01
 33/A2BC: 20 65 A0  JSR $A065
 33/A2BF: 20 B0 F8  JSR $F8B0          ; wait for vblank (update oam and color)
-33/A2C2: 20 E6 8A  JSR $8AE6
+33/A2C2: 20 E6 8A  JSR $8AE6          ; increment animation frame counter
 33/A2C5: 29 10     AND #$10
 33/A2C7: F0 AC     BEQ $A275
-33/A2C9: 20 D2 A6  JSR $A6D2
-33/A2CC: 4C 35 AC  JMP $AC35
+33/A2C9: 20 D2 A6  JSR $A6D2          ; arrow hit animation
+33/A2CC: 4C 35 AC  JMP $AC35          ; clean up after animation
+
+; [  ]
+
 33/A2CF: A5 95     LDA $95
 33/A2D1: 0A        ASL 
 33/A2D2: A8        TAY 
 33/A2D3: B9 9B 7D  LDA $7D9B,Y
 33/A2D6: 29 05     AND #$05
 33/A2D8: 60        RTS 
+
+; [  ]
+
 33/A2D9: 48        PHA 
 33/A2DA: 20 CF A2  JSR $A2CF
 33/A2DD: F0 0F     BEQ $A2EE
@@ -16512,11 +16850,15 @@
 33/A2EA: A9 0D     LDA #$0D
 33/A2EC: D0 01     BNE $A2EF
 33/A2EE: 68        PLA 
-33/A2EF: 4C DD A3  JMP $A3DD
+33/A2EF: 4C DD A3  JMP $A3DD          ; update attacking character sprite
+
+; 0: unarmed
 33/A2F2: AD 1F 7E  LDA $7E1F
 33/A2F5: 0D 20 7E  ORA $7E20
-33/A2F8: F0 01     BEQ $A2FB
+33/A2F8: F0 01     BEQ $A2FB          ; no animation if other hand has a weapon
 33/A2FA: 60        RTS 
+
+; 9: claw
 33/A2FB: 20 1C A1  JSR $A11C
 33/A2FE: A6 95     LDX $95
 33/A300: 20 F9 A3  JSR $A3F9
@@ -16550,30 +16892,34 @@
 33/A343: D0 05     BNE $A34A
 33/A345: 68        PLA 
 33/A346: 48        PHA 
-33/A347: 20 A1 92  JSR $92A1
+33/A347: 20 A1 92  JSR $92A1          ; update attacker animation sprite
 33/A34A: 68        PLA 
-33/A34B: A9 02     LDA #$02
-33/A34D: 20 B2 97  JSR $97B2
+33/A34B: A9 02     LDA #$02           ; hit animation 2
+33/A34D: 20 B2 97  JSR $97B2          ; do hit animation
 33/A350: 20 B0 F8  JSR $F8B0          ; wait for vblank (update oam and color)
-33/A353: 20 E6 8A  JSR $8AE6
+33/A353: 20 E6 8A  JSR $8AE6          ; increment animation frame counter
 33/A356: 29 08     AND #$08
 33/A358: F0 B1     BEQ $A30B
 33/A35A: A5 BD     LDA $BD
 33/A35C: F0 04     BEQ $A362
 33/A35E: C6 BD     DEC $BD
 33/A360: D0 A1     BNE $A303
-33/A362: 4C 35 AC  JMP $AC35
-33/A365: 20 45 A2  JSR $A245
-33/A368: A9 00     LDA #$00
+33/A362: 4C 35 AC  JMP $AC35          ; clean up after animation
+
+; 1: axe, spear, knife, sword
+33/A365: 20 45 A2  JSR $A245          ; init animation hits counter
+33/A368: A9 00     LDA #$00           ; hit animation 0
 33/A36A: 85 BA     STA $BA
 33/A36C: 4C 79 A3  JMP $A379
-33/A36F: 20 45 A2  JSR $A245
-33/A372: A9 01     LDA #$01
+
+; 2: nunchuck, rod, staff, hammer
+33/A36F: 20 45 A2  JSR $A245          ; init animation hits counter
+33/A372: A9 01     LDA #$01           ; hit animation 1
 33/A374: 85 BA     STA $BA
-33/A376: 4C 79 A3  JMP $A379
-33/A379: 20 38 A4  JSR $A438
-33/A37C: 20 0F A4  JSR $A40F
-33/A37F: A6 95     LDX $95
+33/A376: 4C 79 A3  JMP $A379          ; this does nothing...
+33/A379: 20 38 A4  JSR $A438          ; load current hand hit palette
+33/A37C: 20 0F A4  JSR $A40F          ; save character animations frames
+33/A37F: A6 95     LDX $95            ; attacker id
 33/A381: 20 F9 A3  JSR $A3F9
 33/A384: 20 59 A0  JSR $A059          ; reset animation frame counter
 33/A387: 85 B9     STA $B9
@@ -16582,59 +16928,74 @@
 33/A38E: 20 5E A0  JSR $A05E          ; reset animation sprites
 33/A391: A5 B6     LDA $B6
 33/A393: 29 04     AND #$04
-33/A395: D0 18     BNE $A3AF
+33/A395: D0 18     BNE $A3AF          ; branch on frames 4-7
 33/A397: A5 CD     LDA $CD
 33/A399: F0 0A     BEQ $A3A5
+; left hand back
 33/A39B: A2 02     LDX #$02
 33/A39D: A9 07     LDA #$07
 33/A39F: 20 65 A0  JSR $A065
 33/A3A2: 4C C8 A3  JMP $A3C8
+; right hand back
 33/A3A5: A2 05     LDX #$05
 33/A3A7: A9 00     LDA #$00
 33/A3A9: 20 6E A0  JSR $A06E
 33/A3AC: 4C C8 A3  JMP $A3C8
+; left hand forward + hit
 33/A3AF: A5 CD     LDA $CD
 33/A3B1: F0 0A     BEQ $A3BD
 33/A3B3: A2 03     LDX #$03
 33/A3B5: A9 06     LDA #$06
 33/A3B7: 20 65 A0  JSR $A065
 33/A3BA: 4C C3 A3  JMP $A3C3
+; right hand forward + hit
 33/A3BD: A2 01     LDX #$01
 33/A3BF: 8A        TXA 
 33/A3C0: 20 6E A0  JSR $A06E
 33/A3C3: A5 BA     LDA $BA
-33/A3C5: 20 B2 97  JSR $97B2
+33/A3C5: 20 B2 97  JSR $97B2          ; do hit animation
 33/A3C8: 20 B0 F8  JSR $F8B0          ; wait for vblank (update oam and color)
-33/A3CB: 20 E6 8A  JSR $8AE6
+33/A3CB: 20 E6 8A  JSR $8AE6          ; increment animation frame counter
 33/A3CE: 29 08     AND #$08
-33/A3D0: F0 BC     BEQ $A38E
-33/A3D2: A5 BD     LDA $BD
+33/A3D0: F0 BC     BEQ $A38E          ; 8 frames per hit
+33/A3D2: A5 BD     LDA $BD            ; next hit
 33/A3D4: F0 04     BEQ $A3DA
 33/A3D6: C6 BD     DEC $BD
 33/A3D8: D0 AA     BNE $A384
-33/A3DA: 4C 35 AC  JMP $AC35
-33/A3DD: A6 95     LDX $95
+33/A3DA: 4C 35 AC  JMP $AC35          ; clean up after animation
+
+; [ update attacking character sprite ]
+
+; A: attacker frame
+
+33/A3DD: A6 95     LDX $95            ; attacker
 33/A3DF: 9D 83 7D  STA $7D83,X
-33/A3E2: 4C E5 A3  JMP $A3E5
+33/A3E2: 4C E5 A3  JMP $A3E5          ; this does nothing...
 33/A3E5: 20 56 A4  JSR $A456
 33/A3E8: 4C EA 90  JMP $90EA
 
-; [  ]
+; [ update weapon sprite ]
 
-; A: 
+; i think this is for non-weapon animation sprites too
+; A: animation frame id
 
 33/A3EB: A6 95     LDX $95            ; attacker id
-33/A3ED: 4C 99 92  JMP $9299
+33/A3ED: 4C 99 92  JMP $9299          ; update weapon sprite
 
-; [  ]
+; [ update attacker animation sprite ]
 
-33/A3F0: A6 95     LDX $95
-33/A3F2: 4C A1 92  JMP $92A1
+; $7E: x offset
+; $7F: y offset
+;   A: animation frame id
 
-; [  ]
+33/A3F0: A6 95     LDX $95            ; attacker id
+33/A3F2: 4C A1 92  JMP $92A1          ; update attacker animation sprite
 
-33/A3F5: A0 B8     LDY #$B8
-33/A3F7: D0 E8     BNE $A3E1
+; pointer to animation sprites for each character
+33/A3F5: A0 B8 D0 E8
+
+; [ reset character animation sprites ]
+
 33/A3F9: 8A        TXA 
 33/A3FA: 48        PHA 
 33/A3FB: BD F5 A3  LDA $A3F5,X
@@ -16650,7 +17011,7 @@
 33/A40D: AA        TAX 
 33/A40E: 60        RTS 
 
-; [  ]
+; [ save character animation frames ]
 
 33/A40F: A2 00     LDX #$00
 33/A411: BD 83 7D  LDA $7D83,X
@@ -16660,7 +17021,7 @@
 33/A41A: D0 F5     BNE $A411
 33/A41C: 60        RTS 
 
-; [  ]
+; [ restore character animation frames ]
 
 33/A41D: A2 00     LDX #$00
 33/A41F: BD 87 7D  LDA $7D87,X
@@ -16680,7 +17041,7 @@
 33/A435: D0 F8     BNE $A42F
 33/A437: 60        RTS 
 
-; [  ]
+; [ load current hand hit palette ]
 
 33/A438: A5 CD     LDA $CD
 33/A43A: 29 01     AND #$01
@@ -16707,7 +17068,7 @@
 33/A451: A9 FF     LDA #$FF
 33/A453: 4C 46 A4  JMP $A446
 
-; [  ]
+; [ flip character frame if facing right ??? ]
 
 33/A456: 8A        TXA 
 33/A457: 48        PHA 
@@ -16743,14 +17104,14 @@
 33/A48F: 9D F7 7C  STA $7CF7,X
 33/A492: 60        RTS 
 
-; [  ]
+; [ update arrow sprite ]
 
 33/A493: 48        PHA 
 33/A494: A0 00     LDY #$00
-33/A496: 20 7B BF  JSR $BF7B
+33/A496: 20 7B BF  JSR $BF7B          ; get vector y-component
 33/A499: 85 7F     STA $7F
 33/A49B: A0 00     LDY #$00
-33/A49D: 20 6F BF  JSR $BF6F
+33/A49D: 20 6F BF  JSR $BF6F          ; get vector x-component
 33/A4A0: 85 7E     STA $7E
 33/A4A2: 68        PLA 
 33/A4A3: 85 82     STA $82
@@ -16760,18 +17121,18 @@
 33/A4A9: 29 01     AND #$01
 33/A4AB: 18        CLC 
 33/A4AC: 65 82     ADC $82
-33/A4AE: 4C F0 A3  JMP $A3F0
+33/A4AE: 4C F0 A3  JMP $A3F0          ; update attacker animation sprite
 
 ; [  ]
 
 33/A4B1: 48        PHA 
 33/A4B2: A0 00     LDY #$00
-33/A4B4: 20 7B BF  JSR $BF7B
+33/A4B4: 20 7B BF  JSR $BF7B          ; get vector y-component
 33/A4B7: 18        CLC 
 33/A4B8: 65 88     ADC $88
 33/A4BA: 85 7F     STA $7F
 33/A4BC: A0 00     LDY #$00
-33/A4BE: 20 6F BF  JSR $BF6F
+33/A4BE: 20 6F BF  JSR $BF6F          ; get vector x-component
 33/A4C1: 85 7E     STA $7E
 33/A4C3: 68        PLA 
 33/A4C4: 85 82     STA $82
@@ -16782,7 +17143,10 @@
 33/A4CC: 65 82     ADC $82
 33/A4CE: 18        CLC 
 33/A4CF: 65 89     ADC $89
-33/A4D1: 4C F0 A3  JMP $A3F0
+33/A4D1: 4C F0 A3  JMP $A3F0          ; update attacker animation sprite
+
+; [ boomerang hit animation ]
+
 33/A4D4: AD 96 7E  LDA $7E96
 33/A4D7: D0 05     BNE $A4DE
 33/A4D9: 20 C3 A6  JSR $A6C3
@@ -16809,11 +17173,11 @@
 33/A4FF: 85 8A     STA $8A
 33/A501: A9 10     LDA #$10
 33/A503: 85 8B     STA $8B
-33/A505: 20 5F BF  JSR $BF5F
+33/A505: 20 5F BF  JSR $BF5F          ; reset vector angles
 33/A508: A5 B8     LDA $B8
 33/A50A: 29 07     AND #$07
 33/A50C: AA        TAX 
-33/A50D: 20 A5 A7  JSR $A7A5
+33/A50D: 20 A5 A7  JSR $A7A5          ; get angle from attacker to target
 33/A510: A0 00     LDY #$00
 33/A512: 20 B1 BF  JSR $BFB1
 33/A515: A9 10     LDA #$10
@@ -16824,18 +17188,18 @@
 33/A523: A5 CD     LDA $CD
 33/A525: F0 0D     BEQ $A534
 33/A527: A9 06     LDA #$06
-33/A529: 20 DD A3  JSR $A3DD
+33/A529: 20 DD A3  JSR $A3DD          ; update attacking character sprite
 33/A52C: A9 2C     LDA #$2C
 33/A52E: 20 B1 A4  JSR $A4B1
 33/A531: 4C 3E A5  JMP $A53E
 33/A534: A9 01     LDA #$01
-33/A536: 20 DD A3  JSR $A3DD
+33/A536: 20 DD A3  JSR $A3DD          ; update attacking character sprite
 33/A539: A9 24     LDA #$24
 33/A53B: 20 B1 A4  JSR $A4B1
 33/A53E: 20 C5 F8  JSR $F8C5          ; wait for vblank (no color update)
 33/A541: E6 B6     INC $B6
 33/A543: A0 00     LDY #$00
-33/A545: 20 6F BF  JSR $BF6F
+33/A545: 20 6F BF  JSR $BF6F          ; get vector x-component
 33/A548: 85 90     STA $90
 33/A54A: A6 95     LDX $95
 33/A54C: B5 C0     LDA $C0,X
@@ -16867,7 +17231,7 @@
 33/A57F: A5 8B     LDA $8B
 33/A581: 4A        LSR 
 33/A582: 4A        LSR 
-33/A583: 20 87 BF  JSR $BF87
+33/A583: 20 87 BF  JSR $BF87          ; add to vector distance
 33/A586: A5 89     LDA $89
 33/A588: C9 04     CMP #$04
 33/A58A: D0 04     BNE $A590
@@ -16882,18 +17246,18 @@
 33/A59F: A5 CD     LDA $CD
 33/A5A1: F0 0D     BEQ $A5B0
 33/A5A3: A9 06     LDA #$06
-33/A5A5: 20 DD A3  JSR $A3DD
+33/A5A5: 20 DD A3  JSR $A3DD          ; update attacking character sprite
 33/A5A8: A9 2C     LDA #$2C
 33/A5AA: 20 B1 A4  JSR $A4B1
 33/A5AD: 4C BA A5  JMP $A5BA
 33/A5B0: A9 01     LDA #$01
-33/A5B2: 20 DD A3  JSR $A3DD
+33/A5B2: 20 DD A3  JSR $A3DD          ; update attacking character sprite
 33/A5B5: A9 24     LDA #$24
 33/A5B7: 20 B1 A4  JSR $A4B1
 33/A5BA: A5 BD     LDA $BD
 33/A5BC: F0 07     BEQ $A5C5
 33/A5BE: A9 05     LDA #$05
-33/A5C0: 20 B2 97  JSR $97B2
+33/A5C0: 20 B2 97  JSR $97B2          ; do hit animation
 33/A5C3: C6 BD     DEC $BD
 33/A5C5: 20 C5 F8  JSR $F8C5          ; wait for vblank (no color update)
 33/A5C8: E6 B6     INC $B6
@@ -16914,7 +17278,7 @@
 33/A5E9: A0 00     LDY #$00
 33/A5EB: 4A        LSR 
 33/A5EC: 4A        LSR 
-33/A5ED: 20 9C BF  JSR $BF9C
+33/A5ED: 20 9C BF  JSR $BF9C          ; subtract from vector distance
 33/A5F0: A5 89     LDA $89
 33/A5F2: C9 04     CMP #$04
 33/A5F4: D0 04     BNE $A5FA
@@ -16922,16 +17286,19 @@
 33/A5F8: 85 88     STA $88
 33/A5FA: 4C 9C A5  JMP $A59C
 33/A5FD: 60        RTS 
+
+; [ shuriken hit animation ]
+
 33/A5FE: AD 96 7E  LDA $7E96
 33/A601: D0 05     BNE $A608
 33/A603: 20 C3 A6  JSR $A6C3
 33/A606: 90 01     BCC $A609
 33/A608: 60        RTS 
-33/A609: 20 5F BF  JSR $BF5F
+33/A609: 20 5F BF  JSR $BF5F          ; reset vector angles
 33/A60C: A5 B8     LDA $B8
 33/A60E: 29 07     AND #$07
 33/A610: AA        TAX 
-33/A611: 20 A5 A7  JSR $A7A5
+33/A611: 20 A5 A7  JSR $A7A5          ; get angle from attacker to target
 33/A614: A0 00     LDY #$00
 33/A616: 20 B1 BF  JSR $BFB1
 33/A619: A9 08     LDA #$08
@@ -16942,18 +17309,18 @@
 33/A627: A5 CD     LDA $CD
 33/A629: F0 0D     BEQ $A638
 33/A62B: A9 06     LDA #$06
-33/A62D: 20 DD A3  JSR $A3DD
+33/A62D: 20 DD A3  JSR $A3DD          ; update attacking character sprite
 33/A630: A9 1C     LDA #$1C
-33/A632: 20 93 A4  JSR $A493
+33/A632: 20 93 A4  JSR $A493          ; update arrow sprite
 33/A635: 4C 42 A6  JMP $A642
 33/A638: A9 01     LDA #$01
-33/A63A: 20 DD A3  JSR $A3DD
+33/A63A: 20 DD A3  JSR $A3DD          ; update attacking character sprite
 33/A63D: A9 1A     LDA #$1A
-33/A63F: 20 93 A4  JSR $A493
+33/A63F: 20 93 A4  JSR $A493          ; update arrow sprite
 33/A642: 20 C5 F8  JSR $F8C5          ; wait for vblank (no color update)
 33/A645: E6 B6     INC $B6
 33/A647: A0 00     LDY #$00
-33/A649: 20 6F BF  JSR $BF6F
+33/A649: 20 6F BF  JSR $BF6F          ; get vector x-component
 33/A64C: 85 90     STA $90
 33/A64E: A6 95     LDX $95
 33/A650: B5 C0     LDA $C0,X
@@ -16968,24 +17335,24 @@
 33/A65F: A8        TAY 
 33/A660: B9 D7 7D  LDA $7DD7,Y
 33/A663: C5 90     CMP $90
-33/A665: B0 0A     BCS $A671
+33/A665: B0 0A     BCS $A671          ; branch when shuriken hits target
 33/A667: A0 00     LDY #$00
 33/A669: A9 10     LDA #$10
-33/A66B: 20 87 BF  JSR $BF87
+33/A66B: 20 87 BF  JSR $BF87          ; add to vector distance
 33/A66E: 4C 24 A6  JMP $A624
 33/A671: 20 5E A0  JSR $A05E          ; reset animation sprites
 33/A674: A5 CD     LDA $CD
 33/A676: F0 08     BEQ $A680
 33/A678: A9 06     LDA #$06
-33/A67A: 20 DD A3  JSR $A3DD
+33/A67A: 20 DD A3  JSR $A3DD          ; update attacking character sprite
 33/A67D: 4C 85 A6  JMP $A685
 33/A680: A9 01     LDA #$01
-33/A682: 20 DD A3  JSR $A3DD
+33/A682: 20 DD A3  JSR $A3DD          ; update attacking character sprite
 33/A685: A6 CD     LDX $CD
 33/A687: B5 BB     LDA $BB,X
 33/A689: F0 2B     BEQ $A6B6
 33/A68B: A0 00     LDY #$00
-33/A68D: 20 7B BF  JSR $BF7B
+33/A68D: 20 7B BF  JSR $BF7B          ; get vector y-component
 33/A690: 85 8D     STA $8D
 33/A692: A6 95     LDX $95
 33/A694: B5 C4     LDA $C4,X
@@ -16995,7 +17362,7 @@
 33/A69A: 65 8D     ADC $8D
 33/A69C: 85 8D     STA $8D
 33/A69E: A0 00     LDY #$00
-33/A6A0: 20 6F BF  JSR $BF6F
+33/A6A0: 20 6F BF  JSR $BF6F          ; get vector x-component
 33/A6A3: 85 8C     STA $8C
 33/A6A5: A6 95     LDX $95
 33/A6A7: B5 C0     LDA $C0,X
@@ -17010,9 +17377,12 @@
 33/A6B9: A5 BD     LDA $BD
 33/A6BB: F0 05     BEQ $A6C2
 33/A6BD: A9 04     LDA #$04
-33/A6BF: 20 B2 97  JSR $97B2
+33/A6BF: 20 B2 97  JSR $97B2          ; do hit animation
 33/A6C2: 60        RTS 
-33/A6C3: A5 95     LDA $95
+
+; [  ]
+
+33/A6C3: A5 95     LDA $95            ; attacker id
 33/A6C5: 0A        ASL 
 33/A6C6: A8        TAY 
 33/A6C7: B9 9B 7D  LDA $7D9B,Y
@@ -17022,18 +17392,21 @@
 33/A6CF: 60        RTS 
 33/A6D0: 18        CLC 
 33/A6D1: 60        RTS 
+
+; [ arrow hit animation ]
+
 33/A6D2: AD 96 7E  LDA $7E96
 33/A6D5: D0 05     BNE $A6DC
 33/A6D7: 20 C3 A6  JSR $A6C3
 33/A6DA: 90 01     BCC $A6DD
 33/A6DC: 60        RTS 
-33/A6DD: 20 5F BF  JSR $BF5F
-33/A6E0: A5 B8     LDA $B8
+33/A6DD: 20 5F BF  JSR $BF5F          ; reset vector angles
+33/A6E0: A5 B8     LDA $B8            ; target
 33/A6E2: 29 07     AND #$07
 33/A6E4: AA        TAX 
-33/A6E5: 20 A5 A7  JSR $A7A5
+33/A6E5: 20 A5 A7  JSR $A7A5          ; get angle from attacker to target
 33/A6E8: A0 00     LDY #$00
-33/A6EA: 20 B1 BF  JSR $BFB1
+33/A6EA: 20 B1 BF  JSR $BFB1          ; add to vector angle
 33/A6ED: A9 10     LDA #$10
 33/A6EF: 8D 26 7E  STA $7E26
 33/A6F2: 8D 30 7E  STA $7E30
@@ -17042,22 +17415,22 @@
 33/A6FB: A5 CD     LDA $CD
 33/A6FD: F0 12     BEQ $A711
 33/A6FF: A9 06     LDA #$06
-33/A701: 20 DD A3  JSR $A3DD
+33/A701: 20 DD A3  JSR $A3DD          ; update attacking character sprite
 33/A704: A9 16     LDA #$16
 33/A706: 20 93 A4  JSR $A493
 33/A709: A9 08     LDA #$08
-33/A70B: 20 EB A3  JSR $A3EB
+33/A70B: 20 EB A3  JSR $A3EB          ; update weapon sprite
 33/A70E: 4C 20 A7  JMP $A720
 33/A711: A9 06     LDA #$06
-33/A713: 20 EB A3  JSR $A3EB
+33/A713: 20 EB A3  JSR $A3EB          ; update weapon sprite
 33/A716: A9 14     LDA #$14
 33/A718: 20 93 A4  JSR $A493
 33/A71B: A9 01     LDA #$01
-33/A71D: 20 DD A3  JSR $A3DD
+33/A71D: 20 DD A3  JSR $A3DD          ; update attacking character sprite
 33/A720: 20 C5 F8  JSR $F8C5          ; wait for vblank (no color update)
 33/A723: E6 B6     INC $B6
 33/A725: A0 00     LDY #$00
-33/A727: 20 6F BF  JSR $BF6F
+33/A727: 20 6F BF  JSR $BF6F          ; get vector x-component
 33/A72A: 85 90     STA $90
 33/A72C: A6 95     LDX $95
 33/A72E: B5 C0     LDA $C0,X
@@ -17066,16 +17439,16 @@
 33/A733: 18        CLC 
 33/A734: 65 90     ADC $90
 33/A736: 85 90     STA $90
-33/A738: A5 B8     LDA $B8
+33/A738: A5 B8     LDA $B8            ; target
 33/A73A: 29 07     AND #$07
 33/A73C: 0A        ASL 
 33/A73D: A8        TAY 
-33/A73E: B9 D7 7D  LDA $7DD7,Y
+33/A73E: B9 D7 7D  LDA $7DD7,Y        ; monster x position
 33/A741: C5 90     CMP $90
-33/A743: B0 0A     BCS $A74F
+33/A743: B0 0A     BCS $A74F          ; branch when arrow reaches target
 33/A745: A0 00     LDY #$00
 33/A747: A9 10     LDA #$10
-33/A749: 20 87 BF  JSR $BF87
+33/A749: 20 87 BF  JSR $BF87          ; add to vector distance
 33/A74C: 4C F8 A6  JMP $A6F8
 33/A74F: 20 5E A0  JSR $A05E          ; reset animation sprites
 33/A752: A5 CD     LDA $CD
@@ -17091,7 +17464,7 @@
 33/A769: B5 BB     LDA $BB,X
 33/A76B: F0 2B     BEQ $A798
 33/A76D: A0 00     LDY #$00
-33/A76F: 20 7B BF  JSR $BF7B
+33/A76F: 20 7B BF  JSR $BF7B          ; get vector y-component
 33/A772: 85 8D     STA $8D
 33/A774: A6 95     LDX $95
 33/A776: B5 C4     LDA $C4,X
@@ -17101,7 +17474,7 @@
 33/A77C: 65 8D     ADC $8D
 33/A77E: 85 8D     STA $8D
 33/A780: A0 00     LDY #$00
-33/A782: 20 6F BF  JSR $BF6F
+33/A782: 20 6F BF  JSR $BF6F          ; get vector x-component
 33/A785: 85 8C     STA $8C
 33/A787: A6 95     LDX $95
 33/A789: B5 C0     LDA $C0,X
@@ -17114,21 +17487,24 @@
 33/A796: C6 BD     DEC $BD
 33/A798: 20 C5 F8  JSR $F8C5          ; wait for vblank (no color update)
 33/A79B: A5 BD     LDA $BD
-33/A79D: F0 05     BEQ $A7A4
+33/A79D: F0 05     BEQ $A7A4          ; return if only 1 hit
 33/A79F: A9 03     LDA #$03
-33/A7A1: 20 B2 97  JSR $97B2
+33/A7A1: 20 B2 97  JSR $97B2          ; do hit animation
 33/A7A4: 60        RTS 
+
+; [ get angle from attacker to target ]
+
 33/A7A5: 8C D6 7E  STY $7ED6
 33/A7A8: 8E D7 7E  STX $7ED7
 33/A7AB: 86 81     STX $81
-33/A7AD: AC 7B 7D  LDY $7D7B
-33/A7B0: B9 D7 A7  LDA $A7D7,Y
-33/A7B3: A6 95     LDX $95
+33/A7AD: AC 7B 7D  LDY $7D7B          ; monster tilemap mode ???
+33/A7B0: B9 D7 A7  LDA $A7D7,Y        ; block size
+33/A7B3: A6 95     LDX $95            ; attacker id
 33/A7B5: 20 EA F8  JSR $F8EA          ; multiply
 33/A7B8: 18        CLC 
 33/A7B9: 65 81     ADC $81
 33/A7BB: 85 81     STA $81
-33/A7BD: AD 7B 7D  LDA $7D7B
+33/A7BD: AD 7B 7D  LDA $7D7B          ; monster tilemap mode ???
 33/A7C0: 0A        ASL 
 33/A7C1: AA        TAX 
 33/A7C2: BD E1 A7  LDA $A7E1,X
@@ -17141,147 +17517,77 @@
 33/A7D3: AE D7 7E  LDX $7ED7
 33/A7D6: 60        RTS 
 
-33/A7D7: 08        PHP 
-33/A7D8: 08        PHP 
-33/A7D9: 07        --- 
-33/A7DA: 06 05     ASL $05
-33/A7DC: 04        --- 
-33/A7DD: 03        --- 
-33/A7DE: 04        --- 
-33/A7DF: 03        --- 
-33/A7E0: 01 F5     ORA ($F5,X)
-33/A7E2: A7        --- 
-33/A7E3: F5 A7     SBC $A7,X
-33/A7E5: 15 A8     ORA $A8,X
-33/A7E7: 31 A8     AND ($A8),Y
-33/A7E9: 49 A8     EOR #$A8
-33/A7EB: 5D A8 6D  EOR $6DA8,X
-33/A7EE: A8        TAY 
-33/A7EF: 79 A8 89  ADC $89A8,Y
-33/A7F2: A8        TAY 
-33/A7F3: 95 A8     STA $A8,X
-33/A7F5: 7A        --- 
-33/A7F6: 6C 77 66  JMP ($6677)
-33/A7F9: 73        --- 
-33/A7FA: 5F        --- 
-33/A7FB: 69 52     ADC #$52
-33/A7FD: 82        --- 
-33/A7FE: 73        --- 
-33/A7FF: 83        --- 
-33/A800: 70 85     BVS $A787
-33/A802: 69 8A     ADC #$8A
-33/A804: 5B        --- 
-33/A805: 8B        --- 
-33/A806: 7C        --- 
-33/A807: 8E 7A 95  STX $957A
-33/A80A: 78        SEI 
-33/A80B: A2 71     LDX #$71
-33/A80D: 92        --- 
-33/A80E: 85 97     STA $97
-33/A810: 86 A0     STX $A0
-33/A812: 8A        TXA 
-33/A813: AD 92 73  LDA $7392
-33/A816: 77        --- 
-33/A817: 66 73     ROR $73
-33/A819: 5F        --- 
-33/A81A: 69 52     ADC #$52
-33/A81C: 7B        --- 
-33/A81D: 83        --- 
-33/A81E: 70 85     BVS $A7A5
-33/A820: 69 8A     ADC #$8A
-33/A822: 5B        --- 
-33/A823: 84 8E     STY $8E
-33/A825: 7A        --- 
-33/A826: 95 78     STA $78,X
-33/A828: A2 71     LDX #$71
-33/A82A: 8B        --- 
-33/A82B: 97        --- 
-33/A82C: 86 A0     STX $A0
-33/A82E: 8A        TXA 
-33/A82F: AD 92 7A  LDA $7A92
-33/A832: 6D 77 65  ADC $6577
-33/A835: 6D 55 82  ADC $8255
-33/A838: 74        --- 
-33/A839: 84 6E     STY $6E
-33/A83B: 88        DEY 
-33/A83C: 5F        --- 
-33/A83D: 8A        TXA 
-33/A83E: 7C        --- 
-33/A83F: 90 7A     BCC $A8BB
-33/A841: 9D 74 92  STA $9274,X
-33/A844: 84 9A     STY $9A
-33/A846: 87        --- 
-33/A847: A9 8F     LDA #$8F
-33/A849: 73        --- 
-33/A84A: 77        --- 
-33/A84B: 65 6D     ADC $6D
-33/A84D: 55 7B     EOR $7B,X
-33/A84F: 84 6E     STY $6E
-33/A851: 88        DEY 
-33/A852: 5F        --- 
-33/A853: 84 90     STY $90
-33/A855: 7A        --- 
-33/A856: 9D 74 8B  STA $8B74,X
-33/A859: 9A        TXS 
-33/A85A: 87        --- 
-33/A85B: A9 8F     LDA #$8F
-33/A85D: 73        --- 
-33/A85E: 6D 6D 55  ADC $556D
-33/A861: 7B        --- 
-33/A862: 78        SEI 
-33/A863: 88        DEY 
-33/A864: 5F        --- 
-33/A865: 84 85     STY $85
-33/A867: 9D 74 8B  STA $8B74,X
-33/A86A: 91 A9     STA ($A9),Y
-33/A86C: 8F        --- 
-33/A86D: 73        --- 
-33/A86E: 6D 5E 7B  ADC $7B5E
-33/A871: 78        SEI 
-33/A872: 70 84     BVS $A7F8
-33/A874: 85 8B     STA $8B
-33/A876: 8B        --- 
-33/A877: 91 A0     STA ($A0),Y
-33/A879: 78        SEI 
-33/A87A: 69 6D     ADC #$6D
-33/A87C: 55 83     EOR $83,X
-33/A87E: 72        --- 
-33/A87F: 88        DEY 
-33/A880: 5F        --- 
-33/A881: 8C 7B 9D  STY $9D7B
-33/A884: 74        --- 
-33/A885: 95 86     STA $86,X
-33/A887: A9 8F     LDA #$8F
-33/A889: 73        --- 
-33/A88A: 73        --- 
-33/A88B: 5F        --- 
-33/A88C: 7B        --- 
-33/A88D: 85 69     STA $69
-33/A88F: 84 95     STY $95
-33/A891: 78        SEI 
-33/A892: 8B        --- 
-33/A893: A0 8A     LDY #$8A
-33/A895: 71 7C     ADC ($7C),Y
-33/A897: 88        DEY 
-33/A898: 92        --- 
+; block size of attacker-target angle data
+33/A7D7: 08 08 07 06 05 04 03 04 03 01
 
-; [ animation function $16:  ]
+; pointers to attacker-target angles
+33/A7E1: A7F5 A7F5 A815 A831 A849 A85D A86D A879
+33/A7F1: A889 A895
 
-33/A899: 20 38 A4  JSR $A438
+; 1:  (4 * 8 bytes)
+33/A7F5: 7A 6C 77 66 73 5F 69 52
+33/A7FD: 82 73 83 70 85 69 8A 5B
+33/A805: 8B 7C 8E 7A 95 78 A2 71
+33/A80D: 92 85 97 86 A0 8A AD 92
+
+; 2:  (4 * 7 bytes)
+33/A815: 73 77 66 73 5F 69 52
+33/A81C: 7B 83 70 85 69 8A 5B
+33/A823: 84 8E 7A 95 78 A2 71
+33/A82A: 8B 97 86 A0 8A AD 92
+
+; 3:  (4 * 6 bytes)
+33/A831: 7A 6D 77 65 6D 55
+33/A837: 82 74 84 6E 88 5F
+33/A83D: 8A 7C 90 7A 9D 74
+33/A843: 92 84 9A 87 A9 8F
+
+; 4:  (4 * 5 bytes)
+33/A849: 73 77 65 6D 55
+33/A84E: 7B 84 6E 88 5F
+33/A853: 84 90 7A 9D 74
+33/A858: 8B 9A 87 A9 8F
+
+; 3:  (4 * 6 bytes)
+33/A85D: 73 6D 6D 55
+33/A861: 7B 78 88 5F
+33/A865: 84 85 9D 74
+33/A869: 8B 91 A9 8F
+
+33/A86D: 73 6D 5E
+33/A870: 7B 78 70
+33/A873: 84 85 8B
+33/A876: 8B 91 A0
+
+33/A879: 78 69 6D 55
+33/A87E: 83 72 88 5F
+33/A881: 8C 7B 9D 74
+33/A885: 95 86 A9 8F
+
+33/A889: 73 73 5F
+33/A88C: 7B 85 69
+33/A88F: 84 95 78
+33/A892: 8B A0 8A
+
+33/A895: 71 7C 88 92
+
+; [ animation function $16: unarmed attack ]
+
+33/A899: 20 38 A4  JSR $A438          ; load current hand hit palette
 33/A89C: 20 59 A0  JSR $A059          ; reset animation frame counter
 33/A89F: E6 C9     INC $C9
 33/A8A1: 20 C5 F8  JSR $F8C5          ; wait for vblank (no color update)
 33/A8A4: 20 5E A0  JSR $A05E          ; reset animation sprites
 33/A8A7: A9 02     LDA #$02
-33/A8A9: 20 B2 97  JSR $97B2
-33/A8AC: 20 E6 8A  JSR $8AE6
+33/A8A9: 20 B2 97  JSR $97B2          ; do hit animation
+33/A8AC: 20 E6 8A  JSR $8AE6          ; increment animation frame counter
 33/A8AF: 29 08     AND #$08
 33/A8B1: F0 EE     BEQ $A8A1
 33/A8B3: C6 BD     DEC $BD
 33/A8B5: D0 E5     BNE $A89C
 33/A8B7: 60        RTS 
 
-; [ animation function $05:  ]
+; [ animation function $05: character hit ]
 
 33/A8B8: A2 B0     LDX #$B0
 33/A8BA: A5 CB     LDA $CB
@@ -17292,7 +17598,7 @@
 33/A8C4: A9 10     LDA #$10
 33/A8C6: 48        PHA 
 33/A8C7: 8E 49 7F  STX $7F49
-33/A8CA: 20 0F A4  JSR $A40F
+33/A8CA: 20 0F A4  JSR $A40F          ; save character animations frames
 33/A8CD: A6 95     LDX $95
 33/A8CF: 20 CF A2  JSR $A2CF
 33/A8D2: F0 05     BEQ $A8D9
@@ -17319,7 +17625,7 @@
 33/A8FF: 38        SEC 
 33/A900: E5 7E     SBC $7E
 33/A902: 95 C0     STA $C0,X
-33/A904: 20 1D A4  JSR $A41D
+33/A904: 20 1D A4  JSR $A41D          ; restore character animation frames
 33/A907: 4C 1C A9  JMP $A91C
 33/A90A: A6 95     LDX $95
 33/A90C: F6 C0     INC $C0,X
@@ -17331,19 +17637,19 @@
 33/A91A: D0 02     BNE $A91E
 33/A91C: A9 02     LDA #$02
 33/A91E: 85 B6     STA $B6
-33/A920: 20 D8 90  JSR $90D8
+33/A920: 20 D8 90  JSR $90D8          ; update character sprites
 33/A923: 20 C5 F8  JSR $F8C5          ; wait for vblank (no color update)
 33/A926: C6 B6     DEC $B6
 33/A928: D0 F6     BNE $A920
 33/A92A: 60        RTS 
 
-; [ animation function $0B:  ]
+; [ animation function $0B: cheer ]
 
 33/A92B: A9 E5     LDA #$E5
 33/A92D: 20 40 A4  JSR $A440          ; load animation palette
 33/A930: A9 00     LDA #$00
 33/A932: 20 1E BF  JSR $BF1E          ; load animation graphics
-33/A935: 20 0F A4  JSR $A40F
+33/A935: 20 0F A4  JSR $A40F          ; save character animations frames
 33/A938: A6 95     LDX $95
 33/A93A: 20 F9 A3  JSR $A3F9
 33/A93D: 20 59 A0  JSR $A059          ; reset animation frame counter
@@ -17362,9 +17668,9 @@
 33/A95B: A2 0A     LDX #$0A
 33/A95D: 20 72 A9  JSR $A972
 33/A960: A9 01     LDA #$01
-33/A962: 20 EB A3  JSR $A3EB
+33/A962: 20 EB A3  JSR $A3EB          ; update weapon sprite
 33/A965: 20 C5 F8  JSR $F8C5          ; wait for vblank (no color update)
-33/A968: 20 E6 8A  JSR $8AE6
+33/A968: 20 E6 8A  JSR $8AE6          ; increment animation frame counter
 33/A96B: 29 20     AND #$20
 33/A96D: F0 D6     BEQ $A945
 33/A96F: 4C 3A AC  JMP $AC3A
@@ -17379,17 +17685,17 @@
 33/A97B: 29 05     AND #$05
 33/A97D: F0 04     BEQ $A983
 33/A97F: 8A        TXA 
-33/A980: 4C DD A3  JMP $A3DD
+33/A980: 4C DD A3  JMP $A3DD          ; update attacking character sprite
 33/A983: A5 18     LDA $18
-33/A985: 4C DD A3  JMP $A3DD
+33/A985: 4C DD A3  JMP $A3DD          ; update attacking character sprite
 
-; [ animation function $0A:  ]
+; [ animation function $0A: scare ]
 
 33/A988: A9 F1     LDA #$F1
 33/A98A: 20 40 A4  JSR $A440          ; load animation palette
 33/A98D: A9 01     LDA #$01
 33/A98F: 20 1E BF  JSR $BF1E          ; load animation graphics
-33/A992: 20 0F A4  JSR $A40F
+33/A992: 20 0F A4  JSR $A40F          ; save character animations frames
 33/A995: A6 95     LDX $95
 33/A997: 20 F9 A3  JSR $A3F9
 33/A99A: 20 59 A0  JSR $A059          ; reset animation frame counter
@@ -17409,9 +17715,9 @@
 33/A9BB: A9 00     LDA #$00
 33/A9BD: 85 7E     STA $7E
 33/A9BF: A9 01     LDA #$01
-33/A9C1: 20 F0 A3  JSR $A3F0
+33/A9C1: 20 F0 A3  JSR $A3F0          ; update attacker animation sprite
 33/A9C4: 20 C5 F8  JSR $F8C5          ; wait for vblank (no color update)
-33/A9C7: 20 E6 8A  JSR $8AE6
+33/A9C7: 20 E6 8A  JSR $8AE6          ; increment animation frame counter
 33/A9CA: 29 20     AND #$20
 33/A9CC: F0 D4     BEQ $A9A2
 33/A9CE: 4C 3A AC  JMP $AC3A
@@ -17451,11 +17757,11 @@
 33/AA12: C6 8E     DEC $8E
 33/AA14: 60        RTS 
 
-; [ animation function $09:  ]
+; [ animation function $09: jump 2 ]
 
 33/AA15: A9 FD     LDA #$FD
 33/AA17: 20 40 A4  JSR $A440          ; load animation palette
-33/AA1A: 20 0F A4  JSR $A40F
+33/AA1A: 20 0F A4  JSR $A40F          ; save character animations frames
 33/AA1D: A6 95     LDX $95
 33/AA1F: BD 22 7E  LDA $7E22,X
 33/AA22: 95 C0     STA $C0,X
@@ -17515,7 +17821,7 @@
 33/AA8E: F6 C0     INC $C0,X
 33/AA90: F6 C0     INC $C0,X
 33/AA92: A9 08     LDA #$08
-33/AA94: 20 DD A3  JSR $A3DD
+33/AA94: 20 DD A3  JSR $A3DD          ; update attacking character sprite
 33/AA97: 20 C5 F8  JSR $F8C5          ; wait for vblank (no color update)
 33/AA9A: A6 95     LDX $95
 33/AA9C: B5 C4     LDA $C4,X
@@ -17523,8 +17829,8 @@
 33/AAA1: D0 DF     BNE $AA82
 33/AAA3: 4C 3A AC  JMP $AC3A
 
-33/AAA6: 2C 48 64  BIT $6448
-33/AAA9: 80        --- 
+33/AAA6: 2C 48 64 80
+
 33/AAAA: C6 95     DEC $95
 33/AAAC: 4C B1 AA  JMP $AAB1
 33/AAAF: E6 95     INC $95
@@ -17533,9 +17839,9 @@
 33/AAB5: 85 95     STA $95
 33/AAB7: 60        RTS 
 
-; [ animation function $08:  ]
+; [ animation function $08: jump 1 ]
 
-33/AAB8: 20 0F A4  JSR $A40F
+33/AAB8: 20 0F A4  JSR $A40F          ; save character animations frames
 33/AABB: A6 95     LDX $95
 33/AABD: 20 F9 A3  JSR $A3F9
 33/AAC0: 20 59 A0  JSR $A059          ; reset animation frame counter
@@ -17545,9 +17851,9 @@
 33/AAC8: 8D 49 7F  STA $7F49
 33/AACB: 20 5E A0  JSR $A05E          ; reset animation sprites
 33/AACE: A9 03     LDA #$03
-33/AAD0: 20 DD A3  JSR $A3DD
+33/AAD0: 20 DD A3  JSR $A3DD          ; update attacking character sprite
 33/AAD3: 20 C5 F8  JSR $F8C5          ; wait for vblank (no color update)
-33/AAD6: 20 E6 8A  JSR $8AE6
+33/AAD6: 20 E6 8A  JSR $8AE6          ; increment animation frame counter
 33/AAD9: 29 10     AND #$10
 33/AADB: F0 EE     BEQ $AACB
 33/AADD: 20 5E A0  JSR $A05E          ; reset animation sprites
@@ -17559,7 +17865,7 @@
 33/AAE9: D6 C0     DEC $C0,X
 33/AAEB: D6 C0     DEC $C0,X
 33/AAED: A9 07     LDA #$07
-33/AAEF: 20 DD A3  JSR $A3DD
+33/AAEF: 20 DD A3  JSR $A3DD          ; update attacking character sprite
 33/AAF2: 20 C5 F8  JSR $F8C5          ; wait for vblank (no color update)
 33/AAF5: A6 95     LDX $95
 33/AAF7: B5 C4     LDA $C4,X
@@ -17601,7 +17907,7 @@
 33/AB29: 20 40 A4  JSR $A440          ; load animation palette
 33/AB2C: A9 02     LDA #$02
 33/AB2E: 20 1E BF  JSR $BF1E          ; load animation graphics
-33/AB31: 20 0F A4  JSR $A40F
+33/AB31: 20 0F A4  JSR $A40F          ; save character animations frames
 33/AB34: A6 95     LDX $95
 33/AB36: 20 F9 A3  JSR $A3F9
 33/AB39: 20 59 A0  JSR $A059          ; reset animation frame counter
@@ -17616,12 +17922,12 @@
 33/AB4F: 18        CLC 
 33/AB50: 69 3C     ADC #$3C
 33/AB52: 85 88     STA $88
-33/AB54: 20 EB A3  JSR $A3EB
+33/AB54: 20 EB A3  JSR $A3EB          ; update weapon sprite
 33/AB57: 20 DE AB  JSR $ABDE
 33/AB5A: 20 DE AB  JSR $ABDE
 33/AB5D: 20 DE AB  JSR $ABDE
 33/AB60: 20 C5 F8  JSR $F8C5          ; wait for vblank (no color update)
-33/AB63: 20 E6 8A  JSR $8AE6
+33/AB63: 20 E6 8A  JSR $8AE6          ; increment animation frame counter
 33/AB66: 29 20     AND #$20
 33/AB68: F0 D7     BEQ $AB41
 33/AB6A: AD 19 7E  LDA $7E19
@@ -17644,7 +17950,7 @@
 33/AB93: 85 7F     STA $7F
 33/AB95: 20 E5 AB  JSR $ABE5
 33/AB98: A9 44     LDA #$44
-33/AB9A: 20 F0 A3  JSR $A3F0
+33/AB9A: 20 F0 A3  JSR $A3F0          ; update attacker animation sprite
 33/AB9D: A9 00     LDA #$00
 33/AB9F: 38        SEC 
 33/ABA0: E5 B6     SBC $B6
@@ -17653,7 +17959,7 @@
 33/ABA6: 85 7E     STA $7E
 33/ABA8: 20 E5 AB  JSR $ABE5
 33/ABAB: A9 45     LDA #$45
-33/ABAD: 20 F0 A3  JSR $A3F0
+33/ABAD: 20 F0 A3  JSR $A3F0          ; update attacker animation sprite
 33/ABB0: A9 00     LDA #$00
 33/ABB2: 38        SEC 
 33/ABB3: E5 B6     SBC $B6
@@ -17662,21 +17968,21 @@
 33/ABB9: 85 7F     STA $7F
 33/ABBB: 20 E5 AB  JSR $ABE5
 33/ABBE: A9 46     LDA #$46
-33/ABC0: 20 F0 A3  JSR $A3F0
+33/ABC0: 20 F0 A3  JSR $A3F0          ; update attacker animation sprite
 33/ABC3: A5 B6     LDA $B6
 33/ABC5: 85 7E     STA $7E
 33/ABC7: 85 7F     STA $7F
 33/ABC9: 20 E5 AB  JSR $ABE5
 33/ABCC: A9 47     LDA #$47
-33/ABCE: 20 F0 A3  JSR $A3F0
+33/ABCE: 20 F0 A3  JSR $A3F0          ; update attacker animation sprite
 33/ABD1: 20 C5 F8  JSR $F8C5          ; wait for vblank (no color update)
-33/ABD4: 20 E6 8A  JSR $8AE6
+33/ABD4: 20 E6 8A  JSR $8AE6          ; increment animation frame counter
 33/ABD7: 29 08     AND #$08
 33/ABD9: F0 9C     BEQ $AB77
 33/ABDB: 4C 3A AC  JMP $AC3A
 33/ABDE: E6 88     INC $88
 33/ABE0: A5 88     LDA $88
-33/ABE2: 4C EB A3  JMP $A3EB
+33/ABE2: 4C EB A3  JMP $A3EB          ; update weapon sprite
 33/ABE5: A5 95     LDA $95
 33/ABE7: 0A        ASL 
 33/ABE8: A8        TAY 
@@ -17694,7 +18000,7 @@
 33/ABF9: 20 40 A4  JSR $A440          ; load animation palette
 33/ABFC: A9 03     LDA #$03
 33/ABFE: 20 1E BF  JSR $BF1E          ; load animation graphics
-33/AC01: 20 0F A4  JSR $A40F
+33/AC01: 20 0F A4  JSR $A40F          ; save character animations frames
 33/AC04: A6 95     LDX $95
 33/AC06: 20 F9 A3  JSR $A3F9
 33/AC09: 20 59 A0  JSR $A059          ; reset animation frame counter
@@ -17711,19 +18017,19 @@
 33/AC21: 4A        LSR 
 33/AC22: 18        CLC 
 33/AC23: 69 38     ADC #$38           ; frame ($38..$3B)
-33/AC25: 20 EB A3  JSR $A3EB
+33/AC25: 20 EB A3  JSR $A3EB          ; update weapon sprite
 33/AC28: 20 C5 F8  JSR $F8C5          ; wait for vblank (no color update)
-33/AC2B: 20 E6 8A  JSR $8AE6
+33/AC2B: 20 E6 8A  JSR $8AE6          ; increment animation frame counter
 33/AC2E: 29 20     AND #$20
 33/AC30: F0 DF     BEQ $AC11
 33/AC32: 4C 3A AC  JMP $AC3A
 
-; [  ]
+; [ clean up after animation ]
 
-33/AC35: A9 FF     LDA #$FF
+33/AC35: A9 FF     LDA #$FF           ; stop sound effect
 33/AC37: 8D 49 7F  STA $7F49
-33/AC3A: 20 1D A4  JSR $A41D
-33/AC3D: 20 D8 90  JSR $90D8
+33/AC3A: 20 1D A4  JSR $A41D          ; restore character animation frames
+33/AC3D: 20 D8 90  JSR $90D8          ; update character sprites
 33/AC40: 4C C5 F8  JMP $F8C5          ; wait for vblank (no color update)
 
 33/AC43: 10 08 00 00 18 10 08 18
@@ -17902,7 +18208,7 @@
 33/AD8D: E0 08     CPX #$08
 33/AD8F: D0 EA     BNE $AD7B
 33/AD91: 20 C5 F8  JSR $F8C5          ; wait for vblank (no color update)
-33/AD94: 20 E6 8A  JSR $8AE6
+33/AD94: 20 E6 8A  JSR $8AE6          ; increment animation frame counter
 33/AD97: 29 10     AND #$10
 33/AD99: F0 04     BEQ $AD9F
 33/AD9B: A9 10     LDA #$10
@@ -18050,31 +18356,12 @@
 33/AEAC: AA        TAX 
 33/AEAD: 60        RTS 
 
-33/AEAE: 00        BRK 
-33/AEAF: 79 40 79  ADC $40,Y
-33/AEB2: 00        BRK 
-33/AEB3: 01 C7     ORA ($C7,X)
-33/AEB5: C6 02     DEC $02
-33/AEB7: 03        --- 
-33/AEB8: C5 C4     CMP $C4
-33/AEBA: 04        --- 
-33/AEBB: 05 C3     ORA $C3
-33/AEBD: C2        --- 
-33/AEBE: 06 07     ASL $07
-33/AEC0: C1 C0     CMP ($C0,X)
-33/AEC2: 86 87     STX $87
-33/AEC4: 41 40     EOR ($40,X)
-33/AEC6: 84 85     STY $85
-33/AEC8: 43        --- 
-33/AEC9: 42        --- 
-33/AECA: 82        --- 
-33/AECB: 83        --- 
-33/AECC: 45 44     EOR $44
-33/AECE: 80        --- 
-33/AECF: 81 47     STA ($47,X)
-33/AED1: 46 
+33/AEAE: 7900 7940
 
-; [ magic animation $0B:  ]
+33/AEB2: 00 01 C7 C6 02 03 C5 C4 04 05 C3 C2 06 07 C1 C0
+33/AEC2: 86 87 41 40 84 85 43 42 82 83 45 44 80 81 47 46
+
+; [ magic animation $0A: tsunami ]
 
 33/AED2: AD 9B 7E  LDA $7E9B
 33/AED5: D0 01     BNE $AED8
@@ -18115,7 +18402,7 @@
 33/AF20: E8        INX 
 33/AF21: E0 0D     CPX #$0D
 33/AF23: D0 E4     BNE $AF09
-33/AF25: 20 E6 8A  JSR $8AE6
+33/AF25: 20 E6 8A  JSR $8AE6          ; increment animation frame counter
 33/AF28: C9 58     CMP #$58
 33/AF2A: D0 CD     BNE $AEF9
 33/AF2C: 60        RTS 
@@ -18156,16 +18443,16 @@
 33/AF6D: AA        TAX 
 33/AF6E: 60        RTS 
 
-; [  ]
+; [ load pre-animation properties ]
 
-33/AF6F: AD 88 7E  LDA $7E88
+33/AF6F: AD 88 7E  LDA $7E88          ; spell id
 33/AF72: A2 03     LDX #$03
 33/AF74: 20 EA F8  JSR $F8EA          ; multiply
 33/AF77: 18        CLC 
 33/AF78: 69 D0     ADC #$D0
 33/AF7A: 85 7E     STA $7E
 33/AF7C: 8A        TXA 
-33/AF7D: 69 91     ADC #$91           ; source: 2E/91D0
+33/AF7D: 69 91     ADC #$91           ; source: 2E/91D0 (pre-animation properties)
 33/AF7F: 85 7F     STA $7F
 33/AF81: A9 8B     LDA #$8B
 33/AF83: 85 80     STA $80
@@ -18180,7 +18467,7 @@
 ; [  ]
 
 33/AF94: 20 40 A4  JSR $A440          ; load animation palette
-33/AF97: 20 0F A4  JSR $A40F
+33/AF97: 20 0F A4  JSR $A40F          ; save character animations frames
 33/AF9A: A6 95     LDX $95
 33/AF9C: 4C F9 A3  JMP $A3F9
 
@@ -18192,9 +18479,9 @@
 33/AFA7: A9 0E     LDA #$0E
 33/AFA9: D0 02     BNE $AFAD
 33/AFAB: A9 08     LDA #$08
-33/AFAD: 4C DD A3  JMP $A3DD
+33/AFAD: 4C DD A3  JMP $A3DD          ; update attacking character sprite
 
-; [ animation function $10:  ]
+; [ animation function $10: pre-summon animation ??? ]
 
 33/AFB0: A9 04     LDA #$04
 33/AFB2: 20 1E BF  JSR $BF1E          ; load animation graphics
@@ -18205,44 +18492,27 @@
 33/AFC1: 20 9F AF  JSR $AF9F
 33/AFC4: 20 B9 B1  JSR $B1B9
 33/AFC7: 20 C5 F8  JSR $F8C5          ; wait for vblank (no color update)
-33/AFCA: 20 E6 8A  JSR $8AE6
+33/AFCA: 20 E6 8A  JSR $8AE6          ; increment animation frame counter
 33/AFCD: C9 28     CMP #$28
 33/AFCF: D0 F0     BNE $AFC1
 33/AFD1: 20 59 A0  JSR $A059          ; reset animation frame counter
 33/AFD4: 20 5E A0  JSR $A05E          ; reset animation sprites
 33/AFD7: A9 5B     LDA #$5B
-33/AFD9: 20 EB A3  JSR $A3EB
+33/AFD9: 20 EB A3  JSR $A3EB          ; update weapon sprite
 33/AFDC: 20 A2 AF  JSR $AFA2
 33/AFDF: 20 C5 F8  JSR $F8C5          ; wait for vblank (no color update)
 33/AFE2: 20 2A B0  JSR $B02A
 33/AFE5: 20 C5 F8  JSR $F8C5          ; wait for vblank (no color update)
-33/AFE8: 20 E6 8A  JSR $8AE6
+33/AFE8: 20 E6 8A  JSR $8AE6          ; increment animation frame counter
 33/AFEB: C9 28     CMP #$28
 33/AFED: D0 F3     BNE $AFE2
 33/AFEF: 4C 3A AC  JMP $AC3A
 
-33/AFF2: 00        BRK 
-33/AFF3: FE 04 FE  INC $FE04,X
-33/AFF6: 08        PHP 
-33/AFF7: 02        --- 
-33/AFF8: 0C        --- 
-33/AFF9: 02        --- 
-33/AFFA: 03        --- 
-33/AFFB: FE 07 02  INC $0207,X
-33/AFFE: 0B        --- 
-33/AFFF: FE 0F 02  INC $020F,X
-33/B002: 00        BRK 
-33/B003: FE 04 FE  INC $FE04,X
-33/B006: 08        PHP 
-33/B007: 02        --- 
-33/B008: 0C        --- 
-33/B009: 02        --- 
-33/B00A: 03        --- 
-33/B00B: 02        --- 
-33/B00C: 07        --- 
-33/B00D: FE 0B 02  INC $020B,X
-33/B010: 0F        --- 
-33/B011: FE
+33/AFF2: 00 FE 04 FE 08 02 0C 02
+33/AFFA: 03 FE 07 02 0B FE 0F 02
+
+33/B002: 00 FE 04 FE 08 02 0C 02
+33/B00A: 03 02 07 FE 0B 02 0F FE
 
 33/B012: C9 08     CMP #$08
 33/B014: B0 02     BCS $B018
@@ -18252,6 +18522,9 @@
 33/B01A: B0 FA     BCS $B016
 33/B01C: 18        CLC 
 33/B01D: 60        RTS 
+
+; [  ]
+
 33/B01E: C9 08     CMP #$08
 33/B020: B0 02     BCS $B024
 33/B022: 38        SEC 
@@ -18260,6 +18533,9 @@
 33/B026: B0 FA     BCS $B022
 33/B028: 18        CLC 
 33/B029: 60        RTS 
+
+; [  ]
+
 33/B02A: 20 66 B0  JSR $B066
 33/B02D: A2 00     LDX #$00
 33/B02F: BD 00 02  LDA $0200,X
@@ -18290,6 +18566,9 @@
 33/B061: E0 10     CPX #$10
 33/B063: D0 CA     BNE $B02F
 33/B065: 60        RTS 
+
+; [  ]
+
 33/B066: A0 00     LDY #$00
 33/B068: 20 D2 90  JSR $90D2
 33/B06B: D0 10     BNE $B07D
@@ -18310,6 +18589,9 @@
 33/B08A: C0 10     CPY #$10
 33/B08C: D0 F1     BNE $B07F
 33/B08E: 60        RTS 
+
+; [  ]
+
 33/B08F: 85 7E     STA $7E
 33/B091: BD 00 02  LDA $0200,X
 33/B094: 18        CLC 
@@ -18317,9 +18599,9 @@
 33/B097: 9D 00 02  STA $0200,X
 33/B09A: 60        RTS 
 
-; [ pre-magic animation ??? ]
+; [ pre-magic animation ]
 
-33/B09B: 20 6F AF  JSR $AF6F
+33/B09B: 20 6F AF  JSR $AF6F          ; load pre-animation properties
 33/B09E: AD 8B 7E  LDA $7E8B
 33/B0A1: 29 80     AND #$80
 33/B0A3: 48        PHA 
@@ -18331,7 +18613,7 @@
 33/B0AF: AD 8D 7E  LDA $7E8D
 33/B0B2: 20 94 AF  JSR $AF94
 33/B0B5: AD 9A 7E  LDA $7E9A
-33/B0B8: 10 02     BPL $B0BC
+33/B0B8: 10 02     BPL $B0BC          ; branch if attacker is a character
 33/B0BA: 68        PLA 
 33/B0BB: 60        RTS 
 33/B0BC: A5 CC     LDA $CC
@@ -18340,7 +18622,7 @@
 33/B0C1: 20 59 A0  JSR $A059          ; reset animation frame counter
 33/B0C4: 20 9F AF  JSR $AF9F
 33/B0C7: 20 C5 F8  JSR $F8C5          ; wait for vblank (no color update)
-33/B0CA: 20 E6 8A  JSR $8AE6
+33/B0CA: 20 E6 8A  JSR $8AE6          ; increment animation frame counter
 33/B0CD: C9 20     CMP #$20
 33/B0CF: D0 F3     BNE $B0C4
 33/B0D1: 60        RTS 
@@ -18353,11 +18635,11 @@
 33/B0E0: 20 CD B1  JSR $B1CD
 33/B0E3: 20 F8 B1  JSR $B1F8
 33/B0E6: 20 C5 F8  JSR $F8C5          ; wait for vblank (no color update)
-33/B0E9: 20 E6 8A  JSR $8AE6
+33/B0E9: 20 E6 8A  JSR $8AE6          ; increment animation frame counter
 33/B0EC: C9 2C     CMP #$2C
 33/B0EE: D0 ED     BNE $B0DD
 33/B0F0: 60        RTS 
-33/B0F1: 20 5F BF  JSR $BF5F
+33/B0F1: 20 5F BF  JSR $BF5F          ; reset vector angles
 33/B0F4: A9 10     LDA #$10
 33/B0F6: 20 5C B3  JSR $B35C
 33/B0F9: 20 62 B3  JSR $B362
@@ -18368,14 +18650,14 @@
 33/B107: 20 C3 B1  JSR $B1C3
 33/B10A: 20 34 B1  JSR $B134
 33/B10D: 20 C5 F8  JSR $F8C5          ; wait for vblank (no color update)
-33/B110: 20 E6 8A  JSR $8AE6
+33/B110: 20 E6 8A  JSR $8AE6          ; increment animation frame counter
 33/B113: C9 30     CMP #$30
 33/B115: D0 ED     BNE $B104
 33/B117: 20 9F AF  JSR $AF9F
 33/B11A: 20 34 B1  JSR $B134
 33/B11D: A0 00     LDY #$00
 33/B11F: A9 01     LDA #$01
-33/B121: 20 9C BF  JSR $BF9C
+33/B121: 20 9C BF  JSR $BF9C          ; subtract from vector distance
 33/B124: C8        INY 
 33/B125: C0 08     CPY #$08
 33/B127: D0 F6     BNE $B11F
@@ -18399,9 +18681,9 @@
 33/B144: 69 06     ADC #$06
 33/B146: 85 8D     STA $8D
 33/B148: A4 8E     LDY $8E
-33/B14A: 20 6F BF  JSR $BF6F
+33/B14A: 20 6F BF  JSR $BF6F          ; get vector x-component
 33/B14D: 48        PHA 
-33/B14E: 20 7B BF  JSR $BF7B
+33/B14E: 20 7B BF  JSR $BF7B          ; get vector y-component
 33/B151: 18        CLC 
 33/B152: 65 8D     ADC $8D
 33/B154: A6 C8     LDX $C8
@@ -18441,6 +18723,9 @@
 33/B196: C0 08     CPY #$08
 33/B198: D0 F6     BNE $B190
 33/B19A: 60        RTS 
+
+; [  ]
+
 33/B19B: 20 D2 90  JSR $90D2
 33/B19E: D0 13     BNE $B1B3
 33/B1A0: BD 00 02  LDA $0200,X
@@ -18452,43 +18737,40 @@
 33/B1AE: 49 40     EOR #$40
 33/B1B0: 9D FF 01  STA $01FF,X
 33/B1B3: 60        RTS 
-33/B1B4: A5 B6     LDA $B6
+
+; [  ]
+
+33/B1B4: A5 B6     LDA $B6            ; animation frame counter
 33/B1B6: 4A        LSR 
 33/B1B7: 4A        LSR 
 33/B1B8: 60        RTS 
+
+; [  ]
+
 33/B1B9: 20 B4 B1  JSR $B1B4
 33/B1BC: A8        TAY 
 33/B1BD: B9 EE B1  LDA $B1EE,Y
-33/B1C0: 4C EB A3  JMP $A3EB
+33/B1C0: 4C EB A3  JMP $A3EB          ; update weapon sprite
+
+; [  ]
+
 33/B1C3: 20 B4 B1  JSR $B1B4
 33/B1C6: A8        TAY 
 33/B1C7: B9 E2 B1  LDA $B1E2,Y
-33/B1CA: 4C EB A3  JMP $A3EB
+33/B1CA: 4C EB A3  JMP $A3EB          ; update weapon sprite
+
+; [  ]
+
 33/B1CD: 20 B4 B1  JSR $B1B4
 33/B1D0: A8        TAY 
 33/B1D1: B9 D7 B1  LDA $B1D7,Y
-33/B1D4: 4C EB A3  JMP $A3EB
+33/B1D4: 4C EB A3  JMP $A3EB          ; update weapon sprite
 
-33/B1D7: 48        PHA 
-33/B1D8: 49 48     EOR #$48
-33/B1DA: 49 4A     EOR #$4A
-33/B1DC: 4B        --- 
-33/B1DD: 4C 4D 4E  JMP $4E4D
-33/B1E0: 4E 4E 4F  LSR $4F4E
-33/B1E3: 50 51     BVC $B236
-33/B1E5: 52        --- 
-33/B1E6: 53        --- 
-33/B1E7: 54        --- 
-33/B1E8: 52        --- 
-33/B1E9: 53        --- 
-33/B1EA: 54        --- 
-33/B1EB: 55 55     EOR $55,X
-33/B1ED: 55 56     EOR $56,X
-33/B1EF: 57        --- 
-33/B1F0: 58        CLI 
-33/B1F1: 59 56 57  EOR $5756,Y
-33/B1F4: 58        CLI 
-33/B1F5: 59 5A 5A  EOR $5A5A,Y
+33/B1D7: 48 49 48 49 4A 4B 4C 4D 4E 4E 4E
+33/B1E2: 4F 50 51 52 53 54 52 53 54 55 55 55
+33/B1EE: 56 57 58 59 56 57 58 59 5A 5A
+
+; [  ]
 
 33/B1F8: A2 00     LDX #$00
 33/B1FA: A0 00     LDY #$00
@@ -18573,13 +18855,13 @@
 33/B284: 60        RTS 
 33/B285: 20 9F AF  JSR $AF9F
 33/B288: 20 C5 F8  JSR $F8C5          ; wait for vblank (no color update)
-33/B28B: 20 5F BF  JSR $BF5F
+33/B28B: 20 5F BF  JSR $BF5F          ; reset vector angles
 33/B28E: AD 89 7E  LDA $7E89
 33/B291: 85 8E     STA $8E
 33/B293: A0 00     LDY #$00
 33/B295: 98        TYA 
 33/B296: AA        TAX 
-33/B297: 20 A5 A7  JSR $A7A5
+33/B297: 20 A5 A7  JSR $A7A5          ; get angle from attacker to target
 33/B29A: 20 B1 BF  JSR $BFB1
 33/B29D: A9 00     LDA #$00
 33/B29F: 99 26 7E  STA $7E26,Y
@@ -18601,12 +18883,12 @@
 33/B2C3: C9 FF     CMP #$FF
 33/B2C5: F0 37     BEQ $B2FE
 33/B2C7: A4 8A     LDY $8A
-33/B2C9: 20 7B BF  JSR $BF7B
+33/B2C9: 20 7B BF  JSR $BF7B          ; get vector y-component
 33/B2CC: 48        PHA 
-33/B2CD: 20 6F BF  JSR $BF6F
+33/B2CD: 20 6F BF  JSR $BF6F          ; get vector x-component
 33/B2D0: 48        PHA 
 33/B2D1: A9 10     LDA #$10
-33/B2D3: 20 87 BF  JSR $BF87
+33/B2D3: 20 87 BF  JSR $BF87          ; add to vector distance
 33/B2D6: 68        PLA 
 33/B2D7: A6 95     LDX $95
 33/B2D9: 18        CLC 
@@ -18672,18 +18954,30 @@
 33/B342: A5 8C     LDA $8C
 33/B344: 9D 00 02  STA $0200,X
 33/B347: 4C 9B B1  JMP $B19B
+
+; [  ]
+
 33/B34A: A2 08     LDX #$08
 33/B34C: 9D 25 7E  STA $7E25,X
 33/B34F: CA        DEX 
 33/B350: D0 FA     BNE $B34C
 33/B352: 60        RTS 
+
+; [  ]
+
 33/B353: A2 08     LDX #$08
 33/B355: 9D 2F 7E  STA $7E2F,X
 33/B358: CA        DEX 
 33/B359: D0 FA     BNE $B355
 33/B35B: 60        RTS 
+
+; [  ]
+
 33/B35C: 20 4A B3  JSR $B34A
 33/B35F: 4C 53 B3  JMP $B353
+
+; [  ]
+
 33/B362: A9 00     LDA #$00
 33/B364: 85 88     STA $88
 33/B366: A0 00     LDY #$00
@@ -18697,15 +18991,18 @@
 33/B375: C0 08     CPY #$08
 33/B377: D0 EF     BNE $B368
 33/B379: 60        RTS 
-33/B37A: 20 6F BF  JSR $BF6F
+
+; [  ]
+
+33/B37A: 20 6F BF  JSR $BF6F          ; get vector x-component
 33/B37D: 85 8C     STA $8C
-33/B37F: 20 7B BF  JSR $BF7B
+33/B37F: 20 7B BF  JSR $BF7B          ; get vector y-component
 33/B382: 85 8E     STA $8E
 33/B384: 60        RTS 
 
 ; [ magic animation $01: kill ]
 
-33/B385: 20 9B B0  JSR $B09B
+33/B385: 20 9B B0  JSR $B09B          ; pre-magic animation
 33/B388: AD 9B 7E  LDA $7E9B
 33/B38B: D0 03     BNE $B390
 33/B38D: 4C 10 B4  JMP $B410
@@ -18716,7 +19013,7 @@
 33/B39B: A2 00     LDX #$00
 33/B39D: 20 9F AF  JSR $AF9F
 33/B3A0: 20 C5 F8  JSR $F8C5          ; wait for vblank (no color update)
-33/B3A3: 20 5F BF  JSR $BF5F
+33/B3A3: 20 5F BF  JSR $BF5F          ; reset vector angles
 33/B3A6: A9 00     LDA #$00
 33/B3A8: 20 5C B3  JSR $B35C
 33/B3AB: 20 62 B3  JSR $B362
@@ -18770,7 +19067,7 @@
 33/B409: C9 BC     CMP #$BC
 33/B40B: D0 A5     BNE $B3B2
 33/B40D: 20 17 B4  JSR $B417
-33/B410: 4C 35 AC  JMP $AC35
+33/B410: 4C 35 AC  JMP $AC35          ; clean up after animation
 
 33/B413: 73 7B 84 8B
 
@@ -18798,11 +19095,11 @@
 33/B442: 98        TYA 
 33/B443: 48        PHA 
 33/B444: A0 08     LDY #$08
-33/B446: 20 6F BF  JSR $BF6F
+33/B446: 20 6F BF  JSR $BF6F          ; get vector x-component
 33/B449: 18        CLC 
 33/B44A: 65 8D     ADC $8D
 33/B44C: 85 8D     STA $8D
-33/B44E: 20 7B BF  JSR $BF7B
+33/B44E: 20 7B BF  JSR $BF7B          ; get vector y-component
 33/B451: 18        CLC 
 33/B452: 65 8F     ADC $8F
 33/B454: 85 8F     STA $8F
@@ -18820,7 +19117,7 @@
 33/B46B: 8D 38 7E  STA $7E38
 33/B46E: 8D 2E 7E  STA $7E2E
 33/B471: 20 C5 F8  JSR $F8C5          ; wait for vblank (no color update)
-33/B474: 20 E6 8A  JSR $8AE6
+33/B474: 20 E6 8A  JSR $8AE6          ; increment animation frame counter
 33/B477: C9 30     CMP #$30
 33/B479: D0 AF     BNE $B42A
 33/B47B: 60        RTS 
@@ -18858,7 +19155,7 @@
 33/B4B4: E6 C9     INC $C9
 33/B4B6: 20 5E A0  JSR $A05E          ; reset animation sprites
 33/B4B9: 20 C5 F8  JSR $F8C5          ; wait for vblank (no color update)
-33/B4BC: 20 5F BF  JSR $BF5F
+33/B4BC: 20 5F BF  JSR $BF5F          ; reset vector angles
 33/B4BF: A9 80     LDA #$80
 33/B4C1: 20 5C B3  JSR $B35C
 33/B4C4: 20 62 B3  JSR $B362
@@ -18890,7 +19187,7 @@
 33/B4FD: A9 FC     LDA #$FC
 33/B4FF: 20 B1 BF  JSR $BFB1
 33/B502: A9 04     LDA #$04
-33/B504: 20 9C BF  JSR $BF9C
+33/B504: 20 9C BF  JSR $BF9C          ; subtract from vector distance
 33/B507: C8        INY 
 33/B508: C0 08     CPY #$08
 33/B50A: D0 C3     BNE $B4CF
@@ -18981,6 +19278,9 @@
 33/B5B3: 20 24 BF  JSR $BF24          ; load animation graphics (w/ offset)
 33/B5B6: A9 08     LDA #$08
 33/B5B8: 4C 1E BF  JMP $BF1E          ; load animation graphics
+
+; [  ]
+
 33/B5BB: A9 04     LDA #$04
 33/B5BD: 85 B6     STA $B6
 33/B5BF: 20 C5 F8  JSR $F8C5          ; wait for vblank (no color update)
@@ -19060,7 +19360,7 @@
 ; [  ]
 
 33/B64F: 0E B8 7E  ASL $7EB8
-33/B652: B0 03     BCS $B657
+33/B652: B0 03     BCS $B657          ; branch if reflected
 33/B654: 4C F3 B6  JMP $B6F3
 33/B657: A9 B1     LDA #$B1
 33/B659: 20 40 A4  JSR $A440          ; load animation palette
@@ -19075,8 +19375,8 @@
 33/B66E: 8D 9A 7E  STA $7E9A
 33/B671: A0 00     LDY #$00
 33/B673: A6 90     LDX $90
-33/B675: BD B9 7E  LDA $7EB9,X
-33/B678: D9 24 FD  CMP $FD24,Y
+33/B675: BD B9 7E  LDA $7EB9,X        ; target reflected onto
+33/B678: D9 24 FD  CMP $FD24,Y        ; bit mask
 33/B67B: F0 03     BEQ $B680
 33/B67D: C8        INY 
 33/B67E: D0 F8     BNE $B678
@@ -19088,25 +19388,25 @@
 33/B68A: 85 90     STA $90
 33/B68C: 60        RTS 
 
-; [  ]
+; [ reflect animation ??? ]
 
-33/B68D: AD 9B 7E  LDA $7E9B
+33/B68D: AD 9B 7E  LDA $7E9B          ; targets hit
 33/B690: 8D 89 7E  STA $7E89
 33/B693: 20 89 B5  JSR $B589
-33/B696: AD 88 7E  LDA $7E88
+33/B696: AD 88 7E  LDA $7E88          ; magic id
 33/B699: A2 02     LDX #$02
 33/B69B: 20 EA F8  JSR $F8EA          ; multiply
 33/B69E: 18        CLC 
-33/B69F: 69 00     ADC #$00           ; source = 06/8C00
+33/B69F: 69 00     ADC #$00           ; source: 06/8C00
 33/B6A1: 85 7E     STA $7E
 33/B6A3: 8A        TXA 
 33/B6A4: 69 8C     ADC #$8C
 33/B6A6: 85 7F     STA $7F
-33/B6A8: A9 00     LDA #$00           ; destination = $7300
+33/B6A8: A9 00     LDA #$00           ; destination: $7300
 33/B6AA: 85 80     STA $80
 33/B6AC: A9 73     LDA #$73
 33/B6AE: 85 81     STA $81
-33/B6B0: A9 02     LDA #$02           ; size = 2 bytes
+33/B6B0: A9 02     LDA #$02           ; size: 2 bytes
 33/B6B2: 85 82     STA $82
 33/B6B4: A9 03     LDA #$03
 33/B6B6: 85 84     STA $84
@@ -19115,22 +19415,23 @@
 33/B6BE: 85 7E     STA $7E
 33/B6C0: AD 01 73  LDA $7301
 33/B6C3: 85 7F     STA $7F
-33/B6C5: A9 20     LDA #$20
+33/B6C5: A9 20     LDA #$20           ; unused, size will be 256
+; should be STA $82 here ???
 33/B6C7: 20 2F F9  JSR $F92F          ; load rom data
-33/B6CA: AD 00 73  LDA $7300
+33/B6CA: AD 00 73  LDA $7300          ; data length
 33/B6CD: 38        SEC 
-33/B6CE: ED CC 7E  SBC $7ECC
+33/B6CE: ED CC 7E  SBC $7ECC          ; $10 for life/life2, 0 otherwise
 33/B6D1: 8D 00 73  STA $7300
 33/B6D4: A9 00     LDA #$00
 33/B6D6: 85 90     STA $90
 33/B6D8: AD 89 7E  LDA $7E89
 33/B6DB: 85 91     STA $91
 33/B6DD: 06 91     ASL $91
-33/B6DF: 90 06     BCC $B6E7
+33/B6DF: 90 06     BCC $B6E7          ; branch if target not hit
 33/B6E1: 20 4F B6  JSR $B64F
 33/B6E4: 4C EA B6  JMP $B6EA
 33/B6E7: 0E B8 7E  ASL $7EB8
-33/B6EA: E6 90     INC $90
+33/B6EA: E6 90     INC $90            ; next target
 33/B6EC: A5 90     LDA $90
 33/B6EE: C9 08     CMP #$08
 33/B6F0: D0 EB     BNE $B6DD
@@ -19138,7 +19439,7 @@
 
 ; [  ]
 
-33/B6F3: E6 C9     INC $C9
+33/B6F3: E6 C9     INC $C9            ; sound effect pending
 33/B6F5: A9 01     LDA #$01
 33/B6F7: 8D 9C 7E  STA $7E9C
 33/B6FA: 20 11 B7  JSR $B711
@@ -19176,7 +19477,7 @@
 33/B73A: 85 8D     STA $8D
 33/B73C: AD 9D 7E  LDA $7E9D
 33/B73F: C9 05     CMP #$05
-33/B741: D0 1E     BNE $B761
+33/B741: D0 1E     BNE $B761          ; branch if not life or life 2
 33/B743: A5 8C     LDA $8C
 33/B745: 38        SEC 
 33/B746: E9 08     SBC #$08
@@ -19420,22 +19721,22 @@
 
 ; [  ]
 
-33/B911: 20 9B B0  JSR $B09B
-33/B914: 20 35 AC  JSR $AC35
+33/B911: 20 9B B0  JSR $B09B          ; pre-magic animation
+33/B914: 20 35 AC  JSR $AC35          ; clean up after animation
 33/B917: 4C 89 B5  JMP $B589
 
 ; [ magic animation $00: normal ]
 
-; also $07, $08, $0D
+; also see 34/8577 for $07 (brak2), $08 (toad), $0D (mini)
 
 33/B91A: A9 00     LDA #$00
 33/B91C: 8D CC 7E  STA $7ECC
 33/B91F: 4C 37 B9  JMP $B937
 
-; [ magic animation $05: life 1 / life 2 ]
+; [ magic animation $05: life, life 2 ]
 
 33/B922: AD 9B 7E  LDA $7E9B
-33/B925: F0 05     BEQ $B92C
+33/B925: F0 05     BEQ $B92C          ; branch if no targets hit
 33/B927: A9 10     LDA #$10
 33/B929: 4C 34 B9  JMP $B934
 33/B92C: AD 99 7E  LDA $7E99
@@ -19446,16 +19747,16 @@
 
 ; [  ]
 
-33/B937: 20 9B B0  JSR $B09B
+33/B937: 20 9B B0  JSR $B09B          ; pre-magic animation
 33/B93A: 20 76 B2  JSR $B276
-33/B93D: 20 35 AC  JSR $AC35
+33/B93D: 20 35 AC  JSR $AC35          ; clean up after animation
 33/B940: 4C 8D B6  JMP $B68D
 
 ; [  ]
 
 33/B943: A9 00     LDA #$00
 33/B945: 8D CC 7E  STA $7ECC
-33/B948: 20 6F AF  JSR $AF6F
+33/B948: 20 6F AF  JSR $AF6F          ; load pre-animation properties
 33/B94B: AD 8D 7E  LDA $7E8D
 33/B94E: 20 40 A4  JSR $A440          ; load animation palette
 33/B951: 4C 8D B6  JMP $B68D
@@ -19476,7 +19777,7 @@
 33/B96E: E8        INX 
 33/B96F: E0 04     CPX #$04
 33/B971: D0 F8     BNE $B96B
-33/B973: 20 D8 90  JSR $90D8
+33/B973: 20 D8 90  JSR $90D8          ; update character sprites
 33/B976: 20 C5 F8  JSR $F8C5          ; wait for vblank (no color update)
 33/B979: 20 C5 F8  JSR $F8C5          ; wait for vblank (no color update)
 33/B97C: A2 00     LDX #$00
@@ -19484,13 +19785,13 @@
 33/B981: E8        INX 
 33/B982: E0 04     CPX #$04
 33/B984: D0 F8     BNE $B97E
-33/B986: 20 D8 90  JSR $90D8
+33/B986: 20 D8 90  JSR $90D8          ; update character sprites
 33/B989: 20 C5 F8  JSR $F8C5          ; wait for vblank (no color update)
 33/B98C: 20 C5 F8  JSR $F8C5          ; wait for vblank (no color update)
 33/B98F: C6 B6     DEC $B6
 33/B991: D0 D6     BNE $B969
 33/B993: 60        RTS 
-33/B994: 20 0F A4  JSR $A40F
+33/B994: 20 0F A4  JSR $A40F          ; save character animations frames
 33/B997: A6 95     LDX $95
 33/B999: 20 F9 A3  JSR $A3F9
 33/B99C: 20 5E A0  JSR $A05E          ; reset animation sprites
@@ -19499,15 +19800,15 @@
 33/B9A4: A9 0C     LDA #$0C
 33/B9A6: D0 02     BNE $B9AA
 33/B9A8: A9 03     LDA #$03
-33/B9AA: 20 DD A3  JSR $A3DD
+33/B9AA: 20 DD A3  JSR $A3DD          ; update attacking character sprite
 33/B9AD: A9 5C     LDA #$5C
-33/B9AF: 20 EB A3  JSR $A3EB
+33/B9AF: 20 EB A3  JSR $A3EB          ; update weapon sprite
 33/B9B2: A9 5D     LDA #$5D
-33/B9B4: 20 EB A3  JSR $A3EB
+33/B9B4: 20 EB A3  JSR $A3EB          ; update weapon sprite
 33/B9B7: A9 5E     LDA #$5E
-33/B9B9: 20 EB A3  JSR $A3EB
+33/B9B9: 20 EB A3  JSR $A3EB          ; update weapon sprite
 33/B9BC: 20 8D 8C  JSR $8C8D
-33/B9BF: 4C 35 AC  JMP $AC35
+33/B9BF: 4C 35 AC  JMP $AC35          ; clean up after animation
 
 ; [ magic animation $0E: earthquake ]
 
@@ -19522,7 +19823,7 @@
 33/B9DA: 30 70 B0 30 70 B0
 33/B9E0: 03 01 05 06 09 07
 
-; [ magic animation $03: meteo / cave-in ]
+; [ magic animation $03: meteo, cave-in ]
 
 33/B9E6: 20 11 B9  JSR $B911
 33/B9E9: AD 9B 7E  LDA $7E9B
@@ -19684,7 +19985,7 @@
 
 33/BB15: 6C 7E 00  JMP ($007E)
 
-; [ magic animation $06:  ]
+; [ magic animation $06: summon, split ]
 
 33/BB18: AD 99 7E  LDA $7E99
 33/BB1B: C9 FF     CMP #$FF
@@ -19693,12 +19994,12 @@
 33/BB20: E6 C9     INC $C9
 33/BB22: 60        RTS 
 
-; [ magic animation $0B:  ]
+; [ magic animation $0B: glare, mind blast, mega flare ]
 
 33/BB23: AD 9B 7E  LDA $7E9B
-33/BB26: D0 01     BNE $BB29
+33/BB26: D0 01     BNE $BB29          ; branch if any targets were hit
 33/BB28: 60        RTS 
-33/BB29: E6 C9     INC $C9
+33/BB29: E6 C9     INC $C9            ; sound effect pending
 33/BB2B: AD 88 7E  LDA $7E88
 33/BB2E: 38        SEC 
 33/BB2F: E9 38     SBC #$38
@@ -19706,39 +20007,39 @@
 33/BB32: B9 4B 80  LDA $804B,Y
 33/BB35: 4C 3F BB  JMP $BB3F
 
-; [ magic animation $0C:  ]
+; [ magic animation $0C: explode ]
 
 33/BB38: AD 99 7E  LDA $7E99
-33/BB3B: F0 07     BEQ $BB44
-33/BB3D: A9 16     LDA #$16
+33/BB3B: F0 07     BEQ $BB44          ; return if no targets
+33/BB3D: A9 16     LDA #$16           ; red
 33/BB3F: E6 C9     INC $C9
-33/BB41: 20 7F 87  JSR $877F
+33/BB41: 20 7F 87  JSR $877F          ; flash screen
 33/BB44: 60        RTS 
 
-; [ magic animation $0A:  ]
+; [ magic animation $09: flare wave ]
 
 33/BB45: AD 9B 7E  LDA $7E9B
-33/BB48: D0 01     BNE $BB4B
+33/BB48: D0 01     BNE $BB4B          ; branch if any targets were hit
 33/BB4A: 60        RTS 
 33/BB4B: 20 11 B9  JSR $B911
 33/BB4E: E6 C9     INC $C9
-33/BB50: A9 00     LDA #$00
+33/BB50: A9 00     LDA #$00           ; flare wave
 33/BB52: 85 7E     STA $7E
-33/BB54: 20 F5 7E  JSR $7EF5
-33/BB57: A9 16     LDA #$16
+33/BB54: 20 F5 7E  JSR $7EF5          ; final boss animation
+33/BB57: A9 16     LDA #$16           ; red
 33/BB59: 4C 41 BB  JMP $BB41
 
-; [ magic animation $10:  ]
+; [ magic animation $10: flame ]
 
 33/BB5C: A9 00     LDA #$00
 33/BB5E: 4C 68 BB  JMP $BB68
 
-; [ magic animation $11:  ]
+; [ magic animation $11: blizzard ]
 
 33/BB61: A9 02     LDA #$02
 33/BB63: 4C 68 BB  JMP $BB68
 
-; [ magic animation $12:  ]
+; [ magic animation $12: thunder ]
 
 33/BB66: A9 04     LDA #$04
 33/BB68: 48        PHA 
@@ -19763,7 +20064,7 @@
 33/BB8E: 18        CLC 
 33/BB8F: 65 90     ADC $90
 33/BB91: 20 A8 BB  JSR $BBA8
-33/BB94: 20 E6 8A  JSR $8AE6
+33/BB94: 20 E6 8A  JSR $8AE6          ; increment animation frame counter
 33/BB97: 29 20     AND #$20
 33/BB99: F0 EA     BEQ $BB85
 33/BB9B: 60        RTS 
@@ -19876,7 +20177,7 @@
 33/BC86: D0 D5     BNE $BC5D
 33/BC88: 60        RTS 
 
-; [ animation function $11:  ]
+; [ animation function $11: characters run away ??? ]
 
 33/BC89: 20 59 A0  JSR $A059          ; reset animation frame counter
 33/BC8C: 20 B0 F8  JSR $F8B0          ; wait for vblank (update oam and color)
@@ -19897,8 +20198,8 @@
 33/BCA5: BD 83 7D  LDA $7D83,X
 33/BCA8: 09 80     ORA #$80
 33/BCAA: 9D 83 7D  STA $7D83,X
-33/BCAD: 20 D8 90  JSR $90D8
-33/BCB0: 20 E6 8A  JSR $8AE6
+33/BCAD: 20 D8 90  JSR $90D8          ; update character sprites
+33/BCB0: 20 E6 8A  JSR $8AE6          ; increment animation frame counter
 33/BCB3: 29 20     AND #$20
 33/BCB5: F0 D5     BEQ $BC8C
 33/BCB7: A9 B3     LDA #$B3
@@ -19961,7 +20262,7 @@
 33/BD39: E8        INX 
 33/BD3A: E0 04     CPX #$04
 33/BD3C: D0 EB     BNE $BD29
-33/BD3E: 20 D8 90  JSR $90D8
+33/BD3E: 20 D8 90  JSR $90D8          ; update character sprites
 33/BD41: EE F4 7C  INC $7CF4
 33/BD44: 60        RTS 
 
@@ -20056,7 +20357,7 @@
 
 33/BDF9: 4A 4A 4A 4A 4A 4A 49 49
 
-; [ animation function $18:  ]
+; [ animation function $18: toad/mini ]
 
 33/BE01: A9 BB     LDA #$BB
 33/BE03: 20 40 A4  JSR $A440          ; load animation palette
@@ -20072,7 +20373,7 @@
 33/BE1A: 20 5E A0  JSR $A05E          ; reset animation sprites
 33/BE1D: AD 9D 7E  LDA $7E9D
 33/BE20: C9 08     CMP #$08
-33/BE22: D0 1D     BNE $BE41
+33/BE22: D0 1D     BNE $BE41          ; branch if not toad
 33/BE24: A5 B6     LDA $B6
 33/BE26: 29 08     AND #$08
 33/BE28: D0 24     BNE $BE4E
@@ -20105,7 +20406,7 @@
 33/BE5F: 8D 03 02  STA $0203
 33/BE62: A2 03     LDX #$03
 33/BE64: 20 9B B1  JSR $B19B
-33/BE67: 20 E6 8A  JSR $8AE6
+33/BE67: 20 E6 8A  JSR $8AE6          ; increment animation frame counter
 33/BE6A: C9 10     CMP #$10
 33/BE6C: D0 A9     BNE $BE17
 33/BE6E: 20 5E A0  JSR $A05E          ; reset animation sprites
@@ -20131,7 +20432,7 @@
 33/BE8E: E8        INX 
 33/BE8F: E0 04     CPX #$04
 33/BE91: D0 F8     BNE $BE8B
-33/BE93: 20 D8 90  JSR $90D8
+33/BE93: 20 D8 90  JSR $90D8          ; update character sprites
 33/BE96: EE F4 7C  INC $7CF4
 33/BE99: 60        RTS 
 
@@ -20224,7 +20525,7 @@
 33/BF5D: A8        TAY 
 33/BF5E: 60        RTS 
 
-; [  ]
+; [ reset vector angles ]
 
 33/BF5F: A2 0A     LDX #$0A
 33/BF61: A9 00     LDA #$00
@@ -20235,21 +20536,21 @@
 33/BF6C: D0 F3     BNE $BF61
 33/BF6E: 60        RTS 
 
-; [  ]
+; [ get vector x-component ]
 
 33/BF6F: BE 44 7E  LDX $7E44,Y
 33/BF72: B9 30 7E  LDA $7E30,Y
 33/BF75: 8D 4E 7E  STA $7E4E
-33/BF78: 4C C6 BF  JMP $BFC6
+33/BF78: 4C C6 BF  JMP $BFC6          ; A * sin(X)
 
-; [  ]
+; [ get vector y-component ]
 
-33/BF7B: BE 3A 7E  LDX $7E3A,Y        ; phase
+33/BF7B: BE 3A 7E  LDX $7E3A,Y        ; angle
 33/BF7E: B9 26 7E  LDA $7E26,Y        ; amplitude
 33/BF81: 8D 4E 7E  STA $7E4E
-33/BF84: 4C C6 BF  JMP $BFC6
+33/BF84: 4C C6 BF  JMP $BFC6          ; A * sin(X)
 
-; [  ]
+; [ add to vector distance ]
 
 33/BF87: 85 7E     STA $7E
 33/BF89: B9 26 7E  LDA $7E26,Y
@@ -20262,7 +20563,7 @@
 33/BF98: 99 30 7E  STA $7E30,Y
 33/BF9B: 60        RTS 
 
-; [  ]
+; [ subtract from vector distance ]
 
 33/BF9C: 85 7E     STA $7E
 33/BF9E: B9 26 7E  LDA $7E26,Y
@@ -20275,7 +20576,7 @@
 33/BFAD: 99 30 7E  STA $7E30,Y
 33/BFB0: 60        RTS 
 
-; [  ]
+; [ add to vector angle ]
 
 33/BFB1: 85 7E     STA $7E
 33/BFB3: B9 3A 7E  LDA $7E3A,Y
@@ -20288,7 +20589,7 @@
 33/BFC2: 99 44 7E  STA $7E44,Y
 33/BFC5: 60        RTS 
 
-; [ compute A * sine(X) ]
+; [ A * sin(X) ]
 
 33/BFC6: 20 E3 7E  JSR $7EE3          ; sine
 33/BFC9: 10 11     BPL $BFDC
@@ -20419,17 +20720,17 @@
 34/8093: 20 6C 98  JSR $986C          ; get character actions
 34/8096: A9 00     LDA #$00
 34/8098: 8D E1 7B  STA $7BE1
-34/809B: 20 74 83  JSR $8374
+34/809B: 20 74 83  JSR $8374          ; update inventory and run flag
 34/809E: A9 0F     LDA #$0F
 34/80A0: 20 0E FA  JSR $FA0E          ; execute battle graphics
 34/80A3: AD BA 78  LDA $78BA
-34/80A6: 30 03     BMI $80AB
-34/80A8: 20 71 82  JSR $8271
-34/80AB: 20 77 97  JSR $9777
+34/80A6: 30 03     BMI $80AB          ; branch if surprise attack round ???
+34/80A8: 20 71 82  JSR $8271          ; update number of times commands were used
+34/80AB: 20 77 97  JSR $9777          ; determine attack order
 34/80AE: A9 00     LDA #$00
 34/80B0: 85 18     STA $18
-34/80B2: 20 DF 8A  JSR $8ADF
-34/80B5: 20 0B 8F  JSR $8F0B
+34/80B2: 20 DF 8A  JSR $8ADF          ; hide cursor
+34/80B5: 20 0B 8F  JSR $8F0B          ; clear menu area tilemap
 34/80B8: 20 CE 82  JSR $82CE
 34/80BB: A2 FF     LDX #$FF
 34/80BD: 8E CF 78  STX $78CF
@@ -20438,7 +20739,7 @@
 34/80C6: 8E D2 78  STX $78D2
 ; start of action loop
 34/80C9: 20 13 82  JSR $8213
-34/80CC: 20 A2 9B  JSR $9BA2
+34/80CC: 20 A2 9B  JSR $9BA2          ; draw character hp window
 34/80CF: 20 58 A4  JSR $A458          ; check if battle is over
 34/80D2: AD D3 78  LDA $78D3
 34/80D5: D0 45     BNE $811C          ; branch if battle is over
@@ -20470,7 +20771,7 @@
 34/8116: 8D BA 78  STA $78BA
 34/8119: 4C 74 80  JMP $8074          ; next turn
 ; battle is over
-34/811C: 20 A2 9B  JSR $9BA2
+34/811C: 20 A2 9B  JSR $9BA2          ; draw character hp window
 34/811F: AD D3 78  LDA $78D3
 34/8122: 29 02     AND #$02
 34/8124: D0 3D     BNE $8163
@@ -20503,7 +20804,7 @@
 34/8166: AD BA 78  LDA $78BA
 34/8169: 29 08     AND #$08
 34/816B: F0 03     BEQ $8170
-34/816D: 20 A4 88  JSR $88A4
+34/816D: 20 A4 88  JSR $88A4          ; toggle front/back row for all characters
 34/8170: 20 32 80  JSR $8032          ; consolidate inventory
 34/8173: AD ED 7C  LDA $7CED          ; battle index
 34/8176: C9 79     CMP #$79
@@ -20522,7 +20823,7 @@
 34/8188: 8A        TXA 
 34/8189: 48        PHA 
 34/818A: AD F3 7C  LDA $7CF3
-34/818D: F0 08     BEQ $8197
+34/818D: F0 08     BEQ $8197          ; branch if screen on
 34/818F: A9 13     LDA #$13
 34/8191: 20 0E FA  JSR $FA0E          ; execute battle graphics
 34/8194: 20 C5 F8  JSR $F8C5          ; wait for vblank (no color update)
@@ -20533,7 +20834,7 @@
 34/819B: 68        PLA 
 34/819C: 60        RTS 
 
-; [  ]
+; [ wait for irq ]
 
 34/819D: 4C 79 FB  JMP $FB79          ; wait for irq
 
@@ -20640,20 +20941,23 @@
 34/826D: CA        DEX 
 34/826E: 10 FB     BPL $826B
 34/8270: 60        RTS 
+
+; [ update number of times commands were used ]
+
 34/8271: A2 00     LDX #$00
 34/8273: 86 52     STX $52
 34/8275: A6 52     LDX $52
-34/8277: BD C3 7A  LDA $7AC3,X
+34/8277: BD C3 7A  LDA $7AC3,X        ; selected command slot
 34/827A: 85 18     STA $18
 34/827C: C9 FF     CMP #$FF
-34/827E: F0 0C     BEQ $828C
+34/827E: F0 0C     BEQ $828C          ; skip if invalid
 34/8280: 18        CLC 
 34/8281: A5 52     LDA $52
 34/8283: 20 40 FD  JSR $FD40          ; asl2
 34/8286: 65 18     ADC $18
 34/8288: AA        TAX 
-34/8289: FE F0 78  INC $78F0,X
-34/828C: E6 52     INC $52
+34/8289: FE F0 78  INC $78F0,X        ; increment # of times command was used
+34/828C: E6 52     INC $52            ; next character
 34/828E: A5 52     LDA $52
 34/8290: C9 04     CMP #$04
 34/8292: D0 E1     BNE $8275
@@ -20777,6 +21081,14 @@
 34/836F: C9 04     CMP #$04
 34/8371: D0 A7     BNE $831A
 34/8373: 60        RTS 
+
+; [ update inventory and run flag ]
+
+; after actions are confirmed for all characters, any used items are
+; returned to the inventory and the "trying to run" flag is set if
+; the run or escape command was chosen. used items are removed from
+; the inventory at 31/A65E.
+
 34/8374: A9 00     LDA #$00
 34/8376: 85 52     STA $52
 34/8378: 85 74     STA $74
@@ -20785,16 +21097,16 @@
 34/837E: 69 3F     ADC #$3F
 34/8380: A8        TAY 
 34/8381: B1 5B     LDA ($5B),Y
-34/8383: F0 03     BEQ $8388
-34/8385: 20 E7 9A  JSR $9AE7
+34/8383: F0 03     BEQ $8388          ; branch if no used item pending
+34/8385: 20 E7 9A  JSR $9AE7          ; return used item to inventory
 34/8388: 20 9B 9B  JSR $9B9B          ; get action pointer
 34/838B: B1 5B     LDA ($5B),Y
 34/838D: C9 06     CMP #$06
 34/838F: F0 04     BEQ $8395          ; branch if action $06 (run)
 34/8391: C9 07     CMP #$07
 34/8393: D0 02     BNE $8397          ; branch if not action $07 (escape)
-34/8395: E6 74     INC $74
-34/8397: E6 52     INC $52
+34/8395: E6 74     INC $74            ; set "trying to run" flag
+34/8397: E6 52     INC $52            ; next character
 34/8399: A5 52     LDA $52
 34/839B: C9 04     CMP #$04
 34/839D: D0 DB     BNE $837A
@@ -20812,7 +21124,7 @@
 34/83F8: 03 03 04 05 00 06 0D 0D 07 08 03 03 03 03 03 09
 34/8408: 00 0A 0B 01 01 0C 0E 0F 10
 
-; [ show attack animation ]
+; [ show animation ]
 
 34/8411: AD 9A 7E  LDA $7E9A
 34/8414: 2A        ROL 
@@ -20850,14 +21162,17 @@
 34/846C: 20 0E FA  JSR $FA0E          ; execute battle graphics
 34/846F: 60        RTS 
 
-; [ attack animation $0E: poison damage ]
+; [ attack animation $0E: death animation ]
 
 34/8470: AD 9A 7E  LDA $7E9A
-34/8473: 30 06     BMI $847B
+34/8473: 30 06     BMI $847B          ; branch if attacker is a monster
 34/8475: 20 96 84  JSR $8496
 34/8478: 4C 81 84  JMP $8481
 34/847B: 20 81 84  JSR $8481
 34/847E: 4C 96 84  JMP $8496
+
+; [ character death animations ]
+
 34/8481: A2 00     LDX #$00
 34/8483: BD BB 78  LDA $78BB,X
 34/8486: DD 9B 7D  CMP $7D9B,X
@@ -20866,19 +21181,22 @@
 34/848C: E0 08     CPX #$08
 34/848E: D0 F3     BNE $8483
 34/8490: 60        RTS 
-34/8491: A9 07     LDA #$07
+34/8491: A9 07     LDA #$07           ; character death animations ???
 34/8493: 4C 0E FA  JMP $FA0E          ; execute battle graphics
+
+; [ monster death animations ]
+
 34/8496: A2 00     LDX #$00
 34/8498: BD C4 7E  LDA $7EC4,X
 34/849B: 30 15     BMI $84B2
-34/849D: BD A7 7D  LDA $7DA7,X
+34/849D: BD A7 7D  LDA $7DA7,X        ; monster type
 34/84A0: C9 FF     CMP #$FF
-34/84A2: D0 15     BNE $84B9
+34/84A2: D0 15     BNE $84B9          ; branch if valid
 34/84A4: 20 C7 84  JSR $84C7
 34/84A7: A5 7E     LDA $7E
 34/84A9: 49 FF     EOR #$FF
 34/84AB: 85 7E     STA $7E
-34/84AD: A9 0B     LDA #$0B
+34/84AD: A9 0B     LDA #$0B           ; monster summon/split ???
 34/84AF: 4C 0E FA  JMP $FA0E          ; execute battle graphics
 34/84B2: BD A7 7D  LDA $7DA7,X
 34/84B5: C9 FF     CMP #$FF
@@ -20888,7 +21206,7 @@
 34/84BC: D0 DA     BNE $8498
 34/84BE: 60        RTS 
 34/84BF: 20 C7 84  JSR $84C7
-34/84C2: A9 0A     LDA #$0A
+34/84C2: A9 0A     LDA #$0A           ; monster death animations
 34/84C4: 4C 0E FA  JMP $FA0E          ; execute battle graphics
 
 ; [  ]
@@ -21026,24 +21344,27 @@
 34/859B: 20 89 86  JSR $8689
 34/859E: AD 9A 7E  LDA $7E9A
 34/85A1: 29 40     AND #$40
-34/85A3: F0 47     BEQ $85EC          ; branch if target is a character
+34/85A3: F0 47     BEQ $85EC          ; return if target is a character
+; summon, split
 34/85A5: AD 9D 7E  LDA $7E9D
 34/85A8: C9 06     CMP #$06
-34/85AA: D0 0E     BNE $85BA          ; branch if not ???
+34/85AA: D0 0E     BNE $85BA          ; branch if not summon or split
 34/85AC: AD 99 7E  LDA $7E99
 34/85AF: C9 FF     CMP #$FF
 34/85B1: F0 39     BEQ $85EC
 34/85B3: 85 7E     STA $7E
 34/85B5: A9 0C     LDA #$0C
 34/85B7: 4C 0E FA  JMP $FA0E          ; execute battle graphics
+; brak2
 34/85BA: C9 07     CMP #$07
 34/85BC: D0 10     BNE $85CE          ; branch if not brak2
-34/85BE: AD 9B 7E  LDA $7E9B
+34/85BE: AD 9B 7E  LDA $7E9B          ; targets hit
 34/85C1: 8D 8F 7E  STA $7E8F
 34/85C4: A9 03     LDA #$03
 34/85C6: 8D 90 7E  STA $7E90
 34/85C9: A9 22     LDA #$22
 34/85CB: 4C 0E FA  JMP $FA0E          ; execute battle graphics
+; toad, mini
 34/85CE: C9 08     CMP #$08
 34/85D0: D0 16     BNE $85E8          ; branch if not toad
 34/85D2: AD 9B 7E  LDA $7E9B
@@ -21086,16 +21407,18 @@
 34/8615: 8E 96 7E  STX $7E96
 34/8618: 20 AB 86  JSR $86AB          ; get attacker id
 34/861B: AD 9A 7E  LDA $7E9A
-34/861E: 10 27     BPL $8647
+34/861E: 10 27     BPL $8647          ; branch if attacker is a character
 34/8620: 20 45 85  JSR $8545
 34/8623: AD 6F 7E  LDA $7E6F
-34/8626: F0 0F     BEQ $8637
+34/8626: F0 0F     BEQ $8637          ; branch if target is a character
+; monster attacking monster
 34/8628: A2 01     LDX #$01
 34/862A: 20 AB 86  JSR $86AB          ; get target id
 34/862D: 84 B8     STY $B8
 34/862F: A9 20     LDA #$20
 34/8631: 20 0E FA  JSR $FA0E          ; execute battle graphics
 34/8634: 4C 89 86  JMP $8689
+; monster attacking character
 34/8637: A2 01     LDX #$01
 34/8639: 20 AB 86  JSR $86AB          ; get target id
 34/863C: 8C 52 00  STY $0052
@@ -21104,13 +21427,15 @@
 34/8644: 4C 89 86  JMP $8689
 34/8647: 8C 52 00  STY $0052
 34/864A: AD 6F 7E  LDA $7E6F
-34/864D: F0 0F     BEQ $865E
+34/864D: F0 0F     BEQ $865E          ; branch if target is a character
+; character attacking monster
 34/864F: A2 01     LDX #$01
 34/8651: 20 AB 86  JSR $86AB          ; get target id
 34/8654: 84 B8     STY $B8
-34/8656: A9 12     LDA #$12
+34/8656: A9 12     LDA #$12           ; weapon animation
 34/8658: 20 0E FA  JSR $FA0E          ; execute battle graphics
 34/865B: 4C 89 86  JMP $8689
+; character attacking character
 34/865E: EE 96 7E  INC $7E96
 34/8661: A5 BB     LDA $BB
 34/8663: 48        PHA 
@@ -21119,7 +21444,7 @@
 34/8667: A9 00     LDA #$00
 34/8669: 85 BB     STA $BB
 34/866B: 85 BC     STA $BC
-34/866D: A9 12     LDA #$12
+34/866D: A9 12     LDA #$12           ; weapon animation
 34/866F: 20 0E FA  JSR $FA0E          ; execute battle graphics
 34/8672: A2 01     LDX #$01
 34/8674: 20 AB 86  JSR $86AB          ; get target id
@@ -21130,7 +21455,7 @@
 34/867E: 85 BB     STA $BB
 34/8680: 05 BC     ORA $BC
 34/8682: F0 05     BEQ $8689
-34/8684: A9 14     LDA #$14
+34/8684: A9 14     LDA #$14           ; character hit animation
 34/8686: 20 0E FA  JSR $FA0E          ; execute battle graphics
 34/8689: 60        RTS 
 
@@ -21267,7 +21592,7 @@
 34/8760: 85 6F     STA $6F
 34/8762: A9 00     LDA #$00
 34/8764: A2 0F     LDX #$0F
-34/8766: 9D F0 78  STA $78F0,X
+34/8766: 9D F0 78  STA $78F0,X        ; clear # of times each command used
 34/8769: CA        DEX 
 34/876A: 10 FA     BPL $8766
 34/876C: A2 07     LDX #$07
@@ -21384,7 +21709,7 @@
 34/885D: 90 04     BCC $8863
 34/885F: A9 80     LDA #$80           ; ambush
 34/8861: 30 05     BMI $8868
-34/8863: 20 A4 88  JSR $88A4
+34/8863: 20 A4 88  JSR $88A4          ; toggle front/back row for all characters
 34/8866: A9 88     LDA #$88           ; back attack
 34/8868: 8D C3 78  STA $78C3
 34/886B: 8D BA 78  STA $78BA
@@ -21420,6 +21745,9 @@
 34/889E: 20 92 FC  JSR $FC92          ; divide (16-bit)
 34/88A1: A5 1C     LDA $1C
 34/88A3: 60        RTS 
+
+; [ toggle front/back row for all characters ]
+
 34/88A4: A9 00     LDA #$00
 34/88A6: 85 52     STA $52
 34/88A8: 20 41 A5  JSR $A541          ; get character offset
@@ -21429,7 +21757,7 @@
 34/88AF: B1 59     LDA ($59),Y
 34/88B1: 48        PHA 
 34/88B2: 29 01     AND #$01
-34/88B4: 49 01     EOR #$01
+34/88B4: 49 01     EOR #$01           ; toggle row
 34/88B6: 85 21     STA $21
 34/88B8: 68        PLA 
 34/88B9: 29 FE     AND #$FE
@@ -21440,13 +21768,13 @@
 34/88C4: B1 5B     LDA ($5B),Y
 34/88C6: 48        PHA 
 34/88C7: 29 01     AND #$01
-34/88C9: 49 01     EOR #$01
+34/88C9: 49 01     EOR #$01           ; toggle row
 34/88CB: 85 21     STA $21
 34/88CD: 68        PLA 
 34/88CE: 29 FE     AND #$FE
 34/88D0: 05 21     ORA $21
 34/88D2: 91 5B     STA ($5B),Y
-34/88D4: E6 52     INC $52
+34/88D4: E6 52     INC $52            ; next character
 34/88D6: A5 52     LDA $52
 34/88D8: C9 04     CMP #$04
 34/88DA: D0 CC     BNE $88A8
@@ -21498,7 +21826,11 @@
 34/8926: F0 5C 03 F0
 34/892A: F0 5B 03 F0
 
-; [  ]
+; [ set cursor sprite position ]
+
+; $1A: cursor id
+; $1C: y position
+; $1D: x position
 
 34/892E: A5 1A     LDA $1A
 34/8930: 20 3E FD  JSR $FD3E          ; asl4
@@ -21507,28 +21839,31 @@
 34/8936: 9D 20 02  STA $0220,X
 34/8939: A5 1D     LDA $1D
 34/893B: 9D 23 02  STA $0223,X
-34/893E: 4C 41 89  JMP $8941
-
-; [  ]
-
+34/893E: 4C 41 89  JMP $8941          ; this does nothing
 34/8941: A5 1A     LDA $1A
 34/8943: 20 3E FD  JSR $FD3E          ; asl4
 34/8946: AA        TAX 
 34/8947: 18        CLC 
 34/8948: BD 20 02  LDA $0220,X
-34/894B: 9D 24 02  STA $0224,X
+34/894B: 9D 24 02  STA $0224,X        ; y position
 34/894E: 69 08     ADC #$08
 34/8950: 9D 28 02  STA $0228,X
 34/8953: 9D 2C 02  STA $022C,X
 34/8956: 38        SEC 
 34/8957: BD 23 02  LDA $0223,X
-34/895A: 9D 2B 02  STA $022B,X
+34/895A: 9D 2B 02  STA $022B,X        ; x position
 34/895D: E9 08     SBC #$08
 34/895F: 9D 27 02  STA $0227,X
 34/8962: 9D 2F 02  STA $022F,X
 34/8965: 60        RTS 
 
-; [  ]
+; [ init list cursor ]
+
+; $1A: cursor id
+; $55: cursor position id
+;        0: command list
+;        1: spell list
+;        2: item list
 
 34/8966: A5 55     LDA $55
 34/8968: 0A        ASL 
@@ -21558,7 +21893,7 @@
 34/8996: C8        INY 
 34/8997: B1 55     LDA ($55),Y
 34/8999: 85 1D     STA $1D
-34/899B: 4C 2E 89  JMP $892E
+34/899B: 4C 2E 89  JMP $892E          ; set cursor sprite position
 
 ; [ get player input ]
 
@@ -21579,7 +21914,7 @@
 34/89BA: B0 04     BCS $89C0
 34/89BC: E6 21     INC $21
 34/89BE: 90 F9     BCC $89B9
-34/89C0: A5 21     LDA $21
+34/89C0: A5 21     LDA $21            ; button index
 34/89C2: 0A        ASL 
 34/89C3: 18        CLC 
 34/89C4: 65 1E     ADC $1E
@@ -21600,14 +21935,14 @@
 ; [ B button ]
 
 34/89DE: A6 1A     LDX $1A
-34/89E0: A9 02     LDA #$02
+34/89E0: A9 02     LDA #$02           ; B
 34/89E2: 9D 50 00  STA $0050,X
 34/89E5: 60        RTS 
 
 ; [ A button ]
 
 34/89E6: A6 1A     LDX $1A
-34/89E8: A9 01     LDA #$01
+34/89E8: A9 01     LDA #$01           ; A
 34/89EA: 9D 50 00  STA $0050,X
 34/89ED: 60        RTS 
 
@@ -21705,7 +22040,7 @@
 34/8A91: E9 00     SBC #$00
 34/8A93: 85 56     STA $56
 34/8A95: A6 1A     LDX $1A
-34/8A97: A9 40     LDA #$40
+34/8A97: A9 40     LDA #$40           ; left
 34/8A99: 9D 50 00  STA $0050,X
 34/8A9C: 4C C1 8A  JMP $8AC1
 
@@ -21723,7 +22058,7 @@
 34/8AB0: 69 00     ADC #$00
 34/8AB2: 85 56     STA $56
 34/8AB4: A6 1A     LDX $1A
-34/8AB6: A9 80     LDA #$80
+34/8AB6: A9 80     LDA #$80           ; right
 34/8AB8: 9D 50 00  STA $0050,X
 34/8ABB: 4C C1 8A  JMP $8AC1
 
@@ -21739,10 +22074,14 @@
 34/8AC7: C8        INY 
 34/8AC8: B1 55     LDA ($55),Y
 34/8ACA: 85 1D     STA $1D
-34/8ACC: 4C 2E 89  JMP $892E
+34/8ACC: 4C 2E 89  JMP $892E          ; set cursor sprite position
 
 ; jump table for joypad buttons (battle menu)
 34/8ACF: 89E6 89DE 8ABE 8ABE 89EE 8A35 8A82 8A9F
+
+; [ hide cursor ]
+
+; $18: cursor id
 
 34/8ADF: A9 20     LDA #$20           ; $0220 (oam data)
 34/8AE1: 85 4A     STA $4A
@@ -21775,7 +22114,13 @@
 ; 2: item list
 34/8B28: A8 08 B8 08 C8 08 D8 08 A8 80 B8 80 C8 80 D8 80
 
-; [  ]
+; [ open menu window ]
+
+; $18: left position, msb is tilemap (0 or 1)
+; $19: right position
+; $1A: ------lr
+;        l: left side border
+;        r: right side border
 
 34/8B38: A5 19     LDA $19
 34/8B3A: 48        PHA 
@@ -21791,12 +22136,12 @@
 34/8B4B: 68        PLA 
 34/8B4C: 29 80     AND #$80
 34/8B4E: 45 1E     EOR $1E
-34/8B50: D0 12     BNE $8B64
+34/8B50: D0 12     BNE $8B64          ; branch if window straddles tilemaps 0 and 1
 34/8B52: 38        SEC 
 34/8B53: A5 1D     LDA $1D
 34/8B55: E5 1C     SBC $1C
 34/8B57: E9 01     SBC #$01
-34/8B59: 8D B8 78  STA $78B8
+34/8B59: 8D B8 78  STA $78B8          ; menu window width
 34/8B5C: A9 00     LDA #$00
 34/8B5E: 8D B9 78  STA $78B9
 34/8B61: 4C 7C 8B  JMP $8B7C
@@ -21811,8 +22156,8 @@
 34/8B72: E5 1C     SBC $1C
 34/8B74: E9 01     SBC #$01
 34/8B76: ED B8 78  SBC $78B8
-34/8B79: 8D B9 78  STA $78B9
-34/8B7C: AD C0 7A  LDA $7AC0
+34/8B79: 8D B9 78  STA $78B9          ; menu window width in tilemap 1
+34/8B7C: AD C0 7A  LDA $7AC0          ; pointer to menu window text buffer
 34/8B7F: 85 2E     STA $2E
 34/8B81: AD C1 7A  LDA $7AC1
 34/8B84: 85 2F     STA $2F
@@ -21822,7 +22167,7 @@
 34/8B8B: D0 0F     BNE $8B9C
 34/8B8D: 68        PLA 
 34/8B8E: 18        CLC 
-34/8B8F: 69 60     ADC #$60
+34/8B8F: 69 60     ADC #$60           ; ppu offset: $2260 (tilemap 0)
 34/8B91: 85 2A     STA $2A
 34/8B93: A9 00     LDA #$00
 34/8B95: 69 22     ADC #$22
@@ -21832,7 +22177,7 @@
 34/8B9C: 68        PLA 
 34/8B9D: 29 7F     AND #$7F
 34/8B9F: 18        CLC 
-34/8BA0: 69 60     ADC #$60
+34/8BA0: 69 60     ADC #$60           ; ppu offset: $2660 (tilemap 1)
 34/8BA2: 85 2A     STA $2A
 34/8BA4: A9 00     LDA #$00
 34/8BA6: 69 26     ADC #$26
@@ -21854,38 +22199,39 @@
 34/8BC7: A9 01     LDA #$01
 34/8BC9: 85 1B     STA $1B
 34/8BCB: 85 1E     STA $1E
-34/8BCD: 20 84 8C  JSR $8C84
+34/8BCD: 20 84 8C  JSR $8C84          ; draw top/bottom menu window border
+; start row loop
 34/8BD0: 20 85 81  JSR $8185          ; wait one frame
 34/8BD3: A5 2B     LDA $2B
 34/8BD5: A6 2A     LDX $2A
 34/8BD7: 20 E0 F8  JSR $F8E0          ; set ppu address
-34/8BDA: 20 56 8C  JSR $8C56
+34/8BDA: 20 56 8C  JSR $8C56          ; draw left/right menu window border
 34/8BDD: A0 00     LDY #$00
 34/8BDF: AE B8 78  LDX $78B8
 34/8BE2: F0 09     BEQ $8BED
-34/8BE4: B1 2E     LDA ($2E),Y
+34/8BE4: B1 2E     LDA ($2E),Y        ; window area tiles
 34/8BE6: 8D 07 20  STA $2007
 34/8BE9: C8        INY 
 34/8BEA: CA        DEX 
 34/8BEB: D0 F7     BNE $8BE4
 34/8BED: AE B9 78  LDX $78B9
 34/8BF0: D0 06     BNE $8BF8
-34/8BF2: 20 56 8C  JSR $8C56
+34/8BF2: 20 56 8C  JSR $8C56          ; draw left/right menu window border
 34/8BF5: 18        CLC 
-34/8BF6: 90 19     BCC $8C11
+34/8BF6: 90 19     BCC $8C11          ; branch always
 34/8BF8: A5 2D     LDA $2D
 34/8BFA: 8D 06 20  STA $2006
 34/8BFD: A5 2C     LDA $2C
 34/8BFF: 8D 06 20  STA $2006
 34/8C02: 20 03 8D  JSR $8D03
-34/8C05: B1 2E     LDA ($2E),Y
+34/8C05: B1 2E     LDA ($2E),Y        ; window area tiles (overflow)
 34/8C07: 8D 07 20  STA $2007
 34/8C0A: C8        INY 
 34/8C0B: CA        DEX 
 34/8C0C: D0 F7     BNE $8C05
-34/8C0E: 20 56 8C  JSR $8C56
+34/8C0E: 20 56 8C  JSR $8C56          ; draw left/right menu window border
 34/8C11: 18        CLC 
-34/8C12: A5 2A     LDA $2A
+34/8C12: A5 2A     LDA $2A            ; increment ppu offset
 34/8C14: 69 20     ADC #$20
 34/8C16: 85 2A     STA $2A
 34/8C18: A5 2B     LDA $2B
@@ -21899,7 +22245,7 @@
 34/8C27: 69 00     ADC #$00
 34/8C29: 85 2D     STA $2D
 34/8C2B: 18        CLC 
-34/8C2C: A5 2E     LDA $2E
+34/8C2C: A5 2E     LDA $2E            ; increment text buffer offset
 34/8C2E: 6D B8 78  ADC $78B8
 34/8C31: 85 2E     STA $2E
 34/8C33: A5 2F     LDA $2F
@@ -21913,12 +22259,15 @@
 34/8C43: 69 00     ADC #$00
 34/8C45: 85 2F     STA $2F
 34/8C47: 20 03 8D  JSR $8D03
-34/8C4A: C6 30     DEC $30
+34/8C4A: C6 30     DEC $30            ; next row
 34/8C4C: A5 30     LDA $30
-34/8C4E: F0 03     BEQ $8C53
+34/8C4E: F0 03     BEQ $8C53          ; branch if last row
 34/8C50: 4C D0 8B  JMP $8BD0
-34/8C53: 4C 84 8C  JMP $8C84
-34/8C56: A9 FA     LDA #$FA
+34/8C53: 4C 84 8C  JMP $8C84          ; draw top/bottom menu window border
+
+; [ draw left/right menu window border ]
+
+34/8C56: A9 FA     LDA #$FA           ; left side border tile
 34/8C58: 85 1C     STA $1C
 34/8C5A: A5 1B     LDA $1B
 34/8C5C: 49 01     EOR #$01
@@ -21930,22 +22279,25 @@
 34/8C67: D0 07     BNE $8C70
 34/8C69: A5 1A     LDA $1A
 34/8C6B: 4A        LSR 
-34/8C6C: 90 09     BCC $8C77
+34/8C6C: 90 09     BCC $8C77          ; branch if no right side border
 34/8C6E: B0 0E     BCS $8C7E
 34/8C70: A5 1A     LDA $1A
 34/8C72: 20 47 FD  JSR $FD47          ; lsr2
-34/8C75: B0 07     BCS $8C7E
-34/8C77: A9 FF     LDA #$FF
+34/8C75: B0 07     BCS $8C7E          ; branch if left side border shown
+34/8C77: A9 FF     LDA #$FF           ; blank tile
 34/8C79: 8D 07 20  STA $2007
 34/8C7C: D0 05     BNE $8C83
 34/8C7E: A5 1C     LDA $1C
 34/8C80: 8D 07 20  STA $2007
 34/8C83: 60        RTS 
-34/8C84: A9 F7     LDA #$F7
+
+; [ draw top/bottom menu window border ]
+
+34/8C84: A9 F7     LDA #$F7           ; top left border tile
 34/8C86: 85 1D     STA $1D
-34/8C88: A5 1E     LDA $1E
+34/8C88: A5 1E     LDA $1E            ; bottom or top
 34/8C8A: 49 01     EOR #$01
-34/8C8C: 85 1E     STA $1E
+34/8C8C: 85 1E     STA $1E            ; multiply by 5
 34/8C8E: 20 40 FD  JSR $FD40          ; asl2
 34/8C91: 18        CLC 
 34/8C92: 65 1E     ADC $1E
@@ -21961,23 +22313,23 @@
 34/8CA9: 4A        LSR 
 34/8CAA: B0 01     BCS $8CAD
 34/8CAC: E8        INX 
-34/8CAD: 8E 07 20  STX $2007
+34/8CAD: 8E 07 20  STX $2007          ; first tile
 34/8CB0: E6 1D     INC $1D
 34/8CB2: AE B8 78  LDX $78B8
 34/8CB5: F0 08     BEQ $8CBF
 34/8CB7: A5 1D     LDA $1D
-34/8CB9: 8D 07 20  STA $2007
+34/8CB9: 8D 07 20  STA $2007          ; middle tiles
 34/8CBC: CA        DEX 
 34/8CBD: D0 FA     BNE $8CB9
 34/8CBF: AE B9 78  LDX $78B9
-34/8CC2: F0 15     BEQ $8CD9
+34/8CC2: F0 15     BEQ $8CD9          ; branch if no overflow into other tilemap
 34/8CC4: A5 2D     LDA $2D
 34/8CC6: 8D 06 20  STA $2006
 34/8CC9: A5 2C     LDA $2C
 34/8CCB: 8D 06 20  STA $2006
 34/8CCE: 20 03 8D  JSR $8D03
 34/8CD1: A5 1D     LDA $1D
-34/8CD3: 8D 07 20  STA $2007
+34/8CD3: 8D 07 20  STA $2007          ; middle tiles (overflow)
 34/8CD6: CA        DEX 
 34/8CD7: D0 FA     BNE $8CD3
 34/8CD9: A5 1A     LDA $1A
@@ -21986,9 +22338,9 @@
 34/8CDD: 90 02     BCC $8CE1
 34/8CDF: E6 1D     INC $1D
 34/8CE1: A5 1D     LDA $1D
-34/8CE3: 8D 07 20  STA $2007
+34/8CE3: 8D 07 20  STA $2007          ; last tile
 34/8CE6: 18        CLC 
-34/8CE7: A5 2A     LDA $2A
+34/8CE7: A5 2A     LDA $2A            ; increment tilemap pointers
 34/8CE9: 69 20     ADC #$20
 34/8CEB: 85 2A     STA $2A
 34/8CED: A5 2B     LDA $2B
@@ -22003,7 +22355,7 @@
 34/8CFE: 85 2D     STA $2D
 34/8D00: 4C 03 8D  JMP $8D03
 
-; [  ]
+; [ update ppu registers ]
 
 34/8D03: 2C 02 20  BIT $2002          ; ppu latch
 34/8D06: A5 06     LDA $06
@@ -22075,7 +22427,7 @@
 34/8D87: 85 1B     STA $1B
 34/8D89: A9 F9     LDA #$F9
 34/8D8B: 85 1D     STA $1D
-34/8D8D: 20 E5 8D  JSR $8DE5
+34/8D8D: 20 E5 8D  JSR $8DE5          ; draw top/bottom message window border
 34/8D90: AD C0 7A  LDA $7AC0
 34/8D93: 85 18     STA $18
 34/8D95: AD C1 7A  LDA $7AC1
@@ -22087,7 +22439,7 @@
 34/8DA3: A5 61     LDA $61
 34/8DA5: A6 60     LDX $60
 34/8DA7: 20 E0 F8  JSR $F8E0          ; set ppu address
-34/8DAA: A9 FA     LDA #$FA
+34/8DAA: A9 FA     LDA #$FA           ; left border
 34/8DAC: 8D 07 20  STA $2007
 34/8DAF: AE B8 78  LDX $78B8
 34/8DB2: B1 18     LDA ($18),Y
@@ -22095,7 +22447,7 @@
 34/8DB7: C8        INY 
 34/8DB8: CA        DEX 
 34/8DB9: D0 F7     BNE $8DB2
-34/8DBB: A9 FB     LDA #$FB
+34/8DBB: A9 FB     LDA #$FB           ; right border
 34/8DBD: 8D 07 20  STA $2007
 34/8DC0: 18        CLC 
 34/8DC1: A5 60     LDA $60
@@ -22108,13 +22460,16 @@
 34/8DD0: C6 1C     DEC $1C
 34/8DD2: A5 1C     LDA $1C
 34/8DD4: D0 CA     BNE $8DA0
-34/8DD6: A9 FC     LDA #$FC
+34/8DD6: A9 FC     LDA #$FC           ; bottom left border
 34/8DD8: 85 1A     STA $1A
-34/8DDA: A9 FD     LDA #$FD
+34/8DDA: A9 FD     LDA #$FD           ; bottom border
 34/8DDC: 85 1B     STA $1B
-34/8DDE: A9 FE     LDA #$FE
+34/8DDE: A9 FE     LDA #$FE           ; bottom right border
 34/8DE0: 85 1D     STA $1D
-34/8DE2: 4C E5 8D  JMP $8DE5
+34/8DE2: 4C E5 8D  JMP $8DE5          ; draw top/bottom message window border
+
+; [ draw top/bottom message window border ]
+
 34/8DE5: 20 85 81  JSR $8185          ; wait one frame
 34/8DE8: A5 61     LDA $61
 34/8DEA: A6 60     LDX $60
@@ -22221,17 +22576,18 @@
 34/8E9E: $22CC,$09,$7B4D,$232C,$7B6E
 34/8EA7: $2321,$15,$7B79,$2381,$7BBE
 
-; [  ]
+; [ close menu window ]
 
-34/8EB0: A9 80     LDA #$80
+34/8EB0: A9 80     LDA #$80           ; ppu address: $2380
 34/8EB2: 85 18     STA $18
 34/8EB4: A9 23     LDA #$23
 34/8EB6: 85 19     STA $19
-34/8EB8: A9 80     LDA #$80
+34/8EB8: A9 80     LDA #$80           ; ppu address: $2780
 34/8EBA: 85 1A     STA $1A
 34/8EBC: A9 27     LDA #$27
 34/8EBE: 85 1B     STA $1B
-34/8EC0: A0 0A     LDY #$0A
+34/8EC0: A0 0A     LDY #$0A           ; 10 rows
+; start of row loop
 34/8EC2: 20 85 81  JSR $8185          ; wait one frame
 34/8EC5: A5 19     LDA $19
 34/8EC7: A6 18     LDX $18
@@ -22252,7 +22608,7 @@
 34/8EEA: CA        DEX 
 34/8EEB: D0 FA     BNE $8EE7
 34/8EED: 38        SEC 
-34/8EEE: A5 18     LDA $18
+34/8EEE: A5 18     LDA $18            ; previous row
 34/8EF0: E9 20     SBC #$20
 34/8EF2: 85 18     STA $18
 34/8EF4: A5 19     LDA $19
@@ -22269,9 +22625,9 @@
 34/8F08: D0 B8     BNE $8EC2
 34/8F0A: 60        RTS 
 
-; [  ]
+; [ clear menu area tilemap ]
 
-34/8F0B: A9 80     LDA #$80
+34/8F0B: A9 80     LDA #$80           ; ppu address: $2380
 34/8F0D: 85 18     STA $18
 34/8F0F: A9 23     LDA #$23
 34/8F11: 85 19     STA $19
@@ -22289,7 +22645,7 @@
 34/8F2F: 88        DEY 
 34/8F30: D0 FA     BNE $8F2C
 34/8F32: 38        SEC 
-34/8F33: A5 18     LDA $18
+34/8F33: A5 18     LDA $18            ; next row
 34/8F35: E9 20     SBC #$20
 34/8F37: 85 18     STA $18
 34/8F39: A5 19     LDA $19
@@ -22300,10 +22656,21 @@
 34/8F42: 60        RTS 
 
 ; unused ???
-34/8F43: FC FD FA 00 FA 00 FA 00 FA 00 FA 00 FA 00 FA 00
-34/8F53: FA 00 F7 F8
+; looks like the left side of a menu window in reverse order
+34/8F43: FC FD
+34/8F45: FA 00
+34/8F47: FA 00
+34/8F49: FA 00
+34/8F4B: FA 00
+34/8F4D: FA 00
+34/8F4F: FA 00
+34/8F51: FA 00
+34/8F53: FA 00
+34/8F55: F7 F8
 
-; [  ]
+; [ sort attack order list ??? ]
+
+; recursive subroutine
 
 34/8F57: A5 22     LDA $22
 34/8F59: 48        PHA 
@@ -22321,6 +22688,7 @@
 34/8F6A: E4 18     CPX $18
 34/8F6C: D0 F7     BNE $8F65
 34/8F6E: 68        PLA 
+; start of recursive part
 34/8F6F: 85 1B     STA $1B
 34/8F71: A5 18     LDA $18
 34/8F73: 48        PHA 
@@ -22418,9 +22786,8 @@
 34/9018: 86 64     STX $64
 34/901A: 8E EE 78  STX $78EE
 34/901D: 8E EF 78  STX $78EF
-
 ; execute action script command
-34/9020: 20 54 97  JSR $9754          ; clear text buffer
+34/9020: 20 54 97  JSR $9754          ; init text buffer
 34/9023: A9 00     LDA #$00
 34/9025: A2 13     LDX #$13
 34/9027: 9D D7 7A  STA $7AD7,X        ; text string
@@ -22749,7 +23116,7 @@
 34/9272: F0 F7     BEQ $926B          ; wait for A button
 34/9274: 60        RTS 
 
-; [ variable type 2: monster hp (peep) ]
+; [ variable type 2: hp (peep) ]
 
 34/9275: A2 0D     LDX #$0D
 34/9277: A9 C5     LDA #$C5           ; "？"
@@ -22766,23 +23133,23 @@
 34/9290: 8D DF 7A  STA $7ADF
 34/9293: A0 30     LDY #$30
 34/9295: B1 6E     LDA ($6E),Y
-34/9297: 10 05     BPL $929E
+34/9297: 10 05     BPL $929E          ; branch if a character
 34/9299: AD D8 7E  LDA $7ED8
-34/929C: 30 0E     BMI $92AC
+34/929C: 30 0E     BMI $92AC          ; branch if a boss battle
 34/929E: A9 03     LDA #$03
 34/92A0: 85 24     STA $24
-34/92A2: 20 B5 92  JSR $92B5
+34/92A2: 20 B5 92  JSR $92B5          ; write hp to text buffer
 34/92A5: A9 09     LDA #$09
 34/92A7: 85 24     STA $24
-34/92A9: 20 B5 92  JSR $92B5
+34/92A9: 20 B5 92  JSR $92B5          ; write hp to text buffer
 34/92AC: 20 53 92  JSR $9253
 34/92AF: 20 6B 92  JSR $926B          ; wait for keypress
 34/92B2: 4C 36 92  JMP $9236
 
-; [  ]
+; [ write hp to text buffer ]
 
 34/92B5: AE EF 78  LDX $78EF
-34/92B8: BD E4 78  LDA $78E4,X
+34/92B8: BD E4 78  LDA $78E4,X        ; variable queue
 34/92BB: 85 18     STA $18
 34/92BD: E8        INX 
 34/92BE: BD E4 78  LDA $78E4,X
@@ -22796,7 +23163,7 @@
 34/92D1: 9D D7 7A  STA $7AD7,X
 34/92D4: C8        INY 
 34/92D5: E8        INX 
-34/92D6: C0 05     CPY #$05
+34/92D6: C0 05     CPY #$05           ; write 5 digits
 34/92D8: D0 F4     BNE $92CE
 34/92DA: 60        RTS 
 
@@ -22846,7 +23213,7 @@
 34/9332: 85 18     STA $18
 34/9334: A9 88     LDA #$88
 34/9336: 85 19     STA $19
-34/9338: AD E4 78  LDA $78E4
+34/9338: AD E4 78  LDA $78E4          ; item id
 34/933B: A6 2A     LDX $2A            ; destination offset
 34/933D: 20 09 A6  JSR $A609          ; load text string
 34/9340: A9 FF     LDA #$FF
@@ -22857,32 +23224,34 @@
 
 ; [ action script command $0B: show animation ]
 
-34/934E: 20 11 84  JSR $8411
+34/934E: 20 11 84  JSR $8411          ; show animation
 34/9351: 4C 51 90  JMP $9051          ; next action script command
 
 ; [ action script command $0C: show damage numerals ]
 
-34/9354: A9 17     LDA #$17
+34/9354: A9 17     LDA #$17           ; damage numerals
 34/9356: 8D C2 7E  STA $7EC2
-34/9359: 20 11 84  JSR $8411
+34/9359: 20 11 84  JSR $8411          ; show animation
 34/935C: 4C 51 90  JMP $9051          ; next action script command
 
 ; [ action script command $0D: death animation ]
 
 34/935F: AD D3 78  LDA $78D3
 34/9362: 29 02     AND #$02
-34/9364: F0 03     BEQ $9369
+34/9364: F0 03     BEQ $9369          ; return if player ran away
 34/9366: 4C C1 93  JMP $93C1
 34/9369: 20 2E A4  JSR $A42E          ; get attacker flags
-34/936C: 30 24     BMI $9392
+34/936C: 30 24     BMI $9392          ; branch if a monster
 34/936E: A0 30     LDY #$30
 34/9370: B1 6E     LDA ($6E),Y
-34/9372: 30 0F     BMI $9383
+34/9372: 30 0F     BMI $9383          ; branch if target is a monster
+; character attacker, character target
 34/9374: 20 CF 95  JSR $95CF
 34/9377: 20 CD 93  JSR $93CD
 34/937A: 20 D8 95  JSR $95D8
 34/937D: 20 CD 93  JSR $93CD
 34/9380: 4C B3 93  JMP $93B3
+; character attacker, monster target
 34/9383: 20 D8 95  JSR $95D8
 34/9386: 20 CD 93  JSR $93CD
 34/9389: 20 CF 95  JSR $95CF
@@ -22891,23 +23260,25 @@
 34/9392: A0 30     LDY #$30
 34/9394: B1 6E     LDA ($6E),Y
 34/9396: 30 0F     BMI $93A7
+; monster attacker, character target
 34/9398: 20 CF 95  JSR $95CF
 34/939B: 20 CD 93  JSR $93CD
 34/939E: 20 D8 95  JSR $95D8
 34/93A1: 20 08 94  JSR $9408
 34/93A4: 4C B3 93  JMP $93B3
+; monster attacker, monster target
 34/93A7: 20 D8 95  JSR $95D8
 34/93AA: 20 08 94  JSR $9408
 34/93AD: 20 CF 95  JSR $95CF
 34/93B0: 20 08 94  JSR $9408
 34/93B3: 20 74 94  JSR $9474
-34/93B6: 20 06 9D  JSR $9D06
-34/93B9: A9 16     LDA #$16
+34/93B6: 20 06 9D  JSR $9D06          ; update character status for display
+34/93B9: A9 16     LDA #$16           ; death animation
 34/93BB: 8D C2 7E  STA $7EC2
-34/93BE: 20 11 84  JSR $8411
+34/93BE: 20 11 84  JSR $8411          ; show animation
 34/93C1: 4C 51 90  JMP $9051          ; next action script command
 
-; [ action script command $0E: airship cannon ??? ]
+; [ action script command $0E: invincible cannon blast ]
 
 34/93C4: 20 CF 95  JSR $95CF
 34/93C7: 20 08 94  JSR $9408
@@ -22949,6 +23320,9 @@
 34/9403: C9 04     CMP #$04
 34/9405: D0 CA     BNE $93D1
 34/9407: 60        RTS 
+
+; [  ]
+
 34/9408: A9 00     LDA #$00
 34/940A: 85 1C     STA $1C
 34/940C: A9 75     LDA #$75
@@ -23007,7 +23381,7 @@
 34/946F: D0 EE     BNE $945F
 34/9471: 4C 51 90  JMP $9051          ; next action script command
 
-; [  ]
+; [ update near fatal ]
 
 34/9474: A9 00     LDA #$00
 34/9476: 85 52     STA $52
@@ -23015,29 +23389,29 @@
 34/947B: A8        TAY 
 34/947C: C8        INY 
 34/947D: B1 5B     LDA ($5B),Y
-34/947F: 30 4C     BMI $94CD
+34/947F: 30 4C     BMI $94CD          ; branch if dead
 34/9481: C8        INY 
 34/9482: C8        INY 
 34/9483: A2 00     LDX #$00
-34/9485: B1 5B     LDA ($5B),Y
+34/9485: B1 5B     LDA ($5B),Y        ; copy current and max hp
 34/9487: 95 18     STA $18,X
 34/9489: C8        INY 
 34/948A: E8        INX 
 34/948B: E0 04     CPX #$04
 34/948D: D0 F6     BNE $9485
-34/948F: 46 1B     LSR $1B
+34/948F: 46 1B     LSR $1B            ; divide max hp by 4
 34/9491: 66 1A     ROR $1A
 34/9493: 46 1B     LSR $1B
 34/9495: 66 1A     ROR $1A
 34/9497: 38        SEC 
-34/9498: A5 1A     LDA $1A
+34/9498: A5 1A     LDA $1A            ; subtract current hp
 34/949A: E5 18     SBC $18
 34/949C: A5 1B     LDA $1B
 34/949E: E5 19     SBC $19
 34/94A0: 90 17     BCC $94B9
 34/94A2: A4 5F     LDY $5F
 34/94A4: C8        INY 
-34/94A5: B1 5B     LDA ($5B),Y
+34/94A5: B1 5B     LDA ($5B),Y        ; set near fatal status
 34/94A7: 09 01     ORA #$01
 34/94A9: 91 5B     STA ($5B),Y
 34/94AB: A6 52     LDX $52
@@ -23047,14 +23421,14 @@
 34/94B6: 4C CD 94  JMP $94CD
 34/94B9: A4 5F     LDY $5F
 34/94BB: C8        INY 
-34/94BC: B1 5B     LDA ($5B),Y
+34/94BC: B1 5B     LDA ($5B),Y        ; clear near fatal status
 34/94BE: 29 FE     AND #$FE
 34/94C0: 91 5B     STA ($5B),Y
 34/94C2: A6 52     LDX $52
 34/94C4: AD EC 7C  LDA $7CEC
 34/94C7: 20 2C FD  JSR $FD2C          ; clear bit
 34/94CA: 8D EC 7C  STA $7CEC
-34/94CD: E6 52     INC $52
+34/94CD: E6 52     INC $52            ; next character
 34/94CF: A5 52     LDA $52
 34/94D1: C9 04     CMP #$04
 34/94D3: D0 A3     BNE $9478
@@ -23103,8 +23477,8 @@
 ; 0: fight
 ; 1: magic/command
 ; 2: display message
-; 3: airship cannon attack
-; 4: skill/level up message ???
+; 3: invincible cannon attack
+; 4: skill/level up message
 ; 5: poison damage
 
 34/9519: 05 07 0B 06 0C 08 0D 09 0A 04 03 01 02 00 FF
@@ -23130,7 +23504,7 @@
 ; 0B: show animation
 ; 0C: show damage numerals
 ; 0D: death animation
-; 0E: airship cannon animation ???
+; 0E: invincible cannon animation
 
 34/954D: 94D6 94D6 94D6 94E7 94D6 905B 90A0 9177
 34/955D: 91D4 91FE 9450 934E 9354 935F 93C4
@@ -23142,7 +23516,7 @@
 
 ; 0: none
 ; 1: text string
-; 2: monster hp (peep)
+; 2: hp (peep)
 ; 3: number
 ; 4: item name
 
@@ -23268,7 +23642,7 @@
 ; $18:
 
 34/966A: A5 18     LDA $18
-34/966C: 20 58 A5  JSR $A558
+34/966C: 20 58 A5  JSR $A558          ; add to text buffer offset
 34/966F: A0 00     LDY #$00
 34/9671: A2 00     LDX #$00
 34/9673: BD D7 7A  LDA $7AD7,X
@@ -23374,9 +23748,9 @@
 34/9732: A0 00     LDY #$00
 34/9734: 60        RTS 
 34/9735: A5 18     LDA $18
-34/9737: 20 58 A5  JSR $A558
+34/9737: 20 58 A5  JSR $A558          ; add to text buffer offset
 34/973A: A5 18     LDA $18
-34/973C: 20 58 A5  JSR $A558
+34/973C: 20 58 A5  JSR $A558          ; add to text buffer offset
 34/973F: E8        INX 
 34/9740: A0 00     LDY #$00
 34/9742: 4C 73 96  JMP $9673
@@ -23390,11 +23764,11 @@
 34/9750: A8        TAY 
 34/9751: 4C 73 96  JMP $9673
 
-; [ clear text buffer ]
+; [ init text buffer ]
 
 34/9754: A9 00     LDA #$00           ; clear $7200-$73FF
 34/9756: 8D C0 7A  STA $7AC0
-34/9759: 85 4E     STA $4E
+34/9759: 85 4E     STA $4E            ; clear text buffer offset
 34/975B: 85 18     STA $18
 34/975D: A9 72     LDA #$72
 34/975F: 8D C1 7A  STA $7AC1
@@ -23411,7 +23785,7 @@
 34/9774: D0 FB     BNE $9771
 34/9776: 60        RTS 
 
-; [  ]
+; [ determine attack order ]
 
 34/9777: A0 00     LDY #$00
 34/9779: A9 FF     LDA #$FF
@@ -23536,6 +23910,8 @@
 
 ; [ get character actions ]
 
+; 34/A433 pulls its return address and returns from this subroutine
+
 34/986C: 20 9E 9D  JSR $9D9E          ; update monster names
 34/986F: A6 52     LDX $52            ; character id
 34/9871: E0 04     CPX #$04
@@ -23558,8 +23934,8 @@
 34/9896: 9D CF 78  STA $78CF,X        ; reset battle command
 34/9899: A9 00     LDA #$00
 34/989B: 9D 0F 7E  STA $7E0F,X        ; clear target mask
-34/989E: 20 A2 9B  JSR $9BA2
-34/98A1: 20 33 A4  JSR $A433
+34/989E: 20 A2 9B  JSR $9BA2          ; draw character hp window
+34/98A1: 20 33 A4  JSR $A433          ; check if done getting character actions
 34/98A4: 20 41 A5  JSR $A541          ; get character offset
 34/98A7: A6 52     LDX $52
 34/98A9: BD E4 7C  LDA $7CE4,X
@@ -23581,8 +23957,8 @@
 34/98CE: C8        INY 
 34/98CF: B1 5B     LDA ($5B),Y
 34/98D1: 29 E0     AND #$E0
-34/98D3: F0 03     BEQ $98D8          ; branch if not ??? status
-34/98D5: 4C 6C A6  JMP $A66C          ; get confused/asleep action
+34/98D3: F0 03     BEQ $98D8          ; branch if not paralyzed, asleep, or confused
+34/98D5: 4C 6C A6  JMP $A66C          ; get confused/asleep/paralyzed action
 34/98D8: B1 5B     LDA ($5B),Y
 34/98DA: 29 01     AND #$01
 34/98DC: F0 05     BEQ $98E3          ; branch if not jumping
@@ -23603,11 +23979,11 @@
 34/98FC: 91 5B     STA ($5B),Y
 34/98FE: 18        CLC 
 34/98FF: 98        TYA 
-34/9900: 69 13     ADC #$13
+34/9900: 69 13     ADC #$13           ; (#$3F)
 34/9902: A8        TAY 
-34/9903: B1 5B     LDA ($5B),Y        ; last byte of attack script ???
+34/9903: B1 5B     LDA ($5B),Y        ; used item id
 34/9905: F0 03     BEQ $990A
-34/9907: 20 E7 9A  JSR $9AE7
+34/9907: 20 E7 9A  JSR $9AE7          ; return used item to inventory
 34/990A: AD F3 7C  LDA $7CF3
 34/990D: D0 31     BNE $9940          ; branch if not first turn
 34/990F: 20 9E 9D  JSR $9D9E
@@ -23634,13 +24010,13 @@
 34/9942: 20 0E FA  JSR $FA0E          ; execute battle graphics
 34/9945: A5 52     LDA $52
 34/9947: 85 53     STA $53
-34/9949: A9 00     LDA #$00
+34/9949: A9 00     LDA #$00           ; command list cursor
 34/994B: 85 55     STA $55
-34/994D: A9 00     LDA #$00
+34/994D: A9 00     LDA #$00           ; cursor 0
 34/994F: 85 1A     STA $1A
 34/9951: 85 24     STA $24
 34/9953: 85 25     STA $25
-34/9955: 20 66 89  JSR $8966
+34/9955: 20 66 89  JSR $8966          ; init list cursor
 34/9958: 8A        TXA 
 34/9959: 48        PHA 
 34/995A: A2 03     LDX #$03
@@ -23656,9 +24032,10 @@
 34/996C: 20 9E 89  JSR $899E          ; get player input
 34/996F: A5 50     LDA $50
 34/9971: C9 01     CMP #$01
-34/9973: F0 51     BEQ $99C6
+34/9973: F0 51     BEQ $99C6          ; branch if A button pressed
+; left
 34/9975: C9 40     CMP #$40
-34/9977: D0 1D     BNE $9996
+34/9977: D0 1D     BNE $9996          ; branch if left button not pressed
 34/9979: A5 24     LDA $24
 34/997B: D0 08     BNE $9985
 34/997D: E6 24     INC $24
@@ -23667,14 +24044,15 @@
 34/9983: F0 D3     BEQ $9958
 34/9985: AD BA 78  LDA $78BA
 34/9988: 29 08     AND #$08
-34/998A: F0 04     BEQ $9990
-34/998C: A9 05     LDA #$05
+34/998A: F0 04     BEQ $9990          ; branch if not a back attack
+34/998C: A9 05     LDA #$05           ; battle command slot 4 (change row right)
 34/998E: D0 02     BNE $9992
-34/9990: A9 04     LDA #$04
+34/9990: A9 04     LDA #$04           ; battle command slot 4 (change row left)
 34/9992: 85 23     STA $23
 34/9994: D0 30     BNE $99C6
+; right
 34/9996: C9 80     CMP #$80
-34/9998: D0 1D     BNE $99B7
+34/9998: D0 1D     BNE $99B7          ; branch if right button not pressed
 34/999A: A5 25     LDA $25
 34/999C: D0 08     BNE $99A6
 34/999E: E6 25     INC $25
@@ -23683,30 +24061,32 @@
 34/99A4: F0 B2     BEQ $9958
 34/99A6: AD BA 78  LDA $78BA
 34/99A9: 29 08     AND #$08
-34/99AB: F0 04     BEQ $99B1
-34/99AD: A9 04     LDA #$04
+34/99AB: F0 04     BEQ $99B1          ; branch if not a back attack
+34/99AD: A9 04     LDA #$04           ; battle command slot 4 (change row left)
 34/99AF: D0 02     BNE $99B3
-34/99B1: A9 05     LDA #$05
+34/99B1: A9 05     LDA #$05           ; battle command slot 5 (change row right)
 34/99B3: 85 23     STA $23
 34/99B5: D0 0F     BNE $99C6
+; B button
 34/99B7: C9 02     CMP #$02
-34/99B9: D0 9D     BNE $9958
+34/99B9: D0 9D     BNE $9958          ; branch if B button not pressed
 34/99BB: A5 52     LDA $52
-34/99BD: F0 03     BEQ $99C2
-34/99BF: 20 42 9A  JSR $9A42
+34/99BD: F0 03     BEQ $99C2          ; branch if first character slot
+34/99BF: 20 42 9A  JSR $9A42          ; go back to previous character
 34/99C2: A9 01     LDA #$01
-34/99C4: D0 37     BNE $99FD
-34/99C6: 20 7D 9B  JSR $9B7D
-34/99C9: A9 00     LDA #$00
+34/99C4: D0 37     BNE $99FD          ; command confirmed
+; A button
+34/99C6: 20 7D 9B  JSR $9B7D          ; play confirm sound effect
+34/99C9: A9 00     LDA #$00           ; cursor 0
 34/99CB: 85 18     STA $18
-34/99CD: 20 DF 8A  JSR $8ADF
+34/99CD: 20 DF 8A  JSR $8ADF          ; hide cursor
 34/99D0: A5 23     LDA $23
 34/99D2: A6 52     LDX $52
-34/99D4: 9D C3 7A  STA $7AC3,X
+34/99D4: 9D C3 7A  STA $7AC3,X        ; set selected command slot
 34/99D7: A6 23     LDX $23
-34/99D9: BD 00 74  LDA $7400,X
+34/99D9: BD 00 74  LDA $7400,X        ; selected command
 34/99DC: A6 52     LDX $52
-34/99DE: 9D CF 78  STA $78CF,X
+34/99DE: 9D CF 78  STA $78CF,X        ; set selected command id
 34/99E1: 0A        ASL 
 34/99E2: 18        CLC 
 34/99E3: 69 16     ADC #$16           ; 34/9A16 (battle command jump table)
@@ -23723,6 +24103,7 @@
 34/99F7: 68        PLA 
 34/99F8: 85 18     STA $18
 34/99FA: 6C 18 00  JMP ($0018)        ; execute battle command
+; A: 0 = command cancelled, 1 = command confirmed
 34/99FD: 48        PHA 
 34/99FE: A5 52     LDA $52
 34/9A00: 48        PHA 
@@ -23733,7 +24114,7 @@
 34/9A0A: 68        PLA 
 34/9A0B: 85 52     STA $52
 34/9A0D: 68        PLA 
-34/9A0E: D0 03     BNE $9A13
+34/9A0E: D0 03     BNE $9A13          ; branch if command accepted
 34/9A10: 4C 6C 98  JMP $986C
 34/9A13: 4C 6F 98  JMP $986F          ; next character
 
@@ -23742,27 +24123,29 @@
 34/9A26: A9AB 9A68 9A68 AA22 AB6E AB07 AB9F AC65
 34/9A36: ACD0 AD0C AD6B 9A68 ADAF B646
 
-; [  ]
+; [ go back to previous character ]
+
+; A: character id
 
 34/9A42: 85 18     STA $18
-34/9A44: C6 52     DEC $52
+34/9A44: C6 52     DEC $52            ; previous character
 34/9A46: A5 52     LDA $52
 34/9A48: 20 41 A5  JSR $A541          ; get character offset
 34/9A4B: 18        CLC 
 34/9A4C: 69 02     ADC #$02
 34/9A4E: A8        TAY 
-34/9A4F: B1 5B     LDA ($5B),Y        ; 
+34/9A4F: B1 5B     LDA ($5B),Y
 34/9A51: 29 01     AND #$01
-34/9A53: D0 0B     BNE $9A60
+34/9A53: D0 0B     BNE $9A60          ; branch if jumping
 34/9A55: A5 52     LDA $52
 34/9A57: 0A        ASL 
 34/9A58: AA        TAX 
 34/9A59: BD BB 78  LDA $78BB,X
 34/9A5C: 29 F8     AND #$F8
-34/9A5E: F0 08     BEQ $9A68
+34/9A5E: F0 08     BEQ $9A68          ; return if not dead, stone, paralyzed, ...
 34/9A60: A5 52     LDA $52
-34/9A62: D0 E0     BNE $9A44
-34/9A64: A5 18     LDA $18
+34/9A62: D0 E0     BNE $9A44          ; try previous character
+34/9A64: A5 18     LDA $18            ; same character
 34/9A66: 85 52     STA $52
 34/9A68: 60        RTS 
 
@@ -23770,32 +24153,32 @@
 
 34/9A69: AD BA 78  LDA $78BA
 34/9A6C: 29 08     AND #$08
-34/9A6E: F0 09     BEQ $9A79
-34/9A70: A2 03     LDX #$03
+34/9A6E: F0 09     BEQ $9A79          ; branch if facing left
+34/9A70: A2 03     LDX #$03           ; this does nothing ...
 34/9A72: 8E 04 74  STX $7404
 34/9A75: CA        DEX 
 34/9A76: 8E 05 74  STX $7405
 34/9A79: A2 02     LDX #$02
-34/9A7B: 8E 04 74  STX $7404
+34/9A7B: 8E 04 74  STX $7404          ; change to front row
 34/9A7E: E8        INX 
-34/9A7F: 8E 05 74  STX $7405
+34/9A7F: 8E 05 74  STX $7405          ; change to back row
 34/9A82: A4 5F     LDY $5F
 34/9A84: B1 57     LDA ($57),Y        ; job id
 34/9A86: 20 40 FD  JSR $FD40          ; asl2
 34/9A89: A8        TAY 
 34/9A8A: A2 00     LDX #$00
 34/9A8C: B9 21 9B  LDA $9B21,Y        ; battle command list
-34/9A8F: 9D 00 74  STA $7400,X
+34/9A8F: 9D 00 74  STA $7400,X        ; copy 4 battle commands
 34/9A92: C8        INY 
 34/9A93: E8        INX 
 34/9A94: E0 04     CPX #$04
 34/9A96: D0 F4     BNE $9A8C
-34/9A98: 20 54 97  JSR $9754          ; clear text buffer
+34/9A98: 20 54 97  JSR $9754          ; init text buffer
 34/9A9B: A9 00     LDA #$00
 34/9A9D: 85 2D     STA $2D
 34/9A9F: 85 38     STA $38
 34/9AA1: A2 05     LDX #$05
-34/9AA3: 20 49 A5  JSR $A549
+34/9AA3: 20 49 A5  JSR $A549          ; write spaces to text buffer
 34/9AA6: A6 2D     LDX $2D
 34/9AA8: BD 00 74  LDA $7400,X
 34/9AAB: C9 FF     CMP #$FF
@@ -23812,9 +24195,9 @@
 34/9AC1: 20 09 A6  JSR $A609          ; load text string
 34/9AC4: A9 05     LDA #$05
 34/9AC6: 85 18     STA $18
-34/9AC8: 20 6A 96  JSR $966A
+34/9AC8: 20 6A 96  JSR $966A          ; draw text
 34/9ACB: A9 05     LDA #$05
-34/9ACD: 20 58 A5  JSR $A558
+34/9ACD: 20 58 A5  JSR $A558          ; add to text buffer offset
 34/9AD0: E6 2D     INC $2D
 34/9AD2: A5 2D     LDA $2D
 34/9AD4: C9 04     CMP #$04
@@ -23825,20 +24208,22 @@
 34/9ADE: 85 19     STA $19
 34/9AE0: A9 03     LDA #$03
 34/9AE2: 85 1A     STA $1A
-34/9AE4: 4C 38 8B  JMP $8B38
+34/9AE4: 4C 38 8B  JMP $8B38          ; open menu window
 
-; [  ]
+; [ return used item to inventory ]
+
+; A: item id
 
 34/9AE7: 85 18     STA $18
 34/9AE9: A9 00     LDA #$00
-34/9AEB: 91 5B     STA ($5B),Y
+34/9AEB: 91 5B     STA ($5B),Y        ; clear used item id
 34/9AED: 88        DEY 
 34/9AEE: B1 5B     LDA ($5B),Y
-34/9AF0: D0 2A     BNE $9B1C
+34/9AF0: D0 2A     BNE $9B1C          ; return if item was equipped
 34/9AF2: A2 00     LDX #$00
 34/9AF4: BD C0 60  LDA $60C0,X        ; inventory item id
 34/9AF7: C5 18     CMP $18
-34/9AF9: D0 07     BNE $9B02
+34/9AF9: D0 07     BNE $9B02          ; find the item in inventory
 34/9AFB: E8        INX 
 34/9AFC: FE C0 60  INC $60C0,X        ; inventory item quantity
 34/9AFF: 4C 1C 9B  JMP $9B1C
@@ -23889,12 +24274,12 @@
 34/9B79: A9 18     LDA #$18
 34/9B7B: D0 06     BNE $9B83
 
-; [  ]
+; [ play confirm sound effect ]
 
 34/9B7D: A9 05     LDA #$05
 34/9B7F: D0 02     BNE $9B83
 
-; [  ]
+; [ play error sound effect ]
 
 34/9B81: A9 06     LDA #$06
 ; fallthrough
@@ -23914,11 +24299,16 @@
 
 ; [ get equipped weapon pointer ]
 
+; also used for current hp pointer at 34/9BDF
+; also used for experience pointer at 35/BE39
+
 34/9B8D: 18        CLC 
 34/9B8E: A9 03     LDA #$03
 34/9B90: 65 5F     ADC $5F
 34/9B92: A8        TAY 
 34/9B93: 60        RTS 
+
+; [ get target mask ]
 
 34/9B94: 18        CLC 
 34/9B95: A9 2F     LDA #$2F
@@ -23934,25 +24324,28 @@
 34/9BA0: A8        TAY 
 34/9BA1: 60        RTS 
 
-; [  ]
+; [ draw character hp window ]
+
+; a lot of this is disabled in the english translation
 
 34/9BA2: AD EB 7C  LDA $7CEB
-34/9BA5: F0 06     BEQ $9BAD
+34/9BA5: F0 06     BEQ $9BAD          ; branch if hp window needs update
 34/9BA7: A9 00     LDA #$00
 34/9BA9: 8D EB 7C  STA $7CEB
 34/9BAC: 60        RTS 
-34/9BAD: 20 54 97  JSR $9754          ; clear text buffer
+34/9BAD: 20 54 97  JSR $9754          ; init text buffer
 34/9BB0: A9 77     LDA #$77
 34/9BB2: 8D 0A 72  STA $720A
 34/9BB5: A9 79     LDA #$79
 34/9BB7: 8D 0B 72  STA $720B
-34/9BBA: A5 52     LDA $52
+34/9BBA: A5 52     LDA $52            ; save current character id
 34/9BBC: 48        PHA 
 34/9BBD: A9 00     LDA #$00
 34/9BBF: 85 52     STA $52
+; start of character loop
 34/9BC1: A2 12     LDX #$12
-34/9BC3: 20 49 A5  JSR $A549
-34/9BC6: A9 C7     LDA #$C7
+34/9BC3: 20 49 A5  JSR $A549          ; write spaces to text buffer
+34/9BC6: A9 C7     LDA #$C7           ; "／"
 34/9BC8: 8D E3 7A  STA $7AE3
 34/9BCB: 20 41 A5  JSR $A541          ; get character offset
 34/9BCE: 18        CLC 
@@ -23960,20 +24353,20 @@
 34/9BD1: A8        TAY 
 34/9BD2: A2 01     LDX #$01
 34/9BD4: B1 57     LDA ($57),Y        ; character name
-34/9BD6: 9D D7 7A  STA $7AD7,X
+34/9BD6: 9D D7 7A  STA $7AD7,X        ; copy to text buffer (6 bytes)
 34/9BD9: C8        INY 
 34/9BDA: E8        INX 
 34/9BDB: E0 07     CPX #$07
 34/9BDD: D0 F5     BNE $9BD4
-34/9BDF: 20 8D 9B  JSR $9B8D          ; get equipped weapon pointer
-34/9BE2: B1 5B     LDA ($5B),Y
+34/9BDF: 20 8D 9B  JSR $9B8D          ; get current hp pointer
+34/9BE2: B1 5B     LDA ($5B),Y        ; +$18: current hp
 34/9BE4: 85 18     STA $18
 34/9BE6: C8        INY 
 34/9BE7: B1 5B     LDA ($5B),Y
 34/9BE9: 85 19     STA $19
 34/9BEB: 20 E1 95  JSR $95E1          ; convert hex to decimal
 34/9BEE: A5 1B     LDA $1B
-34/9BF0: 8D DF 7A  STA $7ADF
+34/9BF0: 8D DF 7A  STA $7ADF          ; copy 4 digits to text buffer
 34/9BF3: A5 1C     LDA $1C
 34/9BF5: 8D E0 7A  STA $7AE0
 34/9BF8: A5 1D     LDA $1D
@@ -23982,31 +24375,33 @@
 34/9BFF: 8D E2 7A  STA $7AE2
 34/9C02: A9 00     LDA #$00
 34/9C04: 85 24     STA $24
-34/9C06: 20 1D 9D  JSR $9D1D
+34/9C06: 20 1D 9D  JSR $9D1D          ; update character status for display
 34/9C09: AD E8 7C  LDA $7CE8
 34/9C0C: C9 FF     CMP #$FF
-34/9C0E: F0 6F     BEQ $9C7F
+34/9C0E: F0 6F     BEQ $9C7F          ; 
 34/9C10: A6 52     LDX $52
-34/9C12: BD CF 78  LDA $78CF,X
+34/9C12: BD CF 78  LDA $78CF,X        ; battle command used
 34/9C15: C9 FF     CMP #$FF
-34/9C17: F0 34     BEQ $9C4D
+34/9C17: F0 34     BEQ $9C4D          ; branch if no command chosen
 34/9C19: C9 C8     CMP #$C8
-34/9C1B: 90 1C     BCC $9C39
+34/9C1B: 90 1C     BCC $9C39          ; branch if not a spell
+; spell name
 34/9C1D: 38        SEC 
 34/9C1E: E9 C8     SBC #$C8
 34/9C20: 85 1A     STA $1A
-34/9C22: A9 90     LDA #$90
+34/9C22: A9 90     LDA #$90           ; string offset: $04C8 (spell names)
 34/9C24: 85 18     STA $18
 34/9C26: A9 89     LDA #$89
 34/9C28: 85 19     STA $19
 34/9C2A: A5 1A     LDA $1A
 34/9C2C: A2 0C     LDX #$0C           ; destination offset: 12
 34/9C2E: 20 09 A6  JSR $A609          ; load text string
-34/9C31: A9 C7     LDA #$C7
+34/9C31: A9 C7     LDA #$C7           ; "／"
 34/9C33: 8D E3 7A  STA $7AE3
 34/9C36: 4C BA 9C  JMP $9CBA
+; command name
 34/9C39: 85 1A     STA $1A
-34/9C3B: A9 40     LDA #$40
+34/9C3B: A9 40     LDA #$40           ; string offset: $0620 (command name)
 34/9C3D: 85 18     STA $18
 34/9C3F: A9 8C     LDA #$8C
 34/9C41: 85 19     STA $19
@@ -24014,23 +24409,24 @@
 34/9C45: A2 0D     LDX #$0D           ; destination offset: 13
 34/9C47: 20 09 A6  JSR $A609          ; load text string
 34/9C4A: 4C BA 9C  JMP $9CBA
-34/9C4D: A5 1A     LDA $1A
+; status name
+34/9C4D: A5 1A     LDA $1A            ; +$1A same as +$78BB
 34/9C4F: 05 1B     ORA $1B
 34/9C51: F0 2C     BEQ $9C7F
 34/9C53: A5 1B     LDA $1B
 34/9C55: 29 20     AND #$20
-34/9C57: F0 0A     BEQ $9C63
+34/9C57: F0 0A     BEQ $9C63          ; branch if not near fatal
 34/9C59: A5 1B     LDA $1B
 34/9C5B: 29 DF     AND #$DF
 34/9C5D: 85 1B     STA $1B
 34/9C5F: 05 1A     ORA $1A
-34/9C61: F0 1C     BEQ $9C7F
-34/9C63: 06 1B     ASL $1B
+34/9C61: F0 1C     BEQ $9C7F          ; no display if only status is near fatal
+34/9C63: 06 1B     ASL $1B            ; find the first bit that is set
 34/9C65: 26 1A     ROL $1A
 34/9C67: B0 04     BCS $9C6D
 34/9C69: E6 24     INC $24
 34/9C6B: 90 F6     BCC $9C63
-34/9C6D: A9 2C     LDA #$2C
+34/9C6D: A9 2C     LDA #$2C           ; string offset: $0116 (status names)
 34/9C6F: 85 18     STA $18
 34/9C71: A9 82     LDA #$82
 34/9C73: 85 19     STA $19
@@ -24038,25 +24434,26 @@
 34/9C77: A2 0D     LDX #$0D           ; destination offset: 13
 34/9C79: 20 09 A6  JSR $A609          ; load text string
 34/9C7C: 4C BA 9C  JMP $9CBA
+; max hp
 34/9C7F: AD E8 7C  LDA $7CE8
 34/9C82: C9 FF     CMP #$FF
-34/9C84: F0 0F     BEQ $9C95
+34/9C84: F0 0F     BEQ $9C95          ; branch if using potion, hi-potion, or elixir ???
 34/9C86: A6 52     LDX $52
 34/9C88: AD E1 7B  LDA $7BE1
 34/9C8B: 20 38 FD  JSR $FD38          ; check bit
-34/9C8E: F0 05     BEQ $9C95
+34/9C8E: F0 05     BEQ $9C95          ; branch if not using a spell
 34/9C90: BD CF 78  LDA $78CF,X
-34/9C93: D0 88     BNE $9C1D
+34/9C93: D0 88     BNE $9C1D          ; show spell name instead
 34/9C95: A9 05     LDA #$05
 34/9C97: 20 88 9B  JSR $9B88          ; add character offset
-34/9C9A: B1 5B     LDA ($5B),Y
+34/9C9A: B1 5B     LDA ($5B),Y        ; max hp
 34/9C9C: 85 18     STA $18
 34/9C9E: C8        INY 
 34/9C9F: B1 5B     LDA ($5B),Y
 34/9CA1: 85 19     STA $19
 34/9CA3: 20 E1 95  JSR $95E1          ; convert hex to decimal
 34/9CA6: A5 1B     LDA $1B
-34/9CA8: 8D E4 7A  STA $7AE4
+34/9CA8: 8D E4 7A  STA $7AE4          ; copy max hp to text buffer
 34/9CAB: A5 1C     LDA $1C
 34/9CAD: 8D E5 7A  STA $7AE5
 34/9CB0: A5 1D     LDA $1D
@@ -24065,23 +24462,23 @@
 34/9CB7: 8D E7 7A  STA $7AE7
 34/9CBA: A9 12     LDA #$12
 34/9CBC: 85 18     STA $18
-34/9CBE: 20 6A 96  JSR $966A
+34/9CBE: 20 6A 96  JSR $966A          ; draw text
 34/9CC1: A9 12     LDA #$12
-34/9CC3: 20 58 A5  JSR $A558
-34/9CC6: E6 52     INC $52
+34/9CC3: 20 58 A5  JSR $A558          ; add to text buffer offset
+34/9CC6: E6 52     INC $52            ; next character
 34/9CC8: A5 52     LDA $52
 34/9CCA: C9 04     CMP #$04
 34/9CCC: F0 03     BEQ $9CD1
 34/9CCE: 4C C1 9B  JMP $9BC1
 34/9CD1: 68        PLA 
-34/9CD2: 85 52     STA $52
+34/9CD2: 85 52     STA $52            ; restore current character id
 34/9CD4: A9 0B     LDA #$0B
 34/9CD6: 85 18     STA $18
 34/9CD8: A9 1E     LDA #$1E
 34/9CDA: 85 19     STA $19
 34/9CDC: A9 03     LDA #$03
 34/9CDE: 85 1A     STA $1A
-34/9CE0: 4C 38 8B  JMP $8B38
+34/9CE0: 4C 38 8B  JMP $8B38          ; open menu window
 
 ; [ init characters/monsters ]
 
@@ -24089,7 +24486,7 @@
 34/9CE6: 20 16 80  JSR $8016          ; init character/monster properties
 34/9CE9: 20 BE 87  JSR $87BE
 34/9CEC: 20 74 94  JSR $9474
-34/9CEF: 20 06 9D  JSR $9D06
+34/9CEF: 20 06 9D  JSR $9D06          ; update character status for display
 34/9CF2: A9 00     LDA #$00
 34/9CF4: 85 52     STA $52
 34/9CF6: 20 26 80  JSR $8026          ; update character equipment
@@ -24101,12 +24498,14 @@
 34/9D03: 85 52     STA $52
 34/9D05: 60        RTS 
 
-; [  ]
+; [ update character status for display ]
+
+; all characters
 
 34/9D06: A9 00     LDA #$00
 34/9D08: 85 52     STA $52
 34/9D0A: 20 41 A5  JSR $A541          ; get character offset
-34/9D0D: 20 1D 9D  JSR $9D1D
+34/9D0D: 20 1D 9D  JSR $9D1D          ; update character status for display
 34/9D10: E6 52     INC $52
 34/9D12: A5 52     LDA $52
 34/9D14: C9 04     CMP #$04
@@ -24114,15 +24513,20 @@
 34/9D18: A9 00     LDA #$00
 34/9D1A: 85 52     STA $52
 34/9D1C: 60        RTS 
+
+; [ update character status for display ]
+
+; single character
+
 34/9D1D: A4 5F     LDY $5F
 34/9D1F: C8        INY 
-34/9D20: B1 5B     LDA ($5B),Y
+34/9D20: B1 5B     LDA ($5B),Y        ; status 1
 34/9D22: 85 1C     STA $1C
 34/9D24: 48        PHA 
-34/9D25: 29 C0     AND #$C0
+34/9D25: 29 C0     AND #$C0           ; dead/stone
 34/9D27: 85 1A     STA $1A
 34/9D29: C8        INY 
-34/9D2A: B1 5B     LDA ($5B),Y
+34/9D2A: B1 5B     LDA ($5B),Y        ; status 2
 34/9D2C: 85 1D     STA $1D
 34/9D2E: 29 E0     AND #$E0
 34/9D30: 20 47 FD  JSR $FD47          ; lsr2
@@ -24131,52 +24535,52 @@
 34/9D37: A9 00     LDA #$00
 34/9D39: 85 1B     STA $1B
 34/9D3B: 68        PLA 
-34/9D3C: 29 3F     AND #$3F
+34/9D3C: 29 3F     AND #$3F           ; the rest of status 1
 34/9D3E: 4A        LSR 
-34/9D3F: 66 1B     ROR $1B
+34/9D3F: 66 1B     ROR $1B            ; rotate 3 lowest bits into $1B
 34/9D41: 4A        LSR 
 34/9D42: 66 1B     ROR $1B
 34/9D44: 4A        LSR 
 34/9D45: 66 1B     ROR $1B
-34/9D47: 05 1A     ORA $1A
+34/9D47: 05 1A     ORA $1A            ; toad/silence
 34/9D49: 85 1A     STA $1A
 34/9D4B: A5 52     LDA $52
 34/9D4D: 0A        ASL 
 34/9D4E: AA        TAX 
 34/9D4F: A5 1A     LDA $1A
-34/9D51: 9D BB 78  STA $78BB,X
+34/9D51: 9D BB 78  STA $78BB,X        ; character status for graphics
 34/9D54: A5 1B     LDA $1B
 34/9D56: 9D BC 78  STA $78BC,X
 34/9D59: A5 1C     LDA $1C
 34/9D5B: 29 C0     AND #$C0
-34/9D5D: D0 2A     BNE $9D89
+34/9D5D: D0 2A     BNE $9D89          ; branch if dead or stone
 34/9D5F: A5 1C     LDA $1C
 34/9D61: 48        PHA 
-34/9D62: 29 07     AND #$07
+34/9D62: 29 07     AND #$07           ; ignore toad and mini
 34/9D64: 85 1C     STA $1C
 34/9D66: 68        PLA 
-34/9D67: 29 10     AND #$10
+34/9D67: 29 10     AND #$10           ; shift silence bit right 1
 34/9D69: 4A        LSR 
 34/9D6A: 05 1C     ORA $1C
 34/9D6C: 0A        ASL 
 34/9D6D: 85 1C     STA $1C
 34/9D6F: A5 1D     LDA $1D
 34/9D71: 48        PHA 
-34/9D72: 29 E0     AND #$E0
+34/9D72: 29 E0     AND #$E0           ; top 3 bits are paralyzed, asleep, confused
 34/9D74: 05 1C     ORA $1C
 34/9D76: 85 1C     STA $1C
 34/9D78: 68        PLA 
 34/9D79: 29 06     AND #$06
 34/9D7B: F0 06     BEQ $9D83
 34/9D7D: A5 1C     LDA $1C
-34/9D7F: 09 01     ORA #$01
+34/9D7F: 09 01     ORA #$01           ; lowest bit is something else...
 34/9D81: 85 1C     STA $1C
 34/9D83: A0 00     LDY #$00
 34/9D85: A5 1C     LDA $1C
 34/9D87: D0 04     BNE $9D8D
-34/9D89: A0 FF     LDY #$FF
+34/9D89: A0 FF     LDY #$FF           ; no status name display
 34/9D8B: D0 0A     BNE $9D97
-34/9D8D: 0A        ASL 
+34/9D8D: 0A        ASL                ; find the first status to display
 34/9D8E: B0 07     BCS $9D97
 34/9D90: C8        INY 
 34/9D91: C0 08     CPY #$08
@@ -24189,11 +24593,11 @@
 
 ; [ update monster names ]
 
-34/9D9E: 20 54 97  JSR $9754          ; clear text buffer
+34/9D9E: 20 54 97  JSR $9754          ; init text buffer
 34/9DA1: A9 00     LDA #$00
 34/9DA3: 85 24     STA $24
 34/9DA5: A2 08     LDX #$08
-34/9DA7: 20 49 A5  JSR $A549
+34/9DA7: 20 49 A5  JSR $A549          ; write spaces to text buffer
 34/9DAA: A6 24     LDX $24
 34/9DAC: BD CE 7D  LDA $7DCE,X        ; number of monsters of each type remaining
 34/9DAF: F0 1C     BEQ $9DCD
@@ -24206,9 +24610,9 @@
 34/9DBE: 20 09 A6  JSR $A609          ; load text string
 34/9DC1: A9 08     LDA #$08
 34/9DC3: 85 18     STA $18
-34/9DC5: 20 6A 96  JSR $966A
+34/9DC5: 20 6A 96  JSR $966A          ; draw text
 34/9DC8: A9 08     LDA #$08
-34/9DCA: 20 58 A5  JSR $A558
+34/9DCA: 20 58 A5  JSR $A558          ; add to text buffer offset
 34/9DCD: E6 24     INC $24            ; next monster type
 34/9DCF: A5 24     LDA $24
 34/9DD1: C9 04     CMP #$04
@@ -24219,7 +24623,7 @@
 34/9DDB: 85 19     STA $19
 34/9DDD: A9 03     LDA #$03
 34/9DDF: 85 1A     STA $1A
-34/9DE1: 4C 38 8B  JMP $8B38
+34/9DE1: 4C 38 8B  JMP $8B38          ; open menu window
 
 ; [ execute action ]
 
@@ -24284,9 +24688,9 @@
 34/9E5B: A0 04     LDY #$04
 34/9E5D: 91 6E     STA ($6E),Y
 34/9E5F: A0 01     LDY #$01
-34/9E61: B1 6E     LDA ($6E),Y        ; job id
+34/9E61: B1 6E     LDA ($6E),Y
 34/9E63: 29 C0     AND #$C0
-34/9E65: F0 1A     BEQ $9E81
+34/9E65: F0 1A     BEQ $9E81          ; branch if not dead or stone
 34/9E67: A2 00     LDX #$00
 34/9E69: 8E 98 7E  STX $7E98
 34/9E6C: 8E C2 7E  STX $7EC2
@@ -24298,9 +24702,9 @@
 34/9E7B: 20 7B 9F  JSR $9F7B
 34/9E7E: 4C EC 9E  JMP $9EEC
 34/9E81: C8        INY 
-34/9E82: B1 6E     LDA ($6E),Y        ; status
+34/9E82: B1 6E     LDA ($6E),Y        ; status 2
 34/9E84: 29 C0     AND #$C0
-34/9E86: F0 0B     BEQ $9E93          ; branch if not dead or stone
+34/9E86: F0 0B     BEQ $9E93          ; branch if not paralyzed or asleep
 34/9E88: A9 01     LDA #$01
 34/9E8A: 20 7B 9F  JSR $9F7B
 34/9E8D: 20 CE 91  JSR $91CE          ; clear target message
@@ -24545,7 +24949,7 @@
 35/A079: 85 26     STA $26
 35/A07B: A9 08     LDA #$08
 35/A07D: 85 1A     STA $1A
-35/A07F: A9 C0     LDA #$C0           ; 30/98C0
+35/A07F: A9 C0     LDA #$C0           ; 30/98C0 (attack properties)
 35/A081: 85 20     STA $20
 35/A083: A9 98     LDA #$98
 35/A085: 85 21     STA $21
@@ -24615,24 +25019,24 @@
 ; [ action $04: fight ]
 
 35/A104: 20 2E A4  JSR $A42E          ; get attacker flags
-35/A107: 30 03     BMI $A10C
+35/A107: 30 03     BMI $A10C          ; branch if a monster
 35/A109: 4C AC A1  JMP $A1AC
 35/A10C: B1 70     LDA ($70),Y
-35/A10E: 29 07     AND #$07
+35/A10E: 29 07     AND #$07           ; target slot
 35/A110: 85 18     STA $18
 35/A112: AA        TAX 
 35/A113: AD EC 7C  LDA $7CEC
 35/A116: 20 38 FD  JSR $FD38          ; check bit
-35/A119: D0 03     BNE $A11E
+35/A119: D0 03     BNE $A11E          ; branch if near fatal
 35/A11B: 4C A9 A1  JMP $A1A9
 35/A11E: A0 01     LDY #$01
 35/A120: B1 70     LDA ($70),Y
 35/A122: 29 C0     AND #$C0
-35/A124: D0 05     BNE $A12B
+35/A124: D0 05     BNE $A12B          ; branch if dead or stone
 35/A126: C8        INY 
 35/A127: B1 70     LDA ($70),Y
 35/A129: 29 21     AND #$21
-35/A12B: D0 7C     BNE $A1A9
+35/A12B: D0 7C     BNE $A1A9          ; branch if jumping or confused
 35/A12D: A9 00     LDA #$00
 35/A12F: 85 52     STA $52
 35/A131: 85 22     STA $22
@@ -24649,39 +25053,39 @@
 35/A145: C8        INY 
 35/A146: B1 5B     LDA ($5B),Y
 35/A148: 29 C1     AND #$C1
-35/A14A: D0 19     BNE $A165
+35/A14A: D0 19     BNE $A165          ; branch if dead, stone, or near fatal
 35/A14C: C8        INY 
 35/A14D: B1 5B     LDA ($5B),Y
 35/A14F: 29 E0     AND #$E0
-35/A151: D0 12     BNE $A165
+35/A151: D0 12     BNE $A165          ; branch if paralyzed, asleep, or confused
 35/A153: A6 19     LDX $19
-35/A155: 20 8D 9B  JSR $9B8D          ; get equipped weapon pointer
-35/A158: B1 5B     LDA ($5B),Y
+35/A155: 20 8D 9B  JSR $9B8D          ; get current hp pointer
+35/A158: B1 5B     LDA ($5B),Y        ; copy current hp
 35/A15A: 95 1A     STA $1A,X
 35/A15C: C8        INY 
 35/A15D: B1 5B     LDA ($5B),Y
 35/A15F: 95 1B     STA $1B,X
 35/A161: E6 22     INC $22
-35/A163: D0 08     BNE $A16D
-35/A165: A6 19     LDX $19
+35/A163: D0 08     BNE $A16D          ; branch always
+35/A165: A6 19     LDX $19            ; skip this character
 35/A167: A9 00     LDA #$00
 35/A169: 95 1A     STA $1A,X
 35/A16B: 95 1B     STA $1B,X
-35/A16D: E6 52     INC $52
+35/A16D: E6 52     INC $52            ; next character
 35/A16F: A5 52     LDA $52
 35/A171: C9 04     CMP #$04
 35/A173: D0 BE     BNE $A133
 35/A175: A5 22     LDA $22
-35/A177: F0 30     BEQ $A1A9
-35/A179: 20 0F A3  JSR $A30F
+35/A177: F0 30     BEQ $A1A9          ; branch if no knights available
+35/A179: 20 0F A3  JSR $A30F          ; find highest hp value
 35/A17C: A9 00     LDA #$00
 35/A17E: 20 20 FD  JSR $FD20          ; set bit
-35/A181: 8D 99 7E  STA $7E99
-35/A184: 8D DF 7E  STA $7EDF
+35/A181: 8D 99 7E  STA $7E99          ; set target
+35/A184: 8D DF 7E  STA $7EDF          ; set "cover" target
 35/A187: A6 18     LDX $18
 35/A189: A9 00     LDA #$00
 35/A18B: 20 20 FD  JSR $FD20          ; set bit
-35/A18E: 8D E0 7E  STA $7EE0
+35/A18E: 8D E0 7E  STA $7EE0          ; target being covered
 35/A191: 18        CLC 
 35/A192: A5 5F     LDA $5F
 35/A194: 69 75     ADC #$75
@@ -24690,9 +25094,9 @@
 35/A19A: 69 75     ADC #$75
 35/A19C: 85 71     STA $71
 35/A19E: A0 33     LDY #$33
-35/A1A0: B1 70     LDA ($70),Y
+35/A1A0: B1 70     LDA ($70),Y        ; save front/back row flag
 35/A1A2: 8D EA 7C  STA $7CEA
-35/A1A5: 29 FE     AND #$FE
+35/A1A5: 29 FE     AND #$FE           ; temporarily front row
 35/A1A7: 91 70     STA ($70),Y
 35/A1A9: 4C 12 A2  JMP $A212
 35/A1AC: 48        PHA 
@@ -24712,22 +25116,22 @@
 35/A1C8: 18        CLC 
 35/A1C9: 69 03     ADC #$03
 35/A1CB: A8        TAY 
-35/A1CC: B1 59     LDA ($59),Y
+35/A1CC: B1 59     LDA ($59),Y        ; right hand weapon id
 35/A1CE: 8D 1F 7E  STA $7E1F
 35/A1D1: C8        INY 
 35/A1D2: C8        INY 
-35/A1D3: B1 59     LDA ($59),Y
+35/A1D3: B1 59     LDA ($59),Y        ; left hand weapon id
 35/A1D5: 8D 20 7E  STA $7E20
 35/A1D8: AD 1F 7E  LDA $7E1F
-35/A1DB: F0 0B     BEQ $A1E8
+35/A1DB: F0 0B     BEQ $A1E8          ; branch no right hand weapon
 35/A1DD: C9 58     CMP #$58
-35/A1DF: 90 15     BCC $A1F6
+35/A1DF: 90 15     BCC $A1F6          ; branch if not a shield
 35/A1E1: A9 00     LDA #$00
 35/A1E3: 8D 1F 7E  STA $7E1F
 35/A1E6: F0 0E     BEQ $A1F6
 35/A1E8: AD 20 7E  LDA $7E20
 35/A1EB: C9 4A     CMP #$4A
-35/A1ED: 90 23     BCC $A212
+35/A1ED: 90 23     BCC $A212          ; branch if not a shield, bow, or arrow
 35/A1EF: A9 00     LDA #$00
 35/A1F1: 8D 20 7E  STA $7E20
 35/A1F4: F0 1C     BEQ $A212
@@ -24745,27 +25149,27 @@
 35/A20F: 8D 1F 7E  STA $7E1F
 35/A212: 20 1E 80  JSR $801E          ; do fight effect
 35/A215: AD DF 7E  LDA $7EDF
-35/A218: F0 0F     BEQ $A229
+35/A218: F0 0F     BEQ $A229          ; branch if no "cover" target
 35/A21A: AE EE 78  LDX $78EE
 35/A21D: A9 52     LDA #$52           ; $0672: "ナイトが　みをていして　かばった！" / "Knight guards ally"
 35/A21F: 9D DA 78  STA $78DA,X
 35/A222: A0 33     LDY #$33
-35/A224: AD EA 7C  LDA $7CEA
+35/A224: AD EA 7C  LDA $7CEA          ; restore front/back row flag
 35/A227: 91 70     STA ($70),Y
 35/A229: 18        CLC 
 35/A22A: A5 7C     LDA $7C
 35/A22C: 65 7D     ADC $7D
-35/A22E: C9 21     CMP #$21           ; max 32 hits
+35/A22E: C9 21     CMP #$21           ; max 32 hits shown
 35/A230: 90 02     BCC $A234
 35/A232: A9 20     LDA #$20
-35/A234: 8D D7 78  STA $78D7
+35/A234: 8D D7 78  STA $78D7          ; top right message
 35/A237: AD D7 78  LDA $78D7
 35/A23A: F0 62     BEQ $A29E
-35/A23C: A0 02     LDY #$02
+35/A23C: A0 02     LDY #$02           ; status 2
 35/A23E: A6 64     LDX $64
 35/A240: B5 E0     LDA $E0,X
 35/A242: 29 80     AND #$80
-35/A244: D0 58     BNE $A29E
+35/A244: D0 58     BNE $A29E          ; branch if dead
 35/A246: E8        INX 
 35/A247: B5 E0     LDA $E0,X
 35/A249: 29 18     AND #$18
@@ -24817,7 +25221,7 @@
 35/A29E: A6 64     LDX $64
 35/A2A0: B5 E0     LDA $E0,X
 35/A2A2: 29 80     AND #$80
-35/A2A4: F0 11     BEQ $A2B7
+35/A2A4: F0 11     BEQ $A2B7          ; branch if not dead
 35/A2A6: AE EE 78  LDX $78EE
 35/A2A9: A9 1A     LDA #$1A           ; $063A: "しんでしまった！" / "Slain"
 35/A2AB: 9D DA 78  STA $78DA,X
@@ -24869,7 +25273,7 @@
 35/A30B: 20 26 80  JSR $8026          ; update character equipment
 35/A30E: 60        RTS 
 
-; [  ]
+; [ find highest hp value ]
 
 35/A30F: A0 00     LDY #$00
 35/A311: A2 02     LDX #$02
@@ -25036,33 +25440,36 @@
 35/A430: B1 6E     LDA ($6E),Y
 35/A432: 60        RTS 
 
-; [  ]
+; [ check if done getting character actions ]
 
-35/A433: A5 52     LDA $52
+; if there are no more player-controlled characters or all characters have
+; chosen an action, pull return address and return from subroutine 34/986C
+
+35/A433: A5 52     LDA $52            ; save current character
 35/A435: 48        PHA 
 35/A436: A5 52     LDA $52
 35/A438: C9 04     CMP #$04
-35/A43A: F0 0E     BEQ $A44A
-35/A43C: 20 4E A4  JSR $A44E
+35/A43A: F0 0E     BEQ $A44A          ; branch if done choosing actions
+35/A43C: 20 4E A4  JSR $A44E          ; check if player controls character
 35/A43F: F0 05     BEQ $A446
 35/A441: E6 52     INC $52
 35/A443: 18        CLC 
 35/A444: 90 F0     BCC $A436
 35/A446: 68        PLA 
-35/A447: 85 52     STA $52
+35/A447: 85 52     STA $52            ; restore current character
 35/A449: 60        RTS 
 35/A44A: 68        PLA 
-35/A44B: 68        PLA 
+35/A44B: 68        PLA                ; pull return address
 35/A44C: 68        PLA 
 35/A44D: 60        RTS 
 
-; [  ]
+; [ check if player controls character ]
 
 35/A44E: A5 52     LDA $52
 35/A450: 0A        ASL 
 35/A451: AA        TAX 
 35/A452: BD BB 78  LDA $78BB,X
-35/A455: 29 F8     AND #$F8
+35/A455: 29 F8     AND #$F8           ; check for dead, stone, paralyze, sleep, confuse ???
 35/A457: 60        RTS 
 
 ; [ check if battle is over ]
@@ -25169,11 +25576,11 @@
 35/A50D: 20 0E FA  JSR $FA0E          ; execute battle graphics
 35/A510: A9 3D     LDA #$3D           ; $065D: "たいほうの　えんごしゃげき！" / "Cannon blast!"
 35/A512: 8D DA 78  STA $78DA
-35/A515: AD D8 7E  LDA $7ED8
+35/A515: AD D8 7E  LDA $7ED8          ; disable cannon blast
 35/A518: 29 DF     AND #$DF
 35/A51A: 8D D8 7E  STA $7ED8
 35/A51D: 20 0B 8F  JSR $8F0B
-35/A520: A9 03     LDA #$03           ; action script $03: airship cannon attack
+35/A520: A9 03     LDA #$03           ; action script $03: invincible cannon attack
 35/A522: 8D D5 78  STA $78D5
 35/A525: 20 F7 8F  JSR $8FF7          ; execute action script
 35/A528: 20 58 A4  JSR $A458          ; check if battle is over
@@ -25199,16 +25606,21 @@
 35/A546: 85 5F     STA $5F
 35/A548: 60        RTS 
 
-; [  ]
+; [ write spaces to text buffer ]
+
+; X: number of spaces to write
 
 35/A549: A9 00     LDA #$00
-35/A54B: 9D D7 7A  STA $7AD7,X
+35/A54B: 9D D7 7A  STA $7AD7,X        ; clear text buffer
 35/A54E: CA        DEX 
 35/A54F: A9 FF     LDA #$FF
 35/A551: 9D D7 7A  STA $7AD7,X
 35/A554: CA        DEX 
 35/A555: 10 FA     BPL $A551
 35/A557: 60        RTS 
+
+; [ add to text buffer offset ]
+
 35/A558: 18        CLC 
 35/A559: 65 4E     ADC $4E
 35/A55B: 85 4E     STA $4E
@@ -25369,7 +25781,7 @@
 35/A668: 98        TYA 
 35/A669: 4C 4A FD  JMP $FD4A          ; get text string
 
-; [ get confused/asleep action ]
+; [ get confused/asleep/paralyzed action ]
 
 35/A66C: A4 5F     LDY $5F
 35/A66E: C8        INY 
@@ -25382,11 +25794,11 @@
 35/A67B: 4C 6F 98  JMP $986F          ; next character
 35/A67E: 20 9B 9B  JSR $9B9B          ; get action pointer
 35/A681: A9 01     LDA #$01
-35/A683: 91 5B     STA ($5B),Y        ; action $01 (asleep)
+35/A683: 91 5B     STA ($5B),Y        ; action $01 (asleep/paralyzed)
 35/A685: E6 52     INC $52
 35/A687: 4C 6F 98  JMP $986F          ; next character
 
-; [ action $01: asleep ]
+; [ action $01: asleep/paralyzed ]
 
 35/A68A: 20 CE 91  JSR $91CE          ; clear target message
 35/A68D: 20 2E A4  JSR $A42E          ; get attacker flags
@@ -25396,23 +25808,23 @@
 35/A694: AA        TAX 
 35/A695: E8        INX 
 35/A696: A0 02     LDY #$02
-35/A698: B1 6E     LDA ($6E),Y
+35/A698: B1 6E     LDA ($6E),Y        ; copy status to buffer
 35/A69A: 9D F0 00  STA $00F0,X
 35/A69D: 68        PLA 
 35/A69E: 30 14     BMI $A6B4          ; branch if a monster
 35/A6A0: A0 2B     LDY #$2B
 35/A6A2: 18        CLC 
-35/A6A3: B1 6E     LDA ($6E),Y
+35/A6A3: B1 6E     LDA ($6E),Y        ; sleep probability
 35/A6A5: 69 32     ADC #$32
 35/A6A7: 85 24     STA $24
 35/A6A9: A9 64     LDA #$64
 35/A6AB: 20 64 A5  JSR $A564          ; random (0..A)
 35/A6AE: C5 24     CMP $24
-35/A6B0: B0 4E     BCS $A700
-35/A6B2: 90 12     BCC $A6C6
+35/A6B0: B0 4E     BCS $A700          ; remain asleep/paralyzed
+35/A6B2: 90 12     BCC $A6C6          ; remove status
 35/A6B4: A0 00     LDY #$00
 35/A6B6: 18        CLC 
-35/A6B7: B1 6E     LDA ($6E),Y
+35/A6B7: B1 6E     LDA ($6E),Y        ; level
 35/A6B9: 69 32     ADC #$32
 35/A6BB: 85 24     STA $24
 35/A6BD: A9 64     LDA #$64
@@ -25434,7 +25846,7 @@
 35/A6DB: B5 F0     LDA $F0,X
 35/A6DD: 48        PHA 
 35/A6DE: 29 07     AND #$07
-35/A6E0: 95 F0     STA $F0,X          ; status removed
+35/A6E0: 95 F0     STA $F0,X          ; remove status
 35/A6E2: 91 6E     STA ($6E),Y
 35/A6E4: 68        PLA 
 35/A6E5: A2 00     LDX #$00
@@ -25447,7 +25859,7 @@
 35/A6EF: 69 54     ADC #$54           ; $010E: status removed messages
 35/A6F1: 8D D7 78  STA $78D7
 35/A6F4: 18        CLC 
-35/A6F5: 90 24     BCC $A71B
+35/A6F5: 90 24     BCC $A71B          ; return
 35/A6F7: B5 F0     LDA $F0,X
 35/A6F9: 38        SEC 
 35/A6FA: E9 08     SBC #$08
@@ -25459,7 +25871,7 @@
 35/A707: 0A        ASL 
 35/A708: AA        TAX 
 35/A709: E8        INX 
-35/A70A: B5 F0     LDA $F0,X          ; status inflicted
+35/A70A: B5 F0     LDA $F0,X          ; status not removed
 35/A70C: A2 00     LDX #$00
 35/A70E: 0A        ASL 
 35/A70F: B0 03     BCS $A714
@@ -25467,22 +25879,22 @@
 35/A712: D0 FA     BNE $A70E
 35/A714: 8A        TXA 
 35/A715: 18        CLC 
-35/A716: 69 5E     ADC #$5E           ; $0118: status inflicted messages
+35/A716: 69 5E     ADC #$5E           ; $0118: status active messages
 35/A718: 8D D7 78  STA $78D7
 35/A71B: 60        RTS 
 
-; [ battle command $02:  ]
+; [ battle command $02: change to front row ]
 
 35/A71C: A9 0F     LDA #$0F
 35/A71E: 20 88 9B  JSR $9B88          ; add character offset
 35/A721: B1 59     LDA ($59),Y
 35/A723: 29 01     AND #$01
-35/A725: D0 06     BNE $A72D
-35/A727: 20 81 9B  JSR $9B81
+35/A725: D0 06     BNE $A72D          ; branch if back row
+35/A727: 20 81 9B  JSR $9B81          ; play error sound effect
 35/A72A: 4C C8 A7  JMP $A7C8
-35/A72D: 20 CD A7  JSR $A7CD
+35/A72D: 20 CD A7  JSR $A7CD          ; init front/back row cursor sprite
 35/A730: 48        PHA 
-35/A731: A9 43     LDA #$43
+35/A731: A9 43     LDA #$43           ; arrow pointing left
 35/A733: 8D 22 02  STA $0222
 35/A736: 68        PLA 
 35/A737: AA        TAX 
@@ -25497,18 +25909,18 @@
 35/A74B: 85 19     STA $19
 35/A74D: 4C 84 A7  JMP $A784
 
-; [ battle command $03:  ]
+; [ battle command $03: change to back row ]
 
 35/A750: A9 0F     LDA #$0F
 35/A752: 20 88 9B  JSR $9B88          ; add character offset
 35/A755: B1 59     LDA ($59),Y
 35/A757: 29 01     AND #$01
-35/A759: F0 06     BEQ $A761
-35/A75B: 20 81 9B  JSR $9B81
+35/A759: F0 06     BEQ $A761          ; branch if front row
+35/A75B: 20 81 9B  JSR $9B81          ; play error sound effect
 35/A75E: 4C C8 A7  JMP $A7C8
-35/A761: 20 CD A7  JSR $A7CD
+35/A761: 20 CD A7  JSR $A7CD          ; init front/back row cursor sprite
 35/A764: 48        PHA 
-35/A765: A9 03     LDA #$03
+35/A765: A9 03     LDA #$03           ; arrow pointing right
 35/A767: 8D 22 02  STA $0222
 35/A76A: 68        PLA 
 35/A76B: 18        CLC 
@@ -25523,6 +25935,7 @@
 35/A77E: 85 18     STA $18
 35/A780: A9 03     LDA #$03           ; action $03
 35/A782: 85 19     STA $19
+; common code for front/back
 35/A784: AD BA 78  LDA $78BA
 35/A787: 29 08     AND #$08
 35/A789: F0 19     BEQ $A7A4
@@ -25549,30 +25962,33 @@
 35/A7B6: C5 18     CMP $18
 35/A7B8: D0 EA     BNE $A7A4
 35/A7BA: F0 0C     BEQ $A7C8
-35/A7BC: 20 7D 9B  JSR $9B7D
+35/A7BC: 20 7D 9B  JSR $9B7D          ; play confirm sound effect
 35/A7BF: E6 52     INC $52
 35/A7C1: 20 9B 9B  JSR $9B9B          ; get action pointer
 35/A7C4: A5 19     LDA $19
 35/A7C6: 91 5B     STA ($5B),Y        ; set action id
 35/A7C8: A9 01     LDA #$01
-35/A7CA: 4C FD 99  JMP $99FD
+35/A7CA: 4C FD 99  JMP $99FD          ; command confirmed
+
+; [ init front/back row cursor sprite ]
+
 35/A7CD: A9 00     LDA #$00
 35/A7CF: 85 18     STA $18
-35/A7D1: 20 DF 8A  JSR $8ADF
+35/A7D1: 20 DF 8A  JSR $8ADF          ; hide cursor
 35/A7D4: A9 5D     LDA #$5D
 35/A7D6: 8D 21 02  STA $0221
 35/A7D9: A5 52     LDA $52
 35/A7DB: 20 40 FD  JSR $FD40          ; asl2
 35/A7DE: 60        RTS 
 
-; [ action $02:  ]
+; [ action $02: change to front row ]
 
 35/A7DF: A9 3B     LDA #$3B           ; $0622: "ぜんしん" / "Advance"
 35/A7E1: 8D D7 78  STA $78D7          ; attack name
 35/A7E4: 20 CE 91  JSR $91CE          ; clear target message
 35/A7E7: 4C F2 A7  JMP $A7F2
 
-; [ action $03:  ]
+; [ action $03: change to back row ]
 
 35/A7EA: A9 3C     LDA #$3C           ; $0623: "こうたい" / "Fall back"
 35/A7EC: 8D D7 78  STA $78D7
@@ -25581,7 +25997,7 @@
 35/A7F4: 8D D5 78  STA $78D5
 35/A7F7: A0 33     LDY #$33
 35/A7F9: B1 6E     LDA ($6E),Y
-35/A7FB: 20 16 A8  JSR $A816
+35/A7FB: 20 16 A8  JSR $A816          ; toggle row
 35/A7FE: 91 6E     STA ($6E),Y
 35/A800: 20 2E A4  JSR $A42E          ; get attacker flags
 35/A803: 29 07     AND #$07
@@ -25591,9 +26007,12 @@
 35/A80B: 69 0F     ADC #$0F
 35/A80D: A8        TAY 
 35/A80E: B1 59     LDA ($59),Y
-35/A810: 20 16 A8  JSR $A816
+35/A810: 20 16 A8  JSR $A816          ; toggle row
 35/A813: 91 59     STA ($59),Y
 35/A815: 60        RTS 
+
+; [ toggle row ]
+
 35/A816: 48        PHA 
 35/A817: 29 01     AND #$01
 35/A819: 49 01     EOR #$01
@@ -25603,8 +26022,9 @@
 35/A820: 05 18     ORA $18
 35/A822: 60        RTS 
 
+; sprite positions for front/back row arrow
 35/A823: 34 B4
-35/A835: 34 D4
+35/A825: 34 D4
 35/A827: 50 B4
 35/A829: 50 D4
 35/A82B: 6C B4
@@ -25628,32 +26048,33 @@
 ; [ do command ]
 
 ; does not return to calling function!
+; A: command id
 
 35/A848: 85 54     STA $54
 35/A84A: A9 00     LDA #$00
 35/A84C: 85 B3     STA $B3
-35/A84E: A9 10     LDA #$10
+35/A84E: A9 10     LDA #$10           ; choose targets
 35/A850: 20 0E FA  JSR $FA0E          ; execute battle graphics
-35/A853: 20 94 9B  JSR $9B94
+35/A853: 20 94 9B  JSR $9B94          ; get target mask pointer
 35/A856: A5 B4     LDA $B4
-35/A858: D0 03     BNE $A85D
+35/A858: D0 03     BNE $A85D          ; branch if targets confirmed
 35/A85A: 18        CLC 
 35/A85B: 90 0F     BCC $A86C
-35/A85D: 91 5B     STA ($5B),Y
+35/A85D: 91 5B     STA ($5B),Y        ; set targets
 35/A85F: C8        INY 
 35/A860: A5 B5     LDA $B5
-35/A862: 91 5B     STA ($5B),Y
+35/A862: 91 5B     STA ($5B),Y        ; set target flags
 35/A864: 88        DEY 
 35/A865: 88        DEY 
 35/A866: A5 54     LDA $54
-35/A868: 91 5B     STA ($5B),Y
+35/A868: 91 5B     STA ($5B),Y        ; set command id
 35/A86A: E6 52     INC $52
 35/A86C: 68        PLA                ; pull return address
 35/A86D: 68        PLA 
-35/A86E: A9 00     LDA #$00
+35/A86E: A9 00     LDA #$00           ; clear command id
 35/A870: 85 54     STA $54
 35/A872: A9 01     LDA #$01
-35/A874: 4C FD 99  JMP $99FD
+35/A874: 4C FD 99  JMP $99FD          ; command confirmed
 
 ; [ battle command $05: defend ]
 
@@ -25744,7 +26165,7 @@
 35/A910: D0 D8     BNE $A8EA
 35/A912: 20 92 FC  JSR $FC92          ; divide (16-bit)
 35/A915: A0 2A     LDY #$2A
-35/A917: B1 6E     LDA ($6E),Y
+35/A917: B1 6E     LDA ($6E),Y        ; run probability
 35/A919: 18        CLC 
 35/A91A: 69 19     ADC #$19
 35/A91C: 38        SEC 
@@ -25827,7 +26248,7 @@
 
 35/A9AB: A9 00     LDA #$00
 35/A9AD: 85 B3     STA $B3
-35/A9AF: A9 10     LDA #$10
+35/A9AF: A9 10     LDA #$10           ; choose targets
 35/A9B1: 20 0E FA  JSR $FA0E          ; execute battle graphics
 35/A9B4: 20 94 9B  JSR $9B94
 35/A9B7: A5 B4     LDA $B4
@@ -25847,7 +26268,7 @@
 35/A9CF: 91 5B     STA ($5B),Y
 35/A9D1: E6 52     INC $52
 35/A9D3: A9 01     LDA #$01
-35/A9D5: 4C FD 99  JMP $99FD
+35/A9D5: 4C FD 99  JMP $99FD          ; command confirmed
 
 ; [ action $08: jump 1 ]
 
@@ -25865,7 +26286,7 @@
 35/A9F1: 8D DA 78  STA $78DA
 35/A9F4: D0 1A     BNE $AA10
 35/A9F6: A0 27     LDY #$27
-35/A9F8: A9 02     LDA #$02
+35/A9F8: A9 02     LDA #$02           ; 3x multiplier
 35/A9FA: 91 6E     STA ($6E),Y
 35/A9FC: 20 2E A4  JSR $A42E          ; get attacker flags
 35/A9FF: 29 07     AND #$07           ; character/monster slot
@@ -25888,7 +26309,7 @@
 35/AA15: 29 FE     AND #$FE
 35/AA17: 91 6E     STA ($6E),Y
 35/AA19: A0 27     LDY #$27
-35/AA1B: A9 02     LDA #$02
+35/AA1B: A9 02     LDA #$02           ; 3x multiplier
 35/AA1D: 91 6E     STA ($6E),Y
 35/AA1F: 4C 1E 80  JMP $801E          ; do fight effect
 
@@ -25926,7 +26347,7 @@
 
 35/AA56: E6 52     INC $52
 35/AA58: A9 01     LDA #$01
-35/AA5A: 4C FD 99  JMP $99FD
+35/AA5A: 4C FD 99  JMP $99FD          ; command confirmed
 
 ; [ action $0B: terrain ]
 
@@ -26184,7 +26605,7 @@
 35/AC33: 90 25     BCC $AC5A
 35/AC35: DE C0 60  DEC $60C0,X
 35/AC38: 4C B7 AB  JMP $ABB7
-35/AC3B: E8        INX 
+35/AC3B: E8        INX                ; check next item slot
 35/AC3C: E8        INX 
 35/AC3D: E0 40     CPX #$40
 35/AC3F: D0 E2     BNE $AC23
@@ -26226,7 +26647,7 @@
 35/AC81: A0 27     LDY #$27
 35/AC83: B1 6E     LDA ($6E),Y
 35/AC85: 18        CLC 
-35/AC86: 69 01     ADC #$01
+35/AC86: 69 01     ADC #$01           ; add 1 to damage multiplier
 35/AC88: C9 03     CMP #$03
 35/AC8A: 90 36     BCC $ACC2
 35/AC8C: A9 00     LDA #$00
@@ -26397,22 +26818,22 @@
 35/ADAF: 20 C5 F8  JSR $F8C5          ; wait for vblank (no color update)
 35/ADB2: A9 00     LDA #$00
 35/ADB4: 85 3D     STA $3D
-35/ADB6: 20 B0 8E  JSR $8EB0
+35/ADB6: 20 B0 8E  JSR $8EB0          ; close menu window
 35/ADB9: A9 78     LDA #$78
 35/ADBB: 85 10     STA $10
 35/ADBD: 20 C5 F8  JSR $F8C5          ; wait for vblank (no color update)
 35/ADC0: A9 00     LDA #$00
 35/ADC2: 8D 73 75  STA $7573
-35/ADC5: 20 19 B4  JSR $B419
+35/ADC5: 20 19 B4  JSR $B419          ; draw left/right hand equipped items
 35/ADC8: A2 00     LDX #$00
-35/ADCA: BD C0 60  LDA $60C0,X
+35/ADCA: BD C0 60  LDA $60C0,X        ; copy inventory to buffer
 35/ADCD: 9D FD 7A  STA $7AFD,X
 35/ADD0: E8        INX 
 35/ADD1: E0 40     CPX #$40
 35/ADD3: D0 F5     BNE $ADCA
 35/ADD5: A9 01     LDA #$01
 35/ADD7: A2 23     LDX #$23
-35/ADD9: 9D 3D 7B  STA $7B3D,X
+35/ADD9: 9D 3D 7B  STA $7B3D,X        ; reset item usability
 35/ADDC: CA        DEX 
 35/ADDD: 10 FA     BPL $ADD9
 35/ADDF: 20 8D 9B  JSR $9B8D          ; get equipped weapon pointer
@@ -26441,19 +26862,19 @@
 35/AE13: A6 42     LDX $42
 35/AE15: BD C0 60  LDA $60C0,X
 35/AE18: C9 62     CMP #$62
-35/AE1A: 90 0A     BCC $AE26
+35/AE1A: 90 0A     BCC $AE26          ; branch if a weapon or shield (check)
 35/AE1C: C9 98     CMP #$98
-35/AE1E: 90 0F     BCC $AE2F
+35/AE1E: 90 0F     BCC $AE2F          ; branch if a defensive item (not usable)
 35/AE20: C9 C8     CMP #$C8
-35/AE22: 90 10     BCC $AE34
-35/AE24: B0 09     BCS $AE2F
+35/AE22: 90 10     BCC $AE34          ; branch if a usable item (usable)
+35/AE24: B0 09     BCS $AE2F          ; branch if a spell (not usable)
 35/AE26: 85 18     STA $18
 35/AE28: 20 FD B8  JSR $B8FD          ; check if character can equip item/spell
 35/AE2B: A5 1C     LDA $1C
-35/AE2D: D0 05     BNE $AE34
+35/AE2D: D0 05     BNE $AE34          ; branch if usable
 35/AE2F: A6 43     LDX $43
-35/AE31: DE 41 7B  DEC $7B41,X
-35/AE34: E6 42     INC $42
+35/AE31: DE 41 7B  DEC $7B41,X        ; not usable
+35/AE34: E6 42     INC $42            ; next item
 35/AE36: E6 42     INC $42
 35/AE38: E6 43     INC $43
 35/AE3A: A5 43     LDA $43
@@ -26461,53 +26882,54 @@
 35/AE3E: D0 CB     BNE $AE0B
 35/AE40: A9 00     LDA #$00
 35/AE42: 85 3D     STA $3D
-35/AE44: 20 8B B4  JSR $B48B
+35/AE44: 20 8B B4  JSR $B48B          ; draw inventory column
 35/AE47: A9 10     LDA #$10
 35/AE49: 85 18     STA $18
 35/AE4B: A9 1E     LDA #$1E
 35/AE4D: 85 19     STA $19
 35/AE4F: A9 01     LDA #$01
 35/AE51: 85 1A     STA $1A
-35/AE53: 20 38 8B  JSR $8B38
-35/AE56: 20 8B B4  JSR $B48B
+35/AE53: 20 38 8B  JSR $8B38          ; open menu window
+35/AE56: 20 8B B4  JSR $B48B          ; draw inventory column
 35/AE59: A9 1F     LDA #$1F
 35/AE5B: 85 18     STA $18
 35/AE5D: A9 8D     LDA #$8D
 35/AE5F: 85 19     STA $19
 35/AE61: A9 00     LDA #$00
 35/AE63: 85 1A     STA $1A
-35/AE65: 20 38 8B  JSR $8B38
-35/AE68: 20 8B B4  JSR $B48B
+35/AE65: 20 38 8B  JSR $8B38          ; open menu window
+35/AE68: 20 8B B4  JSR $B48B          ; draw inventory column
 35/AE6B: A9 8E     LDA #$8E
 35/AE6D: 85 18     STA $18
 35/AE6F: A9 9C     LDA #$9C
 35/AE71: 85 19     STA $19
 35/AE73: A9 00     LDA #$00
 35/AE75: 85 1A     STA $1A
-35/AE77: 20 38 8B  JSR $8B38
-35/AE7A: A9 02     LDA #$02
+35/AE77: 20 38 8B  JSR $8B38          ; open menu window
+35/AE7A: A9 02     LDA #$02           ; item list cursor
 35/AE7C: 85 55     STA $55
-35/AE7E: A9 01     LDA #$01
+35/AE7E: A9 01     LDA #$01           ; cursor 1
 35/AE80: 85 1A     STA $1A
-35/AE82: 20 66 89  JSR $8966
-35/AE85: A9 F0     LDA #$F0
+35/AE82: 20 66 89  JSR $8966          ; init list cursor
+35/AE85: A9 F0     LDA #$F0           ; hide cursor (240,240)
 35/AE87: 85 1C     STA $1C
 35/AE89: 85 1D     STA $1D
-35/AE8B: A9 01     LDA #$01
+35/AE8B: A9 01     LDA #$01           ; cursor 1
 35/AE8D: 85 1A     STA $1A
-35/AE8F: 20 2E 89  JSR $892E
-35/AE92: A9 02     LDA #$02
+35/AE8F: 20 2E 89  JSR $892E          ; set cursor sprite position
+35/AE92: A9 02     LDA #$02           ; item list cursor
 35/AE94: 85 55     STA $55
-35/AE96: A9 00     LDA #$00
+35/AE96: A9 00     LDA #$00           ; cursor 0
 35/AE98: 85 1A     STA $1A
-35/AE9A: 20 66 89  JSR $8966
+35/AE9A: 20 66 89  JSR $8966          ; init list cursor
 35/AE9D: A2 00     LDX #$00
-35/AE9F: 86 62     STX $62
+35/AE9F: 86 62     STX $62            ; cursor y position
 35/AEA1: 86 65     STX $65
-35/AEA3: 86 67     STX $67
+35/AEA3: 86 67     STX $67            ; current cursor
 35/AEA5: E8        INX 
-35/AEA6: 86 66     STX $66
-35/AEA8: 86 63     STX $63
+35/AEA6: 86 66     STX $66            ; list x scroll
+35/AEA8: 86 63     STX $63            ; cursor x position
+; start of player input loop
 35/AEAA: 20 85 81  JSR $8185          ; wait one frame
 35/AEAD: 20 AA FB  JSR $FBAA          ; update joypad input
 35/AEB0: A5 12     LDA $12
@@ -26560,8 +26982,8 @@
 35/AF10: A5 66     LDA $66
 35/AF12: C5 63     CMP $63
 35/AF14: D0 03     BNE $AF19
-35/AF16: 20 62 B3  JSR $B362
-35/AF19: C6 63     DEC $63
+35/AF16: 20 62 B3  JSR $B362          ; scroll item list left
+35/AF19: C6 63     DEC $63            ; move cursor left
 35/AF1B: A5 63     LDA $63
 35/AF1D: D0 0C     BNE $AF2B
 35/AF1F: A5 62     LDA $62
@@ -26574,21 +26996,21 @@
 35/AF2E: 4C AA AE  JMP $AEAA
 ; right
 35/AF31: A5 63     LDA $63
-35/AF33: C9 08     CMP #$08
+35/AF33: C9 08     CMP #$08           ; max cursor x position is 8
 35/AF35: F0 12     BEQ $AF49
 35/AF37: A5 66     LDA $66
 35/AF39: C9 07     CMP #$07
 35/AF3B: F0 07     BEQ $AF44
 35/AF3D: C5 63     CMP $63
 35/AF3F: F0 03     BEQ $AF44
-35/AF41: 20 A7 B2  JSR $B2A7
-35/AF44: E6 63     INC $63
+35/AF41: 20 A7 B2  JSR $B2A7          ; scroll item list right
+35/AF44: E6 63     INC $63            ; move cursor right
 35/AF46: 20 D4 B4  JSR $B4D4
 35/AF49: 4C AA AE  JMP $AEAA
 ; A button
 35/AF4C: A5 67     LDA $67
 35/AF4E: D0 29     BNE $AF79
-35/AF50: E6 67     INC $67
+35/AF50: E6 67     INC $67            ; switch to cursor 1
 35/AF52: A5 62     LDA $62
 35/AF54: 85 68     STA $68
 35/AF56: A5 63     LDA $63
@@ -26600,20 +27022,22 @@
 35/AF62: 85 1D     STA $1D
 35/AF64: A9 01     LDA #$01
 35/AF66: 85 1A     STA $1A
-35/AF68: 20 2E 89  JSR $892E
-35/AF6B: 20 7D 9B  JSR $9B7D
+35/AF68: 20 2E 89  JSR $892E          ; set cursor sprite position
+35/AF6B: 20 7D 9B  JSR $9B7D          ; play confirm sound effect
 35/AF6E: A2 10     LDX #$10
 35/AF70: 20 85 81  JSR $8185          ; wait one frame
 35/AF73: CA        DEX 
 35/AF74: D0 FA     BNE $AF70
 35/AF76: 4C AA AE  JMP $AEAA
+; use/swap item
 35/AF79: A5 63     LDA $63
 35/AF7B: C5 69     CMP $69
-35/AF7D: D0 09     BNE $AF88
+35/AF7D: D0 09     BNE $AF88          ; branch if not same x position
 35/AF7F: A5 62     LDA $62
 35/AF81: C5 68     CMP $68
-35/AF83: D0 03     BNE $AF88
+35/AF83: D0 03     BNE $AF88          ; branch if not same y position
 35/AF85: 4C F7 B4  JMP $B4F7
+; swap items
 35/AF88: A5 63     LDA $63
 35/AF8A: 05 69     ORA $69
 35/AF8C: F0 08     BEQ $AF96
@@ -26621,7 +27045,7 @@
 35/AF90: F0 0A     BEQ $AF9C
 35/AF92: A5 69     LDA $69
 35/AF94: F0 06     BEQ $AF9C
-35/AF96: 20 81 9B  JSR $9B81
+35/AF96: 20 81 9B  JSR $9B81          ; play error sound effect
 35/AF99: 4C AA AE  JMP $AEAA
 35/AF9C: A2 00     LDX #$00
 35/AF9E: 8E 08 74  STX $7408
@@ -26657,7 +27081,7 @@
 35/AFD9: AA        TAX 
 35/AFDA: BD 3D 7B  LDA $7B3D,X
 35/AFDD: D0 1F     BNE $AFFE
-35/AFDF: 20 81 9B  JSR $9B81
+35/AFDF: 20 81 9B  JSR $9B81          ; play error sound effect
 35/AFE2: AD 08 74  LDA $7408
 35/AFE5: F0 14     BEQ $AFFB
 35/AFE7: A5 63     LDA $63
@@ -26836,7 +27260,7 @@
 35/B152: C8        INY 
 35/B153: AD FC 7A  LDA $7AFC
 35/B156: 91 59     STA ($59),Y
-35/B158: 20 7D 9B  JSR $9B7D
+35/B158: 20 7D 9B  JSR $9B7D          ; play confirm sound effect
 35/B15B: AD 08 74  LDA $7408
 35/B15E: F0 0A     BEQ $B16A
 35/B160: A5 63     LDA $63
@@ -26870,16 +27294,17 @@
 ; B button
 35/B198: A5 67     LDA $67
 35/B19A: F0 12     BEQ $B1AE
-35/B19C: C6 67     DEC $67
-35/B19E: A9 F0     LDA #$F0
+35/B19C: C6 67     DEC $67            ; switch back to cursor 0
+35/B19E: A9 F0     LDA #$F0           ; hide cursor 1
 35/B1A0: 85 1C     STA $1C
 35/B1A2: 85 1D     STA $1D
 35/B1A4: A9 01     LDA #$01
 35/B1A6: 85 1A     STA $1A
-35/B1A8: 20 2E 89  JSR $892E
+35/B1A8: 20 2E 89  JSR $892E          ; set cursor sprite position
 35/B1AB: 4C AA AE  JMP $AEAA
+; close menu
 35/B1AE: C6 52     DEC $52
-35/B1B0: 20 B0 8E  JSR $8EB0
+35/B1B0: 20 B0 8E  JSR $8EB0          ; close menu window
 35/B1B3: A9 00     LDA #$00
 35/B1B5: 85 10     STA $10
 35/B1B7: A5 08     LDA $08
@@ -26888,48 +27313,50 @@
 35/B1BD: 20 C5 F8  JSR $F8C5          ; wait for vblank (no color update)
 35/B1C0: A9 00     LDA #$00
 35/B1C2: 85 18     STA $18
-35/B1C4: 20 DF 8A  JSR $8ADF
+35/B1C4: 20 DF 8A  JSR $8ADF          ; hide cursor
 35/B1C7: A9 01     LDA #$01
 35/B1C9: 85 18     STA $18
-35/B1CB: 20 DF 8A  JSR $8ADF
+35/B1CB: 20 DF 8A  JSR $8ADF          ; hide cursor
 35/B1CE: E6 52     INC $52
 35/B1D0: 20 26 80  JSR $8026          ; update character equipment
 35/B1D3: A9 00     LDA #$00
-35/B1D5: 4C FD 99  JMP $99FD
+35/B1D5: 4C FD 99  JMP $99FD          ; command cancelled
 
-; [  ]
+; [ draw item list text ]
 
-35/B1D8: 20 54 97  JSR $9754          ; clear text buffer
+; $34-$37: item id/qty for this column (4 * 2 bytes)
+
+35/B1D8: 20 54 97  JSR $9754          ; init text buffer
 35/B1DB: A2 00     LDX #$00
 35/B1DD: 86 3C     STX $3C
 35/B1DF: A2 0D     LDX #$0D
-35/B1E1: 20 49 A5  JSR $A549
+35/B1E1: 20 49 A5  JSR $A549          ; write spaces to text buffer
 35/B1E4: A6 3C     LDX $3C
-35/B1E6: B5 34     LDA $34,X
+35/B1E6: B5 34     LDA $34,X          ; item id
 35/B1E8: 85 1A     STA $1A
 35/B1EA: C9 FF     CMP #$FF
-35/B1EC: D0 08     BNE $B1F6
+35/B1EC: D0 08     BNE $B1F6          ; branch if not a blank row
 35/B1EE: A9 0D     LDA #$0D
-35/B1F0: 20 58 A5  JSR $A558
+35/B1F0: 20 58 A5  JSR $A558          ; add to text buffer offset
 35/B1F3: 18        CLC 
 35/B1F4: 90 3C     BCC $B232
 35/B1F6: BD 00 74  LDA $7400,X
-35/B1F9: D0 05     BNE $B200
-35/B1FB: A9 73     LDA #$73
+35/B1F9: D0 05     BNE $B200          ; branch if item is usable
+35/B1FB: A9 73     LDA #$73           ; "X" symbol
 35/B1FD: 8D D7 7A  STA $7AD7
-35/B200: A9 00     LDA #$00
+35/B200: A9 00     LDA #$00           ; string table offset: $0400 (item names)
 35/B202: 85 18     STA $18
 35/B204: A9 88     LDA #$88
 35/B206: 85 19     STA $19
 35/B208: A5 1A     LDA $1A
 35/B20A: A2 01     LDX #$01           ; destination offset: 1
 35/B20C: 20 09 A6  JSR $A609          ; load text string
-35/B20F: A9 C8     LDA #$C8
+35/B20F: A9 C8     LDA #$C8           ; "："
 35/B211: 8D E1 7A  STA $7AE1
 35/B214: A9 00     LDA #$00
 35/B216: 85 19     STA $19
 35/B218: A6 3C     LDX $3C
-35/B21A: B5 35     LDA $35,X
+35/B21A: B5 35     LDA $35,X          ; quantity
 35/B21C: 85 18     STA $18
 35/B21E: 20 E1 95  JSR $95E1          ; convert hex to decimal
 35/B221: A5 1D     LDA $1D
@@ -26938,15 +27365,18 @@
 35/B228: 8D E3 7A  STA $7AE3
 35/B22B: A9 0D     LDA #$0D
 35/B22D: 85 18     STA $18
-35/B22F: 20 6A 96  JSR $966A
+35/B22F: 20 6A 96  JSR $966A          ; draw text
 35/B232: A9 0D     LDA #$0D
-35/B234: 20 58 A5  JSR $A558
-35/B237: E6 3C     INC $3C
+35/B234: 20 58 A5  JSR $A558          ; add to text buffer offset
+35/B237: E6 3C     INC $3C            ; next item
 35/B239: E6 3C     INC $3C
 35/B23B: A5 3C     LDA $3C
 35/B23D: C9 08     CMP #$08
 35/B23F: D0 9E     BNE $B1DF
 35/B241: 60        RTS 
+
+; [  ]
+
 35/B242: A5 40     LDA $40
 35/B244: 85 1D     STA $1D
 35/B246: AD F5 7A  LDA $7AF5
@@ -27000,6 +27430,9 @@
 35/B2A3: B0 01     BCS $B2A6
 35/B2A5: 18        CLC 
 35/B2A6: 60        RTS 
+
+; [  ]
+
 35/B2A7: A5 66     LDA $66
 35/B2A9: C9 06     CMP #$06
 35/B2AB: B0 3D     BCS $B2EA
@@ -27007,7 +27440,7 @@
 35/B2AE: 69 02     ADC #$02
 35/B2B0: 20 3F FD  JSR $FD3F          ; asl3
 35/B2B3: 85 3D     STA $3D
-35/B2B5: 20 8B B4  JSR $B48B
+35/B2B5: 20 8B B4  JSR $B48B          ; draw inventory column
 35/B2B8: 18        CLC 
 35/B2B9: A5 66     LDA $66
 35/B2BB: 69 02     ADC #$02
@@ -27034,7 +27467,7 @@
 35/B2E1: 85 18     STA $18
 35/B2E3: A9 02     LDA #$02
 35/B2E5: 85 1A     STA $1A
-35/B2E7: 20 38 8B  JSR $8B38
+35/B2E7: 20 38 8B  JSR $8B38          ; open menu window
 35/B2EA: A5 66     LDA $66
 35/B2EC: C9 07     CMP #$07
 35/B2EE: F0 2B     BEQ $B31B
@@ -27085,7 +27518,7 @@
 35/B344: 86 1D     STX $1D
 35/B346: A9 01     LDA #$01
 35/B348: 85 1A     STA $1A
-35/B34A: 20 2E 89  JSR $892E
+35/B34A: 20 2E 89  JSR $892E          ; set cursor sprite position
 35/B34D: 18        CLC 
 35/B34E: 90 11     BCC $B361
 35/B350: A5 1C     LDA $1C
@@ -27094,24 +27527,27 @@
 35/B355: 85 1C     STA $1C
 35/B357: A9 01     LDA #$01
 35/B359: 85 1A     STA $1A
-35/B35B: 20 2E 89  JSR $892E
+35/B35B: 20 2E 89  JSR $892E          ; set cursor sprite position
 35/B35E: 68        PLA 
 35/B35F: 85 1C     STA $1C
 35/B361: 60        RTS 
+
+; [ scroll item list left ]
+
 35/B362: A5 66     LDA $66
 35/B364: C9 02     CMP #$02
 35/B366: 90 3B     BCC $B3A3
 35/B368: D0 0B     BNE $B375
 35/B36A: A9 00     LDA #$00
 35/B36C: 8D 73 75  STA $7573
-35/B36F: 20 19 B4  JSR $B419
+35/B36F: 20 19 B4  JSR $B419          ; draw left/right hand equipped items
 35/B372: 18        CLC 
 35/B373: 90 2E     BCC $B3A3
 35/B375: 38        SEC 
 35/B376: E9 03     SBC #$03
 35/B378: 20 3F FD  JSR $FD3F          ; asl3
 35/B37B: 85 3D     STA $3D
-35/B37D: 20 8B B4  JSR $B48B
+35/B37D: 20 8B B4  JSR $B48B          ; draw inventory column
 35/B380: 38        SEC 
 35/B381: A5 66     LDA $66
 35/B383: E9 03     SBC #$03
@@ -27129,7 +27565,7 @@
 35/B39A: F0 02     BEQ $B39E
 35/B39C: A9 01     LDA #$01
 35/B39E: 85 1A     STA $1A
-35/B3A0: 20 38 8B  JSR $8B38
+35/B3A0: 20 38 8B  JSR $8B38          ; open menu window
 35/B3A3: A5 66     LDA $66
 35/B3A5: F0 2B     BEQ $B3D2
 35/B3A7: C6 66     DEC $66
@@ -27144,7 +27580,7 @@
 35/B3B8: 20 C5 F8  JSR $F8C5          ; wait for vblank (no color update)
 35/B3BB: 38        SEC 
 35/B3BC: A5 10     LDA $10
-35/B3BE: E9 14     SBC #$14
+35/B3BE: E9 14     SBC #$14           ; subtract 20 from ppu scroll
 35/B3C0: 85 10     STA $10
 35/B3C2: B0 08     BCS $B3CC
 35/B3C4: A5 08     LDA $08
@@ -27179,7 +27615,7 @@
 35/B3FB: 86 1D     STX $1D
 35/B3FD: A9 01     LDA #$01
 35/B3FF: 85 1A     STA $1A
-35/B401: 20 2E 89  JSR $892E
+35/B401: 20 2E 89  JSR $892E          ; set cursor sprite position
 35/B404: 18        CLC 
 35/B405: 90 11     BCC $B418
 35/B407: A5 1C     LDA $1C
@@ -27188,19 +27624,19 @@
 35/B40C: 85 1C     STA $1C
 35/B40E: A9 01     LDA #$01
 35/B410: 85 1A     STA $1A
-35/B412: 20 2E 89  JSR $892E
+35/B412: 20 2E 89  JSR $892E          ; set cursor sprite position
 35/B415: 68        PLA 
 35/B416: 85 1C     STA $1C
 35/B418: 60        RTS 
 
-; [  ]
+; [ draw left/right hand equipped items ]
 
 35/B419: A9 01     LDA #$01
 35/B41B: A2 07     LDX #$07
-35/B41D: 9D 00 74  STA $7400,X
+35/B41D: 9D 00 74  STA $7400,X        ; clear buffer
 35/B420: CA        DEX 
 35/B421: 10 FA     BPL $B41D
-35/B423: A9 FF     LDA #$FF
+35/B423: A9 FF     LDA #$FF           ; don't draw 1st and 3rd rows
 35/B425: A2 07     LDX #$07
 35/B427: 95 34     STA $34,X
 35/B429: CA        DEX 
@@ -27209,33 +27645,33 @@
 35/B42F: 18        CLC 
 35/B430: 69 03     ADC #$03
 35/B432: A8        TAY 
-35/B433: B1 59     LDA ($59),Y
+35/B433: B1 59     LDA ($59),Y        ; right hand item (2nd row)
 35/B435: 85 36     STA $36
 35/B437: C8        INY 
-35/B438: B1 59     LDA ($59),Y
+35/B438: B1 59     LDA ($59),Y        ; right hand qty
 35/B43A: 85 37     STA $37
 35/B43C: C8        INY 
-35/B43D: B1 59     LDA ($59),Y
+35/B43D: B1 59     LDA ($59),Y        ; left hand item (4th row)
 35/B43F: 85 3A     STA $3A
 35/B441: C8        INY 
-35/B442: B1 59     LDA ($59),Y
+35/B442: B1 59     LDA ($59),Y        ; left hand qty
 35/B444: 85 3B     STA $3B
-35/B446: 20 D8 B1  JSR $B1D8
-35/B449: A9 C0     LDA #$C0
-35/B44B: 8D 01 72  STA $7201
+35/B446: 20 D8 B1  JSR $B1D8          ; draw item list text
+35/B449: A9 C0     LDA #$C0           ; みぎて and ひだりて (1st and 3rd rows)
+35/B44B: 8D 01 72  STA $7201          ; dakuten for "ぎ" and "だ"
 35/B44E: 8D 35 72  STA $7235
-35/B451: A9 9C     LDA #$9C
+35/B451: A9 9C     LDA #$9C           ; "て"
 35/B453: 8D 0F 72  STA $720F
 35/B456: 8D 44 72  STA $7244
-35/B459: A9 A9     LDA #$A9
+35/B459: A9 A9     LDA #$A9           ; "み"
 35/B45B: 8D 0D 72  STA $720D
-35/B45E: A9 90     LDA #$90
+35/B45E: A9 90     LDA #$90           ; "き"
 35/B460: 8D 0E 72  STA $720E
-35/B463: A9 A4     LDA #$A4
+35/B463: A9 A4     LDA #$A4           ; "ひ"
 35/B465: 8D 41 72  STA $7241
-35/B468: A9 99     LDA #$99
+35/B468: A9 99     LDA #$99           ; "た"
 35/B46A: 8D 42 72  STA $7242
-35/B46D: A9 B1     LDA #$B1
+35/B46D: A9 B1     LDA #$B1           ; "り"
 35/B46F: 8D 43 72  STA $7243
 35/B472: AD 73 75  LDA $7573
 35/B475: C9 FF     CMP #$FF
@@ -27247,7 +27683,10 @@
 35/B482: 85 19     STA $19
 35/B484: A9 03     LDA #$03
 35/B486: 85 1A     STA $1A
-35/B488: 4C 38 8B  JMP $8B38
+35/B488: 4C 38 8B  JMP $8B38          ; open menu window
+
+; [ draw inventory column ]
+
 35/B48B: A9 01     LDA #$01
 35/B48D: A2 07     LDX #$07
 35/B48F: 9D 00 74  STA $7400,X
@@ -27255,7 +27694,7 @@
 35/B493: 10 FA     BPL $B48F
 35/B495: A4 3D     LDY $3D
 35/B497: A2 00     LDX #$00
-35/B499: B9 C0 60  LDA $60C0,Y
+35/B499: B9 C0 60  LDA $60C0,Y        ; copy 4 inventory items (id/qty)
 35/B49C: 95 34     STA $34,X
 35/B49E: C8        INY 
 35/B49F: E8        INX 
@@ -27264,7 +27703,7 @@
 35/B4A4: A2 00     LDX #$00
 35/B4A6: B5 34     LDA $34,X
 35/B4A8: D0 04     BNE $B4AE
-35/B4AA: A9 57     LDA #$57
+35/B4AA: A9 57     LDA #$57           ; replace blanks with $57 (empty item)
 35/B4AC: 95 34     STA $34,X
 35/B4AE: E8        INX 
 35/B4AF: E8        INX 
@@ -27287,7 +27726,10 @@
 35/B4CC: 69 08     ADC #$08
 35/B4CE: 85 3D     STA $3D
 35/B4D0: A8        TAY 
-35/B4D1: 4C D8 B1  JMP $B1D8
+35/B4D1: 4C D8 B1  JMP $B1D8          ; draw item list text
+
+; [  ]
+
 35/B4D4: A9 A8     LDA #$A8
 35/B4D6: A6 62     LDX $62
 35/B4D8: F0 06     BEQ $B4E0
@@ -27305,32 +27747,32 @@
 35/B4EE: 85 1D     STA $1D
 35/B4F0: A9 00     LDA #$00
 35/B4F2: 85 1A     STA $1A
-35/B4F4: 4C 2E 89  JMP $892E
+35/B4F4: 4C 2E 89  JMP $892E          ; set cursor sprite position
 
-; [  ]
+; [ use inventory item ]
 
-35/B4F7: A5 63     LDA $63
+35/B4F7: A5 63     LDA $63            ; cursor column
 35/B4F9: 20 3F FD  JSR $FD3F          ; asl3
 35/B4FC: 18        CLC 
-35/B4FD: 65 62     ADC $62
+35/B4FD: 65 62     ADC $62            ; cursor row
 35/B4FF: 65 62     ADC $62
 35/B501: AA        TAX 
 35/B502: 86 26     STX $26
-35/B504: BD F5 7A  LDA $7AF5,X
+35/B504: BD F5 7A  LDA $7AF5,X        ; selected item
 35/B507: D0 0D     BNE $B516
 35/B509: 20 9B 9B  JSR $9B9B          ; get action pointer
 35/B50C: A9 00     LDA #$00
 35/B50E: 91 5B     STA ($5B),Y        ; action $00 (do nothing)
-35/B510: 20 81 9B  JSR $9B81
+35/B510: 20 81 9B  JSR $9B81          ; play error sound effect
 35/B513: 4C AA AE  JMP $AEAA
 35/B516: 48        PHA 
-35/B517: 20 7D 9B  JSR $9B7D
+35/B517: 20 7D 9B  JSR $9B7D          ; play confirm sound effect
 35/B51A: 68        PLA 
 35/B51B: 48        PHA 
 35/B51C: 20 9B 9B  JSR $9B9B          ; get action pointer
 35/B51F: 68        PLA 
 35/B520: 48        PHA 
-35/B521: 91 5B     STA ($5B),Y
+35/B521: 91 5B     STA ($5B),Y        ; item id
 35/B523: C9 A6     CMP #$A6
 35/B525: F0 08     BEQ $B52F          ; branch if potion
 35/B527: C9 A7     CMP #$A7
@@ -27346,12 +27788,12 @@
 35/B53A: 91 5B     STA ($5B),Y
 35/B53C: 68        PLA 
 35/B53D: 85 27     STA $27
-35/B53F: C9 C8     CMP #$C8           ; first spell
-35/B541: B0 C6     BCS $B509
-35/B543: C9 98     CMP #$98           ; first non-equippable item
-35/B545: B0 1D     BCS $B564
-35/B547: C9 57     CMP #$57           ; first armor
-35/B549: B0 BE     BCS $B509
+35/B53F: C9 C8     CMP #$C8
+35/B541: B0 C6     BCS $B509          ; do nothing if a spell item
+35/B543: C9 98     CMP #$98
+35/B545: B0 1D     BCS $B564          ; branch if a usable item
+35/B547: C9 57     CMP #$57
+35/B549: B0 BE     BCS $B509          ; do nothing if armor
 ; used a weapon as an item
 35/B54B: 85 18     STA $18
 35/B54D: A9 08     LDA #$08
@@ -27391,9 +27833,9 @@
 35/B590: 18        CLC 
 35/B591: 65 62     ADC $62
 35/B593: AA        TAX 
-35/B594: BD 3D 7B  LDA $7B3D,X
+35/B594: BD 3D 7B  LDA $7B3D,X        ; item usability
 35/B597: D0 03     BNE $B59C
-35/B599: 4C 09 B5  JMP $B509
+35/B599: 4C 09 B5  JMP $B509          ; do nothing if item is not usable
 35/B59C: C0 7F     CPY #$7F
 35/B59E: D0 07     BNE $B5A7
 35/B5A0: A9 09     LDA #$09
@@ -27412,37 +27854,37 @@
 35/B5BD: C9 02     CMP #$02
 35/B5BF: D0 05     BNE $B5C6
 35/B5C1: C6 52     DEC $52
-35/B5C3: 4C B0 B1  JMP $B1B0
+35/B5C3: 4C B0 B1  JMP $B1B0          ; close menu
 35/B5C6: A9 3F     LDA #$3F
 35/B5C8: 20 88 9B  JSR $9B88          ; add character offset
 35/B5CB: A5 27     LDA $27
 35/B5CD: 91 5B     STA ($5B),Y
 35/B5CF: A5 63     LDA $63
-35/B5D1: D0 05     BNE $B5D8
+35/B5D1: D0 05     BNE $B5D8          ; branch if not column 0 (equipped item)
 35/B5D3: 88        DEY 
 35/B5D4: A9 01     LDA #$01
-35/B5D6: 91 5B     STA ($5B),Y
+35/B5D6: 91 5B     STA ($5B),Y        ; used equipped item (#$3E)
 35/B5D8: A6 26     LDX $26
 35/B5DA: E8        INX 
-35/B5DB: DE F5 7A  DEC $7AF5,X
+35/B5DB: DE F5 7A  DEC $7AF5,X        ; decrement item qty
 35/B5DE: BD F5 7A  LDA $7AF5,X
-35/B5E1: D0 06     BNE $B5E9
+35/B5E1: D0 06     BNE $B5E9          ; branch if item qty != 0
 35/B5E3: CA        DEX 
 35/B5E4: A9 00     LDA #$00
-35/B5E6: 9D F5 7A  STA $7AF5,X
+35/B5E6: 9D F5 7A  STA $7AF5,X        ; remove item from inventory
 35/B5E9: A2 00     LDX #$00
-35/B5EB: BD FD 7A  LDA $7AFD,X
+35/B5EB: BD FD 7A  LDA $7AFD,X        ; copy inventory buffer to inventory
 35/B5EE: 9D C0 60  STA $60C0,X
 35/B5F1: E8        INX 
 35/B5F2: E0 40     CPX #$40
 35/B5F4: D0 F5     BNE $B5EB
-35/B5F6: 4C B0 B1  JMP $B1B0
+35/B5F6: 4C B0 B1  JMP $B1B0          ; close menu
 
 ; [  ]
 
 35/B5F9: A9 FF     LDA #$FF
 35/B5FB: 8D 73 75  STA $7573
-35/B5FE: 4C 19 B4  JMP $B419
+35/B5FE: 4C 19 B4  JMP $B419          ; draw left/right hand equipped items
 
 ; [  ]
 
@@ -27450,7 +27892,7 @@
 35/B602: 8A        TXA 
 35/B603: 20 3F FD  JSR $FD3F          ; asl3
 35/B606: 85 3D     STA $3D
-35/B608: 20 8B B4  JSR $B48B
+35/B608: 20 8B B4  JSR $B48B          ; draw inventory column
 35/B60B: A5 63     LDA $63
 35/B60D: 38        SEC 
 35/B60E: E9 01     SBC #$01
@@ -27472,27 +27914,18 @@
 35/B62D: D0 02     BNE $B631
 35/B62F: A9 00     LDA #$00
 35/B631: 85 1A     STA $1A
-35/B633: 4C 38 8B  JMP $8B38
+35/B633: 4C 38 8B  JMP $8B38          ; open menu window
 
-35/B636: 10 1E     BPL $B656
-35/B638: 1F        --- 
-35/B639: 8D 8E 9C  STA $9C8E
-35/B63C: 9D 0B 0C  STA $0C0B,X
-35/B63F: 1A        --- 
-35/B640: 1B        --- 
-35/B641: 89        --- 
-35/B642: 8A        TXA 
-35/B643: 98        TYA 
-35/B644: 99 07 
+35/B636: 10 1E 1F 8D 8E 9C 9D 0B 0C 1A 1B 89 8A 98 99 07
 
 ; [ battle command $15: magic ]
 
 35/B646: AD D8 7E  LDA $7ED8
 35/B649: 29 40     AND #$40
 35/B64B: F0 08     BEQ $B655
-35/B64D: 20 81 9B  JSR $9B81
+35/B64D: 20 81 9B  JSR $9B81          ; play error sound effect
 35/B650: A9 01     LDA #$01
-35/B652: 4C FD 99  JMP $99FD
+35/B652: 4C FD 99  JMP $99FD          ; command confirmed
 35/B655: A9 FF     LDA #$FF
 35/B657: A2 17     LDX #$17
 35/B659: 9D 00 74  STA $7400,X        ; clear $7400-$7417
@@ -27558,7 +27991,7 @@
 35/B6C6: C6 27     DEC $27
 35/B6C8: A5 27     LDA $27
 35/B6CA: 10 C0     BPL $B68C
-35/B6CC: 20 54 97  JSR $9754          ; clear text buffer
+35/B6CC: 20 54 97  JSR $9754          ; init text buffer
 35/B6CF: 68        PLA 
 35/B6D0: AA        TAX 
 35/B6D1: E8        INX 
@@ -27569,7 +28002,7 @@
 35/B6D8: A9 00     LDA #$00
 35/B6DA: 85 26     STA $26
 35/B6DC: A2 1C     LDX #$1C
-35/B6DE: 20 49 A5  JSR $A549
+35/B6DE: 20 49 A5  JSR $A549          ; write spaces to text buffer
 35/B6E1: A9 08     LDA #$08
 35/B6E3: 85 27     STA $27
 35/B6E5: 18        CLC 
@@ -27615,7 +28048,7 @@
 35/B73D: F0 30     BEQ $B76F
 35/B73F: 85 18     STA $18
 35/B741: 48        PHA 
-35/B742: A9 C0     LDA #$C0           ; 30/98C0
+35/B742: A9 C0     LDA #$C0           ; 30/98C0 (attack properties)
 35/B744: 85 20     STA $20
 35/B746: A9 98     LDA #$98
 35/B748: 85 21     STA $21
@@ -27646,26 +28079,26 @@
 35/B77C: D0 B6     BNE $B734
 35/B77E: A9 1C     LDA #$1C
 35/B780: 85 18     STA $18
-35/B782: 20 6A 96  JSR $966A
+35/B782: 20 6A 96  JSR $966A          ; draw text
 35/B785: A9 1C     LDA #$1C
-35/B787: 20 58 A5  JSR $A558
+35/B787: 20 58 A5  JSR $A558          ; add to text buffer offset
 35/B78A: C6 24     DEC $24
 35/B78C: A5 24     LDA $24
 35/B78E: F0 03     BEQ $B793
 35/B790: 4C DC B6  JMP $B6DC
-35/B793: 20 B0 8E  JSR $8EB0
+35/B793: 20 B0 8E  JSR $8EB0          ; close menu window
 35/B796: A9 01     LDA #$01
 35/B798: 85 18     STA $18
 35/B79A: A9 1E     LDA #$1E
 35/B79C: 85 19     STA $19
 35/B79E: A9 03     LDA #$03
 35/B7A0: 85 1A     STA $1A
-35/B7A2: 20 38 8B  JSR $8B38
-35/B7A5: A9 01     LDA #$01
+35/B7A2: 20 38 8B  JSR $8B38          ; open menu window
+35/B7A5: A9 01     LDA #$01           ; spell list cursor
 35/B7A7: 85 55     STA $55
-35/B7A9: A9 00     LDA #$00
+35/B7A9: A9 00     LDA #$00           ; cursor 0
 35/B7AB: 85 1A     STA $1A
-35/B7AD: 20 66 89  JSR $8966
+35/B7AD: 20 66 89  JSR $8966          ; init list cursor
 35/B7B0: A9 00     LDA #$00
 35/B7B2: 85 24     STA $24
 35/B7B4: 85 25     STA $25
@@ -27725,7 +28158,7 @@
 35/B81E: 85 19     STA $19
 35/B820: A9 03     LDA #$03
 35/B822: 85 1A     STA $1A
-35/B824: 20 38 8B  JSR $8B38
+35/B824: 20 38 8B  JSR $8B38          ; open menu window
 35/B827: 4C 74 B8  JMP $B874
 35/B82A: A5 24     LDA $24
 35/B82C: C9 07     CMP #$07
@@ -27751,7 +28184,7 @@
 35/B857: 85 19     STA $19
 35/B859: A9 03     LDA #$03
 35/B85B: 85 1A     STA $1A
-35/B85D: 20 38 8B  JSR $8B38
+35/B85D: 20 38 8B  JSR $8B38          ; open menu window
 35/B860: 4C 74 B8  JMP $B874
 35/B863: A5 26     LDA $26
 35/B865: F0 0D     BEQ $B874
@@ -27797,19 +28230,22 @@
 35/B8B0: B1 5B     LDA ($5B),Y
 35/B8B2: D0 07     BNE $B8BB
 35/B8B4: 68        PLA 
-35/B8B5: 20 81 9B  JSR $9B81
+35/B8B5: 20 81 9B  JSR $9B81          ; play error sound effect
 35/B8B8: 4C B8 B7  JMP $B7B8
-35/B8BB: 20 7D 9B  JSR $9B7D
+35/B8BB: 20 7D 9B  JSR $9B7D          ; play confirm sound effect
 35/B8BE: 68        PLA 
 35/B8BF: 48        PHA 
 35/B8C0: 20 53 B9  JSR $B953
 35/B8C3: F0 0C     BEQ $B8D1
 35/B8C5: C9 01     CMP #$01
 35/B8C7: D0 04     BNE $B8CD
+; 1: can't be used by this character
 35/B8C9: 68        PLA 
 35/B8CA: 4C B5 B8  JMP $B8B5
+; 2: target cancelled
 35/B8CD: 68        PLA 
 35/B8CE: 4C EE B8  JMP $B8EE
+; 0: target confirmed
 35/B8D1: 20 9B 9B  JSR $9B9B          ; get action pointer
 35/B8D4: A6 52     LDX $52
 35/B8D6: 68        PLA 
@@ -27821,14 +28257,15 @@
 35/B8E1: D0 09     BNE $B8EC
 35/B8E3: AD E1 7B  LDA $7BE1
 35/B8E6: 20 20 FD  JSR $FD20          ; set bit
-35/B8E9: 8D E1 7B  STA $7BE1
+35/B8E9: 8D E1 7B  STA $7BE1          ; using a spell
 35/B8EC: E6 52     INC $52
+; close menu
 35/B8EE: A9 00     LDA #$00
 35/B8F0: 85 18     STA $18
-35/B8F2: 20 DF 8A  JSR $8ADF
-35/B8F5: 20 B0 8E  JSR $8EB0
+35/B8F2: 20 DF 8A  JSR $8ADF          ; hide cursor
+35/B8F5: 20 B0 8E  JSR $8EB0          ; close menu window
 35/B8F8: A9 00     LDA #$00
-35/B8FA: 4C FD 99  JMP $99FD
+35/B8FA: 4C FD 99  JMP $99FD          ; command cancelled
 
 ; [ check if character can equip item/spell ]
 
@@ -27884,12 +28321,18 @@
 35/B950: D0 F7     BNE $B949
 35/B952: 60        RTS 
 
-; [  ]
+; [ get magic targets ??? ]
+
+; A: magic id
+; return value
+;   0: confirm
+;   1: can't be used by this character
+;   2: cancelled
 
 35/B953: 38        SEC 
 35/B954: 85 18     STA $18
 35/B956: 8D E8 7C  STA $7CE8
-35/B959: A9 C0     LDA #$C0           ; 30/98C0
+35/B959: A9 C0     LDA #$C0           ; 30/98C0 (attack properties)
 35/B95B: 85 20     STA $20
 35/B95D: A9 98     LDA #$98
 35/B95F: 85 21     STA $21
@@ -27901,7 +28344,7 @@
 35/B96D: 8D E8 7C  STA $7CE8
 35/B970: A5 1C     LDA $1C
 35/B972: D0 05     BNE $B979
-35/B974: A9 01     LDA #$01
+35/B974: A9 01     LDA #$01           ; return 1
 35/B976: 4C 29 BA  JMP $BA29
 35/B979: AD 7D 74  LDA $747D
 35/B97C: 29 18     AND #$18
@@ -27927,27 +28370,27 @@
 35/B9A9: D0 24     BNE $B9CF
 35/B9AB: A9 00     LDA #$00
 35/B9AD: 85 18     STA $18
-35/B9AF: 20 DF 8A  JSR $8ADF
+35/B9AF: 20 DF 8A  JSR $8ADF          ; hide cursor
 35/B9B2: A9 01     LDA #$01
 35/B9B4: 85 18     STA $18
-35/B9B6: 20 DF 8A  JSR $8ADF
-35/B9B9: 20 B0 8E  JSR $8EB0
+35/B9B6: 20 DF 8A  JSR $8ADF          ; hide cursor
+35/B9B9: 20 B0 8E  JSR $8EB0          ; close menu window
 35/B9BC: A9 00     LDA #$00
 35/B9BE: 85 10     STA $10
 35/B9C0: A5 08     LDA $08
 35/B9C2: 29 FE     AND #$FE
 35/B9C4: 85 08     STA $08
 35/B9C6: 20 C5 F8  JSR $F8C5          ; wait for vblank (no color update)
-35/B9C9: 20 A2 9B  JSR $9BA2
+35/B9C9: 20 A2 9B  JSR $9BA2          ; draw character hp window
 35/B9CC: 20 41 A5  JSR $A541          ; get character offset
 35/B9CF: A9 00     LDA #$00
 35/B9D1: 8D E8 7C  STA $7CE8
-35/B9D4: A9 10     LDA #$10
+35/B9D4: A9 10     LDA #$10           ; choose targets
 35/B9D6: 20 0E FA  JSR $FA0E          ; execute battle graphics
 35/B9D9: A5 B4     LDA $B4
-35/B9DB: D0 04     BNE $B9E1
+35/B9DB: D0 04     BNE $B9E1          ; branch if there are valid targets
 35/B9DD: A9 02     LDA #$02
-35/B9DF: D0 48     BNE $BA29
+35/B9DF: D0 48     BNE $BA29          ; return 2
 35/B9E1: 20 94 9B  JSR $9B94
 35/B9E4: A5 B4     LDA $B4
 35/B9E6: 91 5B     STA ($5B),Y
@@ -27985,7 +28428,7 @@
 35/BA22: C8        INY 
 35/BA23: A9 C0     LDA #$C0
 35/BA25: 91 5B     STA ($5B),Y
-35/BA27: A9 00     LDA #$00
+35/BA27: A9 00     LDA #$00           ; return 0
 35/BA29: 60        RTS 
 
 35/BA2A: B877 B8EE B874 B874 B7F9 B82A B863 B86C
@@ -28023,7 +28466,7 @@
 35/BA6D: A5 24     LDA $24
 35/BA6F: C9 0C     CMP #$0C
 35/BA71: D0 E8     BNE $BA5B
-35/BA73: 20 06 9D  JSR $9D06
+35/BA73: 20 06 9D  JSR $9D06          ; update character status for display
 35/BA76: A9 00     LDA #$00
 35/BA78: 85 24     STA $24
 35/BA7A: A9 75     LDA #$75
@@ -28062,12 +28505,12 @@
 35/BAC0: 8D D5 78  STA $78D5
 35/BAC3: A9 41     LDA #$41           ; $0661: "どくのダメージ！" / "Damaged by poison"
 35/BAC5: 8D DA 78  STA $78DA
-35/BAC8: A9 17     LDA #$17
+35/BAC8: A9 17     LDA #$17           ; damage numerals
 35/BACA: 8D C2 7E  STA $7EC2
 35/BACD: 20 F7 8F  JSR $8FF7          ; execute action script
-35/BAD0: A9 16     LDA #$16
+35/BAD0: A9 16     LDA #$16           ; death animation
 35/BAD2: 8D C2 7E  STA $7EC2
-35/BAD5: 20 11 84  JSR $8411
+35/BAD5: 20 11 84  JSR $8411          ; show animation
 35/BAD8: 20 58 A4  JSR $A458          ; check if battle is over
 35/BADB: 60        RTS 
 
@@ -28392,13 +28835,14 @@
 35/BD93: 20 F7 8F  JSR $8FF7          ; execute action script
 35/BD96: E6 3C     INC $3C
 35/BD98: 4C 82 BD  JMP $BD82
+; start of character loop
 35/BD9B: 20 41 A5  JSR $A541          ; get character offset
 35/BD9E: 18        CLC 
 35/BD9F: 69 01     ADC #$01
 35/BDA1: A8        TAY 
 35/BDA2: B1 5B     LDA ($5B),Y
 35/BDA4: 29 C0     AND #$C0
-35/BDA6: F0 03     BEQ $BDAB
+35/BDA6: F0 03     BEQ $BDAB          ; branch if not dead or stone
 35/BDA8: 4C 70 BF  JMP $BF70
 35/BDAB: A9 00     LDA #$00
 35/BDAD: 85 1E     STA $1E
@@ -28406,41 +28850,41 @@
 35/BDB1: 85 20     STA $20
 35/BDB3: A5 52     LDA $52
 35/BDB5: 20 40 FD  JSR $FD40          ; asl2
-35/BDB8: 85 1C     STA $1C
+35/BDB8: 85 1C     STA $1C            ; $1C: character index * 4
 35/BDBA: A9 35     LDA #$35
 35/BDBC: 20 88 9B  JSR $9B88          ; add character offset
-35/BDBF: B1 5B     LDA ($5B),Y
+35/BDBF: B1 5B     LDA ($5B),Y        ; job experience multipliers (4 * 2 bits)
 35/BDC1: 85 22     STA $22
 35/BDC3: A9 00     LDA #$00
-35/BDC5: 85 23     STA $23
+35/BDC5: 85 23     STA $23            ; get next 2 bits
 35/BDC7: 06 22     ASL $22
 35/BDC9: 26 23     ROL $23
 35/BDCB: 06 22     ASL $22
 35/BDCD: 26 23     ROL $23
 35/BDCF: A6 1C     LDX $1C
-35/BDD1: BD F0 78  LDA $78F0,X
+35/BDD1: BD F0 78  LDA $78F0,X        ; number of times this command was used
 35/BDD4: A6 23     LDX $23
 35/BDD6: 20 D6 FC  JSR $FCD6          ; multiply
 35/BDD9: 18        CLC 
-35/BDDA: A5 1A     LDA $1A
+35/BDDA: A5 1A     LDA $1A            ; add to net job experience
 35/BDDC: 65 1E     ADC $1E
 35/BDDE: 85 1E     STA $1E
 35/BDE0: A5 1B     LDA $1B
 35/BDE2: 65 1F     ADC $1F
 35/BDE4: 85 1F     STA $1F
-35/BDE6: E6 1C     INC $1C
+35/BDE6: E6 1C     INC $1C            ; next command
 35/BDE8: E6 20     INC $20
 35/BDEA: A5 20     LDA $20
 35/BDEC: C9 04     CMP #$04
 35/BDEE: D0 D3     BNE $BDC3
-35/BDF0: 06 1E     ASL $1E
+35/BDF0: 06 1E     ASL $1E            ; multiply by 4
 35/BDF2: 26 1F     ROL $1F
 35/BDF4: 06 1E     ASL $1E
 35/BDF6: 26 1F     ROL $1F
 35/BDF8: A9 11     LDA #$11
 35/BDFA: 20 88 9B  JSR $9B88          ; add character offset
 35/BDFD: 18        CLC 
-35/BDFE: B1 57     LDA ($57),Y
+35/BDFE: B1 57     LDA ($57),Y        ; add to job experience
 35/BE00: 65 1E     ADC $1E
 35/BE02: 85 1E     STA $1E
 35/BE04: 91 57     STA ($57),Y
@@ -28452,26 +28896,26 @@
 35/BE0F: E9 64     SBC #$64
 35/BE11: A5 1F     LDA $1F
 35/BE13: E9 00     SBC #$00
-35/BE15: 90 22     BCC $BE39
+35/BE15: 90 22     BCC $BE39          ; branch if < 100
 35/BE17: A9 00     LDA #$00
-35/BE19: 91 57     STA ($57),Y
+35/BE19: 91 57     STA ($57),Y        ; set job experience to zero
 35/BE1B: 88        DEY 
 35/BE1C: 18        CLC 
-35/BE1D: B1 57     LDA ($57),Y
+35/BE1D: B1 57     LDA ($57),Y        ; increment job level
 35/BE1F: 69 01     ADC #$01
-35/BE21: C9 63     CMP #$63
+35/BE21: C9 63     CMP #$63           ; max 99
 35/BE23: B0 14     BCS $BE39
 35/BE25: 91 57     STA ($57),Y
-35/BE27: A9 04     LDA #$04           ; action script $04:
+35/BE27: A9 04     LDA #$04           ; action script $04: level/skill up message
 35/BE29: 8D D5 78  STA $78D5
 35/BE2C: A5 52     LDA $52
 35/BE2E: 8D D6 78  STA $78D6
 35/BE31: A9 22     LDA #$22           ; $0642: "じゅくれんどアップ！" / "Skill up!"
 35/BE33: 8D DA 78  STA $78DA
 35/BE36: 20 F7 8F  JSR $8FF7          ; execute action script
-35/BE39: 20 8D 9B  JSR $9B8D          ; get equipped weapon pointer
+35/BE39: 20 8D 9B  JSR $9B8D          ; get equipped weapon pointer (experience)
 35/BE3C: 18        CLC 
-35/BE3D: B1 57     LDA ($57),Y
+35/BE3D: B1 57     LDA ($57),Y        ; add experience
 35/BE3F: 6D 24 74  ADC $7424
 35/BE42: 85 2F     STA $2F
 35/BE44: 91 57     STA ($57),Y
@@ -28488,14 +28932,14 @@
 35/BE5A: 88        DEY 
 35/BE5B: 88        DEY 
 35/BE5C: B1 57     LDA ($57),Y
-35/BE5E: E9 7F     SBC #$7F
+35/BE5E: E9 7F     SBC #$7F           ; max 9,999,999
 35/BE60: C8        INY 
 35/BE61: B1 57     LDA ($57),Y
 35/BE63: E9 96     SBC #$96
 35/BE65: C8        INY 
 35/BE66: B1 57     LDA ($57),Y
 35/BE68: E9 98     SBC #$98
-35/BE6A: 90 14     BCC $BE80
+35/BE6A: 90 14     BCC $BE80          ; branch if no overflow
 35/BE6C: A9 98     LDA #$98
 35/BE6E: 91 57     STA ($57),Y
 35/BE70: 85 31     STA $31
@@ -28509,7 +28953,7 @@
 35/BE7E: 85 2F     STA $2F
 35/BE80: A4 5F     LDY $5F
 35/BE82: C8        INY 
-35/BE83: B1 57     LDA ($57),Y
+35/BE83: B1 57     LDA ($57),Y        ; level
 35/BE85: AA        TAX 
 35/BE86: 86 18     STX $18
 35/BE88: A9 03     LDA #$03
@@ -28524,36 +28968,36 @@
 35/BE9A: 20 A6 FD  JSR $FDA6          ; load array item
 35/BE9D: 38        SEC 
 35/BE9E: A5 2F     LDA $2F
-35/BEA0: ED 1E 74  SBC $741E
+35/BEA0: ED 1E 74  SBC $741E          ; subtract current experience
 35/BEA3: A5 30     LDA $30
 35/BEA5: ED 1F 74  SBC $741F
 35/BEA8: A5 31     LDA $31
 35/BEAA: ED 20 74  SBC $7420
-35/BEAD: B0 03     BCS $BEB2
-35/BEAF: 4C 70 BF  JMP $BF70
+35/BEAD: B0 03     BCS $BEB2          ; branch if character gained a level
+35/BEAF: 4C 70 BF  JMP $BF70          ; next character
 35/BEB2: A4 5F     LDY $5F
 35/BEB4: C8        INY 
-35/BEB5: B1 57     LDA ($57),Y
+35/BEB5: B1 57     LDA ($57),Y        ; level
 35/BEB7: 85 32     STA $32
 35/BEB9: AA        TAX 
 35/BEBA: E8        INX 
 35/BEBB: 8A        TXA 
 35/BEBC: C9 63     CMP #$63
-35/BEBE: 90 03     BCC $BEC3
-35/BEC0: 4C 70 BF  JMP $BF70
+35/BEBE: 90 03     BCC $BEC3          ; branch if level less than 99
+35/BEC0: 4C 70 BF  JMP $BF70          ; next character
 35/BEC3: 91 57     STA ($57),Y
 35/BEC5: A9 14     LDA #$14
 35/BEC7: 20 88 9B  JSR $9B88          ; add character offset
-35/BECA: B1 57     LDA ($57),Y
+35/BECA: B1 57     LDA ($57),Y        ; vitality
 35/BECC: 85 24     STA $24
 35/BECE: 4A        LSR 
 35/BECF: 20 64 A5  JSR $A564          ; random (0..A)
 35/BED2: 18        CLC 
 35/BED3: 65 24     ADC $24
-35/BED5: 85 24     STA $24
+35/BED5: 85 24     STA $24            ; vitality * (1..1.5)
 35/BED7: A4 5F     LDY $5F
 35/BED9: C8        INY 
-35/BEDA: B1 57     LDA ($57),Y
+35/BEDA: B1 57     LDA ($57),Y        ; level * 2
 35/BEDC: 0A        ASL 
 35/BEDD: 18        CLC 
 35/BEDE: 65 24     ADC $24
@@ -28561,7 +29005,7 @@
 35/BEE2: A9 0E     LDA #$0E
 35/BEE4: 20 88 9B  JSR $9B88          ; add character offset
 35/BEE7: 18        CLC 
-35/BEE8: B1 57     LDA ($57),Y
+35/BEE8: B1 57     LDA ($57),Y        ; add to max hp
 35/BEEA: 65 24     ADC $24
 35/BEEC: 91 57     STA ($57),Y
 35/BEEE: C8        INY 
@@ -28570,7 +29014,7 @@
 35/BEF3: 91 57     STA ($57),Y
 35/BEF5: 88        DEY 
 35/BEF6: 38        SEC 
-35/BEF7: B1 57     LDA ($57),Y
+35/BEF7: B1 57     LDA ($57),Y        ; max 9999
 35/BEF9: E9 0F     SBC #$0F
 35/BEFB: C8        INY 
 35/BEFC: B1 57     LDA ($57),Y
@@ -28582,7 +29026,7 @@
 35/BF07: A9 0F     LDA #$0F
 35/BF09: 91 57     STA ($57),Y
 35/BF0B: A4 5F     LDY $5F
-35/BF0D: B1 57     LDA ($57),Y
+35/BF0D: B1 57     LDA ($57),Y        ; level * 196 (level up data pointer)
 35/BF0F: 85 18     STA $18
 35/BF11: A9 C4     LDA #$C4
 35/BF13: 85 1A     STA $1A
@@ -28599,21 +29043,21 @@
 35/BF29: 85 21     STA $21
 35/BF2B: A5 32     LDA $32
 35/BF2D: 85 18     STA $18
-35/BF2F: A9 02     LDA #$02
+35/BF2F: A9 02     LDA #$02           ; 2 bytes
 35/BF31: 85 1A     STA $1A
 35/BF33: A2 21     LDX #$21
 35/BF35: A9 1C     LDA #$1C
 35/BF37: A0 1A     LDY #$1A
 35/BF39: 20 A6 FD  JSR $FDA6          ; load array item
 35/BF3C: AD 21 74  LDA $7421
-35/BF3F: 20 7C BF  JSR $BF7C
+35/BF3F: 20 7C BF  JSR $BF7C          ; add level up stat bonuses
 35/BF42: A2 08     LDX #$08
 35/BF44: A9 31     LDA #$31
 35/BF46: 20 88 9B  JSR $9B88          ; add character offset
 35/BF49: 4E 22 74  LSR $7422
 35/BF4C: 90 0B     BCC $BF59
 35/BF4E: 18        CLC 
-35/BF4F: B1 57     LDA ($57),Y
+35/BF4F: B1 57     LDA ($57),Y        ; add mp
 35/BF51: 69 01     ADC #$01
 35/BF53: C9 64     CMP #$64
 35/BF55: B0 02     BCS $BF59
@@ -28622,24 +29066,24 @@
 35/BF5A: C8        INY 
 35/BF5B: CA        DEX 
 35/BF5C: D0 EB     BNE $BF49
-35/BF5E: A9 04     LDA #$04           ; action script $04:
+35/BF5E: A9 04     LDA #$04           ; action script $04: level/skill up message
 35/BF60: 8D D5 78  STA $78D5
 35/BF63: A5 52     LDA $52
 35/BF65: 8D D6 78  STA $78D6
 35/BF68: A9 20     LDA #$20           ; $0640: "レベルアップ！" / "Level up!"
 35/BF6A: 8D DA 78  STA $78DA
 35/BF6D: 20 F7 8F  JSR $8FF7          ; execute action script
-35/BF70: E6 52     INC $52
+35/BF70: E6 52     INC $52            ; next character
 35/BF72: A5 52     LDA $52
 35/BF74: C9 04     CMP #$04
 35/BF76: F0 03     BEQ $BF7B
 35/BF78: 4C 9B BD  JMP $BD9B
 35/BF7B: 60        RTS 
 
-; [  ]
+; [ add level up stat bonuses ]
 
 35/BF7C: 85 19     STA $19
-35/BF7E: 29 07     AND #$07
+35/BF7E: 29 07     AND #$07           ; bonus amount
 35/BF80: 85 18     STA $18
 35/BF82: A9 12     LDA #$12
 35/BF84: 20 88 9B  JSR $9B88          ; add character offset
@@ -28648,10 +29092,10 @@
 35/BF8B: 90 21     BCC $BFAE
 35/BF8D: 18        CLC 
 35/BF8E: B1 57     LDA ($57),Y
-35/BF90: 65 18     ADC $18
+35/BF90: 65 18     ADC $18            ; add bonus
 35/BF92: C9 64     CMP #$64
 35/BF94: 90 02     BCC $BF98
-35/BF96: A9 63     LDA #$63
+35/BF96: A9 63     LDA #$63           ; max 99
 35/BF98: 91 57     STA ($57),Y
 35/BF9A: 98        TYA 
 35/BF9B: 48        PHA 
@@ -28711,20 +29155,7 @@
 35/BFEF: A5 18     LDA $18
 35/BFF1: 60        RTS 
 
-35/BFF2: 00        BRK 
-35/BFF3: 00        BRK 
-35/BFF4: 00        BRK 
-35/BFF5: 00        BRK 
-35/BFF6: 00        BRK 
-35/BFF7: 00        BRK 
-35/BFF8: 00        BRK 
-35/BFF9: 00        BRK 
-35/BFFA: 00        BRK 
-35/BFFB: 00        BRK 
-35/BFFC: 00        BRK 
-35/BFFD: 00        BRK 
-35/BFFE: 00        BRK 
-35/BFFF: 00        BRK 
+35/BFF2: 00 00 00 00 00 00 00 00 00 00 00 00 00 00
 
 ; --------------------------------------------------------------------------
 
@@ -39080,7 +39511,10 @@
 ; [ inn (main) ]
 
 3C/8E8D: 20 27 8E  JSR $8E27          ; calculate inn cost
-3C/8E90: A9 04     LDA #$04           ; "Welcome!\nIt'll cost \gil Gil\nto rest for the night.\nWill you be staying?"
+3C/8E90: A9 04     LDA #$04           ; "Welcome!
+                                      ; "It'll cost \gil Gil
+                                      ; "to rest for the night.
+                                      ; "Will you be staying?"
 3C/8E92: 20 F5 8E  JSR $8EF5          ; load inn text
 3C/8E95: 20 58 8F  JSR $8F58
 3C/8E98: 20 D1 8F  JSR $8FD1          ; show gil window
@@ -53512,7 +53946,7 @@
 3F/FA29: 8E EF 7C  STX $7CEF          ; battle bg
 3F/FA2C: 8C D8 7E  STY $7ED8          ; battle flags
 3F/FA2F: 20 1D FA  JSR $FA1D          ; reset ppu control
-3F/FA32: 85 A9     STA $A9            ; no temp prg bank
+3F/FA32: 85 A9     STA $A9            ; reset prg bank loading flag
 3F/FA34: 20 17 FB  JSR $FB17          ; push dp
 3F/FA37: 20 B5 FA  JSR $FAB5          ; set interrupt jump code
 3F/FA3A: A9 17     LDA #$17
@@ -53635,7 +54069,7 @@
 3F/FB07: 20 89 FB  JSR $FB89
 3F/FB0A: 20 03 80  JSR $8003          ; update sound
 3F/FB0D: A5 AB     LDA $AB
-3F/FB0F: 20 89 FB  JSR $FB89
+3F/FB0F: 20 89 FB  JSR $FB89          ; restore prg bank
 3F/FB12: 68        PLA 
 3F/FB13: A8        TAY 
 3F/FB14: 68        PLA 
@@ -53659,9 +54093,11 @@
 
 ; [ irq ]
 
+; for battle and cutscenes
+
 3F/FB30: 48        PHA 
 3F/FB31: AD AA 00  LDA $00AA
-3F/FB34: D0 0F     BNE $FB45
+3F/FB34: D0 0F     BNE $FB45          ; branch if irq ppu update is disabled
 3F/FB36: A5 08     LDA $08
 3F/FB38: 8D 00 20  STA $2000
 3F/FB3B: A5 10     LDA $10
@@ -53670,15 +54106,17 @@
 3F/FB42: 8D 05 20  STA $2005
 3F/FB45: 8D 00 E0  STA $E000          ; disable irq
 3F/FB48: A9 00     LDA #$00
-3F/FB4A: 85 00     STA $00
+3F/FB4A: 85 00     STA $00            ; clear irq flag
 3F/FB4C: A5 AA     LDA $AA
-3F/FB4E: 05 A9     ORA $A9
+3F/FB4E: 05 A9     ORA $A9            ; no sound update if prg bank is loading
 3F/FB50: D0 03     BNE $FB55
 3F/FB52: 20 F2 FA  JSR $FAF2          ; update sound
 3F/FB55: 68        PLA 
 3F/FB56: 40        RTI 
 
 ; [ nmi ]
+
+; for battle and cutscenes
 
 3F/FB57: 48        PHA 
 3F/FB58: 8A        TXA 
@@ -53719,7 +54157,7 @@
 3F/FB89: 0A        ASL 
 3F/FB8A: 48        PHA 
 3F/FB8B: A9 06     LDA #$06           ; select prg bank 0
-3F/FB8D: E6 A9     INC $A9
+3F/FB8D: E6 A9     INC $A9            ; disable sound update during irq
 3F/FB8F: 8D 00 80  STA $8000
 3F/FB92: 68        PLA 
 3F/FB93: 8D 01 80  STA $8001

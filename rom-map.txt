@@ -53,7 +53,7 @@
 | 028000-029FFF | 004010-00600F | map properties (512 * 16 bytes)           |
 | 03A000-068BFF | 006010-00CC0F | map background graphics                   |
 | 068C00-068CB5 | 00CC10-00CCC5 | pointers to ??? attack animation data     |
-| 068CB6-068E1F | 00CCC6-00CE2F | ??? attack animation data                 |
+| 068CB6-068E1F | 00CCC6-00CE2F | ??? attack animation data (reflect ???)   |
 | 068E20-068FFF | 00CE30-00D00F | (pointers at 33/BB9C)                     |
 | 069000-0697FF | 00D010-00D80F | pointers to world map tilemaps            |
 | 069800-09B3FF | 00D810-01340F | world map tilemaps (4 * 256 items)        |
@@ -72,7 +72,7 @@
 | 108400-1086B5 | 020410-0206C5 | map entrances                             |
 | 1086B6-1088E8 | 0206C6-0208F8 | map treasures                             |
 | 1088E9-1089FF | 0208F9-020A0F | map triggers                              |
-| 108A00-108D2F | 020A10-020D3F | battle code                               |
+| 108A00-108D2F | 020A10-020D3F | battle code (final boss animation)        |
 | 108D30-108D7F | 020D40-020D8F | ??? (8 * 10 bytes)                        |
 | 108D80-108D87 | 020D90-020D97 | pointers to data at 10/8D88               |
 | 108D88-108DFF | 020D98-020E0F | ??? (4 items)                             |
@@ -129,7 +129,7 @@
 | 2E9068-2E9097 | 05D078-05D0A7 | pointers to boss graphics (24 * 2 bytes)  |
 | 2E9098-2E919F | 05D0A8-05D1AF | weapon animation properties (88 * 3 bytes)|
 | 2E91A0-2E91CF | 05D1B0-05D1DF | item spell cast (48 * 1 byte)             |
-| 2E91D0-2E92EF | 05D1E0-05D2FF | (96 * 3 bytes)                            |
+| 2E91D0-2E92EF | 05D1E0-05D2FF | pre-animation properties (96 * 3 bytes)   |
 | 2E92F0-2E94EF | 05D300-05D4FF | normal map battle groups (512 * 1 byte)   |
 | 2E94F0-2E9CEF | 05D500-05DCFF | random battle groups (256 * 8 bytes)      |
 | 2E9CF0-2E9CFF | 05DD00-05DD0F | world 0 battle groups (16 32x32 sectors)  |
@@ -165,7 +165,7 @@
 | 39B2AE-39B3AD | 0732BE-0733BD | monster cp (256 * 1 byte)                 |
 | 39B3AE-39B3B5 | 0733BE-0733C5 | pointers to songs $37-$3A                 |
 | 39B3B6-39BB19 | 0733C6-073B29 | songs $37-$3A                             |
-| 39BB1A-39BB87 | 073B2A-073B97 | job stat modifiers (22 * 5 bytes)         |
+| 39BB1A-39BB87 | 073B2A-073B97 | job modifiers (22 * 5 bytes)              |
 | 39BB88-39BBD7 | 073B98-073BE7 | character initial mp (10 * 8 bytes)       |
 | 39BBD8-39BBD9 | 073BE8-073BE9 | character initial hp                      |
 | 39BBDA-39BBED | 073BEA-073BFF | character initial stats                   |

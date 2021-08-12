@@ -23,9 +23,9 @@
         
           But,hope is not yet lost.
          Four souls will take up the
-            quest of the Light.
+             quest of the Light.
         
-             And so it begins…
+              And so it begins…
 0x0001: 
            Four orphans have been
         raised by the priest Topapa
@@ -290,13 +290,13 @@
          …Just kidding.
          I've seen the shoes
          before.’
-0x0030: Old man:Hey De\xD3\xD4a,these
+0x0030: Old man:Hey Delila,these
          kids are the real heroes!
-        De\xD3\xD4a:Oh! I had no idea.
+        Delila:Oh! I had no idea.
          I’m terribly sorry.
-        Old man:De\xD3\xD4a,won't you
+        Old man:Delila,won't you
          lend them the shoes?
-        De\xD3\xD4a:Well,since you asked…
+        Delila:Well,since you asked…
          Here,take these.
 0x0031: Received Floating Shoes!
         “Yeah! Now we can cross the
@@ -921,7 +921,7 @@
         
 0x008E: The seal vanished.
         Elia:Alright,let's go.
-0x008F: De\xD3\xD4a:What do you want?
+0x008F: Delila:What do you want?
         “We were just wondering if
          you could lend us the
          Floating Shoes…”
@@ -1657,14 +1657,14 @@
         It'll cost \gil Gil
         to rest for the night.
         Will you be staying?
-0x0105: \partygil        Gil
+0x0105: \partygil         Gil
 0x0106: \choice[0x01]Yes
         \choice[0x01]No
 0x0107: Weapon
 0x0108: Armor
 0x0109:  Item
 0x010A: Magic
-0x010B: \choice[0x01]Buy\choice[0x05]Sell\choice[0x09]\x64\x65\x66
+0x010B: \choice[0x01]Buy\choice[0x05]Sell\choice[0x09]\Exit1\Exit2
         
 0x010C: Revived
 0x010D: Cured
@@ -1699,9 +1699,9 @@
 0x0122: \choice[0x01]New Game
 0x0123: Msg.Speed \x06
 0x0124: \choice[0x01]Give\choice[0x06]Take\choice[0x0B]Exit
-0x0125: \x0D   \char1[0x02] LV\char1[0x3E]\t[0x11]\char2[0x02] LV\char2[0x3E]
-           HP    \char1[0x30]/\char1[0x31]\t[0x11]HP\t[0x13]\char2[0x30]/\char2[0x31]\x09   \char3[0x02] LV\char3[0x3E]\t[0x11]\char4[0x02] LV\char4[0x3E]
-           HP    \char3[0x30]/\char3[0x31]\t[0x11]HP\t[0x13]\char4[0x30]/\char4[0x31]\x0A
+0x0125: \x0D   \char1[0x02] LV\char1[0x3E]                 \char2[0x02] LV\char2[0x3E]
+           HP     \char1[0x30]/\char1[0x31]                 HP                   \char2[0x30]/\char2[0x31]\x09   \char3[0x02] LV\char3[0x3E]                 \char4[0x02] LV\char4[0x3E]
+           HP     \char3[0x30]/\char3[0x31]                 HP                   \char4[0x30]/\char4[0x31]\x0A
 0x0126: Welcome!
 0x0127: Purchase which?
 0x0128: Thank you!
@@ -1712,19 +1712,19 @@
 0x012D:  Qty?\choice[0x06]1\choice[0x08]4\choice[0x0A]10
 0x012E:  Qty?\choice[0x06]1\choice[0x09]All
 0x012F: \x17[0x01]\x20
-0x0130: \char1[0x02]      \char1[0x01]\t[0x10]\char1[0x00]
-             HP           \char1[0x30]/\char1[0x31]
-             MP         \char1[0x80]/            \char1[0x81]/\t[0x0F]\char1[0x82]/\t[0x12]\char1[0x83]\x09         \char1[0x84]/            \char1[0x85]/\t[0x0F]\char1[0x86]/\t[0x12]\char1[0x87]\x09\char2[0x02]      \char2[0x01]\t[0x10]\char2[0x00]
-             HP           \char2[0x30]/\char2[0x31]
-             MP         \char2[0x80]/            \char2[0x81]/\t[0x0F]\char2[0x82]/\t[0x12]\char2[0x83]\x09         \char2[0x84]/            \char2[0x85]/\t[0x0F]\char2[0x86]/\t[0x12]\char2[0x87]\x09\char3[0x02]      \char3[0x01]\t[0x10]\char3[0x00]
-             HP           \char3[0x30]/\char3[0x31]
-             MP         \char3[0x80]/            \char3[0x81]/\t[0x0F]\char3[0x82]/\t[0x12]\char3[0x83]\x09         \char3[0x84]/            \char3[0x85]/\t[0x0F]\char3[0x86]/\t[0x12]\char3[0x87]\x09\char4[0x02]      \char4[0x01]\t[0x10]\char4[0x00]
-             HP           \char4[0x30]/\char4[0x31]
-             MP         \char4[0x80]/            \char4[0x81]/\t[0x0F]\char4[0x82]/\t[0x12]\char4[0x83]\x09         \char4[0x84]/            \char4[0x85]/\t[0x0F]\char4[0x86]/\t[0x12]\char4[0x87]\x0A
+0x0130: \char1[0x02]       \char1[0x01]                \char1[0x00]
+              HP           \char1[0x30]/\char1[0x31]
+              MP         \char1[0x80]/            \char1[0x81]/               \char1[0x82]/                  \char1[0x83]\x09         \char1[0x84]/            \char1[0x85]/               \char1[0x86]/                  \char1[0x87]\x09\char2[0x02]       \char2[0x01]                \char2[0x00]
+              HP           \char2[0x30]/\char2[0x31]
+              MP         \char2[0x80]/            \char2[0x81]/               \char2[0x82]/                  \char2[0x83]\x09         \char2[0x84]/            \char2[0x85]/               \char2[0x86]/                  \char2[0x87]\x09\char3[0x02]       \char3[0x01]                \char3[0x00]
+              HP           \char3[0x30]/\char3[0x31]
+              MP         \char3[0x80]/            \char3[0x81]/               \char3[0x82]/                  \char3[0x83]\x09         \char3[0x84]/            \char3[0x85]/               \char3[0x86]/                  \char3[0x87]\x09\char4[0x02]       \char4[0x01]                \char4[0x00]
+              HP           \char4[0x30]/\char4[0x31]
+              MP         \char4[0x80]/            \char4[0x81]/               \char4[0x82]/                  \char4[0x83]\x09         \char4[0x84]/            \char4[0x85]/               \char4[0x86]/                  \char4[0x87]\x0A
 0x0131: \choice[0x01]Item
         \choice[0x01]Magic
         \choice[0x01]Equip
-        \choice[0x01]S\x60\x61\x62\x63
+        \choice[0x01]S\tatus1\tatus2
         \choice[0x01]Row
         \choice[0x01]Job
         \choice[0x01]Save
@@ -1735,31 +1735,31 @@
 0x0134:  \partygilG\x0A
 0x0135:  Item
 0x0136:  \char1[0x02]\choice[0x09]Use\choice[0x0F]Swap\choice[0x16]Item
-0x0137:  S\x60\x61\x62\x63
+0x0137:  S\tatus1\tatus2
 0x0138:  Save
-0x0139: \x17[0x01]\inventory[0x00]          \inventoryqty[0x00]\x17[0x0E]\inventory[0x01]\t[0x17]\inventoryqty[0x01]
-        \x17[0x01]\inventory[0x02]          \inventoryqty[0x02]\x17[0x0E]\inventory[0x03]\t[0x17]\inventoryqty[0x03]
-        \x17[0x01]\inventory[0x04]          \inventoryqty[0x04]\x17[0x0E]\inventory[0x05]\t[0x17]\inventoryqty[0x05]
-        \x17[0x01]\inventory[0x06]          \inventoryqty[0x06]\x17[0x0E]\inventory[0x07]\t[0x17]\inventoryqty[0x07]
-        \x17[0x01]\inventory[0x08]          \inventoryqty[0x08]\x17[0x0E]\inventory[0x09]\t[0x17]\inventoryqty[0x09]
-        \x17[0x01]\inventory[0x0A]          \inventoryqty[0x0A]\x17[0x0E]\inventory[0x0B]\t[0x17]\inventoryqty[0x0B]
-        \x17[0x01]\inventory[0x0C]          \inventoryqty[0x0C]\x17[0x0E]\inventory[0x0D]\t[0x17]\inventoryqty[0x0D]
-        \x17[0x01]\inventory[0x0E]          \inventoryqty[0x0E]\x17[0x0E]\inventory[0x0F]\t[0x17]\inventoryqty[0x0F]
-        \x17[0x01]\inventory[0x10]          \inventoryqty[0x10]\x17[0x0E]\inventory[0x11]\t[0x17]\inventoryqty[0x11]
-        \x17[0x01]\inventory[0x12]          \inventoryqty[0x12]\x17[0x0E]\inventory[0x13]\t[0x17]\inventoryqty[0x13]
-        \x17[0x01]\inventory[0x14]          \inventoryqty[0x14]\x17[0x0E]\inventory[0x15]\t[0x17]\inventoryqty[0x15]
-        \x17[0x01]\inventory[0x16]          \inventoryqty[0x16]\x17[0x0E]\inventory[0x17]\t[0x17]\inventoryqty[0x17]
-        \x17[0x01]\inventory[0x18]          \inventoryqty[0x18]\x17[0x0E]\inventory[0x19]\t[0x17]\inventoryqty[0x19]
-        \x17[0x01]\inventory[0x1A]          \inventoryqty[0x1A]\x17[0x0E]\inventory[0x1B]\t[0x17]\inventoryqty[0x1B]
-        \x17[0x01]\inventory[0x1C]          \inventoryqty[0x1C]\x17[0x0E]\inventory[0x1D]\t[0x17]\inventoryqty[0x1D]
-        \x17[0x01]\inventory[0x1E]          \inventoryqty[0x1E]\x17[0x0E]\inventory[0x1F]\t[0x17]\inventoryqty[0x1F]
+0x0139: \x17[0x01]\inventory[0x00]          \inventoryqty[0x00]\x17[0x0E]\inventory[0x01]                       \inventoryqty[0x01]
+        \x17[0x01]\inventory[0x02]          \inventoryqty[0x02]\x17[0x0E]\inventory[0x03]                       \inventoryqty[0x03]
+        \x17[0x01]\inventory[0x04]          \inventoryqty[0x04]\x17[0x0E]\inventory[0x05]                       \inventoryqty[0x05]
+        \x17[0x01]\inventory[0x06]          \inventoryqty[0x06]\x17[0x0E]\inventory[0x07]                       \inventoryqty[0x07]
+        \x17[0x01]\inventory[0x08]          \inventoryqty[0x08]\x17[0x0E]\inventory[0x09]                       \inventoryqty[0x09]
+        \x17[0x01]\inventory[0x0A]          \inventoryqty[0x0A]\x17[0x0E]\inventory[0x0B]                       \inventoryqty[0x0B]
+        \x17[0x01]\inventory[0x0C]          \inventoryqty[0x0C]\x17[0x0E]\inventory[0x0D]                       \inventoryqty[0x0D]
+        \x17[0x01]\inventory[0x0E]          \inventoryqty[0x0E]\x17[0x0E]\inventory[0x0F]                       \inventoryqty[0x0F]
+        \x17[0x01]\inventory[0x10]          \inventoryqty[0x10]\x17[0x0E]\inventory[0x11]                       \inventoryqty[0x11]
+        \x17[0x01]\inventory[0x12]          \inventoryqty[0x12]\x17[0x0E]\inventory[0x13]                       \inventoryqty[0x13]
+        \x17[0x01]\inventory[0x14]          \inventoryqty[0x14]\x17[0x0E]\inventory[0x15]                       \inventoryqty[0x15]
+        \x17[0x01]\inventory[0x16]          \inventoryqty[0x16]\x17[0x0E]\inventory[0x17]                       \inventoryqty[0x17]
+        \x17[0x01]\inventory[0x18]          \inventoryqty[0x18]\x17[0x0E]\inventory[0x19]                       \inventoryqty[0x19]
+        \x17[0x01]\inventory[0x1A]          \inventoryqty[0x1A]\x17[0x0E]\inventory[0x1B]                       \inventoryqty[0x1B]
+        \x17[0x01]\inventory[0x1C]          \inventoryqty[0x1C]\x17[0x0E]\inventory[0x1D]                       \inventoryqty[0x1D]
+        \x17[0x01]\inventory[0x1E]          \inventoryqty[0x1E]\x17[0x0E]\inventory[0x1F]                       \inventoryqty[0x1F]
 0x013A:  Not enough experience
          for this Job.
 0x013B: \x16
           \char1[0x02] \char1[0x00]\x16\trash  \char2[0x02] \char2[0x00]
-           HP    \char1[0x30]/\char1[0x31]\t[0x11]HP\t[0x13]\char2[0x30]/\char2[0x31]\x09\x16
+           HP     \char1[0x30]/\char1[0x31]                 HP                   \char2[0x30]/\char2[0x31]\x09\x16
           \char3[0x02] \char3[0x00]\x16\trash  \char4[0x02] \char4[0x00]
-           HP    \char3[0x30]/\char3[0x31]\t[0x11]HP\t[0x13]\char4[0x30]/\char4[0x31]\x0A
+           HP     \char3[0x30]/\char3[0x31]                 HP                   \char4[0x30]/\char4[0x31]\x0A
 0x013C: 1 \char1[0x80]/\char1[0x88]\x16\cp\char1[0x08]\x16\trash\char1[0x09]\x16\x16\char1[0x0A]
         2 \char1[0x81]/\char1[0x89]\x16\cp\char1[0x0B]\x16\trash\char1[0x0C]\x16\x16\char1[0x0D]
         3 \char1[0x82]/\char1[0x8A]\x16\cp\char1[0x0E]\x16\trash\char1[0x0F]\x16\x16\char1[0x10]
@@ -1768,24 +1768,24 @@
         6 \char1[0x85]/\char1[0x8D]\x16\cp\char1[0x17]\x16\trash\char1[0x18]\x16\x16\char1[0x19]
         7 \char1[0x86]/\char1[0x8E]\x16\cp\char1[0x1A]\x16\trash\char1[0x1B]\x16\x16\char1[0x1C]
         8 \char1[0x87]/\char1[0x8F]\x16\cp\char1[0x1D]\x16\trash\char1[0x1E]\x16\x16\char1[0x1F]
-0x013D: \x17[0x01]\inventory[0x00]           \inventoryqty[0x00]\x17[0x0F]\inventory[0x01]\t[0x19]\inventoryqty[0x01]
-        \x17[0x01]\inventory[0x02]           \inventoryqty[0x02]\x17[0x0F]\inventory[0x03]\t[0x19]\inventoryqty[0x03]
-        \x17[0x01]\inventory[0x04]           \inventoryqty[0x04]\x17[0x0F]\inventory[0x05]\t[0x19]\inventoryqty[0x05]
-        \x17[0x01]\inventory[0x06]           \inventoryqty[0x06]\x17[0x0F]\inventory[0x07]\t[0x19]\inventoryqty[0x07]
-        \x17[0x01]\inventory[0x08]           \inventoryqty[0x08]\x17[0x0F]\inventory[0x09]\t[0x19]\inventoryqty[0x09]
-        \x17[0x01]\inventory[0x0A]           \inventoryqty[0x0A]\x17[0x0F]\inventory[0x0B]\t[0x19]\inventoryqty[0x0B]
-        \x17[0x01]\inventory[0x0C]           \inventoryqty[0x0C]\x17[0x0F]\inventory[0x0D]\t[0x19]\inventoryqty[0x0D]
-        \x17[0x01]\inventory[0x0E]           \inventoryqty[0x0E]\x17[0x0F]\inventory[0x0F]\t[0x19]\inventoryqty[0x0F]
-        \x17[0x01]\inventory[0x10]           \inventoryqty[0x10]\x17[0x0F]\inventory[0x11]\t[0x19]\inventoryqty[0x11]
-        \x17[0x01]\inventory[0x12]           \inventoryqty[0x12]\x17[0x0F]\inventory[0x13]\t[0x19]\inventoryqty[0x13]
-        \x17[0x01]\inventory[0x14]           \inventoryqty[0x14]\x17[0x0F]\inventory[0x15]\t[0x19]\inventoryqty[0x15]
-        \x17[0x01]\inventory[0x16]           \inventoryqty[0x16]\x17[0x0F]\inventory[0x17]\t[0x19]\inventoryqty[0x17]
-        \x17[0x01]\inventory[0x18]           \inventoryqty[0x18]\x17[0x0F]\inventory[0x19]\t[0x19]\inventoryqty[0x19]
-        \x17[0x01]\inventory[0x1A]           \inventoryqty[0x1A]\x17[0x0F]\inventory[0x1B]\t[0x19]\inventoryqty[0x1B]
-        \x17[0x01]\inventory[0x1C]           \inventoryqty[0x1C]\x17[0x0F]\inventory[0x1D]\t[0x19]\inventoryqty[0x1D]
-        \x17[0x01]\inventory[0x1E]           \inventoryqty[0x1E]\x17[0x0F]\inventory[0x1F]\t[0x19]\inventoryqty[0x1F]
+0x013D: \x17[0x01]\inventory[0x00]           \inventoryqty[0x00]\x17[0x0F]\inventory[0x01]                         \inventoryqty[0x01]
+        \x17[0x01]\inventory[0x02]           \inventoryqty[0x02]\x17[0x0F]\inventory[0x03]                         \inventoryqty[0x03]
+        \x17[0x01]\inventory[0x04]           \inventoryqty[0x04]\x17[0x0F]\inventory[0x05]                         \inventoryqty[0x05]
+        \x17[0x01]\inventory[0x06]           \inventoryqty[0x06]\x17[0x0F]\inventory[0x07]                         \inventoryqty[0x07]
+        \x17[0x01]\inventory[0x08]           \inventoryqty[0x08]\x17[0x0F]\inventory[0x09]                         \inventoryqty[0x09]
+        \x17[0x01]\inventory[0x0A]           \inventoryqty[0x0A]\x17[0x0F]\inventory[0x0B]                         \inventoryqty[0x0B]
+        \x17[0x01]\inventory[0x0C]           \inventoryqty[0x0C]\x17[0x0F]\inventory[0x0D]                         \inventoryqty[0x0D]
+        \x17[0x01]\inventory[0x0E]           \inventoryqty[0x0E]\x17[0x0F]\inventory[0x0F]                         \inventoryqty[0x0F]
+        \x17[0x01]\inventory[0x10]           \inventoryqty[0x10]\x17[0x0F]\inventory[0x11]                         \inventoryqty[0x11]
+        \x17[0x01]\inventory[0x12]           \inventoryqty[0x12]\x17[0x0F]\inventory[0x13]                         \inventoryqty[0x13]
+        \x17[0x01]\inventory[0x14]           \inventoryqty[0x14]\x17[0x0F]\inventory[0x15]                         \inventoryqty[0x15]
+        \x17[0x01]\inventory[0x16]           \inventoryqty[0x16]\x17[0x0F]\inventory[0x17]                         \inventoryqty[0x17]
+        \x17[0x01]\inventory[0x18]           \inventoryqty[0x18]\x17[0x0F]\inventory[0x19]                         \inventoryqty[0x19]
+        \x17[0x01]\inventory[0x1A]           \inventoryqty[0x1A]\x17[0x0F]\inventory[0x1B]                         \inventoryqty[0x1B]
+        \x17[0x01]\inventory[0x1C]           \inventoryqty[0x1C]\x17[0x0F]\inventory[0x1D]                         \inventoryqty[0x1D]
+        \x17[0x01]\inventory[0x1E]           \inventoryqty[0x1E]\x17[0x0F]\inventory[0x1F]                         \inventoryqty[0x1F]
         \x17[0x05]\trash
-0x013E:  \char1[0x02]           Att;\char1[0x33]\t[0x14]Def;\char1[0x34]
+0x013E:  \char1[0x02]           Att~\char1[0x33]                    Def~\char1[0x34]
         \choice[0x01]\char1[0x06]\char1[0x43]\choice[0x12]\char1[0x03]
         \choice[0x01]\char1[0x07]\char1[0x44]\choice[0x12]\char1[0x04]
         \choice[0x01]Remove\choice[0x12]\char1[0x05]
@@ -1797,20 +1797,20 @@
 0x0144: \blackFire power up!
 0x0145: \blackIce power up!
 0x0146: \blackBolt power up!
-0x0147:             \char1[0x02]\t[0x14]\char1[0x01]
-        \t[0x14]Skill \char1[0x3D]
-         Level \char1[0x3E]\t[0x0E]Exp \char1[0x32]
+0x0147:             \char1[0x02]                    \char1[0x01]
+                            Skill \char1[0x3D]
+         Level \char1[0x3E]              Exp \char1[0x32]
                  Next Lvl  \char1[0xFF]
          HP \char1[0x30]/\char1[0x31]
          MP \char1[0x80]/\char1[0x81]/\char1[0x82]/\char1[0x83]/\char1[0x84]/\char1[0x85]/\char1[0x86]/\char1[0x87]
         
-         Strength;\char1[0x38]\t[0x0E]Att.\char1[0x46]x ;\char1[0x33]
-         Agility  ;\char1[0x39]\t[0x0E]Hit %\t[0x16]; \char1[0x42]
-         Vitality ;\char1[0x3A]\t[0x0E]Def.\char1[0x47]x ;\char1[0x34]
-         Intellect;\char1[0x3B]\t[0x0E]Evade\t[0x16]; \char1[0x41]
-         Spirit  ;\char1[0x3C]\t[0x0E]M.Def.\t[0x16];\char1[0x36]
-        \t[0x0E]M.Evade ; \char1[0x40]
-0x0148:  \char1[0x02]       \char1[0x01]
+         Strength~\char1[0x38]              Att.\char1[0x46]x ~\char1[0x33]
+         Agility  ~\char1[0x39]              Hit %                      ~ \char1[0x42]
+         Vitality ~\char1[0x3A]              Def.\char1[0x47]x ~\char1[0x34]
+         Intellect~\char1[0x3B]              Evade                      ~ \char1[0x41]
+         Spirit  ~\char1[0x3C]              M.Def.                      ~\char1[0x36]
+                      M.Evade ~ \char1[0x40]
+0x0148:  \char1[0x02]        \char1[0x01]
 0x0149: \cpC
 0x014A: \choice[0x01]\job[0x00]\jobcp[0x00]\choice[0x0F]\job[0x01]\jobcp[0x01]
         \choice[0x01]\job[0x02]\jobcp[0x02]\choice[0x0F]\job[0x03]\jobcp[0x03]
@@ -1857,11 +1857,11 @@
 0x016A: Turn to/from “Mini” 1/All
 0x016B: No room to remove
 0x016C: Not enough money.
-0x016D: \t[0x01]\char1[0x02]
+0x016D:  \char1[0x02]
 0x016E: Removed
 0x016F: Can't equip
-0x0170:       Change Job?
-             A;Yes    B;No
+0x0170:        Change Job?
+              A~Yes    B~No
 0x0171:  Must remove equipment
          to change Jobs.
 0x0172:  Not enough “Capacity”!
@@ -1880,71 +1880,71 @@
 0x017E:           Canaan
 0x017F:           Tozas
 0x0180:           Tokkle
-0x0181:     Ancients’ Village
+0x0181:      Ancients’ Village
 0x0182:           Gisahl
 0x0183:            Amur
 0x0184:           Dastar
 0x0185:           Leprit
 0x0186:          Salonia
 0x0187: 
-0x0188:        Fargabaad
-0x0189:      Sasoon Castle
-0x018A:      Argass Castle
-0x018B:      Salonia Castle
-0x018C:        Dwarf Cave
-0x018D:       Viking Base
-0x018E:       Gurgan Valley
-0x018F:        Left Tower
-0x0190:       Right Tower
-0x0191:        Left Tower
-0x0192:       Right Tower
-0x0193:       Round Table
+0x0188:         Fargabaad
+0x0189:       Sasoon Castle
+0x018A:       Argass Castle
+0x018B:       Salonia Castle
+0x018C:         Dwarf Cave
+0x018D:        Viking Base
+0x018E:        Gurgan Valley
+0x018F:         Left Tower
+0x0190:        Right Tower
+0x0191:         Left Tower
+0x0192:        Right Tower
+0x0193:        Round Table
 0x0194:     Road to the Summit
-0x0195:      Chocobo Forest
-0x0196:      Living Forest
-0x0197:      Bahamut's Nest
-0x0198:       Cid's Airship
-0x0199:       Nepto Shrine
-0x019A:       Mithril Mine
+0x0195:       Chocobo Forest
+0x0196:       Living Forest
+0x0197:       Bahamut's Nest
+0x0198:        Cid's Airship
+0x0199:        Nepto Shrine
+0x019A:        Mithril Mine
 0x019B: 
-0x019C:     Cave of the Seal
-0x019D:        Flame Cave
-0x019E:        Altar Cave
+0x019C:      Cave of the Seal
+0x019D:         Flame Cave
+0x019E:         Altar Cave
 0x019F:          Salonia
 0x01A0:          Salonia
 0x01A1:          Salonia
-0x01A2:       Battlefield
-0x01A3:     Underground Lake
-0x01A4:       Hidden Road
-0x01A5:      Tower of Owen
-0x01A6:       Castle Hyne
-0x01A7:      Fargabaad Cave
-0x01A8:       Wind Crystal
-0x01A9:       Fire Crystal
+0x01A2:        Battlefield
+0x01A3:      Underground Lake
+0x01A4:        Hidden Road
+0x01A5:       Tower of Owen
+0x01A6:        Castle Hyne
+0x01A7:       Fargabaad Cave
+0x01A8:        Wind Crystal
+0x01A9:        Fire Crystal
 0x01AA:          Lake Dol
-0x01AB:     Cave of Bahamut
-0x01AC:       Dorga's House
-0x01AD:       Unne's Shrine
-0x01AE:        Shipwreck
-0x01AF:     Temple of Water
-0x01B0:        Water Cave
+0x01AB:      Cave of Bahamut
+0x01AC:        Dorga's House
+0x01AD:        Unne's Shrine
+0x01AE:         Shipwreck
+0x01AF:      Temple of Water
+0x01B0:         Water Cave
 0x01B1:           Sewer
-0x01B2:     Goldor's Mansion
+0x01B2:      Goldor's Mansion
 0x01B3:     Magic Circle Cave
-0x01B4:       Dorga's Cave
-0x01B5:      Temple of Time
-0x01B6:      Undersea Cave
+0x01B4:        Dorga's Cave
+0x01B5:       Temple of Time
+0x01B6:       Undersea Cave
 0x01B7: 
-0x01B8:     Cave of Darkness
-0x01B9:      Ancient Ruins
-0x01BA:        Invincible
+0x01B8:      Cave of Darkness
+0x01B9:       Ancient Ruins
+0x01BA:         Invincible
 0x01BB:    Ancients’ Labyrinth
-0x01BC:        Sylx Tower
+0x01BC:         Sylx Tower
 0x01BD: 
-0x01BE:        Dark World
+0x01BE:         Dark World
 0x01BF:            B1F
-0x01C0:      Water Crystal
-0x01C1:      Earth Crystal
+0x01C0:       Water Crystal
+0x01C1:       Earth Crystal
 0x01C2:     Wind Dark Crystal
 0x01C3:     Fire Dark Crystal
 0x01C4:     Water Dark Crystal
@@ -1969,9 +1969,9 @@
 0x01D7:            10F
 0x01D8:             1F
 0x01D9:          Library
-0x01DA:      Dorga's Village
-0x01DB:     Forest of Healing
-0x01DC:       Throne Room
+0x01DA:       Dorga's Village
+0x01DB:      Forest of Healing
+0x01DC:        Throne Room
 0x01DD:  Head
 0x01DE:  Body
 0x01DF:  Arms
@@ -1980,14 +1980,14 @@
 0x01E2: OnionKid
 0x01E3: Fighter 
 0x01E4: Monk    
-0x01E5: Wh\xD5\xD6Wiz.
-0x01E6: B\xD7\xD8\xD9Wiz.
+0x01E5: WhiteWiz.
+0x01E6: B\lack1\lack2Wiz.
 0x01E7: Red Wiz.
 0x01E8: Hunter  
 0x01E9: Knight  
 0x01EA: Thief   
 0x01EB: Scholar 
-0x01EC: Ge\xDA\xDB\xDC\xDD\xDE\xDF
+0x01EC: Ge\omancer1\omancer2\omancer3
 0x01ED: Dragoon 
 0x01EE: Viking  
 0x01EF: Karateka
@@ -3122,7 +3122,7 @@
         can cross the Bottomless
         Swamp.
         
-        Didn't that old lady De\xD3\xD4a
+        Didn't that old lady Delila
         who lives in the sewers
         have them?
         
@@ -3618,9 +3618,9 @@
         
         
         BEST AIRSHIP OF THE YEAR
-        1;Submarine Nautilus
-        2;Great Ship Invincible
-        3;Airship Enterprise
+        1~Submarine Nautilus
+        2~Great Ship Invincible
+        3~Airship Enterprise
 0x03A2: You can call a Fat Chocobo
         in the room on the right.
         Use a Carrot on the candle
@@ -3863,9 +3863,9 @@
         
           But,hope is not yet lost.
          Four souls will take up the
-            quest of the Light.
+             quest of the Light.
         
-             And so it begins…
+              And so it begins…
 0x03EE:  The Gurgan quietly spoke…
          This earthquake is but an
         omen. The tremors that pulled
@@ -3876,9 +3876,9 @@
         
           But,hope is not yet lost.
          Four souls will take up the
-            quest of the Light.
+             quest of the Light.
         
-             And so it begins…
+              And so it begins…
 0x03EF:  The Gurgan quietly spoke…
          This earthquake is but an
         omen. The tremors that pulled
@@ -3889,9 +3889,9 @@
         
           But,hope is not yet lost.
          Four souls will take up the
-            quest of the Light.
+             quest of the Light.
         
-             And so it begins…
+              And so it begins…
 0x03F0:  The Gurgan quietly spoke…
          This earthquake is but an
         omen. The tremors that pulled
@@ -3902,9 +3902,9 @@
         
           But,hope is not yet lost.
          Four souls will take up the
-            quest of the Light.
+             quest of the Light.
         
-             And so it begins…
+              And so it begins…
 0x03F1:  The Gurgan quietly spoke…
          This earthquake is but an
         omen. The tremors that pulled
@@ -3915,9 +3915,9 @@
         
           But,hope is not yet lost.
          Four souls will take up the
-            quest of the Light.
+             quest of the Light.
         
-             And so it begins…
+              And so it begins…
 0x03F2:  The Gurgan quietly spoke…
          This earthquake is but an
         omen. The tremors that pulled
@@ -3928,9 +3928,9 @@
         
           But,hope is not yet lost.
          Four souls will take up the
-            quest of the Light.
+             quest of the Light.
         
-             And so it begins…
+              And so it begins…
 0x03F3:  The Gurgan quietly spoke…
          This earthquake is but an
         omen. The tremors that pulled
@@ -3941,9 +3941,9 @@
         
           But,hope is not yet lost.
          Four souls will take up the
-            quest of the Light.
+             quest of the Light.
         
-             And so it begins…
+              And so it begins…
 0x03F4:  The Gurgan quietly spoke…
          This earthquake is but an
         omen. The tremors that pulled
@@ -3954,9 +3954,9 @@
         
           But,hope is not yet lost.
          Four souls will take up the
-            quest of the Light.
+             quest of the Light.
         
-             And so it begins…
+              And so it begins…
 0x03F5:  The Gurgan quietly spoke…
          This earthquake is but an
         omen. The tremors that pulled
@@ -3967,9 +3967,9 @@
         
           But,hope is not yet lost.
          Four souls will take up the
-            quest of the Light.
+             quest of the Light.
         
-             And so it begins…
+              And so it begins…
 0x03F6:  The Gurgan quietly spoke…
          This earthquake is but an
         omen. The tremors that pulled
@@ -3980,9 +3980,9 @@
         
           But,hope is not yet lost.
          Four souls will take up the
-            quest of the Light.
+             quest of the Light.
         
-             And so it begins…
+              And so it begins…
 0x03F7:  The Gurgan quietly spoke…
          This earthquake is but an
         omen. The tremors that pulled
@@ -3993,9 +3993,9 @@
         
           But,hope is not yet lost.
          Four souls will take up the
-            quest of the Light.
+             quest of the Light.
         
-             And so it begins…
+              And so it begins…
 0x03F8:  The Gurgan quietly spoke…
          This earthquake is but an
         omen. The tremors that pulled
@@ -4006,9 +4006,9 @@
         
           But,hope is not yet lost.
          Four souls will take up the
-            quest of the Light.
+             quest of the Light.
         
-             And so it begins…
+              And so it begins…
 0x03F9:  The Gurgan quietly spoke…
          This earthquake is but an
         omen. The tremors that pulled
@@ -4019,9 +4019,9 @@
         
           But,hope is not yet lost.
          Four souls will take up the
-            quest of the Light.
+             quest of the Light.
         
-             And so it begins…
+              And so it begins…
 0x03FA:  The Gurgan quietly spoke…
          This earthquake is but an
         omen. The tremors that pulled
@@ -4032,9 +4032,9 @@
         
           But,hope is not yet lost.
          Four souls will take up the
-            quest of the Light.
+             quest of the Light.
         
-             And so it begins…
+              And so it begins…
 0x03FB:  The Gurgan quietly spoke…
          This earthquake is but an
         omen. The tremors that pulled
@@ -4045,9 +4045,9 @@
         
           But,hope is not yet lost.
          Four souls will take up the
-            quest of the Light.
+             quest of the Light.
         
-             And so it begins…
+              And so it begins…
 0x03FC:  The Gurgan quietly spoke…
          This earthquake is but an
         omen. The tremors that pulled
@@ -4058,9 +4058,9 @@
         
           But,hope is not yet lost.
          Four souls will take up the
-            quest of the Light.
+             quest of the Light.
         
-             And so it begins…
+              And so it begins…
 0x03FD:  The Gurgan quietly spoke…
          This earthquake is but an
         omen. The tremors that pulled
@@ -4071,9 +4071,9 @@
         
           But,hope is not yet lost.
          Four souls will take up the
-            quest of the Light.
+             quest of the Light.
         
-             And so it begins…
+              And so it begins…
 0x03FE:  The Gurgan quietly spoke…
          This earthquake is but an
         omen. The tremors that pulled
@@ -4084,9 +4084,9 @@
         
           But,hope is not yet lost.
          Four souls will take up the
-            quest of the Light.
+             quest of the Light.
         
-             And so it begins…
+              And so it begins…
 0x03FF:  The Gurgan quietly spoke…
          This earthquake is but an
         omen. The tremors that pulled
@@ -4097,9 +4097,9 @@
         
           But,hope is not yet lost.
          Four souls will take up the
-            quest of the Light.
+             quest of the Light.
         
-             And so it begins…
+              And so it begins…
 0x0400:  Empty
 0x0401: \clawKaiser
 0x0402: \clawCatClaw
@@ -4228,7 +4228,7 @@
 0x047A: \robeDarkSuit
 0x047B: \robeWizard
 0x047C: \armorViking
-0x047D: \robeB\xD7\xD8\xD9Belt
+0x047D: \robeB\lack1\lack2Belt
 0x047E: \armorKnight
 0x047F: \armorDragon
 0x0480: \robeBard
@@ -4237,8 +4237,8 @@
 0x0483: \armorDemon
 0x0484: \armorDiamond
 0x0485: \armorReflect
-0x0486: \robeWh\xD5\xD6Robe
-0x0487: \robeB\xD7\xD8\xD9Robe
+0x0486: \robeWhiteRobe
+0x0487: \robeB\lack1\lack2Robe
 0x0488: \armorGenji
 0x0489: \armorCrystal
 0x048A: \armorRusted
@@ -4291,7 +4291,7 @@
 0x04B9: Gods’Wine
 0x04BA: TurtlShell
 0x04BB: Devil'sSigh
-0x04BC: B\xD7\xD8\xD9Hole
+0x04BC: B\lack1\lack2Hole
 0x04BD: DarkScent
 0x04BE: LilithKiss
 0x04BF: Imp'sYawn
@@ -4302,7 +4302,7 @@
 0x04C4: BombHead
 0x04C5: Barrier
 0x04C6: ChocoRage
-0x04C7: Wh\xD5\xD6Scent
+0x04C7: WhiteScent
 0x04C8: \blackFlare
 0x04C9: \blackDeath
 0x04CA: \blackMeteo
@@ -4658,7 +4658,7 @@
 0x0628: Jump
 0x0629: Miss!
 0x062A: Sure kill
-0x062B: Te\x67\x68\x69\x6A
+0x062B: Te\rrain1\rrain2
 0x062C: Peep
 0x062D: Scan
 0x062E: Steal
