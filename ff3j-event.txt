@@ -11,7 +11,7 @@
 ; npc script $01
 2C/9943: FF 70                          ; do event $70 (drink water in altar cave)
 2C/9945: 01                             ;   The four drank…
-2C/9946: 66                             ;   “I feel a power Welling
+2C/9946: 66                             ;   “I feel a power welling
                                         ;   up inside me!”
 
 ; npc script $02
@@ -52,7 +52,7 @@
 ; npc script $13
 2C/997B: 11 FF 72                     ; if ($11 == 0) do event $72
 2C/997F: FF 03                        ; do event $03 (show npc dialog 2)
-2C/9980: 15                           ;   The man Who raised the
+2C/9980: 15                           ;   The man who raised the
                                       ;   orphans,Topapa the Elder.
                                       ;   “Dad! We…”
 2C/9981: 16                           ;   Topapa:I know. I had no
@@ -60,12 +60,12 @@
                                       ;    \char1[0x02],\char2[0x02],
                                       ;    \char3[0x02],\char4[0x02]…
                                       ;    First you must know that
-                                      ;    this Was no accident.
+                                      ;    this was no accident.
                                       ;    The Crystals have chosen
-                                      ;    you by their Will.
+                                      ;    you by their will.
                                       ;    Don't let their power…
                                       ;    don't let your hearts of
-                                      ;    Light go to Waste!
+                                      ;    Light go to waste!
                                       ;    Begin your journey!
                                       ;    Seal off the power of
                                       ;    Darkness!
@@ -87,14 +87,15 @@
 2C/99A7: FF 01 27
 2C/99AA: FF 01 28
 
-; floating continent inns ($E0-$E2)
+; floating continent inns (npc scripts $00E0-$00E2)
 
 2C/9CA4: 02 AF
 2C/9CA6: 04 AF
 2C/9CA8: 06 AF
 
-; floating continent shops ($E3-$FF)
+; floating continent shops (npc scripts $00E3-$00FB)
 
+; 1st byte is shop type id (string offset $0100)
 ; 07: weapon shop
 ; 08: armor shop
 ; 09: item shop
@@ -126,6 +127,7 @@
 2C/9D47: 09 A6 AE AF 00               ; $FA: kazus item shop
 2C/9D4C: 0A CF D0 D1 D2 D3 D4 00      ; $FB: invincible magic shop
 
+; floating continent fat chocobo (npc scripts $00FC-$00FF)
 2C/9D54: FE
 
 ; surface world npc scripts 
@@ -151,13 +153,13 @@
 
 2C/9D5F: 33 FF C6 FF 97 05 FF 01 06 FF C5 07 FF 01 09 FF 01 0A FF 01 0C 41 FF 01 FF 02 0D 0E 41 FF 01 FF 02 0F 10 FF 01 11 41 FF 01 FF 02 12 13 41 FF 01 FF 02 14 15 FF 01 16 FF 01
 
-; surface world inns ($01E0-$01E2)
+; surface world inns (npc scripts $01E0-$01E2)
 
 2C/A069: 0A AF
 2C/A06B: 10 AF
 2C/A06D: 20 AF
 
-; surface world shops ($01E3-$01FF)
+; surface world shops (npc scripts $01E3-$01FB)
 
 2C/A06F: 09 A7 AA AB AC AD AE AF 99   ; $E3: generic item shop
 2C/A078: 09 A7 AA AC AE AF B0 99 A4   ; $E4: invincible item shop
@@ -185,6 +187,7 @@
 2C/A115: 0A DC D5 CE 00               ; $FA: eureka summon shop
 2C/A11A: 0A CF D0 D1 D2 D3 D4 00      ; $FB: invincible magic shop
 
+; surface world fat chocobo (npc scripts $01FC-$01FF)
 2C/A122: FE
 
 -----------------------------------------------------------------------------
@@ -328,6 +331,90 @@
 2C/A24D: FF 46                          ; do event $46
 
 2C/A250: 1E FF 47 FF 00 F7 FF 48 FF 49 32 FF 4A FF 00 08 FF BA FF BB FF BC 4E 4F FF 4E 4E FF 4D FF 00 0D FF 4F FF 00 07 F7 FF 50 07 FF 49 FF 00 FF BD 47 FF 51 FF 00 2A FF 52 FF 00 34 FF 53 FF 00 48 07 FF 54 87 A5 36 FF 55 87 A5 37 FF 55 FF 00 07 FF 56 FF 00 30 FF 57 FF 00 31 FF 58 FF 00 49 FF 59 FF 00 38 B9 FF 5A FF 00 44 FF 00 DF FF 00 FF 5B 3A FF 5C FF 00 FF BE FF 5E FF 5F C6 FF 60 FF 00 3B FF 61 FF 00 3C FF 62 FF 00 3D FF 63 FF 00 3E FF 64 FF 00 BB BC BD BE FF 65 FF 66 FF 00 4C FF 6A FF 00 51 FF 0A FF 00 FF 6C FF C2 FF 3E FF CC 19 89 59 FF CE FF 00 DF FF B2 DE FF B3 A1 FF B1 68 FF B0 C0 04 FF B4 FF 0E 01 FF 00 05 FF 79 01 FF 00 44 15 FF B5 FF 0E 01 FF 00 56 16 FF B6 FF 0E DF FF B2 DE FF B3 01 FF 00 98 0B FF 67 FF B7 01 FF 00 88 FF B8 04 FF 69 01 FF 00 02 FF 96 01 FF 00 02 FF 96 60 FF D0 61 FF D1 62 FF D2 FF D3 63 FF D4 14 64 FF D5 14 65 FF D6 14 FF D7 80 FF D8 FF D9 66
+
+; floating continent item select scripts
+
+; item $98: magic key
+2C/A307: DF                             ; npc $DF
+2C/A308: FF B2                          ; do event $B2
+
+; item $99: carrot
+2C/A30A: DE                             ; npc $DE
+2C/A30B: FF B3                          ; do event $B3
+
+; item $9A: horn
+2C/A30D: A1                             ; npc $A1
+2C/A30E: FF B1                          ; do event $B1
+
+; item $9B: eye
+2C/A310: 68                             ; npc $68
+2C/A311: FF B0                          ; do event $B0
+
+; item $9C: time gear
+2C/A313: C0                             ; npc $C0
+2C/A314: 04 FF B4                       ; if ($04 == 0) do event $B4
+2C/A317: FF 0E                          ; do event $0E
+
+; item $9D-$A5: no effect
+2C/A319: 01                             ; npc $01
+2C/A31A: FF 00                          ; do event $00
+
+; item $A6: potion (old man in ur)
+2C/A31C: 05                             ; npc $05
+2C/A31D: FF 79                          ; do event $79
+
+; item $A7: hi-potion (no effect)
+2C/A31F: 01                             ; npc $01
+2C/A320: FF 00                          ; do event $00
+
+; item $A8: elixir (cid's wife)
+2C/A322: 44                             ; npc $44
+2C/A323: 15 FF B5                       ; if ($15 == 0) do event $B5
+2C/A326: FF 0E                          ; do event $0E
+
+; item $A9-$AE: no effect
+2C/A328: 01                             ; npc $01
+2C/A329: FF 00                          ; do event $00
+
+; item $AF: antidote (dr. shelco in tozus)
+2C/A32B: 56                             ; npc $56
+2C/A32C: 16 FF B6                       ; if ($16 == 0) do event $B6
+2C/A32F: FF 0E                          ; do event $0E
+
+; surface world item select scripts
+
+; item $98: magic key
+2C/A331: DF FF B2
+
+; item $99: carrot
+2C/A334: DE FF B3
+
+; item $9A-$9C: no effect
+2C/A337: 01 FF 00
+
+; item $9D: eureka key
+2C/A33A: 98 0B FF 67 FF B7
+
+; item $9E-$A1: no effect
+2C/A340: 01 FF 00
+
+; item $A2: lute
+2C/A343: 88 FF B8
+
+; item $A3: sylx key
+2C/A346: 04 FF 69
+
+; item $A4-$A5: no effect
+2C/A349: 01 FF 00
+
+; item $A6-$A9: restore aria
+2C/A34C: 02 FF 96
+
+; item $AA-$AE: no effect
+2C/A34F: 01 FF 00
+
+; item $AF: antidote (restore aria)
+2C/A352: 02 FF 96
 
 +-----------------------+
 | event script commands |
