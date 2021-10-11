@@ -11636,7 +11636,8 @@
 31/B893: A0 24     LDY #$24
 31/B895: B1 70     LDA ($70),Y        ; resistant status
 31/B897: 29 01     AND #$01
-31/B899: F0 16     BEQ $B8B1
+31/B899: F0 16     BEQ $B8B1          ; branch if no absorb
+; absorb
 31/B89B: A0 20     LDY #$20
 31/B89D: B1 70     LDA ($70),Y        ; absorbed elements
 31/B89F: 2D 00 74  AND $7400
@@ -11648,6 +11649,7 @@
 31/B8AA: A9 02     LDA #$02           ; show "absorbed" message
 31/B8AC: 85 54     STA $54
 31/B8AE: 4C 3F B2  JMP $B23F          ; healing effect
+; no absorb
 31/B8B1: A0 12     LDY #$12
 31/B8B3: B1 70     LDA ($70),Y        ; weak elements
 31/B8B5: 2D 00 74  AND $7400
@@ -11662,9 +11664,9 @@
 31/B8CA: 85 27     STA $27
 31/B8CC: 60        RTS 
 31/B8CD: A0 20     LDY #$20
-31/B8CF: B1 70     LDA ($70),Y
+31/B8CF: B1 70     LDA ($70),Y        ; strong elements
 31/B8D1: 2D 00 74  AND $7400
-31/B8D4: D0 0C     BNE $B8E2
+31/B8D4: D0 0C     BNE $B8E2          ; branch if strong against spell element
 31/B8D6: A0 20     LDY #$20
 31/B8D8: B1 70     LDA ($70),Y
 31/B8DA: C9 02     CMP #$02
@@ -26721,17 +26723,17 @@
 35/A8E8: A2 00     LDX #$00
 35/A8EA: BD A7 7D  LDA $7DA7,X
 35/A8ED: C9 FF     CMP #$FF
-35/A8EF: F0 0F     BEQ $A900
+35/A8EF: F0 0F     BEQ $A900          ; branch if monster slot is empty
 35/A8F1: 18        CLC 
-35/A8F2: B1 24     LDA ($24),Y
+35/A8F2: B1 24     LDA ($24),Y        ; sum of monster levels
 35/A8F4: 65 18     ADC $18
 35/A8F6: 85 18     STA $18
 35/A8F8: A9 00     LDA #$00
 35/A8FA: 65 19     ADC $19
 35/A8FC: 85 19     STA $19
-35/A8FE: E6 1A     INC $1A
+35/A8FE: E6 1A     INC $1A            ; divide by no. of monsters
 35/A900: 18        CLC 
-35/A901: A5 24     LDA $24
+35/A901: A5 24     LDA $24            ; increment pointer to monster data
 35/A903: 69 40     ADC #$40
 35/A905: 85 24     STA $24
 35/A907: A5 25     LDA $25
@@ -26744,7 +26746,7 @@
 35/A915: A0 2A     LDY #$2A
 35/A917: B1 6E     LDA ($6E),Y        ; run probability
 35/A919: 18        CLC 
-35/A91A: 69 19     ADC #$19
+35/A91A: 69 19     ADC #$19           ; add 25
 35/A91C: 38        SEC 
 35/A91D: E5 1C     SBC $1C
 35/A91F: B0 02     BCS $A923
@@ -32011,7 +32013,7 @@
 3A/8767: CA        DEX 
 3A/8768: D0 FA     BNE $8764
 3A/876A: 20 00 FF  JSR $FF00          ; wait for vblank
-3A/876D: 20 0F C0  JSR $C00F          ; copy color palettes to vram
+3A/876D: 20 0F C0  JSR $C00F          ; copy color palettes to ppu
 3A/8770: A5 FF     LDA $FF
 3A/8772: 8D 00 20  STA $2000
 3A/8775: A9 00     LDA #$00
@@ -32134,7 +32136,7 @@
 
 3A/884C: 20 00 FF  JSR $FF00          ; wait for vblank
 3A/884F: 20 34 88  JSR $8834          ; copy attributes to ppu
-3A/8852: 20 0F C0  JSR $C00F          ; copy color palettes to vram
+3A/8852: 20 0F C0  JSR $C00F          ; copy color palettes to ppu
 3A/8855: A5 FF     LDA $FF
 3A/8857: 8D 00 20  STA $2000
 3A/885A: A9 00     LDA #$00
@@ -32263,7 +32265,7 @@
 3A/8947: 20 00 FF  JSR $FF00          ; wait for vblank
 3A/894A: A9 02     LDA #$02
 3A/894C: 8D 14 40  STA $4014          ; dma oam data to ppu
-3A/894F: 20 0F C0  JSR $C00F          ; copy color palettes to vram
+3A/894F: 20 0F C0  JSR $C00F          ; copy color palettes to ppu
 3A/8952: A9 1E     LDA #$1E
 3A/8954: 8D 01 20  STA $2001
 3A/8957: A9 98     LDA #$98
@@ -32613,7 +32615,7 @@
 3A/8C07: 20 00 FF  JSR $FF00          ; wait for vblank
 3A/8C0A: A9 02     LDA #$02
 3A/8C0C: 8D 14 40  STA $4014          ; dma oam data to ppu
-3A/8C0F: 20 0F C0  JSR $C00F          ; copy color palettes to vram
+3A/8C0F: 20 0F C0  JSR $C00F          ; copy color palettes to ppu
 3A/8C12: A5 FF     LDA $FF
 3A/8C14: 8D 00 20  STA $2000
 3A/8C17: A9 0A     LDA #$0A
@@ -34041,7 +34043,7 @@
 3A/983B: A9 88     LDA #$88
 3A/983D: 8D 00 20  STA $2000
 3A/9840: 20 00 FF  JSR $FF00          ; wait for vblank
-3A/9843: 20 0F C0  JSR $C00F          ; copy color palettes to vram
+3A/9843: 20 0F C0  JSR $C00F          ; copy color palettes to ppu
 3A/9846: 20 00 FF  JSR $FF00          ; wait for vblank
 3A/9849: A9 00     LDA #$00
 3A/984B: 8D 05 20  STA $2005
@@ -34774,20 +34776,20 @@
 3B/A087: A4AF A1CE A4A4 A09B A0B1 A076 AEEB B2FD
 3B/A097: AF7F A076
 
-; [ object command 3:  ]
+; [ object command 3: do floor damage ]
 
 3B/A09B: A5 F0     LDA $F0
-3B/A09D: 29 01     AND #$01
+3B/A09D: 29 01     AND #$01           ; toggle grayscale every frame
 3B/A09F: 09 1E     ORA #$1E
 3B/A0A1: 8D 01 20  STA $2001
 3B/A0A4: A5 34     LDA $34
 3B/A0A6: D0 08     BNE $A0B0
-3B/A0A8: A9 C0     LDA #$C0
+3B/A0A8: A9 C0     LDA #$C0           ; play sound effect $40
 3B/A0AA: 8D 49 7F  STA $7F49
 3B/A0AD: 4C 00 A1  JMP $A100          ; decrement party hp
 3B/A0B0: 60        RTS 
 
-; [ object command 4:  ]
+; [ object command 4: poison step damage ]
 
 3B/A0B1: AD 02 61  LDA $6102
 3B/A0B4: C9 40     CMP #$40
@@ -34813,7 +34815,7 @@
 3B/A0DE: A5 34     LDA $34            ; 
 3B/A0E0: F0 01     BEQ $A0E3
 3B/A0E2: 60        RTS 
-3B/A0E3: A9 96     LDA #$96           ; 
+3B/A0E3: A9 96     LDA #$96           ; play sound effect $16
 3B/A0E5: 8D 49 7F  STA $7F49
 3B/A0E8: A2 00     LDX #$00
 3B/A0EA: BD 02 61  LDA $6102,X
@@ -37533,7 +37535,7 @@
 3B/B655: 20 06 FF  JSR $FF06          ; switch prg bank 0
 3B/B658: 20 09 85  JSR $8509          ; load map palette
 3B/B65B: 20 00 FF  JSR $FF00          ; wait for vblank
-3B/B65E: 20 0F C0  JSR $C00F          ; copy color palettes to vram
+3B/B65E: 20 0F C0  JSR $C00F          ; copy color palettes to ppu
 3B/B661: A9 00     LDA #$00
 3B/B663: 85 80     STA $80
 3B/B665: 4C 52 B9  JMP $B952
@@ -38319,7 +38321,7 @@
 3B/BB58: A5 63     LDA $63
 3B/BB5A: C9 08     CMP #$08
 3B/BB5C: 90 0A     BCC $BB68          ; branch if not last loop
-3B/BB5E: 20 0F C0  JSR $C00F          ; copy color palettes to vram
+3B/BB5E: 20 0F C0  JSR $C00F          ; copy color palettes to ppu
 3B/BB61: A9 00     LDA #$00
 3B/BB63: 85 80     STA $80
 3B/BB65: 4C 52 B9  JMP $B952
@@ -41120,8 +41122,8 @@
 3C/93DB: CA        DEX 
 3C/93DC: 10 F7     BPL $93D5
 3C/93DE: 20 00 FF  JSR $FF00          ; wait for vblank
-3C/93E1: 20 08 D3  JSR $D308          ; copy color palettes to vram
-3C/93E4: 20 98 C3  JSR $C398
+3C/93E1: 20 08 D3  JSR $D308          ; copy color palettes to ppu
+3C/93E4: 20 98 C3  JSR $C398          ; update ppu registers
 3C/93E7: A9 3C     LDA #$3C
 3C/93E9: 85 57     STA $57
 3C/93EB: 4C 58 C7  JMP $C758          ; update sound
@@ -41166,8 +41168,8 @@
 3C/9429: 85 8E     STA $8E
 3C/942B: 20 00 FF  JSR $FF00          ; wait for vblank
 3C/942E: 20 3E 94  JSR $943E
-3C/9431: 20 08 D3  JSR $D308          ; copy color palettes to vram
-3C/9434: 20 98 C3  JSR $C398
+3C/9431: 20 08 D3  JSR $D308          ; copy color palettes to ppu
+3C/9434: 20 98 C3  JSR $C398          ; update ppu registers
 3C/9437: A9 3C     LDA #$3C
 3C/9439: 85 57     STA $57
 3C/943B: 4C 58 C7  JMP $C758          ; update sound
@@ -43511,7 +43513,7 @@
 3D/A54A: 20 00 FF  JSR $FF00          ; wait for vblank
 3D/A54D: A9 02     LDA #$02
 3D/A54F: 8D 14 40  STA $4014          ; dma oam data to ppu
-3D/A552: 20 08 D3  JSR $D308          ; copy color palettes to vram
+3D/A552: 20 08 D3  JSR $D308          ; copy color palettes to ppu
 3D/A555: A9 88     LDA #$88
 3D/A557: 85 FD     STA $FD
 3D/A559: 85 FF     STA $FF
@@ -43647,7 +43649,7 @@
 3D/A66A: 68        PLA 
 ; fallthrough
 
-; [ load menu text (multi-line) ]
+; [ load menu text (multi-page) ]
 
 3D/A66B: 85 92     STA $92            ; text id
 3D/A66D: A9 82     LDA #$82
@@ -43656,7 +43658,7 @@
 3D/A673: 85 94     STA $94
 3D/A675: 4C 65 EE  JMP $EE65          ; load text (multi-page)
 
-; [ load menu text (single-line) ]
+; [ load menu text (single-page) ]
 
 3D/A678: 85 92     STA $92            ; text id
 3D/A67A: A9 82     LDA #$82
@@ -44823,7 +44825,7 @@
 3D/AF39: 20 00 FF  JSR $FF00          ; wait for vblank
 3D/AF3C: A9 02     LDA #$02
 3D/AF3E: 8D 14 40  STA $4014          ; dma oam data to ppu
-3D/AF41: 20 08 D3  JSR $D308          ; copy color palettes to vram
+3D/AF41: 20 08 D3  JSR $D308          ; copy color palettes to ppu
 3D/AF44: 20 69 B3  JSR $B369
 3D/AF47: A9 3C     LDA #$3C
 3D/AF49: 85 57     STA $57
@@ -45360,7 +45362,7 @@
 3D/B388: A9 27     LDA #$27           ; orange
 3D/B38A: 8D DE 03  STA $03DE
 3D/B38D: 20 00 FF  JSR $FF00          ; wait for vblank
-3D/B390: 20 08 D3  JSR $D308          ; copy color palettes to vram
+3D/B390: 20 08 D3  JSR $D308          ; copy color palettes to ppu
 3D/B393: 20 69 B3  JSR $B369
 3D/B396: 20 C3 AE  JSR $AEC3          ; clear item equipability for all characters
 3D/B399: A9 51     LDA #$51           ; "でぶチョコボ：「よーお　なんかようかーい？" / "Hey…! Whatcha want?"
@@ -46278,7 +46280,7 @@
 3D/BA1F: 20 00 FF  JSR $FF00          ; wait for vblank
 3D/BA22: A9 02     LDA #$02
 3D/BA24: 8D 14 40  STA $4014          ; dma oam data to ppu
-3D/BA27: 20 08 D3  JSR $D308          ; copy color palettes to vram
+3D/BA27: 20 08 D3  JSR $D308          ; copy color palettes to ppu
 3D/BA2A: A5 FF     LDA $FF
 3D/BA2C: 8D 00 20  STA $2000
 3D/BA2F: A9 1E     LDA #$1E
@@ -47058,7 +47060,7 @@
 3E/C006: 4C BB F7  JMP $F7BB          ; init ppu name table (menu)
 3E/C009: 4C 58 C7  JMP $C758          ; update sound
 3E/C00C: 4C 7A D2  JMP $D27A          ; update joypad input
-3E/C00F: 4C 08 D3  JMP $D308          ; copy color palettes to vram
+3E/C00F: 4C 08 D3  JMP $D308          ; copy color palettes to ppu
 3E/C012: 4C 66 D6  JMP $D666          ; draw inactive invincible
 3E/C015: 4C 00 00  JMP $0000          ; unused
 3E/C018: 4C 83 CC  JMP $CC83          ; decompress world tilemap (minimap)
@@ -47129,7 +47131,7 @@
 3E/C096: 20 00 FF  JSR $FF00          ; wait for vblank
 3E/C099: A9 02     LDA #$02
 3E/C09B: 8D 14 40  STA $4014          ; dma oam data to ppu
-3E/C09E: 20 08 D3  JSR $D308          ; copy color palettes to vram
+3E/C09E: 20 08 D3  JSR $D308          ; copy color palettes to ppu
 3E/C0A1: A5 FA     LDA $FA
 3E/C0A3: C9 77     CMP #$77
 3E/C0A5: F0 1C     BEQ $C0C3          ; branch if soft reset
@@ -47316,7 +47318,7 @@
 3E/C22B: 85 A6     STA $A6
 3E/C22D: A9 00     LDA #$00
 3E/C22F: 85 AF     STA $AF
-3E/C231: 20 67 CA  JSR $CA67
+3E/C231: 20 67 CA  JSR $CA67          ; init player movement
 3E/C234: A9 01     LDA #$01           ; player is moving
 3E/C236: 85 34     STA $34
 3E/C238: 60        RTS 
@@ -47328,10 +47330,10 @@
 3E/C242: 60        RTS 
 3E/C243: A5 A9     LDA $A9
 3E/C245: D0 0B     BNE $C252
-3E/C247: 20 19 D2  JSR $D219          ; execute event script
+3E/C247: 20 19 D2  JSR $D219          ; execute event script / update joypad input
 3E/C24A: A5 20     LDA $20
 3E/C24C: 29 0F     AND #$0F
-3E/C24E: D0 03     BNE $C253
+3E/C24E: D0 03     BNE $C253          ; branch if any direction buttons are pressed
 3E/C250: 85 4E     STA $4E
 3E/C252: 60        RTS 
 ; direction button
@@ -47504,8 +47506,11 @@
 3E/C38D: 20 16 C4  JSR $C416          ; update player movement
 3E/C390: A5 42     LDA $42
 3E/C392: D0 03     BNE $C397
-3E/C394: 4C 07 C9  JMP $C907
+3E/C394: 4C 07 C9  JMP $C907          ; do poison step damage
 3E/C397: 60        RTS 
+
+; [ update ppu registers (world map) ]
+
 3E/C398: A9 1E     LDA #$1E
 3E/C39A: 8D 01 20  STA $2001          ; ppu mask
 3E/C39D: A5 FD     LDA $FD
@@ -47536,7 +47541,7 @@
 3E/C3BE: A5 32     LDA $32
 3E/C3C0: F0 03     BEQ $C3C5          ; branch if background doesn't need update
 3E/C3C2: 20 79 CA  JSR $CA79          ; update map background
-3E/C3C5: 20 98 C3  JSR $C398
+3E/C3C5: 20 98 C3  JSR $C398          ; update ppu registers
 3E/C3C8: A5 35     LDA $35
 3E/C3CA: 18        CLC 
 3E/C3CB: 65 34     ADC $34            ; add player movement speed
@@ -47559,7 +47564,7 @@
 3E/C3E8: A5 32     LDA $32
 3E/C3EA: F0 03     BEQ $C3EF          ; branch if background doesn't need update
 3E/C3EC: 20 79 CA  JSR $CA79          ; update map background
-3E/C3EF: 20 98 C3  JSR $C398
+3E/C3EF: 20 98 C3  JSR $C398          ; update ppu registers
 3E/C3F2: A5 35     LDA $35
 3E/C3F4: D0 11     BNE $C407
 3E/C3F6: A5 27     LDA $27
@@ -47596,7 +47601,7 @@
 3E/C42A: C9 08     CMP #$08
 3E/C42C: 90 03     BCC $C431
 3E/C42E: 20 79 CA  JSR $CA79          ; update map background
-3E/C431: 20 98 C3  JSR $C398
+3E/C431: 20 98 C3  JSR $C398          ; update ppu registers
 3E/C434: A5 36     LDA $36
 3E/C436: 18        CLC 
 3E/C437: 65 34     ADC $34            ; add player movement speed
@@ -47622,7 +47627,7 @@
 3E/C45A: C9 08     CMP #$08
 3E/C45C: D0 03     BNE $C461
 3E/C45E: 20 79 CA  JSR $CA79          ; update map background
-3E/C461: 20 98 C3  JSR $C398
+3E/C461: 20 98 C3  JSR $C398          ; update ppu registers
 3E/C464: A5 36     LDA $36
 3E/C466: D0 0F     BNE $C477
 3E/C468: C6 28     DEC $28
@@ -47709,7 +47714,7 @@
 3E/C4F1: D0 06     BNE $C4F9
 3E/C4F3: 20 8A C9  JSR $C98A          ; load prg banks $3C/$3D
 3E/C4F6: 20 DA B6  JSR $B6DA          ; push to guest npc movement stack
-3E/C4F9: 4C 67 CA  JMP $CA67
+3E/C4F9: 4C 67 CA  JMP $CA67          ; init player movement
 ; subroutine starts here
 3E/C4FC: A6 42     LDX $42
 3E/C4FE: E0 02     CPX #$02
@@ -48242,8 +48247,8 @@
 3E/C897: 85 FD     STA $FD
 3E/C899: 85 FF     STA $FF
 3E/C89B: 20 00 FF  JSR $FF00          ; wait for vblank
-3E/C89E: 20 08 D3  JSR $D308          ; copy color palettes to vram
-3E/C8A1: 20 98 C3  JSR $C398
+3E/C89E: 20 08 D3  JSR $D308          ; copy color palettes to ppu
+3E/C8A1: 20 98 C3  JSR $C398          ; update ppu registers
 3E/C8A4: A9 00     LDA #$00
 3E/C8A6: 8D 01 20  STA $2001
 3E/C8A9: 20 3A C9  JSR $C93A          ; play world map song
@@ -48287,10 +48292,14 @@
 3E/C8F7: 20 8A C9  JSR $C98A          ; load prg banks $3C/$3D
 3E/C8FA: 4C 27 B6  JMP $B627
 
+; [ do floor damage ]
+
 3E/C8FD: A9 3B     LDA #$3B
 3E/C8FF: 20 09 FF  JSR $FF09          ; switch prg bank 1
 3E/C902: A2 03     LDX #$03
 3E/C904: 4C 03 A0  JMP $A003          ; execute object command
+
+; [ do poison step damage ]
 
 3E/C907: A9 3B     LDA #$3B
 3E/C909: 20 09 FF  JSR $FF09          ; switch prg bank 1
@@ -48436,7 +48445,7 @@
 3E/C9EA: 48        PHA 
 3E/C9EB: A9 08     LDA #$08
 3E/C9ED: 85 33     STA $33
-3E/C9EF: 20 67 CA  JSR $CA67
+3E/C9EF: 20 67 CA  JSR $CA67          ; init player movement
 3E/C9F2: 20 00 FF  JSR $FF00          ; wait for vblank
 3E/C9F5: 20 79 CA  JSR $CA79          ; update map background
 3E/C9F8: A5 2F     LDA $2F
@@ -48482,7 +48491,7 @@
 3E/CA3F: 85 2A     STA $2A
 3E/CA41: A9 08     LDA #$08           ; facing up
 3E/CA43: 85 33     STA $33
-3E/CA45: 20 67 CA  JSR $CA67
+3E/CA45: 20 67 CA  JSR $CA67          ; init player movement
 3E/CA48: 20 79 CA  JSR $CA79          ; update map background
 3E/CA4B: 20 89 CA  JSR $CA89
 3E/CA4E: A5 2F     LDA $2F
@@ -48498,14 +48507,14 @@
 3E/CA64: 85 34     STA $34            ; player is not moving
 3E/CA66: 60        RTS 
 
-; [  ]
+; [ init player movement ]
 
 3E/CA67: A5 2D     LDA $2D
 3E/CA69: 4A        LSR 
 3E/CA6A: 90 06     BCC $CA72          ; branch if on world map
-3E/CA6C: 20 A3 CD  JSR $CDA3          ; update map for scrolling (normal map)
+3E/CA6C: 20 A3 CD  JSR $CDA3          ; init player movement (normal map)
 3E/CA6F: 4C 75 CA  JMP $CA75
-3E/CA72: 20 FB CC  JSR $CCFB          ; update map for scrolling (world map)
+3E/CA72: 20 FB CC  JSR $CCFB          ; init player movement (world map)
 3E/CA75: 20 AD CA  JSR $CAAD
 3E/CA78: 60        RTS 
 
@@ -48666,7 +48675,7 @@
 
 ; --------------------------------------------------------------------------
 
-; [ load map ]
+; [ load map data ]
 
 3E/CBA4: A9 00     LDA #$00
 3E/CBA6: 20 06 FF  JSR $FF06          ; switch prg bank 0
@@ -48878,7 +48887,7 @@
 3E/CCF8: 85 82     STA $82
 3E/CCFA: 60        RTS 
 
-; [ update map for scrolling (world map) ]
+; [ init player movement (world map) ]
 
 3E/CCFB: A5 33     LDA $33
 3E/CCFD: 4A        LSR 
@@ -48908,7 +48917,7 @@
 3E/CD26: A9 01     LDA #$01
 3E/CD28: 85 32     STA $32            ; background needs update
 3E/CD2A: 85 34     STA $34            ; player movement speed: 1
-3E/CD2C: 4C 7E CD  JMP $CD7E          ; update player movement speed (world map)
+3E/CD2C: 4C 7E CD  JMP $CD7E          ; update world map movement speed
 ; left
 3E/CD2F: A5 27     LDA $27
 3E/CD31: 38        SEC 
@@ -48953,7 +48962,7 @@
 ; speed for each vehicle
 3E/CD76: 01 02 01 02 04 02 08 02
 
-; [ update player movement speed (world map) ]
+; [ update world map movement speed ]
 
 3E/CD7E: A5 78     LDA $78
 3E/CD80: C9 04     CMP #$04
@@ -48975,7 +48984,7 @@
 3E/CDA0: 85 34     STA $34
 3E/CDA2: 60        RTS 
 
-; [ update map for scrolling (normal map) ]
+; [ init player movement (normal map) ]
 
 3E/CDA3: A5 33     LDA $33            ; facing direction
 3E/CDA5: 4A        LSR 
@@ -49235,7 +49244,7 @@
 
 ; [ screen wipe out (world map) ]
 
-3E/CF79: 20 F8 D0  JSR $D0F8          ; reset oam data in ppu
+3E/CF79: 20 F8 D0  JSR $D0F8          ; hide all sprites
 3E/CF7C: A9 70     LDA #$70
 3E/CF7E: 85 84     STA $84
 3E/CF80: A9 01     LDA #$01
@@ -49257,7 +49266,7 @@
 
 ; [ screen wipe in (world map) ]
 
-3E/CF9F: 20 F8 D0  JSR $D0F8          ; reset oam data in ppu
+3E/CF9F: 20 F8 D0  JSR $D0F8          ; hide all sprites
 3E/CFA2: A9 1F     LDA #$1F
 3E/CFA4: 85 84     STA $84
 3E/CFA6: A9 A3     LDA #$A3
@@ -49288,7 +49297,7 @@
 3E/CFC5: 20 00 FF  JSR $FF00          ; wait for vblank
 3E/CFC8: A9 0A     LDA #$0A           ; show background
 3E/CFCA: 8D 01 20  STA $2001
-3E/CFCD: 20 08 D3  JSR $D308          ; copy color palettes to vram
+3E/CFCD: 20 08 D3  JSR $D308          ; copy color palettes to ppu
 3E/CFD0: 20 26 D0  JSR $D026          ; update ppu scroll for screen wipe
 3E/CFD3: 20 57 D0  JSR $D057          ; wait for vblank to end
 3E/CFD6: A6 84     LDX $84
@@ -49365,7 +49374,7 @@
 
 ; [ screen wipe in (normal map) ]
 
-3E/D066: 20 F2 D0  JSR $D0F2          ; reset oam data in ppu
+3E/D066: 20 F2 D0  JSR $D0F2          ; hide all sprites
 3E/D069: A9 85     LDA #$85
 3E/D06B: 85 84     STA $84
 3E/D06D: A9 01     LDA #$01
@@ -49387,7 +49396,7 @@
 
 ; [ screen wipe out (normal map) ]
 
-3E/D08C: 20 F2 D0  JSR $D0F2          ; reset oam data in ppu
+3E/D08C: 20 F2 D0  JSR $D0F2          ; hide all sprites
 3E/D08F: A9 29     LDA #$29
 3E/D091: 85 84     STA $84
 3E/D093: A9 B3     LDA #$B3
@@ -49407,11 +49416,11 @@
 3E/D0AE: 8D 01 20  STA $2001
 3E/D0B1: 60        RTS 
 
-; [ update ppu for screen wipe ]
+; [ update ppu (screen wipe) ]
 
 3E/D0B2: A9 02     LDA #$02
 3E/D0B4: 8D 14 40  STA $4014          ; dma oam data to ppu
-3E/D0B7: 20 08 D3  JSR $D308          ; copy color palettes to vram
+3E/D0B7: 20 08 D3  JSR $D308          ; copy color palettes to ppu
 3E/D0BA: A5 2D     LDA $2D
 3E/D0BC: 4A        LSR 
 3E/D0BD: B0 03     BCS $D0C2          ; branch if not on world map
@@ -49421,7 +49430,7 @@
 ; [ update screen wipe (normal map) ]
 
 3E/D0C5: 20 00 FF  JSR $FF00          ; wait for vblank
-3E/D0C8: 20 B2 D0  JSR $D0B2
+3E/D0C8: 20 B2 D0  JSR $D0B2          ; update ppu
 3E/D0CB: A2 0A     LDX #$0A
 3E/D0CD: CA        DEX 
 3E/D0CE: D0 FD     BNE $D0CD
@@ -49441,12 +49450,12 @@
 3E/D0EC: 8D 01 20  STA $2001
 3E/D0EF: 4C 50 C7  JMP $C750          ; update sound
 
-; [ reset oam data in ppu ]
+; [ hide all sprites ]
 
-3E/D0F2: 20 F8 D0  JSR $D0F8          ; reset oam data in ppu
+3E/D0F2: 20 F8 D0  JSR $D0F8          ; hide all sprites
 3E/D0F5: 4C 50 C7  JMP $C750          ; update sound
 
-; [ reset oam data in ppu ]
+; [ hide all sprites ]
 
 3E/D0F8: A9 F0     LDA #$F0
 3E/D0FA: A2 00     LDX #$00
@@ -49763,9 +49772,7 @@
 3E/D305: 85 21     STA $21
 3E/D307: 60        RTS 
 
-; --------------------------------------------------------------------------
-
-; [ copy color palettes to vram ]
+; [ copy color palettes to ppu ]
 
 3E/D308: AD 02 20  LDA $2002
 3E/D30B: A9 3F     LDA #$3F           ; ppu address $3F00 (color palettes)
@@ -49795,13 +49802,13 @@
 3E/D33E: 8D 14 40  STA $4014          ; dma oam data to ppu
 3E/D341: 60        RTS 
 
-; [  ]
+; [ update ppu registers ]
 
 3E/D342: A5 2D     LDA $2D
 3E/D344: 4A        LSR 
 3E/D345: 90 03     BCC $D34A          ; branch if on world map
-3E/D347: 4C 71 E5  JMP $E571          ; update ppu registers
-3E/D34A: 4C 98 C3  JMP $C398
+3E/D347: 4C 71 E5  JMP $E571          ; update ppu registers (normal map)
+3E/D34A: 4C 98 C3  JMP $C398          ; update ppu registers (world map)
 
 ; [  ]
 
@@ -49810,7 +49817,7 @@
 3E/D352: A9 00     LDA #$00
 3E/D354: 85 8C     STA $8C
 3E/D356: 20 00 FF  JSR $FF00          ; wait for vblank
-3E/D359: 20 42 D3  JSR $D342
+3E/D359: 20 42 D3  JSR $D342          ; update ppu registers
 3E/D35C: A5 8C     LDA $8C
 3E/D35E: 29 01     AND #$01
 3E/D360: 09 1E     ORA #$1E
@@ -49823,7 +49830,7 @@
 3E/D370: 20 00 FF  JSR $FF00          ; wait for vblank
 3E/D373: A9 0F     LDA #$0F
 3E/D375: 8D D0 03  STA $03D0
-3E/D378: 20 08 D3  JSR $D308          ; copy color palettes to vram
+3E/D378: 20 08 D3  JSR $D308          ; copy color palettes to ppu
 3E/D37B: A9 00     LDA #$00
 3E/D37D: 8D 01 20  STA $2001
 3E/D380: 60        RTS 
@@ -49873,7 +49880,7 @@
 3E/D3CE: F0 13     BEQ $D3E3
 3E/D3D0: 20 00 FF  JSR $FF00          ; wait for vblank
 3E/D3D3: 20 81 D3  JSR $D381
-3E/D3D6: 20 42 D3  JSR $D342
+3E/D3D6: 20 42 D3  JSR $D342          ; update ppu registers
 3E/D3D9: 20 50 C7  JSR $C750          ; update sound
 3E/D3DC: 68        PLA 
 3E/D3DD: 18        CLC 
@@ -49891,7 +49898,7 @@
 3E/D3F1: F0 13     BEQ $D406
 3E/D3F3: 20 00 FF  JSR $FF00          ; wait for vblank
 3E/D3F6: 20 81 D3  JSR $D381
-3E/D3F9: 20 42 D3  JSR $D342
+3E/D3F9: 20 42 D3  JSR $D342          ; update ppu registers
 3E/D3FC: 20 50 C7  JSR $C750          ; update sound
 3E/D3FF: 68        PLA 
 3E/D400: 18        CLC 
@@ -49899,8 +49906,8 @@
 3E/D403: 4C E7 D3  JMP $D3E7
 3E/D406: 68        PLA 
 3E/D407: 20 00 FF  JSR $FF00          ; wait for vblank
-3E/D40A: 20 08 D3  JSR $D308          ; copy color palettes to vram
-3E/D40D: 4C 42 D3  JMP $D342
+3E/D40A: 20 08 D3  JSR $D308          ; copy color palettes to ppu
+3E/D40D: 4C 42 D3  JMP $D342          ; update ppu registers
 
 ; [  ]
 
@@ -50000,7 +50007,7 @@
 3E/D4BB: A5 8C     LDA $8C
 3E/D4BD: 29 02     AND #$02
 3E/D4BF: D0 06     BNE $D4C7
-3E/D4C1: 20 98 C3  JSR $C398
+3E/D4C1: 20 98 C3  JSR $C398          ; update ppu registers
 3E/D4C4: 4C CA D4  JMP $D4CA
 3E/D4C7: 20 71 E5  JSR $E571          ; update ppu registers
 3E/D4CA: A9 0A     LDA #$0A
@@ -50387,7 +50394,7 @@
 3E/D748: 20 06 FF  JSR $FF06          ; switch prg bank 0
 3E/D74B: 20 15 85  JSR $8515          ; update water animation
 3E/D74E: E6 F0     INC $F0
-3E/D750: 20 98 C3  JSR $C398
+3E/D750: 20 98 C3  JSR $C398          ; update ppu registers
 3E/D753: 20 86 C4  JSR $C486          ; clear oam data
 3E/D756: A9 3C     LDA #$3C
 3E/D758: 20 03 FF  JSR $FF03          ; switch prg bank 0 and 1 (sequential)
@@ -50460,7 +50467,7 @@
 3E/D7C6: A9 3A     LDA #$3A
 3E/D7C8: 20 06 FF  JSR $FF06          ; switch prg bank 0
 3E/D7CB: 20 15 85  JSR $8515          ; update water animation
-3E/D7CE: 20 98 C3  JSR $C398
+3E/D7CE: 20 98 C3  JSR $C398          ; update ppu registers
 3E/D7D1: 20 86 C4  JSR $C486          ; clear oam data
 3E/D7D4: A9 3C     LDA #$3C
 3E/D7D6: 20 03 FF  JSR $FF03          ; switch prg bank 0 and 1 (sequential)
@@ -52004,7 +52011,7 @@
 3F/E36E: A5 4B     LDA $4B            ; map title
 3F/E370: C9 FF     CMP #$FF
 3F/E372: D0 09     BNE $E37D
-3F/E374: 20 19 D2  JSR $D219          ; execute event script
+3F/E374: 20 19 D2  JSR $D219          ; execute event script / update joypad input
 3F/E377: A5 20     LDA $20
 3F/E379: 29 0F     AND #$0F
 3F/E37B: D0 01     BNE $E37E          ; branch if any direction buttons pressed
@@ -52018,7 +52025,7 @@
 3F/E38B: AD 21 60  LDA $6021          ; clear unlocked door flag
 3F/E38E: 29 BF     AND #$BF
 3F/E390: 8D 21 60  STA $6021
-3F/E393: 4C 67 CA  JMP $CA67
+3F/E393: 4C 67 CA  JMP $CA67          ; init player movement
 
 ; [ check tile passability ]
 
@@ -52274,19 +52281,19 @@
 
 3F/E54C: A9 1E     LDA #$1E
 3F/E54E: 8D 01 20  STA $2001
-3F/E551: 20 D1 E7  JSR $E7D1
+3F/E551: 20 D1 E7  JSR $E7D1          ; draw open door/treasure chest
 3F/E554: AD 02 20  LDA $2002
 3F/E557: A5 34     LDA $34
 3F/E559: F0 16     BEQ $E571          ; update ppu registers
 3F/E55B: 20 EB E5  JSR $E5EB          ; update player movement
-3F/E55E: 20 07 C9  JSR $C907
+3F/E55E: 20 07 C9  JSR $C907          ; do poison step damage
 3F/E561: A5 44     LDA $44
 3F/E563: 29 08     AND #$08
 3F/E565: C9 08     CMP #$08
 3F/E567: D0 07     BNE $E570
 3F/E569: A5 45     LDA $45
 3F/E56B: D0 03     BNE $E570          ; return if on a trigger ???
-3F/E56D: 20 FD C8  JSR $C8FD
+3F/E56D: 20 FD C8  JSR $C8FD          ; do floor damage
 3F/E570: 60        RTS 
 
 ; [ update ppu registers (normal map) ]
@@ -52454,7 +52461,7 @@
 3F/E69B: A9 83     LDA #$83           ; play sound effect 3
 3F/E69D: 8D 49 7F  STA $7F49
 3F/E6A0: A9 7E     LDA #$7E           ; open door tile
-3F/E6A2: 20 F2 E6  JSR $E6F2          ; draw open door/chest
+3F/E6A2: 20 F2 E6  JSR $E6F2          ; open door
 3F/E6A5: 4C 95 E6  JMP $E695          ; entrance
 ; 6: locked door
 3F/E6A8: AD 21 60  LDA $6021          ; check unlocked door flag
@@ -52501,12 +52508,12 @@
 3F/E6EB: A5 44     LDA $44
 3F/E6ED: 4C B4 E3  JMP $E3B4
 
-; [ draw open treasure chest ]
+; [ open treasure chest ]
 
 3F/E6F0: A9 7D     LDA #$7D           ; open treasure chest tile
 ; fallthrough
 
-; [ draw open door/chest ]
+; [ open door ]
 
 3F/E6F2: 85 0D     STA $0D
 3F/E6F4: A2 07     LDX #$07           ; y = 7 (facing left or right)
@@ -52528,7 +52535,7 @@
 3F/E712: 85 0E     STA $0E
 3F/E714: 60        RTS 
 
-; [ open door ]
+; [ update bg for open door/treasure chest ]
 
 3F/E715: A6 0F     LDX $0F
 3F/E717: A5 0E     LDA $0E
@@ -52617,7 +52624,7 @@
 3F/E7C8: FC F3 CF 3F
 3F/E7CC: 03 0C 30 C0
 
-; [ check open door ]
+; [ draw open door/treasure chest ]
 
 ; subroutine starts at 3F/E7D1
 
@@ -52632,25 +52639,25 @@
 3F/E7DD: F0 04     BEQ $E7E3          ; branch if not moving left or right
 3F/E7DF: A5 32     LDA $32
 3F/E7E1: D0 ED     BNE $E7D0          ; return if map bg needs update
-3F/E7E3: 20 15 E7  JSR $E715          ; open door
+3F/E7E3: 20 15 E7  JSR $E715          ; update bg for open door/treasure chest
 3F/E7E6: A9 00     LDA #$00
 3F/E7E8: 85 0D     STA $0D
 3F/E7EA: 60        RTS 
 
-; unused
+; unused (was open door sound effect)
 3F/E7EB: 60        RTS 
 
 ; [ load map ]
 
 3F/E7EC: 20 03 E8  JSR $E803          ; load map
 3F/E7EF: 20 11 E8  JSR $E811          ; load npcs
-3F/E7F2: 20 1B E8  JSR $E81B
+3F/E7F2: 20 1B E8  JSR $E81B          ; init map
 3F/E7F5: 4C 66 D0  JMP $D066
 
 ; [ reload map ]
 
 3F/E7F8: 20 03 E8  JSR $E803          ; load map
-3F/E7FB: 20 1B E8  JSR $E81B
+3F/E7FB: 20 1B E8  JSR $E81B          ; init map
 3F/E7FE: A9 03     LDA #$03
 3F/E800: 4C 69 D4  JMP $D469
 
@@ -52665,7 +52672,7 @@
 3F/E807: 85 2D     STA $2D
 3F/E809: A9 00     LDA #$00
 3F/E80B: 8D 01 20  STA $2001
-3F/E80E: 4C A4 CB  JMP $CBA4          ; load map
+3F/E80E: 4C A4 CB  JMP $CBA4          ; load map data
 
 ; [ load npcs ]
 
@@ -52674,7 +52681,7 @@
 3F/E816: A2 07     LDX #$07           ; load npcs
 3F/E818: 4C 03 A0  JMP $A003          ; execute object command
 
-; [  ]
+; [ init map ]
 
 3F/E81B: A9 00     LDA #$00
 3F/E81D: 85 37     STA $37
@@ -52684,7 +52691,7 @@
 3F/E826: 85 24     STA $24
 3F/E828: 85 25     STA $25
 3F/E82A: 85 AB     STA $AB
-3F/E82C: 20 0F DD  JSR $DD0F
+3F/E82C: 20 0F DD  JSR $DD0F          ; load normal map graphics
 3F/E82F: A9 3A     LDA #$3A
 3F/E831: 20 06 FF  JSR $FF06          ; switch prg bank 0
 3F/E834: 20 09 85  JSR $8509          ; load map palette
@@ -52702,7 +52709,7 @@
 3F/E84B: 85 FD     STA $FD
 3F/E84D: 85 FF     STA $FF
 3F/E84F: 20 00 FF  JSR $FF00          ; wait for vblank
-3F/E852: 20 08 D3  JSR $D308          ; copy color palettes to vram
+3F/E852: 20 08 D3  JSR $D308          ; copy color palettes to ppu
 3F/E855: 20 71 E5  JSR $E571          ; update ppu registers
 3F/E858: A9 00     LDA #$00
 3F/E85A: 8D 01 20  STA $2001
@@ -52869,7 +52876,7 @@
 3F/E984: 8D 49 7F  STA $7F49
 3F/E987: 24 BA     BIT $BA
 3F/E989: 30 03     BMI $E98E          ; branch if not a chest
-3F/E98B: 20 F0 E6  JSR $E6F0          ; draw open treasure chest
+3F/E98B: 20 F0 E6  JSR $E6F0          ; open treasure chest
 3F/E98E: A5 80     LDA $80            ; save pointer to tilemap (at $7400)
 3F/E990: 48        PHA 
 3F/E991: A5 81     LDA $81
@@ -52986,7 +52993,7 @@
 3F/EA32: 20 E9 E4  JSR $E4E9          ; get tile in facing direction
 3F/EA35: 20 94 E4  JSR $E494          ; check npcs
 3F/EA38: 90 03     BCC $EA3D          ; branch if no npc
-3F/EA3A: 4C BB E9  JMP $E9BB
+3F/EA3A: 4C BB E9  JMP $E9BB          ; execute npc event
 3F/EA3D: 20 17 E9  JSR $E917          ; check treasures and locked doors
 3F/EA40: 90 0F     BCC $EA51
 3F/EA42: 85 76     STA $76
@@ -53076,7 +53083,7 @@
 3F/EAE9: D0 01     BNE $EAEC          ; branch if an item was selected
 3F/EAEB: 60        RTS 
 3F/EAEC: 85 67     STA $67
-3F/EAEE: C9 B0     CMP #$B0           ; only key items and useable items are valid
+3F/EAEE: C9 B0     CMP #$B0           ; only key items and usable items are valid
 3F/EAF0: B0 F9     BCS $EAEB
 3F/EAF2: C9 98     CMP #$98
 3F/EAF4: 90 F5     BCC $EAEB
@@ -53635,6 +53642,7 @@
 3F/EEBB: 18        CLC 
 3F/EEBC: 69 18     ADC #$18
 3F/EEBE: 85 93     STA $93
+; load next line of text
 3F/EEC0: A5 93     LDA $93
 3F/EEC2: 20 03 FF  JSR $FF03          ; switch prg bank 0 and 1 (sequential)
 3F/EEC5: A9 00     LDA #$00           ; clear number of choices
@@ -54762,7 +54770,7 @@
 3F/F750: 68        PLA 
 3F/F751: 48        PHA 
 3F/F752: 20 7B F7  JSR $F77B
-3F/F755: 20 70 F7  JSR $F770
+3F/F755: 20 70 F7  JSR $F770          ; update ppu registers
 3F/F758: 20 50 C7  JSR $C750          ; update sound
 3F/F75B: 68        PLA 
 3F/F75C: 18        CLC 
@@ -54770,18 +54778,18 @@
 3F/F75F: C9 08     CMP #$08
 3F/F761: 90 E4     BCC $F747
 3F/F763: 20 00 FF  JSR $FF00          ; wait for vblank
-3F/F766: 20 08 D3  JSR $D308          ; copy color palettes to vram
-3F/F769: 20 70 F7  JSR $F770
+3F/F766: 20 08 D3  JSR $D308          ; copy color palettes to ppu
+3F/F769: 20 70 F7  JSR $F770          ; update ppu registers
 3F/F76C: 20 50 C7  JSR $C750          ; update sound
 3F/F76F: 60        RTS 
 
-; [  ]
+; [ update ppu registers ]
 
 3F/F770: A5 2D     LDA $2D
 3F/F772: 4A        LSR 
 3F/F773: B0 03     BCS $F778          ; branch if not on world map
-3F/F775: 4C 98 C3  JMP $C398
-3F/F778: 4C 71 E5  JMP $E571          ; update ppu registers
+3F/F775: 4C 98 C3  JMP $C398          ; update ppu registers (world map)
+3F/F778: 4C 71 E5  JMP $E571          ; update ppu registers (normal map)
 
 ; [  ]
 
@@ -55606,7 +55614,8 @@
 
 ; [ divide (16-bit) ]
 
-; +$1E = 
+; +$1C = +$18 / +$1A
+; +$1E = remainder
 
 3F/FC92: A9 00     LDA #$00
 3F/FC94: 85 1D     STA $1D

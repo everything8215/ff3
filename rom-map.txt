@@ -142,7 +142,7 @@
 | 309400-3096BF | 061410-0616CF | weapon properties (88 * 8 bytes)          |
 | 3096C0-3098BF | 0616D0-0618CF | armor properties (64 * 8 bytes)           |
 | 3098C0-309C57 | 0618D0-061C67 | attack properties (115 * 8 bytes)         |
-| 309C58-309E57 | 061C68-061E67 | monster gold (256 * 2 bytes)              |
+| 309C58-309E57 | 061C68-061E67 | monster gil (256 * 2 bytes)               |
 | 309E58-31BFFF | 061E68-06400F | battle main code (algorithms)             |
 | 328000-33BFFF | 064010-06800F | battle graphics code (animations)         |
 | 348000-35BFFF | 068010-06C00F | battle main code                          |

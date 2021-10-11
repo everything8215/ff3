@@ -255,11 +255,11 @@
 |             |       $1D hit % (left hand)                                 |
 |             |       $1E attack power (left hand)                          |
 |             |       $1F attack status (left hand)                         |
-|             |       $20 absorbed elements                                 |
+|             |       $20 strong/absorbed elements                          |
 |             |       $21 defense mult.                                     |
 |             |       $22 evade %                                           |
 |             |       $23 defense                                           |
-|             |       $24 status immunity 1                                 |
+|             |       $24 status immunity 1 (lsb: absorb strong elements)   |
 |             |       $25                                                   |
 |             |       $26 reflect counter                                   |
 |             |       $27 counter for jump and buildup                      |
@@ -340,7 +340,7 @@
 |             |   $80: ambushed (cleared after first round)                 |
 |             |   $88: back attack (msb cleared after first round)          |
 | $78BB-$78C2 | character status for display (4 * 2 bytes)                  |
-|             |     $78BB abcdefgh status                                   |
+|             |     $78BB abcdefgh status 1                                 |
 |             |             a: dead                                         |
 |             |             b: stone                                        |
 |             |             c: paralyzed                                    |

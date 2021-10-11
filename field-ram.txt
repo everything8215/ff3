@@ -66,7 +66,7 @@
 |             |     $23 start button pressed                                |
 |             |     $24 A button pressed                                    |
 |             |     $25 B button pressed                                    |
-|             |     $26 pointer to current sprite data                      |
+|             |     $26 pointer to next available sprite                    |
 |             |     $27 world map left position                             |
 |             |     $28 world map top position                              |
 |             |     $29 normal map left position                            |
@@ -291,6 +291,7 @@
 |             |     $FD ppu control -> $2000 (pending)                      |
 |             |     $FE unused ppu mask -> $2001                            |
 |             |     $FF ppu control -> $2000 (current)                      |
++-------------+-------------------------------------------------------------+
 |     ++$0100 | nmi jump code                                               |
 |     ++$0103 | irq jump code                                               |
 | $0106-$010F | -                                                           |
@@ -512,6 +513,7 @@
 | $6400-$67FF | save slot 1                                                 |
 | $6800-$6BFF | save slot 2                                                 |
 | $6C00-$6FFF | save slot 3                                                 |
++-------------+-------------------------------------------------------------+
 | $7000-$70BF | object properties, part 1 (12 * 16 bytes)                   |
 |             |         $7000 npc id (zero if not visible)                  |
 |             |         $7001 sa?t----                                      |
@@ -574,6 +576,7 @@
 |       $7F39 | set to $AA if save count is valid                           |
 |       $7F3A | save count                                                  |
 | $7F3B-$7F3F | -                                                           |
++-------------+-------------------------------------------------------------+
 |       $7F40 | current song id                                             |
 |       $7F41 | paused song id                                              |
 |       $7F42 | eoi-vsrp music flags                                        |
