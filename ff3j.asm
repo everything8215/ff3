@@ -30096,10 +30096,11 @@
 36/830A: 09 02     ORA #$02           ; key off
 36/830C: 9D 4A 7F  STA $7F4A,X
 36/830F: 60        RTS 
+; dmc
 36/8310: AD 44 7F  LDA $7F44
 36/8313: C9 05     CMP #$05
 36/8315: 90 05     BCC $831C
-36/8317: A9 FF     LDA #$FF
+36/8317: A9 FF     LDA #$FF           ; set dmc direct load (causes a pop sound)
 36/8319: 8D 11 40  STA $4011
 36/831C: 60        RTS 
 
@@ -30330,7 +30331,7 @@
 36/846B: 9D 82 7F  STA $7F82,X
 36/846E: 4C 17 82  JMP $8217
 
-; [ sound command $F9:  ]
+; [ sound command $F9: hi-hat preset ]
 
 36/8471: A6 D0     LDX $D0
 36/8473: A9 04     LDA #$04           ; set octave to 4
@@ -30341,7 +30342,7 @@
 36/847F: 9D 90 7F  STA $7F90,X
 36/8482: 4C 17 82  JMP $8217
 
-; [ sound command $FA: ]
+; [ sound command $FA: snare drum preset ]
 
 36/8485: A6 D0     LDX $D0
 36/8487: A9 05     LDA #$05           ; set octave to 5
@@ -33437,7 +33438,7 @@
 3A/92AA: C8        INY 
 3A/92AB: D0 F1     BNE $929E
 3A/92AD: B1 82     LDA ($82),Y
-3A/92AF: 99 00 06  STA $0600,Y        ; name table
+3A/92AF: 99 00 06  STA $0600,Y        ; attribute table
 3A/92B2: C8        INY 
 3A/92B3: 10 F8     BPL $92AD
 3A/92B5: A0 00     LDY #$00
@@ -47251,7 +47252,7 @@
 3E/C197: 4C 08 C1  JMP $C108
 3E/C19A: 4C E6 C8  JMP $C8E6          ; reload world map
 ; $40: battle
-3E/C19D: 20 4D D3  JSR $D34D
+3E/C19D: 20 4D D3  JSR $D34D          ; flash screen for battle
 3E/C1A0: 20 65 C7  JSR $C765          ; get tile properties
 3E/C1A3: BD 01 04  LDA $0401,X        ; battle bg
 3E/C1A6: 85 6B     STA $6B
@@ -49175,7 +49176,7 @@
 3E/CEF9: 9D A0 07  STA $07A0,X
 3E/CEFC: B9 00 72  LDA $7200,Y
 3E/CEFF: 9D B0 07  STA $07B0,X
-3E/CF02: B9 00 06  LDA $0600,Y        ; name table
+3E/CF02: B9 00 06  LDA $0600,Y        ; attribute table
 3E/CF05: 9D C0 07  STA $07C0,X
 3E/CF08: A5 80     LDA $80            ; next tile
 3E/CF0A: 18        CLC 
@@ -49206,7 +49207,7 @@
 3E/CF3C: 9D A0 07  STA $07A0,X
 3E/CF3F: B9 00 72  LDA $7200,Y
 3E/CF42: 9D B0 07  STA $07B0,X
-3E/CF45: B9 00 06  LDA $0600,Y        ; name table
+3E/CF45: B9 00 06  LDA $0600,Y        ; attribute table
 3E/CF48: 9D C0 07  STA $07C0,X
 3E/CF4B: A5 80     LDA $80            ; next tile
 3E/CF4D: 18        CLC 
@@ -49810,7 +49811,7 @@
 3E/D347: 4C 71 E5  JMP $E571          ; update ppu registers (normal map)
 3E/D34A: 4C 98 C3  JMP $C398          ; update ppu registers (world map)
 
-; [  ]
+; [ flash screen for battle ]
 
 3E/D34D: A9 95     LDA #$95
 3E/D34F: 8D 49 7F  STA $7F49
@@ -51876,7 +51877,7 @@
 3F/E26A: C9 40     CMP #$40
 3F/E26C: B0 1D     BCS $E28B
 ; $20: battle
-3F/E26E: 20 4D D3  JSR $D34D
+3F/E26E: 20 4D D3  JSR $D34D          ; flash screen for battle
 3F/E271: 20 83 E2  JSR $E283          ; get default battle bg
 3F/E274: 20 49 C0  JSR $C049          ; battle
 3F/E277: A9 01     LDA #$01
@@ -52602,7 +52603,7 @@
 3F/E799: 85 81     STA $81
 3F/E79B: A6 80     LDX $80
 3F/E79D: A4 0D     LDY $0D
-3F/E79F: B9 00 06  LDA $0600,Y        ; name table entry
+3F/E79F: B9 00 06  LDA $0600,Y        ; attribute table entry
 3F/E7A2: A4 82     LDY $82
 3F/E7A4: 39 CC E7  AND $E7CC,Y
 3F/E7A7: 85 82     STA $82

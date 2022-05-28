@@ -255,7 +255,7 @@
 |             | $BF-$CF - (used for cutscenes and battle)                   |
 |             |     $D0 current sound channel id                            |
 |             |     $D1 current sound channel type                          |
-|             |           0: dmc                                            |
+|             |           0: dmc (kick drum)                                |
 |             |           1: noise                                          |
 |             |           2: triangle                                       |
 |             |           3: pulse 2                                        |
@@ -312,7 +312,7 @@
 | $03F0-$03FF | temporary color palettes                                    |
 | $0400-$04FF | tile properties byte 1 (see $44)                            |
 | $0500-$05FF | tile properties byte 2 (see $45)                            |
-| $0600-$06FF | map tileset name table                                      |
+| $0600-$06FF | map tileset attribute table                                 |
 | $0700-$070F | map entrances                                               |
 | $0710-$071F | map treasures                                               |
 | $0720-$072F | map triggers                                                |
@@ -572,8 +572,8 @@
 | $7E00-$7EFF | map tileset (bottom left)                                   |
 | $7F00-$7F2F | graphics buffer for water animation                         |
 | $7F30-$7F37 | -                                                           |
-|       $7F38 | set to $55 if save count is valid                           |
-|       $7F39 | set to $AA if save count is valid                           |
+|       $7F38 | set to #$55 if save count is valid                           |
+|       $7F39 | set to #$AA if save count is valid                           |
 |       $7F3A | save count                                                  |
 | $7F3B-$7F3F | -                                                           |
 +-------------+-------------------------------------------------------------+
@@ -604,7 +604,7 @@
 |             |     1: pulse 2                                              |
 |             |     2: triangle                                             |
 |             |     3: noise                                                |
-|             |     4: dmc (unused)                                         |
+|             |     4: dmc (kick drum)                                      |
 |             |     5: pulse 2 (sound effect)                               |
 |             |     6: noise (sound effect)                                 |
 |             |   $7F4A e-----ab channel flags                              |
